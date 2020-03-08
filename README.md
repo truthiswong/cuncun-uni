@@ -2,6 +2,6 @@
 
 # 存存-App
 
-![](static/images/logo.png)
+![](static/common/logo.png)
 
 
