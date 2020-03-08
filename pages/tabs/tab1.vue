@@ -1,6 +1,6 @@
 <template>
 	<view class="tab1">
-		<hx-navbar class="header" :style="{opacity: 1-headerScroll}" :back="false" :fixed="true" color="#ffffff"
+		<hx-navbar class="header" :style="{opacity: 1-headerScroll}" :back="false" color="#ffffff"
 		 barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
 			<view slot="left">
 				<image src="../../static/tab1/tab1_logo.png" style="width:306upx; height:68upx; margin: 0px 30upx -24upx;"></image>
@@ -10,7 +10,7 @@
 				<image @click="onClickRight(2)" src="../../static/tab1/add.png" style="margin-left: 60upx;"></image>
 			</view>
 		</hx-navbar>
-		<hx-navbar class="header_active" :style="{opacity: headerScroll}" :back="false" :fixed="true" color="#ffffff"
+		<hx-navbar class="header_active" :style="{opacity: headerScroll}" :back="false" color="#ffffff"
 		 barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
 			<view slot="left">
 				<image src="../../static/tab1/header_active.png" style="width:306upx; height:48upx; margin: 0px 30upx -13upx;"></image>
