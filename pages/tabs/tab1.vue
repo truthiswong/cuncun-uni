@@ -1,7 +1,7 @@
 <template>
 	<view class="tab1">
-		<hx-navbar class="header" :style="{opacity: 1-headerScroll}" :back="false" color="#ffffff"
-		 barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
+		<hx-navbar class="header" :style="{opacity: 1-headerScroll}" :back="false" color="#ffffff" barPlaceholder="hidden"
+		 transparent="auto" :background-color="[255, 255, 255]">
 			<view slot="left">
 				<image src="../../static/tab1/tab1_logo.png" style="width:306upx; height:68upx; margin: 0px 30upx -24upx;"></image>
 			</view>
@@ -10,8 +10,8 @@
 				<image @click="onClickRight(2)" src="../../static/tab1/add.png" style="margin-left: 60upx;"></image>
 			</view>
 		</hx-navbar>
-		<hx-navbar class="header_active" :style="{opacity: headerScroll}" :back="false" color="#ffffff"
-		 barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
+		<hx-navbar class="header_active" :style="{opacity: headerScroll}" :back="false" color="#ffffff" barPlaceholder="hidden"
+		 transparent="auto" :background-color="[255, 255, 255]">
 			<view slot="left">
 				<image src="../../static/tab1/header_active.png" style="width:306upx; height:48upx; margin: 0px 30upx -13upx;"></image>
 			</view>
@@ -36,71 +36,111 @@
 			<view>
 				<!-- 书架 -->
 				<view>
-					<hx-navbar :back="false" title="汪汪汪" color="#ffffff"
-					 barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
-						<view slot="left">
-							<image style="width:306upx; height:68upx; margin: 0px 30upx -24upx;" src='../../static/tab1/book.png'></image>
+					<hx-navbar :back="false" color="#ffffff" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
+						<view slot="left" class="left_icon">
+							<image src='../../static/tab1/book.png'></image>
 						</view>
-						<view slot="right" class="header_icon">
+						<view slot="right" class="right_icon" @click="onClickRight(1)">
 							<text>查看全部</text>
-							<image @click="onClickRight(1)" src="../../static/tab1/right.png"></image>
+							<image src="../../static/tab1/right.png"></image>
 						</view>
 					</hx-navbar>
-				</view>
-				
-				<view class='base-padding row base-info font-lv2'>
-					<navigator class='col-12'>
-						<image src="../../static/tab1/right.png"></image>
-					</navigator>
-					<navigator class='col-12'>
-						<image class="me-icon" src='../../static/tab1/book.png'></image>
-						<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
-						<image src="../../static/tab1/right.png"></image>
-					</navigator>
-					<navigator class='col-12'>
-						<image class="me-icon" src='../../static/tab1/book.png'></image>
-						<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
-						<image src="../../static/tab1/right.png"></image>
-					</navigator>
-					<navigator class='col-12'>
-						<image class="me-icon" src='../../static/tab1/book.png'></image>
-						<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
-						<image src="../../static/tab1/right.png"></image>
-					</navigator>
-				</view>
-				<!--  推荐  -->
-				<view class='panel base-padding recommend base-margin-bottom'>
-					<view class='panel-heading'>
-						<view class='panel-title font-lv1 strong'>最新推荐</view>
+					<view>
+						<!-- <scroll-view scroll-x="true">
+							<view class="scroll_x">
+								<view class="scroll_content" v-for="item in 10" :key="item">
+									<image src="../../static/tab1/book_img.jpg"></image>
+								</view>
+							</view>
+						</scroll-view> -->
+						<scroll-view class="scroll_x" scroll-x="true">							<view class="scroll_content scroll_contentbg1" v-for="(item,index) in 10" :key='index' style="display: inline-block;">								<image src="../../static/tab1/book_img.jpg"></image>							</view>						</scroll-view>
 					</view>
-					<view class='panel-body'>
+				</view>
+				<!-- 衣柜 -->
+				<view>
+					<hx-navbar :back="false" color="#ffffff" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
+						<view slot="left" class="left_icon">
+							<image src='../../static/tab1/clothes.png'></image>
+						</view>
+						<view slot="right" class="right_icon" @click="onClickRight(1)">
+							<text>查看全部</text>
+							<image src="../../static/tab1/right.png"></image>
+						</view>
+					</hx-navbar>
+					<view>
+						<scroll-book :books="recommendBooks" :width="bannerWidth"></scroll-book>
+						<scroll-view scroll-x="true" style="width: 100%;white-space: nowrap;">
+							<view class="scroll_x">
+								<block v-for="item in 10" :key="item">
+									<view class="scroll_content">
+										<image src="../../static/tab1/book_img.jpg"></image>
+									</view>
+								</block>
+							</view>
+						</scroll-view>
+					</view>
+				</view>
+				<!-- 鞋柜 -->
+				<view>
+					<hx-navbar :back="false" color="#ffffff" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
+						<view slot="left" class="left_icon">
+							<image src='../../static/tab1/shoes.png'></image>
+						</view>
+						<view slot="right" class="right_icon" @click="onClickRight(1)">
+							<text>查看全部</text>
+							<image src="../../static/tab1/right.png"></image>
+						</view>
+					</hx-navbar>
+					<view>
+						<scroll-book :books="recommendBooks" :width="bannerWidth"></scroll-book>
+						<!-- <scroll-view class="scroll_x" scroll-x="true">
+							<block v-for="item in 10" :key="item">
+								<view class="scroll_content">
+									<image src="../../static/tab1/book_img.jpg"></image>
+								</view>
+							</block>
+						</scroll-view> -->
+					</view>
+				</view>
+				<!-- 杂物架 -->
+				<!-- <view>
+					<hx-navbar :back="false" color="#ffffff" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
+						<view slot="left" class="left_icon">
+							<image src='../../static/tab1/groceries.png'></image>
+						</view>
+						<view slot="right" class="right_icon" @click="onClickRight(1)">
+							<text>查看全部</text>
+							<image src="../../static/tab1/right.png"></image>
+						</view>
+					</hx-navbar>
+					<view>
 						<scroll-book :books="recommendBooks" :width="bannerWidth"></scroll-book>
 					</view>
-				</view>
-				<view class="list_content_wrap">
-					<ul class="list_content">
-						<li class="list_content_li list_content_li1" v-for="item in 10" :key="item">
-							<image src="../../static/tab1/book_img.jpg"></image>
-						</li>
-					</ul>
+				</view> -->
+				<!-- 杂货架 -->
+				<view>
+					<hx-navbar :back="false" color="#ffffff" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
+						<view slot="left" class="left_icon">
+							<image src='../../static/tab1/groceries.png'></image>
+						</view>
+						<view slot="right" class="right_icon" @click="onClickRight(1)">
+							<text>查看全部</text>
+							<image src="../../static/tab1/right.png"></image>
+						</view>
+					</hx-navbar>
+					<view>
+						<scroll-book :books="recommendBooks" :width="bannerWidth"></scroll-book>
+						<!-- <scroll-view class="scroll_x" scroll-x="true">
+							<block v-for="item in 10" :key="item">
+								<view class="scroll_content">
+									<image src="../../static/tab1/book_img.jpg"></image>
+								</view>
+							</block>
+						</scroll-view> -->
+					</view>
 				</view>
 			</view>
 		</view>
-
-		<!--  各种分类的书籍的展示  -->
-		<block v-for="category in categoryBooks" :key="category.id">
-			<view v-if="category.books" class='panel base-padding base-margin-bottom'>
-				<view class='panel-heading'>
-					<view class='panel-title font-lv1 strong'>{{category.title}}
-						<navigator :url="'/pages/list/list?tab=new&cid='+category.id" class='pull-right color-link font-lv3'>更多</navigator>
-					</view>
-				</view>
-				<view class='panel-body'>
-					<list-book :books="category.books" />
-				</view>
-			</view>
-		</block>
-		<view v-if="platform == 'ios'" class="ios-platform">.</view>
 	</view>
 </template>
 
@@ -139,14 +179,8 @@
 				platform: '',
 			}
 		},
-		onLoad() {
-			this.loadData()
-		},
-		onShow() {
-			if (this.categoryBooks.length == 0) {
-				this.loadData()
-			}
-		},
+		onLoad() {},
+		onShow() {},
 		onPageScroll(options) {
 			if (config.debug) console.log("onPageScroll", options)
 			// if (options.scrollTop > 110) {
@@ -168,88 +202,7 @@
 					console.log(2);
 				}
 			},
-			loadData() {
-				// #ifdef MP
-				util.loading('玩命加载中...')
-				// #endif
 
-				let that = this
-				let cids = []
-				let categories = []
-				api.getCategories().then(function(res) {
-					if (res.length > 0) {
-						categories = res.filter(function(category) {
-							let b = category.pid == 0 && category.cnt > 0
-							if (b) cids.push(category.id)
-							return b
-						})
-					}
-					if (config.debug) console.log(res, categories, cids)
-				}).catch(function(e) {
-					console.log("api.getCategories()", e)
-				}).finally(function() {
-					let banners = []
-					let recommendBooks = []
-					let bookLists = []
-					Promise.all([util.request(config.api.banners), util.request(config.api.bookLists, {
-						page: 1,
-						size: 12,
-						sort: 'latest-recommend'
-					}), util.request(config.api.bookListsByCids, {
-						page: 1,
-						size: 5,
-						sort: 'new',
-						cids: cids.join(',')
-					})]).then(function([resBanners, resRecommendBooks, resBookLists]) {
-						if (config.debug) console.log(cids, resBanners, resRecommendBooks, resBookLists)
-						if (resBanners.data && resBanners.data.banners) {
-							banners = resBanners.data.banners
-
-							// 计算横幅合适的宽高
-							// 转成 upx，因为两边边距设置为 30upx
-							let size = resBanners.data.size || 2.619
-							let info = util.getSysInfo()
-							let width = info.windowWidth * info.pixelRatio - 60
-							let height = width / size
-							that.platform = info.platform || ''
-							that.platform = that.platform.toLowerCase()
-							that.bannerWidth = width / info.pixelRatio + "px"
-							that.bannerHeight = height / info.pixelRatio + "px"
-						}
-						if (resRecommendBooks.data && resRecommendBooks.data.books) recommendBooks = resRecommendBooks.data.books
-						if (resBookLists.data && resBookLists.data.books) {
-							categories = categories.map(function(category) {
-								let book = resBookLists.data.books[category.id]
-								if (book != undefined && book.length > 0) {
-									category.books = book
-								} else {
-									category.books = []
-								}
-								return category
-							})
-						}
-					}).catch(function(e) {
-						console.log(e)
-						// util.toastError(e.data.message || e.ErrMsg)
-					}).finally(function() {
-						that.banners = banners
-						that.categoryBooks = categories
-						that.recommendBooks = recommendBooks
-						that.showSearch = true
-						uni.hideLoading()
-						// if (that.times > 0 && (!categories || categories.length == 0)) {
-						// 	if (config.debug) console.log("reload")
-						// 	let iload = setTimeout(function() {
-						// 		clearTimeout(iload)
-						// 		that.times = that.times - 1
-						// 		that.loadData()
-						// 	}, 3000)
-						// } else {
-						// 	that.times = 0
-						// }
-					})
-				})
-			},
 			bannerClick(e) {
 				if (config.debug) console.log("banner click", e)
 				let url = e.target.dataset.url
@@ -362,6 +315,52 @@
 		color: rgba(178, 178, 178, 1);
 		line-height: 50upx;
 		margin: 70upx auto 0;
+	}
+
+	.left_icon image {
+		width: 184upx;
+		height: 36upx;
+		margin: 0px 30upx -8upx;
+	}
+
+	.right_icon {
+		/* width: 184upx; */
+		margin-right: 18upx;
+	}
+
+	.right_icon text {
+		font-size: 28upx;
+		font-weight: 400;
+		color: rgba(59, 193, 187, 1);
+		line-height: 40upx;
+		margin-right: 8upx;
+	}
+
+	.right_icon image {
+		width: 16upx;
+		height: 16upx;
+	}
+
+	.scroll_x {
+		white-space: nowrap;
+		width: 100%;
+		background-color: #FFFFFF;
+		overflow: auto;
+	}
+
+	.scroll_content {
+		width: 285upx;
+		height: 285upx;
+		text-align: center;
+	}
+	.scroll_contentbg1 {
+		background: url("../../static/tab1/bookbox.png") no-repeat center center;
+		background-size: 100%;
+	}
+
+	.scroll_content image {
+		width: 200upx;
+		height: 230upx;
 	}
 
 	.list {}
