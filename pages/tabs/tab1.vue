@@ -53,7 +53,7 @@
 								</view>
 							</view>
 						</scroll-view> -->
-						<scroll-view class="scroll_x" scroll-x="true">							<view class="scroll_content scroll_contentbg1" v-for="(item,index) in 10" :key='index' style="display: inline-block;">								<image src="../../static/tab1/book_img.jpg"></image>							</view>						</scroll-view>
+						<scroll-view class="scroll_x" scroll-x="true">							<view class="scroll_content scroll_contentbg1" v-for="(item,index) in 10" :key='index' style="display: inline-block;">								<image src="../../static/tab1/book_img1.png"></image>							</view>						</scroll-view>
 					</view>
 				</view>
 				<!-- 衣柜 -->
@@ -68,14 +68,9 @@
 						</view>
 					</hx-navbar>
 					<view>
-						<scroll-book :books="recommendBooks" :width="bannerWidth"></scroll-book>
-						<scroll-view scroll-x="true" style="width: 100%;white-space: nowrap;">
-							<view class="scroll_x">
-								<block v-for="item in 10" :key="item">
-									<view class="scroll_content">
-										<image src="../../static/tab1/book_img.jpg"></image>
-									</view>
-								</block>
+						<scroll-view class="scroll_x" scroll-x="true">
+							<view class="scroll_content scroll_contentbg2" v-for="(item,index) in 10" :key='index' style="display: inline-block;">
+								<image src="../../static/tab1/clothes_img1.png"></image>
 							</view>
 						</scroll-view>
 					</view>
@@ -92,14 +87,11 @@
 						</view>
 					</hx-navbar>
 					<view>
-						<scroll-book :books="recommendBooks" :width="bannerWidth"></scroll-book>
-						<!-- <scroll-view class="scroll_x" scroll-x="true">
-							<block v-for="item in 10" :key="item">
-								<view class="scroll_content">
-									<image src="../../static/tab1/book_img.jpg"></image>
-								</view>
-							</block>
-						</scroll-view> -->
+						<scroll-view class="scroll_x" scroll-x="true">
+							<view class="scroll_content scroll_contentbg3" v-for="(item,index) in 10" :key='index' style="display: inline-block;">
+								<image src="../../static/tab1/shoes_img.jpg"></image>
+							</view>
+						</scroll-view>
 					</view>
 				</view>
 				<!-- 杂物架 -->
@@ -357,10 +349,22 @@
 		background: url("../../static/tab1/bookbox.png") no-repeat center center;
 		background-size: 100%;
 	}
+	.scroll_contentbg2 {
+		background: url("../../static/tab1/clothes_box.png") no-repeat center center;
+		background-size: 100%;
+	}
+	.scroll_contentbg3 {
+		background: url("../../static/tab1/shoes_box.png") no-repeat center center;
+		background-size: 100%;
+	}
 
 	.scroll_content image {
 		width: 200upx;
 		height: 230upx;
+	}
+	.scroll_contentbg2 image {
+		width: 220upx;
+		height: 200upx;
 	}
 
 	.list {}
