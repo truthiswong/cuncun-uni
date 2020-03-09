@@ -45,6 +45,12 @@
 			"style": {
 				"navigationBarTitleText": "我的"
 			}
+		},
+		{
+			"path": "pages/tab3/setting",
+			"style": {
+				"navigationBarTitleText": "设置"
+			}
 		}, {
 			"path": "pages/tabs/tab2",
 			"style": {
@@ -66,12 +72,11 @@
 			"style": {
 				"navigationBarTitleText": "搜索"
 			}
+		}, {
+			"path": "pages/rank/rank",
+			"style": {}
 		}
-	    ,{
-            "path" : "pages/rank/rank",
-            "style" : {}
-        }
-    ],
+	],
 	"tabBar": {
 		"list": [{
 				"pagePath": "pages/tabs/tab1",
@@ -101,7 +106,7 @@
 		"navigationBarTitleText": "BookChat",
 		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#FFFFFF",
-		"navigationStyle":"custom"
+		"navigationStyle": "custom"
 	},
 	"condition": { //模式配置，仅开发期间生效
 		"current": 0, //当前激活的模式(list 的索引项)
