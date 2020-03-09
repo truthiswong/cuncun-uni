@@ -1,7 +1,9 @@
 <template>
 	<view class="page">
-		<view class="content" ref="tab1Content" @scroll="onScroll">
-			<image src="../../static/tab3/setting.png"></image>
+		<view class="content" @scroll="onScroll">
+			<navigator url="/pages/tab3/setting">
+				<image class="setting" src="../../static/tab3/setting.png"></image>
+			</navigator>
 			<view class="cont_top">
 				<view class="head_image">
 					<!-- <img src="../../static/tab3/my_image.png" alt /> -->
@@ -115,120 +117,10 @@
 		},
 		onLoad(op) {
 			if (config.debug) console.log("onLoad", op)
-			if (op.redirect) this.redirect = op.redirect
-			this.info = config.info
 		},
 		onShow() {
-			this.initUser()
-			this.getUserMoreInfo()
 		},
 		methods: {
-			initUser: function() {
-				let that = this
-				let user = util.getUser()
-				if (config.debug) console.log("user", user)
-				if (user == undefined || user.token == undefined || user.uid <= 0) {
-					user = {
-						'uid': 0,
-						'nickname': '游客，请戳我登录',
-						'avatar': '../../static/images/logo.png',
-						'intro': '分享知识，共享智慧；知识，因分享，传承久远'
-					}
-					that.moreInfo = {
-						uid: 0,
-						signed_at: 0,
-						created_at: 0,
-						total_sign: 0,
-						total_continuous_sign: 0,
-						history_continuous_sign: 0,
-						today_reading: 0,
-						month_reading: 0,
-						total_reading: 0,
-						today_reading_hour: 0,
-						today_reading_min: 0,
-						month_reading_hour: 0,
-						month_reading_min: 0,
-						total_reading_hour: 0,
-						total_reading_min: 0,
-						join_day: 0
-					}
-				}
-				that.user = user
-			},
-			logout: function(e) {
-				let that = this
-				uni.showModal({
-					title: '温馨提示',
-					content: '您确定要退出登录吗？',
-					success(res) {
-						if (res.confirm) {
-							util.request(config.api.logout) // 只需调用，不需要处理返回结果
-							util.clearUser()
-							util.toastSuccess('退出成功')
-							that.initUser()
-							util.setSignedAt(0)
-							let sysInfo = util.getSysInfo()
-							sysInfo.bookshelfChanged = true
-							util.setSysInfo(sysInfo)
-						}
-					}
-				})
-			},
-			userLoginEvent: function(e) {
-				if (config.debug) console.log("userLoginEvent", e)
-				if (this.user.uid == 0) {
-					uni.navigateTo({
-						url: '/pages/login/login?redirect=' + this.redirect
-					})
-				}
-			},
-			sign: function() {
-				let that = this
-				util.request(config.api.userSign, {}, 'POST').then(function(res) {
-					util.setSignedAt(res.data.signed_at)
-					uni.showToast({
-						title: res.data.message,
-						duration: 5000,
-						icon: 'none',
-					})
-					that.isSignedToday = util.isSignedToday()
-				}).catch(function(e) {
-					console.log(e)
-					util.toastError(e.data.message || e.errMsg)
-				})
-			},
-			getUserMoreInfo: function() {
-				let that = this
-				if (that.user.uid == 0) return
-				let now = util.now()
-				// 缓存 10 秒
-				if (config.debug) console.log('now', now, 'moreInfoCacheTime', that.moreInfoCacheTime)
-				if (now - that.moreInfoCacheTime <= 10) return
-
-				util.request(config.api.userMoreInfo, {
-					'uid': that.user.uid
-				}).then(function(res) {
-					if (config.debug) console.log(config.api.userMoreInfo, res)
-					let moreInfo = res.data.info
-					let todayReading = util.formatReading(moreInfo.today_reading)
-					moreInfo.today_reading_hour = todayReading.hour
-					moreInfo.today_reading_min = todayReading.min
-					let monthReading = util.formatReading(moreInfo.month_reading)
-					moreInfo.month_reading_hour = monthReading.hour
-					moreInfo.month_reading_min = monthReading.min
-					let totalReading = util.formatReading(moreInfo.total_reading)
-					moreInfo.total_reading_hour = totalReading.hour
-					moreInfo.total_reading_min = totalReading.min
-					moreInfo.join_day = parseInt((now - moreInfo.created_at) / (24 * 3600)) + 1
-					util.setSignedAt(moreInfo.signed_at)
-					that.moreInfo = moreInfo
-				}).catch(function(e) {
-					console.log(e)
-				}).finally(function() {
-					that.moreInfoCacheTime = util.now()
-					that.isSignedToday = util.isSignedToday()
-				})
-			}
 		}
 	}
 </script>
@@ -240,7 +132,7 @@
 		position: relative;
 	}
 
-	.content>image {
+	.setting {
 		position: absolute;
 		z-index: 5;
 		top: 0;
