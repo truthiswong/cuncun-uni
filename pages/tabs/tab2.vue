@@ -1,14 +1,10 @@
 <template>
 	<view>
-		<iheader title="我的订单" :showIcon="false" :showSearch="true"></iheader>
-		<block v-if="books.length>0 && token!='' && showLongpressTips">
-			<view class="row mgt-15 base-padding">
-				<view class="col-12 font-lv4 color-grey longpress-tips">
-					<text>温馨提示：长按可将书籍从书架中移除</text>
-					<text @click="closeLongpressTips" class="close-longpress-tips color-info">X</text>
-				</view>
+		<hx-navbar :back="false" title="我的订单" color="rgba(40,40,40,1)" :fixed="true" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
+			<view slot="right">
+				<image @click="onClickRight" src="../../static/tab1/add_green.png" style="width: 44upx; height: 44upx; margin: 30upx 32upx 0;"></image>
 			</view>
-		</block>
+		</hx-navbar>
 		<view class="content" ref="tab1Content" @scroll="onScroll">
 			<view class="no_data">
 				<image src="../../static/tab1/no_data.png"></image>
@@ -59,6 +55,9 @@
 			this.loadBooks()
 		},
 		methods: {
+			onClickRight() {
+				console.log("订单add")
+			},
 			longpress: function(e) {
 				if (config.debug) console.log("longpress", e)
 				let that = this
@@ -155,61 +154,68 @@
 
 <style>
 	.cont_top {
-	  width: 100%;
-	  height: 386upx;
-	  background: url("../../static/tab1/tab1_top.png") no-repeat center center;
-	  background-size: 100%;
+		width: 100%;
+		height: 386upx;
+		background: url("../../static/tab1/tab1_top.png") no-repeat center center;
+		background-size: 100%;
 	}
+
 	.cont_dialog {
-	  position: relative;
-	  top: 150upx;
-	  left: 30upx;
-	  width: 513upx;
-	  height: 26upx;
-	  background: url("../../static/tab1/tab1_bubble.png") no-repeat center
-	    center;
-	  background-size: 100%;
+		position: relative;
+		top: 150upx;
+		left: 30upx;
+		width: 513upx;
+		height: 26upx;
+		background: url("../../static/tab1/tab1_bubble.png") no-repeat center center;
+		background-size: 100%;
 	}
-	.cont_dialog > h3 {
-	  font-size: 36upx;
-	  font-weight: 600;
-	  color: rgba(40, 40, 40, 1);
-	  line-height: 50upx;
-	  padding: 20upx 40upx 0 30upx;
+
+	.cont_dialog>h3 {
+		font-size: 36upx;
+		font-weight: 600;
+		color: rgba(40, 40, 40, 1);
+		line-height: 50upx;
+		padding: 20upx 40upx 0 30upx;
 	}
-	.cont_dialog > p {
-	  font-size: 28upx;
-	  font-weight: 400;
-	  color: rgba(136, 136, 136, 1);
-	  line-height: 46upx;
-	  padding: 20upx 40upx 0 30upx;
+
+	.cont_dialog>p {
+		font-size: 28upx;
+		font-weight: 400;
+		color: rgba(136, 136, 136, 1);
+		line-height: 46upx;
+		padding: 20upx 40upx 0 30upx;
 	}
+
 	.no_data {
-	  text-align: center;
-	  padding: 272upx 0 116upx;
+		text-align: center;
+		padding: 272upx 0 116upx;
 	}
-	.no_data > image {
-	  width: 338upx;
-	  height: 326upx;
+
+	.no_data>image {
+		width: 338upx;
+		height: 326upx;
 	}
-	.no_data > p {
-	  font-size: 28upx;
-	  font-weight: 400;
-	  color: rgba(178, 178, 178, 1);
-	  line-height: 50upx;
-	  margin: 70upx auto 0;
+
+	.no_data>p {
+		font-size: 28upx;
+		font-weight: 400;
+		color: rgba(178, 178, 178, 1);
+		line-height: 50upx;
+		margin: 70upx auto 0;
 	}
+
 	.common_button {
-	  width: 398upx;
-	  height: 90upx;
-	  line-height: 90upx;
-	  background: rgba(59, 193, 187, 1);
-	  border-radius: 45upx;
-	  font-size: 30upx;
-	  font-weight: 500;
-	  color: white;
-	  margin: 120upx auto 0;
+		width: 398upx;
+		height: 90upx;
+		line-height: 90upx;
+		background: rgba(59, 193, 187, 1);
+		border-radius: 45upx;
+		font-size: 30upx;
+		font-weight: 500;
+		color: white;
+		margin: 120upx auto 0;
 	}
+
 	.box {
 		padding: 15upx;
 	}
