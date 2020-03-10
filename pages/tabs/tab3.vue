@@ -1,10 +1,16 @@
 <template>
 	<view class="page">
+		<hx-navbar :fixed="true" :back="false" title="我的" color="#ffffff" barPlaceholder="hidden" transparent="auto"
+		 :background-color="[255, 255, 255,0]">
+			<view slot="right">
+				<navigator url="/pages/tab3/setting">
+					<image style="width: 44upx; height: 44upx; margin: 30upx 16upx 0 0;" src="../../static/tab3/setting.png"></image>
+				</navigator>
+			</view>
+		</hx-navbar>
 		<view class="content" @scroll="onScroll">
-			<navigator url="/pages/tab3/setting">
-				<image class="setting" src="../../static/tab3/setting.png"></image>
-			</navigator>
 			<view class="cont_top">
+				<image src="/static/tab1/tab1_top.png" mode=""></image>
 				<view class="head_image">
 					<!-- <img src="../../static/tab3/my_image.png" alt /> -->
 					<image src="../../static/tab3/my_image.png"></image>
@@ -16,7 +22,7 @@
 				<view class="head_word">
 					<p>
 						您的合理的收纳和使用能力已秒杀
-						<span>80%</span>的用户
+						<text>80%</text>的用户
 					</p>
 					<image src="../../static/tab3/zan.png" mode=""></image>
 				</view>
@@ -35,12 +41,12 @@
 			</navigator>
 		</view> -->
 		<view class='base-padding row base-info font-lv2'>
-			<navigator :url="user.uid>0 ? '/pages/ucenter/ucenter?tab=release':'/pages/login/login'" class='col-12'>
+			<navigator class='col-12'>
 				<image class="me-icon" src='../../static/tab3/ohter.png'></image>
 				其他
 				<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
 			</navigator>
-			<navigator :url='user.uid>0?"/pages/ucenter/ucenter?tab=star":"/pages/login/login"' class='col-12'>
+			<navigator class='col-12'>
 				<image class="me-icon" src='../../static//tab3/server.png'></image>
 				客服电话
 				<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
@@ -56,39 +62,6 @@
 				<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
 			</navigator> -->
 		</view>
-
-		<!-- <view class='base-padding row base-info font-lv2'>
-			<navigator :url='"/pages/read/read?identify="+info.about' class='col-12'>
-				<image class="me-icon" src='../../static/images/about-us.png'></image>
-				关于我们
-				<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
-			</navigator>
-		</view> -->
-
-		<view v-if="user.uid>0" class='base-padding row base-info font-lv2'>
-			<view @click='logout' class='col-12'>
-				<image class="me-icon" src='../../static/images/login.png'></image>
-				退出登录
-				<image class='pull-right me-icon' src='/static/images/right-angle.png'></image>
-			</view>
-		</view>
-
-		<!-- <view class='base-padding row base-info footer'>
-			<view class='col-12 text-center'>
-				<view v-if="info.copyright">
-					<text class='font-lv4 color-grey'>Copyright © 2018-{{now}} {{info.copyright}}</text>
-				</view>
-				<view v-if="info.license">
-					<text class='font-lv4 color-grey'>License：{{info.license}}</text>
-				</view>
-				<view v-if="info.author">
-					<text class='font-lv4 color-grey'>Author：{{info.author}}</text>
-				</view>
-				<view v-if="info.version">
-					<text class='font-lv4 color-grey'>Version：{{info.version}}</text>
-				</view>
-			</view>
-		</view> -->
 	</view>
 </template>
 
@@ -118,10 +91,8 @@
 		onLoad(op) {
 			if (config.debug) console.log("onLoad", op)
 		},
-		onShow() {
-		},
-		methods: {
-		}
+		onShow() {},
+		methods: {}
 	}
 </script>
 
@@ -132,25 +103,24 @@
 		position: relative;
 	}
 
-	.setting {
-		position: absolute;
-		z-index: 5;
-		top: 0;
-		right: 0;
-		width: 88upx;
-		height: 88upx;
-		padding: 22upx;
-		box-sizing: border-box;
-	}
-
 	.cont_top {
 		width: 100%;
 		height: 386upx;
-		background: url("../../static/tab1/tab1_top.png") no-repeat center center;
-		background-size: 100%;
+		position: relative;
+	}
+
+	.cont_top>image {
+		position: absolute;
+		top: 0;
+		z-index: 1;
+		width: 100%;
+		height: 100%;
 	}
 
 	.head_image {
+		position: absolute;
+		top: 88upx;
+		z-index: 2;
 		padding-top: 96upx;
 		display: flex;
 		display: -webkit-flex;
@@ -175,6 +145,9 @@
 	}
 
 	.head_word {
+		position: absolute;
+		bottom: 0;
+		z-index: 3;
 		display: flex;
 		display: -webkit-flex;
 		align-items: center;
@@ -184,18 +157,18 @@
 		margin-left: 30upx;
 	}
 
-	.head_word>p {
+	.head_word p {
 		font-size: 28upx;
 		font-weight: 400;
 		color: rgba(255, 255, 255, 1);
 		line-height: 54upx;
 	}
 
-	.head_word>p>span {
+	.head_word p text {
 		font-size: 50upx;
 	}
 
-	.head_word>image {
+	.head_word image {
 		width: 84upx;
 		height: 130upx;
 	}
