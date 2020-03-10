@@ -1,0 +1,33 @@
+
+.layout.data-v-3e3adee9 {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: rgba(249, 249, 249, 1);
+}
+.header_right.data-v-3e3adee9 {
+  font-size: 0.28rem;
+  color: rgba(3, 166, 166, 1);
+}
+.content.data-v-3e3adee9 {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 0.92rem);
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.address_list.data-v-3e3adee9 {
+  margin-top: 0.2rem;
+}
+.change_address.data-v-3e3adee9 {
+  display: -webkit-box;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-align-items: center;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+

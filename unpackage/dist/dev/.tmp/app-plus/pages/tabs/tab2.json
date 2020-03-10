@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "我的订单",
+  "usingComponents": {
+    "hx-navbar": "/components/hx-navbar/hx-navbar",
+    "search": "/components/search",
+    "loading": "/components/loading",
+    "iheader": "/components/header"
+  }
+}

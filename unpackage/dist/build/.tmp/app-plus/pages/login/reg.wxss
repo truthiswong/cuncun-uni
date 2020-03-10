@@ -1,0 +1,26 @@
+/* pages/reg/reg.wxss */
+.form-body.data-v-20e5c750{margin-bottom: 30rpx;}
+.form-body .row.data-v-20e5c750{
+  border-bottom: 1rpx solid #efefef;
+  color: #353535;height: 100rpx;line-height: 100rpx;
+}
+.form-body .row input.data-v-20e5c750{
+  margin-top: 24rpx;
+}
+.btn-captcha.data-v-20e5c750{
+  border-radius: 6rpx;
+}
+.btn-block.data-v-20e5c750{
+    width: 100%;border-radius: 6rpx;color: #fff;margin-bottom: 30rpx;
+}
+.btn-submit.data-v-20e5c750{
+  background-color: #00acff;border-color: #00acff;
+}
+.btn-auth.data-v-20e5c750{
+    background-color: #00c706;border-color: #00c706;
+}
+.btn-reg.data-v-20e5c750,.btn-login.data-v-20e5c750{
+    color: #353535;
+}
+image.data-v-20e5c750{width: 160rpx;height: 160rpx;display: block;margin:30rpx auto;}
+

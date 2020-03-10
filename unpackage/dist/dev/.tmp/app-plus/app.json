@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/tabs/tab1",
+    "pages/tabs/tab2",
+    "pages/tabs/tab3",
+    "pages/notfound/notfound",
+    "pages/login/reg",
+    "pages/tab3/setting",
+    "pages/tab3/address"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "cuncun-app",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#FFFFFF",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/tabs/tab1",
+        "text": "存存",
+        "iconPath": "static/tabs/tab1_off.png",
+        "selectedIconPath": "static/tabs/tab1_on.png"
+      },
+      {
+        "pagePath": "pages/tabs/tab2",
+        "text": "订单",
+        "iconPath": "static/tabs/tab2_off.png",
+        "selectedIconPath": "static/tabs/tab2_on.png"
+      },
+      {
+        "pagePath": "pages/tabs/tab3",
+        "text": "我的",
+        "iconPath": "static/tabs/tab3_off.png",
+        "selectedIconPath": "static/tabs/tab3_on.png"
+      }
+    ],
+    "backgroundColor": "#ffffff",
+    "color": "#888888",
+    "selectedColor": "rgba(59, 193, 187, 1)"
+  },
+  "nvueCompiler": "uni-app",
+  "renderer": "auto",
+  "splashscreen": {
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
+  },
+  "appname": "存存",
+  "compilerVersion": "2.6.1",
+  "usingComponents": {
+    "hx-navbar": "/components/hx-navbar/hx-navbar",
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "uni-search-bar": "/components/uni-search-bar/uni-search-bar",
+    "uni-list": "/components/uni-list/uni-list",
+    "uni-list-item": "/components/uni-list-item/uni-list-item"
+  }
+}

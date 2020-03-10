@@ -1,0 +1,1 @@
+<view class="loading"><block wx:if="{{loading}}"><view><view class="text-center font-lv3 color-grey pdb-30"><image src="/static/images/loading.png"></image></view></view></block><block wx:else><view class="text-center font-lv4 color-grey pdb-30">{{tips}}</view></block></view>

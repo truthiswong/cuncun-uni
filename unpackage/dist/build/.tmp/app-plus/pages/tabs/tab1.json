@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "存存",
+  "usingComponents": {
+    "hx-navbar": "/components/hx-navbar/hx-navbar"
+  }
+}
