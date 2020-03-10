@@ -1,43 +1,21 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/tabs/tab1",
-			"style": {
-				"navigationBarTitleText": "存存"
-			}
-		}, {
-			"path": "pages/read/read"
-		}, {
-			"path": "pages/menu/menu",
-			"style": {}
-		}, {
-			"path": "pages/notfound/notfound",
-			"style": {
-				"navigationBarTitleText": "未找到对象"
-			}
-		},
-		{
-			"path": "pages/comment/comment",
-			"style": {
-				"navigationBarTitleText": "点评"
-			}
-		},
-		{
-			"path": "pages/reg/reg",
-			"style": {
-				"navigationBarTitleText": "注册"
-			}
-		},
-		{
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "登录"
 			}
 		},
 		{
-			"path": "pages/list/list",
+			"path": "pages/tabs/tab1",
 			"style": {
-				"navigationBarTitleText": "列表"
+				"navigationBarTitleText": "存存"
+			}
+		},
+		{
+			"path": "pages/tabs/tab2",
+			"style": {
+				"navigationBarTitleText": "我的订单"
 			}
 		},
 		{
@@ -47,34 +25,28 @@
 			}
 		},
 		{
+			"path": "pages/notfound/notfound",
+			"style": {
+				"navigationBarTitleText": "未找到对象"
+			}
+		},
+		{
+			"path": "pages/login/reg",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
+		{
 			"path": "pages/tab3/setting",
 			"style": {
 				"navigationBarTitleText": "设置"
 			}
-		}, {
-			"path": "pages/tabs/tab2",
+		},
+		{
+			"path": "pages/tab3/address",
 			"style": {
-				"navigationBarTitleText": "我的订单"
+				"navigationBarTitleText": "地址"
 			}
-		}, {
-			"path": "pages/ucenter/ucenter",
-			"style": {}
-		}, {
-			"path": "pages/intro/intro",
-			"style": {}
-		}, {
-			"path": "pages/bookmarks/bookmarks",
-			"style": {
-				"navigationBarTitleText": "书签"
-			}
-		}, {
-			"path": "pages/search/search",
-			"style": {
-				"navigationBarTitleText": "搜索"
-			}
-		}, {
-			"path": "pages/rank/rank",
-			"style": {}
 		}
 	],
 	"tabBar": {
@@ -99,11 +71,11 @@
 		],
 		"backgroundColor": "#ffffff",
 		"color": "#888888",
-		"selectedColor": "#1aad19"
+		"selectedColor": "rgba(59, 193, 187, 1)"
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "BookChat",
+		"navigationBarTitleText": "cuncun-app",
 		"navigationBarBackgroundColor": "#FFFFFF",
 		"backgroundColor": "#FFFFFF",
 		"navigationStyle": "custom"
