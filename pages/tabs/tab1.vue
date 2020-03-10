@@ -1,7 +1,7 @@
 <template>
 	<view class="tab1">
-		<hx-navbar class="header" :style="{opacity: 1-headerScroll}" :back="false" color="#ffffff" barPlaceholder="hidden"
-		 transparent="auto" :background-color="[255, 255, 255]">
+		<hx-navbar class="header" :fixed="true" :style="{opacity: 1-headerScroll}" :back="false" color="#ffffff" barPlaceholder="hidden"
+		 transparent="auto">
 			<view slot="left">
 				<image src="../../static/tab1/tab1_logo.png" style="width:306upx; height:68upx; margin: 0px 30upx -24upx;"></image>
 			</view>
@@ -10,8 +10,7 @@
 				<image @click="onClickRight(2)" src="../../static/tab1/add.png" style="margin-left: 60upx;"></image>
 			</view>
 		</hx-navbar>
-		<hx-navbar class="header_active" :style="{opacity: headerScroll}" :back="false" color="#ffffff" barPlaceholder="hidden"
-		 transparent="auto" :background-color="[255, 255, 255]">
+		<hx-navbar class="header_active" :style="{opacity: headerScroll}" :back="false" barPlaceholder="hidden" transparent="auto">
 			<view slot="left">
 				<image src="../../static/tab1/header_active.png" style="width:306upx; height:48upx; margin: 0px 30upx -13upx;"></image>
 			</view>
@@ -23,9 +22,13 @@
 		<!-- 内容 -->
 		<view class="content" ref="tab1Content" @scroll="onScroll">
 			<view class="cont_top">
+				<image src="../../static/tab1/tab1_top.png" mode=""></image>
 				<view class="cont_dialog">
-					<h3>上午好，春奈小姐～</h3>
-					<p>我们的执照收纳咨询师和打包小哥正在随时待命中哦!</p>
+					<image src="../../static/tab1/tab1_bubble.png" mode=""></image>
+					<view class="cont_dialog_text">
+						<h3>上午好，春奈小姐～</h3>
+						<p>我们的执照收纳咨询师和打包小哥正在随时待命中哦!</p>
+					</view>
 				</view>
 			</view>
 			<view class="no_data" v-show="false">
@@ -35,7 +38,7 @@
 			</view>
 			<view>
 				<!-- 书架 -->
-				<view>
+				<view @longpress="longpress('书架')">
 					<hx-navbar :back="false" color="#ffffff" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
 						<view slot="left" class="left_icon">
 							<image src='../../static/tab1/book.png'></image>
@@ -46,18 +49,21 @@
 						</view>
 					</hx-navbar>
 					<view>
-						<!-- <scroll-view scroll-x="true">
-							<view class="scroll_x">
-								<view class="scroll_content" v-for="item in 10" :key="item">
-									<image src="../../static/tab1/book_img.jpg"></image>
-								</view>
+						<scroll-view class="scroll_x" scroll-x="true">
+							<view class="scroll_content scroll_contentbg1" v-for="(item,index) in 2" :key='index' style="display: inline-block;">
+								<image src="../../static/tab1/book_img1.png"></image>
 							</view>
-						</scroll-view> -->
-						<scroll-view class="scroll_x" scroll-x="true">							<view class="scroll_content scroll_contentbg1" v-for="(item,index) in 10" :key='index' style="display: inline-block;">								<image src="../../static/tab1/book_img1.png"></image>							</view>						</scroll-view>
+							<view class="scroll_content scroll_contentbg1" v-for="(item,index) in 3" :key='index+3' style="display: inline-block;">
+								<image src="../../static/tab1/book_img2.png"></image>
+							</view>
+							<view class="scroll_content scroll_contentbg1" v-for="(item,index) in 3" :key='index+6' style="display: inline-block;">
+								<image src="../../static/tab1/book_img3.png"></image>
+							</view>
+						</scroll-view>
 					</view>
 				</view>
 				<!-- 衣柜 -->
-				<view>
+				<view @longpress="longpress('衣柜')">
 					<hx-navbar :back="false" color="#ffffff" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
 						<view slot="left" class="left_icon">
 							<image src='../../static/tab1/clothes.png'></image>
@@ -69,14 +75,20 @@
 					</hx-navbar>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_contentbg2" v-for="(item,index) in 10" :key='index' style="display: inline-block;">
+							<view class="scroll_content scroll_contentbg2" v-for="(item,index) in 2" :key='index' style="display: inline-block;">
 								<image src="../../static/tab1/clothes_img1.png"></image>
+							</view>
+							<view class="scroll_content scroll_contentbg2" v-for="(item,index) in 2" :key='index+3' style="display: inline-block;">
+								<image src="../../static/tab1/clothes_img2.png"></image>
+							</view>
+							<view class="scroll_content scroll_contentbg2" v-for="(item,index) in 2" :key='index+6' style="display: inline-block;">
+								<image src="../../static/tab1/clothes_img3.png"></image>
 							</view>
 						</scroll-view>
 					</view>
 				</view>
 				<!-- 鞋柜 -->
-				<view>
+				<view @longpress="longpress('鞋柜')">
 					<hx-navbar :back="false" color="#ffffff" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
 						<view slot="left" class="left_icon">
 							<image src='../../static/tab1/shoes.png'></image>
@@ -88,14 +100,20 @@
 					</hx-navbar>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_contentbg3" v-for="(item,index) in 10" :key='index' style="display: inline-block;">
-								<image src="../../static/tab1/shoes_img.jpg"></image>
+							<view class="scroll_content scroll_contentbg3" v-for="(item,index) in 2" :key='index' style="display: inline-block;">
+								<image src="../../static/tab1/shoes_img1.png"></image>
+							</view>
+							<view class="scroll_content scroll_contentbg3" v-for="(item,index) in 3" :key='index+3' style="display: inline-block;">
+								<image src="../../static/tab1/shoes_img2.png"></image>
+							</view>
+							<view class="scroll_content scroll_contentbg3" v-for="(item,index) in 3" :key='index+6' style="display: inline-block;">
+								<image src="../../static/tab1/shoes_img3.png"></image>
 							</view>
 						</scroll-view>
 					</view>
 				</view>
 				<!-- 杂物架 -->
-				<!-- <view>
+				<!-- <view @longpress="longpress('杂物架')">
 					<hx-navbar :back="false" color="#ffffff" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
 						<view slot="left" class="left_icon">
 							<image src='../../static/tab1/groceries.png'></image>
@@ -110,7 +128,7 @@
 					</view>
 				</view> -->
 				<!-- 杂货架 -->
-				<view>
+				<view @longpress="longpress('杂货架')">
 					<hx-navbar :back="false" color="#ffffff" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
 						<view slot="left" class="left_icon">
 							<image src='../../static/tab1/groceries.png'></image>
@@ -121,14 +139,17 @@
 						</view>
 					</hx-navbar>
 					<view>
-						<scroll-book :books="recommendBooks" :width="bannerWidth"></scroll-book>
-						<!-- <scroll-view class="scroll_x" scroll-x="true">
-							<block v-for="item in 10" :key="item">
-								<view class="scroll_content">
-									<image src="../../static/tab1/book_img.jpg"></image>
-								</view>
-							</block>
-						</scroll-view> -->
+						<scroll-view class="scroll_x" scroll-x="true">
+							<view class="scroll_content scroll_contentbg3" v-for="(item,index) in 2" :key='index' style="display: inline-block;">
+								<image src="../../static/tab1/sofa_img1.png"></image>
+							</view>
+							<view class="scroll_content scroll_contentbg3" v-for="(item,index) in 3" :key='index+3' style="display: inline-block;">
+								<image src="../../static/tab1/sofa_img2.png"></image>
+							</view>
+							<view class="scroll_content scroll_contentbg3" v-for="(item,index) in 3" :key='index+6' style="display: inline-block;">
+								<image src="../../static/tab1/sofa_img3.png"></image>
+							</view>
+						</scroll-view>
 					</view>
 				</view>
 			</view>
@@ -137,41 +158,20 @@
 </template>
 
 <script>
-	import scrollBook from '../../components/scrollBook.vue'
-	import search from '../../components/search.vue'
-	import listBook from '../../components/listBook.vue'
-	import iheader from '../../components/header.vue'
-
 	import api from '../../utils/api.js'
 	import util from '../../utils/util.js'
 	import config from '../../config.js'
 	export default {
-		components: {
-			scrollBook,
-			search,
-			listBook,
-			iheader,
-		},
+		components: {},
 		data() {
 			return {
 				headerScroll: 0,
-
-				indicatorDots: true,
-				autoplay: true,
-				interval: 3000,
-				duration: 500,
-				bannerWidth: '100%',
-				bannerHeight: 'auto',
-				showSearch: false, // 内容完全加载完成之后再显示搜索框
-				showHeaderSearch: false,
-				banners: [],
-				categoryBooks: [],
-				recommendBooks: [],
-				times: 100, // 当iOS未允许访问网络的时候，每3秒请求一次数据
 				platform: '',
 			}
 		},
-		onLoad() {},
+		onLoad() {
+			
+		},
 		onShow() {},
 		onPageScroll(options) {
 			if (config.debug) console.log("onPageScroll", options)
@@ -180,10 +180,10 @@
 			// } else {
 			// 	if (this.showHeaderSearch == true) this.showHeaderSearch = false
 			// }
-			if (options.scrollTop > 80) {
+			if (options.scrollTop > 88) {
 				this.headerScroll = 1;
 			} else {
-				this.headerScroll = options.scrollTop / 80;
+				this.headerScroll = options.scrollTop / 88;
 			}
 		},
 		methods: {
@@ -194,29 +194,19 @@
 					console.log(2);
 				}
 			},
-
-			bannerClick(e) {
-				if (config.debug) console.log("banner click", e)
-				let url = e.target.dataset.url
-				if (!url) return
-
-				// #ifdef MP
-				uni.navigateTo({
-					url
+			longpress(name) {
+				uni.showModal({
+					title: "提示",
+					content: `是否移除${name}？`,
+					success: (action) => {
+						if (action.confirm) {
+							if (config.debug) console.log("确定移除")
+							uni.showToast({
+								title: '移除成功',
+							})
+						}
+					}
 				})
-				// #endif
-
-				// APP or H5
-				// #ifndef MP
-				if (String(url).indexOf("http://") > -1 || String(url).indexOf("https://") > -1) {
-					plus.runtime.openURL(url) // 调用外部浏览器打开
-					// plus.runtime.openWeb(url) // app 内打开
-				} else {
-					uni.navigateTo({
-						url
-					})
-				}
-				// #endif
 			}
 		}
 
@@ -224,11 +214,6 @@
 </script>
 
 <style>
-	.tab1 {
-		width: 100%;
-		height: 100%;
-	}
-
 	.header {
 		width: 100%;
 		position: fixed;
@@ -252,16 +237,20 @@
 	}
 
 	.content {
-		position: relative;
 		width: 100%;
 		height: 100%;
 	}
 
 	.cont_top {
+		position: relative;
 		width: 100%;
 		height: 386upx;
-		background: url("../../static/tab1/tab1_top.png") no-repeat center center;
-		background-size: 100%;
+	}
+	.cont_top image {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 100%;
 	}
 
 	.cont_dialog {
@@ -270,11 +259,16 @@
 		left: 30upx;
 		width: 513upx;
 		height: 260upx;
-		background: url("../../static/tab1/tab1_bubble.png") no-repeat center center;
-		background-size: 100%;
 	}
-
-	.cont_dialog>h3 {
+	.cont_dialog image {
+		width: 100%;
+		height: 100%;
+	}
+	.cont_dialog_text {
+		position: absolute;
+		top: 0;
+	}
+	.cont_dialog_text>h3 {
 		font-size: 36upx;
 		font-weight: 600;
 		color: rgba(40, 40, 40, 1);
@@ -282,7 +276,7 @@
 		padding: 20upx 40upx 0 30upx;
 	}
 
-	.cont_dialog>p {
+	.cont_dialog_text>p {
 		font-size: 28upx;
 		font-weight: 400;
 		color: rgba(136, 136, 136, 1);
@@ -345,16 +339,19 @@
 		height: 285upx;
 		text-align: center;
 	}
+
 	.scroll_contentbg1 {
-		background: url("../../static/tab1/bookbox.png") no-repeat center center;
+		background: url("/static/tab1/bookbox.png") no-repeat center center;
 		background-size: 100%;
 	}
+
 	.scroll_contentbg2 {
-		background: url("../../static/tab1/clothes_box.png") no-repeat center center;
+		background: url("/static/tab1/clothes_box.png") no-repeat center center;
 		background-size: 100%;
 	}
+
 	.scroll_contentbg3 {
-		background: url("../../static/tab1/shoes_box.png") no-repeat center center;
+		background: url("/static/tab1/shoes_box.png") no-repeat center center;
 		background-size: 100%;
 	}
 
@@ -362,6 +359,7 @@
 		width: 200upx;
 		height: 230upx;
 	}
+
 	.scroll_contentbg2 image {
 		width: 220upx;
 		height: 200upx;
@@ -403,17 +401,17 @@
 	}
 
 	.list_content_li1 {
-		background: url("../../static/tab1/bookbox.png") no-repeat center center;
+		background: url("/static/tab1/bookbox.png") no-repeat center center;
 		background-size: 100%;
 	}
 
 	.list_content_li2 {
-		background: url("../../static/tab1/clothes_box.png") no-repeat center center;
+		background: url("/static/tab1/clothes_box.png") no-repeat center center;
 		background-size: 100%;
 	}
 
 	.list_content_li3 {
-		background: url("../../static/tab1/shoes_box.png") no-repeat center center;
+		background: url("/static/tab1/shoes_box.png") no-repeat center center;
 		background-size: 100%;
 	}
 
