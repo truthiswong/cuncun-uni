@@ -23,15 +23,14 @@
 					</view>
 					<view class="row col-11" style="font-size: 26upx;color: #282828; align-items: center; margin-top: 8upx;">
 						<text class="col-2">我同意</text>
-						<navigator class="col-10" url="/pages/login/reg">
+						<navigator class="col-10" url="/pages/login/agreement">
 							<text style="color: #0269D0;">《存存用户服务协议》</text>
 						</navigator>
 					</view>
 				</label>
-				<button form-type="submit" class="common_button">进去存存</button>
+				<button form-type="submit" class="common_button common_button_active">进去存存</button>
 			</form>
 		</view>
-		
 	</view>
 </template>
 
@@ -114,7 +113,7 @@
 				// uni.navigateTo({
 				// 	url: '/pages/tabs/tab1'
 				// })
-				
+
 				uni.switchTab({
 					url: '/pages/tabs/tab1'
 				})
@@ -172,7 +171,7 @@
 
 <style scoped>
 	.hint {
-		padding: 50upx;
+		padding: 108upx 50upx 0;
 	}
 
 	.hint>image {
