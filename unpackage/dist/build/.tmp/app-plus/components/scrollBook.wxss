@@ -1,0 +1,27 @@
+
+.hor.data-v-ad0ae004 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+}
+.hor navigator.data-v-ad0ae004 {
+  width: 170rpx;
+  margin: 3rpx 15rpx;
+}
+.hor navigator.data-v-ad0ae004:first-of-type {
+  margin-left: 3rpx;
+}
+.hor navigator image.data-v-ad0ae004 {
+  width: 170rpx;
+  height: 223.4rpx;
+}
+@media (min-width:768px) {
+.ellipsis-2row.data-v-ad0ae004{
+		line-height: 200%;
+}
+}
+

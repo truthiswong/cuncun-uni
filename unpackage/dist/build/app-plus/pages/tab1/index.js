@@ -1,0 +1,2 @@
+setCssToHead([".",[1],"ios-platform { color: transparent; height: ",[0,1],"; overflow: hidden; }\n",],undefined,{path:"./pages/tab1/index.wxss"})();
+document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/tab1/index.wxml') } }));

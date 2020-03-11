@@ -4,8 +4,11 @@
     "pages/tabs/tab1",
     "pages/tabs/tab2",
     "pages/tabs/tab3",
+    "pages/tab2/demo7",
+    "pages/tab1/index",
     "pages/notfound/notfound",
     "pages/login/reg",
+    "pages/login/agreement",
     "pages/tab3/setting",
     "pages/tab3/address"
   ],

@@ -1,6 +1,6 @@
 
 .hint.data-v-271f4146 {
-	padding: 50rpx;
+	padding: 108rpx 50rpx 0;
 }
 .hint>image.data-v-271f4146 {
 	width: 374rpx;

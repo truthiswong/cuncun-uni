@@ -1,0 +1,7 @@
+
+.ios-platform {
+	color: transparent;
+	height: 1rpx;
+	overflow: hidden;
+}
+

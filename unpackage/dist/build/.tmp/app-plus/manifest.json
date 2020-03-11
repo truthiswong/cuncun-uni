@@ -4,11 +4,11 @@
     "iPhone",
     "iPad"
   ],
-  "id": "__UNI__tech.shuncun.cuncun",
+  "id": "__UNI__tech.cuncun.cuncun",
   "name": "存存",
   "version": {
-    "name": "1.3.2",
-    "code": 132
+    "name": "1.0.0",
+    "code": 100
   },
   "description": "",
   "launch_path": "__uniappview.html",
@@ -84,7 +84,7 @@
       "splashscreen": {
         "ios": {
           "iphone": {
-            "retina47": "/Users/wanghuanqing/Desktop/aisu/存存物料/750x1334.png",
+            "retina47": "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/750*1334.png",
             "portrait-896h@3x": "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/1242*2668.png",
             "landscape-896h@3x": "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/2668*1242.png",
             "portrait-896h@2x": "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/828*1792.png",

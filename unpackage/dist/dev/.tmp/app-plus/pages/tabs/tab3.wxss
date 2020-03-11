@@ -4,17 +4,18 @@ page.data-v-7a2f47f2,
 	background-color: #f6f6f6;
 	position: relative;
 }
+.header.data-v-7a2f47f2 {
+	top: 0;
+	position: fixed;
+	width: 100%;
+	background-color: rgba(0,0,0,0);
+	z-index: 9999;
+	vertical-align: center;
+}
 .cont_top.data-v-7a2f47f2 {
 	width: 100%;
-	height: 386rpx;
+	height: 470rpx;
 	position: relative;
-}
-.cont_top > image.data-v-7a2f47f2 {
-	position: absolute;
-	top: 0;
-	z-index: 1;
-	width: 100%;
-	height: 100%;
 }
 .head_image.data-v-7a2f47f2 {
 	position: absolute;

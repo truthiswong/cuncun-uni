@@ -1,36 +1,36 @@
 
-.hint.data-v-89408ece {
-	padding: 50rpx;
+.hint.data-v-741d51b3 {
+	padding: 108rpx 50rpx 0;
 }
-.hint>image.data-v-89408ece {
+.hint>image.data-v-741d51b3 {
 	width: 374rpx;
 	height: 48rpx;
 }
-.hint>._h3.data-v-89408ece {
+.hint>._h3.data-v-741d51b3 {
 	font-size: 50rpx;
 	font-weight: 500;
 	color: rgba(40, 40, 40, 1);
 	line-height: 70rpx;
 	margin-top: 70rpx;
 }
-.input_item.data-v-89408ece {
+.input_item.data-v-741d51b3 {
 	margin-top: 20rpx;
 	border-bottom: 2rpx solid rgba(156, 168, 179, 1);
 }
-.input_text.data-v-89408ece {
+.input_text.data-v-741d51b3 {
 	font-size: 24rpx;
 	font-weight: 400;
 	color: rgba(74, 74, 74, 1);
 	line-height: 33rpx;
 }
-.input_input.data-v-89408ece {
+.input_input.data-v-741d51b3 {
 	font-size: 28rpx;
 	font-weight: 400;
 	color: rgba(74, 74, 74, 1);
 	line-height: 33rpx;
 	padding: 20rpx 0;
 }
-.sms_button.data-v-89408ece {
+.sms_button.data-v-741d51b3 {
 	display: block;
 	width: 140rpx;
 	font-size: 28rpx;
@@ -41,15 +41,15 @@
 	text-align: right;
 	padding: 0;
 }
-.sms_button.data-v-89408ece:after {
+.sms_button.data-v-741d51b3:after {
 	border: 0 none;
 }
-button[disabled].data-v-89408ece:not([type]),
-uni-button[disabled][type=default].data-v-89408ece {
+button[disabled].data-v-741d51b3:not([type]),
+uni-button[disabled][type=default].data-v-741d51b3 {
 	color: rgba(0, 0, 0, .3);
 	background-color: rgba(0, 0, 0, 0);
 }
-.common_button.data-v-89408ece {
+.common_button.data-v-741d51b3 {
 	width: 630rpx;
 	height: 98rpx;
 	background: rgba(238, 238, 238, 1);
@@ -60,10 +60,10 @@ uni-button[disabled][type=default].data-v-89408ece {
 	color: rgba(178, 178, 178, 1);
 	margin: 80rpx auto 0;
 }
-.common_button.data-v-89408ece:after {
+.common_button.data-v-741d51b3:after {
 	border: 0 none;
 }
-.common_button_active.data-v-89408ece {
+.common_button_active.data-v-741d51b3 {
 	background: #3bc1bb;
 	color: white;
 }

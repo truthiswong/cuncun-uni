@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "测试",
+  "usingComponents": {
+    "hx-navbar": "/components/hx-navbar/hx-navbar",
+    "scroll-book": "/components/scrollBook",
+    "search": "/components/search",
+    "list-book": "/components/listBook",
+    "iheader": "/components/header"
+  }
+}
