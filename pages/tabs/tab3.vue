@@ -1,16 +1,16 @@
 <template>
 	<view class="page">
-		<hx-navbar :fixed="true" :back="false" title="我的" color="#ffffff" barPlaceholder="hidden" transparent="auto"
-		 :background-color="[255, 255, 255,0]">
+		<hx-navbar class="header" :back="false" title="我的" color="#ffffff" barPlaceholder="hidden" transparent="auto"
+		 :background-color="[59, 193, 187]">
 			<view slot="right">
 				<navigator url="/pages/tab3/setting">
 					<image style="width: 44upx; height: 44upx; margin: 30upx 16upx 0 0;" src="../../static/tab3/setting.png"></image>
 				</navigator>
 			</view>
 		</hx-navbar>
+		<!-- <iheader title="我的"></iheader> -->
 		<view class="content" @scroll="onScroll">
-			<view class="cont_top">
-				<image src="/static/tab1/tab1_top.png" mode=""></image>
+			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
 				<view class="head_image">
 					<!-- <img src="../../static/tab3/my_image.png" alt /> -->
 					<image src="../../static/tab3/my_image.png"></image>
@@ -46,7 +46,7 @@
 				其他
 				<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
 			</navigator>
-			<navigator class='col-12'>
+			<navigator :url='"/pages/login/reg"' class='col-12'>
 				<image class="me-icon" src='../../static//tab3/server.png'></image>
 				客服电话
 				<image class='pull-right me-icon' src='../../static/images/right-angle.png'></image>
@@ -80,6 +80,7 @@
 		data() {
 			return {
 				isSignedToday: false,
+				cont_top_bg: '../../static/tab3/tab3_bg.png',
 				info: {},
 				user: {},
 				moreInfo: {},
@@ -102,19 +103,19 @@
 		background-color: #f6f6f6;
 		position: relative;
 	}
+	.header {
+		top: 0;
+		position: fixed;
+		width: 100%;
+		background-color: rgba(0,0,0,0);
+		z-index: 9999;
+		vertical-align: center;
+	}
 
 	.cont_top {
 		width: 100%;
-		height: 386upx;
+		height: 470upx;
 		position: relative;
-	}
-
-	.cont_top>image {
-		position: absolute;
-		top: 0;
-		z-index: 1;
-		width: 100%;
-		height: 100%;
 	}
 
 	.head_image {
