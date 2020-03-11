@@ -72,6 +72,9 @@
 				}
 			}
 		},
+		watch: {
+			
+		},
 		methods: {
 			onKeyInput: function(event) {
 				this.inputValue = event.target.value
