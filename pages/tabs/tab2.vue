@@ -2,7 +2,9 @@
 	<view>
 		<hx-navbar :back="false" title="我的订单" color="rgba(40,40,40,1)" :fixed="true" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
 			<view slot="right">
-				<image @click="onClickRight" src="../../static/tab1/add_green.png" style="width: 44upx; height: 44upx; margin: 30upx 32upx 0;"></image>
+				<navigator url="../tab2/demo7">
+					<image @click="onClickRight" src="../../static/tab1/add_green.png" style="width: 44upx; height: 44upx; margin: 30upx 32upx 0;"></image>
+				</navigator>
 			</view>
 		</hx-navbar>
 		<view class="content" ref="tab1Content" @scroll="onScroll">
