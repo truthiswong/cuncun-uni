@@ -25,6 +25,18 @@
 			}
 		},
 		{
+			"path": "pages/tab2/demo7",
+			"style": {
+				"navigationBarTitleText": "测试"
+			}
+		},
+		{
+			"path": "pages/tab1/index",
+			"style": {
+				"navigationBarTitleText": "测试"
+			}
+		},
+		{
 			"path": "pages/notfound/notfound",
 			"style": {
 				"navigationBarTitleText": "未找到对象"
@@ -34,6 +46,12 @@
 			"path": "pages/login/reg",
 			"style": {
 				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path": "pages/login/agreement",
+			"style": {
+				"navigationBarTitleText": "存存用户服务协议"
 			}
 		},
 		{
