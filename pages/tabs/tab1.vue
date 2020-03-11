@@ -1,6 +1,6 @@
 <template>
 	<view class="tab1">
-		<hx-navbar class="header" :fixed="true" :style="{opacity: 1-headerScroll}" :back="false" color="#ffffff" barPlaceholder="hidden"
+		<hx-navbar class="header" :fixed="true" v-show="!headerScroll" :back="false" color="#ffffff" barPlaceholder="hidden"
 		 transparent="auto">
 			<view slot="left">
 				<image src="../../static/tab1/tab1_logo.png" style="width:306upx; height:68upx; margin: 0px 30upx -24upx;"></image>
@@ -10,7 +10,7 @@
 				<image @click="onClickRight(2)" src="../../static/tab1/add.png" style="margin-left: 60upx;"></image>
 			</view>
 		</hx-navbar>
-		<hx-navbar class="header_active" :style="{opacity: headerScroll}" :back="false" barPlaceholder="hidden" transparent="auto">
+		<hx-navbar class="header_active" v-show="headerScroll" :back="false" barPlaceholder="hidden" transparent="auto">
 			<view slot="left">
 				<image src="../../static/tab1/header_active.png" style="width:306upx; height:48upx; margin: 0px 30upx -13upx;"></image>
 			</view>
@@ -20,11 +20,9 @@
 			</view>
 		</hx-navbar>
 		<!-- 内容 -->
-		<view class="content" ref="tab1Content" @scroll="onScroll">
-			<view class="cont_top">
-				<image src="../../static/tab1/tab1_top.png" mode=""></image>
-				<view class="cont_dialog">
-					<image src="../../static/tab1/tab1_bubble.png" mode=""></image>
+		<view class="content">
+			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
+				<view class="cont_dialog" :style="{background: 'url('+ cont_dialog_bg +') no-repeat center center / cover'}">
 					<view class="cont_dialog_text">
 						<h3>上午好，春奈小姐～</h3>
 						<p>我们的执照收纳咨询师和打包小哥正在随时待命中哦!</p>
@@ -50,14 +48,9 @@
 					</hx-navbar>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_contentbg1" v-for="(item,index) in 2" :key='index' style="display: inline-block;">
+							<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
+							 style="display: inline-block;" v-for="(item,index) in 9" :key='index'>
 								<image src="../../static/tab1/book_img1.png"></image>
-							</view>
-							<view class="scroll_content scroll_contentbg1" v-for="(item,index) in 3" :key='index+3' style="display: inline-block;">
-								<image src="../../static/tab1/book_img2.png"></image>
-							</view>
-							<view class="scroll_content scroll_contentbg1" v-for="(item,index) in 3" :key='index+6' style="display: inline-block;">
-								<image src="../../static/tab1/book_img3.png"></image>
 							</view>
 						</scroll-view>
 					</view>
@@ -75,14 +68,9 @@
 					</hx-navbar>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_contentbg2" v-for="(item,index) in 2" :key='index' style="display: inline-block;">
+							<view class="scroll_content" :style="{background: 'url('+ scroll_bg2 +') no-repeat center center / cover'}"
+							 v-for="(item,index) in 7" :key='index' style="display: inline-block;">
 								<image src="../../static/tab1/clothes_img1.png"></image>
-							</view>
-							<view class="scroll_content scroll_contentbg2" v-for="(item,index) in 2" :key='index+3' style="display: inline-block;">
-								<image src="../../static/tab1/clothes_img2.png"></image>
-							</view>
-							<view class="scroll_content scroll_contentbg2" v-for="(item,index) in 2" :key='index+6' style="display: inline-block;">
-								<image src="../../static/tab1/clothes_img3.png"></image>
 							</view>
 						</scroll-view>
 					</view>
@@ -100,14 +88,9 @@
 					</hx-navbar>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_contentbg3" v-for="(item,index) in 2" :key='index' style="display: inline-block;">
+							<view class="scroll_content" :style="{background: 'url('+ scroll_bg3 +') no-repeat center center / cover'}"
+							 v-for="(item,index) in 7" :key='index' style="display: inline-block;">
 								<image src="../../static/tab1/shoes_img1.png"></image>
-							</view>
-							<view class="scroll_content scroll_contentbg3" v-for="(item,index) in 3" :key='index+3' style="display: inline-block;">
-								<image src="../../static/tab1/shoes_img2.png"></image>
-							</view>
-							<view class="scroll_content scroll_contentbg3" v-for="(item,index) in 3" :key='index+6' style="display: inline-block;">
-								<image src="../../static/tab1/shoes_img3.png"></image>
 							</view>
 						</scroll-view>
 					</view>
@@ -140,14 +123,9 @@
 					</hx-navbar>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_contentbg3" v-for="(item,index) in 2" :key='index' style="display: inline-block;">
+							<view class="scroll_content" :style="{background: 'url('+ scroll_bg3 +') no-repeat center center / cover'}"
+							 v-for="(item,index) in 8" :key='index' style="display: inline-block;">
 								<image src="../../static/tab1/sofa_img1.png"></image>
-							</view>
-							<view class="scroll_content scroll_contentbg3" v-for="(item,index) in 3" :key='index+3' style="display: inline-block;">
-								<image src="../../static/tab1/sofa_img2.png"></image>
-							</view>
-							<view class="scroll_content scroll_contentbg3" v-for="(item,index) in 3" :key='index+6' style="display: inline-block;">
-								<image src="../../static/tab1/sofa_img3.png"></image>
 							</view>
 						</scroll-view>
 					</view>
@@ -165,28 +143,41 @@
 		components: {},
 		data() {
 			return {
-				headerScroll: 0,
+				headerScroll: false,
 				platform: '',
+				cont_top_bg: '../../static/tab1/tab1_top.png',
+				cont_dialog_bg: '../../static/tab1/tab1_bubble.png',
+				scroll_bg1: '../../static/tab1/bookbox.png',
+				scroll_bg2: '../../static/tab1/clothes_box.png',
+				scroll_bg3: '../../static/tab1/shoes_box.png',
 			}
 		},
 		onLoad() {
-			
+
 		},
 		onShow() {},
 		onPageScroll(options) {
 			if (config.debug) console.log("onPageScroll", options)
-			// if (options.scrollTop > 110) {
-			// 	if (this.showHeaderSearch == false) this.showHeaderSearch = true
-			// } else {
-			// 	if (this.showHeaderSearch == true) this.showHeaderSearch = false
-			// }
-			if (options.scrollTop > 88) {
-				this.headerScroll = 1;
-			} else {
-				this.headerScroll = options.scrollTop / 88;
-			}
 		},
+		// onPageScroll(options) {
+		// 	if (config.debug) console.log("onPageScroll", options)
+		// 	// if (options.scrollTop > 110) {
+		// 	// 	if (this.showHeaderSearch == false) this.showHeaderSearch = true
+		// 	// } else {
+		// 	// 	if (this.showHeaderSearch == true) this.showHeaderSearch = false
+		// 	// }
+		// 	if (options.scrollTop > 60) {
+		// 		// this.headerScroll = 1;
+		// 		this.headerScroll = true;
+		// 	} else {
+		// 		this.headerScroll = false;
+		// 		// this.headerScroll = options.scrollTop / 88;
+		// 	}
+		// },
 		methods: {
+			onScroll(e) {
+				console.log(e)
+			},
 			onClickRight(index) {
 				if (index == 1) {
 					console.log(1);
@@ -214,12 +205,17 @@
 </script>
 
 <style>
+	.tab1 {
+		overflow: hidden;
+	}
+
 	.header {
 		width: 100%;
 		position: fixed;
 		top: 0;
 		z-index: 5;
 		background-color: rgba(0, 0, 0, 0);
+		vertical-align: center;
 	}
 
 	.header_active {
@@ -244,30 +240,19 @@
 	.cont_top {
 		position: relative;
 		width: 100%;
-		height: 386upx;
-	}
-	.cont_top image {
-		position: absolute;
-		top: 0;
-		width: 100%;
-		height: 100%;
+		height: 474upx;
 	}
 
 	.cont_dialog {
 		position: relative;
-		top: 150upx;
+		top: 212upx;
 		left: 30upx;
 		width: 513upx;
 		height: 260upx;
 	}
-	.cont_dialog image {
-		width: 100%;
-		height: 100%;
-	}
-	.cont_dialog_text {
-		position: absolute;
-		top: 0;
-	}
+
+	.cont_dialog_text {}
+
 	.cont_dialog_text>h3 {
 		font-size: 36upx;
 		font-weight: 600;
@@ -341,8 +326,8 @@
 	}
 
 	.scroll_contentbg1 {
-		background: url("/static/tab1/bookbox.png") no-repeat center center;
-		background-size: 100%;
+		background: url("/static/tab1/bookbox.png") no-repeat center center / cover;
+
 	}
 
 	.scroll_contentbg2 {
