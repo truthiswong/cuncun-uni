@@ -103,7 +103,7 @@
 			},
 			headerHome() {
 				uni.switchTab({
-					url: '/pages/index/index'
+					url: '/pages/tabs/tab1'
 				})
 			},
 			headerSearch() {
@@ -120,7 +120,8 @@
 		top: 0;
 		position: fixed;
 		width: 100%;
-		background-color: #FFFFFF;
+		/* background-color: #58ff5d; */
+		background-color: rgba(0,0,0,0);
 		z-index: 9999;
 		vertical-align: center;
 	}
