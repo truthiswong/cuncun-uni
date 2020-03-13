@@ -25,6 +25,36 @@
 			}
 		},
 		{
+			"path": "pages/tab1/book",
+			"style": {
+				"navigationBarTitleText": "我的书架"
+			}
+		},
+		{
+			"path": "pages/tab1/clothes",
+			"style": {
+				"navigationBarTitleText": "我的衣柜"
+			}
+		},
+		{
+			"path": "pages/tab1/shoes",
+			"style": {
+				"navigationBarTitleText": "我的鞋柜"
+			}
+		},
+		{
+			"path": "pages/tab1/box",
+			"style": {
+				"navigationBarTitleText": "我的储藏室"
+			}
+		},
+		{
+			"path": "pages/tab1/search",
+			"style": {
+				"navigationBarTitleText": "搜索"
+			}
+		},
+		{
 			"path": "pages/tab2/demo7",
 			"style": {
 				"navigationBarTitleText": "测试"
