@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "搜索",
+  "usingComponents": {
+    "hx-navbar": "/components/hx-navbar/hx-navbar",
+    "loading": "/components/loading",
+    "list-book": "/components/listBook",
+    "search": "/components/search",
+    "tab": "/components/tab",
+    "iheader": "/components/header"
+  }
+}

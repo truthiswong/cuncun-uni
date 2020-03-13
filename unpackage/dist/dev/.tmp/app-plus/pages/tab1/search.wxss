@@ -1,0 +1,33 @@
+
+.doc-info.data-v-02cbbbde {
+	font-size: 24rpx;
+	margin: 20rpx 0;
+}
+.doc-info image.data-v-02cbbbde {
+	height: 20rpx;
+	width: 20rpx;
+	margin-right: 6rpx;
+}
+.doc-info .item.data-v-02cbbbde {
+	display: inline-block;
+	margin-right: 16rpx;
+}
+.doc-intro.data-v-02cbbbde {
+	font-size: 28rpx;
+	line-height: 170%;
+}
+.doc-list .row.data-v-02cbbbde {
+	border-bottom: 1px solid #efefef;
+	margin-bottom: 30rpx;
+	padding-bottom: 30rpx;
+}
+@media (min-width: 768px) {
+.doc-info image.data-v-02cbbbde {
+		max-height: 18px;
+		max-width: 18px;
+		margin-right: 6px;
+		position: relative;
+		top: 3px;
+}
+}
+
