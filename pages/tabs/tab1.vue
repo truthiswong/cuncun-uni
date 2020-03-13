@@ -41,9 +41,11 @@
 						<view slot="left" class="left_icon">
 							<image src='../../static/tab1/book.png'></image>
 						</view>
-						<view slot="right" class="right_icon" @click="onClickRight(1)">
-							<text>查看全部</text>
-							<image src="../../static/tab1/right.png"></image>
+						<view slot="right" class="right_icon">
+							<navigator url="/pages/tab1/book">
+								<text>查看全部</text>
+								<image src="../../static/tab1/right.png"></image>
+							</navigator>
 						</view>
 					</hx-navbar>
 					<view>
@@ -61,9 +63,11 @@
 						<view slot="left" class="left_icon">
 							<image src='../../static/tab1/clothes.png'></image>
 						</view>
-						<view slot="right" class="right_icon" @click="onClickRight(1)">
-							<text>查看全部</text>
-							<image src="../../static/tab1/right.png"></image>
+						<view slot="right" class="right_icon">
+							<navigator url="/pages/tab1/clothes">
+								<text>查看全部</text>
+								<image src="../../static/tab1/right.png"></image>
+							</navigator>
 						</view>
 					</hx-navbar>
 					<view>
@@ -81,9 +85,11 @@
 						<view slot="left" class="left_icon">
 							<image src='../../static/tab1/shoes.png'></image>
 						</view>
-						<view slot="right" class="right_icon" @click="onClickRight(1)">
-							<text>查看全部</text>
-							<image src="../../static/tab1/right.png"></image>
+						<view slot="right" class="right_icon">
+							<navigator url="/pages/tab1/shoes">
+								<text>查看全部</text>
+								<image src="../../static/tab1/right.png"></image>
+							</navigator>
 						</view>
 					</hx-navbar>
 					<view>
@@ -117,8 +123,10 @@
 							<image src='../../static/tab1/groceries.png'></image>
 						</view>
 						<view slot="right" class="right_icon" @click="onClickRight(1)">
-							<text>查看全部</text>
-							<image src="../../static/tab1/right.png"></image>
+							<navigator url="/pages/tab1/box">
+								<text>查看全部</text>
+								<image src="../../static/tab1/right.png"></image>
+							</navigator>
 						</view>
 					</hx-navbar>
 					<view>
@@ -180,7 +188,9 @@
 			},
 			onClickRight(index) {
 				if (index == 1) {
-					console.log(1);
+					uni.navigateTo({
+						url: '/pages/tab1/search'
+					})
 				} else if (index == 2) {
 					console.log(2);
 				}
