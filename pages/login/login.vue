@@ -18,17 +18,19 @@
 					</view>
 				</view>
 				<label class="row" style="margin-top: 60upx;">
-					<view class="col-1" style="align-items: center;">
-						<checkbox style="transform:scale(0.6);" :checked="agreement" color="rgba(59, 193, 187, 1)"></checkbox>
+					<view class="col-1" style="margin-left: -8upx;">
+						<checkbox-group @change="agreementChange">
+							<checkbox style="transform:scale(0.6);" color="rgba(59, 193, 187, 1)"/>
+						</checkbox-group>
 					</view>
-					<view class="row col-11" style="font-size: 26upx;color: #282828; align-items: center; margin-top: 8upx;">
+					<view class="row col-11" style="font-size: 26upx;color: #282828; align-items: center; margin-top: 4upx;">
 						<text class="col-2">我同意</text>
 						<navigator class="col-10" url="/pages/login/agreement">
 							<text style="color: #0269D0;">《存存用户服务协议》</text>
 						</navigator>
 					</view>
 				</label>
-				<button form-type="submit" class="common_button common_button_active">进去存存</button>
+				<button form-type="submit" class="common_button" :class="{common_button_active: buttonActive}">进去存存</button>
 			</form>
 		</view>
 	</view>
@@ -42,20 +44,16 @@
 		components: {},
 		data() {
 			return {
-				inputValue: '',
-				loading: false,
-				username: "", //手机号
+				username: "18866668888", //手机号
 				sms: "", //验证码
 				smsText: "发送验证码",
 				agreement: false,
 				buttonActive: false, // 颜色控制
 				disabled: false, // 是否可以点击
-				redirect: encodeURIComponent('/pages/tabs/tab1'),
 			}
 		},
 		onLoad: function(op) {
 			if (config.debug) console.log("onLoad", op)
-			if (op.redirect) this.redirect = op.redirect
 		},
 		onShow: function() {
 			let token = util.getToken()
@@ -73,16 +71,31 @@
 			}
 		},
 		watch: {
-			
+			username() {
+				if (this.username && this.sms && this.agreement) {
+					this.buttonActive = true;
+				} else {
+					this.buttonActive = false;
+				}
+			},
+			sms() {
+				if (this.username && this.sms && this.agreement) {
+					this.buttonActive = true;
+				} else {
+					this.buttonActive = false;
+				}
+			},
+			agreement() {
+				if (this.username && this.sms && this.agreement) {
+					this.buttonActive = true;
+				} else {
+					this.buttonActive = false;
+				}
+			}
 		},
 		methods: {
-			onKeyInput: function(event) {
-				this.inputValue = event.target.value
-			},
-			toReg: function() {
-				uni.navigateTo({
-					url: '/pages/reg/reg?redirect=' + this.redirect
-				})
+			agreementChange() {
+				this.agreement = !this.agreement;
 			},
 			getSms() {
 				this.disabled = true;
@@ -98,74 +111,10 @@
 						this.disabled = false;
 					}
 				}, 1000);
-				// if (!this.username) {
-				// 	this.$notify({
-				// 		message: "请输入手机号",
-				// 		color: "#FFFFFF",
-				// 		background: "#E74243"
-				// 	});
-				// } else {
-				// 	this.$notify({
-				// 		type: "success",
-				// 		message: "验证码已发送"
-				// 	});
-
-				// }
 			},
 			login() {
-				// uni.navigateTo({
-				// 	url: '/pages/tabs/tab1'
-				// })
-
 				uni.switchTab({
 					url: '/pages/tabs/tab1'
-				})
-			},
-			findPassword: function(e) {
-				uni.showModal({
-					title: '温馨提示',
-					content: '目前BookChat暂不支持找回密码的功能，如果忘记了密码，请打开书栈网(https://www.bookstack.cn)将密码找回',
-				})
-			},
-			formSubmit: function(e) {
-				let that = this
-
-				if (config.debug) console.log("formSubmit", e);
-				if (that.loading) return;
-
-				if (e.detail.value.password == '' || e.detail.value.username == '') {
-					util.toastError('账号和密码均不能为空')
-					return
-				}
-
-				that.loading = true
-
-				util.request(config.api.login, e.detail.value, 'POST').then((res) => {
-					if (config.debug) console.log(config.api.login, res);
-					let user = res.data.user
-					if (user == undefined || user.uid <= 0 || user.token == '') {
-						util.toastError('登录失败：未知错误')
-						that.loading = false
-						return
-					}
-					util.setUser(user)
-					util.toastSuccess('登录成功')
-					setTimeout(function() {
-						let url = decodeURIComponent(that.redirect)
-						if (url.indexOf("?") > -1) {
-							uni.redirectTo({
-								url: url
-							})
-						} else {
-							uni.switchTab({
-								url: url
-							})
-						}
-					}, 1500)
-				}).catch((e) => {
-					if (config.debug) console.log(e);
-					that.loading = false
-					util.toastError(e.data.message || e.errMsg)
 				})
 			},
 		}
