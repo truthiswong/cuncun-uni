@@ -32,7 +32,7 @@
 			},
 			placeholder: {
 				type: String,
-				default: 'Search...'
+				default: '请输入关键词...'
 			}
 		},
 		created() {
