@@ -10,12 +10,13 @@
 		</hx-navbar>
 		<!-- 内容 -->
 		<view class="content">
-			<view class="top">
-				<image src="../../static/tab1/book_bg.png" mode="" style="width: 100%;"></image>
+			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
+				<p>里面有书籍 <text>28</text> 本</p>
+				<p>您已经超过了 <text>50%</text> 的收纳小伙伴咯～</p>
 			</view>
 			<view>
 				<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
-				 style="display: inline-block;" v-for="(item,index) in 19" :key='index'>
+				 style="display: inline-block;" v-for="(item,index) in 18" :key='index'>
 					<image src="../../static/tab1/book_img1.png"></image>
 				</view>
 			</view>
@@ -33,11 +34,8 @@
 			return {
 				headerScroll: false,
 				platform: '',
-				cont_top_bg: '../../static/tab1/tab1_top.png',
-				cont_dialog_bg: '../../static/tab1/tab1_bubble.png',
+				cont_top_bg: '../../static/tab1/book_bg.png',
 				scroll_bg1: '../../static/tab1/bookbox.png',
-				scroll_bg2: '../../static/tab1/clothes_box.png',
-				scroll_bg3: '../../static/tab1/shoes_box.png',
 			}
 		},
 		onLoad() {
@@ -65,38 +63,13 @@
 		methods: {
 			onScroll(e) {
 				console.log(e)
-			},
-			onClickRight(index) {
-				if (index == 1) {
-					console.log(1);
-				} else if (index == 2) {
-					console.log(2);
-				}
-			},
-			longpress(name) {
-				uni.showModal({
-					title: "提示",
-					content: `是否移除${name}？`,
-					success: (action) => {
-						if (action.confirm) {
-							if (config.debug) console.log("确定移除")
-							uni.showToast({
-								title: '移除成功',
-							})
-						}
-					}
-				})
 			}
 		}
 
 	}
 </script>
 
-<style>
-	.tab1 {
-		overflow: hidden;
-	}
-
+<style scoped>
 	.header {
 		width: 100%;
 		position: fixed;
@@ -126,35 +99,24 @@
 	}
 
 	.cont_top {
-		position: relative;
 		width: 100%;
-		height: 474upx;
+		height: 470upx;
+		box-sizing: border-box;
+		text-align: center;
+		padding-top: 200upx;
 	}
-
-	.cont_dialog {
-		position: relative;
-		top: 212upx;
-		left: 30upx;
-		width: 513upx;
-		height: 260upx;
+	.cont_top p {
+		font-size:28upx;
+		font-weight:400;
+		color:rgba(255,255,255,1);
+		line-height:46upx;
+		margin: 20upx;
 	}
-
-	.cont_dialog_text {}
-
-	.cont_dialog_text>h3 {
-		font-size: 36upx;
-		font-weight: 600;
-		color: rgba(40, 40, 40, 1);
-		line-height: 50upx;
-		padding: 20upx 40upx 0 30upx;
-	}
-
-	.cont_dialog_text>p {
-		font-size: 28upx;
-		font-weight: 400;
-		color: rgba(136, 136, 136, 1);
-		line-height: 46upx;
-		padding: 20upx 40upx 0 30upx;
+	.cont_top p text {
+		font-size:40upx;
+		font-weight:400;
+		color:rgba(255,255,255,1);
+		line-height:46upx;
 	}
 
 	.no_data {
@@ -204,6 +166,7 @@
 		width: 33.33333333%;
 		height: 260upx;
 		text-align: center;
+		margin-top: 16upx;
 	}
 
 	.scroll_contentbg1 {
@@ -230,72 +193,6 @@
 		width: 220upx;
 		height: 200upx;
 	}
-
-	.list {}
-
-	.list_left img {
-		width: 184upx;
-		height: 36upx;
-	}
-
-	.list_right span {
-		font-size: 28upx;
-		color: rgba(59, 193, 187, 1);
-		line-height: 40upx;
-	}
-
-	.list_right img {
-		width: 16upx;
-		height: 16upx;
-	}
-
-	.list_content_wrap {
-		width: 100%;
-		margin: 20upx 0;
-		overflow: auto;
-	}
-
-	.list_content {
-		display: -moz-box;
-		display: -webkit-box;
-	}
-
-	.list_content_li {
-		width: 285upx;
-		height: 285upx;
-		text-align: center;
-	}
-
-	.list_content_li1 {
-		background: url("/static/tab1/bookbox.png") no-repeat center center;
-		background-size: 100%;
-	}
-
-	.list_content_li2 {
-		background: url("/static/tab1/clothes_box.png") no-repeat center center;
-		background-size: 100%;
-	}
-
-	.list_content_li3 {
-		background: url("/static/tab1/shoes_box.png") no-repeat center center;
-		background-size: 100%;
-	}
-
-	.list_content_li img {
-		width: 200upx;
-		height: 230upx;
-	}
-
-	.groceries {
-		width: 300upx;
-		height: 230upx;
-	}
-
-	.groceries img {
-		width: 100%;
-		height: 100%;
-	}
-
 	.common_button {
 		width: 398upx;
 		height: 90upx;
@@ -306,11 +203,5 @@
 		font-weight: 500;
 		color: white;
 		margin: 80upx auto 0;
-	}
-
-	.ios-platform {
-		color: transparent;
-		height: 1upx;
-		overflow: hidden;
 	}
 </style>
