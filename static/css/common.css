@@ -1,0 +1,58 @@
+/* 头部 */
+.header {}
+
+.header_bg_white {
+	background-color: #FFFFFF !important;
+}
+.header_bg_opacity {
+	background-color: rgba(0,0,0,0) !important;
+}
+.header .uni-navbar--border {
+    border-bottom-width: 0 !important;
+}
+.header .uni-navbar__header {
+	background-color: rgba(0,0,0,0) !important;
+}
+
+.header .uni-navbar__header-btns {
+	width: 200upx !important;
+	text-align: right;
+}
+
+.header_active {
+	background-color: white;
+}
+
+/* 列表 */
+.list_custom {
+	position: relative;
+	background-color: #ffffff;
+}
+
+.list_custom_margin20 {
+	margin: 20upx 0;
+}
+
+.list_custom .uni-list-item__icon-img {
+	width: 46upx !important;
+	height: 46upx !important;
+	margin-top: 12upx;
+}
+
+.list_custom .uni-list-item__content-title {
+	font-size: 30upx !important;
+	font-weight: 500;
+	color: rgba(40, 40, 40, 1) !important;
+}
+
+.list_custom .uni-list-item__container:after {
+	height: 1upx !important;
+	-webkit-transform: scaleY(0.1) !important;
+	transform: scaleY(0.1) !important;
+	background-color: #c8c7cc !important;
+}
+
+.list_custom_img1 .uni-list-item__icon-img {
+	width: 184upx !important;
+	height: 36upx !important;
+}
