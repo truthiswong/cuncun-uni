@@ -105,6 +105,12 @@
 						"portrait-1366h@2x" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/2048*2732.png",
 						"landscape-1366h@2x" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/2732*2048.png"
 					}
+				},
+				"android" : 
+				{
+					"hdpi" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/Android/480*762.png",
+					"xhdpi" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/Android/720*1242.png",
+					"xxhdpi" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/Android/1080*1882.png"
 				}
 			}
 		}
