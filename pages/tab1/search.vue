@@ -1,9 +1,7 @@
 <template>
 	<view>
-		<hx-navbar title="搜索" :fixed="true" barPlaceholder="hidden" transparent="auto" :color="['#000000','#ffffff']"
-		 :background-color="[59, 193, 187]">
-		</hx-navbar>
-		<view style="padding-top: 168upx;" class='search base-padding mgb-30'>
+		<uni-nav-bar left-icon="back" @clickLeft="onClickBack" title="搜索" status-bar="true" fixed="true"></uni-nav-bar>
+		<view class='search base-padding mgb-30'>
 			<search @search="search" :placeholder="'请输入关键词'" :focus="focus" @clear="clear" :wd="wd" />
 		</view>
 
@@ -96,6 +94,11 @@
 			this.execSearch()
 		},
 		methods: {
+			onClickBack() {
+				uni.navigateBack({
+					delta: 1
+				})
+			},
 			tabClick: function(e) {
 				if (config.debug) console.log("tabClick:", e)
 				if (e.value == this.tabValue) {
