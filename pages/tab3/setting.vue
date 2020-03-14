@@ -1,32 +1,33 @@
 <template>
-	<div class="layout">
-		<hx-navbar :back="true" title="设置" color="rgba(40,40,40,1)" barPlaceholder="hidden" transparent="auto"
-		 :background-color="[255, 255, 255]">
-			<view slot="left">
-				<image @click="onClickBack" src="../../static/images/header-back.png" style="width: 40upx; height: 40upx; margin: 30upx 32upx 0;"></image>
-			</view>
-		</hx-navbar>
+	<view class="layout">
+		<uni-nav-bar left-icon="back" @clickLeft="onClickBack" title="设置" status-bar="true" fixed="true"></uni-nav-bar>
 		<!-- 内容 -->
 		<view class="content">
-			<uni-list>
-				<uni-list-item title="头像" note="">
-					<!-- <image style="width: 120upx;height: 120upx;border-radius: 50%;margin-left: 300upx;" src="../../static/tab3/my_image.png" mode=""></image> -->
-				</uni-list-item>
-				<uni-list-item title="昵称" note=""></uni-list-item>
-				<uni-list-item title="手机号" note=""></uni-list-item>
-				<uni-list-item title="地址管理" note=""></uni-list-item>
-				<uni-list-item @click="onLogout" title="注册账号" note=""></uni-list-item>
-			</uni-list>
-			<!-- <van-cell center class="head_image" is-link title="头像">
-				<img src="../../static/tab3/my_image.png" alt />
-			</van-cell>
-			<van-cell is-link title="昵称" value="dinghan" />
-			<van-cell is-link title="手机号" value="13198279824" />
-			<van-cell is-link @click="onAddress" title="地址管理" />
-			<van-cell is-link @click="onLogout" title="注销账号" /> -->
+			<view class="list_custom_margin20">
+				<uni-list class="list_custom">
+					<uni-list-item title="头像">
+						<view slot="right">
+							<image style="width: 120upx;height: 120upx;border-radius: 50%;margin-left: 300upx;" src="../../static/tab3/my_image.png"
+							 mode=""></image>
+						</view>
+					</uni-list-item>
+				</uni-list>
+			</view>
+			<view class="list_custom_margin20">
+				<uni-list class="list_custom list_custom_margin20">
+					<uni-list-item title="昵称" rightText="Ding Han"></uni-list-item>
+					<uni-list-item title="手机号" rightText="021-34283744"></uni-list-item>
+					<uni-list-item title="地址管理"></uni-list-item>
+				</uni-list>
+			</view>
+			<view class="list_custom_margin20">
+				<uni-list class="list_custom list_custom_margin20">
+					<uni-list-item title="注册账号" @click="onLogout"></uni-list-item>
+				</uni-list>
+			</view>
 		</view>
 		<button @click="onExit" class="logout" block>退出账号</button>
-	</div>
+	</view>
 </template>
 
 <script>
@@ -94,6 +95,11 @@
 		width: 100%;
 	}
 
+	.list {
+		background-color: #ffffff;
+		margin: 20upx 0;
+	}
+
 	.head_image img {
 		width: 120upx;
 		height: 120upx;
@@ -109,7 +115,7 @@
 		box-shadow: 0 -20upx 10upx 0 rgba(0, 0, 0, 0.05);
 		font-size: 32upx;
 		line-height: 130upx;
-		border-radius: 16upx 16upx 0 0;
+		border-radius: 16upx;
 		font-weight: 500;
 		color: rgba(255, 255, 255, 1);
 	}
