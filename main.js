@@ -7,6 +7,8 @@ Vue.config.productionTip = false
 // 导航栏全局注册
 import hxNavbar from "./components/hx-navbar/hx-navbar.vue"
 Vue.component('hx-navbar',hxNavbar)
+import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
+Vue.component('uni-nav-bar',uniNavBar)
 // 弹窗
 import uniPopup from "@/components/uni-popup/uni-popup.vue"
 Vue.component('uni-popup',uniPopup)
