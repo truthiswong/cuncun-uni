@@ -43,7 +43,7 @@
 			}
 		},
 		{
-			"path": "pages/tab1/box",
+			"path": "pages/tab1/storage",
 			"style": {
 				"navigationBarTitleText": "我的储藏室"
 			}
@@ -128,6 +128,7 @@
 		"backgroundColor": "#FFFFFF",
 		"navigationStyle": "custom"
 	},
+	"pageOrientation": "portrait",
 	"condition": { //模式配置，仅开发期间生效
 		"current": 0, //当前激活的模式(list 的索引项)
 		"list": [{
