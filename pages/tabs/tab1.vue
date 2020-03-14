@@ -1,6 +1,28 @@
 <template>
 	<view class="tab1">
-		<hx-navbar class="header" :fixed="true" v-show="!headerScroll" :back="false" color="#ffffff" barPlaceholder="hidden"
+		<uni-nav-bar class="header" status-bar="true" fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
+			<view slot="left" class="header_icon">
+				<image src="../../static/tab1/tab1_logo.png" style="width:306upx; height:68upx; margin: 0px 30upx -24upx;"></image>
+			</view>
+			<view slot="right">
+				<view class="header_icon">
+					<image @click="onClickRight(1)" style="" src="../../static/tab1/search_white.png"></image>
+					<image @click="onClickRight(2)" src="../../static/tab1/add.png" style="margin-left: 60upx;"></image>
+				</view>
+			</view>
+		</uni-nav-bar>
+		<uni-nav-bar class="header" status-bar="true" fixed="true" v-if="!headerShow" style="position: absolute; top: 0;" shadow="true">
+			<view slot="left" class="header_icon">
+				<image src="../../static/tab1/header_active.png" style="width:306upx; height:68upx; margin: 0px 30upx -24upx;"></image>
+			</view>
+			<view slot="right">
+				<view class="header_icon">
+					<image @click="onClickRight(1)" src="../../static/tab1/search_green.png"></image>
+					<image @click="onClickRight(2)" src="../../static/tab1/add_green.png" style="margin-left: 60upx;"></image>
+				</view>
+			</view>
+		</uni-nav-bar>
+		<!-- <hx-navbar class="header" :fixed="true" v-show="!headerScroll" :back="false" color="#ffffff" barPlaceholder="hidden"
 		 transparent="auto">
 			<view slot="left">
 				<image src="../../static/tab1/tab1_logo.png" style="width:306upx; height:68upx; margin: 0px 30upx -24upx;"></image>
@@ -18,15 +40,17 @@
 				<image @click="onClickRight(1)" src="../../static/tab1/search_green.png"></image>
 				<image @click="onClickRight(2)" src="../../static/tab1/add_green.png" style="margin-left: 60upx;"></image>
 			</view>
-		</hx-navbar>
+		</hx-navbar> -->
 		<!-- 内容 -->
 		<view class="content">
 			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
 				<view class="cont_dialog" :style="{background: 'url('+ cont_dialog_bg +') no-repeat center center / cover'}">
+					<image style="position: absolute;top: 20upx;left: 20upx; width: 46upx;height: 34upx;" src="../../static/tab1/mark_left.png"></image>
 					<view class="cont_dialog_text">
 						<h3>上午好，春奈小姐～</h3>
 						<p>我们的执照收纳咨询师和打包小哥正在随时待命中哦!</p>
 					</view>
+					<image style="position: absolute;right: 45upx; width: 46upx;height: 34upx;" src="../../static/tab1/mark_right.png"></image>
 				</view>
 			</view>
 			<view class="no_data" v-show="false">
@@ -36,19 +60,22 @@
 			</view>
 			<view>
 				<!-- 书架 -->
-				<view @longpress="longpress('书架')">
-					<hx-navbar :back="false" color="#ffffff" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
-						<view slot="left" class="left_icon">
-							<image src='../../static/tab1/book.png'></image>
+				<view @longpress="longpress('书架')" class="list_margin50">
+					<uni-list class="list_custom list_custom_img1">
+						<view v-show="long_active" class="list_hide_show">
+							<image v-show="false" src="../../static/tab1/show.png"></image>
+							<image v-show="true" src="../../static/tab1/hide.png"></image>
 						</view>
-						<view slot="right" class="right_icon">
-							<navigator url="/pages/tab1/book">
-								<text>查看全部</text>
-								<image src="../../static/tab1/right.png"></image>
-							</navigator>
-						</view>
-					</hx-navbar>
-					<view>
+						<uni-list-item thumb="../../static/tab1/book.png" :showArrow="false">
+							<view slot="right">
+								<navigator url="/pages/tab1/book">
+									<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+										 src="../../static/tab1/right.png"></image></span>
+								</navigator>
+							</view>
+						</uni-list-item>
+					</uni-list>
+					<view v-show="true">
 						<scroll-view class="scroll_x" scroll-x="true">
 							<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
 							 style="display: inline-block;" v-for="(item,index) in 9" :key='index'>
@@ -58,85 +85,112 @@
 					</view>
 				</view>
 				<!-- 衣柜 -->
-				<view @longpress="longpress('衣柜')">
-					<hx-navbar :back="false" color="#ffffff" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
-						<view slot="left" class="left_icon">
-							<image src='../../static/tab1/clothes.png'></image>
+				<view @longpress="longpress('衣柜')" class="list_margin50">
+					<uni-list class="list_custom list_custom_img1">
+						<view v-show="long_active" class="list_hide_show">
+							<image v-show="false" src="../../static/tab1/show.png"></image>
+							<image v-show="true" src="../../static/tab1/hide.png"></image>
 						</view>
-						<view slot="right" class="right_icon">
-							<navigator url="/pages/tab1/clothes">
-								<text>查看全部</text>
-								<image src="../../static/tab1/right.png"></image>
-							</navigator>
-						</view>
-					</hx-navbar>
+						<uni-list-item thumb="../../static/tab1/clothes.png" :showArrow="false">
+							<view slot="right">
+								<navigator url="/pages/tab1/clothes">
+									<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+										 src="../../static/tab1/right.png"></image></span>
+								</navigator>
+							</view>
+						</uni-list-item>
+					</uni-list>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content" :style="{background: 'url('+ scroll_bg2 +') no-repeat center center / cover'}"
+							<view class="scroll_content scroll_content2" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
 							 v-for="(item,index) in 7" :key='index' style="display: inline-block;">
 								<image src="../../static/tab1/clothes_img1.png"></image>
+								<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 112upx;" src="../../static/tab1/clothes_box1.png"></image>
 							</view>
 						</scroll-view>
 					</view>
 				</view>
 				<!-- 鞋柜 -->
-				<view @longpress="longpress('鞋柜')">
-					<hx-navbar :back="false" color="#ffffff" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
-						<view slot="left" class="left_icon">
-							<image src='../../static/tab1/shoes.png'></image>
+				<view @longpress="longpress('鞋柜')" class="list_margin50">
+					<uni-list class="list_custom list_custom_img1">
+						<view v-show="long_active" class="list_hide_show">
+							<image v-show="false" src="../../static/tab1/show.png"></image>
+							<image v-show="true" src="../../static/tab1/hide.png"></image>
 						</view>
-						<view slot="right" class="right_icon">
-							<navigator url="/pages/tab1/shoes">
-								<text>查看全部</text>
-								<image src="../../static/tab1/right.png"></image>
-							</navigator>
-						</view>
-					</hx-navbar>
+						<uni-list-item thumb="../../static/tab1/shoes.png" :showArrow="false">
+							<view slot="right">
+								<navigator url="/pages/tab1/shoes">
+									<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+										 src="../../static/tab1/right.png"></image></span>
+								</navigator>
+							</view>
+						</uni-list-item>
+					</uni-list>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content" :style="{background: 'url('+ scroll_bg3 +') no-repeat center center / cover'}"
-							 v-for="(item,index) in 7" :key='index' style="display: inline-block;">
+							<view class="scroll_content scroll_content2" v-for="(item,index) in 7" :key='index' style="display: inline-block;">
+								<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
 								<image src="../../static/tab1/shoes_img1.png"></image>
+								<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
 							</view>
 						</scroll-view>
 					</view>
 				</view>
-				<!-- 杂物架 -->
-				<!-- <view @longpress="longpress('杂物架')">
-					<hx-navbar :back="false" color="#ffffff" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
-						<view slot="left" class="left_icon">
-							<image src='../../static/tab1/groceries.png'></image>
+				<!-- 储藏室 -->
+				<view @longpress="longpress('储藏室')" class="list_margin50">
+					<uni-list class="list_custom list_custom_img1">
+						<view v-show="long_active" class="list_hide_show">
+							<image v-show="false" src="../../static/tab1/show.png"></image>
+							<image v-show="true" src="../../static/tab1/hide.png"></image>
 						</view>
-						<view slot="right" class="right_icon" @click="onClickRight(1)">
-							<text>查看全部</text>
-							<image src="../../static/tab1/right.png"></image>
-						</view>
-					</hx-navbar>
-					<view>
-						<scroll-book :books="recommendBooks" :width="bannerWidth"></scroll-book>
-					</view>
-				</view> -->
-				<!-- 杂货架 -->
-				<view @longpress="longpress('杂货架')">
-					<hx-navbar :back="false" color="#ffffff" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
-						<view slot="left" class="left_icon">
-							<image src='../../static/tab1/groceries.png'></image>
-						</view>
-						<view slot="right" class="right_icon" @click="onClickRight(1)">
-							<navigator url="/pages/tab1/box">
-								<text>查看全部</text>
-								<image src="../../static/tab1/right.png"></image>
-							</navigator>
-						</view>
-					</hx-navbar>
+						<uni-list-item thumb="../../static/tab1/storage_title.png" :showArrow="false">
+							<view slot="right">
+								<navigator url="/pages/tab1/storage">
+									<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+										 src="../../static/tab1/right.png"></image></span>
+								</navigator>
+							</view>
+						</uni-list-item>
+					</uni-list>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content" :style="{background: 'url('+ scroll_bg3 +') no-repeat center center / cover'}"
-							 v-for="(item,index) in 8" :key='index' style="display: inline-block;">
+							<view class="scroll_content scroll_content2" v-for="(item,index) in 8" :key='index' style="display: inline-block;">
+								<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
 								<image src="../../static/tab1/sofa_img1.png"></image>
+								<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
 							</view>
 						</scroll-view>
 					</view>
+				</view>
+				<!-- 杂货架 -->
+				<view @longpress="longpress('杂货架')" class="list_margin50">
+					<uni-list class="list_custom list_custom_img1">
+						<view v-show="long_active" class="list_hide_show">
+							<image v-show="true" src="../../static/tab1/show.png"></image>
+							<image v-show="false" src="../../static/tab1/hide.png"></image>
+						</view>
+						<uni-list-item thumb="../../static/tab1/groceries.png" :showArrow="false">
+							<view slot="right">
+								<navigator url="/pages/tab1/storage">
+									<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+										 src="../../static/tab1/right.png"></image></span>
+								</navigator>
+							</view>
+						</uni-list-item>
+					</uni-list>
+					<view v-show="false">
+						<scroll-view class="scroll_x" scroll-x="true">
+							<view class="scroll_content scroll_content2" v-for="(item,index) in 8" :key='index' style="display: inline-block;">
+								<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
+								<image src="../../static/tab1/sofa_img1.png"></image>
+								<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
+							</view>
+						</scroll-view>
+					</view>
+				</view>
+				<view class="long_button" v-show="long_active">
+					<image @click="longpress_cancel" src="../../static/tab1/long_cancel.png"></image>
+					<image @click="longpress_comfirm" src="../../static/tab1/long_comfirm.png"></image>
 				</view>
 			</view>
 		</view>
@@ -151,13 +205,15 @@
 		components: {},
 		data() {
 			return {
-				headerScroll: false,
+				headerShow: true,
+				headerScroll: 1,
 				platform: '',
 				cont_top_bg: '../../static/tab1/tab1_top.png',
 				cont_dialog_bg: '../../static/tab1/tab1_bubble.png',
 				scroll_bg1: '../../static/tab1/bookbox.png',
 				scroll_bg2: '../../static/tab1/clothes_box.png',
-				scroll_bg3: '../../static/tab1/shoes_box.png',
+				scroll_bg3: '../../static/tab1/shoes_box2.png',
+				long_active: false, //长按显示编辑按钮
 			}
 		},
 		onLoad() {
@@ -166,22 +222,14 @@
 		onShow() {},
 		onPageScroll(options) {
 			if (config.debug) console.log("onPageScroll", options)
+			if (options.scrollTop > 88) {
+				this.headerScroll = 1;
+				this.headerShow = false;
+			} else {
+				this.headerShow = true;
+				this.headerScroll = options.scrollTop / 88;
+			}
 		},
-		// onPageScroll(options) {
-		// 	if (config.debug) console.log("onPageScroll", options)
-		// 	// if (options.scrollTop > 110) {
-		// 	// 	if (this.showHeaderSearch == false) this.showHeaderSearch = true
-		// 	// } else {
-		// 	// 	if (this.showHeaderSearch == true) this.showHeaderSearch = false
-		// 	// }
-		// 	if (options.scrollTop > 60) {
-		// 		// this.headerScroll = 1;
-		// 		this.headerScroll = true;
-		// 	} else {
-		// 		this.headerScroll = false;
-		// 		// this.headerScroll = options.scrollTop / 88;
-		// 	}
-		// },
 		methods: {
 			onScroll(e) {
 				console.log(e)
@@ -196,18 +244,25 @@
 				}
 			},
 			longpress(name) {
-				uni.showModal({
-					title: "提示",
-					content: `是否移除${name}？`,
-					success: (action) => {
-						if (action.confirm) {
-							if (config.debug) console.log("确定移除")
-							uni.showToast({
-								title: '移除成功',
-							})
-						}
-					}
-				})
+				this.long_active = true
+				// uni.showModal({
+				// 	title: "提示",
+				// 	content: `是否移除${name}？`,
+				// 	success: (action) => {
+				// 		if (action.confirm) {
+				// 			if (config.debug) console.log("确定移除")
+				// 			uni.showToast({
+				// 				title: '移除成功',
+				// 			})
+				// 		}
+				// 	}
+				// })
+			},
+			longpress_comfirm() {
+				this.long_active = false
+			},
+			longpress_cancel() {
+				this.long_active = false
 			}
 		}
 
@@ -216,24 +271,12 @@
 
 <style>
 	.tab1 {
-		overflow: hidden;
+		background-color: #FCFCFC;
+		padding-bottom: 100upx;
 	}
 
-	.header {
-		width: 100%;
-		position: fixed;
-		top: 0;
-		z-index: 5;
-		background-color: rgba(0, 0, 0, 0);
-		vertical-align: center;
-	}
-
-	.header_active {
-		width: 100%;
-		position: fixed;
-		top: 0;
-		z-index: 5;
-		background-color: white;
+	.header_icon {
+		width: 200upx;
 	}
 
 	.header_icon image {
@@ -243,8 +286,11 @@
 	}
 
 	.content {
+		/* position: relative;
+		top: -88upx; */
 		width: 100%;
 		height: 100%;
+		/* margin-top: -88px; */
 	}
 
 	.cont_top {
@@ -258,17 +304,15 @@
 		top: 212upx;
 		left: 30upx;
 		width: 513upx;
-		height: 260upx;
+		height: 262upx;
 	}
-
-	.cont_dialog_text {}
 
 	.cont_dialog_text>h3 {
 		font-size: 36upx;
 		font-weight: 600;
 		color: rgba(40, 40, 40, 1);
 		line-height: 50upx;
-		padding: 20upx 40upx 0 30upx;
+		padding: 40upx 40upx 0 30upx;
 	}
 
 	.cont_dialog_text>p {
@@ -330,6 +374,7 @@
 	}
 
 	.scroll_content {
+		position: relative;
 		width: 285upx;
 		height: 285upx;
 		text-align: center;
@@ -351,78 +396,18 @@
 	}
 
 	.scroll_content image {
+		position: absolute;
+		left: 0;
+		right: 0;
+		margin: auto;
+		z-index: 3;
 		width: 200upx;
 		height: 230upx;
 	}
 
-	.scroll_contentbg2 image {
-		width: 220upx;
-		height: 200upx;
-	}
-
-	.list {}
-
-	.list_left img {
-		width: 184upx;
-		height: 36upx;
-	}
-
-	.list_right span {
-		font-size: 28upx;
-		color: rgba(59, 193, 187, 1);
-		line-height: 40upx;
-	}
-
-	.list_right img {
-		width: 16upx;
-		height: 16upx;
-	}
-
-	.list_content_wrap {
-		width: 100%;
-		margin: 20upx 0;
-		overflow: auto;
-	}
-
-	.list_content {
-		display: -moz-box;
-		display: -webkit-box;
-	}
-
-	.list_content_li {
-		width: 285upx;
-		height: 285upx;
-		text-align: center;
-	}
-
-	.list_content_li1 {
-		background: url("/static/tab1/bookbox.png") no-repeat center center;
-		background-size: 100%;
-	}
-
-	.list_content_li2 {
-		background: url("/static/tab1/clothes_box.png") no-repeat center center;
-		background-size: 100%;
-	}
-
-	.list_content_li3 {
-		background: url("/static/tab1/shoes_box.png") no-repeat center center;
-		background-size: 100%;
-	}
-
-	.list_content_li img {
-		width: 200upx;
+	.scroll_content2 image {
+		width: 230upx;
 		height: 230upx;
-	}
-
-	.groceries {
-		width: 300upx;
-		height: 230upx;
-	}
-
-	.groceries img {
-		width: 100%;
-		height: 100%;
 	}
 
 	.common_button {
@@ -437,9 +422,31 @@
 		margin: 80upx auto 0;
 	}
 
-	.ios-platform {
-		color: transparent;
-		height: 1upx;
-		overflow: hidden;
+	.list_margin50 {
+		margin: 50upx 0;
+	}
+
+	.list_hide_show {
+		position: absolute;
+		top: -50upx;
+		right: 30upx;
+		z-index: 1;
+	}
+
+	.list_hide_show image {
+		width: 166upx;
+		height: 100upx;
+	}
+
+	.long_button {
+		position: fixed;
+		right: 0;
+		bottom: 0upx;
+		z-index: 20;
+	}
+
+	.long_button image {
+		width: 218upx;
+		height: 120upx;
 	}
 </style>
