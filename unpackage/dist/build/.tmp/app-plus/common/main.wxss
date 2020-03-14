@@ -423,4 +423,26 @@ navigator:active {
 		font-size: 14px !important;
 }
 }
+.list_custom {
+	background-color: #ffffff;
+}
+.list_custom_margin20 {
+	margin: 20rpx 0;
+}
+.list_custom .uni-list-item__icon-img {
+	width: 46rpx !important;
+	height: 46rpx !important;
+	margin-top: 12rpx;
+}
+.list_custom .uni-list-item__content-title {
+	font-size: 30rpx !important;
+	font-weight: 500;
+	color: rgba(40, 40, 40, 1) !important;
+}
+.list_custom .uni-list-item__container:after {
+	height: 1rpx !important;
+	-webkit-transform: scaleY(0.1) !important;
+	transform: scaleY(0.1) !important;
+	background-color: #c8c7cc !important;
+}
 

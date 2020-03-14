@@ -423,4 +423,53 @@ navigator:active {
 		font-size: 14px !important;
 }
 }
+/* 头部 */
+.header {}
+.header_bg_white {
+	background-color: #FFFFFF !important;
+}
+.header_bg_opacity {
+	background-color: rgba(0,0,0,0) !important;
+}
+.header .uni-navbar--border {
+    border-bottom-width: 0 !important;
+}
+.header .uni-navbar__header {
+	background-color: rgba(0,0,0,0) !important;
+}
+.header .uni-navbar__header-btns {
+	width: 200rpx !important;
+	text-align: right;
+}
+.header_active {
+	background-color: white;
+}
+/* 列表 */
+.list_custom {
+	position: relative;
+	background-color: #ffffff;
+}
+.list_custom_margin20 {
+	margin: 20rpx 0;
+}
+.list_custom .uni-list-item__icon-img {
+	width: 46rpx !important;
+	height: 46rpx !important;
+	margin-top: 12rpx;
+}
+.list_custom .uni-list-item__content-title {
+	font-size: 30rpx !important;
+	font-weight: 500;
+	color: rgba(40, 40, 40, 1) !important;
+}
+.list_custom .uni-list-item__container:after {
+	height: 1rpx !important;
+	-webkit-transform: scaleY(0.1) !important;
+	transform: scaleY(0.1) !important;
+	background-color: #c8c7cc !important;
+}
+.list_custom_img1 .uni-list-item__icon-img {
+	width: 184rpx !important;
+	height: 36rpx !important;
+}
 

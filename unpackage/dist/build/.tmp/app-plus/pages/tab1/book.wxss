@@ -1,8 +1,5 @@
 
-.tab1 {
-	overflow: hidden;
-}
-.header {
+.header.data-v-7de23062 {
 	width: 100%;
 	position: fixed;
 	top: 0;
@@ -10,58 +7,51 @@
 	background-color: rgba(0, 0, 0, 0);
 	vertical-align: center;
 }
-.header_active {
+.header_active.data-v-7de23062 {
 	width: 100%;
 	position: fixed;
 	top: 0;
 	z-index: 5;
 	background-color: white;
 }
-.header_icon image {
+.header_icon image.data-v-7de23062 {
 	width: 44rpx;
 	height: 44rpx;
 	margin: 30rpx 10rpx 0;
 }
-.content {
+.content.data-v-7de23062 {
 	width: 100%;
 	height: 100%;
 }
-.cont_top {
-	position: relative;
+.cont_top.data-v-7de23062 {
 	width: 100%;
-	height: 474rpx;
+	height: 470rpx;
+	box-sizing: border-box;
+	text-align: center;
+	padding-top: 200rpx;
 }
-.cont_dialog {
-	position: relative;
-	top: 212rpx;
-	left: 30rpx;
-	width: 513rpx;
-	height: 260rpx;
+.cont_top ._p.data-v-7de23062 {
+	font-size:28rpx;
+	font-weight:400;
+	color:rgba(255,255,255,1);
+	line-height:46rpx;
+	margin: 20rpx;
 }
-.cont_dialog_text {}
-.cont_dialog_text>._h3 {
-	font-size: 36rpx;
-	font-weight: 600;
-	color: rgba(40, 40, 40, 1);
-	line-height: 50rpx;
-	padding: 20rpx 40rpx 0 30rpx;
+.cont_top ._p text.data-v-7de23062 {
+	font-size:40rpx;
+	font-weight:400;
+	color:rgba(255,255,255,1);
+	line-height:46rpx;
 }
-.cont_dialog_text>._p {
-	font-size: 28rpx;
-	font-weight: 400;
-	color: rgba(136, 136, 136, 1);
-	line-height: 46rpx;
-	padding: 20rpx 40rpx 0 30rpx;
-}
-.no_data {
+.no_data.data-v-7de23062 {
 	text-align: center;
 	padding: 116rpx 0;
 }
-.no_data>image {
+.no_data>image.data-v-7de23062 {
 	width: 338rpx;
 	height: 326rpx;
 }
-.no_data>._p {
+.no_data>._p.data-v-7de23062 {
 	font-size: 28rpx;
 	font-weight: 400;
 	width: 450rpx;
@@ -69,103 +59,52 @@
 	line-height: 50rpx;
 	margin: 70rpx auto 0;
 }
-.left_icon image {
+.left_icon image.data-v-7de23062 {
 	width: 184rpx;
 	height: 36rpx;
 	margin: 0px 30rpx -8rpx;
 }
-.right_icon {
+.right_icon.data-v-7de23062 {
 	/* width: 184upx; */
 	margin-right: 18rpx;
 }
-.right_icon text {
+.right_icon text.data-v-7de23062 {
 	font-size: 28rpx;
 	font-weight: 400;
 	color: rgba(59, 193, 187, 1);
 	line-height: 40rpx;
 	margin-right: 8rpx;
 }
-.right_icon image {
+.right_icon image.data-v-7de23062 {
 	width: 16rpx;
 	height: 16rpx;
 }
-.scroll_content {
+.scroll_content.data-v-7de23062 {
 	width: 33.33333333%;
 	height: 260rpx;
 	text-align: center;
+	margin-top: 16rpx;
 }
-.scroll_contentbg1 {
+.scroll_contentbg1.data-v-7de23062 {
 	background: url("/static/tab1/bookbox.png") no-repeat center center / cover;
 }
-.scroll_contentbg2 {
+.scroll_contentbg2.data-v-7de23062 {
 	background: url("/static/tab1/clothes_box.png") no-repeat center center;
 	background-size: 100%;
 }
-.scroll_contentbg3 {
+.scroll_contentbg3.data-v-7de23062 {
 	background: url("/static/tab1/shoes_box.png") no-repeat center center;
 	background-size: 100%;
 }
-.scroll_content image {
+.scroll_content image.data-v-7de23062 {
 	width: 188rpx;
 	height: 216rpx;
 }
-.scroll_contentbg2 image {
+.scroll_contentbg2 image.data-v-7de23062 {
 	width: 220rpx;
 	height: 200rpx;
 }
-.list {}
-.list_left ._img {
-	width: 184rpx;
-	height: 36rpx;
-}
-.list_right ._span {
-	font-size: 28rpx;
-	color: rgba(59, 193, 187, 1);
-	line-height: 40rpx;
-}
-.list_right ._img {
-	width: 16rpx;
-	height: 16rpx;
-}
-.list_content_wrap {
-	width: 100%;
-	margin: 20rpx 0;
-	overflow: auto;
-}
-.list_content {
-	display: -moz-box;
-	display: -webkit-box;
-}
-.list_content_li {
-	width: 285rpx;
-	height: 285rpx;
-	text-align: center;
-}
-.list_content_li1 {
-	background: url("/static/tab1/bookbox.png") no-repeat center center;
-	background-size: 100%;
-}
-.list_content_li2 {
-	background: url("/static/tab1/clothes_box.png") no-repeat center center;
-	background-size: 100%;
-}
-.list_content_li3 {
-	background: url("/static/tab1/shoes_box.png") no-repeat center center;
-	background-size: 100%;
-}
-.list_content_li ._img {
-	width: 200rpx;
-	height: 230rpx;
-}
-.groceries {
-	width: 300rpx;
-	height: 230rpx;
-}
-.groceries ._img {
-	width: 100%;
-	height: 100%;
-}
-.common_button {
+.common_button.data-v-7de23062 {
 	width: 398rpx;
 	height: 90rpx;
 	line-height: 90rpx;
@@ -175,10 +114,5 @@
 	font-weight: 500;
 	color: white;
 	margin: 80rpx auto 0;
-}
-.ios-platform {
-	color: transparent;
-	height: 1rpx;
-	overflow: hidden;
 }
 

@@ -1,0 +1,26 @@
+.list_custom {
+	background-color: #ffffff;
+}
+
+.list_custom_margin20 {
+	margin: 20upx 0;
+}
+
+.list_custom .uni-list-item__icon-img {
+	width: 46upx !important;
+	height: 46upx !important;
+	margin-top: 12upx;
+}
+
+.list_custom .uni-list-item__content-title {
+	font-size: 30upx !important;
+	font-weight: 500;
+	color: rgba(40, 40, 40, 1) !important;
+}
+
+.list_custom .uni-list-item__container:after {
+	height: 1upx !important;
+	-webkit-transform: scaleY(0.1) !important;
+	transform: scaleY(0.1) !important;
+	background-color: #c8c7cc !important;
+}

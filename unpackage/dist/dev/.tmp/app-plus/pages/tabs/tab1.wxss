@@ -1,21 +1,10 @@
 
 .tab1 {
-	overflow: hidden;
+	background-color: #FCFCFC;
+	padding-bottom: 100rpx;
 }
-.header {
-	width: 100%;
-	position: fixed;
-	top: 0;
-	z-index: 5;
-	background-color: rgba(0, 0, 0, 0);
-	vertical-align: center;
-}
-.header_active {
-	width: 100%;
-	position: fixed;
-	top: 0;
-	z-index: 5;
-	background-color: white;
+.header_icon {
+	width: 200rpx;
 }
 .header_icon image {
 	width: 44rpx;
@@ -23,8 +12,11 @@
 	margin: 30rpx 10rpx 0;
 }
 .content {
+	/* position: relative;
+	top: -88upx; */
 	width: 100%;
 	height: 100%;
+	/* margin-top: -88px; */
 }
 .cont_top {
 	position: relative;
@@ -36,15 +28,14 @@
 	top: 212rpx;
 	left: 30rpx;
 	width: 513rpx;
-	height: 260rpx;
+	height: 262rpx;
 }
-.cont_dialog_text {}
 .cont_dialog_text>._h3 {
 	font-size: 36rpx;
 	font-weight: 600;
 	color: rgba(40, 40, 40, 1);
 	line-height: 50rpx;
-	padding: 20rpx 40rpx 0 30rpx;
+	padding: 40rpx 40rpx 0 30rpx;
 }
 .cont_dialog_text>._p {
 	font-size: 28rpx;
@@ -96,6 +87,7 @@
 	overflow: auto;
 }
 .scroll_content {
+	position: relative;
 	width: 285rpx;
 	height: 285rpx;
 	text-align: center;
@@ -112,64 +104,17 @@
 	background-size: 100%;
 }
 .scroll_content image {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	z-index: 3;
 	width: 200rpx;
 	height: 230rpx;
 }
-.scroll_contentbg2 image {
-	width: 220rpx;
-	height: 200rpx;
-}
-.list {}
-.list_left ._img {
-	width: 184rpx;
-	height: 36rpx;
-}
-.list_right ._span {
-	font-size: 28rpx;
-	color: rgba(59, 193, 187, 1);
-	line-height: 40rpx;
-}
-.list_right ._img {
-	width: 16rpx;
-	height: 16rpx;
-}
-.list_content_wrap {
-	width: 100%;
-	margin: 20rpx 0;
-	overflow: auto;
-}
-.list_content {
-	display: -moz-box;
-	display: -webkit-box;
-}
-.list_content_li {
-	width: 285rpx;
-	height: 285rpx;
-	text-align: center;
-}
-.list_content_li1 {
-	background: url("/static/tab1/bookbox.png") no-repeat center center;
-	background-size: 100%;
-}
-.list_content_li2 {
-	background: url("/static/tab1/clothes_box.png") no-repeat center center;
-	background-size: 100%;
-}
-.list_content_li3 {
-	background: url("/static/tab1/shoes_box.png") no-repeat center center;
-	background-size: 100%;
-}
-.list_content_li ._img {
-	width: 200rpx;
+.scroll_content2 image {
+	width: 230rpx;
 	height: 230rpx;
-}
-.groceries {
-	width: 300rpx;
-	height: 230rpx;
-}
-.groceries ._img {
-	width: 100%;
-	height: 100%;
 }
 .common_button {
 	width: 398rpx;
@@ -182,9 +127,27 @@
 	color: white;
 	margin: 80rpx auto 0;
 }
-.ios-platform {
-	color: transparent;
-	height: 1rpx;
-	overflow: hidden;
+.list_margin50 {
+	margin: 50rpx 0;
+}
+.list_hide_show {
+	position: absolute;
+	top: -50rpx;
+	right: 30rpx;
+	z-index: 1;
+}
+.list_hide_show image {
+	width: 166rpx;
+	height: 100rpx;
+}
+.long_button {
+	position: fixed;
+	right: 0;
+	bottom: 0rpx;
+	z-index: 20;
+}
+.long_button image {
+	width: 218rpx;
+	height: 120rpx;
 }
 

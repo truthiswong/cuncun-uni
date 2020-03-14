@@ -9,6 +9,10 @@
 	position: relative;
 	width: 100%;
 }
+.list.data-v-4f2d620c {
+	background-color: #ffffff;
+	margin: 20rpx 0;
+}
 .head_image ._img.data-v-4f2d620c {
 	width: 120rpx;
 	height: 120rpx;
@@ -23,7 +27,7 @@
 	box-shadow: 0 -20rpx 10rpx 0 rgba(0, 0, 0, 0.05);
 	font-size: 32rpx;
 	line-height: 130rpx;
-	border-radius: 16rpx 16rpx 0 0;
+	border-radius: 16rpx;
 	font-weight: 500;
 	color: rgba(255, 255, 255, 1);
 }
