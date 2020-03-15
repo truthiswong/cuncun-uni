@@ -222,12 +222,10 @@
 		onShow() {},
 		onPageScroll(options) {
 			if (config.debug) console.log("onPageScroll", options)
-			if (options.scrollTop > 88) {
-				this.headerScroll = 1;
+			if (options.scrollTop > 60) {
 				this.headerShow = false;
 			} else {
 				this.headerShow = true;
-				this.headerScroll = options.scrollTop / 88;
 			}
 		},
 		methods: {
