@@ -1,12 +1,22 @@
 <template>
 	<view>
-		<hx-navbar title="我的书架" :fixed="true" barPlaceholder="hidden" transparent="auto" :color="['#ffffff','#ffffff']"
-		 :background-color="[59, 193, 187]">
-		<view slot="right">
-			<navigator url="/pages/tab1/search">
-				<image src="../../static/tab1/search_white.png" style="width: 44upx; height: 44upx; margin: 30upx 32upx 0;"></image>
-			</navigator>
-		</view>
+		<uni-nav-bar color="#FFFFFF" title="我的书架" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
+			<view slot="right">
+				<view class="header_icon">
+					<image @click="onClickRight(1)" style="" src="../../static/tab1/search_white.png"></image>
+					<button plain="true" class="choose_button">选择</button>
+				</view>
+			</view>
+		</uni-nav-bar>
+		<uni-nav-bar color="#000000" title="我的书架" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true" v-if="!headerShow" style="position: absolute; top: 0;"
+		 shadow="true">
+			<view slot="right">
+				<view class="header_icon">
+					<image @click="onClickRight(1)" src="../../static/tab1/search_green.png"></image>
+					<button plain="true" class="choose_button choose_button_scroll">选择</button>
+				</view>
+			</view>
+		</uni-nav-bar>
 		</hx-navbar>
 		<!-- 内容 -->
 		<view class="content">
@@ -32,7 +42,7 @@
 		components: {},
 		data() {
 			return {
-				headerScroll: false,
+				headerShow: true,
 				platform: '',
 				cont_top_bg: '../../static/tab1/book_bg.png',
 				scroll_bg1: '../../static/tab1/bookbox.png',
@@ -43,54 +53,59 @@
 		},
 		onShow() {},
 		onPageScroll(options) {
-			if (config.debug) console.log("onPageScroll", options)
-		},
-		// onPageScroll(options) {
-		// 	if (config.debug) console.log("onPageScroll", options)
-		// 	// if (options.scrollTop > 110) {
-		// 	// 	if (this.showHeaderSearch == false) this.showHeaderSearch = true
-		// 	// } else {
-		// 	// 	if (this.showHeaderSearch == true) this.showHeaderSearch = false
-		// 	// }
-		// 	if (options.scrollTop > 60) {
-		// 		// this.headerScroll = 1;
-		// 		this.headerScroll = true;
-		// 	} else {
-		// 		this.headerScroll = false;
-		// 		// this.headerScroll = options.scrollTop / 88;
-		// 	}
-		// },
-		methods: {
-			onScroll(e) {
-				console.log(e)
+			if (options.scrollTop > 60) {
+				this.headerShow = false;
+			} else {
+				this.headerShow = true;
 			}
+		},
+		methods: {
+			onClickBack() {
+				uni.navigateBack({
+					delta: 1
+				})
+			},
+			onClickRight(index) {
+				if (index == 1) {
+					console.log(1);
+				} else if (index == 2) {
+					console.log(2);
+				}
+			},
 		}
 
 	}
 </script>
 
 <style scoped>
-	.header {
-		width: 100%;
-		position: fixed;
-		top: 0;
-		z-index: 5;
-		background-color: rgba(0, 0, 0, 0);
-		vertical-align: center;
+	.header_icon {
+		width: 200upx;
+		height: 44px;
 	}
-
-	.header_active {
-		width: 100%;
-		position: fixed;
-		top: 0;
-		z-index: 5;
-		background-color: white;
-	}
-
+	
 	.header_icon image {
 		width: 44upx;
 		height: 44upx;
-		margin: 30upx 10upx 0;
+		vertical-align: middle;
+	}
+	
+	.choose_button {
+		display: inline-block;
+		width: 96upx;
+		height: 60upx;
+		border-radius: 5px;
+		border: 1px solid rgba(255, 255, 255, 1);
+		font-size: 28upx;
+		line-height: 60upx;
+		color: rgba(255, 255, 255, 1);
+		padding: 0;
+		text-align: center;
+		vertical-align: middle;
+		margin-left: 50upx;
+	}
+	.choose_button_scroll {
+		border: 1px solid rgba(0, 0, 0, 1);
+		color: #000000;
 	}
 
 	.content {

@@ -1,22 +1,31 @@
 <template>
 	<view>
-		<hx-navbar title="我的衣柜" :fixed="true" barPlaceholder="hidden" transparent="auto" :color="['#ffffff','#ffffff']"
-		 :background-color="[59, 193, 187]">
-		<view slot="right">
-			<navigator url="/pages/tab1/search">
-				<image src="../../static/tab1/search_white.png" style="width: 44upx; height: 44upx; margin: 30upx 32upx 0;"></image>
-			</navigator>
-		</view>
-		</hx-navbar>
+		<uni-nav-bar color="#FFFFFF" title="我的衣柜" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
+			<view slot="right">
+				<view class="header_icon">
+					<image @click="onClickRight(1)" style="" src="../../static/tab1/search_white.png"></image>
+					<button plain="true" class="choose_button">选择</button>
+				</view>
+			</view>
+		</uni-nav-bar>
+		<uni-nav-bar color="#000000" title="我的衣柜" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true" v-if="!headerShow" style="position: absolute; top: 0;"
+		 shadow="true">
+			<view slot="right">
+				<view class="header_icon">
+					<image @click="onClickRight(1)" src="../../static/tab1/search_green.png"></image>
+					<button plain="true" class="choose_button choose_button_scroll">选择</button>
+				</view>
+			</view>
+		</uni-nav-bar>
 		<!-- 内容 -->
 		<view class="content">
 			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
 				<p>里面有 <text>12</text> 件大衣，<text>6</text> 件套装，<text>4</text> 件Tshirt</p>
-				<p>为您节省了 <text>2</text>  平米左右的空间咯～</p>
+				<p>为您节省了 <text>2</text> 平米左右的空间咯～</p>
 			</view>
 			<view>
 				<view class="scroll_content" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
-				 v-for="(item,index) in 7" :key='index' style="display: inline-block;">
+				 v-for="(item,index) in 17" :key='index' style="display: inline-block;">
 					<image src="../../static/tab1/clothes_img1.png"></image>
 					<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 80upx;" src="../../static/tab1/clothes_box1.png"></image>
 				</view>
@@ -33,6 +42,7 @@
 		components: {},
 		data() {
 			return {
+				headerShow: true,
 				cont_top_bg: '../../static/tab1/clothes_top_bg.png',
 				scroll_bg1: '../../static/tab1/bookbox.png',
 				scroll_bg2: '../../static/tab1/clothes_box.png',
@@ -44,26 +54,17 @@
 		},
 		onShow() {},
 		onPageScroll(options) {
-			if (config.debug) console.log("onPageScroll", options)
+			if (options.scrollTop > 60) {
+				this.headerShow = false;
+			} else {
+				this.headerShow = true;
+			}
 		},
-		// onPageScroll(options) {
-		// 	if (config.debug) console.log("onPageScroll", options)
-		// 	// if (options.scrollTop > 110) {
-		// 	// 	if (this.showHeaderSearch == false) this.showHeaderSearch = true
-		// 	// } else {
-		// 	// 	if (this.showHeaderSearch == true) this.showHeaderSearch = false
-		// 	// }
-		// 	if (options.scrollTop > 60) {
-		// 		// this.headerScroll = 1;
-		// 		this.headerScroll = true;
-		// 	} else {
-		// 		this.headerScroll = false;
-		// 		// this.headerScroll = options.scrollTop / 88;
-		// 	}
-		// },
 		methods: {
-			onScroll(e) {
-				console.log(e)
+			onClickBack() {
+				uni.navigateBack({
+					delta: 1
+				})
 			},
 			onClickRight(index) {
 				if (index == 1) {
@@ -78,27 +79,34 @@
 </script>
 
 <style scoped>
-	.header {
-		width: 100%;
-		position: fixed;
-		top: 0;
-		z-index: 5;
-		background-color: rgba(0, 0, 0, 0);
-		vertical-align: center;
-	}
-
-	.header_active {
-		width: 100%;
-		position: fixed;
-		top: 0;
-		z-index: 5;
-		background-color: white;
+	.header_icon {
+		width: 200upx;
+		height: 44px;
 	}
 
 	.header_icon image {
 		width: 44upx;
 		height: 44upx;
-		margin: 30upx 10upx 0;
+		vertical-align: middle;
+	}
+
+	.choose_button {
+		display: inline-block;
+		width: 96upx;
+		height: 60upx;
+		border-radius: 5px;
+		border: 1px solid rgba(255, 255, 255, 1);
+		font-size: 28upx;
+		line-height: 60upx;
+		color: rgba(255, 255, 255, 1);
+		padding: 0;
+		text-align: center;
+		vertical-align: middle;
+		margin-left: 50upx;
+	}
+	.choose_button_scroll {
+		border: 1px solid rgba(0, 0, 0, 1);
+		color: #000000;
 	}
 
 	.content {
@@ -113,18 +121,20 @@
 		text-align: center;
 		padding-top: 200upx;
 	}
+
 	.cont_top p {
-		font-size:28upx;
-		font-weight:400;
-		color:rgba(255,255,255,1);
-		line-height:46upx;
+		font-size: 28upx;
+		font-weight: 400;
+		color: rgba(255, 255, 255, 1);
+		line-height: 46upx;
 		margin: 20upx;
 	}
+
 	.cont_top p text {
-		font-size:40upx;
-		font-weight:400;
-		color:rgba(255,255,255,1);
-		line-height:46upx;
+		font-size: 40upx;
+		font-weight: 400;
+		color: rgba(255, 255, 255, 1);
+		line-height: 46upx;
 	}
 
 	.no_data {
