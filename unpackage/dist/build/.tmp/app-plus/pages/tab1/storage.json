@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "我的储藏室",
   "usingComponents": {
-    "hx-navbar": "/components/hx-navbar/hx-navbar"
+    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar"
   }
 }

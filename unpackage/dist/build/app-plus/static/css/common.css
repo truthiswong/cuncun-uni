@@ -1,4 +1,26 @@
+/* 头部 */
+.header {}
+
+.header_bg_white {
+	background-color: #FFFFFF !important;
+}
+
+.header .uni-navbar--border {
+    border-bottom-width: 0 !important;
+}
+.header .uni-navbar__header {
+	background-color: rgba(0,0,0,0) !important;
+}
+
+.header .uni-navbar__header-btns {
+	width: 200upx !important;
+	text-align: right;
+}
+
+
+/* 列表 */
 .list_custom {
+	position: relative;
 	background-color: #ffffff;
 }
 
@@ -23,4 +45,9 @@
 	-webkit-transform: scaleY(0.1) !important;
 	transform: scaleY(0.1) !important;
 	background-color: #c8c7cc !important;
+}
+
+.list_custom_img1 .uni-list-item__icon-img {
+	width: 184upx !important;
+	height: 36upx !important;
 }

@@ -4,9 +4,7 @@
 .header_bg_white {
 	background-color: #FFFFFF !important;
 }
-.header_bg_opacity {
-	background-color: rgba(0,0,0,0) !important;
-}
+
 .header .uni-navbar--border {
     border-bottom-width: 0 !important;
 }
@@ -19,9 +17,6 @@
 	text-align: right;
 }
 
-.header_active {
-	background-color: white;
-}
 
 /* 列表 */
 .list_custom {

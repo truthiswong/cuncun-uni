@@ -56,9 +56,10 @@
     "autoclose": false
   },
   "appname": "存存",
-  "compilerVersion": "2.6.1",
+  "compilerVersion": "2.6.5",
   "usingComponents": {
     "hx-navbar": "/components/hx-navbar/hx-navbar",
+    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
     "uni-popup": "/components/uni-popup/uni-popup",
     "uni-search-bar": "/components/uni-search-bar/uni-search-bar",
     "uni-list": "/components/uni-list/uni-list",
