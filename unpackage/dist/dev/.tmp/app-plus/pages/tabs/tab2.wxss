@@ -1,4 +1,13 @@
 
+.header_icon {
+	width: 200rpx;
+	height: 44px;
+}
+.header_icon image {
+	width: 44rpx;
+	height: 44rpx;
+	vertical-align: middle;
+}
 .cont_top {
 	width: 100%;
 	height: 386rpx;

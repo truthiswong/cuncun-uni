@@ -1,6 +1,5 @@
 {
   "navigationBarTitleText": "测试",
-  "usingComponents": {
-    "hx-navbar": "/components/hx-navbar/hx-navbar"
-  }
+  "bounce": "none",
+  "usingComponents": {}
 }

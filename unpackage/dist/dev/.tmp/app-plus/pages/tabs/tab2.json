@@ -1,7 +1,8 @@
 {
   "navigationBarTitleText": "我的订单",
+  "bounce": "none",
   "usingComponents": {
-    "hx-navbar": "/components/hx-navbar/hx-navbar",
+    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
     "search": "/components/search",
     "loading": "/components/loading",
     "iheader": "/components/header"

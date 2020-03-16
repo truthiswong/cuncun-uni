@@ -1,11 +1,10 @@
 {
   "navigationBarTitleText": "搜索",
+  "bounce": "none",
   "usingComponents": {
     "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
     "loading": "/components/loading",
-    "list-book": "/components/listBook",
     "search": "/components/search",
-    "tab": "/components/tab",
-    "iheader": "/components/header"
+    "tab": "/components/tab"
   }
 }

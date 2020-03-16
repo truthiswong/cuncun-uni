@@ -1,6 +1,5 @@
 {
   "navigationBarTitleText": "存存用户服务协议",
-  "usingComponents": {
-    "hx-navbar": "/components/hx-navbar/hx-navbar"
-  }
+  "bounce": "none",
+  "usingComponents": {}
 }
