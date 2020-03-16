@@ -24,7 +24,7 @@
 				<p>您已经超过了 <text>76%</text> 的收纳小伙伴咯～</p>
 			</view>
 			<view>
-				<view class="scroll_content" v-for="(item,index) in 7" :key='index' style="display: inline-block;">
+				<view class="scroll_content" v-for="(item,index) in 15" :key='index' style="display: inline-block;">
 					<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
 					<image src="../../static/tab1/shoes_img1.png"></image>
 					<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 102upx;" src="../../static/tab1/shoes_box1.png"></image>
