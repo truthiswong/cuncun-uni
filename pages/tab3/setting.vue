@@ -17,7 +17,9 @@
 				<uni-list class="list_custom list_custom_margin20">
 					<uni-list-item title="昵称" rightText="Ding Han"></uni-list-item>
 					<uni-list-item title="手机号" rightText="021-34283744"></uni-list-item>
-					<uni-list-item title="地址管理"></uni-list-item>
+					<navigator url="/pages/tab3/address">
+						<uni-list-item title="地址管理"></uni-list-item>
+					</navigator>
 				</uni-list>
 			</view>
 			<view class="list_custom_margin20">
