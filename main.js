@@ -5,8 +5,6 @@ Vue.config.productionTip = false
 
 
 // 导航栏全局注册
-import hxNavbar from "./components/hx-navbar/hx-navbar.vue"
-Vue.component('hx-navbar',hxNavbar)
 import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
 Vue.component('uni-nav-bar',uniNavBar)
 // 弹窗
@@ -20,6 +18,9 @@ import uniList from "@/components/uni-list/uni-list.vue"
 import uniListItem from "@/components/uni-list-item/uni-list-item.vue"
 Vue.component('uni-list',uniList)
 Vue.component('uni-list-item',uniListItem)
+// 标签
+import uniTag from "@/components/uni-tag/uni-tag.vue"
+Vue.component('uni-tag',uniTag)
 
 App.mpType = 'app'
 
