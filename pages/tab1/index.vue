@@ -1,6 +1,5 @@
 <template>
 	<view class="root">
-		<iheader :showIcon="false" :showSearch="showHeaderSearch"></iheader>
 		<view class="base-padding mgb-30">
 			<search target="/pages/search/search" />
 		</view>
@@ -21,14 +20,7 @@
 			<view>
 				<!-- 书架 -->
 				<view @longpress="longpress('书架')">
-					<view>
-						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
-							 style="display: inline-block;" v-for="(item,index) in 9" :key='index'>
-								<image src="../../static/tab1/book_img1.png"></image>
-							</view>
-						</scroll-view>
-					</view>
+					
 				</view>
 			</view>
 		</view>
@@ -39,10 +31,6 @@
 </template>
 
 <script>
-	import scrollBook from '../../components/scrollBook.vue'
-	import search from '../../components/search.vue'
-	import listBook from '../../components/listBook.vue'
-	import iheader from '../../components/header.vue'
 
 	import api from '../../utils/api.js'
 	import util from '../../utils/util.js'
@@ -50,10 +38,6 @@
 
 	export default {
 		components: {
-			scrollBook,
-			search,
-			listBook,
-			iheader,
 		},
 		data() {
 			return {

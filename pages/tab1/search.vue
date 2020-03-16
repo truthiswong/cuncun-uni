@@ -9,30 +9,6 @@
 			<tab @tabClick="tabClick" :tabs="tabs" :tabGridLen="6" :activeTab="tabValue" />
 		</view> -->
 
-		<view v-if="false" class='base-padding'>
-			<list-book v-if="tabValue == 'book'" :books="lists" />
-			<block v-if="tabValue == 'doc'">
-				<view class='doc-list'>
-					<view v-for="(doc,index) in lists" :key="index" class='row'>
-						<view class='col-12 doc-title font-lv1 ellipsis-1row'>
-							<navigator :url='"/pages/read/read?identify="+doc.book_id+"/"+doc.identify'>{{doc.title}}</navigator>
-						</view>
-						<view class='col-12 doc-info color-light font-lv4'>
-							<view class='item'>
-								<image src='../../static/images/eye.png'></image>
-								<text>{{doc.vcnt}}</text>
-							</view>
-							<view class='item'>
-								<image src='../../static/images/clock.png'></image>
-								<text>{{doc.created_at}}</text>
-							</view>
-							<navigator class='item' :url='"/pages/intro/intro?id="+doc.book_id'>《{{doc.book_name}}》</navigator>
-						</view>
-						<navigator class='col-12 doc-intro color-grey font-lv3 ellipsis-3row' :url='"/pages/read/read?identify="+doc.book_id+"/"+doc.identify'>{{doc.content}}</navigator>
-					</view>
-				</view>
-			</block>
-		</view>
 		<loading :loading="loading" :tips="tips" />
 	</view>
 </template>
@@ -40,9 +16,7 @@
 <script>
 	import loading from '../../components/loading.vue'
 	import search from '../../components/search.vue'
-	import listBook from '../../components/listBook.vue'
 	import tab from '../../components/tab.vue'
-	import iheader from '../../components/header.vue'
 
 	import api from '../../utils/api.js'
 	import util from '../../utils/util.js'
@@ -51,10 +25,8 @@
 	export default {
 		components: {
 			loading,
-			listBook,
 			search,
 			tab,
-			iheader,
 		},
 		data() {
 			return {
