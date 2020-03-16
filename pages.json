@@ -3,97 +3,145 @@
 		{
 			"path": "pages/login/login",
 			"style": {
-				"navigationBarTitleText": "登录"
+				"navigationBarTitleText": "登录",
+				"app-plus": {
+					"bounce": "none" //关闭窗口回弹效果
+				}
 			}
 		},
 		{
 			"path": "pages/tabs/tab1",
 			"style": {
-				"navigationBarTitleText": "存存"
+				"navigationBarTitleText": "存存",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		},
 		{
 			"path": "pages/tabs/tab2",
 			"style": {
-				"navigationBarTitleText": "我的订单"
+				"navigationBarTitleText": "我的订单",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		},
 		{
 			"path": "pages/tabs/tab3",
 			"style": {
-				"navigationBarTitleText": "我的"
+				"navigationBarTitleText": "我的",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		},
 		{
 			"path": "pages/tab1/book",
 			"style": {
-				"navigationBarTitleText": "我的书架"
+				"navigationBarTitleText": "我的书架",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		},
 		{
 			"path": "pages/tab1/clothes",
 			"style": {
-				"navigationBarTitleText": "我的衣柜"
+				"navigationBarTitleText": "我的衣柜",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		},
 		{
 			"path": "pages/tab1/shoes",
 			"style": {
-				"navigationBarTitleText": "我的鞋柜"
+				"navigationBarTitleText": "我的鞋柜",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		},
 		{
 			"path": "pages/tab1/storage",
 			"style": {
-				"navigationBarTitleText": "我的储藏室"
+				"navigationBarTitleText": "我的储藏室",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		},
 		{
 			"path": "pages/tab1/search",
 			"style": {
-				"navigationBarTitleText": "搜索"
+				"navigationBarTitleText": "搜索",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		},
 		{
 			"path": "pages/tab2/demo7",
 			"style": {
-				"navigationBarTitleText": "测试"
+				"navigationBarTitleText": "测试",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		},
 		{
 			"path": "pages/tab1/index",
 			"style": {
-				"navigationBarTitleText": "测试"
+				"navigationBarTitleText": "测试",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		},
 		{
 			"path": "pages/notfound/notfound",
 			"style": {
-				"navigationBarTitleText": "未找到对象"
+				"navigationBarTitleText": "未找到对象",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		},
 		{
 			"path": "pages/login/reg",
 			"style": {
-				"navigationBarTitleText": "注册"
+				"navigationBarTitleText": "注册",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		},
 		{
 			"path": "pages/login/agreement",
 			"style": {
-				"navigationBarTitleText": "存存用户服务协议"
+				"navigationBarTitleText": "存存用户服务协议",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		},
 		{
 			"path": "pages/tab3/setting",
 			"style": {
-				"navigationBarTitleText": "设置"
+				"navigationBarTitleText": "设置",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		},
 		{
 			"path": "pages/tab3/address",
 			"style": {
-				"navigationBarTitleText": "地址"
+				"navigationBarTitleText": "地址",
+				"app-plus": {
+					"bounce": "none"
+				}
 			}
 		}
 	],
