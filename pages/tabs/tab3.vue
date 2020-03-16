@@ -1,15 +1,24 @@
 <template>
 	<view class="page">
-		<hx-navbar class="header" :back="false" title="我的" color="#ffffff" barPlaceholder="hidden" transparent="auto"
-		 :background-color="[59, 193, 187]">
+		<uni-nav-bar color="#FFFFFF" title="我的" class="header" status-bar="true" fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
 			<view slot="right">
-				<navigator url="/pages/tab3/setting">
-					<image style="width: 44upx; height: 44upx; margin: 30upx 16upx 0 0;" src="../../static/tab3/setting.png"></image>
+				<navigator url="../tab3/setting">
+					<view class="header_icon">
+						<image src="../../static/tab3/setting.png"></image>
+					</view>
 				</navigator>
 			</view>
-		</hx-navbar>
-		<!-- <iheader title="我的"></iheader> -->
-		<view class="content" @scroll="onScroll">
+		</uni-nav-bar>
+		<uni-nav-bar color="#FFFFFF" title="我的" class="header" status-bar="true" fixed="true" v-if="!headerShow" backgroundColor="rgb(59, 193, 187)" style="position: absolute; top: 0;" shadow="true">
+			<view slot="right">
+				<navigator url="../tab3/setting">
+					<view class="header_icon">
+						<image src="../../static/tab3/setting.png"></image>
+					</view>
+				</navigator>
+			</view>
+		</uni-nav-bar>
+		<view class="content">
 			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
 				<view class="head_image">
 					<!-- <img src="../../static/tab3/my_image.png" alt /> -->
@@ -53,20 +62,21 @@
 		},
 		data() {
 			return {
-				isSignedToday: false,
+				headerShow: true,
 				cont_top_bg: '../../static/tab3/tab3_bg.png',
-				info: {},
-				user: {},
-				moreInfo: {},
-				moreInfoCacheTime: 0,
-				now: new Date().getFullYear(),
-				redirect: encodeURIComponent('/pages/me/me')
 			}
 		},
 		onLoad(op) {
 			if (config.debug) console.log("onLoad", op)
 		},
 		onShow() {},
+		onPageScroll(options) {
+			if (options.scrollTop > 60) {
+				this.headerShow = false;
+			} else {
+				this.headerShow = true;
+			}
+		},
 		methods: {}
 	}
 </script>
@@ -77,13 +87,15 @@
 		background-color: #f6f6f6;
 		position: relative;
 	}
-	.header {
-		top: 0;
-		position: fixed;
-		width: 100%;
-		background-color: rgba(0,0,0,0);
-		z-index: 9999;
-		vertical-align: center;
+	.header_icon {
+		width: 200upx;
+		height: 44px;
+	}
+	
+	.header_icon image {
+		width: 44upx;
+		height: 44upx;
+		vertical-align: middle;
 	}
 
 	.cont_top {
