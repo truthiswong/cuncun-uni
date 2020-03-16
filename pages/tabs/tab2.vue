@@ -1,12 +1,20 @@
 <template>
 	<view>
-		<hx-navbar :back="false" title="我的订单" color="rgba(40,40,40,1)" :fixed="true" barPlaceholder="hidden" transparent="auto" :background-color="[255, 255, 255]">
+		<uni-nav-bar color="#282828" title="我的订单" class="header" status-bar="true" fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
 			<view slot="right">
-				<navigator url="../tab2/demo7">
-					<image @click="onClickRight" src="../../static/tab1/add_green.png" style="width: 44upx; height: 44upx; margin: 30upx 32upx 0;"></image>
-				</navigator>
+				<view class="header_icon">
+					<image @click="onClickRight(1)" style="" src="../../static/tab1/add_green.png"></image>
+				</view>
 			</view>
-		</hx-navbar>
+		</uni-nav-bar>
+		<uni-nav-bar color="#282828" title="我的订单" class="header" status-bar="true" fixed="true" v-if="!headerShow" style="position: absolute; top: 0;"
+		 shadow="true">
+			<view slot="right">
+				<view class="header_icon">
+					<image @click="onClickRight(1)" src="../../static/tab1/add_green.png"></image>
+				</view>
+			</view>
+		</uni-nav-bar>
 		<view class="content" ref="tab1Content" @scroll="onScroll">
 			<view class="no_data">
 				<image src="../../static/tab1/no_data.png"></image>
@@ -29,13 +37,7 @@
 	export default {
 		data() {
 			return {
-				page: 1,
-				size: 24,
-				books: [],
-				showTips: false,
-				wd: '',
-				token: '',
-				showLongpressTips: false, // 是否显示长按可移除书架收藏书籍的提示
+				headerShow: true,
 			}
 		},
 		components: {
@@ -44,117 +46,36 @@
 			iheader,
 		},
 		onShow: function() {
-			this.showLongpressTips = uni.getStorageSync("showLongpressTips") != "false"
-
-			let sysInfo = util.getSysInfo()
-
-			if (config.debug) console.log("onShow", "bookshelfChanged", sysInfo.bookshelfChanged)
-			this.loadBooks(sysInfo.bookshelfChanged)
-			sysInfo.bookshelfChanged = false
-			util.setSysInfo(sysInfo)
+			
+		},
+		onPageScroll(options) {
+			if (options.scrollTop > 60) {
+				this.headerShow = false;
+			} else {
+				this.headerShow = true;
+			}
 		},
 		onReachBottom: function() {
-			this.loadBooks()
 		},
 		methods: {
 			onClickRight() {
 				console.log("订单add")
-			},
-			longpress: function(e) {
-				if (config.debug) console.log("longpress", e)
-				let that = this
-				let bookName = e.currentTarget.dataset.book
-				let bookId = e.currentTarget.dataset.id
-				let books = that.books
-				uni.showModal({
-					title: "温馨提示",
-					content: `您是否要将书籍《${bookName}》从书架中移除？`,
-					success: (action) => {
-						if (action.confirm) {
-							if (config.debug) console.log("确定移除")
-							util.request(config.api.bookStar, {
-								identify: bookId
-							}).then(function(res) {
-								if (config.debug) console.log(config.api.bookStar, res)
-								uni.showToast({
-									title: res.data.data && res.data.data.is_cancel ? '移除收藏成功' : '收藏书籍成功',
-								})
-								// 去除被移除了的书籍
-								that.books = books.filter(function(book) {
-									return book.book_id != bookId
-								})
-							}).catch(function(e) {
-								util.toastError(e.data.message || e.errMsg)
-							})
-						}
-					}
-				})
-			},
-			closeLongpressTips: function() {
-				this.showLongpressTips = false
-				uni.setStorageSync("showLongpressTips", "false")
-			},
-			loadBooks: function(isClearAll) {
-
-				let that = this
-				let token = util.getToken() || ''
-
-				if (config.debug) console.log("token", token)
-
-				if (token == '') {
-					that.showTips = true
-					that.books = []
-					that.token = token
-					that.page = 1
-					return
-				}
-
-				if (that.page == 0 && !isClearAll) return;
-
-				let page = isClearAll ? 1 : that.page
-				let size = that.size
-				let books = that.books
-				let showTips = false
-
-				util.request(config.api.bookshelf, {
-					page: page,
-					size: size,
-				}).then((res) => {
-					if (config.debug) console.log(config.api.bookshelf, res)
-					if (res.data && res.data.books) {
-						res.data.books.length >= size ? page++ : page = 0
-						books = isClearAll ? res.data.books : that.books.concat(res.data.books)
-					} else {
-						if (page == 1) {
-							books = []
-							showTips = true
-						}
-						page = 0
-					}
-
-				}).catch(function(e) {
-					if (config.debug) console.log("error", e)
-					util.toastError(e.data.message || e.errMsg)
-				}).finally(function() {
-					that.books = books
-					that.showTips = books.length == 0
-					that.page = page
-					that.token = token
-					if (isClearAll) uni.pageScrollTo({
-						scrollTop: 0,
-					})
-				})
-			},
-			login: function(e) {
-				uni.navigateTo({
-					url: '/pages/login/login?redirect=' + encodeURIComponent('/pages/bookshelf/bookshelf')
-				})
-			},
+			}
 		}
 	}
 </script>
 
 <style>
+	.header_icon {
+		width: 200upx;
+		height: 44px;
+	}
+	
+	.header_icon image {
+		width: 44upx;
+		height: 44upx;
+		vertical-align: middle;
+	}
 	.cont_top {
 		width: 100%;
 		height: 386upx;
