@@ -1070,106 +1070,43 @@ function gz$gwx_2(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_2)return __WXML_GLOBAL__.ops_cached.$gwx_2
 __WXML_GLOBAL__.ops_cached.$gwx_2=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
-Z([3,'hx-navbar'])
-Z([[4],[[5],[[5],[[5],[[5],[1,'hx-navbar__content']],[[2,'?:'],[[7],[3,'fixed']],[1,'hx-navbar--fixed'],[1,'']]],[[2,'?:'],[[7],[3,'border']],[1,'hx-navbar--shadow'],[1,'']]],[[2,'?:'],[[7],[3,'border']],[1,'hx-navbar--border'],[1,'']]]])
-Z([[2,'+'],[[2,'+'],[1,'background:'],[[7],[3,'backgroundColorRgba']]],[1,';']])
-Z([[7],[3,'backgroundImg']])
-Z([[7],[3,'statusBar']])
-Z([3,'hd hx-navbar__header hx-navbar__content_view'])
-Z([[2,'+'],[[2,'+'],[[2,'+'],[[2,'+'],[1,'color:'],[[7],[3,'colorInfo']]],[1,';']],[[2,'+'],[[2,'+'],[1,'height:'],[[7],[3,'height']]],[1,';']]],[[2,'+'],[[2,'+'],[1,'line-height:'],[[7],[3,'height']]],[1,';']]])
-Z([[7],[3,'leftSlot']])
-Z([3,'__e'])
-Z([3,'hx-navbar__header-btns hx-navbar__content_view'])
-Z([[4],[[5],[[4],[[5],[[5],[1,'tap']],[[4],[[5],[[4],[[5],[[5],[1,'onClickLeft']],[[4],[[5],[1,'$event']]]]]]]]]]])
-Z([[2,'+'],[[2,'+'],[1,'color:'],[[7],[3,'colorInfo']]],[1,';']])
-Z([[2,'||'],[[2,'||'],[[6],[[7],[3,'leftText']],[3,'length']],[[6],[[7],[3,'leftIcon']],[3,'length']]],[[7],[3,'back']]])
-Z([[2,'||'],[[6],[[7],[3,'leftIcon']],[3,'length']],[[7],[3,'back']]])
-Z([3,'__l'])
-Z([[7],[3,'colorInfo']])
-Z([3,'28'])
-Z([[2,'?:'],[[7],[3,'back']],[1,'arrowleft'],[[7],[3,'leftIcon']]])
-Z([3,'ec8723b4-1'])
-Z([[6],[[7],[3,'leftText']],[3,'length']])
-Z([[2,'&&'],[[7],[3,'leftSlidiSwitch']],[[2,'=='],[[7],[3,'slotSlidiSwitch']],[1,1]]])
-Z([3,'leftAfter'])
-Z([3,'left'])
-Z([3,'hx-navbar__header-container hx-navbar__content_view'])
-Z([3,'overflow:hidden;'])
-Z([[6],[[7],[3,'title']],[3,'length']])
-Z([[2,'&&'],[[7],[3,'centerSlidiSwitch']],[[2,'=='],[[7],[3,'slotSlidiSwitch']],[1,1]]])
-Z([3,'centerAfter'])
-Z([[7],[3,'rightSlot']])
-Z(z[8])
-Z([[4],[[5],[[5],[1,'hx-navbar__header-btns hx-navbar__content_view']],[[2,'?:'],[[6],[[7],[3,'title']],[3,'length']],[1,'hx-navbar__header-btns-right'],[1,'']]]])
-Z([[4],[[5],[[4],[[5],[[5],[1,'tap']],[[4],[[5],[[4],[[5],[[5],[1,'onClickRight']],[[4],[[5],[1,'$event']]]]]]]]]]])
-Z([[2,'||'],[[6],[[7],[3,'rightIcon']],[3,'length']],[[6],[[7],[3,'rightText']],[3,'length']]])
-Z([[6],[[7],[3,'rightIcon']],[3,'length']])
-Z(z[14])
-Z(z[15])
-Z(z[16])
-Z([[7],[3,'rightIcon']])
-Z([3,'ec8723b4-2'])
-Z([[6],[[7],[3,'rightText']],[3,'length']])
-Z([[2,'&&'],[[7],[3,'rightSlidiSwitch']],[[2,'=='],[[7],[3,'slotSlidiSwitch']],[1,1]]])
-Z([3,'rightAfter'])
-Z([3,'right'])
-Z([[7],[3,'placeholder']])
-Z(z[4])
 })(__WXML_GLOBAL__.ops_cached.$gwx_2);return __WXML_GLOBAL__.ops_cached.$gwx_2
 }
 function gz$gwx_3(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_3)return __WXML_GLOBAL__.ops_cached.$gwx_3
 __WXML_GLOBAL__.ops_cached.$gwx_3=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
+Z([3,'__e'])
+Z([3,'search data-v-6ad90890'])
+Z([[4],[[5],[[4],[[5],[[5],[1,'tap']],[[4],[[5],[[4],[[5],[[5],[1,'focusSearch']],[[4],[[5],[1,'$event']]]]]]]]]]])
+Z([[7],[3,'showClear']])
 })(__WXML_GLOBAL__.ops_cached.$gwx_3);return __WXML_GLOBAL__.ops_cached.$gwx_3
 }
 function gz$gwx_4(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_4)return __WXML_GLOBAL__.ops_cached.$gwx_4
 __WXML_GLOBAL__.ops_cached.$gwx_4=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
+Z([[2,'>'],[[6],[[7],[3,'tabs']],[3,'length']],[1,0]])
+Z([3,'tab'])
+Z([[2,'&&'],[[2,'>'],[[7],[3,'gridRight']],[1,0]],[[7],[3,'showSearch']]])
 })(__WXML_GLOBAL__.ops_cached.$gwx_4);return __WXML_GLOBAL__.ops_cached.$gwx_4
 }
 function gz$gwx_5(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_5)return __WXML_GLOBAL__.ops_cached.$gwx_5
 __WXML_GLOBAL__.ops_cached.$gwx_5=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
+Z([[7],[3,'text']])
 })(__WXML_GLOBAL__.ops_cached.$gwx_5);return __WXML_GLOBAL__.ops_cached.$gwx_5
 }
 function gz$gwx_6(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_6)return __WXML_GLOBAL__.ops_cached.$gwx_6
 __WXML_GLOBAL__.ops_cached.$gwx_6=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
-Z([3,'__e'])
-Z([3,'search data-v-6ad90890'])
-Z([[4],[[5],[[4],[[5],[[5],[1,'tap']],[[4],[[5],[[4],[[5],[[5],[1,'focusSearch']],[[4],[[5],[1,'$event']]]]]]]]]]])
-Z([[7],[3,'showClear']])
 })(__WXML_GLOBAL__.ops_cached.$gwx_6);return __WXML_GLOBAL__.ops_cached.$gwx_6
 }
 function gz$gwx_7(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_7)return __WXML_GLOBAL__.ops_cached.$gwx_7
 __WXML_GLOBAL__.ops_cached.$gwx_7=[];
-(function(z){var a=11;function Z(ops){z.push(ops)}
-Z([[2,'>'],[[6],[[7],[3,'tabs']],[3,'length']],[1,0]])
-Z([3,'tab'])
-Z([[2,'&&'],[[2,'>'],[[7],[3,'gridRight']],[1,0]],[[7],[3,'showSearch']]])
-})(__WXML_GLOBAL__.ops_cached.$gwx_7);return __WXML_GLOBAL__.ops_cached.$gwx_7
-}
-function gz$gwx_8(){
-if( __WXML_GLOBAL__.ops_cached.$gwx_8)return __WXML_GLOBAL__.ops_cached.$gwx_8
-__WXML_GLOBAL__.ops_cached.$gwx_8=[];
-(function(z){var a=11;function Z(ops){z.push(ops)}
-Z([[7],[3,'text']])
-})(__WXML_GLOBAL__.ops_cached.$gwx_8);return __WXML_GLOBAL__.ops_cached.$gwx_8
-}
-function gz$gwx_9(){
-if( __WXML_GLOBAL__.ops_cached.$gwx_9)return __WXML_GLOBAL__.ops_cached.$gwx_9
-__WXML_GLOBAL__.ops_cached.$gwx_9=[];
-(function(z){var a=11;function Z(ops){z.push(ops)}
-})(__WXML_GLOBAL__.ops_cached.$gwx_9);return __WXML_GLOBAL__.ops_cached.$gwx_9
-}
-function gz$gwx_10(){
-if( __WXML_GLOBAL__.ops_cached.$gwx_10)return __WXML_GLOBAL__.ops_cached.$gwx_10
-__WXML_GLOBAL__.ops_cached.$gwx_10=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
 Z([3,'__e'])
 Z([[4],[[5],[[5],[1,'uni-list-item data-v-7a872d8d']],[[2,'?:'],[[7],[3,'disabled']],[1,'uni-list-item--disabled'],[1,'']]]])
@@ -1203,17 +1140,17 @@ Z([3,'#bbb'])
 Z([1,20])
 Z([3,'arrowright'])
 Z([3,'01e39c76-3'])
-})(__WXML_GLOBAL__.ops_cached.$gwx_10);return __WXML_GLOBAL__.ops_cached.$gwx_10
+})(__WXML_GLOBAL__.ops_cached.$gwx_7);return __WXML_GLOBAL__.ops_cached.$gwx_7
 }
-function gz$gwx_11(){
-if( __WXML_GLOBAL__.ops_cached.$gwx_11)return __WXML_GLOBAL__.ops_cached.$gwx_11
-__WXML_GLOBAL__.ops_cached.$gwx_11=[];
+function gz$gwx_8(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_8)return __WXML_GLOBAL__.ops_cached.$gwx_8
+__WXML_GLOBAL__.ops_cached.$gwx_8=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
-})(__WXML_GLOBAL__.ops_cached.$gwx_11);return __WXML_GLOBAL__.ops_cached.$gwx_11
+})(__WXML_GLOBAL__.ops_cached.$gwx_8);return __WXML_GLOBAL__.ops_cached.$gwx_8
 }
-function gz$gwx_12(){
-if( __WXML_GLOBAL__.ops_cached.$gwx_12)return __WXML_GLOBAL__.ops_cached.$gwx_12
-__WXML_GLOBAL__.ops_cached.$gwx_12=[];
+function gz$gwx_9(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_9)return __WXML_GLOBAL__.ops_cached.$gwx_9
+__WXML_GLOBAL__.ops_cached.$gwx_9=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
 Z([3,'uni-navbar data-v-4e50fa18'])
 Z([[4],[[5],[[5],[[5],[[5],[1,'uni-navbar__content data-v-4e50fa18']],[[2,'?:'],[[7],[3,'fixed']],[1,'uni-navbar--fixed'],[1,'']]],[[2,'?:'],[[7],[3,'shadow']],[1,'uni-navbar--shadow'],[1,'']]],[[2,'?:'],[[7],[3,'border']],[1,'uni-navbar--border'],[1,'']]]])
@@ -1255,11 +1192,17 @@ Z(z[3])
 Z(z[4])
 Z(z[5])
 Z([3,'14d68f28-4'])
-})(__WXML_GLOBAL__.ops_cached.$gwx_12);return __WXML_GLOBAL__.ops_cached.$gwx_12
+})(__WXML_GLOBAL__.ops_cached.$gwx_9);return __WXML_GLOBAL__.ops_cached.$gwx_9
 }
-function gz$gwx_13(){
-if( __WXML_GLOBAL__.ops_cached.$gwx_13)return __WXML_GLOBAL__.ops_cached.$gwx_13
-__WXML_GLOBAL__.ops_cached.$gwx_13=[];
+function gz$gwx_10(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_10)return __WXML_GLOBAL__.ops_cached.$gwx_10
+__WXML_GLOBAL__.ops_cached.$gwx_10=[];
+(function(z){var a=11;function Z(ops){z.push(ops)}
+})(__WXML_GLOBAL__.ops_cached.$gwx_10);return __WXML_GLOBAL__.ops_cached.$gwx_10
+}
+function gz$gwx_11(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_11)return __WXML_GLOBAL__.ops_cached.$gwx_11
+__WXML_GLOBAL__.ops_cached.$gwx_11=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
 Z([[7],[3,'showPopup']])
 Z([3,'__e'])
@@ -1287,11 +1230,11 @@ Z([[4],[[5],[1,'default']]])
 Z(z[1])
 Z([3,'uni-popup__wrapper-box data-v-2e0b7f26'])
 Z([[4],[[5],[[4],[[5],[[5],[1,'tap']],[[4],[[5],[[4],[[5],[[5],[1,'clear']],[[4],[[5],[1,'$event']]]]]]]]]]])
-})(__WXML_GLOBAL__.ops_cached.$gwx_13);return __WXML_GLOBAL__.ops_cached.$gwx_13
+})(__WXML_GLOBAL__.ops_cached.$gwx_11);return __WXML_GLOBAL__.ops_cached.$gwx_11
 }
-function gz$gwx_14(){
-if( __WXML_GLOBAL__.ops_cached.$gwx_14)return __WXML_GLOBAL__.ops_cached.$gwx_14
-__WXML_GLOBAL__.ops_cached.$gwx_14=[];
+function gz$gwx_12(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_12)return __WXML_GLOBAL__.ops_cached.$gwx_12
+__WXML_GLOBAL__.ops_cached.$gwx_12=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
 Z([3,'index'])
 Z([3,'star'])
@@ -1313,11 +1256,11 @@ Z([[7],[3,'activeColor']])
 Z(z[11])
 Z([3,'star-filled'])
 Z([[2,'+'],[1,'3cadca3c-2-'],[[7],[3,'index']]])
-})(__WXML_GLOBAL__.ops_cached.$gwx_14);return __WXML_GLOBAL__.ops_cached.$gwx_14
+})(__WXML_GLOBAL__.ops_cached.$gwx_12);return __WXML_GLOBAL__.ops_cached.$gwx_12
 }
-function gz$gwx_15(){
-if( __WXML_GLOBAL__.ops_cached.$gwx_15)return __WXML_GLOBAL__.ops_cached.$gwx_15
-__WXML_GLOBAL__.ops_cached.$gwx_15=[];
+function gz$gwx_13(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_13)return __WXML_GLOBAL__.ops_cached.$gwx_13
+__WXML_GLOBAL__.ops_cached.$gwx_13=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
 Z([3,'uni-searchbar data-v-a63e77bc'])
 Z([3,'__e'])
@@ -1341,17 +1284,24 @@ Z([3,'24'])
 Z([3,'clear'])
 Z([3,'38d7ccbc-2'])
 Z([[2,'||'],[[2,'==='],[[7],[3,'cancelButton']],[1,'always']],[[2,'&&'],[[7],[3,'show']],[[2,'==='],[[7],[3,'cancelButton']],[1,'auto']]]])
+})(__WXML_GLOBAL__.ops_cached.$gwx_13);return __WXML_GLOBAL__.ops_cached.$gwx_13
+}
+function gz$gwx_14(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_14)return __WXML_GLOBAL__.ops_cached.$gwx_14
+__WXML_GLOBAL__.ops_cached.$gwx_14=[];
+(function(z){var a=11;function Z(ops){z.push(ops)}
+})(__WXML_GLOBAL__.ops_cached.$gwx_14);return __WXML_GLOBAL__.ops_cached.$gwx_14
+}
+function gz$gwx_15(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_15)return __WXML_GLOBAL__.ops_cached.$gwx_15
+__WXML_GLOBAL__.ops_cached.$gwx_15=[];
+(function(z){var a=11;function Z(ops){z.push(ops)}
+Z([[7],[3,'text']])
 })(__WXML_GLOBAL__.ops_cached.$gwx_15);return __WXML_GLOBAL__.ops_cached.$gwx_15
 }
 function gz$gwx_16(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_16)return __WXML_GLOBAL__.ops_cached.$gwx_16
 __WXML_GLOBAL__.ops_cached.$gwx_16=[];
-(function(z){var a=11;function Z(ops){z.push(ops)}
-})(__WXML_GLOBAL__.ops_cached.$gwx_16);return __WXML_GLOBAL__.ops_cached.$gwx_16
-}
-function gz$gwx_17(){
-if( __WXML_GLOBAL__.ops_cached.$gwx_17)return __WXML_GLOBAL__.ops_cached.$gwx_17
-__WXML_GLOBAL__.ops_cached.$gwx_17=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
 Z([[7],[3,'isShow']])
 Z([3,'__e'])
@@ -1359,114 +1309,50 @@ Z([[4],[[5],[[5],[1,'uni-transition vue-ref']],[[6],[[7],[3,'ani']],[3,'in']]]])
 Z([[4],[[5],[[4],[[5],[[5],[1,'tap']],[[4],[[5],[[4],[[5],[[5],[1,'change']],[[4],[[5],[1,'$event']]]]]]]]]]])
 Z([3,'ani'])
 Z([[2,'+'],[[2,'+'],[[2,'+'],[1,'transform:'],[[7],[3,'transform']]],[1,';']],[[7],[3,'stylesObject']]])
+})(__WXML_GLOBAL__.ops_cached.$gwx_16);return __WXML_GLOBAL__.ops_cached.$gwx_16
+}
+function gz$gwx_17(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_17)return __WXML_GLOBAL__.ops_cached.$gwx_17
+__WXML_GLOBAL__.ops_cached.$gwx_17=[];
+(function(z){var a=11;function Z(ops){z.push(ops)}
 })(__WXML_GLOBAL__.ops_cached.$gwx_17);return __WXML_GLOBAL__.ops_cached.$gwx_17
 }
 function gz$gwx_18(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_18)return __WXML_GLOBAL__.ops_cached.$gwx_18
 __WXML_GLOBAL__.ops_cached.$gwx_18=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
-Z([1,true])
-Z([[4],[[5],[[5],[[5],[1,255]],[1,255]],[1,255]]])
-Z([3,'hidden'])
-Z([3,'__l'])
-Z([3,'data-v-3fc6402f'])
-Z([3,'rgba(40,40,40,1)'])
-Z([3,'用户协议'])
-Z([3,'auto'])
-Z([3,'740582eb-1'])
-Z([[4],[[5],[1,'left']]])
 })(__WXML_GLOBAL__.ops_cached.$gwx_18);return __WXML_GLOBAL__.ops_cached.$gwx_18
 }
 function gz$gwx_19(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_19)return __WXML_GLOBAL__.ops_cached.$gwx_19
 __WXML_GLOBAL__.ops_cached.$gwx_19=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
+Z([3,'__l'])
+Z([3,'data-v-ae75046c'])
+Z([3,'注册'])
+Z([3,'7936e3e1-1'])
 })(__WXML_GLOBAL__.ops_cached.$gwx_19);return __WXML_GLOBAL__.ops_cached.$gwx_19
 }
 function gz$gwx_20(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_20)return __WXML_GLOBAL__.ops_cached.$gwx_20
 __WXML_GLOBAL__.ops_cached.$gwx_20=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
-Z([3,'data-v-32c0fff5'])
 Z([3,'__l'])
-Z(z[0])
-Z([3,'注册'])
-Z([3,'7936e3e1-1'])
-Z([3,'__e'])
-Z([3,'content data-v-32c0fff5 vue-ref'])
-Z([[4],[[5],[[4],[[5],[[5],[1,'scroll']],[[4],[[5],[[4],[[5],[[5],[1,'onScroll']],[[4],[[5],[1,'$event']]]]]]]]]]])
-Z([3,'tab1Content'])
-Z(z[0])
-Z(z[5])
-Z(z[0])
-Z([[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[1,'书架']]]]]]]]]]])
-Z([1,false])
-Z([[4],[[5],[[5],[[5],[1,255]],[1,255]],[1,255]]])
-Z([3,'hidden'])
-Z(z[1])
-Z(z[0])
-Z([3,'#ffffff'])
-Z([3,'auto'])
-Z([3,'7936e3e1-2'])
-Z([[4],[[5],[[5],[1,'left']],[1,'right']]])
-Z(z[5])
-Z(z[0])
-Z([[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[1,'衣柜']]]]]]]]]]])
-Z(z[13])
-Z(z[14])
-Z(z[15])
-Z(z[1])
-Z(z[0])
-Z(z[18])
-Z(z[19])
-Z([3,'7936e3e1-3'])
-Z(z[21])
-Z(z[5])
-Z(z[0])
-Z([[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[1,'鞋柜']]]]]]]]]]])
-Z(z[13])
-Z(z[14])
-Z(z[15])
-Z(z[1])
-Z(z[0])
-Z(z[18])
-Z(z[19])
-Z([3,'7936e3e1-4'])
-Z(z[21])
-Z(z[5])
-Z(z[0])
-Z([[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[1,'杂货架']]]]]]]]]]])
-Z(z[13])
-Z(z[14])
-Z(z[15])
-Z(z[1])
-Z(z[0])
-Z(z[18])
-Z(z[19])
-Z([3,'7936e3e1-5'])
-Z(z[21])
+Z([3,'data-v-c99562c2'])
+Z([3,'没找到对象'])
+Z([3,'57d85340-1'])
 })(__WXML_GLOBAL__.ops_cached.$gwx_20);return __WXML_GLOBAL__.ops_cached.$gwx_20
 }
 function gz$gwx_21(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_21)return __WXML_GLOBAL__.ops_cached.$gwx_21
 __WXML_GLOBAL__.ops_cached.$gwx_21=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
-Z([3,'__l'])
-Z([3,'data-v-c99562c2'])
-Z([3,'没找到对象'])
-Z([3,'57d85340-1'])
-})(__WXML_GLOBAL__.ops_cached.$gwx_21);return __WXML_GLOBAL__.ops_cached.$gwx_21
-}
-function gz$gwx_22(){
-if( __WXML_GLOBAL__.ops_cached.$gwx_22)return __WXML_GLOBAL__.ops_cached.$gwx_22
-__WXML_GLOBAL__.ops_cached.$gwx_22=[];
-(function(z){var a=11;function Z(ops){z.push(ops)}
-Z([3,'data-v-360cfa3e'])
+Z([3,'data-v-60edc8ae'])
 Z([[7],[3,'headerShow']])
 Z([3,'rgba(0,0,0,0)'])
 Z([3,'__l'])
 Z([3,'__e'])
-Z([3,'header data-v-360cfa3e'])
+Z([3,'header data-v-60edc8ae'])
 Z([3,'#FFFFFF'])
 Z([[4],[[5],[[4],[[5],[[5],[1,'^clickLeft']],[[4],[[5],[[4],[[5],[1,'onClickBack']]]]]]]]])
 Z([3,'true'])
@@ -1490,18 +1376,18 @@ Z(z[11])
 Z(z[12])
 Z([3,'1038f3b3-2'])
 Z(z[14])
-})(__WXML_GLOBAL__.ops_cached.$gwx_22);return __WXML_GLOBAL__.ops_cached.$gwx_22
+})(__WXML_GLOBAL__.ops_cached.$gwx_21);return __WXML_GLOBAL__.ops_cached.$gwx_21
 }
-function gz$gwx_23(){
-if( __WXML_GLOBAL__.ops_cached.$gwx_23)return __WXML_GLOBAL__.ops_cached.$gwx_23
-__WXML_GLOBAL__.ops_cached.$gwx_23=[];
+function gz$gwx_22(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_22)return __WXML_GLOBAL__.ops_cached.$gwx_22
+__WXML_GLOBAL__.ops_cached.$gwx_22=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
-Z([3,'data-v-72472dff'])
+Z([3,'data-v-547cc6b9'])
 Z([[7],[3,'headerShow']])
 Z([3,'rgba(0,0,0,0)'])
 Z([3,'__l'])
 Z([3,'__e'])
-Z([3,'header data-v-72472dff'])
+Z([3,'header data-v-547cc6b9'])
 Z([3,'#FFFFFF'])
 Z([[4],[[5],[[4],[[5],[[5],[1,'^clickLeft']],[[4],[[5],[[4],[[5],[1,'onClickBack']]]]]]]]])
 Z([3,'true'])
@@ -1525,28 +1411,24 @@ Z(z[11])
 Z(z[12])
 Z([3,'17d5cbd8-2'])
 Z(z[14])
+})(__WXML_GLOBAL__.ops_cached.$gwx_22);return __WXML_GLOBAL__.ops_cached.$gwx_22
+}
+function gz$gwx_23(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_23)return __WXML_GLOBAL__.ops_cached.$gwx_23
+__WXML_GLOBAL__.ops_cached.$gwx_23=[];
+(function(z){var a=11;function Z(ops){z.push(ops)}
+Z([3,'root'])
+Z([3,'__l'])
+Z([3,'/pages/search/search'])
+Z([3,'525b0be4-1'])
+Z([[7],[3,'loadwww']])
 })(__WXML_GLOBAL__.ops_cached.$gwx_23);return __WXML_GLOBAL__.ops_cached.$gwx_23
 }
 function gz$gwx_24(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_24)return __WXML_GLOBAL__.ops_cached.$gwx_24
 __WXML_GLOBAL__.ops_cached.$gwx_24=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
-Z([3,'root'])
-Z([3,'__l'])
-Z([1,false])
-Z([[7],[3,'showHeaderSearch']])
-Z([3,'525b0be4-1'])
-Z(z[1])
-Z([3,'/pages/search/search'])
-Z([3,'525b0be4-2'])
-Z([[7],[3,'loadwww']])
-})(__WXML_GLOBAL__.ops_cached.$gwx_24);return __WXML_GLOBAL__.ops_cached.$gwx_24
-}
-function gz$gwx_25(){
-if( __WXML_GLOBAL__.ops_cached.$gwx_25)return __WXML_GLOBAL__.ops_cached.$gwx_25
-__WXML_GLOBAL__.ops_cached.$gwx_25=[];
-(function(z){var a=11;function Z(ops){z.push(ops)}
-Z([3,'data-v-6d057869'])
+Z([3,'data-v-579575c0'])
 Z([3,'__l'])
 Z([3,'__e'])
 Z(z[0])
@@ -1565,31 +1447,23 @@ Z([[7],[3,'focus']])
 Z([3,'请输入关键词'])
 Z([3,'60ec0658-2'])
 Z([[7],[3,'wd']])
-Z([1,false])
-Z([3,'base-padding data-v-6d057869'])
-Z([[2,'=='],[[7],[3,'tabValue']],[1,'book']])
-Z(z[1])
-Z([[7],[3,'lists']])
-Z(z[0])
-Z([3,'60ec0658-3'])
-Z([[2,'=='],[[7],[3,'tabValue']],[1,'doc']])
 Z(z[1])
 Z(z[0])
 Z([[7],[3,'loading']])
 Z([[7],[3,'tips']])
-Z([3,'60ec0658-4'])
-})(__WXML_GLOBAL__.ops_cached.$gwx_25);return __WXML_GLOBAL__.ops_cached.$gwx_25
+Z([3,'60ec0658-3'])
+})(__WXML_GLOBAL__.ops_cached.$gwx_24);return __WXML_GLOBAL__.ops_cached.$gwx_24
 }
-function gz$gwx_26(){
-if( __WXML_GLOBAL__.ops_cached.$gwx_26)return __WXML_GLOBAL__.ops_cached.$gwx_26
-__WXML_GLOBAL__.ops_cached.$gwx_26=[];
+function gz$gwx_25(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_25)return __WXML_GLOBAL__.ops_cached.$gwx_25
+__WXML_GLOBAL__.ops_cached.$gwx_25=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
-Z([3,'data-v-5e67f6ac'])
+Z([3,'data-v-0ef62192'])
 Z([[7],[3,'headerShow']])
 Z([3,'rgba(0,0,0,0)'])
 Z([3,'__l'])
 Z([3,'__e'])
-Z([3,'header data-v-5e67f6ac'])
+Z([3,'header data-v-0ef62192'])
 Z([3,'#FFFFFF'])
 Z([[4],[[5],[[4],[[5],[[5],[1,'^clickLeft']],[[4],[[5],[[4],[[5],[1,'onClickBack']]]]]]]]])
 Z([3,'true'])
@@ -1613,18 +1487,18 @@ Z(z[11])
 Z(z[12])
 Z([3,'563afdb8-2'])
 Z(z[14])
-})(__WXML_GLOBAL__.ops_cached.$gwx_26);return __WXML_GLOBAL__.ops_cached.$gwx_26
+})(__WXML_GLOBAL__.ops_cached.$gwx_25);return __WXML_GLOBAL__.ops_cached.$gwx_25
 }
-function gz$gwx_27(){
-if( __WXML_GLOBAL__.ops_cached.$gwx_27)return __WXML_GLOBAL__.ops_cached.$gwx_27
-__WXML_GLOBAL__.ops_cached.$gwx_27=[];
+function gz$gwx_26(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_26)return __WXML_GLOBAL__.ops_cached.$gwx_26
+__WXML_GLOBAL__.ops_cached.$gwx_26=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
-Z([3,'data-v-7754862c'])
+Z([3,'data-v-b1f7787a'])
 Z([[7],[3,'headerShow']])
 Z([3,'rgba(0,0,0,0)'])
 Z([3,'__l'])
 Z([3,'__e'])
-Z([3,'header data-v-7754862c'])
+Z([3,'header data-v-b1f7787a'])
 Z([3,'#FFFFFF'])
 Z([[4],[[5],[[4],[[5],[[5],[1,'^clickLeft']],[[4],[[5],[[4],[[5],[1,'onClickBack']]]]]]]]])
 Z([3,'true'])
@@ -1648,45 +1522,137 @@ Z(z[11])
 Z(z[12])
 Z([3,'e76584f6-2'])
 Z(z[14])
+})(__WXML_GLOBAL__.ops_cached.$gwx_26);return __WXML_GLOBAL__.ops_cached.$gwx_26
+}
+function gz$gwx_27(){
+if( __WXML_GLOBAL__.ops_cached.$gwx_27)return __WXML_GLOBAL__.ops_cached.$gwx_27
+__WXML_GLOBAL__.ops_cached.$gwx_27=[];
+(function(z){var a=11;function Z(ops){z.push(ops)}
+Z([3,'data-v-42a36dcc'])
+Z([[7],[3,'headerShow']])
+Z([3,'rgba(0,0,0,0)'])
+Z([3,'__l'])
+Z([3,'__e'])
+Z([3,'header data-v-42a36dcc'])
+Z([3,'#000000'])
+Z([[4],[[5],[[4],[[5],[[5],[1,'^clickLeft']],[[4],[[5],[[4],[[5],[1,'onClickBack']]]]]]]]])
+Z([3,'true'])
+Z([3,'back'])
+Z(z[8])
+Z([3,'5bf35130-1'])
+Z([[2,'!'],[[7],[3,'headerShow']]])
+Z(z[3])
+Z(z[4])
+Z(z[5])
+Z(z[6])
+Z(z[7])
+Z(z[8])
+Z(z[9])
+Z(z[8])
+Z(z[8])
+Z([3,'5bf35130-2'])
+Z(z[3])
+Z(z[0])
+Z([1,0])
+Z([3,'5bf35130-3'])
 })(__WXML_GLOBAL__.ops_cached.$gwx_27);return __WXML_GLOBAL__.ops_cached.$gwx_27
 }
 function gz$gwx_28(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_28)return __WXML_GLOBAL__.ops_cached.$gwx_28
 __WXML_GLOBAL__.ops_cached.$gwx_28=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
-Z([[4],[[5],[[5],[[4],[[5],[[5],[[5],[1,28]],[1,187]],[1,180]]]],[[4],[[5],[[5],[[5],[1,141]],[1,198]],[1,63]]]]])
-Z([3,'hidden'])
-Z([3,'__l'])
-Z([[4],[[5],[[5],[1,'#000000']],[1,'#ffffff']]])
-Z([1,true])
-Z([3,'了解一下'])
-Z([3,'auto'])
-Z([3,'2baae6cb-1'])
 })(__WXML_GLOBAL__.ops_cached.$gwx_28);return __WXML_GLOBAL__.ops_cached.$gwx_28
 }
 function gz$gwx_29(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_29)return __WXML_GLOBAL__.ops_cached.$gwx_29
 __WXML_GLOBAL__.ops_cached.$gwx_29=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
+Z([3,'layout data-v-2146bc94'])
+Z([3,'__l'])
+Z([3,'__e'])
+Z([3,'data-v-2146bc94'])
+Z([[4],[[5],[[4],[[5],[[5],[1,'^clickLeft']],[[4],[[5],[[4],[[5],[1,'onClickBack']]]]]]]]])
+Z([3,'true'])
+Z([3,'back'])
+Z(z[5])
+Z([3,'地址管理'])
+Z([3,'2a4b7aea-1'])
+Z([[4],[[5],[1,'right']]])
+Z([3,'__i0__'])
+Z([3,'item'])
+Z([1,7])
+Z([3,'*this'])
+Z([3,'address_list data-v-2146bc94'])
+Z([3,'row data-v-2146bc94'])
+Z(z[1])
+Z(z[3])
+Z(z[5])
+Z([3,'small'])
+Z([3,'学校'])
+Z([3,'error'])
+Z([[2,'+'],[1,'2a4b7aea-2-'],[[7],[3,'__i0__']]])
+Z(z[1])
+Z(z[3])
+Z(z[5])
+Z(z[20])
+Z([3,'公司'])
+Z(z[22])
+Z([[2,'+'],[1,'2a4b7aea-3-'],[[7],[3,'__i0__']]])
+Z(z[1])
+Z(z[3])
+Z(z[5])
+Z(z[20])
+Z([3,'家'])
+Z(z[22])
+Z([[2,'+'],[1,'2a4b7aea-4-'],[[7],[3,'__i0__']]])
+Z(z[16])
+Z(z[16])
+Z(z[1])
+Z(z[3])
+Z([3,'vertical-align:middle;'])
+Z([3,'trash'])
+Z([[2,'+'],[1,'2a4b7aea-5-'],[[7],[3,'__i0__']]])
+Z(z[1])
+Z([1,true])
+Z(z[3])
+Z(z[5])
+Z(z[20])
+Z(z[42])
+Z([3,'选择'])
+Z([[2,'+'],[1,'2a4b7aea-6-'],[[7],[3,'__i0__']]])
+Z(z[16])
+Z(z[1])
+Z(z[3])
+Z(z[42])
+Z([3,'compose'])
+Z([[2,'+'],[1,'2a4b7aea-7-'],[[7],[3,'__i0__']]])
+Z(z[1])
+Z(z[46])
+Z(z[3])
+Z(z[5])
+Z(z[20])
+Z(z[42])
+Z(z[51])
+Z([[2,'+'],[1,'2a4b7aea-8-'],[[7],[3,'__i0__']]])
 })(__WXML_GLOBAL__.ops_cached.$gwx_29);return __WXML_GLOBAL__.ops_cached.$gwx_29
 }
 function gz$gwx_30(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_30)return __WXML_GLOBAL__.ops_cached.$gwx_30
 __WXML_GLOBAL__.ops_cached.$gwx_30=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
-Z([3,'layout data-v-2dc59447'])
+Z([3,'layout data-v-0f61433b'])
 Z([3,'__l'])
 Z([3,'__e'])
-Z([3,'data-v-2dc59447'])
+Z([3,'data-v-0f61433b'])
 Z([[4],[[5],[[4],[[5],[[5],[1,'^clickLeft']],[[4],[[5],[[4],[[5],[1,'onClickBack']]]]]]]]])
 Z([3,'true'])
 Z([3,'back'])
 Z(z[5])
 Z([3,'设置'])
 Z([3,'3959220e-1'])
-Z([3,'content data-v-2dc59447'])
+Z([3,'content data-v-0f61433b'])
 Z(z[1])
-Z([3,'list_custom data-v-2dc59447'])
+Z([3,'list_custom data-v-0f61433b'])
 Z([3,'3959220e-2'])
 Z([[4],[[5],[1,'default']]])
 Z(z[1])
@@ -1695,7 +1661,7 @@ Z([3,'头像'])
 Z([[2,'+'],[[2,'+'],[1,'3959220e-3'],[1,',']],[1,'3959220e-2']])
 Z([[4],[[5],[1,'right']]])
 Z(z[1])
-Z([3,'list_custom list_custom_margin20 data-v-2dc59447'])
+Z([3,'list_custom list_custom_margin20 data-v-0f61433b'])
 Z([3,'3959220e-4'])
 Z(z[14])
 Z(z[1])
@@ -1749,63 +1715,75 @@ Z([3,'1f044d02-2'])
 Z(z[9])
 Z([3,'__e'])
 Z([3,'list_margin50'])
-Z([[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[1,'书架']]]]]]]]]]])
+Z([[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[1,'$event']]]]]]]]]]])
 Z(z[3])
-Z([3,'list_custom list_custom_img1'])
+Z([3,'list_custom list_custom_img3'])
 Z([3,'1f044d02-3'])
 Z([[4],[[5],[1,'default']]])
 Z(z[3])
 Z([1,false])
-Z([3,'../../static/tab1/book.png'])
+Z([3,'../../static/tab1/box_wrong_title.png'])
 Z([[2,'+'],[[2,'+'],[1,'1f044d02-4'],[1,',']],[1,'1f044d02-3']])
 Z([[4],[[5],[1,'right']]])
 Z(z[19])
 Z(z[20])
-Z([[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[1,'衣柜']]]]]]]]]]])
+Z([[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[1,'书架']]]]]]]]]]])
 Z(z[3])
-Z(z[23])
+Z([3,'list_custom list_custom_img1'])
 Z([3,'1f044d02-5'])
 Z(z[25])
 Z(z[3])
 Z(z[27])
-Z([3,'../../static/tab1/clothes.png'])
+Z([3,'../../static/tab1/books_title.png'])
 Z([[2,'+'],[[2,'+'],[1,'1f044d02-6'],[1,',']],[1,'1f044d02-5']])
+Z(z[30])
+Z(z[19])
+Z(z[20])
+Z([[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[1,'衣柜']]]]]]]]]]])
+Z(z[3])
+Z(z[35])
+Z([3,'1f044d02-7'])
+Z(z[25])
+Z(z[3])
+Z(z[27])
+Z([3,'../../static/tab1/clothes_title.png'])
+Z([[2,'+'],[[2,'+'],[1,'1f044d02-8'],[1,',']],[1,'1f044d02-7']])
 Z(z[30])
 Z(z[19])
 Z(z[20])
 Z([[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[1,'鞋柜']]]]]]]]]]])
 Z(z[3])
-Z(z[23])
-Z([3,'1f044d02-7'])
+Z(z[35])
+Z([3,'1f044d02-9'])
 Z(z[25])
 Z(z[3])
 Z(z[27])
-Z([3,'../../static/tab1/shoes.png'])
-Z([[2,'+'],[[2,'+'],[1,'1f044d02-8'],[1,',']],[1,'1f044d02-7']])
+Z([3,'../../static/tab1/shoes_title.png'])
+Z([[2,'+'],[[2,'+'],[1,'1f044d02-10'],[1,',']],[1,'1f044d02-9']])
 Z(z[30])
 Z(z[19])
 Z(z[20])
 Z([[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[1,'储藏室']]]]]]]]]]])
 Z(z[3])
-Z(z[23])
-Z([3,'1f044d02-9'])
+Z([3,'list_custom list_custom_img2'])
+Z([3,'1f044d02-11'])
 Z(z[25])
 Z(z[3])
 Z(z[27])
 Z([3,'../../static/tab1/storage_title.png'])
-Z([[2,'+'],[[2,'+'],[1,'1f044d02-10'],[1,',']],[1,'1f044d02-9']])
+Z([[2,'+'],[[2,'+'],[1,'1f044d02-12'],[1,',']],[1,'1f044d02-11']])
 Z(z[30])
 Z(z[19])
 Z(z[20])
 Z([[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[[4],[[5],[[5],[1,'longpress']],[[4],[[5],[1,'杂货架']]]]]]]]]]])
 Z(z[3])
-Z(z[23])
-Z([3,'1f044d02-11'])
+Z(z[71])
+Z([3,'1f044d02-13'])
 Z(z[25])
 Z(z[3])
 Z(z[27])
-Z([3,'../../static/tab1/groceries.png'])
-Z([[2,'+'],[[2,'+'],[1,'1f044d02-12'],[1,',']],[1,'1f044d02-11']])
+Z([3,'../../static/tab1/groceries_title.png'])
+Z([[2,'+'],[[2,'+'],[1,'1f044d02-14'],[1,',']],[1,'1f044d02-13']])
 Z(z[30])
 })(__WXML_GLOBAL__.ops_cached.$gwx_31);return __WXML_GLOBAL__.ops_cached.$gwx_31
 }
@@ -1813,64 +1791,86 @@ function gz$gwx_32(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_32)return __WXML_GLOBAL__.ops_cached.$gwx_32
 __WXML_GLOBAL__.ops_cached.$gwx_32=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
-Z([1,false])
-Z([[4],[[5],[[5],[[5],[1,255]],[1,255]],[1,255]]])
-Z([3,'hidden'])
+Z([[7],[3,'headerShow']])
+Z([3,'rgba(0,0,0,0)'])
 Z([3,'__l'])
-Z([3,'rgba(40,40,40,1)'])
-Z([1,true])
+Z([3,'header'])
+Z([3,'#282828'])
+Z([3,'true'])
+Z(z[5])
+Z([3,'position:absolute;top:0;'])
 Z([3,'我的订单'])
-Z([3,'auto'])
 Z([3,'20b925a1-1'])
 Z([[4],[[5],[1,'right']]])
+Z([[2,'!'],[[7],[3,'headerShow']]])
+Z(z[2])
+Z(z[3])
+Z(z[4])
+Z(z[5])
+Z(z[5])
+Z(z[5])
+Z(z[7])
+Z(z[8])
+Z([3,'20b925a1-2'])
+Z(z[10])
 })(__WXML_GLOBAL__.ops_cached.$gwx_32);return __WXML_GLOBAL__.ops_cached.$gwx_32
 }
 function gz$gwx_33(){
 if( __WXML_GLOBAL__.ops_cached.$gwx_33)return __WXML_GLOBAL__.ops_cached.$gwx_33
 __WXML_GLOBAL__.ops_cached.$gwx_33=[];
 (function(z){var a=11;function Z(ops){z.push(ops)}
-Z([3,'page data-v-29f008e0'])
-Z([1,false])
-Z([[4],[[5],[[5],[[5],[1,59]],[1,193]],[1,187]]])
-Z([3,'hidden'])
+Z([3,'page data-v-95dd07fa'])
+Z([[7],[3,'headerShow']])
+Z([3,'rgba(0,0,0,0)'])
 Z([3,'__l'])
-Z([3,'header data-v-29f008e0'])
-Z([3,'#ffffff'])
+Z([3,'header data-v-95dd07fa'])
+Z([3,'#FFFFFF'])
+Z([3,'true'])
+Z(z[6])
+Z([3,'position:absolute;top:0;'])
 Z([3,'我的'])
-Z([3,'auto'])
 Z([3,'226dfe40-1'])
 Z([[4],[[5],[1,'right']]])
-Z([3,'__e'])
-Z([3,'content data-v-29f008e0'])
-Z([[4],[[5],[[4],[[5],[[5],[1,'scroll']],[[4],[[5],[[4],[[5],[[5],[1,'onScroll']],[[4],[[5],[1,'$event']]]]]]]]]]])
+Z([[2,'!'],[[7],[3,'headerShow']]])
+Z([3,'rgb(59, 193, 187)'])
+Z(z[3])
 Z(z[4])
-Z([3,'data-v-29f008e0'])
-Z([3,'true'])
+Z(z[5])
+Z(z[6])
+Z(z[6])
+Z(z[6])
+Z(z[8])
+Z(z[9])
+Z([3,'226dfe40-2'])
+Z(z[11])
+Z(z[3])
+Z([3,'data-v-95dd07fa'])
+Z(z[6])
 Z([3,'14'])
 Z([3,'3.5'])
-Z([3,'226dfe40-2'])
-Z(z[4])
-Z([3,'list_custom data-v-29f008e0'])
 Z([3,'226dfe40-3'])
+Z(z[3])
+Z([3,'list_custom data-v-95dd07fa'])
+Z([3,'226dfe40-4'])
 Z([[4],[[5],[1,'default']]])
-Z(z[4])
-Z(z[15])
+Z(z[3])
+Z(z[25])
 Z([3,'../../static/tab3/ohter.png'])
 Z([3,'其他'])
-Z([[2,'+'],[[2,'+'],[1,'226dfe40-4'],[1,',']],[1,'226dfe40-3']])
-Z(z[4])
-Z(z[15])
+Z([[2,'+'],[[2,'+'],[1,'226dfe40-5'],[1,',']],[1,'226dfe40-4']])
+Z(z[3])
+Z(z[25])
 Z([3,'021-34283744'])
 Z([3,'../../static//tab3/server.png'])
 Z([3,'客服电话'])
-Z([[2,'+'],[[2,'+'],[1,'226dfe40-5'],[1,',']],[1,'226dfe40-3']])
+Z([[2,'+'],[[2,'+'],[1,'226dfe40-6'],[1,',']],[1,'226dfe40-4']])
 })(__WXML_GLOBAL__.ops_cached.$gwx_33);return __WXML_GLOBAL__.ops_cached.$gwx_33
 }
 __WXML_GLOBAL__.ops_set.$gwx=z;
 __WXML_GLOBAL__.ops_init.$gwx=true;
 var nv_require=function(){var nnm={};var nom={};return function(n){return function(){if(!nnm[n]) return undefined;try{if(!nom[n])nom[n]=nnm[n]();return nom[n];}catch(e){e.message=e.message.replace(/nv_/g,'');var tmp = e.stack.substring(0,e.stack.lastIndexOf(n));e.stack = tmp.substring(0,tmp.lastIndexOf('\n'));e.stack = e.stack.replace(/\snv_/g,' ');e.stack = $gstack(e.stack);e.stack += '\n    at ' + n.substring(2);throw e;}
 }}}()
-var x=['./components/header.wxml','./components/hx-navbar/hx-navbar.wxml','./components/listBook.wxml','./components/loading.wxml','./components/scrollBook.wxml','./components/search.wxml','./components/tab.wxml','./components/uni-badge/uni-badge.wxml','./components/uni-icons/uni-icons.wxml','./components/uni-list-item/uni-list-item.wxml','./components/uni-list/uni-list.wxml','./components/uni-nav-bar/uni-nav-bar.wxml','./components/uni-popup/uni-popup.wxml','./components/uni-rate/uni-rate.wxml','./components/uni-search-bar/uni-search-bar.wxml','./components/uni-status-bar/uni-status-bar.wxml','./components/uni-transition/uni-transition.wxml','./pages/login/agreement.wxml','./pages/login/login.wxml','./pages/login/reg.wxml','./pages/notfound/notfound.wxml','./pages/tab1/book.wxml','./pages/tab1/clothes.wxml','./pages/tab1/index.wxml','./pages/tab1/search.wxml','./pages/tab1/shoes.wxml','./pages/tab1/storage.wxml','./pages/tab2/demo7.wxml','./pages/tab3/address.wxml','./pages/tab3/setting.wxml','./pages/tabs/tab1.wxml','./pages/tabs/tab2.wxml','./pages/tabs/tab3.wxml'];d_[x[0]]={}
+var x=['./components/header.wxml','./components/loading.wxml','./components/search.wxml','./components/tab.wxml','./components/uni-badge/uni-badge.wxml','./components/uni-icons/uni-icons.wxml','./components/uni-list-item/uni-list-item.wxml','./components/uni-list/uni-list.wxml','./components/uni-nav-bar/uni-nav-bar.wxml','./components/uni-number-box/uni-number-box.wxml','./components/uni-popup/uni-popup.wxml','./components/uni-rate/uni-rate.wxml','./components/uni-search-bar/uni-search-bar.wxml','./components/uni-status-bar/uni-status-bar.wxml','./components/uni-tag/uni-tag.wxml','./components/uni-transition/uni-transition.wxml','./pages/login/agreement.wxml','./pages/login/login.wxml','./pages/login/reg.wxml','./pages/notfound/notfound.wxml','./pages/tab1/book.wxml','./pages/tab1/clothes.wxml','./pages/tab1/index.wxml','./pages/tab1/search.wxml','./pages/tab1/shoes.wxml','./pages/tab1/storage.wxml','./pages/tab2/addOrder.wxml','./pages/tab2/demo7.wxml','./pages/tab3/address.wxml','./pages/tab3/setting.wxml','./pages/tabs/tab1.wxml','./pages/tabs/tab2.wxml','./pages/tabs/tab3.wxml'];d_[x[0]]={}
 var m0=function(e,s,r,gg){
 var z=gz$gwx_1()
 var oB=_n('view')
@@ -1905,796 +1905,713 @@ e_[x[0]]={f:m0,j:[],i:[],ti:[],ic:[]}
 d_[x[1]]={}
 var m1=function(e,s,r,gg){
 var z=gz$gwx_2()
-var cI=_n('view')
-_rz(z,cI,'class',0,e,s,gg)
-var lK=_mz(z,'view',['class',1,'style',1],[],e,s,gg)
-var aL=_v()
-_(lK,aL)
-if(_oz(z,3,e,s,gg)){aL.wxVkey=1
-}
-var tM=_v()
-_(lK,tM)
-if(_oz(z,4,e,s,gg)){tM.wxVkey=1
-}
-var eN=_mz(z,'view',['class',5,'style',1],[],e,s,gg)
-var bO=_v()
-_(eN,bO)
-if(_oz(z,7,e,s,gg)){bO.wxVkey=1
-var xQ=_mz(z,'view',['bindtap',8,'class',1,'data-event-opts',2,'style',3],[],e,s,gg)
-var oR=_v()
-_(xQ,oR)
-if(_oz(z,12,e,s,gg)){oR.wxVkey=1
-var fS=_v()
-_(oR,fS)
-if(_oz(z,13,e,s,gg)){fS.wxVkey=1
-var hU=_mz(z,'uni-icons',['bind:__l',14,'color',1,'size',2,'type',3,'vueId',4],[],e,s,gg)
-_(fS,hU)
-}
-var cT=_v()
-_(oR,cT)
-if(_oz(z,19,e,s,gg)){cT.wxVkey=1
-}
-fS.wxXCkey=1
-fS.wxXCkey=3
-cT.wxXCkey=1
-}
-else{oR.wxVkey=2
-var oV=_v()
-_(oR,oV)
-if(_oz(z,20,e,s,gg)){oV.wxVkey=1
-var cW=_n('slot')
-_rz(z,cW,'name',21,e,s,gg)
-_(oV,cW)
-}
-else{oV.wxVkey=2
-var oX=_n('slot')
-_rz(z,oX,'name',22,e,s,gg)
-_(oV,oX)
-}
-oV.wxXCkey=1
-}
-oR.wxXCkey=1
-oR.wxXCkey=3
-_(bO,xQ)
-}
-var lY=_mz(z,'view',['class',23,'style',1],[],e,s,gg)
-var aZ=_v()
-_(lY,aZ)
-if(_oz(z,25,e,s,gg)){aZ.wxVkey=1
-}
-else{aZ.wxVkey=2
-var t1=_v()
-_(aZ,t1)
-if(_oz(z,26,e,s,gg)){t1.wxVkey=1
-var e2=_n('slot')
-_rz(z,e2,'name',27,e,s,gg)
-_(t1,e2)
-}
-else{t1.wxVkey=2
-var b3=_n('slot')
-_(t1,b3)
-}
-t1.wxXCkey=1
-}
-aZ.wxXCkey=1
-_(eN,lY)
-var oP=_v()
-_(eN,oP)
-if(_oz(z,28,e,s,gg)){oP.wxVkey=1
-var o4=_mz(z,'view',['bindtap',29,'class',1,'data-event-opts',2],[],e,s,gg)
-var x5=_v()
-_(o4,x5)
-if(_oz(z,32,e,s,gg)){x5.wxVkey=1
-var o6=_v()
-_(x5,o6)
-if(_oz(z,33,e,s,gg)){o6.wxVkey=1
-var c8=_mz(z,'uni-icons',['bind:__l',34,'color',1,'size',2,'type',3,'vueId',4],[],e,s,gg)
-_(o6,c8)
-}
-var f7=_v()
-_(x5,f7)
-if(_oz(z,39,e,s,gg)){f7.wxVkey=1
-}
-o6.wxXCkey=1
-o6.wxXCkey=3
-f7.wxXCkey=1
-}
-else{x5.wxVkey=2
-var h9=_v()
-_(x5,h9)
-if(_oz(z,40,e,s,gg)){h9.wxVkey=1
-var o0=_n('slot')
-_rz(z,o0,'name',41,e,s,gg)
-_(h9,o0)
-}
-else{h9.wxVkey=2
-var cAB=_n('slot')
-_rz(z,cAB,'name',42,e,s,gg)
-_(h9,cAB)
-}
-h9.wxXCkey=1
-}
-x5.wxXCkey=1
-x5.wxXCkey=3
-_(oP,o4)
-}
-bO.wxXCkey=1
-bO.wxXCkey=3
-oP.wxXCkey=1
-oP.wxXCkey=3
-_(lK,eN)
-aL.wxXCkey=1
-tM.wxXCkey=1
-_(cI,lK)
-var oJ=_v()
-_(cI,oJ)
-if(_oz(z,43,e,s,gg)){oJ.wxVkey=1
-var oBB=_v()
-_(oJ,oBB)
-if(_oz(z,44,e,s,gg)){oBB.wxVkey=1
-}
-oBB.wxXCkey=1
-}
-oJ.wxXCkey=1
-_(r,cI)
 return r
 }
 e_[x[1]]={f:m1,j:[],i:[],ti:[],ic:[]}
 d_[x[2]]={}
 var m2=function(e,s,r,gg){
 var z=gz$gwx_3()
+var oJ=_mz(z,'form',['bindtap',0,'class',1,'data-event-opts',1],[],e,s,gg)
+var lK=_v()
+_(oJ,lK)
+if(_oz(z,3,e,s,gg)){lK.wxVkey=1
+}
+lK.wxXCkey=1
+_(r,oJ)
 return r
 }
 e_[x[2]]={f:m2,j:[],i:[],ti:[],ic:[]}
 d_[x[3]]={}
 var m3=function(e,s,r,gg){
 var z=gz$gwx_4()
+var tM=_v()
+_(r,tM)
+if(_oz(z,0,e,s,gg)){tM.wxVkey=1
+var eN=_n('view')
+_rz(z,eN,'class',1,e,s,gg)
+var bO=_v()
+_(eN,bO)
+if(_oz(z,2,e,s,gg)){bO.wxVkey=1
+}
+var oP=_n('slot')
+_(eN,oP)
+bO.wxXCkey=1
+_(tM,eN)
+}
+tM.wxXCkey=1
 return r
 }
 e_[x[3]]={f:m3,j:[],i:[],ti:[],ic:[]}
 d_[x[4]]={}
 var m4=function(e,s,r,gg){
 var z=gz$gwx_5()
+var oR=_v()
+_(r,oR)
+if(_oz(z,0,e,s,gg)){oR.wxVkey=1
+}
+oR.wxXCkey=1
 return r
 }
 e_[x[4]]={f:m4,j:[],i:[],ti:[],ic:[]}
 d_[x[5]]={}
 var m5=function(e,s,r,gg){
 var z=gz$gwx_6()
-var bGB=_mz(z,'form',['bindtap',0,'class',1,'data-event-opts',1],[],e,s,gg)
-var oHB=_v()
-_(bGB,oHB)
-if(_oz(z,3,e,s,gg)){oHB.wxVkey=1
-}
-oHB.wxXCkey=1
-_(r,bGB)
 return r
 }
 e_[x[5]]={f:m5,j:[],i:[],ti:[],ic:[]}
 d_[x[6]]={}
 var m6=function(e,s,r,gg){
 var z=gz$gwx_7()
-var oJB=_v()
-_(r,oJB)
-if(_oz(z,0,e,s,gg)){oJB.wxVkey=1
-var fKB=_n('view')
-_rz(z,fKB,'class',1,e,s,gg)
-var cLB=_v()
-_(fKB,cLB)
-if(_oz(z,2,e,s,gg)){cLB.wxVkey=1
+var hU=_mz(z,'view',['bindtap',0,'class',1,'data-event-opts',1,'hoverClass',2],[],e,s,gg)
+var oV=_n('view')
+_rz(z,oV,'class',4,e,s,gg)
+var cW=_v()
+_(oV,cW)
+if(_oz(z,5,e,s,gg)){cW.wxVkey=1
 }
-var hMB=_n('slot')
-_(fKB,hMB)
-cLB.wxXCkey=1
-_(oJB,fKB)
+else{cW.wxVkey=2
+var oX=_v()
+_(cW,oX)
+if(_oz(z,6,e,s,gg)){oX.wxVkey=1
+var lY=_mz(z,'uni-icons',['bind:__l',7,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],e,s,gg)
+_(oX,lY)
 }
-oJB.wxXCkey=1
+oX.wxXCkey=1
+oX.wxXCkey=3
+}
+var aZ=_n('view')
+_rz(z,aZ,'class',13,e,s,gg)
+var e2=_n('slot')
+_(aZ,e2)
+var t1=_v()
+_(aZ,t1)
+if(_oz(z,14,e,s,gg)){t1.wxVkey=1
+}
+t1.wxXCkey=1
+_(oV,aZ)
+var b3=_n('view')
+_rz(z,b3,'class',15,e,s,gg)
+var o4=_v()
+_(b3,o4)
+if(_oz(z,16,e,s,gg)){o4.wxVkey=1
+}
+var x5=_v()
+_(b3,x5)
+if(_oz(z,17,e,s,gg)){x5.wxVkey=1
+var c8=_mz(z,'uni-badge',['bind:__l',18,'class',1,'text',2,'type',3,'vueId',4],[],e,s,gg)
+_(x5,c8)
+}
+var o6=_v()
+_(b3,o6)
+if(_oz(z,23,e,s,gg)){o6.wxVkey=1
+}
+var h9=_n('slot')
+_rz(z,h9,'name',24,e,s,gg)
+_(b3,h9)
+var f7=_v()
+_(b3,f7)
+if(_oz(z,25,e,s,gg)){f7.wxVkey=1
+var o0=_mz(z,'uni-icons',['bind:__l',26,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],e,s,gg)
+_(f7,o0)
+}
+o4.wxXCkey=1
+x5.wxXCkey=1
+x5.wxXCkey=3
+o6.wxXCkey=1
+f7.wxXCkey=1
+f7.wxXCkey=3
+_(oV,b3)
+cW.wxXCkey=1
+cW.wxXCkey=3
+_(hU,oV)
+_(r,hU)
 return r
 }
 e_[x[6]]={f:m6,j:[],i:[],ti:[],ic:[]}
 d_[x[7]]={}
 var m7=function(e,s,r,gg){
 var z=gz$gwx_8()
-var cOB=_v()
-_(r,cOB)
-if(_oz(z,0,e,s,gg)){cOB.wxVkey=1
-}
-cOB.wxXCkey=1
+var oBB=_n('slot')
+_(r,oBB)
 return r
 }
 e_[x[7]]={f:m7,j:[],i:[],ti:[],ic:[]}
 d_[x[8]]={}
 var m8=function(e,s,r,gg){
 var z=gz$gwx_9()
+var aDB=_n('view')
+_rz(z,aDB,'class',0,e,s,gg)
+var eFB=_mz(z,'view',['class',1,'style',1],[],e,s,gg)
+var bGB=_v()
+_(eFB,bGB)
+if(_oz(z,3,e,s,gg)){bGB.wxVkey=1
+var oHB=_mz(z,'uni-status-bar',['bind:__l',4,'class',1,'vueId',2],[],e,s,gg)
+_(bGB,oHB)
+}
+var xIB=_mz(z,'view',['class',7,'style',1],[],e,s,gg)
+var oJB=_mz(z,'view',['bindtap',9,'class',1,'data-event-opts',2],[],e,s,gg)
+var fKB=_v()
+_(oJB,fKB)
+if(_oz(z,12,e,s,gg)){fKB.wxVkey=1
+var hMB=_mz(z,'uni-icons',['bind:__l',13,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],e,s,gg)
+_(fKB,hMB)
+}
+var cLB=_v()
+_(oJB,cLB)
+if(_oz(z,19,e,s,gg)){cLB.wxVkey=1
+}
+var oNB=_n('slot')
+_rz(z,oNB,'name',20,e,s,gg)
+_(oJB,oNB)
+fKB.wxXCkey=1
+fKB.wxXCkey=3
+cLB.wxXCkey=1
+_(xIB,oJB)
+var cOB=_n('view')
+_rz(z,cOB,'class',21,e,s,gg)
+var oPB=_v()
+_(cOB,oPB)
+if(_oz(z,22,e,s,gg)){oPB.wxVkey=1
+}
+var lQB=_n('slot')
+_(cOB,lQB)
+oPB.wxXCkey=1
+_(xIB,cOB)
+var aRB=_mz(z,'view',['bindtap',23,'class',1,'data-event-opts',2],[],e,s,gg)
+var tSB=_v()
+_(aRB,tSB)
+if(_oz(z,26,e,s,gg)){tSB.wxVkey=1
+var bUB=_mz(z,'uni-icons',['bind:__l',27,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],e,s,gg)
+_(tSB,bUB)
+}
+var eTB=_v()
+_(aRB,eTB)
+if(_oz(z,33,e,s,gg)){eTB.wxVkey=1
+}
+var oVB=_n('slot')
+_rz(z,oVB,'name',34,e,s,gg)
+_(aRB,oVB)
+tSB.wxXCkey=1
+tSB.wxXCkey=3
+eTB.wxXCkey=1
+_(xIB,aRB)
+_(eFB,xIB)
+bGB.wxXCkey=1
+bGB.wxXCkey=3
+_(aDB,eFB)
+var tEB=_v()
+_(aDB,tEB)
+if(_oz(z,35,e,s,gg)){tEB.wxVkey=1
+var xWB=_v()
+_(tEB,xWB)
+if(_oz(z,36,e,s,gg)){xWB.wxVkey=1
+var oXB=_mz(z,'uni-status-bar',['bind:__l',37,'class',1,'vueId',2],[],e,s,gg)
+_(xWB,oXB)
+}
+xWB.wxXCkey=1
+xWB.wxXCkey=3
+}
+tEB.wxXCkey=1
+tEB.wxXCkey=3
+_(r,aDB)
 return r
 }
 e_[x[8]]={f:m8,j:[],i:[],ti:[],ic:[]}
 d_[x[9]]={}
 var m9=function(e,s,r,gg){
 var z=gz$gwx_10()
-var aRB=_mz(z,'view',['bindtap',0,'class',1,'data-event-opts',1,'hoverClass',2],[],e,s,gg)
-var tSB=_n('view')
-_rz(z,tSB,'class',4,e,s,gg)
-var eTB=_v()
-_(tSB,eTB)
-if(_oz(z,5,e,s,gg)){eTB.wxVkey=1
-}
-else{eTB.wxVkey=2
-var bUB=_v()
-_(eTB,bUB)
-if(_oz(z,6,e,s,gg)){bUB.wxVkey=1
-var oVB=_mz(z,'uni-icons',['bind:__l',7,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],e,s,gg)
-_(bUB,oVB)
-}
-bUB.wxXCkey=1
-bUB.wxXCkey=3
-}
-var xWB=_n('view')
-_rz(z,xWB,'class',13,e,s,gg)
-var fYB=_n('slot')
-_(xWB,fYB)
-var oXB=_v()
-_(xWB,oXB)
-if(_oz(z,14,e,s,gg)){oXB.wxVkey=1
-}
-oXB.wxXCkey=1
-_(tSB,xWB)
-var cZB=_n('view')
-_rz(z,cZB,'class',15,e,s,gg)
-var h1B=_v()
-_(cZB,h1B)
-if(_oz(z,16,e,s,gg)){h1B.wxVkey=1
-}
-var o2B=_v()
-_(cZB,o2B)
-if(_oz(z,17,e,s,gg)){o2B.wxVkey=1
-var l5B=_mz(z,'uni-badge',['bind:__l',18,'class',1,'text',2,'type',3,'vueId',4],[],e,s,gg)
-_(o2B,l5B)
-}
-var c3B=_v()
-_(cZB,c3B)
-if(_oz(z,23,e,s,gg)){c3B.wxVkey=1
-}
-var a6B=_n('slot')
-_rz(z,a6B,'name',24,e,s,gg)
-_(cZB,a6B)
-var o4B=_v()
-_(cZB,o4B)
-if(_oz(z,25,e,s,gg)){o4B.wxVkey=1
-var t7B=_mz(z,'uni-icons',['bind:__l',26,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],e,s,gg)
-_(o4B,t7B)
-}
-h1B.wxXCkey=1
-o2B.wxXCkey=1
-o2B.wxXCkey=3
-c3B.wxXCkey=1
-o4B.wxXCkey=1
-o4B.wxXCkey=3
-_(tSB,cZB)
-eTB.wxXCkey=1
-eTB.wxXCkey=3
-_(aRB,tSB)
-_(r,aRB)
 return r
 }
 e_[x[9]]={f:m9,j:[],i:[],ti:[],ic:[]}
 d_[x[10]]={}
 var m10=function(e,s,r,gg){
 var z=gz$gwx_11()
-var b9B=_n('slot')
-_(r,b9B)
+var h1B=_v()
+_(r,h1B)
+if(_oz(z,0,e,s,gg)){h1B.wxVkey=1
+var o2B=_mz(z,'view',['catchtouchmove',1,'class',1,'data-event-opts',2],[],e,s,gg)
+var c3B=_mz(z,'uni-transition',['bind:__l',4,'bind:click',1,'class',2,'data-event-opts',3,'duration',4,'modeClass',5,'show',6,'styles',7,'vueId',8],[],e,s,gg)
+_(o2B,c3B)
+var o4B=_mz(z,'uni-transition',['bind:__l',13,'bind:click',1,'class',2,'data-event-opts',3,'duration',4,'modeClass',5,'show',6,'styles',7,'vueId',8,'vueSlots',9],[],e,s,gg)
+var l5B=_mz(z,'view',['catchtap',23,'class',1,'data-event-opts',2],[],e,s,gg)
+var a6B=_n('slot')
+_(l5B,a6B)
+_(o4B,l5B)
+_(o2B,o4B)
+_(h1B,o2B)
+}
+h1B.wxXCkey=1
+h1B.wxXCkey=3
 return r
 }
 e_[x[10]]={f:m10,j:[],i:[],ti:[],ic:[]}
 d_[x[11]]={}
 var m11=function(e,s,r,gg){
 var z=gz$gwx_12()
-var xAC=_n('view')
-_rz(z,xAC,'class',0,e,s,gg)
-var fCC=_mz(z,'view',['class',1,'style',1],[],e,s,gg)
-var cDC=_v()
-_(fCC,cDC)
-if(_oz(z,3,e,s,gg)){cDC.wxVkey=1
-var hEC=_mz(z,'uni-status-bar',['bind:__l',4,'class',1,'vueId',2],[],e,s,gg)
+var e8B=_v()
+_(r,e8B)
+var b9B=function(xAC,o0B,oBC,gg){
+var cDC=_mz(z,'view',['bindtap',4,'class',1,'data-event-opts',2,'style',3],[],xAC,o0B,gg)
+var hEC=_mz(z,'uni-icons',['bind:__l',8,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],xAC,o0B,gg)
 _(cDC,hEC)
+var oFC=_mz(z,'uni-icons',['bind:__l',14,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],xAC,o0B,gg)
+_(cDC,oFC)
+_(oBC,cDC)
+return oBC
 }
-var oFC=_mz(z,'view',['class',7,'style',1],[],e,s,gg)
-var cGC=_mz(z,'view',['bindtap',9,'class',1,'data-event-opts',2],[],e,s,gg)
-var oHC=_v()
-_(cGC,oHC)
-if(_oz(z,12,e,s,gg)){oHC.wxVkey=1
-var aJC=_mz(z,'uni-icons',['bind:__l',13,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],e,s,gg)
-_(oHC,aJC)
-}
-var lIC=_v()
-_(cGC,lIC)
-if(_oz(z,19,e,s,gg)){lIC.wxVkey=1
-}
-var tKC=_n('slot')
-_rz(z,tKC,'name',20,e,s,gg)
-_(cGC,tKC)
-oHC.wxXCkey=1
-oHC.wxXCkey=3
-lIC.wxXCkey=1
-_(oFC,cGC)
-var eLC=_n('view')
-_rz(z,eLC,'class',21,e,s,gg)
-var bMC=_v()
-_(eLC,bMC)
-if(_oz(z,22,e,s,gg)){bMC.wxVkey=1
-}
-var oNC=_n('slot')
-_(eLC,oNC)
-bMC.wxXCkey=1
-_(oFC,eLC)
-var xOC=_mz(z,'view',['bindtap',23,'class',1,'data-event-opts',2],[],e,s,gg)
-var oPC=_v()
-_(xOC,oPC)
-if(_oz(z,26,e,s,gg)){oPC.wxVkey=1
-var cRC=_mz(z,'uni-icons',['bind:__l',27,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],e,s,gg)
-_(oPC,cRC)
-}
-var fQC=_v()
-_(xOC,fQC)
-if(_oz(z,33,e,s,gg)){fQC.wxVkey=1
-}
-var hSC=_n('slot')
-_rz(z,hSC,'name',34,e,s,gg)
-_(xOC,hSC)
-oPC.wxXCkey=1
-oPC.wxXCkey=3
-fQC.wxXCkey=1
-_(oFC,xOC)
-_(fCC,oFC)
-cDC.wxXCkey=1
-cDC.wxXCkey=3
-_(xAC,fCC)
-var oBC=_v()
-_(xAC,oBC)
-if(_oz(z,35,e,s,gg)){oBC.wxVkey=1
-var oTC=_v()
-_(oBC,oTC)
-if(_oz(z,36,e,s,gg)){oTC.wxVkey=1
-var cUC=_mz(z,'uni-status-bar',['bind:__l',37,'class',1,'vueId',2],[],e,s,gg)
-_(oTC,cUC)
-}
-oTC.wxXCkey=1
-oTC.wxXCkey=3
-}
-oBC.wxXCkey=1
-oBC.wxXCkey=3
-_(r,xAC)
+e8B.wxXCkey=4
+_2z(z,2,b9B,e,s,gg,e8B,'star','index','index')
 return r
 }
 e_[x[11]]={f:m11,j:[],i:[],ti:[],ic:[]}
 d_[x[12]]={}
 var m12=function(e,s,r,gg){
 var z=gz$gwx_13()
-var lWC=_v()
-_(r,lWC)
-if(_oz(z,0,e,s,gg)){lWC.wxVkey=1
-var aXC=_mz(z,'view',['catchtouchmove',1,'class',1,'data-event-opts',2],[],e,s,gg)
-var tYC=_mz(z,'uni-transition',['bind:__l',4,'bind:click',1,'class',2,'data-event-opts',3,'duration',4,'modeClass',5,'show',6,'styles',7,'vueId',8],[],e,s,gg)
-_(aXC,tYC)
-var eZC=_mz(z,'uni-transition',['bind:__l',13,'bind:click',1,'class',2,'data-event-opts',3,'duration',4,'modeClass',5,'show',6,'styles',7,'vueId',8,'vueSlots',9],[],e,s,gg)
-var b1C=_mz(z,'view',['catchtap',23,'class',1,'data-event-opts',2],[],e,s,gg)
-var o2C=_n('slot')
-_(b1C,o2C)
-_(eZC,b1C)
-_(aXC,eZC)
-_(lWC,aXC)
+var oHC=_n('view')
+_rz(z,oHC,'class',0,e,s,gg)
+var aJC=_mz(z,'view',['bindtap',1,'class',1,'data-event-opts',2,'style',3],[],e,s,gg)
+var eLC=_mz(z,'uni-icons',['bind:__l',5,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],e,s,gg)
+_(aJC,eLC)
+var tKC=_v()
+_(aJC,tKC)
+if(_oz(z,11,e,s,gg)){tKC.wxVkey=1
+var bMC=_mz(z,'view',['bindtap',12,'class',1,'data-event-opts',2],[],e,s,gg)
+var oNC=_mz(z,'uni-icons',['bind:__l',15,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],e,s,gg)
+_(bMC,oNC)
+_(tKC,bMC)
 }
-lWC.wxXCkey=1
-lWC.wxXCkey=3
+tKC.wxXCkey=1
+tKC.wxXCkey=3
+_(oHC,aJC)
+var lIC=_v()
+_(oHC,lIC)
+if(_oz(z,21,e,s,gg)){lIC.wxVkey=1
+}
+lIC.wxXCkey=1
+_(r,oHC)
 return r
 }
 e_[x[12]]={f:m12,j:[],i:[],ti:[],ic:[]}
 d_[x[13]]={}
 var m13=function(e,s,r,gg){
 var z=gz$gwx_14()
-var o4C=_v()
-_(r,o4C)
-var f5C=function(h7C,c6C,o8C,gg){
-var o0C=_mz(z,'view',['bindtap',4,'class',1,'data-event-opts',2,'style',3],[],h7C,c6C,gg)
-var lAD=_mz(z,'uni-icons',['bind:__l',8,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],h7C,c6C,gg)
-_(o0C,lAD)
-var aBD=_mz(z,'uni-icons',['bind:__l',14,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],h7C,c6C,gg)
-_(o0C,aBD)
-_(o8C,o0C)
-return o8C
-}
-o4C.wxXCkey=4
-_2z(z,2,f5C,e,s,gg,o4C,'star','index','index')
+var oPC=_n('slot')
+_(r,oPC)
 return r
 }
 e_[x[13]]={f:m13,j:[],i:[],ti:[],ic:[]}
 d_[x[14]]={}
 var m14=function(e,s,r,gg){
 var z=gz$gwx_15()
-var eDD=_n('view')
-_rz(z,eDD,'class',0,e,s,gg)
-var oFD=_mz(z,'view',['bindtap',1,'class',1,'data-event-opts',2,'style',3],[],e,s,gg)
-var oHD=_mz(z,'uni-icons',['bind:__l',5,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],e,s,gg)
-_(oFD,oHD)
-var xGD=_v()
-_(oFD,xGD)
-if(_oz(z,11,e,s,gg)){xGD.wxVkey=1
-var fID=_mz(z,'view',['bindtap',12,'class',1,'data-event-opts',2],[],e,s,gg)
-var cJD=_mz(z,'uni-icons',['bind:__l',15,'class',1,'color',2,'size',3,'type',4,'vueId',5],[],e,s,gg)
-_(fID,cJD)
-_(xGD,fID)
+var cRC=_v()
+_(r,cRC)
+if(_oz(z,0,e,s,gg)){cRC.wxVkey=1
 }
-xGD.wxXCkey=1
-xGD.wxXCkey=3
-_(eDD,oFD)
-var bED=_v()
-_(eDD,bED)
-if(_oz(z,21,e,s,gg)){bED.wxVkey=1
-}
-bED.wxXCkey=1
-_(r,eDD)
+cRC.wxXCkey=1
 return r
 }
 e_[x[14]]={f:m14,j:[],i:[],ti:[],ic:[]}
 d_[x[15]]={}
 var m15=function(e,s,r,gg){
 var z=gz$gwx_16()
-var oLD=_n('slot')
-_(r,oLD)
+var oTC=_v()
+_(r,oTC)
+if(_oz(z,0,e,s,gg)){oTC.wxVkey=1
+var cUC=_mz(z,'view',['bindtap',1,'class',1,'data-event-opts',2,'data-ref',3,'style',4],[],e,s,gg)
+var oVC=_n('slot')
+_(cUC,oVC)
+_(oTC,cUC)
+}
+oTC.wxXCkey=1
 return r
 }
 e_[x[15]]={f:m15,j:[],i:[],ti:[],ic:[]}
 d_[x[16]]={}
 var m16=function(e,s,r,gg){
 var z=gz$gwx_17()
-var oND=_v()
-_(r,oND)
-if(_oz(z,0,e,s,gg)){oND.wxVkey=1
-var lOD=_mz(z,'view',['bindtap',1,'class',1,'data-event-opts',2,'data-ref',3,'style',4],[],e,s,gg)
-var aPD=_n('slot')
-_(lOD,aPD)
-_(oND,lOD)
-}
-oND.wxXCkey=1
 return r
 }
 e_[x[16]]={f:m16,j:[],i:[],ti:[],ic:[]}
 d_[x[17]]={}
 var m17=function(e,s,r,gg){
 var z=gz$gwx_18()
-var eRD=_mz(z,'hx-navbar',['back',0,'backgroundColor',1,'barPlaceholder',1,'bind:__l',2,'class',3,'color',4,'title',5,'transparent',6,'vueId',7,'vueSlots',8],[],e,s,gg)
-_(r,eRD)
 return r
 }
 e_[x[17]]={f:m17,j:[],i:[],ti:[],ic:[]}
 d_[x[18]]={}
 var m18=function(e,s,r,gg){
 var z=gz$gwx_19()
+var eZC=_mz(z,'iheader',['bind:__l',0,'class',1,'title',1,'vueId',2],[],e,s,gg)
+_(r,eZC)
 return r
 }
 e_[x[18]]={f:m18,j:[],i:[],ti:[],ic:[]}
 d_[x[19]]={}
 var m19=function(e,s,r,gg){
 var z=gz$gwx_20()
-var xUD=_n('view')
-_rz(z,xUD,'class',0,e,s,gg)
-var oVD=_mz(z,'iheader',['bind:__l',1,'class',1,'title',2,'vueId',3],[],e,s,gg)
-_(xUD,oVD)
-var fWD=_mz(z,'view',['bindscroll',5,'class',1,'data-event-opts',2,'data-ref',3],[],e,s,gg)
-var cXD=_n('view')
-_rz(z,cXD,'class',9,e,s,gg)
-var hYD=_mz(z,'view',['bindlongpress',10,'class',1,'data-event-opts',2],[],e,s,gg)
-var oZD=_mz(z,'hx-navbar',['back',13,'backgroundColor',1,'barPlaceholder',2,'bind:__l',3,'class',4,'color',5,'transparent',6,'vueId',7,'vueSlots',8],[],e,s,gg)
-_(hYD,oZD)
-_(cXD,hYD)
-var c1D=_mz(z,'view',['bindlongpress',22,'class',1,'data-event-opts',2],[],e,s,gg)
-var o2D=_mz(z,'hx-navbar',['back',25,'backgroundColor',1,'barPlaceholder',2,'bind:__l',3,'class',4,'color',5,'transparent',6,'vueId',7,'vueSlots',8],[],e,s,gg)
-_(c1D,o2D)
-_(cXD,c1D)
-var l3D=_mz(z,'view',['bindlongpress',34,'class',1,'data-event-opts',2],[],e,s,gg)
-var a4D=_mz(z,'hx-navbar',['back',37,'backgroundColor',1,'barPlaceholder',2,'bind:__l',3,'class',4,'color',5,'transparent',6,'vueId',7,'vueSlots',8],[],e,s,gg)
-_(l3D,a4D)
-_(cXD,l3D)
-var t5D=_mz(z,'view',['bindlongpress',46,'class',1,'data-event-opts',2],[],e,s,gg)
-var e6D=_mz(z,'hx-navbar',['back',49,'backgroundColor',1,'barPlaceholder',2,'bind:__l',3,'class',4,'color',5,'transparent',6,'vueId',7,'vueSlots',8],[],e,s,gg)
-_(t5D,e6D)
-_(cXD,t5D)
-_(fWD,cXD)
-_(xUD,fWD)
-_(r,xUD)
+var o2C=_mz(z,'iheader',['bind:__l',0,'class',1,'title',1,'vueId',2],[],e,s,gg)
+_(r,o2C)
 return r
 }
 e_[x[19]]={f:m19,j:[],i:[],ti:[],ic:[]}
 d_[x[20]]={}
 var m20=function(e,s,r,gg){
 var z=gz$gwx_21()
-var o8D=_mz(z,'iheader',['bind:__l',0,'class',1,'title',1,'vueId',2],[],e,s,gg)
-_(r,o8D)
+var o4C=_n('view')
+_rz(z,o4C,'class',0,e,s,gg)
+var f5C=_v()
+_(o4C,f5C)
+if(_oz(z,1,e,s,gg)){f5C.wxVkey=1
+var h7C=_mz(z,'uni-nav-bar',['backgroundColor',2,'bind:__l',1,'bind:clickLeft',2,'class',3,'color',4,'data-event-opts',5,'fixed',6,'leftIcon',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
+_(f5C,h7C)
+}
+var c6C=_v()
+_(o4C,c6C)
+if(_oz(z,15,e,s,gg)){c6C.wxVkey=1
+var o8C=_mz(z,'uni-nav-bar',['bind:__l',16,'bind:clickLeft',1,'class',2,'color',3,'data-event-opts',4,'fixed',5,'leftIcon',6,'shadow',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
+_(c6C,o8C)
+}
+f5C.wxXCkey=1
+f5C.wxXCkey=3
+c6C.wxXCkey=1
+c6C.wxXCkey=3
+_(r,o4C)
 return r
 }
 e_[x[20]]={f:m20,j:[],i:[],ti:[],ic:[]}
 d_[x[21]]={}
 var m21=function(e,s,r,gg){
 var z=gz$gwx_22()
-var o0D=_n('view')
-_rz(z,o0D,'class',0,e,s,gg)
-var fAE=_v()
-_(o0D,fAE)
-if(_oz(z,1,e,s,gg)){fAE.wxVkey=1
-var hCE=_mz(z,'uni-nav-bar',['backgroundColor',2,'bind:__l',1,'bind:clickLeft',2,'class',3,'color',4,'data-event-opts',5,'fixed',6,'leftIcon',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
-_(fAE,hCE)
+var o0C=_n('view')
+_rz(z,o0C,'class',0,e,s,gg)
+var lAD=_v()
+_(o0C,lAD)
+if(_oz(z,1,e,s,gg)){lAD.wxVkey=1
+var tCD=_mz(z,'uni-nav-bar',['backgroundColor',2,'bind:__l',1,'bind:clickLeft',2,'class',3,'color',4,'data-event-opts',5,'fixed',6,'leftIcon',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
+_(lAD,tCD)
 }
-var cBE=_v()
-_(o0D,cBE)
-if(_oz(z,15,e,s,gg)){cBE.wxVkey=1
-var oDE=_mz(z,'uni-nav-bar',['bind:__l',16,'bind:clickLeft',1,'class',2,'color',3,'data-event-opts',4,'fixed',5,'leftIcon',6,'shadow',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
-_(cBE,oDE)
+var aBD=_v()
+_(o0C,aBD)
+if(_oz(z,15,e,s,gg)){aBD.wxVkey=1
+var eDD=_mz(z,'uni-nav-bar',['bind:__l',16,'bind:clickLeft',1,'class',2,'color',3,'data-event-opts',4,'fixed',5,'leftIcon',6,'shadow',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
+_(aBD,eDD)
 }
-fAE.wxXCkey=1
-fAE.wxXCkey=3
-cBE.wxXCkey=1
-cBE.wxXCkey=3
-_(r,o0D)
+lAD.wxXCkey=1
+lAD.wxXCkey=3
+aBD.wxXCkey=1
+aBD.wxXCkey=3
+_(r,o0C)
 return r
 }
 e_[x[21]]={f:m21,j:[],i:[],ti:[],ic:[]}
 d_[x[22]]={}
 var m22=function(e,s,r,gg){
 var z=gz$gwx_23()
-var oFE=_n('view')
-_rz(z,oFE,'class',0,e,s,gg)
-var lGE=_v()
-_(oFE,lGE)
-if(_oz(z,1,e,s,gg)){lGE.wxVkey=1
-var tIE=_mz(z,'uni-nav-bar',['backgroundColor',2,'bind:__l',1,'bind:clickLeft',2,'class',3,'color',4,'data-event-opts',5,'fixed',6,'leftIcon',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
-_(lGE,tIE)
+var oFD=_n('view')
+_rz(z,oFD,'class',0,e,s,gg)
+var oHD=_mz(z,'search',['bind:__l',1,'target',1,'vueId',2],[],e,s,gg)
+_(oFD,oHD)
+var xGD=_v()
+_(oFD,xGD)
+if(_oz(z,4,e,s,gg)){xGD.wxVkey=1
 }
-var aHE=_v()
-_(oFE,aHE)
-if(_oz(z,15,e,s,gg)){aHE.wxVkey=1
-var eJE=_mz(z,'uni-nav-bar',['bind:__l',16,'bind:clickLeft',1,'class',2,'color',3,'data-event-opts',4,'fixed',5,'leftIcon',6,'shadow',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
-_(aHE,eJE)
-}
-lGE.wxXCkey=1
-lGE.wxXCkey=3
-aHE.wxXCkey=1
-aHE.wxXCkey=3
-_(r,oFE)
+xGD.wxXCkey=1
+_(r,oFD)
 return r
 }
 e_[x[22]]={f:m22,j:[],i:[],ti:[],ic:[]}
 d_[x[23]]={}
 var m23=function(e,s,r,gg){
 var z=gz$gwx_24()
-var oLE=_n('view')
-_rz(z,oLE,'class',0,e,s,gg)
-var oNE=_mz(z,'iheader',['bind:__l',1,'showIcon',1,'showSearch',2,'vueId',3],[],e,s,gg)
-_(oLE,oNE)
-var fOE=_mz(z,'search',['bind:__l',5,'target',1,'vueId',2],[],e,s,gg)
-_(oLE,fOE)
-var xME=_v()
-_(oLE,xME)
-if(_oz(z,8,e,s,gg)){xME.wxVkey=1
-}
-xME.wxXCkey=1
-_(r,oLE)
+var cJD=_n('view')
+_rz(z,cJD,'class',0,e,s,gg)
+var hKD=_mz(z,'uni-nav-bar',['bind:__l',1,'bind:clickLeft',1,'class',2,'data-event-opts',3,'fixed',4,'leftIcon',5,'statusBar',6,'title',7,'vueId',8],[],e,s,gg)
+_(cJD,hKD)
+var oLD=_mz(z,'search',['bind:__l',10,'bind:clear',1,'bind:search',2,'class',3,'data-event-opts',4,'focus',5,'placeholder',6,'vueId',7,'wd',8],[],e,s,gg)
+_(cJD,oLD)
+var cMD=_mz(z,'loading',['bind:__l',19,'class',1,'loading',2,'tips',3,'vueId',4],[],e,s,gg)
+_(cJD,cMD)
+_(r,cJD)
 return r
 }
 e_[x[23]]={f:m23,j:[],i:[],ti:[],ic:[]}
 d_[x[24]]={}
 var m24=function(e,s,r,gg){
 var z=gz$gwx_25()
-var hQE=_n('view')
-_rz(z,hQE,'class',0,e,s,gg)
-var cSE=_mz(z,'uni-nav-bar',['bind:__l',1,'bind:clickLeft',1,'class',2,'data-event-opts',3,'fixed',4,'leftIcon',5,'statusBar',6,'title',7,'vueId',8],[],e,s,gg)
-_(hQE,cSE)
-var oTE=_mz(z,'search',['bind:__l',10,'bind:clear',1,'bind:search',2,'class',3,'data-event-opts',4,'focus',5,'placeholder',6,'vueId',7,'wd',8],[],e,s,gg)
-_(hQE,oTE)
-var oRE=_v()
-_(hQE,oRE)
-if(_oz(z,19,e,s,gg)){oRE.wxVkey=1
-var lUE=_n('view')
-_rz(z,lUE,'class',20,e,s,gg)
-var aVE=_v()
-_(lUE,aVE)
-if(_oz(z,21,e,s,gg)){aVE.wxVkey=1
-var eXE=_mz(z,'list-book',['bind:__l',22,'books',1,'class',2,'vueId',3],[],e,s,gg)
-_(aVE,eXE)
+var lOD=_n('view')
+_rz(z,lOD,'class',0,e,s,gg)
+var aPD=_v()
+_(lOD,aPD)
+if(_oz(z,1,e,s,gg)){aPD.wxVkey=1
+var eRD=_mz(z,'uni-nav-bar',['backgroundColor',2,'bind:__l',1,'bind:clickLeft',2,'class',3,'color',4,'data-event-opts',5,'fixed',6,'leftIcon',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
+_(aPD,eRD)
 }
-var tWE=_v()
-_(lUE,tWE)
-if(_oz(z,26,e,s,gg)){tWE.wxVkey=1
+var tQD=_v()
+_(lOD,tQD)
+if(_oz(z,15,e,s,gg)){tQD.wxVkey=1
+var bSD=_mz(z,'uni-nav-bar',['bind:__l',16,'bind:clickLeft',1,'class',2,'color',3,'data-event-opts',4,'fixed',5,'leftIcon',6,'shadow',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
+_(tQD,bSD)
 }
-aVE.wxXCkey=1
-aVE.wxXCkey=3
-tWE.wxXCkey=1
-_(oRE,lUE)
-}
-var bYE=_mz(z,'loading',['bind:__l',27,'class',1,'loading',2,'tips',3,'vueId',4],[],e,s,gg)
-_(hQE,bYE)
-oRE.wxXCkey=1
-oRE.wxXCkey=3
-_(r,hQE)
+aPD.wxXCkey=1
+aPD.wxXCkey=3
+tQD.wxXCkey=1
+tQD.wxXCkey=3
+_(r,lOD)
 return r
 }
 e_[x[24]]={f:m24,j:[],i:[],ti:[],ic:[]}
 d_[x[25]]={}
 var m25=function(e,s,r,gg){
 var z=gz$gwx_26()
-var x1E=_n('view')
-_rz(z,x1E,'class',0,e,s,gg)
-var o2E=_v()
-_(x1E,o2E)
-if(_oz(z,1,e,s,gg)){o2E.wxVkey=1
-var c4E=_mz(z,'uni-nav-bar',['backgroundColor',2,'bind:__l',1,'bind:clickLeft',2,'class',3,'color',4,'data-event-opts',5,'fixed',6,'leftIcon',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
-_(o2E,c4E)
+var xUD=_n('view')
+_rz(z,xUD,'class',0,e,s,gg)
+var oVD=_v()
+_(xUD,oVD)
+if(_oz(z,1,e,s,gg)){oVD.wxVkey=1
+var cXD=_mz(z,'uni-nav-bar',['backgroundColor',2,'bind:__l',1,'bind:clickLeft',2,'class',3,'color',4,'data-event-opts',5,'fixed',6,'leftIcon',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
+_(oVD,cXD)
 }
-var f3E=_v()
-_(x1E,f3E)
-if(_oz(z,15,e,s,gg)){f3E.wxVkey=1
-var h5E=_mz(z,'uni-nav-bar',['bind:__l',16,'bind:clickLeft',1,'class',2,'color',3,'data-event-opts',4,'fixed',5,'leftIcon',6,'shadow',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
-_(f3E,h5E)
+var fWD=_v()
+_(xUD,fWD)
+if(_oz(z,15,e,s,gg)){fWD.wxVkey=1
+var hYD=_mz(z,'uni-nav-bar',['bind:__l',16,'bind:clickLeft',1,'class',2,'color',3,'data-event-opts',4,'fixed',5,'leftIcon',6,'shadow',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
+_(fWD,hYD)
 }
-o2E.wxXCkey=1
-o2E.wxXCkey=3
-f3E.wxXCkey=1
-f3E.wxXCkey=3
-_(r,x1E)
+oVD.wxXCkey=1
+oVD.wxXCkey=3
+fWD.wxXCkey=1
+fWD.wxXCkey=3
+_(r,xUD)
 return r
 }
 e_[x[25]]={f:m25,j:[],i:[],ti:[],ic:[]}
 d_[x[26]]={}
 var m26=function(e,s,r,gg){
 var z=gz$gwx_27()
-var c7E=_n('view')
-_rz(z,c7E,'class',0,e,s,gg)
-var o8E=_v()
-_(c7E,o8E)
-if(_oz(z,1,e,s,gg)){o8E.wxVkey=1
-var a0E=_mz(z,'uni-nav-bar',['backgroundColor',2,'bind:__l',1,'bind:clickLeft',2,'class',3,'color',4,'data-event-opts',5,'fixed',6,'leftIcon',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
-_(o8E,a0E)
+var c1D=_n('view')
+_rz(z,c1D,'class',0,e,s,gg)
+var o2D=_v()
+_(c1D,o2D)
+if(_oz(z,1,e,s,gg)){o2D.wxVkey=1
+var a4D=_mz(z,'uni-nav-bar',['backgroundColor',2,'bind:__l',1,'bind:clickLeft',2,'class',3,'color',4,'data-event-opts',5,'fixed',6,'leftIcon',7,'statusBar',8,'vueId',9],[],e,s,gg)
+_(o2D,a4D)
 }
-var l9E=_v()
-_(c7E,l9E)
-if(_oz(z,15,e,s,gg)){l9E.wxVkey=1
-var tAF=_mz(z,'uni-nav-bar',['bind:__l',16,'bind:clickLeft',1,'class',2,'color',3,'data-event-opts',4,'fixed',5,'leftIcon',6,'shadow',7,'statusBar',8,'style',9,'title',10,'vueId',11,'vueSlots',12],[],e,s,gg)
-_(l9E,tAF)
+var l3D=_v()
+_(c1D,l3D)
+if(_oz(z,12,e,s,gg)){l3D.wxVkey=1
+var t5D=_mz(z,'uni-nav-bar',['bind:__l',13,'bind:clickLeft',1,'class',2,'color',3,'data-event-opts',4,'fixed',5,'leftIcon',6,'shadow',7,'statusBar',8,'vueId',9],[],e,s,gg)
+_(l3D,t5D)
 }
-o8E.wxXCkey=1
-o8E.wxXCkey=3
-l9E.wxXCkey=1
-l9E.wxXCkey=3
-_(r,c7E)
+var e6D=_mz(z,'uni-number-box',['bind:__l',23,'class',1,'min',2,'vueId',3],[],e,s,gg)
+_(c1D,e6D)
+o2D.wxXCkey=1
+o2D.wxXCkey=3
+l3D.wxXCkey=1
+l3D.wxXCkey=3
+_(r,c1D)
 return r
 }
 e_[x[26]]={f:m26,j:[],i:[],ti:[],ic:[]}
 d_[x[27]]={}
 var m27=function(e,s,r,gg){
 var z=gz$gwx_28()
-var bCF=_mz(z,'hx-navbar',['backgroundColor',0,'barPlaceholder',1,'bind:__l',1,'color',2,'fixed',3,'title',4,'transparent',5,'vueId',6],[],e,s,gg)
-_(r,bCF)
 return r
 }
 e_[x[27]]={f:m27,j:[],i:[],ti:[],ic:[]}
 d_[x[28]]={}
 var m28=function(e,s,r,gg){
 var z=gz$gwx_29()
+var x9D=_n('view')
+_rz(z,x9D,'class',0,e,s,gg)
+var o0D=_mz(z,'uni-nav-bar',['bind:__l',1,'bind:clickLeft',1,'class',2,'data-event-opts',3,'fixed',4,'leftIcon',5,'statusBar',6,'title',7,'vueId',8,'vueSlots',9],[],e,s,gg)
+_(x9D,o0D)
+var fAE=_v()
+_(x9D,fAE)
+var cBE=function(oDE,hCE,cEE,gg){
+var lGE=_n('view')
+_rz(z,lGE,'class',15,oDE,hCE,gg)
+var aHE=_n('view')
+_rz(z,aHE,'class',16,oDE,hCE,gg)
+var tIE=_mz(z,'uni-tag',['bind:__l',17,'class',1,'inverted',2,'size',3,'text',4,'type',5,'vueId',6],[],oDE,hCE,gg)
+_(aHE,tIE)
+var eJE=_mz(z,'uni-tag',['bind:__l',24,'class',1,'inverted',2,'size',3,'text',4,'type',5,'vueId',6],[],oDE,hCE,gg)
+_(aHE,eJE)
+var bKE=_mz(z,'uni-tag',['bind:__l',31,'class',1,'inverted',2,'size',3,'text',4,'type',5,'vueId',6],[],oDE,hCE,gg)
+_(aHE,bKE)
+_(lGE,aHE)
+var oLE=_n('view')
+_rz(z,oLE,'class',38,oDE,hCE,gg)
+var xME=_n('view')
+_rz(z,xME,'class',39,oDE,hCE,gg)
+var oNE=_mz(z,'uni-icons',['bind:__l',40,'class',1,'style',2,'type',3,'vueId',4],[],oDE,hCE,gg)
+_(xME,oNE)
+var fOE=_mz(z,'uni-tag',['bind:__l',45,'circle',1,'class',2,'inverted',3,'size',4,'style',5,'text',6,'vueId',7],[],oDE,hCE,gg)
+_(xME,fOE)
+_(oLE,xME)
+var cPE=_n('view')
+_rz(z,cPE,'class',53,oDE,hCE,gg)
+var hQE=_mz(z,'uni-icons',['bind:__l',54,'class',1,'style',2,'type',3,'vueId',4],[],oDE,hCE,gg)
+_(cPE,hQE)
+var oRE=_mz(z,'uni-tag',['bind:__l',59,'circle',1,'class',2,'inverted',3,'size',4,'style',5,'text',6,'vueId',7],[],oDE,hCE,gg)
+_(cPE,oRE)
+_(oLE,cPE)
+_(lGE,oLE)
+_(cEE,lGE)
+return cEE
+}
+fAE.wxXCkey=4
+_2z(z,13,cBE,e,s,gg,fAE,'item','__i0__','*this')
+_(r,x9D)
 return r
 }
 e_[x[28]]={f:m28,j:[],i:[],ti:[],ic:[]}
 d_[x[29]]={}
 var m29=function(e,s,r,gg){
 var z=gz$gwx_30()
-var oFF=_n('view')
-_rz(z,oFF,'class',0,e,s,gg)
-var fGF=_mz(z,'uni-nav-bar',['bind:__l',1,'bind:clickLeft',1,'class',2,'data-event-opts',3,'fixed',4,'leftIcon',5,'statusBar',6,'title',7,'vueId',8],[],e,s,gg)
-_(oFF,fGF)
-var cHF=_n('view')
-_rz(z,cHF,'class',10,e,s,gg)
-var hIF=_mz(z,'uni-list',['bind:__l',11,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
-var oJF=_mz(z,'uni-list-item',['bind:__l',15,'class',1,'title',2,'vueId',3,'vueSlots',4],[],e,s,gg)
-_(hIF,oJF)
-_(cHF,hIF)
-var cKF=_mz(z,'uni-list',['bind:__l',20,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
-var oLF=_mz(z,'uni-list-item',['bind:__l',24,'class',1,'rightText',2,'title',3,'vueId',4],[],e,s,gg)
-_(cKF,oLF)
-var lMF=_mz(z,'uni-list-item',['bind:__l',29,'class',1,'rightText',2,'title',3,'vueId',4],[],e,s,gg)
-_(cKF,lMF)
-var aNF=_mz(z,'uni-list-item',['bind:__l',34,'class',1,'title',2,'vueId',3],[],e,s,gg)
-_(cKF,aNF)
-_(cHF,cKF)
-var tOF=_mz(z,'uni-list',['bind:__l',38,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
-var ePF=_mz(z,'uni-list-item',['bind:__l',42,'bind:click',1,'class',2,'data-event-opts',3,'title',4,'vueId',5],[],e,s,gg)
-_(tOF,ePF)
-_(cHF,tOF)
-_(oFF,cHF)
-_(r,oFF)
+var oTE=_n('view')
+_rz(z,oTE,'class',0,e,s,gg)
+var lUE=_mz(z,'uni-nav-bar',['bind:__l',1,'bind:clickLeft',1,'class',2,'data-event-opts',3,'fixed',4,'leftIcon',5,'statusBar',6,'title',7,'vueId',8],[],e,s,gg)
+_(oTE,lUE)
+var aVE=_n('view')
+_rz(z,aVE,'class',10,e,s,gg)
+var tWE=_mz(z,'uni-list',['bind:__l',11,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
+var eXE=_mz(z,'uni-list-item',['bind:__l',15,'class',1,'title',2,'vueId',3,'vueSlots',4],[],e,s,gg)
+_(tWE,eXE)
+_(aVE,tWE)
+var bYE=_mz(z,'uni-list',['bind:__l',20,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
+var oZE=_mz(z,'uni-list-item',['bind:__l',24,'class',1,'rightText',2,'title',3,'vueId',4],[],e,s,gg)
+_(bYE,oZE)
+var x1E=_mz(z,'uni-list-item',['bind:__l',29,'class',1,'rightText',2,'title',3,'vueId',4],[],e,s,gg)
+_(bYE,x1E)
+var o2E=_mz(z,'uni-list-item',['bind:__l',34,'class',1,'title',2,'vueId',3],[],e,s,gg)
+_(bYE,o2E)
+_(aVE,bYE)
+var f3E=_mz(z,'uni-list',['bind:__l',38,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
+var c4E=_mz(z,'uni-list-item',['bind:__l',42,'bind:click',1,'class',2,'data-event-opts',3,'title',4,'vueId',5],[],e,s,gg)
+_(f3E,c4E)
+_(aVE,f3E)
+_(oTE,aVE)
+_(r,oTE)
 return r
 }
 e_[x[29]]={f:m29,j:[],i:[],ti:[],ic:[]}
 d_[x[30]]={}
 var m30=function(e,s,r,gg){
 var z=gz$gwx_31()
-var oRF=_n('view')
-_rz(z,oRF,'class',0,e,s,gg)
-var xSF=_v()
+var o6E=_n('view')
+_rz(z,o6E,'class',0,e,s,gg)
+var c7E=_v()
+_(o6E,c7E)
+if(_oz(z,1,e,s,gg)){c7E.wxVkey=1
+var l9E=_mz(z,'uni-nav-bar',['backgroundColor',2,'bind:__l',1,'class',2,'fixed',3,'statusBar',4,'style',5,'vueId',6,'vueSlots',7],[],e,s,gg)
+_(c7E,l9E)
+}
+var o8E=_v()
+_(o6E,o8E)
+if(_oz(z,10,e,s,gg)){o8E.wxVkey=1
+var a0E=_mz(z,'uni-nav-bar',['bind:__l',11,'class',1,'fixed',2,'shadow',3,'statusBar',4,'style',5,'vueId',6,'vueSlots',7],[],e,s,gg)
+_(o8E,a0E)
+}
+var tAF=_n('view')
+var eBF=_mz(z,'view',['bindlongpress',19,'class',1,'data-event-opts',2],[],e,s,gg)
+var bCF=_mz(z,'uni-list',['bind:__l',22,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
+var oDF=_mz(z,'uni-list-item',['bind:__l',26,'showArrow',1,'thumb',2,'vueId',3,'vueSlots',4],[],e,s,gg)
+_(bCF,oDF)
+_(eBF,bCF)
+_(tAF,eBF)
+var xEF=_mz(z,'view',['bindlongpress',31,'class',1,'data-event-opts',2],[],e,s,gg)
+var oFF=_mz(z,'uni-list',['bind:__l',34,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
+var fGF=_mz(z,'uni-list-item',['bind:__l',38,'showArrow',1,'thumb',2,'vueId',3,'vueSlots',4],[],e,s,gg)
+_(oFF,fGF)
+_(xEF,oFF)
+_(tAF,xEF)
+var cHF=_mz(z,'view',['bindlongpress',43,'class',1,'data-event-opts',2],[],e,s,gg)
+var hIF=_mz(z,'uni-list',['bind:__l',46,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
+var oJF=_mz(z,'uni-list-item',['bind:__l',50,'showArrow',1,'thumb',2,'vueId',3,'vueSlots',4],[],e,s,gg)
+_(hIF,oJF)
+_(cHF,hIF)
+_(tAF,cHF)
+var cKF=_mz(z,'view',['bindlongpress',55,'class',1,'data-event-opts',2],[],e,s,gg)
+var oLF=_mz(z,'uni-list',['bind:__l',58,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
+var lMF=_mz(z,'uni-list-item',['bind:__l',62,'showArrow',1,'thumb',2,'vueId',3,'vueSlots',4],[],e,s,gg)
+_(oLF,lMF)
+_(cKF,oLF)
+_(tAF,cKF)
+var aNF=_mz(z,'view',['bindlongpress',67,'class',1,'data-event-opts',2],[],e,s,gg)
+var tOF=_mz(z,'uni-list',['bind:__l',70,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
+var ePF=_mz(z,'uni-list-item',['bind:__l',74,'showArrow',1,'thumb',2,'vueId',3,'vueSlots',4],[],e,s,gg)
+_(tOF,ePF)
+_(aNF,tOF)
+_(tAF,aNF)
+var bQF=_mz(z,'view',['bindlongpress',79,'class',1,'data-event-opts',2],[],e,s,gg)
+var oRF=_mz(z,'uni-list',['bind:__l',82,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
+var xSF=_mz(z,'uni-list-item',['bind:__l',86,'showArrow',1,'thumb',2,'vueId',3,'vueSlots',4],[],e,s,gg)
 _(oRF,xSF)
-if(_oz(z,1,e,s,gg)){xSF.wxVkey=1
-var fUF=_mz(z,'uni-nav-bar',['backgroundColor',2,'bind:__l',1,'class',2,'fixed',3,'statusBar',4,'style',5,'vueId',6,'vueSlots',7],[],e,s,gg)
-_(xSF,fUF)
-}
-var oTF=_v()
-_(oRF,oTF)
-if(_oz(z,10,e,s,gg)){oTF.wxVkey=1
-var cVF=_mz(z,'uni-nav-bar',['bind:__l',11,'class',1,'fixed',2,'shadow',3,'statusBar',4,'style',5,'vueId',6,'vueSlots',7],[],e,s,gg)
-_(oTF,cVF)
-}
-var hWF=_n('view')
-var oXF=_mz(z,'view',['bindlongpress',19,'class',1,'data-event-opts',2],[],e,s,gg)
-var cYF=_mz(z,'uni-list',['bind:__l',22,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
-var oZF=_mz(z,'uni-list-item',['bind:__l',26,'showArrow',1,'thumb',2,'vueId',3,'vueSlots',4],[],e,s,gg)
-_(cYF,oZF)
-_(oXF,cYF)
-_(hWF,oXF)
-var l1F=_mz(z,'view',['bindlongpress',31,'class',1,'data-event-opts',2],[],e,s,gg)
-var a2F=_mz(z,'uni-list',['bind:__l',34,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
-var t3F=_mz(z,'uni-list-item',['bind:__l',38,'showArrow',1,'thumb',2,'vueId',3,'vueSlots',4],[],e,s,gg)
-_(a2F,t3F)
-_(l1F,a2F)
-_(hWF,l1F)
-var e4F=_mz(z,'view',['bindlongpress',43,'class',1,'data-event-opts',2],[],e,s,gg)
-var b5F=_mz(z,'uni-list',['bind:__l',46,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
-var o6F=_mz(z,'uni-list-item',['bind:__l',50,'showArrow',1,'thumb',2,'vueId',3,'vueSlots',4],[],e,s,gg)
-_(b5F,o6F)
-_(e4F,b5F)
-_(hWF,e4F)
-var x7F=_mz(z,'view',['bindlongpress',55,'class',1,'data-event-opts',2],[],e,s,gg)
-var o8F=_mz(z,'uni-list',['bind:__l',58,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
-var f9F=_mz(z,'uni-list-item',['bind:__l',62,'showArrow',1,'thumb',2,'vueId',3,'vueSlots',4],[],e,s,gg)
-_(o8F,f9F)
-_(x7F,o8F)
-_(hWF,x7F)
-var c0F=_mz(z,'view',['bindlongpress',67,'class',1,'data-event-opts',2],[],e,s,gg)
-var hAG=_mz(z,'uni-list',['bind:__l',70,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
-var oBG=_mz(z,'uni-list-item',['bind:__l',74,'showArrow',1,'thumb',2,'vueId',3,'vueSlots',4],[],e,s,gg)
-_(hAG,oBG)
-_(c0F,hAG)
-_(hWF,c0F)
-_(oRF,hWF)
-xSF.wxXCkey=1
-xSF.wxXCkey=3
-oTF.wxXCkey=1
-oTF.wxXCkey=3
-_(r,oRF)
+_(bQF,oRF)
+_(tAF,bQF)
+_(o6E,tAF)
+c7E.wxXCkey=1
+c7E.wxXCkey=3
+o8E.wxXCkey=1
+o8E.wxXCkey=3
+_(r,o6E)
 return r
 }
 e_[x[30]]={f:m30,j:[],i:[],ti:[],ic:[]}
 d_[x[31]]={}
 var m31=function(e,s,r,gg){
 var z=gz$gwx_32()
-var oDG=_mz(z,'hx-navbar',['back',0,'backgroundColor',1,'barPlaceholder',1,'bind:__l',2,'color',3,'fixed',4,'title',5,'transparent',6,'vueId',7,'vueSlots',8],[],e,s,gg)
-_(r,oDG)
+var fUF=_n('view')
+var cVF=_v()
+_(fUF,cVF)
+if(_oz(z,0,e,s,gg)){cVF.wxVkey=1
+var oXF=_mz(z,'uni-nav-bar',['backgroundColor',1,'bind:__l',1,'class',2,'color',3,'fixed',4,'statusBar',5,'style',6,'title',7,'vueId',8,'vueSlots',9],[],e,s,gg)
+_(cVF,oXF)
+}
+var hWF=_v()
+_(fUF,hWF)
+if(_oz(z,11,e,s,gg)){hWF.wxVkey=1
+var cYF=_mz(z,'uni-nav-bar',['bind:__l',12,'class',1,'color',2,'fixed',3,'shadow',4,'statusBar',5,'style',6,'title',7,'vueId',8,'vueSlots',9],[],e,s,gg)
+_(hWF,cYF)
+}
+cVF.wxXCkey=1
+cVF.wxXCkey=3
+hWF.wxXCkey=1
+hWF.wxXCkey=3
+_(r,fUF)
 return r
 }
 e_[x[31]]={f:m31,j:[],i:[],ti:[],ic:[]}
 d_[x[32]]={}
 var m32=function(e,s,r,gg){
 var z=gz$gwx_33()
-var aFG=_n('view')
-_rz(z,aFG,'class',0,e,s,gg)
-var tGG=_mz(z,'hx-navbar',['back',1,'backgroundColor',1,'barPlaceholder',2,'bind:__l',3,'class',4,'color',5,'title',6,'transparent',7,'vueId',8,'vueSlots',9],[],e,s,gg)
-_(aFG,tGG)
-var eHG=_mz(z,'view',['bindscroll',11,'class',1,'data-event-opts',2],[],e,s,gg)
-var bIG=_mz(z,'uni-rate',['bind:__l',14,'class',1,'disabled',2,'size',3,'value',4,'vueId',5],[],e,s,gg)
-_(eHG,bIG)
-_(aFG,eHG)
-var oJG=_mz(z,'uni-list',['bind:__l',20,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
-var xKG=_mz(z,'uni-list-item',['bind:__l',24,'class',1,'thumb',2,'title',3,'vueId',4],[],e,s,gg)
-_(oJG,xKG)
-var oLG=_mz(z,'uni-list-item',['bind:__l',29,'class',1,'rightText',2,'thumb',3,'title',4,'vueId',5],[],e,s,gg)
-_(oJG,oLG)
-_(aFG,oJG)
-_(r,aFG)
+var l1F=_n('view')
+_rz(z,l1F,'class',0,e,s,gg)
+var a2F=_v()
+_(l1F,a2F)
+if(_oz(z,1,e,s,gg)){a2F.wxVkey=1
+var e4F=_mz(z,'uni-nav-bar',['backgroundColor',2,'bind:__l',1,'class',2,'color',3,'fixed',4,'statusBar',5,'style',6,'title',7,'vueId',8,'vueSlots',9],[],e,s,gg)
+_(a2F,e4F)
+}
+var t3F=_v()
+_(l1F,t3F)
+if(_oz(z,12,e,s,gg)){t3F.wxVkey=1
+var b5F=_mz(z,'uni-nav-bar',['backgroundColor',13,'bind:__l',1,'class',2,'color',3,'fixed',4,'shadow',5,'statusBar',6,'style',7,'title',8,'vueId',9,'vueSlots',10],[],e,s,gg)
+_(t3F,b5F)
+}
+var o6F=_mz(z,'uni-rate',['bind:__l',24,'class',1,'disabled',2,'size',3,'value',4,'vueId',5],[],e,s,gg)
+_(l1F,o6F)
+var x7F=_mz(z,'uni-list',['bind:__l',30,'class',1,'vueId',2,'vueSlots',3],[],e,s,gg)
+var o8F=_mz(z,'uni-list-item',['bind:__l',34,'class',1,'thumb',2,'title',3,'vueId',4],[],e,s,gg)
+_(x7F,o8F)
+var f9F=_mz(z,'uni-list-item',['bind:__l',39,'class',1,'rightText',2,'thumb',3,'title',4,'vueId',5],[],e,s,gg)
+_(x7F,f9F)
+_(l1F,x7F)
+a2F.wxXCkey=1
+a2F.wxXCkey=3
+t3F.wxXCkey=1
+t3F.wxXCkey=3
+_(r,l1F)
 return r
 }
 e_[x[32]]={f:m32,j:[],i:[],ti:[],ic:[]}
@@ -2715,23 +2632,14 @@ return root;
 
 
 
-__wxAppCode__['app.json']={"pages":["pages/login/login","pages/tabs/tab1","pages/tabs/tab2","pages/tabs/tab3","pages/tab1/book","pages/tab1/clothes","pages/tab1/shoes","pages/tab1/storage","pages/tab1/search","pages/tab2/demo7","pages/tab1/index","pages/notfound/notfound","pages/login/reg","pages/login/agreement","pages/tab3/setting","pages/tab3/address"],"window":{"navigationBarTextStyle":"black","navigationBarTitleText":"cuncun-app","navigationBarBackgroundColor":"#FFFFFF","backgroundColor":"#FFFFFF","navigationStyle":"custom"},"tabBar":{"list":[{"pagePath":"pages/tabs/tab1","text":"存存","iconPath":"static/tabs/tab1_off.png","selectedIconPath":"static/tabs/tab1_on.png"},{"pagePath":"pages/tabs/tab2","text":"订单","iconPath":"static/tabs/tab2_off.png","selectedIconPath":"static/tabs/tab2_on.png"},{"pagePath":"pages/tabs/tab3","text":"我的","iconPath":"static/tabs/tab3_off.png","selectedIconPath":"static/tabs/tab3_on.png"}],"backgroundColor":"#ffffff","color":"#888888","selectedColor":"rgba(59, 193, 187, 1)"},"nvueCompiler":"uni-app","renderer":"auto","splashscreen":{"alwaysShowBeforeRender":true,"autoclose":false},"appname":"存存","compilerVersion":"2.6.5","usingComponents":{"hx-navbar":"/components/hx-navbar/hx-navbar","uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-popup":"/components/uni-popup/uni-popup","uni-search-bar":"/components/uni-search-bar/uni-search-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item"}};
+__wxAppCode__['app.json']={"pages":["pages/login/login","pages/tabs/tab1","pages/tabs/tab2","pages/tabs/tab3","pages/tab1/book","pages/tab1/clothes","pages/tab1/shoes","pages/tab1/storage","pages/tab1/search","pages/tab2/demo7","pages/tab1/index","pages/notfound/notfound","pages/login/reg","pages/login/agreement","pages/tab2/addOrder","pages/tab3/setting","pages/tab3/address"],"window":{"navigationBarTextStyle":"black","navigationBarTitleText":"cuncun-app","navigationBarBackgroundColor":"#FFFFFF","backgroundColor":"#FFFFFF","navigationStyle":"custom"},"tabBar":{"list":[{"pagePath":"pages/tabs/tab1","text":"存存","iconPath":"static/tabs/tab1_off.png","selectedIconPath":"static/tabs/tab1_on.png"},{"pagePath":"pages/tabs/tab2","text":"订单","iconPath":"static/tabs/tab2_off.png","selectedIconPath":"static/tabs/tab2_on.png"},{"pagePath":"pages/tabs/tab3","text":"我的","iconPath":"static/tabs/tab3_off.png","selectedIconPath":"static/tabs/tab3_on.png"}],"backgroundColor":"#ffffff","color":"#888888","selectedColor":"rgba(59, 193, 187, 1)"},"nvueCompiler":"uni-app","renderer":"auto","splashscreen":{"alwaysShowBeforeRender":true,"autoclose":false},"appname":"存存","compilerVersion":"2.6.5","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-popup":"/components/uni-popup/uni-popup","uni-search-bar":"/components/uni-search-bar/uni-search-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item","uni-tag":"/components/uni-tag/uni-tag","uni-number-box":"/components/uni-number-box/uni-number-box","uni-icons":"/components/uni-icons/uni-icons"}};
 __wxAppCode__['app.wxml']=$gwx('./app.wxml');
 
 __wxAppCode__['components/header.json']={"usingComponents":{},"component":true};
 __wxAppCode__['components/header.wxml']=$gwx('./components/header.wxml');
 
-__wxAppCode__['components/hx-navbar/hx-navbar.json']={"usingComponents":{"uni-icons":"/components/uni-icons/uni-icons"},"component":true};
-__wxAppCode__['components/hx-navbar/hx-navbar.wxml']=$gwx('./components/hx-navbar/hx-navbar.wxml');
-
-__wxAppCode__['components/listBook.json']={"usingComponents":{},"component":true};
-__wxAppCode__['components/listBook.wxml']=$gwx('./components/listBook.wxml');
-
 __wxAppCode__['components/loading.json']={"usingComponents":{},"component":true};
 __wxAppCode__['components/loading.wxml']=$gwx('./components/loading.wxml');
-
-__wxAppCode__['components/scrollBook.json']={"usingComponents":{},"component":true};
-__wxAppCode__['components/scrollBook.wxml']=$gwx('./components/scrollBook.wxml');
 
 __wxAppCode__['components/search.json']={"usingComponents":{},"component":true};
 __wxAppCode__['components/search.wxml']=$gwx('./components/search.wxml');
@@ -2742,7 +2650,7 @@ __wxAppCode__['components/tab.wxml']=$gwx('./components/tab.wxml');
 __wxAppCode__['components/uni-badge/uni-badge.json']={"component":true,"usingComponents":{}};
 __wxAppCode__['components/uni-badge/uni-badge.wxml']=$gwx('./components/uni-badge/uni-badge.wxml');
 
-__wxAppCode__['components/uni-icons/uni-icons.json']={"component":true,"usingComponents":{}};
+__wxAppCode__['components/uni-icons/uni-icons.json']={"usingComponents":{},"component":true};
 __wxAppCode__['components/uni-icons/uni-icons.wxml']=$gwx('./components/uni-icons/uni-icons.wxml');
 
 __wxAppCode__['components/uni-list-item/uni-list-item.json']={"usingComponents":{"uni-icons":"/components/uni-icons/uni-icons","uni-badge":"/components/uni-badge/uni-badge"},"component":true};
@@ -2754,10 +2662,13 @@ __wxAppCode__['components/uni-list/uni-list.wxml']=$gwx('./components/uni-list/u
 __wxAppCode__['components/uni-nav-bar/uni-nav-bar.json']={"usingComponents":{"uni-status-bar":"/components/uni-status-bar/uni-status-bar","uni-icons":"/components/uni-icons/uni-icons"},"component":true};
 __wxAppCode__['components/uni-nav-bar/uni-nav-bar.wxml']=$gwx('./components/uni-nav-bar/uni-nav-bar.wxml');
 
+__wxAppCode__['components/uni-number-box/uni-number-box.json']={"usingComponents":{},"component":true};
+__wxAppCode__['components/uni-number-box/uni-number-box.wxml']=$gwx('./components/uni-number-box/uni-number-box.wxml');
+
 __wxAppCode__['components/uni-popup/uni-popup.json']={"usingComponents":{"uni-transition":"/components/uni-transition/uni-transition"},"component":true};
 __wxAppCode__['components/uni-popup/uni-popup.wxml']=$gwx('./components/uni-popup/uni-popup.wxml');
 
-__wxAppCode__['components/uni-rate/uni-rate.json']={"component":true,"usingComponents":{"uni-icons":"/components/uni-icons/uni-icons"}};
+__wxAppCode__['components/uni-rate/uni-rate.json']={"usingComponents":{"uni-icons":"/components/uni-icons/uni-icons"},"component":true};
 __wxAppCode__['components/uni-rate/uni-rate.wxml']=$gwx('./components/uni-rate/uni-rate.wxml');
 
 __wxAppCode__['components/uni-search-bar/uni-search-bar.json']={"usingComponents":{"uni-icons":"/components/uni-icons/uni-icons"},"component":true};
@@ -2766,92 +2677,98 @@ __wxAppCode__['components/uni-search-bar/uni-search-bar.wxml']=$gwx('./component
 __wxAppCode__['components/uni-status-bar/uni-status-bar.json']={"component":true,"usingComponents":{}};
 __wxAppCode__['components/uni-status-bar/uni-status-bar.wxml']=$gwx('./components/uni-status-bar/uni-status-bar.wxml');
 
+__wxAppCode__['components/uni-tag/uni-tag.json']={"usingComponents":{},"component":true};
+__wxAppCode__['components/uni-tag/uni-tag.wxml']=$gwx('./components/uni-tag/uni-tag.wxml');
+
 __wxAppCode__['components/uni-transition/uni-transition.json']={"component":true,"usingComponents":{}};
 __wxAppCode__['components/uni-transition/uni-transition.wxml']=$gwx('./components/uni-transition/uni-transition.wxml');
 
-__wxAppCode__['pages/login/agreement.json']={"navigationBarTitleText":"存存用户服务协议","usingComponents":{"hx-navbar":"/components/hx-navbar/hx-navbar"}};
+__wxAppCode__['pages/login/agreement.json']={"navigationBarTitleText":"存存用户服务协议","bounce":"none","usingComponents":{}};
 __wxAppCode__['pages/login/agreement.wxml']=$gwx('./pages/login/agreement.wxml');
 
-__wxAppCode__['pages/login/login.json']={"navigationBarTitleText":"登录","usingComponents":{}};
+__wxAppCode__['pages/login/login.json']={"navigationBarTitleText":"登录","bounce":"none","usingComponents":{}};
 __wxAppCode__['pages/login/login.wxml']=$gwx('./pages/login/login.wxml');
 
-__wxAppCode__['pages/login/reg.json']={"navigationBarTitleText":"注册","usingComponents":{"hx-navbar":"/components/hx-navbar/hx-navbar","iheader":"/components/header"}};
+__wxAppCode__['pages/login/reg.json']={"navigationBarTitleText":"注册","bounce":"none","usingComponents":{"iheader":"/components/header"}};
 __wxAppCode__['pages/login/reg.wxml']=$gwx('./pages/login/reg.wxml');
 
-__wxAppCode__['pages/notfound/notfound.json']={"navigationBarTitleText":"未找到对象","usingComponents":{"iheader":"/components/header"}};
+__wxAppCode__['pages/notfound/notfound.json']={"navigationBarTitleText":"未找到对象","bounce":"none","usingComponents":{"iheader":"/components/header"}};
 __wxAppCode__['pages/notfound/notfound.wxml']=$gwx('./pages/notfound/notfound.wxml');
 
-__wxAppCode__['pages/tab1/book.json']={"navigationBarTitleText":"我的书架","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar"}};
+__wxAppCode__['pages/tab1/book.json']={"navigationBarTitleText":"我的书架","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar"}};
 __wxAppCode__['pages/tab1/book.wxml']=$gwx('./pages/tab1/book.wxml');
 
-__wxAppCode__['pages/tab1/clothes.json']={"navigationBarTitleText":"我的衣柜","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar"}};
+__wxAppCode__['pages/tab1/clothes.json']={"navigationBarTitleText":"我的衣柜","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar"}};
 __wxAppCode__['pages/tab1/clothes.wxml']=$gwx('./pages/tab1/clothes.wxml');
 
-__wxAppCode__['pages/tab1/index.json']={"navigationBarTitleText":"测试","usingComponents":{"scroll-book":"/components/scrollBook","search":"/components/search","list-book":"/components/listBook","iheader":"/components/header"}};
+__wxAppCode__['pages/tab1/index.json']={"navigationBarTitleText":"测试","bounce":"none","usingComponents":{}};
 __wxAppCode__['pages/tab1/index.wxml']=$gwx('./pages/tab1/index.wxml');
 
-__wxAppCode__['pages/tab1/search.json']={"navigationBarTitleText":"搜索","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","loading":"/components/loading","list-book":"/components/listBook","search":"/components/search","tab":"/components/tab","iheader":"/components/header"}};
+__wxAppCode__['pages/tab1/search.json']={"navigationBarTitleText":"搜索","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","loading":"/components/loading","search":"/components/search","tab":"/components/tab"}};
 __wxAppCode__['pages/tab1/search.wxml']=$gwx('./pages/tab1/search.wxml');
 
-__wxAppCode__['pages/tab1/shoes.json']={"navigationBarTitleText":"我的鞋柜","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar"}};
+__wxAppCode__['pages/tab1/shoes.json']={"navigationBarTitleText":"我的鞋柜","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar"}};
 __wxAppCode__['pages/tab1/shoes.wxml']=$gwx('./pages/tab1/shoes.wxml');
 
-__wxAppCode__['pages/tab1/storage.json']={"navigationBarTitleText":"我的储藏室","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar"}};
+__wxAppCode__['pages/tab1/storage.json']={"navigationBarTitleText":"我的储藏室","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar"}};
 __wxAppCode__['pages/tab1/storage.wxml']=$gwx('./pages/tab1/storage.wxml');
 
-__wxAppCode__['pages/tab2/demo7.json']={"navigationBarTitleText":"测试","usingComponents":{"hx-navbar":"/components/hx-navbar/hx-navbar"}};
+__wxAppCode__['pages/tab2/addOrder.json']={"navigationBarTitleText":"添加订单","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-number-box":"/components/uni-number-box/uni-number-box"}};
+__wxAppCode__['pages/tab2/addOrder.wxml']=$gwx('./pages/tab2/addOrder.wxml');
+
+__wxAppCode__['pages/tab2/demo7.json']={"navigationBarTitleText":"测试","bounce":"none","usingComponents":{}};
 __wxAppCode__['pages/tab2/demo7.wxml']=$gwx('./pages/tab2/demo7.wxml');
 
-__wxAppCode__['pages/tab3/address.json']={"navigationBarTitleText":"地址","usingComponents":{}};
+__wxAppCode__['pages/tab3/address.json']={"navigationBarTitleText":"地址","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-tag":"/components/uni-tag/uni-tag","uni-icons":"/components/uni-icons/uni-icons"}};
 __wxAppCode__['pages/tab3/address.wxml']=$gwx('./pages/tab3/address.wxml');
 
-__wxAppCode__['pages/tab3/setting.json']={"navigationBarTitleText":"设置","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item"}};
+__wxAppCode__['pages/tab3/setting.json']={"navigationBarTitleText":"设置","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item"}};
 __wxAppCode__['pages/tab3/setting.wxml']=$gwx('./pages/tab3/setting.wxml');
 
-__wxAppCode__['pages/tabs/tab1.json']={"navigationBarTitleText":"存存","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item"}};
+__wxAppCode__['pages/tabs/tab1.json']={"navigationBarTitleText":"存存","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item"}};
 __wxAppCode__['pages/tabs/tab1.wxml']=$gwx('./pages/tabs/tab1.wxml');
 
-__wxAppCode__['pages/tabs/tab2.json']={"navigationBarTitleText":"我的订单","usingComponents":{"hx-navbar":"/components/hx-navbar/hx-navbar","search":"/components/search","loading":"/components/loading","iheader":"/components/header"}};
+__wxAppCode__['pages/tabs/tab2.json']={"navigationBarTitleText":"我的订单","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","search":"/components/search","loading":"/components/loading","iheader":"/components/header"}};
 __wxAppCode__['pages/tabs/tab2.wxml']=$gwx('./pages/tabs/tab2.wxml');
 
-__wxAppCode__['pages/tabs/tab3.json']={"navigationBarTitleText":"我的","usingComponents":{"hx-navbar":"/components/hx-navbar/hx-navbar","uni-rate":"/components/uni-rate/uni-rate","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item","iheader":"/components/header"}};
+__wxAppCode__['pages/tabs/tab3.json']={"navigationBarTitleText":"我的","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-rate":"/components/uni-rate/uni-rate","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item","iheader":"/components/header"}};
 __wxAppCode__['pages/tabs/tab3.wxml']=$gwx('./pages/tabs/tab3.wxml');
 
 
 
 define('common/main.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["common/main"],{"70be":function(e,n,t){},"944f":function(e,n,t){"use strict";(function(e){t("0007"),t("921b");var n=o(t("66fd")),u=o(t("a2d4"));function o(e){return e&&e.__esModule?e:{default:e}}function a(e){for(var n=1;n<arguments.length;n++){var t=null!=arguments[n]?arguments[n]:{},u=Object.keys(t);"function"===typeof Object.getOwnPropertySymbols&&(u=u.concat(Object.getOwnPropertySymbols(t).filter(function(e){return Object.getOwnPropertyDescriptor(t,e).enumerable}))),u.forEach(function(n){r(e,n,t[n])})}return e}function r(e,n,t){return n in e?Object.defineProperty(e,n,{value:t,enumerable:!0,configurable:!0,writable:!0}):e[n]=t,e}n.default.config.productionTip=!1;var i=function(){return t.e("components/hx-navbar/hx-navbar").then(t.bind(null,"670c"))};n.default.component("hx-navbar",i);var l=function(){return t.e("components/uni-nav-bar/uni-nav-bar").then(t.bind(null,"a5f2"))};n.default.component("uni-nav-bar",l);var c=function(){return t.e("components/uni-popup/uni-popup").then(t.bind(null,"1947"))};n.default.component("uni-popup",c);var f=function(){return t.e("components/uni-search-bar/uni-search-bar").then(t.bind(null,"9b27"))};n.default.component("uni-searchBar",f);var d=function(){return t.e("components/uni-list/uni-list").then(t.bind(null,"cb59"))},p=function(){return t.e("components/uni-list-item/uni-list-item").then(t.bind(null,"a055"))};n.default.component("uni-list",d),n.default.component("uni-list-item",p),u.default.mpType="app";var s=new n.default(a({},u.default));e(s).$mount()}).call(this,t("6e42")["createApp"])},a2d4:function(e,n,t){"use strict";t.r(n);var u=t("ba21");for(var o in u)"default"!==o&&function(e){t.d(n,e,function(){return u[e]})}(o);t("c4c6");var a,r,i,l,c=t("f0c5"),f=Object(c["a"])(u["default"],a,r,!1,null,null,null,!1,i,l);n["default"]=f.exports},ba21:function(e,n,t){"use strict";t.r(n);var u=t("c8de"),o=t.n(u);for(var a in u)"default"!==a&&function(e){t.d(n,e,function(){return u[e]})}(a);n["default"]=o.a},c4c6:function(e,n,t){"use strict";var u=t("70be"),o=t.n(u);o.a},c8de:function(e,n,t){"use strict";(function(e,u){Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;var o=r(t("f691")),a=r(t("b5ea"));function r(e){return e&&e.__esModule?e:{default:e}}var i={onLaunch:function(){var n=e.getSystemInfoSync();n.versionCode=0,n.version="v1.0.0",n.bookshelfChanged=!1,n.model&&-1!==n.model.indexOf("iPhone")?n.titleBarHeight=44:n.titleBarHeight=48,plus.runtime.getProperty(plus.runtime.appid,function(t){n.versionCode=t.versionCode,n.version=t.version,"android"==String(n.platform).toLowerCase()&&(o.default.debug&&u("log","request version api",o.default.api.lastestVersion," at App.vue:26"),a.default.request(o.default.api.lastestVersion).then(function(t){o.default.debug&&u("log","latest version:",t," at App.vue:28"),t&&t.data&&t.data.version&&(o.default.debug&&u("log","当前版本",n.versionCode,"最新版本",t.data.version," at App.vue:30"),n.versionCode<t.data.version&&e.showModal({title:"温馨提示",content:"发现新版本APP，您是否要升级体验？",cancelText:"暂时忽略",confirmText:"码上升级",success:function(e){e.confirm?(o.default.debug&&u("log","用户点击确定"," at App.vue:39"),plus.runtime.openURL(t.data.url)):t.cancel&&o.default.debug&&u("log","用户点击取消"," at App.vue:42")}}))}).catch(function(e){u("log",e," at App.vue:49")}))}),o.default.debug&&(u("log",n," at App.vue:56"),u("log","platform",n.platform," at App.vue:57")),a.default.setSysInfo(n)},onShow:function(){o.default.debug&&u("log","App Show"," at App.vue:62")},onHide:function(){o.default.debug&&u("log","App Hide"," at App.vue:65")}};n.default=i}).call(this,t("6e42")["default"],t("0de9")["default"])}},[["944f","common/runtime","common/vendor"]]]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["common/main"],{"70be":function(n,e,t){},"944f":function(n,e,t){"use strict";(function(n){t("0007"),t("921b");var e=o(t("66fd")),u=o(t("a2d4"));function o(n){return n&&n.__esModule?n:{default:n}}function a(n){for(var e=1;e<arguments.length;e++){var t=null!=arguments[e]?arguments[e]:{},u=Object.keys(t);"function"===typeof Object.getOwnPropertySymbols&&(u=u.concat(Object.getOwnPropertySymbols(t).filter(function(n){return Object.getOwnPropertyDescriptor(t,n).enumerable}))),u.forEach(function(e){i(n,e,t[e])})}return n}function i(n,e,t){return e in n?Object.defineProperty(n,e,{value:t,enumerable:!0,configurable:!0,writable:!0}):n[e]=t,n}e.default.config.productionTip=!1;var r=function(){return t.e("components/uni-nav-bar/uni-nav-bar").then(t.bind(null,"a5f2"))};e.default.component("uni-nav-bar",r);var l=function(){return t.e("components/uni-popup/uni-popup").then(t.bind(null,"1947"))};e.default.component("uni-popup",l);var c=function(){return t.e("components/uni-search-bar/uni-search-bar").then(t.bind(null,"9b27"))};e.default.component("uni-searchBar",c);var f=function(){return t.e("components/uni-list/uni-list").then(t.bind(null,"cb59"))},d=function(){return t.e("components/uni-list-item/uni-list-item").then(t.bind(null,"a055"))};e.default.component("uni-list",f),e.default.component("uni-list-item",d);var p=function(){return t.e("components/uni-tag/uni-tag").then(t.bind(null,"4c08"))};e.default.component("uni-tag",p);var s=function(){return t.e("components/uni-number-box/uni-number-box").then(t.bind(null,"a6c6"))};e.default.component("uni-number-box",s);var b=function(){return Promise.all([t.e("common/vendor"),t.e("components/uni-icons/uni-icons")]).then(t.bind(null,"123a"))};e.default.component("uni-icons",b),u.default.mpType="app";var v=new e.default(a({},u.default));n(v).$mount()}).call(this,t("6e42")["createApp"])},a2d4:function(n,e,t){"use strict";t.r(e);var u=t("ba21");for(var o in u)"default"!==o&&function(n){t.d(e,n,function(){return u[n]})}(o);t("c4c6");var a,i,r,l,c=t("f0c5"),f=Object(c["a"])(u["default"],a,i,!1,null,null,null,!1,r,l);e["default"]=f.exports},ba21:function(n,e,t){"use strict";t.r(e);var u=t("c8de"),o=t.n(u);for(var a in u)"default"!==a&&function(n){t.d(e,n,function(){return u[n]})}(a);e["default"]=o.a},c4c6:function(n,e,t){"use strict";var u=t("70be"),o=t.n(u);o.a},c8de:function(n,e,t){"use strict";(function(n,u){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;var o=i(t("f691")),a=i(t("b5ea"));function i(n){return n&&n.__esModule?n:{default:n}}var r={onLaunch:function(){var e=n.getSystemInfoSync();e.versionCode=0,e.version="v1.0.0",e.bookshelfChanged=!1,e.model&&-1!==e.model.indexOf("iPhone")?e.titleBarHeight=44:e.titleBarHeight=48,plus.runtime.getProperty(plus.runtime.appid,function(t){e.versionCode=t.versionCode,e.version=t.version,"android"==String(e.platform).toLowerCase()&&(o.default.debug&&u("log","request version api",o.default.api.lastestVersion," at App.vue:26"),a.default.request(o.default.api.lastestVersion).then(function(t){o.default.debug&&u("log","latest version:",t," at App.vue:28"),t&&t.data&&t.data.version&&(o.default.debug&&u("log","当前版本",e.versionCode,"最新版本",t.data.version," at App.vue:30"),e.versionCode<t.data.version&&n.showModal({title:"温馨提示",content:"发现新版本APP，您是否要升级体验？",cancelText:"暂时忽略",confirmText:"码上升级",success:function(n){n.confirm?(o.default.debug&&u("log","用户点击确定"," at App.vue:39"),plus.runtime.openURL(t.data.url)):t.cancel&&o.default.debug&&u("log","用户点击取消"," at App.vue:42")}}))}).catch(function(n){u("log",n," at App.vue:49")}))}),o.default.debug&&(u("log",e," at App.vue:56"),u("log","platform",e.platform," at App.vue:57")),a.default.setSysInfo(e)},onShow:function(){o.default.debug&&u("log","App Show"," at App.vue:62")},onHide:function(){o.default.debug&&u("log","App Hide"," at App.vue:65")}};e.default=r}).call(this,t("6e42")["default"],t("0de9")["default"])}},[["944f","common/runtime","common/vendor"]]]);
 });
 define('common/runtime.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
 "use strict";
 
 (function (n) {
   function e(e) {
-    for (var o, r, s = e[0], u = e[1], c = e[2], p = 0, l = []; p < s.length; p++) {
-      r = s[p], i[r] && l.push(i[r][0]), i[r] = 0;
+    for (var o, r, a = e[0], s = e[1], c = e[2], p = 0, m = []; p < a.length; p++) {
+      r = a[p], i[r] && m.push(i[r][0]), i[r] = 0;
     }
 
-    for (o in u) {
-      Object.prototype.hasOwnProperty.call(u, o) && (n[o] = u[o]);
+    for (o in s) {
+      Object.prototype.hasOwnProperty.call(s, o) && (n[o] = s[o]);
     }
 
-    m && m(e);
+    l && l(e);
 
-    while (l.length) {
-      l.shift()();
+    while (m.length) {
+      m.shift()();
     }
 
-    return a.push.apply(a, c || []), t();
+    return u.push.apply(u, c || []), t();
   }
 
   function t() {
-    for (var n, e = 0; e < a.length; e++) {
-      for (var t = a[e], o = !0, r = 1; r < t.length; r++) {
-        var s = t[r];
-        0 !== i[s] && (o = !1);
+    for (var n, e = 0; e < u.length; e++) {
+      for (var t = u[e], o = !0, r = 1; r < t.length; r++) {
+        var a = t[r];
+        0 !== i[a] && (o = !1);
       }
 
-      o && (a.splice(e--, 1), n = u(u.s = t[0]));
+      o && (u.splice(e--, 1), n = s(s.s = t[0]));
     }
 
     return n;
@@ -2864,110 +2781,108 @@ define('common/runtime.js',function(require, module, exports, window, document, 
       i = {
     "common/runtime": 0
   },
-      a = [];
+      u = [];
 
-  function s(n) {
-    return u.p + "" + n + ".js";
+  function a(n) {
+    return s.p + "" + n + ".js";
   }
 
-  function u(e) {
+  function s(e) {
     if (o[e]) return o[e].exports;
     var t = o[e] = {
       i: e,
       l: !1,
       exports: {}
     };
-    return n[e].call(t.exports, t, t.exports, u), t.l = !0, t.exports;
+    return n[e].call(t.exports, t, t.exports, s), t.l = !0, t.exports;
   }
 
-  u.e = function (n) {
+  s.e = function (n) {
     var e = [],
         t = {
-      "components/hx-navbar/hx-navbar": 1,
+      "components/uni-icons/uni-icons": 1,
       "components/uni-list-item/uni-list-item": 1,
       "components/uni-list/uni-list": 1,
       "components/uni-nav-bar/uni-nav-bar": 1,
+      "components/uni-number-box/uni-number-box": 1,
       "components/uni-popup/uni-popup": 1,
       "components/uni-search-bar/uni-search-bar": 1,
+      "components/uni-tag/uni-tag": 1,
       "components/header": 1,
       "components/loading": 1,
       "components/search": 1,
       "components/uni-rate/uni-rate": 1,
-      "components/listBook": 1,
       "components/tab": 1,
-      "components/scrollBook": 1,
-      "components/uni-icons/uni-icons": 1,
       "components/uni-badge/uni-badge": 1,
       "components/uni-status-bar/uni-status-bar": 1,
       "components/uni-transition/uni-transition": 1
     };
     r[n] ? e.push(r[n]) : 0 !== r[n] && t[n] && e.push(r[n] = new Promise(function (e, t) {
       for (var o = ({
-        "components/hx-navbar/hx-navbar": "components/hx-navbar/hx-navbar",
+        "components/uni-icons/uni-icons": "components/uni-icons/uni-icons",
         "components/uni-list-item/uni-list-item": "components/uni-list-item/uni-list-item",
         "components/uni-list/uni-list": "components/uni-list/uni-list",
         "components/uni-nav-bar/uni-nav-bar": "components/uni-nav-bar/uni-nav-bar",
+        "components/uni-number-box/uni-number-box": "components/uni-number-box/uni-number-box",
         "components/uni-popup/uni-popup": "components/uni-popup/uni-popup",
         "components/uni-search-bar/uni-search-bar": "components/uni-search-bar/uni-search-bar",
+        "components/uni-tag/uni-tag": "components/uni-tag/uni-tag",
         "components/header": "components/header",
         "components/loading": "components/loading",
         "components/search": "components/search",
         "components/uni-rate/uni-rate": "components/uni-rate/uni-rate",
-        "components/listBook": "components/listBook",
         "components/tab": "components/tab",
-        "components/scrollBook": "components/scrollBook",
-        "components/uni-icons/uni-icons": "components/uni-icons/uni-icons",
         "components/uni-badge/uni-badge": "components/uni-badge/uni-badge",
         "components/uni-status-bar/uni-status-bar": "components/uni-status-bar/uni-status-bar",
         "components/uni-transition/uni-transition": "components/uni-transition/uni-transition"
-      }[n] || n) + ".wxss", i = u.p + o, a = document.getElementsByTagName("link"), s = 0; s < a.length; s++) {
-        var c = a[s],
+      }[n] || n) + ".wxss", i = s.p + o, u = document.getElementsByTagName("link"), a = 0; a < u.length; a++) {
+        var c = u[a],
             p = c.getAttribute("data-href") || c.getAttribute("href");
         if ("stylesheet" === c.rel && (p === o || p === i)) return e();
       }
 
-      var l = document.getElementsByTagName("style");
+      var m = document.getElementsByTagName("style");
 
-      for (s = 0; s < l.length; s++) {
-        c = l[s], p = c.getAttribute("data-href");
+      for (a = 0; a < m.length; a++) {
+        c = m[a], p = c.getAttribute("data-href");
         if (p === o || p === i) return e();
       }
 
-      var m = document.createElement("link");
-      m.rel = "stylesheet", m.type = "text/css", m.onload = e, m.onerror = function (e) {
+      var l = document.createElement("link");
+      l.rel = "stylesheet", l.type = "text/css", l.onload = e, l.onerror = function (e) {
         var o = e && e.target && e.target.src || i,
-            a = new Error("Loading CSS chunk " + n + " failed.\n(" + o + ")");
-        a.request = o, delete r[n], m.parentNode.removeChild(m), t(a);
-      }, m.href = i;
-      var f = document.getElementsByTagName("head")[0];
-      f.appendChild(m);
+            u = new Error("Loading CSS chunk " + n + " failed.\n(" + o + ")");
+        u.request = o, delete r[n], l.parentNode.removeChild(l), t(u);
+      }, l.href = i;
+      var b = document.getElementsByTagName("head")[0];
+      b.appendChild(l);
     }).then(function () {
       r[n] = 0;
     }));
     var o = i[n];
     if (0 !== o) if (o) e.push(o[2]);else {
-      var a = new Promise(function (e, t) {
+      var u = new Promise(function (e, t) {
         o = i[n] = [e, t];
       });
-      e.push(o[2] = a);
+      e.push(o[2] = u);
       var c,
           p = document.createElement("script");
-      p.charset = "utf-8", p.timeout = 120, u.nc && p.setAttribute("nonce", u.nc), p.src = s(n), c = function c(e) {
-        p.onerror = p.onload = null, clearTimeout(l);
+      p.charset = "utf-8", p.timeout = 120, s.nc && p.setAttribute("nonce", s.nc), p.src = a(n), c = function c(e) {
+        p.onerror = p.onload = null, clearTimeout(m);
         var t = i[n];
 
         if (0 !== t) {
           if (t) {
             var o = e && ("load" === e.type ? "missing" : e.type),
                 r = e && e.target && e.target.src,
-                a = new Error("Loading chunk " + n + " failed.\n(" + o + ": " + r + ")");
-            a.type = o, a.request = r, t[1](a);
+                u = new Error("Loading chunk " + n + " failed.\n(" + o + ": " + r + ")");
+            u.type = o, u.request = r, t[1](u);
           }
 
           i[n] = void 0;
         }
       };
-      var l = setTimeout(function () {
+      var m = setTimeout(function () {
         c({
           type: "timeout",
           target: p
@@ -2976,56 +2891,56 @@ define('common/runtime.js',function(require, module, exports, window, document, 
       p.onerror = p.onload = c, document.head.appendChild(p);
     }
     return Promise.all(e);
-  }, u.m = n, u.c = o, u.d = function (n, e, t) {
-    u.o(n, e) || Object.defineProperty(n, e, {
+  }, s.m = n, s.c = o, s.d = function (n, e, t) {
+    s.o(n, e) || Object.defineProperty(n, e, {
       enumerable: !0,
       get: t
     });
-  }, u.r = function (n) {
+  }, s.r = function (n) {
     "undefined" !== typeof Symbol && Symbol.toStringTag && Object.defineProperty(n, Symbol.toStringTag, {
       value: "Module"
     }), Object.defineProperty(n, "__esModule", {
       value: !0
     });
-  }, u.t = function (n, e) {
-    if (1 & e && (n = u(n)), 8 & e) return n;
+  }, s.t = function (n, e) {
+    if (1 & e && (n = s(n)), 8 & e) return n;
     if (4 & e && "object" === typeof n && n && n.__esModule) return n;
     var t = Object.create(null);
-    if (u.r(t), Object.defineProperty(t, "default", {
+    if (s.r(t), Object.defineProperty(t, "default", {
       enumerable: !0,
       value: n
     }), 2 & e && "string" != typeof n) for (var o in n) {
-      u.d(t, o, function (e) {
+      s.d(t, o, function (e) {
         return n[e];
       }.bind(null, o));
     }
     return t;
-  }, u.n = function (n) {
+  }, s.n = function (n) {
     var e = n && n.__esModule ? function () {
       return n["default"];
     } : function () {
       return n;
     };
-    return u.d(e, "a", e), e;
-  }, u.o = function (n, e) {
+    return s.d(e, "a", e), e;
+  }, s.o = function (n, e) {
     return Object.prototype.hasOwnProperty.call(n, e);
-  }, u.p = "/", u.oe = function (n) {
+  }, s.p = "/", s.oe = function (n) {
     throw console.error(n), n;
   };
   var c = global["webpackJsonp"] = global["webpackJsonp"] || [],
       p = c.push.bind(c);
   c.push = e, c = c.slice();
 
-  for (var l = 0; l < c.length; l++) {
-    e(c[l]);
+  for (var m = 0; m < c.length; m++) {
+    e(c[m]);
   }
 
-  var m = p;
+  var l = p;
   t();
 })([]);
 });
 define('common/vendor.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["common/vendor"],{"0007":function(t,e,n){},"0de9":function(t,e,n){"use strict";function r(t){var e=Object.prototype.toString.call(t);return e.substring(8,e.length-1)}function o(){return"string"===typeof __channelId__&&__channelId__}function i(){for(var t=arguments.length,e=new Array(t),n=0;n<t;n++)e[n]=arguments[n];var i=e.shift();if(o())return e.push(e.pop().replace("at ","uni-app:///")),console[i]["apply"](console,e);var a=e.map(function(t){var e=Object.prototype.toString.call(t);if("[object object]"===e.toLowerCase())try{t="---BEGIN:JSON---"+JSON.stringify(t)+"---END:JSON---"}catch(o){t="[object object]"}else if(null===t)t="---NULL---";else if(void 0===t)t="---UNDEFINED---";else{var n=r(t).toUpperCase();t="NUMBER"===n||"BOOLEAN"===n?"---BEGIN:"+n+"---"+t+"---END:"+n+"---":String(t)}return t}),s="";if(a.length>1){var u=a.pop();s=a.join("---COMMA---"),0===u.indexOf(" at ")?s+=u:s+="---COMMA---"+u}else s=a[0];console[i](s)}Object.defineProperty(e,"__esModule",{value:!0}),e.default=i},"10f8":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;var r={pages:{"pages/login/login":{navigationBarTitleText:"登录"},"pages/tabs/tab1":{navigationBarTitleText:"存存"},"pages/tabs/tab2":{navigationBarTitleText:"我的订单"},"pages/tabs/tab3":{navigationBarTitleText:"我的"},"pages/tab1/book":{navigationBarTitleText:"我的书架"},"pages/tab1/clothes":{navigationBarTitleText:"我的衣柜"},"pages/tab1/shoes":{navigationBarTitleText:"我的鞋柜"},"pages/tab1/storage":{navigationBarTitleText:"我的储藏室"},"pages/tab1/search":{navigationBarTitleText:"搜索"},"pages/tab2/demo7":{navigationBarTitleText:"测试"},"pages/tab1/index":{navigationBarTitleText:"测试"},"pages/notfound/notfound":{navigationBarTitleText:"未找到对象"},"pages/login/reg":{navigationBarTitleText:"注册"},"pages/login/agreement":{navigationBarTitleText:"存存用户服务协议"},"pages/tab3/setting":{navigationBarTitleText:"设置"},"pages/tab3/address":{navigationBarTitleText:"地址"}},globalStyle:{navigationBarTextStyle:"black",navigationBarTitleText:"cuncun-app",navigationBarBackgroundColor:"#FFFFFF",backgroundColor:"#FFFFFF",navigationStyle:"custom"}};e.default=r},3827:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;var r={appid:"__UNI__tech.cuncun.cuncun"};e.default=r},"66fd":function(t,e,n){"use strict";n.r(e),function(t){
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["common/vendor"],{"0007":function(t,e,n){},"0de9":function(t,e,n){"use strict";function r(t){var e=Object.prototype.toString.call(t);return e.substring(8,e.length-1)}function o(){return"string"===typeof __channelId__&&__channelId__}function i(){for(var t=arguments.length,e=new Array(t),n=0;n<t;n++)e[n]=arguments[n];var i=e.shift();if(o())return e.push(e.pop().replace("at ","uni-app:///")),console[i]["apply"](console,e);var a=e.map(function(t){var e=Object.prototype.toString.call(t);if("[object object]"===e.toLowerCase())try{t="---BEGIN:JSON---"+JSON.stringify(t)+"---END:JSON---"}catch(o){t="[object object]"}else if(null===t)t="---NULL---";else if(void 0===t)t="---UNDEFINED---";else{var n=r(t).toUpperCase();t="NUMBER"===n||"BOOLEAN"===n?"---BEGIN:"+n+"---"+t+"---END:"+n+"---":String(t)}return t}),s="";if(a.length>1){var u=a.pop();s=a.join("---COMMA---"),0===u.indexOf(" at ")?s+=u:s+="---COMMA---"+u}else s=a[0];console[i](s)}Object.defineProperty(e,"__esModule",{value:!0}),e.default=i},"10f8":function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;var r={pages:{"pages/login/login":{navigationBarTitleText:"登录",bounce:"none"},"pages/tabs/tab1":{navigationBarTitleText:"存存",bounce:"none"},"pages/tabs/tab2":{navigationBarTitleText:"我的订单",bounce:"none"},"pages/tabs/tab3":{navigationBarTitleText:"我的",bounce:"none"},"pages/tab1/book":{navigationBarTitleText:"我的书架",bounce:"none"},"pages/tab1/clothes":{navigationBarTitleText:"我的衣柜",bounce:"none"},"pages/tab1/shoes":{navigationBarTitleText:"我的鞋柜",bounce:"none"},"pages/tab1/storage":{navigationBarTitleText:"我的储藏室",bounce:"none"},"pages/tab1/search":{navigationBarTitleText:"搜索",bounce:"none"},"pages/tab2/demo7":{navigationBarTitleText:"测试",bounce:"none"},"pages/tab1/index":{navigationBarTitleText:"测试",bounce:"none"},"pages/notfound/notfound":{navigationBarTitleText:"未找到对象",bounce:"none"},"pages/login/reg":{navigationBarTitleText:"注册",bounce:"none"},"pages/login/agreement":{navigationBarTitleText:"存存用户服务协议",bounce:"none"},"pages/tab2/addOrder":{navigationBarTitleText:"添加订单",bounce:"none"},"pages/tab3/setting":{navigationBarTitleText:"设置",bounce:"none"},"pages/tab3/address":{navigationBarTitleText:"地址",bounce:"none"}},globalStyle:{navigationBarTextStyle:"black",navigationBarTitleText:"cuncun-app",navigationBarBackgroundColor:"#FFFFFF",backgroundColor:"#FFFFFF",navigationStyle:"custom"}};e.default=r},3827:function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;var r={appid:"__UNI__tech.cuncun.cuncun"};e.default=r},"66fd":function(t,e,n){"use strict";n.r(e),function(t){
 /*!
  * Vue.js v2.6.11
  * (c) 2014-2020 Evan You
@@ -3213,483 +3128,6 @@ define('components/header.js',function(require, module, exports, window, documen
 }, [['components/header-create-component']]]);
 });
 require('components/header.js');
-__wxRoute = 'components/hx-navbar/hx-navbar';__wxRouteBegin = true;__wxAppCurrentFile__ = 'components/hx-navbar/hx-navbar.js';
-
-define('components/hx-navbar/hx-navbar.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-"use strict";
-
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["components/hx-navbar/hx-navbar"], {
-  "0283": function _(t, o, r) {
-    "use strict";
-
-    (function (t) {
-      Object.defineProperty(o, "__esModule", {
-        value: !0
-      }), o.default = void 0;
-
-      var n = function n() {
-        return Promise.all([r.e("common/vendor"), r.e("components/uni-icons/uni-icons")]).then(r.bind(null, "123a"));
-      },
-          a = t.getSystemInfoSync().statusBarHeight + "px",
-          e = {
-        name: "hx-navbar",
-        components: {
-          uniIcons: n
-        },
-        data: function data() {
-          return {
-            statusBarHeight: a,
-            transparentValue: 0,
-            navTransparentFixedFontColor: "#fff",
-            statusBarFontColorInfo: [],
-            backgroundColorRgba: "rgba(255,255,255,1)",
-            backgroundColorRgb: "rgb(222,222,222)",
-            colorInfo: "#000000",
-            placeholder: !1,
-            colorContainer: null,
-            slotSlidiSwitch: 0
-          };
-        },
-        props: {
-          height: {
-            type: String,
-            default: "44px"
-          },
-          barPlaceholder: {
-            type: String,
-            default: "auto"
-          },
-          back: {
-            type: [Boolean, String],
-            default: !0
-          },
-          title: {
-            type: String,
-            default: ""
-          },
-          leftSlot: {
-            type: [Boolean, String],
-            default: !0
-          },
-          rightSlot: {
-            type: [Boolean, String],
-            default: !0
-          },
-          leftText: {
-            type: String,
-            default: ""
-          },
-          rightText: {
-            type: String,
-            default: ""
-          },
-          leftIcon: {
-            type: String,
-            default: ""
-          },
-          rightIcon: {
-            type: String,
-            default: ""
-          },
-          fixed: {
-            type: [Boolean, String],
-            default: !1
-          },
-          color: {
-            type: [Array, String],
-            default: "#000000"
-          },
-          backgroundColor: {
-            type: Array,
-            default: function _default() {
-              return new Array([255, 255, 255], [255, 255, 255]);
-            }
-          },
-          backgroundColorLinearDeg: {
-            type: String,
-            default: "45"
-          },
-          backgroundImg: {
-            type: String,
-            default: ""
-          },
-          transparent: {
-            type: String,
-            default: "show"
-          },
-          statusBarFontColor: {
-            type: [Array, String],
-            default: function _default() {
-              return new Array("#000000", "#000000");
-            }
-          },
-          statusBar: {
-            type: [Boolean, String],
-            default: !0
-          },
-          statusBarBackground: {
-            type: String,
-            default: ""
-          },
-          shadow: {
-            type: [String, Boolean],
-            default: !1
-          },
-          border: {
-            type: [String, Boolean],
-            default: !1
-          },
-          defaultBackUrl: {
-            type: String,
-            default: ""
-          },
-          backTabbarUrl: {
-            type: String,
-            default: "/pages/index/index"
-          },
-          leftSlidiSwitch: {
-            type: [Boolean, String],
-            default: !1
-          },
-          centerSlidiSwitch: {
-            type: [Boolean, String],
-            default: !1
-          },
-          rightSlidiSwitch: {
-            type: [Boolean, String],
-            default: !1
-          }
-        },
-        created: function created() {
-          var t = this;
-
-          switch (t.barPlaceholder) {
-            case "show":
-              t.placeholder = !0;
-              break;
-
-            case "hidden":
-              t.placeholder = !1;
-              break;
-
-            case "auto":
-              t.fixed && (t.placeholder = !0);
-              break;
-          }
-
-          switch (t.setStatusBarFontColor(), t.colorContainer = "object" == typeof t.color ? t.color : [t.color, t.color], t.colorInfo = t.colorContainer[0], t.transparent) {
-            case "show":
-              t.transparentValue = 1;
-              break;
-
-            case "hidden":
-              t.transparentValue = 0;
-              break;
-
-            case "auto":
-              var o = getCurrentPages();
-
-              o[o.length - 1].onPageScroll = function (o) {
-                t.$emit("scroll", o), o.scrollTop > 100 ? (t.transparentValue = 1, t.colorInfo = t.colorContainer[1]) : (t.transparentValue = o.scrollTop / 100, t.colorInfo = t.colorContainer[0]), t.setBgColor();
-              };
-
-              break;
-          }
-
-          if (t.setBgColor(), t.fixed && (t.leftSlidiSwitch || t.centerSlidiSwitch || t.rightSlidiSwitch)) {
-            var r = getCurrentPages();
-
-            r[r.length - 1].onPageScroll = function (o) {
-              t.$emit("scroll", o), o.scrollTop > 100 ? t.slotSlidiSwitch = 1 : t.slotSlidiSwitch = 0;
-            };
-          }
-        },
-        watch: {
-          transparentValue: function transparentValue(o, r) {
-            var n = this;
-            r > .8 ? t.setNavigationBarColor({
-              frontColor: n.statusBarFontColorInfo[1],
-              backgroundColor: n.backgroundColorRgb
-            }) : r < .2 && t.setNavigationBarColor({
-              frontColor: n.statusBarFontColorInfo[0],
-              backgroundColor: n.backgroundColorRgb
-            });
-          },
-          backgroundColor: function backgroundColor(t, o) {
-            var r = this;
-            r.setBgColor();
-          },
-          color: function color(t, o) {
-            var r = this;
-            r.colorContainer = "object" == typeof t ? t : [t, t], r.colorInfo = r.colorContainer[0];
-          }
-        },
-        methods: {
-          onClickLeft: function onClickLeft() {
-            this.back ? getCurrentPages().length > 1 ? t.navigateBack() : this.defaultBackUrl ? t.redirectTo({
-              url: this.defaultBackUrl
-            }) : this.backTabbarUrl && t.reLaunch({
-              url: this.backTabbarUrl
-            }) : this.$emit("click-left");
-          },
-          onClickRight: function onClickRight() {
-            this.$emit("click-right");
-          },
-          setBgColor: function setBgColor() {
-            var t = this;
-
-            if ("object" == typeof t.backgroundColor[0]) {
-              var o = t.backgroundColor.length;
-
-              if (o >= 2) {
-                var r = "linear-gradient(" + t.backgroundColorLinearDeg + "deg,",
-                    n = null;
-
-                for (var a in t.backgroundColor) {
-                  n = t.backgroundColor[a], r += "rgba(" + n[0] + "," + n[1] + "," + n[2] + "," + t.transparentValue + ")", o != 1 * a + 1 && (r += ",");
-                }
-
-                r += ")", t.backgroundColorRgba = r;
-              }
-            } else {
-              var e = t.backgroundColor[0] + "," + t.backgroundColor[1] + "," + t.backgroundColor[2];
-              t.backgroundColorRgb = "rgb(" + e + ")", t.backgroundColorRgba = "rgba(" + e + "," + t.transparentValue + ")";
-            }
-          },
-          setStatusBarFontColor: function setStatusBarFontColor() {
-            var o = this;
-            "string" == typeof o.statusBarFontColor ? o.statusBarFontColorInfo = [o.statusBarFontColor, o.statusBarFontColor] : "object" == typeof o.statusBarFontColor && (1 == o.statusBarFontColor.length ? o.statusBarFontColorInfo = [o.statusBarFontColor[0], o.statusBarFontColor[0]] : o.statusBarFontColor.length >= 2 && (o.statusBarFontColorInfo = [o.statusBarFontColor[0], o.statusBarFontColor[1]])), t.setNavigationBarColor({
-              frontColor: o.statusBarFontColorInfo[0],
-              backgroundColor: o.backgroundColorRgb
-            });
-          }
-        },
-        destroyed: function destroyed() {}
-      };
-
-      o.default = e;
-    }).call(this, r("6e42")["default"]);
-  },
-  "1a27": function a27(t, o, r) {
-    "use strict";
-
-    var n = {
-      "uni-icons": function uniIcons() {
-        return Promise.all([r.e("common/vendor"), r.e("components/uni-icons/uni-icons")]).then(r.bind(null, "123a"));
-      }
-    },
-        a = function a() {
-      var t = this,
-          o = t.$createElement;
-      t._self._c;
-    },
-        e = [];
-
-    r.d(o, "b", function () {
-      return a;
-    }), r.d(o, "c", function () {
-      return e;
-    }), r.d(o, "a", function () {
-      return n;
-    });
-  },
-  "31a8": function a8(t, o, r) {
-    "use strict";
-
-    r.r(o);
-    var n = r("0283"),
-        a = r.n(n);
-
-    for (var e in n) {
-      "default" !== e && function (t) {
-        r.d(o, t, function () {
-          return n[t];
-        });
-      }(e);
-    }
-
-    o["default"] = a.a;
-  },
-  3268: function _(t, o, r) {},
-  "670c": function c(t, o, r) {
-    "use strict";
-
-    r.r(o);
-    var n = r("1a27"),
-        a = r("31a8");
-
-    for (var e in a) {
-      "default" !== e && function (t) {
-        r.d(o, t, function () {
-          return a[t];
-        });
-      }(e);
-    }
-
-    r("7a92");
-    var l,
-        i = r("f0c5"),
-        u = Object(i["a"])(a["default"], n["b"], n["c"], !1, null, null, null, !1, n["a"], l);
-    o["default"] = u.exports;
-  },
-  "7a92": function a92(t, o, r) {
-    "use strict";
-
-    var n = r("3268"),
-        a = r.n(n);
-    a.a;
-  }
-}]);
-;
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push(['components/hx-navbar/hx-navbar-create-component', {
-  'components/hx-navbar/hx-navbar-create-component': function componentsHxNavbarHxNavbarCreateComponent(module, exports, __webpack_require__) {
-    __webpack_require__('6e42')['createComponent'](__webpack_require__("670c"));
-  }
-}, [['components/hx-navbar/hx-navbar-create-component']]]);
-});
-require('components/hx-navbar/hx-navbar.js');
-__wxRoute = 'components/listBook';__wxRouteBegin = true;__wxAppCurrentFile__ = 'components/listBook.js';
-
-define('components/listBook.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-"use strict";
-
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["components/listBook"], {
-  "3c83": function c83(t, o, e) {
-    "use strict";
-
-    var n,
-        r = function r() {
-      var t = this,
-          o = t.$createElement;
-      t._self._c;
-    },
-        a = [];
-
-    e.d(o, "b", function () {
-      return r;
-    }), e.d(o, "c", function () {
-      return a;
-    }), e.d(o, "a", function () {
-      return n;
-    });
-  },
-  "5d77": function d77(t, o, e) {
-    "use strict";
-
-    var n = e("b99e"),
-        r = e.n(n);
-    r.a;
-  },
-  6193: function _(t, o, e) {
-    "use strict";
-
-    e.r(o);
-    var n = e("3c83"),
-        r = e("6954");
-
-    for (var a in r) {
-      "default" !== a && function (t) {
-        e.d(o, t, function () {
-          return r[t];
-        });
-      }(a);
-    }
-
-    e("5d77");
-    var u,
-        i = e("f0c5"),
-        s = Object(i["a"])(r["default"], n["b"], n["c"], !1, null, null, null, !1, n["a"], u);
-    o["default"] = s.exports;
-  },
-  6954: function _(t, o, e) {
-    "use strict";
-
-    e.r(o);
-    var n = e("848f"),
-        r = e.n(n);
-
-    for (var a in n) {
-      "default" !== a && function (t) {
-        e.d(o, t, function () {
-          return n[t];
-        });
-      }(a);
-    }
-
-    o["default"] = r.a;
-  },
-  "848f": function f(t, o, e) {
-    "use strict";
-
-    Object.defineProperty(o, "__esModule", {
-      value: !0
-    }), o.default = void 0;
-    var n = r(e("b5ea"));
-
-    function r(t) {
-      return t && t.__esModule ? t : {
-        default: t
-      };
-    }
-
-    var a = {
-      name: "listBook",
-      data: function data() {
-        return {
-          showBooks: []
-        };
-      },
-      props: {
-        books: {
-          type: Array
-        }
-      },
-      created: function created() {
-        this.showBooks = this.formateBooks(this.books);
-      },
-      watch: {
-        books: function books() {
-          this.showBooks = this.formateBooks(this.books);
-        }
-      },
-      methods: {
-        formateBooks: function formateBooks(t) {
-          var o = [],
-              e = !0,
-              r = !1,
-              a = void 0;
-
-          try {
-            for (var u, i = this.books[Symbol.iterator](); !(e = (u = i.next()).done); e = !0) {
-              var s = u.value;
-              s["view"] = n.default.fixView(s.view), s["created_at"] = n.default.relativeTime(s.created_at), o.push(s);
-            }
-          } catch (f) {
-            r = !0, a = f;
-          } finally {
-            try {
-              e || null == i.return || i.return();
-            } finally {
-              if (r) throw a;
-            }
-          }
-
-          return o;
-        }
-      }
-    };
-    o.default = a;
-  },
-  b99e: function b99e(t, o, e) {}
-}]);
-;
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push(['components/listBook-create-component', {
-  'components/listBook-create-component': function componentsListBookCreateComponent(module, exports, __webpack_require__) {
-    __webpack_require__('6e42')['createComponent'](__webpack_require__("6193"));
-  }
-}, [['components/listBook-create-component']]]);
-});
-require('components/listBook.js');
 __wxRoute = 'components/loading';__wxRouteBegin = true;__wxAppCurrentFile__ = 'components/loading.js';
 
 define('components/loading.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
@@ -3790,112 +3228,6 @@ define('components/loading.js',function(require, module, exports, window, docume
 }, [['components/loading-create-component']]]);
 });
 require('components/loading.js');
-__wxRoute = 'components/scrollBook';__wxRouteBegin = true;__wxAppCurrentFile__ = 'components/scrollBook.js';
-
-define('components/scrollBook.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-"use strict";
-
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["components/scrollBook"], {
-  "3f6d": function f6d(t, n, e) {
-    "use strict";
-
-    e.r(n);
-    var u = e("f6a4"),
-        r = e.n(u);
-
-    for (var a in u) {
-      "default" !== a && function (t) {
-        e.d(n, t, function () {
-          return u[t];
-        });
-      }(a);
-    }
-
-    n["default"] = r.a;
-  },
-  "70ce": function ce(t, n, e) {
-    "use strict";
-
-    var u = e("873f"),
-        r = e.n(u);
-    r.a;
-  },
-  "7bc9": function bc9(t, n, e) {
-    "use strict";
-
-    var u,
-        r = function r() {
-      var t = this,
-          n = t.$createElement;
-      t._self._c;
-    },
-        a = [];
-
-    e.d(n, "b", function () {
-      return r;
-    }), e.d(n, "c", function () {
-      return a;
-    }), e.d(n, "a", function () {
-      return u;
-    });
-  },
-  "873f": function f(t, n, e) {},
-  de73: function de73(t, n, e) {
-    "use strict";
-
-    e.r(n);
-    var u = e("7bc9"),
-        r = e("3f6d");
-
-    for (var a in r) {
-      "default" !== a && function (t) {
-        e.d(n, t, function () {
-          return r[t];
-        });
-      }(a);
-    }
-
-    e("70ce");
-    var c,
-        o = e("f0c5"),
-        f = Object(o["a"])(r["default"], u["b"], u["c"], !1, null, "ad0ae004", null, !1, u["a"], c);
-    n["default"] = f.exports;
-  },
-  f6a4: function f6a4(t, n, e) {
-    "use strict";
-
-    Object.defineProperty(n, "__esModule", {
-      value: !0
-    }), n.default = void 0;
-    var u = {
-      name: "scrollBook",
-      data: function data() {
-        return {};
-      },
-      props: {
-        books: {
-          type: Array,
-          default: function _default(t) {
-            return [];
-          }
-        },
-        width: {
-          type: String,
-          default: "690upx"
-        }
-      }
-    };
-    n.default = u;
-  }
-}]);
-;
-(global["webpackJsonp"] = global["webpackJsonp"] || []).push(['components/scrollBook-create-component', {
-  'components/scrollBook-create-component': function componentsScrollBookCreateComponent(module, exports, __webpack_require__) {
-    __webpack_require__('6e42')['createComponent'](__webpack_require__("de73"));
-  }
-}, [['components/scrollBook-create-component']]]);
-});
-require('components/scrollBook.js');
 __wxRoute = 'components/search';__wxRouteBegin = true;__wxAppCurrentFile__ = 'components/search.js';
 
 define('components/search.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
@@ -4886,6 +4218,162 @@ define('components/uni-nav-bar/uni-nav-bar.js',function(require, module, exports
 }, [['components/uni-nav-bar/uni-nav-bar-create-component']]]);
 });
 require('components/uni-nav-bar/uni-nav-bar.js');
+__wxRoute = 'components/uni-number-box/uni-number-box';__wxRouteBegin = true;__wxAppCurrentFile__ = 'components/uni-number-box/uni-number-box.js';
+
+define('components/uni-number-box/uni-number-box.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
+"use strict";
+
+(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["components/uni-number-box/uni-number-box"], {
+  1490: function _(t, e, n) {},
+  "3a0f": function a0f(t, e, n) {
+    "use strict";
+
+    Object.defineProperty(e, "__esModule", {
+      value: !0
+    }), e.default = void 0;
+    var i = {
+      name: "UniNumberBox",
+      props: {
+        value: {
+          type: [Number, String],
+          default: 1
+        },
+        min: {
+          type: Number,
+          default: 0
+        },
+        max: {
+          type: Number,
+          default: 100
+        },
+        step: {
+          type: Number,
+          default: 1
+        },
+        disabled: {
+          type: Boolean,
+          default: !1
+        }
+      },
+      data: function data() {
+        return {
+          inputValue: 0
+        };
+      },
+      watch: {
+        value: function value(t) {
+          this.inputValue = +t;
+        },
+        inputValue: function inputValue(t, e) {
+          +t !== +e && this.$emit("change", t);
+        }
+      },
+      created: function created() {
+        this.inputValue = +this.value;
+      },
+      methods: {
+        _calcValue: function _calcValue(t) {
+          if (!this.disabled) {
+            var e = this._getDecimalScale(),
+                n = this.inputValue * e,
+                i = this.step * e;
+
+            if ("minus" === t) {
+              if (n -= i, n < this.min) return;
+              n > this.max && (n = this.max);
+            } else if ("plus" === t) {
+              if (n += i, n > this.max) return;
+              n < this.min && (n = this.min);
+            }
+
+            this.inputValue = String(n / e);
+          }
+        },
+        _getDecimalScale: function _getDecimalScale() {
+          var t = 1;
+          return ~~this.step !== this.step && (t = Math.pow(10, (this.step + "").split(".")[1].length)), t;
+        },
+        _onBlur: function _onBlur(t) {
+          var e = t.detail.value;
+          e && (e = +e, e > this.max ? e = this.max : e < this.min && (e = this.min), this.inputValue = e);
+        }
+      }
+    };
+    e.default = i;
+  },
+  "85b1": function b1(t, e, n) {
+    "use strict";
+
+    n.r(e);
+    var i = n("3a0f"),
+        u = n.n(i);
+
+    for (var a in i) {
+      "default" !== a && function (t) {
+        n.d(e, t, function () {
+          return i[t];
+        });
+      }(a);
+    }
+
+    e["default"] = u.a;
+  },
+  "9f64": function f64(t, e, n) {
+    "use strict";
+
+    var i,
+        u = function u() {
+      var t = this,
+          e = t.$createElement;
+      t._self._c;
+    },
+        a = [];
+
+    n.d(e, "b", function () {
+      return u;
+    }), n.d(e, "c", function () {
+      return a;
+    }), n.d(e, "a", function () {
+      return i;
+    });
+  },
+  a6c6: function a6c6(t, e, n) {
+    "use strict";
+
+    n.r(e);
+    var i = n("9f64"),
+        u = n("85b1");
+
+    for (var a in u) {
+      "default" !== a && function (t) {
+        n.d(e, t, function () {
+          return u[t];
+        });
+      }(a);
+    }
+
+    n("f63b");
+    var r,
+        s = n("f0c5"),
+        l = Object(s["a"])(u["default"], i["b"], i["c"], !1, null, "3432cd2a", null, !1, i["a"], r);
+    e["default"] = l.exports;
+  },
+  f63b: function f63b(t, e, n) {
+    "use strict";
+
+    var i = n("1490"),
+        u = n.n(i);
+    u.a;
+  }
+}]);
+;
+(global["webpackJsonp"] = global["webpackJsonp"] || []).push(['components/uni-number-box/uni-number-box-create-component', {
+  'components/uni-number-box/uni-number-box-create-component': function componentsUniNumberBoxUniNumberBoxCreateComponent(module, exports, __webpack_require__) {
+    __webpack_require__('6e42')['createComponent'](__webpack_require__("a6c6"));
+  }
+}, [['components/uni-number-box/uni-number-box-create-component']]]);
+});
+require('components/uni-number-box/uni-number-box.js');
 __wxRoute = 'components/uni-popup/uni-popup';__wxRouteBegin = true;__wxAppCurrentFile__ = 'components/uni-popup/uni-popup.js';
 
 define('components/uni-popup/uni-popup.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
@@ -5530,6 +5018,132 @@ define('components/uni-status-bar/uni-status-bar.js',function(require, module, e
 }, [['components/uni-status-bar/uni-status-bar-create-component']]]);
 });
 require('components/uni-status-bar/uni-status-bar.js');
+__wxRoute = 'components/uni-tag/uni-tag';__wxRouteBegin = true;__wxAppCurrentFile__ = 'components/uni-tag/uni-tag.js';
+
+define('components/uni-tag/uni-tag.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
+"use strict";
+
+(global["webpackJsonp"] = global["webpackJsonp"] || []).push([["components/uni-tag/uni-tag"], {
+  "1a75": function a75(t, e, n) {},
+  "4c08": function c08(t, e, n) {
+    "use strict";
+
+    n.r(e);
+    var a = n("60b2"),
+        u = n("c604");
+
+    for (var i in u) {
+      "default" !== i && function (t) {
+        n.d(e, t, function () {
+          return u[t];
+        });
+      }(i);
+    }
+
+    n("d3c2");
+    var r,
+        c = n("f0c5"),
+        o = Object(c["a"])(u["default"], a["b"], a["c"], !1, null, "61d139a2", null, !1, a["a"], r);
+    e["default"] = o.exports;
+  },
+  "60b2": function b2(t, e, n) {
+    "use strict";
+
+    var a,
+        u = function u() {
+      var t = this,
+          e = t.$createElement;
+      t._self._c;
+    },
+        i = [];
+
+    n.d(e, "b", function () {
+      return u;
+    }), n.d(e, "c", function () {
+      return i;
+    }), n.d(e, "a", function () {
+      return a;
+    });
+  },
+  c604: function c604(t, e, n) {
+    "use strict";
+
+    n.r(e);
+    var a = n("f857"),
+        u = n.n(a);
+
+    for (var i in a) {
+      "default" !== i && function (t) {
+        n.d(e, t, function () {
+          return a[t];
+        });
+      }(i);
+    }
+
+    e["default"] = u.a;
+  },
+  d3c2: function d3c2(t, e, n) {
+    "use strict";
+
+    var a = n("1a75"),
+        u = n.n(a);
+    u.a;
+  },
+  f857: function f857(t, e, n) {
+    "use strict";
+
+    Object.defineProperty(e, "__esModule", {
+      value: !0
+    }), e.default = void 0;
+    var a = {
+      name: "UniTag",
+      props: {
+        type: {
+          type: String,
+          default: "default"
+        },
+        size: {
+          type: String,
+          default: "normal"
+        },
+        text: {
+          type: String,
+          default: ""
+        },
+        disabled: {
+          type: [Boolean, String],
+          default: !1
+        },
+        inverted: {
+          type: [Boolean, String],
+          default: !1
+        },
+        circle: {
+          type: [Boolean, String],
+          default: !1
+        },
+        mark: {
+          type: [Boolean, String],
+          default: !1
+        }
+      },
+      methods: {
+        onClick: function onClick() {
+          !0 !== this.disabled && "true" !== this.disabled && this.$emit("click");
+        }
+      }
+    };
+    e.default = a;
+  }
+}]);
+;
+(global["webpackJsonp"] = global["webpackJsonp"] || []).push(['components/uni-tag/uni-tag-create-component', {
+  'components/uni-tag/uni-tag-create-component': function componentsUniTagUniTagCreateComponent(module, exports, __webpack_require__) {
+    __webpack_require__('6e42')['createComponent'](__webpack_require__("4c08"));
+  }
+}, [['components/uni-tag/uni-tag-create-component']]]);
+});
+require('components/uni-tag/uni-tag.js');
 __wxRoute = 'components/uni-transition/uni-transition';__wxRouteBegin = true;__wxAppCurrentFile__ = 'components/uni-transition/uni-transition.js';
 
 define('components/uni-transition/uni-transition.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
@@ -5798,61 +5412,61 @@ require('pages/login/login.js');
 __wxRoute = 'pages/tabs/tab1';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/tabs/tab1.js';
 
 define('pages/tabs/tab1.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tabs/tab1"],{"1a26":function(t,n,e){},"1cbf":function(t,n,e){"use strict";var o=e("1a26"),a=e.n(o);a.a},"3b6e":function(t,n,e){"use strict";e.r(n);var o=e("7fee"),a=e.n(o);for(var i in o)"default"!==i&&function(t){e.d(n,t,function(){return o[t]})}(i);n["default"]=a.a},"3f83":function(t,n,e){"use strict";e.r(n);var o=e("6f60"),a=e("3b6e");for(var i in a)"default"!==i&&function(t){e.d(n,t,function(){return a[t]})}(i);e("1cbf");var u,c=e("f0c5"),l=Object(c["a"])(a["default"],o["b"],o["c"],!1,null,null,null,!1,o["a"],u);n["default"]=l.exports},"6f60":function(t,n,e){"use strict";var o={"uni-nav-bar":()=>e.e("components/uni-nav-bar/uni-nav-bar").then(e.bind(null,"a5f2")),"uni-list":()=>e.e("components/uni-list/uni-list").then(e.bind(null,"cb59")),"uni-list-item":()=>e.e("components/uni-list-item/uni-list-item").then(e.bind(null,"a055"))},a=function(){var t=this,n=t.$createElement;t._self._c},i=[];e.d(n,"b",function(){return a}),e.d(n,"c",function(){return i}),e.d(n,"a",function(){return o})},"7fee":function(t,n,e){"use strict";(function(t,o){Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;i(e("eb61")),i(e("b5ea"));var a=i(e("f691"));function i(t){return t&&t.__esModule?t:{default:t}}var u={components:{},data:function(){return{headerShow:!0,headerScroll:1,platform:"",cont_top_bg:"../../static/tab1/tab1_top.png",cont_dialog_bg:"../../static/tab1/tab1_bubble.png",scroll_bg1:"../../static/tab1/bookbox.png",scroll_bg2:"../../static/tab1/clothes_box.png",scroll_bg3:"../../static/tab1/shoes_box2.png",long_active:!1}},onLoad:function(){},onShow:function(){},onPageScroll:function(n){a.default.debug&&t("log","onPageScroll",n," at pages/tabs/tab1.vue:224"),n.scrollTop>60?this.headerShow=!1:this.headerShow=!0},methods:{onScroll:function(n){t("log",n," at pages/tabs/tab1.vue:233")},onClickRight:function(n){1==n?o.navigateTo({url:"/pages/tab1/search"}):2==n&&t("log",2," at pages/tabs/tab1.vue:241")},longpress:function(t){this.long_active=!0},longpress_comfirm:function(){this.long_active=!1},longpress_cancel:function(){this.long_active=!1}}};n.default=u}).call(this,e("0de9")["default"],e("6e42")["default"])},"99e7":function(t,n,e){"use strict";(function(t){e("0007"),e("921b");o(e("66fd"));var n=o(e("3f83"));function o(t){return t&&t.__esModule?t:{default:t}}t(n.default)}).call(this,e("6e42")["createPage"])}},[["99e7","common/runtime","common/vendor"]]]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tabs/tab1"],{"1a26":function(t,n,e){},"1cbf":function(t,n,e){"use strict";var o=e("1a26"),a=e.n(o);a.a},"3b6e":function(t,n,e){"use strict";e.r(n);var o=e("7fee"),a=e.n(o);for(var c in o)"default"!==c&&function(t){e.d(n,t,function(){return o[t]})}(c);n["default"]=a.a},"3f83":function(t,n,e){"use strict";e.r(n);var o=e("c6c9"),a=e("3b6e");for(var c in a)"default"!==c&&function(t){e.d(n,t,function(){return a[t]})}(c);e("1cbf");var i,u=e("f0c5"),l=Object(u["a"])(a["default"],o["b"],o["c"],!1,null,null,null,!1,o["a"],i);n["default"]=l.exports},"7fee":function(t,n,e){"use strict";(function(t,o){Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;c(e("eb61")),c(e("b5ea"));var a=c(e("f691"));function c(t){return t&&t.__esModule?t:{default:t}}var i={components:{},data:function(){return{headerShow:!0,platform:"",cont_top_bg:"../../static/tab1/tab1_top.png",cont_dialog_bg:"../../static/tab1/tab1_bubble.png",box_wrong_bg:"../../static/tab1/box_wrong_bg.png",scroll_bg1:"../../static/tab1/bookbox.png",scroll_bg2:"../../static/tab1/clothes_box.png",scroll_bg3:"../../static/tab1/shoes_box2.png",long_active:!1}},onLoad:function(){},onShow:function(){},onPageScroll:function(n){a.default.debug&&t("log","onPageScroll",n," at pages/tabs/tab1.vue:234"),n.scrollTop>60?this.headerShow=!1:this.headerShow=!0},methods:{onScroll:function(n){t("log",n," at pages/tabs/tab1.vue:243")},onClickRight:function(t){1==t?o.navigateTo({url:"/pages/tab1/search"}):2==t&&o.navigateTo({url:"/pages/tab2/addOrder"})},longpress:function(t){this.long_active=!0},longpress_comfirm:function(){this.long_active=!1},longpress_cancel:function(){this.long_active=!1}}};n.default=i}).call(this,e("0de9")["default"],e("6e42")["default"])},"99e7":function(t,n,e){"use strict";(function(t){e("0007"),e("921b");o(e("66fd"));var n=o(e("3f83"));function o(t){return t&&t.__esModule?t:{default:t}}t(n.default)}).call(this,e("6e42")["createPage"])},c6c9:function(t,n,e){"use strict";var o={"uni-nav-bar":()=>e.e("components/uni-nav-bar/uni-nav-bar").then(e.bind(null,"a5f2")),"uni-list":()=>e.e("components/uni-list/uni-list").then(e.bind(null,"cb59")),"uni-list-item":()=>e.e("components/uni-list-item/uni-list-item").then(e.bind(null,"a055"))},a=function(){var t=this,n=t.$createElement;t._self._c},c=[];e.d(n,"b",function(){return a}),e.d(n,"c",function(){return c}),e.d(n,"a",function(){return o})}},[["99e7","common/runtime","common/vendor"]]]);
 });
 require('pages/tabs/tab1.js');
 __wxRoute = 'pages/tabs/tab2';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/tabs/tab2.js';
 
 define('pages/tabs/tab2.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tabs/tab2"],{"12db":function(e,t,o){"use strict";(function(e,a){Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var n=u(o("f691")),s=u(o("b5ea"));u(o("eb61"));function u(e){return e&&e.__esModule?e:{default:e}}var r=function(){return o.e("components/loading").then(o.bind(null,"8bed"))},l=function(){return o.e("components/search").then(o.bind(null,"cda8"))},d=function(){return Promise.all([o.e("common/vendor"),o.e("components/header")]).then(o.bind(null,"0117"))},i={data:function(){return{page:1,size:24,books:[],showTips:!1,wd:"",token:"",showLongpressTips:!1}},components:{search:l,loading:r,iheader:d},onShow:function(){this.showLongpressTips="false"!=e.getStorageSync("showLongpressTips");var t=s.default.getSysInfo();n.default.debug&&a("log","onShow","bookshelfChanged",t.bookshelfChanged," at pages/tabs/tab2.vue:51"),this.loadBooks(t.bookshelfChanged),t.bookshelfChanged=!1,s.default.setSysInfo(t)},onReachBottom:function(){this.loadBooks()},methods:{onClickRight:function(){a("log","订单add"," at pages/tabs/tab2.vue:61")},longpress:function(t){n.default.debug&&a("log","longpress",t," at pages/tabs/tab2.vue:64");var o=this,u=t.currentTarget.dataset.book,r=t.currentTarget.dataset.id,l=o.books;e.showModal({title:"温馨提示",content:"您是否要将书籍《".concat(u,"》从书架中移除？"),success:function(t){t.confirm&&(n.default.debug&&a("log","确定移除"," at pages/tabs/tab2.vue:74"),s.default.request(n.default.api.bookStar,{identify:r}).then(function(t){n.default.debug&&a("log",n.default.api.bookStar,t," at pages/tabs/tab2.vue:78"),e.showToast({title:t.data.data&&t.data.data.is_cancel?"移除收藏成功":"收藏书籍成功"}),o.books=l.filter(function(e){return e.book_id!=r})}).catch(function(e){s.default.toastError(e.data.message||e.errMsg)}))}})},closeLongpressTips:function(){this.showLongpressTips=!1,e.setStorageSync("showLongpressTips","false")},loadBooks:function(t){var o=this,u=s.default.getToken()||"";if(n.default.debug&&a("log","token",u," at pages/tabs/tab2.vue:102"),""==u)return o.showTips=!0,o.books=[],o.token=u,void(o.page=1);if(0!=o.page||t){var r=t?1:o.page,l=o.size,d=o.books;s.default.request(n.default.api.bookshelf,{page:r,size:l}).then(function(e){n.default.debug&&a("log",n.default.api.bookshelf,e," at pages/tabs/tab2.vue:123"),e.data&&e.data.books?(e.data.books.length>=l?r++:r=0,d=t?e.data.books:o.books.concat(e.data.books)):(1==r&&(d=[],!0),r=0)}).catch(function(e){n.default.debug&&a("log","error",e," at pages/tabs/tab2.vue:136"),s.default.toastError(e.data.message||e.errMsg)}).finally(function(){o.books=d,o.showTips=0==d.length,o.page=r,o.token=u,t&&e.pageScrollTo({scrollTop:0})})}},login:function(t){e.navigateTo({url:"/pages/login/login?redirect="+encodeURIComponent("/pages/bookshelf/bookshelf")})}}};t.default=i}).call(this,o("6e42")["default"],o("0de9")["default"])},"23bb":function(e,t,o){"use strict";(function(e){o("0007"),o("921b");a(o("66fd"));var t=a(o("d1af"));function a(e){return e&&e.__esModule?e:{default:e}}e(t.default)}).call(this,o("6e42")["createPage"])},"2ee3":function(e,t,o){"use strict";var a=o("b1d9"),n=o.n(a);n.a},9138:function(e,t,o){"use strict";var a={"hx-navbar":()=>o.e("components/hx-navbar/hx-navbar").then(o.bind(null,"670c"))},n=function(){var e=this,t=e.$createElement;e._self._c},s=[];o.d(t,"b",function(){return n}),o.d(t,"c",function(){return s}),o.d(t,"a",function(){return a})},b1d9:function(e,t,o){},d1af:function(e,t,o){"use strict";o.r(t);var a=o("9138"),n=o("eed0");for(var s in n)"default"!==s&&function(e){o.d(t,e,function(){return n[e]})}(s);o("2ee3");var u,r=o("f0c5"),l=Object(r["a"])(n["default"],a["b"],a["c"],!1,null,null,null,!1,a["a"],u);t["default"]=l.exports},eed0:function(e,t,o){"use strict";o.r(t);var a=o("12db"),n=o.n(a);for(var s in a)"default"!==s&&function(e){o.d(t,e,function(){return a[e]})}(s);t["default"]=n.a}},[["23bb","common/runtime","common/vendor"]]]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tabs/tab2"],{"12db":function(n,e,t){"use strict";(function(n){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;o(t("f691")),o(t("b5ea")),o(t("eb61"));function o(n){return n&&n.__esModule?n:{default:n}}var u=function(){return t.e("components/loading").then(t.bind(null,"8bed"))},a=function(){return t.e("components/search").then(t.bind(null,"cda8"))},r=function(){return Promise.all([t.e("common/vendor"),t.e("components/header")]).then(t.bind(null,"0117"))},c={data:function(){return{headerShow:!0}},components:{search:a,loading:u,iheader:r},onShow:function(){},onPageScroll:function(n){n.scrollTop>60?this.headerShow=!1:this.headerShow=!0},onReachBottom:function(){},methods:{onClickRight:function(){n.navigateTo({url:"/pages/tab2/addOrder"})}}};e.default=c}).call(this,t("6e42")["default"])},"23bb":function(n,e,t){"use strict";(function(n){t("0007"),t("921b");o(t("66fd"));var e=o(t("d1af"));function o(n){return n&&n.__esModule?n:{default:n}}n(e.default)}).call(this,t("6e42")["createPage"])},"2ee3":function(n,e,t){"use strict";var o=t("b1d9"),u=t.n(o);u.a},9367:function(n,e,t){"use strict";var o={"uni-nav-bar":()=>t.e("components/uni-nav-bar/uni-nav-bar").then(t.bind(null,"a5f2"))},u=function(){var n=this,e=n.$createElement;n._self._c},a=[];t.d(e,"b",function(){return u}),t.d(e,"c",function(){return a}),t.d(e,"a",function(){return o})},b1d9:function(n,e,t){},d1af:function(n,e,t){"use strict";t.r(e);var o=t("9367"),u=t("eed0");for(var a in u)"default"!==a&&function(n){t.d(e,n,function(){return u[n]})}(a);t("2ee3");var r,c=t("f0c5"),i=Object(c["a"])(u["default"],o["b"],o["c"],!1,null,null,null,!1,o["a"],r);e["default"]=i.exports},eed0:function(n,e,t){"use strict";t.r(e);var o=t("12db"),u=t.n(o);for(var a in o)"default"!==a&&function(n){t.d(e,n,function(){return o[n]})}(a);e["default"]=u.a}},[["23bb","common/runtime","common/vendor"]]]);
 });
 require('pages/tabs/tab2.js');
 __wxRoute = 'pages/tabs/tab3';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/tabs/tab3.js';
 
 define('pages/tabs/tab3.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tabs/tab3"],{"17de":function(n,e,t){"use strict";(function(n){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;var u=o(t("f691"));o(t("b5ea"));function o(n){return n&&n.__esModule?n:{default:n}}var a=function(){return t.e("components/uni-rate/uni-rate").then(t.bind(null,"138a"))},i=function(){return Promise.all([t.e("common/vendor"),t.e("components/header")]).then(t.bind(null,"0117"))},r={components:{uniRate:a,iheader:i},data:function(){return{isSignedToday:!1,cont_top_bg:"../../static/tab3/tab3_bg.png",info:{},user:{},moreInfo:{},moreInfoCacheTime:0,now:(new Date).getFullYear(),redirect:encodeURIComponent("/pages/me/me")}},onLoad:function(e){u.default.debug&&n("log","onLoad",e," at pages/tabs/tab3.vue:67")},onShow:function(){},methods:{}};e.default=r}).call(this,t("0de9")["default"])},"2ff6":function(n,e,t){},"3f33":function(n,e,t){"use strict";(function(n){t("0007"),t("921b");u(t("66fd"));var e=u(t("6914"));function u(n){return n&&n.__esModule?n:{default:n}}n(e.default)}).call(this,t("6e42")["createPage"])},6914:function(n,e,t){"use strict";t.r(e);var u=t("7869"),o=t("7203");for(var a in o)"default"!==a&&function(n){t.d(e,n,function(){return o[n]})}(a);t("dc83");var i,r=t("f0c5"),c=Object(r["a"])(o["default"],u["b"],u["c"],!1,null,"29f008e0",null,!1,u["a"],i);e["default"]=c.exports},7203:function(n,e,t){"use strict";t.r(e);var u=t("17de"),o=t.n(u);for(var a in u)"default"!==a&&function(n){t.d(e,n,function(){return u[n]})}(a);e["default"]=o.a},7869:function(n,e,t){"use strict";var u={"hx-navbar":()=>t.e("components/hx-navbar/hx-navbar").then(t.bind(null,"670c")),"uni-rate":()=>t.e("components/uni-rate/uni-rate").then(t.bind(null,"138a")),"uni-list":()=>t.e("components/uni-list/uni-list").then(t.bind(null,"cb59")),"uni-list-item":()=>t.e("components/uni-list-item/uni-list-item").then(t.bind(null,"a055"))},o=function(){var n=this,e=n.$createElement;n._self._c},a=[];t.d(e,"b",function(){return o}),t.d(e,"c",function(){return a}),t.d(e,"a",function(){return u})},dc83:function(n,e,t){"use strict";var u=t("2ff6"),o=t.n(u);o.a}},[["3f33","common/runtime","common/vendor"]]]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tabs/tab3"],{"17de":function(n,t,e){"use strict";(function(n){Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var u=a(e("f691"));a(e("b5ea"));function a(n){return n&&n.__esModule?n:{default:n}}var o=function(){return e.e("components/uni-rate/uni-rate").then(e.bind(null,"138a"))},i=function(){return Promise.all([e.e("common/vendor"),e.e("components/header")]).then(e.bind(null,"0117"))},r={components:{uniRate:o,iheader:i},data:function(){return{headerShow:!0,cont_top_bg:"../../static/tab3/tab3_bg.png"}},onLoad:function(t){u.default.debug&&n("log","onLoad",t," at pages/tabs/tab3.vue:70")},onShow:function(){},onPageScroll:function(n){n.scrollTop>60?this.headerShow=!1:this.headerShow=!0},methods:{}};t.default=r}).call(this,e("0de9")["default"])},"3f33":function(n,t,e){"use strict";(function(n){e("0007"),e("921b");u(e("66fd"));var t=u(e("6914"));function u(n){return n&&n.__esModule?n:{default:n}}n(t.default)}).call(this,e("6e42")["createPage"])},4737:function(n,t,e){},"4faa":function(n,t,e){"use strict";var u=e("4737"),a=e.n(u);a.a},6914:function(n,t,e){"use strict";e.r(t);var u=e("d834"),a=e("7203");for(var o in a)"default"!==o&&function(n){e.d(t,n,function(){return a[n]})}(o);e("4faa");var i,r=e("f0c5"),c=Object(r["a"])(a["default"],u["b"],u["c"],!1,null,"95dd07fa",null,!1,u["a"],i);t["default"]=c.exports},7203:function(n,t,e){"use strict";e.r(t);var u=e("17de"),a=e.n(u);for(var o in u)"default"!==o&&function(n){e.d(t,n,function(){return u[n]})}(o);t["default"]=a.a},d834:function(n,t,e){"use strict";var u={"uni-nav-bar":()=>e.e("components/uni-nav-bar/uni-nav-bar").then(e.bind(null,"a5f2")),"uni-rate":()=>e.e("components/uni-rate/uni-rate").then(e.bind(null,"138a")),"uni-list":()=>e.e("components/uni-list/uni-list").then(e.bind(null,"cb59")),"uni-list-item":()=>e.e("components/uni-list-item/uni-list-item").then(e.bind(null,"a055"))},a=function(){var n=this,t=n.$createElement;n._self._c},o=[];e.d(t,"b",function(){return a}),e.d(t,"c",function(){return o}),e.d(t,"a",function(){return u})}},[["3f33","common/runtime","common/vendor"]]]);
 });
 require('pages/tabs/tab3.js');
 __wxRoute = 'pages/tab1/book';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/tab1/book.js';
 
 define('pages/tab1/book.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab1/book"],{"6ba1":function(n,t,o){"use strict";(function(n,e){Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;a(o("eb61")),a(o("b5ea")),a(o("f691"));function a(n){return n&&n.__esModule?n:{default:n}}var u={components:{},data:function(){return{headerShow:!0,platform:"",cont_top_bg:"../../static/tab1/book_bg.png",scroll_bg1:"../../static/tab1/bookbox.png"}},onLoad:function(){},onShow:function(){},onPageScroll:function(n){n.scrollTop>60?this.headerShow=!1:this.headerShow=!0},methods:{onClickBack:function(){n.navigateBack({delta:1})},onClickRight:function(n){1==n?e("log",1," at pages/tab1/book.vue:70"):2==n&&e("log",2," at pages/tab1/book.vue:72")}}};t.default=u}).call(this,o("6e42")["default"],o("0de9")["default"])},8248:function(n,t,o){"use strict";o.r(t);var e=o("6ba1"),a=o.n(e);for(var u in e)"default"!==u&&function(n){o.d(t,n,function(){return e[n]})}(u);t["default"]=a.a},"9cf5":function(n,t,o){"use strict";o.r(t);var e=o("a909"),a=o("8248");for(var u in a)"default"!==u&&function(n){o.d(t,n,function(){return a[n]})}(u);o("d91b");var c,r=o("f0c5"),f=Object(r["a"])(a["default"],e["b"],e["c"],!1,null,"360cfa3e",null,!1,e["a"],c);t["default"]=f.exports},a909:function(n,t,o){"use strict";var e={"uni-nav-bar":()=>o.e("components/uni-nav-bar/uni-nav-bar").then(o.bind(null,"a5f2"))},a=function(){var n=this,t=n.$createElement;n._self._c},u=[];o.d(t,"b",function(){return a}),o.d(t,"c",function(){return u}),o.d(t,"a",function(){return e})},b542:function(n,t,o){"use strict";(function(n){o("0007"),o("921b");e(o("66fd"));var t=e(o("9cf5"));function e(n){return n&&n.__esModule?n:{default:n}}n(t.default)}).call(this,o("6e42")["createPage"])},d91b:function(n,t,o){"use strict";var e=o("fb80"),a=o.n(e);a.a},fb80:function(n,t,o){}},[["b542","common/runtime","common/vendor"]]]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab1/book"],{6744:function(n,t,e){"use strict";var a={"uni-nav-bar":()=>e.e("components/uni-nav-bar/uni-nav-bar").then(e.bind(null,"a5f2"))},o=function(){var n=this,t=n.$createElement;n._self._c},u=[];e.d(t,"b",function(){return o}),e.d(t,"c",function(){return u}),e.d(t,"a",function(){return a})},"6ba1":function(n,t,e){"use strict";(function(n,a){Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;o(e("eb61")),o(e("b5ea")),o(e("f691"));function o(n){return n&&n.__esModule?n:{default:n}}var u={components:{},data:function(){return{headerShow:!0,platform:"",cont_top_bg:"../../static/tab1/book_bg.png",scroll_bg1:"../../static/tab1/bookbox.png"}},onLoad:function(){},onShow:function(){},onPageScroll:function(n){n.scrollTop>60?this.headerShow=!1:this.headerShow=!0},methods:{onClickBack:function(){n.navigateBack({delta:1})},onClickRight:function(t){1==t?n.navigateTo({url:"/pages/tab1/search"}):2==t&&a("log",2," at pages/tab1/book.vue:74")}}};t.default=u}).call(this,e("6e42")["default"],e("0de9")["default"])},8248:function(n,t,e){"use strict";e.r(t);var a=e("6ba1"),o=e.n(a);for(var u in a)"default"!==u&&function(n){e.d(t,n,function(){return a[n]})}(u);t["default"]=o.a},"9cf5":function(n,t,e){"use strict";e.r(t);var a=e("6744"),o=e("8248");for(var u in o)"default"!==u&&function(n){e.d(t,n,function(){return o[n]})}(u);e("a566");var c,r=e("f0c5"),i=Object(r["a"])(o["default"],a["b"],a["c"],!1,null,"60edc8ae",null,!1,a["a"],c);t["default"]=i.exports},a566:function(n,t,e){"use strict";var a=e("c127"),o=e.n(a);o.a},b542:function(n,t,e){"use strict";(function(n){e("0007"),e("921b");a(e("66fd"));var t=a(e("9cf5"));function a(n){return n&&n.__esModule?n:{default:n}}n(t.default)}).call(this,e("6e42")["createPage"])},c127:function(n,t,e){}},[["b542","common/runtime","common/vendor"]]]);
 });
 require('pages/tab1/book.js');
 __wxRoute = 'pages/tab1/clothes';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/tab1/clothes.js';
 
 define('pages/tab1/clothes.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab1/clothes"],{1995:function(t,n,e){"use strict";e.r(n);var a=e("757d"),o=e("5eab");for(var c in o)"default"!==c&&function(t){e.d(n,t,function(){return o[t]})}(c);e("42b9");var u,r=e("f0c5"),i=Object(r["a"])(o["default"],a["b"],a["c"],!1,null,"72472dff",null,!1,a["a"],u);n["default"]=i.exports},"1a42":function(t,n,e){},"42b9":function(t,n,e){"use strict";var a=e("1a42"),o=e.n(a);o.a},"4f8d":function(t,n,e){"use strict";(function(t){e("0007"),e("921b");a(e("66fd"));var n=a(e("1995"));function a(t){return t&&t.__esModule?t:{default:t}}t(n.default)}).call(this,e("6e42")["createPage"])},"5eab":function(t,n,e){"use strict";e.r(n);var a=e("ba75"),o=e.n(a);for(var c in a)"default"!==c&&function(t){e.d(n,t,function(){return a[t]})}(c);n["default"]=o.a},"757d":function(t,n,e){"use strict";var a={"uni-nav-bar":()=>e.e("components/uni-nav-bar/uni-nav-bar").then(e.bind(null,"a5f2"))},o=function(){var t=this,n=t.$createElement;t._self._c},c=[];e.d(n,"b",function(){return o}),e.d(n,"c",function(){return c}),e.d(n,"a",function(){return a})},ba75:function(t,n,e){"use strict";(function(t,a){Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;o(e("eb61")),o(e("b5ea")),o(e("f691"));function o(t){return t&&t.__esModule?t:{default:t}}var c={components:{},data:function(){return{headerShow:!0,cont_top_bg:"../../static/tab1/clothes_top_bg.png",scroll_bg1:"../../static/tab1/bookbox.png",scroll_bg2:"../../static/tab1/clothes_box.png",scroll_bg3:"../../static/tab1/shoes_box.png"}},onLoad:function(){},onShow:function(){},onPageScroll:function(t){t.scrollTop>60?this.headerShow=!1:this.headerShow=!0},methods:{onClickBack:function(){t.navigateBack({delta:1})},onClickRight:function(t){1==t?a("log",1," at pages/tab1/clothes.vue:71"):2==t&&a("log",2," at pages/tab1/clothes.vue:73")}}};n.default=c}).call(this,e("6e42")["default"],e("0de9")["default"])}},[["4f8d","common/runtime","common/vendor"]]]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab1/clothes"],{1995:function(t,n,a){"use strict";a.r(n);var e=a("b2ad"),o=a("5eab");for(var c in o)"default"!==c&&function(t){a.d(n,t,function(){return o[t]})}(c);a("201a");var u,r=a("f0c5"),i=Object(r["a"])(o["default"],e["b"],e["c"],!1,null,"547cc6b9",null,!1,e["a"],u);n["default"]=i.exports},"201a":function(t,n,a){"use strict";var e=a("daf5"),o=a.n(e);o.a},"4f8d":function(t,n,a){"use strict";(function(t){a("0007"),a("921b");e(a("66fd"));var n=e(a("1995"));function e(t){return t&&t.__esModule?t:{default:t}}t(n.default)}).call(this,a("6e42")["createPage"])},"5eab":function(t,n,a){"use strict";a.r(n);var e=a("ba75"),o=a.n(e);for(var c in e)"default"!==c&&function(t){a.d(n,t,function(){return e[t]})}(c);n["default"]=o.a},b2ad:function(t,n,a){"use strict";var e={"uni-nav-bar":()=>a.e("components/uni-nav-bar/uni-nav-bar").then(a.bind(null,"a5f2"))},o=function(){var t=this,n=t.$createElement;t._self._c},c=[];a.d(n,"b",function(){return o}),a.d(n,"c",function(){return c}),a.d(n,"a",function(){return e})},ba75:function(t,n,a){"use strict";(function(t,e){Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;o(a("eb61")),o(a("b5ea")),o(a("f691"));function o(t){return t&&t.__esModule?t:{default:t}}var c={components:{},data:function(){return{headerShow:!0,cont_top_bg:"../../static/tab1/clothes_top_bg.png",scroll_bg1:"../../static/tab1/bookbox.png",scroll_bg2:"../../static/tab1/clothes_box.png",scroll_bg3:"../../static/tab1/shoes_box.png"}},onLoad:function(){},onShow:function(){},onPageScroll:function(t){t.scrollTop>60?this.headerShow=!1:this.headerShow=!0},methods:{onClickBack:function(){t.navigateBack({delta:1})},onClickRight:function(n){1==n?t.navigateTo({url:"/pages/tab1/search"}):2==n&&e("log",2," at pages/tab1/clothes.vue:75")}}};n.default=c}).call(this,a("6e42")["default"],a("0de9")["default"])},daf5:function(t,n,a){}},[["4f8d","common/runtime","common/vendor"]]]);
 });
 require('pages/tab1/clothes.js');
 __wxRoute = 'pages/tab1/shoes';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/tab1/shoes.js';
 
 define('pages/tab1/shoes.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab1/shoes"],{"0e09":function(t,n,e){"use strict";var o={"uni-nav-bar":()=>e.e("components/uni-nav-bar/uni-nav-bar").then(e.bind(null,"a5f2"))},a=function(){var t=this,n=t.$createElement;t._self._c},c=[];e.d(n,"b",function(){return a}),e.d(n,"c",function(){return c}),e.d(n,"a",function(){return o})},1225:function(t,n,e){"use strict";(function(t){e("0007"),e("921b");o(e("66fd"));var n=o(e("b4c2"));function o(t){return t&&t.__esModule?t:{default:t}}t(n.default)}).call(this,e("6e42")["createPage"])},"13de":function(t,n,e){"use strict";var o=e("64fc"),a=e.n(o);a.a},"64fc":function(t,n,e){},a818:function(t,n,e){"use strict";e.r(n);var o=e("e58a"),a=e.n(o);for(var c in o)"default"!==c&&function(t){e.d(n,t,function(){return o[t]})}(c);n["default"]=a.a},b4c2:function(t,n,e){"use strict";e.r(n);var o=e("0e09"),a=e("a818");for(var c in a)"default"!==c&&function(t){e.d(n,t,function(){return a[t]})}(c);e("13de");var u,r=e("f0c5"),i=Object(r["a"])(a["default"],o["b"],o["c"],!1,null,"5e67f6ac",null,!1,o["a"],u);n["default"]=i.exports},e58a:function(t,n,e){"use strict";(function(t,o){Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;a(e("eb61")),a(e("b5ea")),a(e("f691"));function a(t){return t&&t.__esModule?t:{default:t}}var c={components:{},data:function(){return{headerShow:!0,cont_top_bg:"../../static/tab1/shoes_top_bg.png",scroll_bg1:"../../static/tab1/bookbox.png",scroll_bg2:"../../static/tab1/clothes_box.png",scroll_bg3:"../../static/tab1/shoes_box.png"}},onLoad:function(){},onShow:function(){},onPageScroll:function(t){t.scrollTop>60?this.headerShow=!1:this.headerShow=!0},methods:{onClickBack:function(){t.navigateBack({delta:1})},onClickRight:function(t){1==t?o("log",1," at pages/tab1/shoes.vue:71"):2==t&&o("log",2," at pages/tab1/shoes.vue:73")}}};n.default=c}).call(this,e("6e42")["default"],e("0de9")["default"])}},[["1225","common/runtime","common/vendor"]]]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab1/shoes"],{1225:function(t,n,e){"use strict";(function(t){e("0007"),e("921b");a(e("66fd"));var n=a(e("b4c2"));function a(t){return t&&t.__esModule?t:{default:t}}t(n.default)}).call(this,e("6e42")["createPage"])},4486:function(t,n,e){"use strict";var a={"uni-nav-bar":()=>e.e("components/uni-nav-bar/uni-nav-bar").then(e.bind(null,"a5f2"))},o=function(){var t=this,n=t.$createElement;t._self._c},c=[];e.d(n,"b",function(){return o}),e.d(n,"c",function(){return c}),e.d(n,"a",function(){return a})},"7c78":function(t,n,e){},"948d":function(t,n,e){"use strict";var a=e("7c78"),o=e.n(a);o.a},a818:function(t,n,e){"use strict";e.r(n);var a=e("e58a"),o=e.n(a);for(var c in a)"default"!==c&&function(t){e.d(n,t,function(){return a[t]})}(c);n["default"]=o.a},b4c2:function(t,n,e){"use strict";e.r(n);var a=e("4486"),o=e("a818");for(var c in o)"default"!==c&&function(t){e.d(n,t,function(){return o[t]})}(c);e("948d");var u,r=e("f0c5"),i=Object(r["a"])(o["default"],a["b"],a["c"],!1,null,"0ef62192",null,!1,a["a"],u);n["default"]=i.exports},e58a:function(t,n,e){"use strict";(function(t,a){Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;o(e("eb61")),o(e("b5ea")),o(e("f691"));function o(t){return t&&t.__esModule?t:{default:t}}var c={components:{},data:function(){return{headerShow:!0,cont_top_bg:"../../static/tab1/shoes_top_bg.png",scroll_bg1:"../../static/tab1/bookbox.png",scroll_bg2:"../../static/tab1/clothes_box.png",scroll_bg3:"../../static/tab1/shoes_box.png"}},onLoad:function(){},onShow:function(){},onPageScroll:function(t){t.scrollTop>60?this.headerShow=!1:this.headerShow=!0},methods:{onClickBack:function(){t.navigateBack({delta:1})},onClickRight:function(n){1==n?t.navigateTo({url:"/pages/tab1/search"}):2==n&&a("log",2," at pages/tab1/shoes.vue:75")}}};n.default=c}).call(this,e("6e42")["default"],e("0de9")["default"])}},[["1225","common/runtime","common/vendor"]]]);
 });
 require('pages/tab1/shoes.js');
 __wxRoute = 'pages/tab1/storage';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/tab1/storage.js';
 
 define('pages/tab1/storage.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab1/storage"],{"6c24":function(t,n,e){"use strict";(function(t,o){Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;a(e("eb61")),a(e("b5ea")),a(e("f691"));function a(t){return t&&t.__esModule?t:{default:t}}var c={components:{},data:function(){return{headerShow:!0,cont_top_bg:"../../static/tab1/storage_top_bg.png",scroll_bg1:"../../static/tab1/bookbox.png",scroll_bg2:"../../static/tab1/clothes_box.png",scroll_bg3:"../../static/tab1/shoes_box.png"}},onLoad:function(){},onShow:function(){},onPageScroll:function(t){t.scrollTop>60?this.headerShow=!1:this.headerShow=!0},methods:{onClickBack:function(){t.navigateBack({delta:1})},onClickRight:function(t){1==t?o("log",1," at pages/tab1/storage.vue:75"):2==t&&o("log",2," at pages/tab1/storage.vue:77")}}};n.default=c}).call(this,e("6e42")["default"],e("0de9")["default"])},be8c:function(t,n,e){"use strict";var o=e("f2f7"),a=e.n(o);a.a},dd77:function(t,n,e){"use strict";e.r(n);var o=e("6c24"),a=e.n(o);for(var c in o)"default"!==c&&function(t){e.d(n,t,function(){return o[t]})}(c);n["default"]=a.a},e948:function(t,n,e){"use strict";(function(t){e("0007"),e("921b");o(e("66fd"));var n=o(e("ffd6"));function o(t){return t&&t.__esModule?t:{default:t}}t(n.default)}).call(this,e("6e42")["createPage"])},f0de:function(t,n,e){"use strict";var o={"uni-nav-bar":()=>e.e("components/uni-nav-bar/uni-nav-bar").then(e.bind(null,"a5f2"))},a=function(){var t=this,n=t.$createElement;t._self._c},c=[];e.d(n,"b",function(){return a}),e.d(n,"c",function(){return c}),e.d(n,"a",function(){return o})},f2f7:function(t,n,e){},ffd6:function(t,n,e){"use strict";e.r(n);var o=e("f0de"),a=e("dd77");for(var c in a)"default"!==c&&function(t){e.d(n,t,function(){return a[t]})}(c);e("be8c");var u,r=e("f0c5"),f=Object(r["a"])(a["default"],o["b"],o["c"],!1,null,"7754862c",null,!1,o["a"],u);n["default"]=f.exports}},[["e948","common/runtime","common/vendor"]]]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab1/storage"],{"6c24":function(t,n,e){"use strict";(function(t,a){Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;o(e("eb61")),o(e("b5ea")),o(e("f691"));function o(t){return t&&t.__esModule?t:{default:t}}var c={components:{},data:function(){return{headerShow:!0,cont_top_bg:"../../static/tab1/storage_top_bg.png",scroll_bg1:"../../static/tab1/bookbox.png",scroll_bg2:"../../static/tab1/clothes_box.png",scroll_bg3:"../../static/tab1/shoes_box.png"}},onLoad:function(){},onShow:function(){},onPageScroll:function(t){t.scrollTop>60?this.headerShow=!1:this.headerShow=!0},methods:{onClickBack:function(){t.navigateBack({delta:1})},onClickRight:function(n){1==n?t.navigateTo({url:"/pages/tab1/search"}):2==n&&a("log",2," at pages/tab1/storage.vue:79")}}};n.default=c}).call(this,e("6e42")["default"],e("0de9")["default"])},"965c":function(t,n,e){"use strict";var a=e("b18d"),o=e.n(a);o.a},a618:function(t,n,e){"use strict";var a={"uni-nav-bar":()=>e.e("components/uni-nav-bar/uni-nav-bar").then(e.bind(null,"a5f2"))},o=function(){var t=this,n=t.$createElement;t._self._c},c=[];e.d(n,"b",function(){return o}),e.d(n,"c",function(){return c}),e.d(n,"a",function(){return a})},b18d:function(t,n,e){},dd77:function(t,n,e){"use strict";e.r(n);var a=e("6c24"),o=e.n(a);for(var c in a)"default"!==c&&function(t){e.d(n,t,function(){return a[t]})}(c);n["default"]=o.a},e948:function(t,n,e){"use strict";(function(t){e("0007"),e("921b");a(e("66fd"));var n=a(e("ffd6"));function a(t){return t&&t.__esModule?t:{default:t}}t(n.default)}).call(this,e("6e42")["createPage"])},ffd6:function(t,n,e){"use strict";e.r(n);var a=e("a618"),o=e("dd77");for(var c in o)"default"!==c&&function(t){e.d(n,t,function(){return o[t]})}(c);e("965c");var u,r=e("f0c5"),i=Object(r["a"])(o["default"],a["b"],a["c"],!1,null,"b1f7787a",null,!1,a["a"],u);n["default"]=i.exports}},[["e948","common/runtime","common/vendor"]]]);
 });
 require('pages/tab1/storage.js');
 __wxRoute = 'pages/tab1/search';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/tab1/search.js';
 
 define('pages/tab1/search.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab1/search"],{"0579":function(t,e,a){"use strict";var n={"uni-nav-bar":()=>a.e("components/uni-nav-bar/uni-nav-bar").then(a.bind(null,"a5f2"))},i=function(){var t=this,e=t.$createElement;t._self._c},u=[];a.d(e,"b",function(){return i}),a.d(e,"c",function(){return u}),a.d(e,"a",function(){return n})},1361:function(t,e,a){"use strict";a.r(e);var n=a("0579"),i=a("f2c4");for(var u in i)"default"!==u&&function(t){a.d(e,t,function(){return i[t]})}(u);a("6654");var o,s=a("f0c5"),c=Object(s["a"])(i["default"],n["b"],n["c"],!1,null,"6d057869",null,!1,n["a"],o);e["default"]=c.exports},"31f4":function(t,e,a){},6654:function(t,e,a){"use strict";var n=a("31f4"),i=a.n(n);i.a},"80d7":function(t,e,a){"use strict";(function(t,n){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;o(a("eb61"));var i=o(a("b5ea")),u=o(a("f691"));function o(t){return t&&t.__esModule?t:{default:t}}var s=function(){return a.e("components/loading").then(a.bind(null,"8bed"))},c=function(){return a.e("components/search").then(a.bind(null,"cda8"))},l=function(){return a.e("components/listBook").then(a.bind(null,"6193"))},r=function(){return a.e("components/tab").then(a.bind(null,"bb7d"))},d=function(){return Promise.all([a.e("common/vendor"),a.e("components/header")]).then(a.bind(null,"0117"))},f={components:{loading:s,listBook:l,search:c,tab:r,iheader:d},data:function(){return{tips:"",lists:[],wd:"",title:"搜索",page:1,size:10,tabValue:"book",showTab:!1,focus:!1,loading:!1,tabs:[{title:"书籍",value:"book"},{title:"文档",value:"doc"}]}},onLoad:function(e){u.default.debug&&t("log","search",e," at pages/tab1/search.vue:83");var a=e.wd||"";""!=a?(this.wd=a,this.showTab=!0,this.execSearch()):this.focus=!0},onReachBottom:function(){this.execSearch()},methods:{onClickBack:function(){n.navigateBack({delta:1})},tabClick:function(e){u.default.debug&&t("log","tabClick:",e," at pages/tab1/search.vue:103"),e.value!=this.tabValue&&(this.tabValue=e.value,this.page=1,this.lists=[],this.showTab=!0,this.execSearch())},search:function(e){u.default.debug&&t("log",e," at pages/tab1/search.vue:114"),this.wd=e.wd,this.page=1,this.lists=[],this.showTab=!0,this.execSearch()},clear:function(){this.wd="",n.setNavigationBarTitle({title:"搜索"}),this.showTab=!1,this.lists=[],this.loading=!1,this.tips="",this.focus=!0,this.tabValue="book"},execSearch:function(){var e=this,a=u.default.api.searchDoc;if(e.showTab=!0,e.title=e.wd+" · 搜索",!e.pedding){if(0==e.page)return e.loading=!1,e.tips="没有找到更多资源...",void(e.pedding=!1);e.loading=!0,e.pending=!0,"doc"!=e.tabValue&&(a=u.default.api.searchBook),i.default.request(a,{wd:e.wd,page:e.page,size:e.size}).then(function(a){u.default.debug&&t("log",u.default.api.searchBook,a," at pages/tab1/search.vue:165");var n=e.page+1,o=[];a.data&&a.data.result?(o=a.data.result,a.data.result.length<e.size&&(n=0)):n=0,"doc"==e.tabValue&&(o=o.map(function(t){return t.created_at=i.default.relativeTime(t.created_at),t.vcnt=i.default.fixView(t.vcnt),t})),e.page=n,e.lists=e.lists.concat(o),e.loading=n>0,e.tips="没有找到更多资源..."}).catch(function(a){u.default.debug&&t("log",a," at pages/tab1/search.vue:188"),e.loading=!1,e.tips=a.data.message||a.errMsg,e.page=0}).finally(function(){e.pending=!1})}}}};e.default=f}).call(this,a("0de9")["default"],a("6e42")["default"])},f2c4:function(t,e,a){"use strict";a.r(e);var n=a("80d7"),i=a.n(n);for(var u in n)"default"!==u&&function(t){a.d(e,t,function(){return n[t]})}(u);e["default"]=i.a},fe48:function(t,e,a){"use strict";(function(t){a("0007"),a("921b");n(a("66fd"));var e=n(a("1361"));function n(t){return t&&t.__esModule?t:{default:t}}t(e.default)}).call(this,a("6e42")["createPage"])}},[["fe48","common/runtime","common/vendor"]]]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab1/search"],{1361:function(t,e,a){"use strict";a.r(e);var n=a("1b92"),i=a("f2c4");for(var u in i)"default"!==u&&function(t){a.d(e,t,function(){return i[t]})}(u);a("d9fe");var s,c=a("f0c5"),o=Object(c["a"])(i["default"],n["b"],n["c"],!1,null,"579575c0",null,!1,n["a"],s);e["default"]=o.exports},"1b92":function(t,e,a){"use strict";var n={"uni-nav-bar":()=>a.e("components/uni-nav-bar/uni-nav-bar").then(a.bind(null,"a5f2"))},i=function(){var t=this,e=t.$createElement;t._self._c},u=[];a.d(e,"b",function(){return i}),a.d(e,"c",function(){return u}),a.d(e,"a",function(){return n})},"80d7":function(t,e,a){"use strict";(function(t,n){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;s(a("eb61"));var i=s(a("b5ea")),u=s(a("f691"));function s(t){return t&&t.__esModule?t:{default:t}}var c=function(){return a.e("components/loading").then(a.bind(null,"8bed"))},o=function(){return a.e("components/search").then(a.bind(null,"cda8"))},l=function(){return a.e("components/tab").then(a.bind(null,"bb7d"))},d={components:{loading:c,search:o,tab:l},data:function(){return{tips:"",lists:[],wd:"",title:"搜索",page:1,size:10,tabValue:"book",showTab:!1,focus:!1,loading:!1,tabs:[{title:"书籍",value:"book"},{title:"文档",value:"doc"}]}},onLoad:function(e){u.default.debug&&t("log","search",e," at pages/tab1/search.vue:55");var a=e.wd||"";""!=a?(this.wd=a,this.showTab=!0,this.execSearch()):this.focus=!0},onReachBottom:function(){this.execSearch()},methods:{onClickBack:function(){n.navigateBack({delta:1})},tabClick:function(e){u.default.debug&&t("log","tabClick:",e," at pages/tab1/search.vue:75"),e.value!=this.tabValue&&(this.tabValue=e.value,this.page=1,this.lists=[],this.showTab=!0,this.execSearch())},search:function(e){u.default.debug&&t("log",e," at pages/tab1/search.vue:86"),this.wd=e.wd,this.page=1,this.lists=[],this.showTab=!0,this.execSearch()},clear:function(){this.wd="",n.setNavigationBarTitle({title:"搜索"}),this.showTab=!1,this.lists=[],this.loading=!1,this.tips="",this.focus=!0,this.tabValue="book"},execSearch:function(){var e=this,a=u.default.api.searchDoc;if(e.showTab=!0,e.title=e.wd+" · 搜索",!e.pedding){if(0==e.page)return e.loading=!1,e.tips="没有找到更多资源...",void(e.pedding=!1);e.loading=!0,e.pending=!0,"doc"!=e.tabValue&&(a=u.default.api.searchBook),i.default.request(a,{wd:e.wd,page:e.page,size:e.size}).then(function(a){u.default.debug&&t("log",u.default.api.searchBook,a," at pages/tab1/search.vue:137");var n=e.page+1,s=[];a.data&&a.data.result?(s=a.data.result,a.data.result.length<e.size&&(n=0)):n=0,"doc"==e.tabValue&&(s=s.map(function(t){return t.created_at=i.default.relativeTime(t.created_at),t.vcnt=i.default.fixView(t.vcnt),t})),e.page=n,e.lists=e.lists.concat(s),e.loading=n>0,e.tips="没有找到更多资源..."}).catch(function(a){u.default.debug&&t("log",a," at pages/tab1/search.vue:160"),e.loading=!1,e.tips=a.data.message||a.errMsg,e.page=0}).finally(function(){e.pending=!1})}}}};e.default=d}).call(this,a("0de9")["default"],a("6e42")["default"])},c750:function(t,e,a){},d9fe:function(t,e,a){"use strict";var n=a("c750"),i=a.n(n);i.a},f2c4:function(t,e,a){"use strict";a.r(e);var n=a("80d7"),i=a.n(n);for(var u in n)"default"!==u&&function(t){a.d(e,t,function(){return n[t]})}(u);e["default"]=i.a},fe48:function(t,e,a){"use strict";(function(t){a("0007"),a("921b");n(a("66fd"));var e=n(a("1361"));function n(t){return t&&t.__esModule?t:{default:t}}t(e.default)}).call(this,a("6e42")["createPage"])}},[["fe48","common/runtime","common/vendor"]]]);
 });
 require('pages/tab1/search.js');
 __wxRoute = 'pages/tab2/demo7';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/tab2/demo7.js';
 
 define('pages/tab2/demo7.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab2/demo7"],{"415b":function(n,t,e){"use strict";e.r(t);var u=e("55fd"),a=e.n(u);for(var c in u)"default"!==c&&function(n){e.d(t,n,function(){return u[n]})}(c);t["default"]=a.a},"4ea1":function(n,t,e){"use strict";(function(n){e("0007"),e("921b");u(e("66fd"));var t=u(e("65cc"));function u(n){return n&&n.__esModule?n:{default:n}}n(t.default)}).call(this,e("6e42")["createPage"])},"55fd":function(n,t,e){"use strict";(function(n,e){Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var u={data:function(){return{doc:"没到过新疆的人，闭上眼睛想想跳入脑海中的新疆元素肯定是草原、骆驼、马、羊和扎着许多小辫的维吾尔族姑娘。",doc2:"其实现在新疆的城市和内地没任何区别，千篇一律，千人一面，乏善可陈。但是，新疆和内地确实不同，城市之外有荒无人烟的辽阔戈壁，浩瀚如海的沙漠，碧波荡漾的草原，还有宝石般的高山湖泊，巍峨的天山昆仑和阿勒泰山及纵横交错的河流及广阔田野。"}},onPageScroll:function(t){n("log",t," at pages/tab2/demo7.vue:26")},methods:{info:function(){e.showToast({title:"你点我了",icon:"success"})}}};t.default=u}).call(this,e("0de9")["default"],e("6e42")["default"])},"65cc":function(n,t,e){"use strict";e.r(t);var u=e("fb1e"),a=e("415b");for(var c in a)"default"!==c&&function(n){e.d(t,n,function(){return a[n]})}(c);var o,r=e("f0c5"),f=Object(r["a"])(a["default"],u["b"],u["c"],!1,null,null,null,!1,u["a"],o);t["default"]=f.exports},fb1e:function(n,t,e){"use strict";var u={"hx-navbar":()=>e.e("components/hx-navbar/hx-navbar").then(e.bind(null,"670c"))},a=function(){var n=this,t=n.$createElement;n._self._c},c=[];e.d(t,"b",function(){return a}),e.d(t,"c",function(){return c}),e.d(t,"a",function(){return u})}},[["4ea1","common/runtime","common/vendor"]]]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab2/demo7"],{"415b":function(t,e,n){"use strict";n.r(e);var u=n("55fd"),c=n.n(u);for(var o in u)"default"!==o&&function(t){n.d(e,t,function(){return u[t]})}(o);e["default"]=c.a},"4ea1":function(t,e,n){"use strict";(function(t){n("0007"),n("921b");u(n("66fd"));var e=u(n("65cc"));function u(t){return t&&t.__esModule?t:{default:t}}t(e.default)}).call(this,n("6e42")["createPage"])},"55fd":function(t,e,n){"use strict";(function(t,n){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;var u={data:function(){return{doc:"没到过新疆的人，闭上眼睛想想跳入脑海中的新疆元素肯定是草原、骆驼、马、羊和扎着许多小辫的维吾尔族姑娘。",doc2:"其实现在新疆的城市和内地没任何区别，千篇一律，千人一面，乏善可陈。但是，新疆和内地确实不同，城市之外有荒无人烟的辽阔戈壁，浩瀚如海的沙漠，碧波荡漾的草原，还有宝石般的高山湖泊，巍峨的天山昆仑和阿勒泰山及纵横交错的河流及广阔田野。"}},onPageScroll:function(e){t("log",e," at pages/tab2/demo7.vue:26")},methods:{info:function(){n.showToast({title:"你点我了",icon:"success"})}}};e.default=u}).call(this,n("0de9")["default"],n("6e42")["default"])},"65cc":function(t,e,n){"use strict";n.r(e);var u=n("fb1e"),c=n("415b");for(var o in c)"default"!==o&&function(t){n.d(e,t,function(){return c[t]})}(o);var a,f=n("f0c5"),r=Object(f["a"])(c["default"],u["b"],u["c"],!1,null,null,null,!1,u["a"],a);e["default"]=r.exports},fb1e:function(t,e,n){"use strict";var u,c=function(){var t=this,e=t.$createElement;t._self._c},o=[];n.d(e,"b",function(){return c}),n.d(e,"c",function(){return o}),n.d(e,"a",function(){return u})}},[["4ea1","common/runtime","common/vendor"]]]);
 });
 require('pages/tab2/demo7.js');
 __wxRoute = 'pages/tab1/index';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/tab1/index.js';
 
 define('pages/tab1/index.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab1/index"],{"15c0":function(n,e,t){"use strict";(function(n){t("0007"),t("921b");o(t("66fd"));var e=o(t("8a5a"));function o(n){return n&&n.__esModule?n:{default:n}}n(e.default)}).call(this,t("6e42")["createPage"])},2316:function(n,e,t){},2684:function(n,e,t){"use strict";(function(n){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;a(t("eb61")),a(t("b5ea"));var o=a(t("f691"));function a(n){return n&&n.__esModule?n:{default:n}}var u=function(){return t.e("components/scrollBook").then(t.bind(null,"de73"))},r=function(){return t.e("components/search").then(t.bind(null,"cda8"))},c=function(){return t.e("components/listBook").then(t.bind(null,"6193"))},i=function(){return Promise.all([t.e("common/vendor"),t.e("components/header")]).then(t.bind(null,"0117"))},l={components:{scrollBook:u,search:r,listBook:c,iheader:i},data:function(){return{showHeaderSearch:!1,loadwww:!1}},onLoad:function(){},onShow:function(){},onReady:function(){n("log",this.loadwww," at pages/tab1/index.vue:70"),n("log",666," at pages/tab1/index.vue:71"),this.loadwww=!0},onPageScroll:function(e){o.default.debug&&n("log","onPageScroll",e," at pages/tab1/index.vue:75"),e.scrollTop>110?0==this.showHeaderSearch&&(this.showHeaderSearch=!0):1==this.showHeaderSearch&&(this.showHeaderSearch=!1)},methods:{}};e.default=l}).call(this,t("0de9")["default"])},"452d":function(n,e,t){"use strict";var o,a=function(){var n=this,e=n.$createElement;n._self._c},u=[];t.d(e,"b",function(){return a}),t.d(e,"c",function(){return u}),t.d(e,"a",function(){return o})},"851d":function(n,e,t){"use strict";t.r(e);var o=t("2684"),a=t.n(o);for(var u in o)"default"!==u&&function(n){t.d(e,n,function(){return o[n]})}(u);e["default"]=a.a},"8a5a":function(n,e,t){"use strict";t.r(e);var o=t("452d"),a=t("851d");for(var u in a)"default"!==u&&function(n){t.d(e,n,function(){return a[n]})}(u);t("cf3a");var r,c=t("f0c5"),i=Object(c["a"])(a["default"],o["b"],o["c"],!1,null,null,null,!1,o["a"],r);e["default"]=i.exports},cf3a:function(n,e,t){"use strict";var o=t("2316"),a=t.n(o);a.a}},[["15c0","common/runtime","common/vendor"]]]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab1/index"],{"15c0":function(e,t,n){"use strict";(function(e){n("0007"),n("921b");a(n("66fd"));var t=a(n("8a5a"));function a(e){return e&&e.__esModule?e:{default:e}}e(t.default)}).call(this,n("6e42")["createPage"])},1820:function(e,t,n){"use strict";var a,o=function(){var e=this,t=e.$createElement;e._self._c},u=[];n.d(t,"b",function(){return o}),n.d(t,"c",function(){return u}),n.d(t,"a",function(){return a})},2316:function(e,t,n){},2684:function(e,t,n){"use strict";(function(e){Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;o(n("eb61")),o(n("b5ea"));var a=o(n("f691"));function o(e){return e&&e.__esModule?e:{default:e}}var u={components:{},data:function(){return{showHeaderSearch:!1,loadwww:!1}},onLoad:function(){},onShow:function(){},onReady:function(){e("log",this.loadwww," at pages/tab1/index.vue:54"),e("log",666," at pages/tab1/index.vue:55"),this.loadwww=!0},onPageScroll:function(t){a.default.debug&&e("log","onPageScroll",t," at pages/tab1/index.vue:59"),t.scrollTop>110?0==this.showHeaderSearch&&(this.showHeaderSearch=!0):1==this.showHeaderSearch&&(this.showHeaderSearch=!1)},methods:{}};t.default=u}).call(this,n("0de9")["default"])},"851d":function(e,t,n){"use strict";n.r(t);var a=n("2684"),o=n.n(a);for(var u in a)"default"!==u&&function(e){n.d(t,e,function(){return a[e]})}(u);t["default"]=o.a},"8a5a":function(e,t,n){"use strict";n.r(t);var a=n("1820"),o=n("851d");for(var u in o)"default"!==u&&function(e){n.d(t,e,function(){return o[e]})}(u);n("cf3a");var c,r=n("f0c5"),i=Object(r["a"])(o["default"],a["b"],a["c"],!1,null,null,null,!1,a["a"],c);t["default"]=i.exports},cf3a:function(e,t,n){"use strict";var a=n("2316"),o=n.n(a);o.a}},[["15c0","common/runtime","common/vendor"]]]);
 });
 require('pages/tab1/index.js');
 __wxRoute = 'pages/notfound/notfound';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/notfound/notfound.js';
@@ -5864,25 +5478,31 @@ require('pages/notfound/notfound.js');
 __wxRoute = 'pages/login/reg';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/login/reg.js';
 
 define('pages/login/reg.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/login/reg"],{"17fa":function(e,t,n){"use strict";var a={"hx-navbar":()=>n.e("components/hx-navbar/hx-navbar").then(n.bind(null,"670c"))},r=function(){var e=this,t=e.$createElement;e._self._c},o=[];n.d(t,"b",function(){return r}),n.d(t,"c",function(){return o}),n.d(t,"a",function(){return a})},"494c":function(e,t,n){"use strict";(function(e,a){Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var r=u(n("f691")),o=u(n("b5ea"));u(n("eb61"));function u(e){return e&&e.__esModule?e:{default:e}}var i=function(){return Promise.all([n.e("common/vendor"),n.e("components/header")]).then(n.bind(null,"0117"))},d={components:{iheader:i},data:function(){return{loading:!1,redirect:encodeURIComponent("/pages/me/me")}},onLoad:function(t){r.default.debug&&e("log","onLoad",t," at pages/login/reg.vue:161"),t.redirect&&(this.redirect=t.redirect)},onShow:function(){var e=o.default.getToken();if(e){var t=decodeURIComponent(this.redirect);t.indexOf("?")>-1?a.redirectTo({url:t}):a.switchTab({url:t})}},methods:{submit:function(t){r.default.debug&&e("log","submit",t," at pages/login/reg.vue:181");var n=this;if(!n.loading){var u=t.detail.value;o.default.isEmail(u.email)?u.password==u.re_password?""!=u.username&&""!=u.nickname&&""!=u.password&&""!=u.re_password?(n.loading=!0,o.default.request(r.default.api.register,u,"POST").then(function(t){r.default.debug&&e("log",r.default.api.register,t," at pages/login/reg.vue:206"),o.default.setUser(t.data.user),a.showToast({title:"注册成功"}),setTimeout(function(){var e=decodeURIComponent(n.redirect);e.indexOf("?")>-1?a.redirectTo({url:e}):a.switchTab({url:e})},1500)}).catch(function(t){r.default.debug&&e("log",r.default.api.register,t," at pages/login/reg.vue:224"),o.default.toastError(t.data.message||t.errMsg)}).finally(function(){n.loading=!1})):o.default.toastError("以上资料项均为必填项，请认真填写"):o.default.toastError("两次输入的密码不一致，请重新输入"):o.default.toastError("邮箱格式不正确")}},toLogin:function(){a.navigateTo({url:"/pages/login/login?redirect="+this.redirect})}}};t.default=d}).call(this,n("0de9")["default"],n("6e42")["default"])},8106:function(e,t,n){},"82c5":function(e,t,n){"use strict";(function(e){n("0007"),n("921b");a(n("66fd"));var t=a(n("c40a"));function a(e){return e&&e.__esModule?e:{default:e}}e(t.default)}).call(this,n("6e42")["createPage"])},c40a:function(e,t,n){"use strict";n.r(t);var a=n("17fa"),r=n("dafd");for(var o in r)"default"!==o&&function(e){n.d(t,e,function(){return r[e]})}(o);n("f4a9");var u,i=n("f0c5"),d=Object(i["a"])(r["default"],a["b"],a["c"],!1,null,"32c0fff5",null,!1,a["a"],u);t["default"]=d.exports},dafd:function(e,t,n){"use strict";n.r(t);var a=n("494c"),r=n.n(a);for(var o in a)"default"!==o&&function(e){n.d(t,e,function(){return a[e]})}(o);t["default"]=r.a},f4a9:function(e,t,n){"use strict";var a=n("8106"),r=n.n(a);r.a}},[["82c5","common/runtime","common/vendor"]]]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/login/reg"],{"34b7":function(e,t,n){},"494c":function(e,t,n){"use strict";(function(e,a){Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var r=u(n("f691")),o=u(n("b5ea"));u(n("eb61"));function u(e){return e&&e.__esModule?e:{default:e}}var i=function(){return Promise.all([n.e("common/vendor"),n.e("components/header")]).then(n.bind(null,"0117"))},d={components:{iheader:i},data:function(){return{loading:!1,redirect:encodeURIComponent("/pages/me/me")}},onLoad:function(t){r.default.debug&&e("log","onLoad",t," at pages/login/reg.vue:44"),t.redirect&&(this.redirect=t.redirect)},onShow:function(){var e=o.default.getToken();if(e){var t=decodeURIComponent(this.redirect);t.indexOf("?")>-1?a.redirectTo({url:t}):a.switchTab({url:t})}},methods:{submit:function(t){r.default.debug&&e("log","submit",t," at pages/login/reg.vue:64");var n=this;if(!n.loading){var u=t.detail.value;o.default.isEmail(u.email)?u.password==u.re_password?""!=u.username&&""!=u.nickname&&""!=u.password&&""!=u.re_password?(n.loading=!0,o.default.request(r.default.api.register,u,"POST").then(function(t){r.default.debug&&e("log",r.default.api.register,t," at pages/login/reg.vue:89"),o.default.setUser(t.data.user),a.showToast({title:"注册成功"}),setTimeout(function(){var e=decodeURIComponent(n.redirect);e.indexOf("?")>-1?a.redirectTo({url:e}):a.switchTab({url:e})},1500)}).catch(function(t){r.default.debug&&e("log",r.default.api.register,t," at pages/login/reg.vue:107"),o.default.toastError(t.data.message||t.errMsg)}).finally(function(){n.loading=!1})):o.default.toastError("以上资料项均为必填项，请认真填写"):o.default.toastError("两次输入的密码不一致，请重新输入"):o.default.toastError("邮箱格式不正确")}},toLogin:function(){a.navigateTo({url:"/pages/login/login?redirect="+this.redirect})}}};t.default=d}).call(this,n("0de9")["default"],n("6e42")["default"])},"82c5":function(e,t,n){"use strict";(function(e){n("0007"),n("921b");a(n("66fd"));var t=a(n("c40a"));function a(e){return e&&e.__esModule?e:{default:e}}e(t.default)}).call(this,n("6e42")["createPage"])},"84d2":function(e,t,n){"use strict";var a=n("34b7"),r=n.n(a);r.a},c40a:function(e,t,n){"use strict";n.r(t);var a=n("fa62"),r=n("dafd");for(var o in r)"default"!==o&&function(e){n.d(t,e,function(){return r[e]})}(o);n("84d2");var u,i=n("f0c5"),d=Object(i["a"])(r["default"],a["b"],a["c"],!1,null,"ae75046c",null,!1,a["a"],u);t["default"]=d.exports},dafd:function(e,t,n){"use strict";n.r(t);var a=n("494c"),r=n.n(a);for(var o in a)"default"!==o&&function(e){n.d(t,e,function(){return a[e]})}(o);t["default"]=r.a},fa62:function(e,t,n){"use strict";var a,r=function(){var e=this,t=e.$createElement;e._self._c},o=[];n.d(t,"b",function(){return r}),n.d(t,"c",function(){return o}),n.d(t,"a",function(){return a})}},[["82c5","common/runtime","common/vendor"]]]);
 });
 require('pages/login/reg.js');
 __wxRoute = 'pages/login/agreement';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/login/agreement.js';
 
 define('pages/login/agreement.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/login/agreement"],{"1d8e":function(n,t,e){},2613:function(n,t,e){"use strict";var c={"hx-navbar":()=>e.e("components/hx-navbar/hx-navbar").then(e.bind(null,"670c"))},u=function(){var n=this,t=n.$createElement;n._self._c},a=[];e.d(t,"b",function(){return u}),e.d(t,"c",function(){return a}),e.d(t,"a",function(){return c})},"421b":function(n,t,e){"use strict";var c=e("1d8e"),u=e.n(c);u.a},"58c2":function(n,t,e){"use strict";e.r(t);var c=e("2613"),u=e("af49");for(var a in u)"default"!==a&&function(n){e.d(t,n,function(){return u[n]})}(a);e("421b");var o,r=e("f0c5"),i=Object(r["a"])(u["default"],c["b"],c["c"],!1,null,"3fc6402f",null,!1,c["a"],o);t["default"]=i.exports},"5c21":function(n,t,e){"use strict";(function(n){Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var e={components:{},data:function(){return{}},created:function(){},activated:function(){},deactivated:function(){},mounted:function(){},methods:{onClickLeft:function(){this.$router.go(-1)},onClickRight:function(t){1==t?n("log",1," at pages/login/agreement.vue:30"):2==t&&n("log",2," at pages/login/agreement.vue:32")}}};t.default=e}).call(this,e("0de9")["default"])},af49:function(n,t,e){"use strict";e.r(t);var c=e("5c21"),u=e.n(c);for(var a in c)"default"!==a&&function(n){e.d(t,n,function(){return c[n]})}(a);t["default"]=u.a},c0f2:function(n,t,e){"use strict";(function(n){e("0007"),e("921b");c(e("66fd"));var t=c(e("58c2"));function c(n){return n&&n.__esModule?n:{default:n}}n(t.default)}).call(this,e("6e42")["createPage"])}},[["c0f2","common/runtime","common/vendor"]]]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/login/agreement"],{"1d8e":function(t,n,e){},2613:function(t,n,e){"use strict";var u,c=function(){var t=this,n=t.$createElement;t._self._c},o=[];e.d(n,"b",function(){return c}),e.d(n,"c",function(){return o}),e.d(n,"a",function(){return u})},"421b":function(t,n,e){"use strict";var u=e("1d8e"),c=e.n(u);c.a},"58c2":function(t,n,e){"use strict";e.r(n);var u=e("2613"),c=e("af49");for(var o in c)"default"!==o&&function(t){e.d(n,t,function(){return c[t]})}(o);e("421b");var a,f=e("f0c5"),i=Object(f["a"])(c["default"],u["b"],u["c"],!1,null,"3fc6402f",null,!1,u["a"],a);n["default"]=i.exports},"5c21":function(t,n,e){"use strict";(function(t){Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;var e={components:{},data:function(){return{}},created:function(){},activated:function(){},deactivated:function(){},mounted:function(){},methods:{onClickLeft:function(){this.$router.go(-1)},onClickRight:function(n){1==n?t("log",1," at pages/login/agreement.vue:30"):2==n&&t("log",2," at pages/login/agreement.vue:32")}}};n.default=e}).call(this,e("0de9")["default"])},af49:function(t,n,e){"use strict";e.r(n);var u=e("5c21"),c=e.n(u);for(var o in u)"default"!==o&&function(t){e.d(n,t,function(){return u[t]})}(o);n["default"]=c.a},c0f2:function(t,n,e){"use strict";(function(t){e("0007"),e("921b");u(e("66fd"));var n=u(e("58c2"));function u(t){return t&&t.__esModule?t:{default:t}}t(n.default)}).call(this,e("6e42")["createPage"])}},[["c0f2","common/runtime","common/vendor"]]]);
 });
 require('pages/login/agreement.js');
+__wxRoute = 'pages/tab2/addOrder';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/tab2/addOrder.js';
+
+define('pages/tab2/addOrder.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab2/addOrder"],{4176:function(n,e,t){"use strict";var u={"uni-nav-bar":()=>t.e("components/uni-nav-bar/uni-nav-bar").then(t.bind(null,"a5f2")),"uni-number-box":()=>t.e("components/uni-number-box/uni-number-box").then(t.bind(null,"a6c6"))},a=function(){var n=this,e=n.$createElement;n._self._c},o=[];t.d(e,"b",function(){return a}),t.d(e,"c",function(){return o}),t.d(e,"a",function(){return u})},8488:function(n,e,t){"use strict";(function(n){t("0007"),t("921b");u(t("66fd"));var e=u(t("bce5"));function u(n){return n&&n.__esModule?n:{default:n}}n(e.default)}).call(this,t("6e42")["createPage"])},b803:function(n,e,t){},bce5:function(n,e,t){"use strict";t.r(e);var u=t("4176"),a=t("caf4");for(var o in a)"default"!==o&&function(n){t.d(e,n,function(){return a[n]})}(o);t("c1b3");var c,r=t("f0c5"),i=Object(r["a"])(a["default"],u["b"],u["c"],!1,null,"42a36dcc",null,!1,u["a"],c);e["default"]=i.exports},c1b3:function(n,e,t){"use strict";var u=t("b803"),a=t.n(u);a.a},caf4:function(n,e,t){"use strict";t.r(e);var u=t("f9da"),a=t.n(u);for(var o in u)"default"!==o&&function(n){t.d(e,n,function(){return u[n]})}(o);e["default"]=a.a},f9da:function(n,e,t){"use strict";(function(n){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0;u(t("eb61")),u(t("b5ea")),u(t("f691"));function u(n){return n&&n.__esModule?n:{default:n}}var a={components:{},data:function(){return{headerShow:!0}},onLoad:function(){},onShow:function(){},onPageScroll:function(n){n.scrollTop>60?this.headerShow=!1:this.headerShow=!0},methods:{onClickBack:function(){n.navigateBack({delta:1})}}};e.default=a}).call(this,t("6e42")["default"])}},[["8488","common/runtime","common/vendor"]]]);
+});
+require('pages/tab2/addOrder.js');
 __wxRoute = 'pages/tab3/setting';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/tab3/setting.js';
 
 define('pages/tab3/setting.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab3/setting"],{"1a63":function(n,t,e){"use strict";e.r(t);var u=e("3910"),i=e("447a");for(var o in i)"default"!==o&&function(n){e.d(t,n,function(){return i[n]})}(o);e("9466");var c,a=e("f0c5"),s=Object(a["a"])(i["default"],u["b"],u["c"],!1,null,"2dc59447",null,!1,u["a"],c);t["default"]=s.exports},3910:function(n,t,e){"use strict";var u={"uni-nav-bar":()=>e.e("components/uni-nav-bar/uni-nav-bar").then(e.bind(null,"a5f2")),"uni-list":()=>e.e("components/uni-list/uni-list").then(e.bind(null,"cb59")),"uni-list-item":()=>e.e("components/uni-list-item/uni-list-item").then(e.bind(null,"a055"))},i=function(){var n=this,t=n.$createElement;n._self._c},o=[];e.d(t,"b",function(){return i}),e.d(t,"c",function(){return o}),e.d(t,"a",function(){return u})},"447a":function(n,t,e){"use strict";e.r(t);var u=e("d73d"),i=e.n(u);for(var o in u)"default"!==o&&function(n){e.d(t,n,function(){return u[n]})}(o);t["default"]=i.a},"645a":function(n,t,e){},9466:function(n,t,e){"use strict";var u=e("645a"),i=e.n(u);i.a},d73d:function(n,t,e){"use strict";(function(n){Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var e={components:{},data:function(){return{}},watch:{},computed:{},created:function(){},activated:function(){},deactivated:function(){},mounted:function(){},methods:{onClickBack:function(){n.navigateBack({delta:1})},onAddress:function(){this.$router.push({path:"/address"})},onLogout:function(){n.showModal({title:"提示",content:"注销账号后，该账号里所有数据将被清空。",success:function(t){t.confirm&&n.toastSuccess("退出成功")}})},onExit:function(){n.showModal({title:"提示",content:"您确定要退出登录吗？",success:function(t){t.confirm&&(n.navigateTo({url:"/pages/login/login"}),n.toastSuccess("退出成功"))}})}}};t.default=e}).call(this,e("6e42")["default"])},ede3:function(n,t,e){"use strict";(function(n){e("0007"),e("921b");u(e("66fd"));var t=u(e("1a63"));function u(n){return n&&n.__esModule?n:{default:n}}n(t.default)}).call(this,e("6e42")["createPage"])}},[["ede3","common/runtime","common/vendor"]]]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab3/setting"],{"1a63":function(n,t,e){"use strict";e.r(t);var u=e("7cf3"),i=e("447a");for(var c in i)"default"!==c&&function(n){e.d(t,n,function(){return i[n]})}(c);e("55fe");var o,a=e("f0c5"),s=Object(a["a"])(i["default"],u["b"],u["c"],!1,null,"0f61433b",null,!1,u["a"],o);t["default"]=s.exports},"447a":function(n,t,e){"use strict";e.r(t);var u=e("d73d"),i=e.n(u);for(var c in u)"default"!==c&&function(n){e.d(t,n,function(){return u[n]})}(c);t["default"]=i.a},"4fab":function(n,t,e){},"55fe":function(n,t,e){"use strict";var u=e("4fab"),i=e.n(u);i.a},"7cf3":function(n,t,e){"use strict";var u={"uni-nav-bar":()=>e.e("components/uni-nav-bar/uni-nav-bar").then(e.bind(null,"a5f2")),"uni-list":()=>e.e("components/uni-list/uni-list").then(e.bind(null,"cb59")),"uni-list-item":()=>e.e("components/uni-list-item/uni-list-item").then(e.bind(null,"a055"))},i=function(){var n=this,t=n.$createElement;n._self._c},c=[];e.d(t,"b",function(){return i}),e.d(t,"c",function(){return c}),e.d(t,"a",function(){return u})},d73d:function(n,t,e){"use strict";(function(n){Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var e={components:{},data:function(){return{}},watch:{},computed:{},created:function(){},activated:function(){},deactivated:function(){},mounted:function(){},methods:{onClickBack:function(){n.navigateBack({delta:1})},onAddress:function(){this.$router.push({path:"/address"})},onLogout:function(){n.showModal({title:"提示",content:"注销账号后，该账号里所有数据将被清空。",success:function(t){t.confirm&&n.toastSuccess("退出成功")}})},onExit:function(){n.showModal({title:"提示",content:"您确定要退出登录吗？",success:function(t){t.confirm&&(n.navigateTo({url:"/pages/login/login"}),n.toastSuccess("退出成功"))}})}}};t.default=e}).call(this,e("6e42")["default"])},ede3:function(n,t,e){"use strict";(function(n){e("0007"),e("921b");u(e("66fd"));var t=u(e("1a63"));function u(n){return n&&n.__esModule?n:{default:n}}n(t.default)}).call(this,e("6e42")["createPage"])}},[["ede3","common/runtime","common/vendor"]]]);
 });
 require('pages/tab3/setting.js');
 __wxRoute = 'pages/tab3/address';__wxRouteBegin = true;__wxAppCurrentFile__ = 'pages/tab3/address.js';
 
 define('pages/tab3/address.js',function(require, module, exports, window, document, frames, self, location, navigator, localStorage, history, Caches, screen, alert, confirm, prompt, fetch, XMLHttpRequest, WebSocket, webkit, WeixinJSCore, Reporter, print, WeixinJSBridge){
-(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab3/address"],{5439:function(t,n,e){"use strict";var a,c=function(){var t=this,n=t.$createElement;t._self._c},u=[];e.d(n,"b",function(){return c}),e.d(n,"c",function(){return u}),e.d(n,"a",function(){return a})},"80d6":function(t,n,e){"use strict";var a=e("df38"),c=e.n(a);c.a},"92da":function(t,n,e){"use strict";Object.defineProperty(n,"__esModule",{value:!0}),n.default=void 0;var a={components:{},data:function(){return{checked:!0}},watch:{},computed:{},created:function(){},activated:function(){},deactivated:function(){},mounted:function(){},methods:{onClickLeft:function(){this.$router.go(-1)},onClickRight:function(){},onDefaultAddress:function(){this.checked=!this.checked}}};n.default=a},"9a17":function(t,n,e){"use strict";e.r(n);var a=e("92da"),c=e.n(a);for(var u in a)"default"!==u&&function(t){e.d(n,t,function(){return a[t]})}(u);n["default"]=c.a},aa9a:function(t,n,e){"use strict";e.r(n);var a=e("5439"),c=e("9a17");for(var u in c)"default"!==u&&function(t){e.d(n,t,function(){return c[t]})}(u);e("80d6");var o,i=e("f0c5"),r=Object(i["a"])(c["default"],a["b"],a["c"],!1,null,"3e3adee9",null,!1,a["a"],o);n["default"]=r.exports},df38:function(t,n,e){},ea2b:function(t,n,e){"use strict";(function(t){e("0007"),e("921b");a(e("66fd"));var n=a(e("aa9a"));function a(t){return t&&t.__esModule?t:{default:t}}t(n.default)}).call(this,e("6e42")["createPage"])}},[["ea2b","common/runtime","common/vendor"]]]);
+(global["webpackJsonp"]=global["webpackJsonp"]||[]).push([["pages/tab3/address"],{"92da":function(n,t,e){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var a={components:{},data:function(){return{checked:!0}},watch:{},computed:{},created:function(){},activated:function(){},deactivated:function(){},mounted:function(){},methods:{onClickLeft:function(){this.$router.go(-1)},onClickRight:function(){},onDefaultAddress:function(){this.checked=!this.checked}}};t.default=a},"9a17":function(n,t,e){"use strict";e.r(t);var a=e("92da"),u=e.n(a);for(var c in a)"default"!==c&&function(n){e.d(t,n,function(){return a[n]})}(c);t["default"]=u.a},a5e4:function(n,t,e){"use strict";var a={"uni-nav-bar":()=>e.e("components/uni-nav-bar/uni-nav-bar").then(e.bind(null,"a5f2")),"uni-tag":()=>e.e("components/uni-tag/uni-tag").then(e.bind(null,"4c08")),"uni-icons":()=>Promise.all([e.e("common/vendor"),e.e("components/uni-icons/uni-icons")]).then(e.bind(null,"123a"))},u=function(){var n=this,t=n.$createElement;n._self._c},c=[];e.d(t,"b",function(){return u}),e.d(t,"c",function(){return c}),e.d(t,"a",function(){return a})},aa9a:function(n,t,e){"use strict";e.r(t);var a=e("a5e4"),u=e("9a17");for(var c in u)"default"!==c&&function(n){e.d(t,n,function(){return u[n]})}(c);e("be05");var o,i=e("f0c5"),r=Object(i["a"])(u["default"],a["b"],a["c"],!1,null,"2146bc94",null,!1,a["a"],o);t["default"]=r.exports},bab1:function(n,t,e){},be05:function(n,t,e){"use strict";var a=e("bab1"),u=e.n(a);u.a},ea2b:function(n,t,e){"use strict";(function(n){e("0007"),e("921b");a(e("66fd"));var t=a(e("aa9a"));function a(n){return n&&n.__esModule?n:{default:n}}n(t.default)}).call(this,e("6e42")["createPage"])}},[["ea2b","common/runtime","common/vendor"]]]);
 });
 require('pages/tab3/address.js');
 ;(function(global) {

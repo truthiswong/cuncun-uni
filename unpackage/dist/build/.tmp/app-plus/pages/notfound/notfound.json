@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "未找到对象",
+  "bounce": "none",
   "usingComponents": {
     "iheader": "/components/header"
   }

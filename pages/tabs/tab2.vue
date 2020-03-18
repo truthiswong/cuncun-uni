@@ -3,7 +3,7 @@
 		<uni-nav-bar color="#282828" title="我的订单" class="header" status-bar="true" fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
 			<view slot="right">
 				<view class="header_icon">
-					<image @click="onClickRight(1)" style="" src="../../static/tab1/add_green.png"></image>
+					<image @click="onClickRight" src="../../static/tab1/add_green.png"></image>
 				</view>
 			</view>
 		</uni-nav-bar>
@@ -11,7 +11,7 @@
 		 shadow="true">
 			<view slot="right">
 				<view class="header_icon">
-					<image @click="onClickRight(1)" src="../../static/tab1/add_green.png"></image>
+					<image @click="onClickRight" src="../../static/tab1/add_green.png"></image>
 				</view>
 			</view>
 		</uni-nav-bar>
@@ -19,7 +19,7 @@
 			<view class="no_data">
 				<image src="../../static/tab1/no_data.png"></image>
 				<p>欢迎使用存存，赶紧来存点东西吧～</p>
-				<button class="common_button" block>去存点东西</button>
+				<button class="common_button" @click="onClickRight">去存点东西</button>
 			</view>
 		</view>
 	</view>
@@ -59,7 +59,9 @@
 		},
 		methods: {
 			onClickRight() {
-				console.log("订单add")
+				uni.navigateTo({
+					url: "/pages/tab2/addOrder"
+				})
 			}
 		}
 	}

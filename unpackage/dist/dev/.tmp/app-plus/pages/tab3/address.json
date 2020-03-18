@@ -3,8 +3,6 @@
   "bounce": "none",
   "usingComponents": {
     "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
-    "uni-list": "/components/uni-list/uni-list",
-    "uni-list-item": "/components/uni-list-item/uni-list-item",
     "uni-tag": "/components/uni-tag/uni-tag",
     "uni-icons": "/components/uni-icons/uni-icons"
   }

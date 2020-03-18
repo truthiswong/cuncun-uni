@@ -1,9 +1,5 @@
 {
   "navigationBarTitleText": "测试",
-  "usingComponents": {
-    "scroll-book": "/components/scrollBook",
-    "search": "/components/search",
-    "list-book": "/components/listBook",
-    "iheader": "/components/header"
-  }
+  "bounce": "none",
+  "usingComponents": {}
 }

@@ -20,15 +20,10 @@
 	font-size: 0.28rem;
 	color: rgba(3, 166, 166, 1);
 }
-.content.data-v-045e7db0 {
-	position: relative;
-	width: 100%;
-	height: calc(100% - 0.92rem);
-	overflow-x: hidden;
-	overflow-y: scroll;
-}
 .address_list.data-v-045e7db0 {
 	margin-top: 0.2rem;
+	background-color: #FFFFFF;
+	padding: 0 30rpx;
 }
 .change_address.data-v-045e7db0 {
 	display: -webkit-box;

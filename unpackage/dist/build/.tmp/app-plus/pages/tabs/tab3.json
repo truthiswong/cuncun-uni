@@ -1,7 +1,8 @@
 {
   "navigationBarTitleText": "我的",
+  "bounce": "none",
   "usingComponents": {
-    "hx-navbar": "/components/hx-navbar/hx-navbar",
+    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
     "uni-rate": "/components/uni-rate/uni-rate",
     "uni-list": "/components/uni-list/uni-list",
     "uni-list-item": "/components/uni-list-item/uni-list-item",

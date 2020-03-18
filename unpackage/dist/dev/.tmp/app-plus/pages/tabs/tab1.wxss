@@ -1,7 +1,6 @@
 
 .tab1 {
 	background-color: #FCFCFC;
-	padding-bottom: 100rpx;
 }
 .header_icon {
 	width: 200rpx;
@@ -79,6 +78,77 @@
 .right_icon image {
 	width: 16rpx;
 	height: 16rpx;
+}
+.box_wrong_content {
+	position: relative;
+	width: 100%;
+	height: 234rpx;
+	background-color: #FFFFFF;
+}
+.box_wrong_left {
+	position: relative;
+}
+.box_wrong_left image {
+	width: 308rpx;
+	height: 210rpx;
+	margin-top: 60rpx;
+}
+.box_wrong_left text {
+	position: absolute;
+	right: 80rpx;
+	bottom: 70rpx;
+	font-size: 50rpx;
+	font-weight: 700;
+	color: #90785e;
+}
+.box_wrong_right {
+	width: 380rpx;
+	font-size: 28rpx;
+	font-weight: 500;
+	color: rgba(255, 255, 255, 1);
+	line-height: 50rpx;
+	margin: 20rpx 50rpx 0 0;
+}
+.box_wrong_text {
+	font-weight: 400;
+	line-height: 46rpx;
+	margin-top: 10rpx;
+}
+.box_groceries_content {
+	position: relative;
+	width: 100%;
+	height: 234rpx;
+	background-color: #FFFFFF;
+}
+.box_groceries_left {
+	position: relative;
+}
+.box_groceries_left image {
+	width: 308rpx;
+	height: 230rpx;
+	margin-top: 60rpx;
+}
+.box_groceries_left text {
+	position: absolute;
+	right: 80rpx;
+	bottom: 80rpx;
+	font-size: 50rpx;
+	font-weight: 700;
+	color: #90785e;
+}
+.box_groceries_right {
+	width: 380rpx;
+	font-size: 28rpx;
+	font-weight: 500;
+	color: rgba(40,40,40,1);
+	line-height: 50rpx;
+	margin: 20rpx 50rpx 0 0;
+}
+.box_groceries_text {
+	font-weight: 400;
+	line-height: 46rpx;
+	margin-top: 10rpx;
+	color: #4A4A4A;
 }
 .scroll_x {
 	white-space: nowrap;

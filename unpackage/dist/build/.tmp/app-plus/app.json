@@ -14,6 +14,7 @@
     "pages/notfound/notfound",
     "pages/login/reg",
     "pages/login/agreement",
+    "pages/tab2/addOrder",
     "pages/tab3/setting",
     "pages/tab3/address"
   ],
@@ -58,11 +59,13 @@
   "appname": "存存",
   "compilerVersion": "2.6.5",
   "usingComponents": {
-    "hx-navbar": "/components/hx-navbar/hx-navbar",
     "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
     "uni-popup": "/components/uni-popup/uni-popup",
     "uni-search-bar": "/components/uni-search-bar/uni-search-bar",
     "uni-list": "/components/uni-list/uni-list",
-    "uni-list-item": "/components/uni-list-item/uni-list-item"
+    "uni-list-item": "/components/uni-list-item/uni-list-item",
+    "uni-tag": "/components/uni-tag/uni-tag",
+    "uni-number-box": "/components/uni-number-box/uni-number-box",
+    "uni-icons": "/components/uni-icons/uni-icons"
   }
 }
