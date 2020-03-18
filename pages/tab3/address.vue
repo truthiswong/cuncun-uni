@@ -7,47 +7,33 @@
 		</uni-nav-bar>
 		<!-- 内容 -->
 		<view class="content">
-			<uni-list>
-				<uni-list-item :showArrow="false">
-					<view slot="default" class="row">
-						<text>王女士</text>
-						<text>13928863927</text>
-						<uni-tag text="学校" size="small" inverted="true" type="error"></uni-tag>
-						<uni-tag text="公司" size="small" inverted="true" type="error"></uni-tag>
-						<uni-tag text="家" size="small" inverted="true" type="error"></uni-tag>
+			<view class="address_list" v-for="item in 7" :key="item">
+				<view class="row">
+					<text>王女士</text>
+					<text>13928863927</text>
+					<uni-tag text="学校" size="small" inverted="true" type="error"></uni-tag>
+					<uni-tag text="公司" size="small" inverted="true" type="error"></uni-tag>
+					<uni-tag text="家" size="small" inverted="true" type="error"></uni-tag>
+				</view>
+				<text>上海市静安区西藏南路666号大型创意园C666</text>
+				<view class="row flex_between">
+					<view slot="default">
+						<checkbox-group>
+							<checkbox style="transform:scale(0.6);" color="rgba(59, 193, 187, 1)" />
+						</checkbox-group>
 					</view>
-					<text>上海市静安区西藏南路666号大型创意园C666</text>
-				</uni-list-item>
-				<uni-list-item :showArrow="false">
 					<view class="row">
-						<view slot="default">
-							<checkbox-group>
-								<checkbox style="transform:scale(0.6);" color="rgba(59, 193, 187, 1)" />
-							</checkbox-group>
-						</view>
 						<view class="row">
 							<uni-icons type="trash" style="vertical-align: middle;"></uni-icons>
-							<uni-tag text="选择" size="small" inverted="true" :circle="true"></uni-tag>
+							<uni-tag style="vertical-align: middle;" text="选择" size="small" inverted="true" :circle="true"></uni-tag>
+						</view>
+						<view class="row">
 							<uni-icons type="compose" style="vertical-align: middle;"></uni-icons>
-							<uni-tag text="选择" size="small" inverted="true" :circle="true"></uni-tag>
+							<uni-tag style="vertical-align: middle;" text="选择" size="small" inverted="true" :circle="true"></uni-tag>
 						</view>
 					</view>
-				</uni-list-item>
-			</uni-list>
-			<view class="address_list">
-				<!-- <van-cell>
-					<template slot="title">
-						<view class="change_address">
-							<van-checkbox :value="checked" @click="onDefaultAddress" checked-color="#3CC3BA">默认地址</van-checkbox>
-							<view>
-								<van-button hairline size="mini" icon="delete">删除</van-button>
-								<van-button hairline size="mini" icon="edit">编辑</van-button>
-							</view>
-						</view>
-					</template>
-				</van-cell> -->
+				</view>
 			</view>
-
 		</view>
 	</view>
 </template>
@@ -108,16 +94,10 @@
 		color: rgba(3, 166, 166, 1);
 	}
 
-	.content {
-		position: relative;
-		width: 100%;
-		height: calc(100% - 0.92rem);
-		overflow-x: hidden;
-		overflow-y: scroll;
-	}
-
 	.address_list {
 		margin-top: 0.2rem;
+		background-color: #FFFFFF;
+		padding: 0 30upx;
 	}
 
 	.change_address {
