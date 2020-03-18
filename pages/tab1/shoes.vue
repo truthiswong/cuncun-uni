@@ -4,7 +4,7 @@
 			<view slot="right">
 				<view class="header_icon">
 					<image @click="onClickRight(1)" style="" src="../../static/tab1/search_white.png"></image>
-					<button plain="true" class="choose_button">选择</button>
+					<button @click="onClickRight(2)" plain="true" class="choose_button">选择</button>
 				</view>
 			</view>
 		</uni-nav-bar>
@@ -13,7 +13,7 @@
 			<view slot="right">
 				<view class="header_icon">
 					<image @click="onClickRight(1)" src="../../static/tab1/search_green.png"></image>
-					<button plain="true" class="choose_button choose_button_scroll">选择</button>
+					<button @click="onClickRight(2)" plain="true" class="choose_button choose_button_scroll">选择</button>
 				</view>
 			</view>
 		</uni-nav-bar>
@@ -68,7 +68,9 @@
 			},
 			onClickRight(index) {
 				if (index == 1) {
-					console.log(1);
+					uni.navigateTo({
+						url: "/pages/tab1/search"
+					})
 				} else if (index == 2) {
 					console.log(2);
 				}
@@ -96,12 +98,13 @@
 		border-radius: 5px;
 		border: 1px solid rgba(255, 255, 255, 1);
 		font-size: 28upx;
-		line-height: 60upx;
+		line-height: 58upx;
 		color: rgba(255, 255, 255, 1);
 		padding: 0;
 		text-align: center;
 		vertical-align: middle;
 		margin-left: 50upx;
+		box-sizing: border-box;
 	}
 	.choose_button_scroll {
 		border: 1px solid rgba(0, 0, 0, 1);
@@ -119,6 +122,7 @@
 		box-sizing: border-box;
 		text-align: center;
 		padding-top: 200upx;
+		margin-bottom: 30upx;
 	}
 	.cont_top p {
 		font-size:28upx;
