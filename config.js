@@ -1,54 +1,33 @@
-// api host，最后不要带斜杠。后端程序是BookStack (https://github.com/truthhun/BookStack)
-let host = 'http://localhost:8181/bookchat'
+let host = 'http://localhost:8088'
 
-// 是否是调试模式。如果是生产环境，请设置为false
-const debug = true
-
-// 程序信息，置空则不显示
-const info = {
-	about: 'help/about', // "关于我们"的文档标识
-	version: 'v1.3.2',
-	copyright: 'BookStack.CN',
-	license: 'Apache 2.0',
-	author: 'TruthHun',
-}
-
-const api = {
-	banners: `${host}/api/v1/banners`,
-	register: `${host}/api/v1/register`,
-	login: `${host}/api/v1/login`,
-	loginByWechat: `${host}/api/v1/login-by-wechat`,
-	loginBindWechat: `${host}/api/v1/login-bind-wechat`,
-	loginedBindWechat: `${host}/api/v1/login-bind-wechat`,
-	logout: `${host}/api/v1/logout`,
-	categories: `${host}/api/v1/book/categories`,
-	bookLists: `${host}/api/v1/book/lists`,
-	bookListsByCids: `${host}/api/v1/book/lists-by-cids`,
-	bookInfo: `${host}/api/v1/book/info`,
-	bookMenu: `${host}/api/v1/book/menu`,
-	bookDownload: `${host}/api/v1/book/download`,
-	searchBook: `${host}/api/v1/search/book`,
-	searchDoc: `${host}/api/v1/search/doc`,
-	bookmark: `${host}/api/v1/book/bookmark`,
-	read: `${host}/api/v1/book/read`,
-	userInfo: `${host}/api/v1/user/info`,
-	userMoreInfo: `${host}/api/v1/user/more-info`,
-	userRelease: `${host}/api/v1/user/release`,
-	userFans: `${host}/api/v1/user/fans`,
-	userFollow: `${host}/api/v1/user/follow`,
-	userSign: `${host}/api/v1/user/sign`,
-	bookshelf: `${host}/api/v1/user/bookshelf`,
-	bookStar: `${host}/api/v1/book/star`,
-	comment: `${host}/api/v1/book/comment`,
-	bookRelated: `${host}/api/v1/book/related`,
-	changeAvatar: `${host}/api/v1/user/change-avatar`,
-	changePassword: `${host}/api/v1/user/change-password`,
-	lastestVersion: `${host}/api/v1/version`,
-	rank: `${host}/api/v1/rank`,
+//  http 请求配置项
+const http = {
+	//  开发者服务器接口地址
+	// url: "http://localhost:3000/",
+	url: "https://nztser.shienkeji.com/api/",
+	imgurl: "https://nztser.shienkeji.com/",
+	//  请求的参数   
+	data: {},
+	//  设置请求的 header，header 中不能设置 Referer。
+	header: {
+		'token': uni.getStorageSync('token'),
+		'X-TENANT-ID': 'cuncun:cc@2020',
+		'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+	},
+	//  （需大写）有效值：OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT  
+	method: "POST",
+	//  json    如果设为json，会尝试对返回的数据做一次 JSON.parse    
+	dataType: "json",
+	//  text    设置响应的数据类型。合法值：text、arraybuffer  1.7.0
+	responseType: "text",
+	//  收到开发者服务成功返回的回调函数    
+	success() {},
+	//  接口调用失败的回调函数 
+	fail() {},
+	//  接口调用结束的回调函数（调用成功、失败都会执行）
+	complete() {},
 }
 
 module.exports = {
-	api,
-	debug,
-	info,
+	http
 }
