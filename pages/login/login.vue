@@ -20,7 +20,7 @@
 				<label class="row" style="margin-top: 60upx;">
 					<view class="col-1" style="margin-left: -8upx;">
 						<checkbox-group @change="agreementChange">
-							<checkbox style="transform:scale(0.6);" color="rgba(59, 193, 187, 1)"/>
+							<checkbox style="transform:scale(0.6);" color="rgba(59, 193, 187, 1)" />
 						</checkbox-group>
 					</view>
 					<view class="row col-11" style="font-size: 26upx;color: #282828; align-items: center; margin-top: 4upx;">
@@ -40,11 +40,13 @@
 	import config from '../../config.js'
 	import util from '../../utils/util.js'
 	import api from '../../utils/api.js'
+	// import http from '@/utils/http.js'
+
 	export default {
 		components: {},
 		data() {
 			return {
-				username: "18866668888", //手机号
+				username: "15617693243", //手机号
 				sms: "", //验证码
 				smsText: "发送验证码",
 				agreement: false,
@@ -98,19 +100,51 @@
 				this.agreement = !this.agreement;
 			},
 			getSms() {
-				this.disabled = true;
-				let num = 30;
-				this.smsText = num;
-				this.timer = setInterval(() => {
-					num--;
-					if (num >= 0) {
-						this.smsText = num;
-					} else {
-						clearInterval(this.timer);
-						this.smsText = "再次获取";
-						this.disabled = false;
-					}
-				}, 1000);
+				if (!this.username || this.username.length != 11) {
+					uni.showToast({
+						title: '请输入正确的手机号',
+						icon: 'none'
+					})
+				} else {
+					uni.request({
+					    url: 'http://cuncun.app.iisu.cn/server/sso/code/send', //仅为示例，并非真实接口地址。
+					    data: {
+							type: 'mobile',
+							account: this.username
+						},
+						method: 'POST',
+					    header: {
+							'Content-Type': 'application/x-www-form-urlencoded',
+					        'X-TENANT-ID': 'cuncun:cc@2020'
+					    },
+					    success: (res) => {
+					        console.log(res.data);
+					        this.text = 'request success';
+					    }
+					});
+					// this.disabled = true;
+					// let num = 30;
+					// this.smsText = num;
+					// this.timer = setInterval(() => {
+					// 	num--;
+					// 	if (num >= 0) {
+					// 		this.smsText = num;
+					// 	} else {
+					// 		clearInterval(this.timer);
+					// 		this.smsText = "再次获取";
+					// 		this.disabled = false;
+					// 	}
+					// }, 1000);
+
+					// http.post('/code/send', {
+					// 	type: 'mobile',
+					// 	account: this.username
+					// }).then(res => {
+					// 	console.log(res)
+					// }).catch(error => {
+
+					// })
+				}
 			},
 			login() {
 				uni.switchTab({
