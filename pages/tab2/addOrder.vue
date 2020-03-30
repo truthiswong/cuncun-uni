@@ -6,7 +6,6 @@
 		<uni-nav-bar color="#000000" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true"
 		 v-if="!headerShow" shadow="true">
 		</uni-nav-bar>
-		</hx-navbar>
 		<!-- 内容 -->
 		<view class="content">
 			<view class="top_text">
@@ -14,8 +13,9 @@
 			</view>
 			<view class="add_content">
 				<view class="flex_between" v-for="(item,index) in inputList" :key="index" style="margin-top: 40upx;">
-					<input class="add_input" type="text" v-model="item.value" placeholder="如：文档，书本…" style="font-size:28upx;padding-left: 20upx;color: #282828;" placeholder-style="font-size:14px; font-weight:400; color:rgba(178,178,178,1); line-height:40upx;" />
-					<uni-number-box :min="0" :max="9999" v-model="item.number" @change="changeInputNumber($event,index)" />
+					<input class="add_input" type="text" v-model="item.value" placeholder="如：文档，书本…" style="font-size:28upx;padding-left: 20upx;color: #282828;"
+					 placeholder-style="font-size:14px; font-weight:400; color:rgba(178,178,178,1); line-height:40upx;" />
+					<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" v-model="item.number" @change="changeInputNumber($event,index)" />
 				</view>
 				<view class="flex_between" style="margin-top: 60upx;">
 					<text class="button button_left" @click="onAddList">+ 添加</text>
@@ -32,11 +32,12 @@
 								<p>储存费用/天(¥)：{{item.fee}}</p>
 								<text @click="onBoxDetail(item.id)">纸箱详情介绍 ></text>
 							</view>
-							<uni-number-box :min="0" :max="9999" :value="item.number" @change="changeBoxNumber($event,index)" />
+							<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" :value="item.number"
+							 @change="changeBoxNumber($event,index)" />
 						</view>
 					</uni-collapse-item>
 				</uni-collapse>
-				<uni-list class="list_custom">
+				<uni-list class="list_custom list_custom_top_border">
 					<uni-list-item style="padding: 30upx 0;" title="预计存储费用：" note="根据您所选的箱子预计每月存储费用" :showArrow="false">
 						<view slot='right' class="total_fee">
 							<p>¥<text>70</text></p>
@@ -46,27 +47,27 @@
 				<view class="row total_tip">
 					<image src="../../static/tab2/people.png" mode=""></image>
 					<view class="total_tip_right" :style="{background: 'url('+ total_tip_right_bg +') no-repeat center center / cover'}">
-						<text>这些东西可以为您剩下8平米左右的空间，您可以用来好好享受您的时间啦～（具体内容管理端定了直接改）</text>
+						<p>这些东西可以为您剩下8平米左右的空间，您可以用来好好享受您的时间啦～（具体内容管理端定了直接改）</p>
 					</view>
 				</view>
 			</view>
-			<label class="row" style="margin-top: 30upx;">
-				<view class="col-1" style="margin-left: -8upx;">
+			<label class="row" style="margin-top: 60upx;">
+				<view class="col-1" style="margin: -30upx 0 0 -12upx;">
 					<checkbox-group @change="agreement(1)">
 						<checkbox style="transform:scale(0.6);" color="rgba(59, 193, 187, 1)" />
 					</checkbox-group>
 				</view>
-				<view class="row col-11" style="font-size: 26upx;color: #282828; align-items: center; margin-top: 4upx;">
+				<view class="row col-11" style="font-size: 26upx;color: #282828; margin-top: 4upx;">
 					<text>我同意存存来打理，清理我的物品，如有问题，我负责</text>
 				</view>
 			</label>
-			<label class="row" style="margin-top: 30upx;">
-				<view class="col-1" style="margin-left: -8upx;">
+			<label class="row" style="margin-top: 40upx;">
+				<view class="col-1" style="margin: -30upx 0 0 -12upx;">
 					<checkbox-group @change="agreement(2)">
 						<checkbox style="transform:scale(0.6);" color="rgba(59, 193, 187, 1)" />
 					</checkbox-group>
 				</view>
-				<view class="row col-11" style="font-size: 26upx;color: #282828;align-items: center; margin-top: 4upx;">
+				<view class="row col-11" style="font-size: 26upx;color: #282828;margin-top: -30upx;">
 					<text class="col-2">我同意</text>
 					<navigator class="col-10" url="/pages/login/agreement">
 						<text style="color: #0269D0;">《用户服务协议》</text>
@@ -74,6 +75,31 @@
 				</view>
 			</label>
 		</view>
+		<uni-popup ref="popup" type="bottom" @touchmove.stop.prevent @touchend.stop>
+			<view class="popup_wrap">
+				<view class="popup_title">
+					<text>纸箱详情介绍</text>
+					<image class="close_btn" @click="closePopup" src="../../static/tab2/close.png" mode=""></image>
+				</view>
+				<view class="popup_cont" v-for="(item,index) in boxList" :key="index">
+					<view class="flex_between">
+						<view>
+							<image style="width: 310upx;height: 310upx;" src="../../static/tab2/box_size.png"></image>
+						</view>
+						<view class="collapse_left">
+							<h4>{{item.name}}</h4>
+							<p>箱子规格(cm)：60*40*20</p>
+							<p>重量(kg)：{{item.weight}}</p>
+							<p>物流起步价(¥)：12</p>
+							<p>物流公里价(¥)：8</p>
+							<p>储存费用/天(¥)：{{item.fee}}</p>
+						</view>
+					</view>
+					<text style="font-size:26upx;color:rgba(40,40,40,1);line-height:37upx;">大概可以存放8本书，4件T恤，一双鞋子。</text>
+					<image style="width:688upx;height:440upx;margin-top: 40upx;" src="../../static/tab2/box_detail.png"></image>
+				</view>
+			</view>
+		</uni-popup>
 		<button @click="onNext" class="button_block" :class="{button_block_active: buttonActive}">下一步</button>
 	</view>
 </template>
@@ -86,6 +112,7 @@
 		components: {},
 		data() {
 			return {
+				info: Object,
 				headerShow: true,
 				inputList: [{
 					id: 0,
@@ -128,7 +155,10 @@
 				buttonActive: false,
 			}
 		},
-		onLoad() {},
+		onLoad() {
+			this.info = uni.getSystemInfoSync()
+			console.log(this.info)
+		},
 		onShow() {},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
@@ -173,6 +203,8 @@
 					uni.showModal({
 						title: '提示',
 						content: '是否删除该物品？',
+						cancelColor: '#3BC1BB',
+						confirmColor: '#FFFFFF',
 						success: (res) => {
 							if (res.confirm) {
 								this.inputList.splice(index, 1)
@@ -191,6 +223,10 @@
 			// 箱子详情
 			onBoxDetail(index) {
 				console.log(index)
+				this.$refs.popup.open()
+			},
+			closePopup() {
+				this.$refs.popup.close()
 			},
 			agreement(index) {
 				if (index == 1) {
@@ -200,9 +236,9 @@
 				}
 			},
 			onNext() {
-				console.log(this.agree1)
-				console.log(this.agree2)
-				console.log(this.inputList)
+				uni.navigateTo({
+					url: "/pages/tab2/orderPay"
+				})
 			}
 		}
 
@@ -214,7 +250,7 @@
 		width: 100%;
 		height: 100%;
 		box-sizing: border-box;
-		padding: 0 30upx 120upx;
+		padding: 0 60upx 120upx;
 	}
 
 	.top_text {
@@ -256,37 +292,43 @@
 			text-decoration: underline solid rgba(155, 155, 155, 1);
 		}
 	}
+
 	.total_fee {
 		p {
-			font-size:24upx;
-			font-weight:600;
-			color:rgba(40,40,40,1);
+			font-size: 24upx;
+			font-weight: 600;
+			color: rgba(40, 40, 40, 1);
 		}
+
 		text {
-			font-size:36upx;
-			font-weight:600;
-			color:rgba(40,40,40,1);
+			font-size: 36upx;
+			font-weight: 600;
+			color: rgba(40, 40, 40, 1);
 			margin-left: 8upx;
 		}
 	}
+
 	.total_tip {
 		position: relative;
+
 		image {
 			width: 191upx;
 			height: 184upx;
 		}
+
 		.total_tip_right {
 			position: absolute;
 			right: 0;
-			width: 530upx;
+			width: 470upx;
 			height: 188upx;
 			box-sizing: border-box;
-			padding: 12upx 24upx 24upx 54upx;
-			text {
-				font-size:26upx;
-				font-weight:500;
-				color:rgba(84,140,140,1);
-				line-height:37upx;
+			padding: 20upx 30upx 20upx 55upx;
+
+			p {
+				font-size: 26upx;
+				font-weight: 500;
+				color: rgba(84, 140, 140, 1);
+				line-height: 37upx;
 			}
 		}
 	}
@@ -309,6 +351,19 @@
 		color: rgba(155, 155, 155, 1);
 		line-height: 37upx;
 		text-decoration: underline solid rgba(155, 155, 155, 1);
+	}
+	
+	.popup_wrap {
+		width: 100%;
+		height: 1000upx;
+		background: rgba(255, 255, 255, 1);
+		border-radius: 20upx 20upx 0 0;
+		overflow-y: scroll;
+	}
+
+	.popup_cont {
+		box-sizing: border-box;
+		padding: 30upx;
 	}
 
 	.button_block {
