@@ -43,16 +43,18 @@
 			<view>
 				<!-- 未过安检的箱子 -->
 				<view @longpress="longpress" class="list_margin50">
-					<uni-list class="list_custom list_custom_img3">
-						<uni-list-item thumb="../../static/tab1/box_wrong_title.png" :showArrow="false">
-							<view slot="right">
-								<navigator url="/pages/tab1/book">
-									<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
-										 src="../../static/tab1/right.png"></image></span>
-								</navigator>
-							</view>
-						</uni-list-item>
-					</uni-list>
+					<view class="list_padding30">
+						<uni-list class="list_custom list_custom_img3">
+							<uni-list-item thumb="../../static/tab1/box_wrong_title.png" :showArrow="false">
+								<view slot="right">
+									<navigator url="/pages/tab1/book">
+										<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+											 src="../../static/tab1/right.png"></image></span>
+									</navigator>
+								</view>
+							</uni-list-item>
+						</uni-list>
+					</view>
 					<view>
 						<view class="box_wrong_content flex_between" :style="{background: 'url('+ box_wrong_bg +') no-repeat center center / cover'}">
 							<view class="box_wrong_left">
@@ -70,20 +72,22 @@
 				</view>
 				<!-- 书架 -->
 				<view @longpress="longpress('书架')" class="list_margin50">
-					<uni-list class="list_custom list_custom_img1">
-						<view v-show="long_active" class="list_hide_show">
-							<image v-show="false" src="../../static/tab1/show.png"></image>
-							<image v-show="true" src="../../static/tab1/hide.png"></image>
-						</view>
-						<uni-list-item thumb="../../static/tab1/books_title.png" :showArrow="false">
-							<view slot="right">
-								<navigator url="/pages/tab1/book">
-									<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
-										 src="../../static/tab1/right.png"></image></span>
-								</navigator>
+					<view class="list_padding30">
+						<uni-list class="list_custom list_custom_img1">
+							<view v-show="long_active" class="list_hide_show">
+								<image v-show="false" src="../../static/tab1/show.png"></image>
+								<image v-show="true" src="../../static/tab1/hide.png"></image>
 							</view>
-						</uni-list-item>
-					</uni-list>
+							<uni-list-item thumb="../../static/tab1/books_title.png" :showArrow="false">
+								<view slot="right">
+									<navigator url="/pages/tab1/book">
+										<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+											 src="../../static/tab1/right.png"></image></span>
+									</navigator>
+								</view>
+							</uni-list-item>
+						</uni-list>
+					</view>
 					<view v-show="true">
 						<scroll-view class="scroll_x" scroll-x="true">
 							<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
@@ -95,20 +99,22 @@
 				</view>
 				<!-- 衣柜 -->
 				<view @longpress="longpress('衣柜')" class="list_margin50">
-					<uni-list class="list_custom list_custom_img1">
-						<view v-show="long_active" class="list_hide_show">
-							<image v-show="false" src="../../static/tab1/show.png"></image>
-							<image v-show="true" src="../../static/tab1/hide.png"></image>
-						</view>
-						<uni-list-item thumb="../../static/tab1/clothes_title.png" :showArrow="false">
-							<view slot="right">
-								<navigator url="/pages/tab1/clothes">
-									<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
-										 src="../../static/tab1/right.png"></image></span>
-								</navigator>
+					<view class="list_padding30">
+						<uni-list class="list_custom list_custom_img1">
+							<view v-show="long_active" class="list_hide_show">
+								<image v-show="false" src="../../static/tab1/show.png"></image>
+								<image v-show="true" src="../../static/tab1/hide.png"></image>
 							</view>
-						</uni-list-item>
-					</uni-list>
+							<uni-list-item thumb="../../static/tab1/clothes_title.png" :showArrow="false">
+								<view slot="right">
+									<navigator url="/pages/tab1/clothes">
+										<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+											 src="../../static/tab1/right.png"></image></span>
+									</navigator>
+								</view>
+							</uni-list-item>
+						</uni-list>
+					</view>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
 							<view class="scroll_content scroll_content2" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
@@ -121,20 +127,22 @@
 				</view>
 				<!-- 鞋柜 -->
 				<view @longpress="longpress('鞋柜')" class="list_margin50">
-					<uni-list class="list_custom list_custom_img1">
-						<view v-show="long_active" class="list_hide_show">
-							<image v-show="false" src="../../static/tab1/show.png"></image>
-							<image v-show="true" src="../../static/tab1/hide.png"></image>
-						</view>
-						<uni-list-item thumb="../../static/tab1/shoes_title.png" :showArrow="false">
-							<view slot="right">
-								<navigator url="/pages/tab1/shoes">
-									<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
-										 src="../../static/tab1/right.png"></image></span>
-								</navigator>
+					<view class="list_padding30">
+						<uni-list class="list_custom list_custom_img1">
+							<view v-show="long_active" class="list_hide_show">
+								<image v-show="false" src="../../static/tab1/show.png"></image>
+								<image v-show="true" src="../../static/tab1/hide.png"></image>
 							</view>
-						</uni-list-item>
-					</uni-list>
+							<uni-list-item thumb="../../static/tab1/shoes_title.png" :showArrow="false">
+								<view slot="right">
+									<navigator url="/pages/tab1/shoes">
+										<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+											 src="../../static/tab1/right.png"></image></span>
+									</navigator>
+								</view>
+							</uni-list-item>
+						</uni-list>
+					</view>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
 							<view class="scroll_content scroll_content2" v-for="(item,index) in 7" :key='index' style="display: inline-block;">
@@ -147,20 +155,22 @@
 				</view>
 				<!-- 储藏室 -->
 				<view @longpress="longpress('储藏室')" class="list_margin50">
-					<uni-list class="list_custom list_custom_img2">
-						<view v-show="long_active" class="list_hide_show">
-							<image v-show="false" src="../../static/tab1/show.png"></image>
-							<image v-show="true" src="../../static/tab1/hide.png"></image>
-						</view>
-						<uni-list-item thumb="../../static/tab1/storage_title.png" :showArrow="false">
-							<view slot="right">
-								<navigator url="/pages/tab1/storage">
-									<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
-										 src="../../static/tab1/right.png"></image></span>
-								</navigator>
+					<view class="list_padding30">
+						<uni-list class="list_custom list_custom_img2">
+							<view v-show="long_active" class="list_hide_show">
+								<image v-show="false" src="../../static/tab1/show.png"></image>
+								<image v-show="true" src="../../static/tab1/hide.png"></image>
 							</view>
-						</uni-list-item>
-					</uni-list>
+							<uni-list-item thumb="../../static/tab1/storage_title.png" :showArrow="false">
+								<view slot="right">
+									<navigator url="/pages/tab1/storage">
+										<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+											 src="../../static/tab1/right.png"></image></span>
+									</navigator>
+								</view>
+							</uni-list-item>
+						</uni-list>
+					</view>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
 							<view class="scroll_content scroll_content2" v-for="(item,index) in 8" :key='index' style="display: inline-block;">
@@ -173,20 +183,22 @@
 				</view>
 				<!-- 杂货架 -->
 				<view @longpress="longpress('杂货架')" class="list_margin50">
-					<uni-list class="list_custom list_custom_img2">
-						<view v-show="long_active" class="list_hide_show">
-							<image v-show="true" src="../../static/tab1/show.png"></image>
-							<image v-show="false" src="../../static/tab1/hide.png"></image>
-						</view>
-						<uni-list-item thumb="../../static/tab1/groceries_title.png" :showArrow="false">
-							<view slot="right">
-								<navigator url="/pages/tab1/storage">
-									<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
-										 src="../../static/tab1/right.png"></image></span>
-								</navigator>
+					<view class="list_padding30">
+						<uni-list class="list_custom list_custom_img2">
+							<view v-show="long_active" class="list_hide_show">
+								<image v-show="true" src="../../static/tab1/show.png"></image>
+								<image v-show="false" src="../../static/tab1/hide.png"></image>
 							</view>
-						</uni-list-item>
-					</uni-list>
+							<uni-list-item thumb="../../static/tab1/groceries_title.png" :showArrow="false">
+								<view slot="right">
+									<navigator url="/pages/tab1/storage">
+										<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+											 src="../../static/tab1/right.png"></image></span>
+									</navigator>
+								</view>
+							</uni-list-item>
+						</uni-list>
+					</view>
 					<view class="box_groceries_content flex_between" v-for="item in 3" :key="item">
 						<view class="box_groceries_left">
 							<image src="../../static/tab1/box_null.png"></image>
@@ -279,27 +291,23 @@
 	}
 </script>
 
-<style>
+<style lang="scss" scoped>
 	.tab1 {
 		background-color: #FCFCFC;
 	}
 
 	.header_icon {
 		width: 200upx;
-	}
-
-	.header_icon image {
-		width: 44upx;
-		height: 44upx;
-		margin: 30upx 10upx 0;
+		image {
+			width: 44upx;
+			height: 44upx;
+			margin: 30upx 10upx 0;
+		}
 	}
 
 	.content {
-		/* position: relative;
-		top: -88upx; */
 		width: 100%;
 		height: 100%;
-		/* margin-top: -88px; */
 	}
 
 	.cont_top {
@@ -314,41 +322,37 @@
 		left: 30upx;
 		width: 513upx;
 		height: 262upx;
-	}
-
-	.cont_dialog_text>h3 {
-		font-size: 36upx;
-		font-weight: 600;
-		color: rgba(40, 40, 40, 1);
-		line-height: 50upx;
-		padding: 40upx 40upx 0 30upx;
-	}
-
-	.cont_dialog_text>p {
-		font-size: 28upx;
-		font-weight: 400;
-		color: rgba(136, 136, 136, 1);
-		line-height: 46upx;
-		padding: 20upx 40upx 0 30upx;
+		h3 {
+			font-size: 36upx;
+			font-weight: 600;
+			color: rgba(40, 40, 40, 1);
+			line-height: 50upx;
+			padding: 40upx 40upx 0 30upx;
+		}
+		p {
+			font-size: 28upx;
+			font-weight: 400;
+			color: rgba(136, 136, 136, 1);
+			line-height: 46upx;
+			padding: 20upx 40upx 0 30upx;
+		}
 	}
 
 	.no_data {
 		text-align: center;
 		padding: 116upx 0;
-	}
-
-	.no_data>image {
-		width: 338upx;
-		height: 326upx;
-	}
-
-	.no_data>p {
-		font-size: 28upx;
-		font-weight: 400;
-		width: 450upx;
-		color: rgba(178, 178, 178, 1);
-		line-height: 50upx;
-		margin: 70upx auto 0;
+		image {
+			width: 338upx;
+			height: 326upx;
+		}
+		p {
+			font-size: 28upx;
+			font-weight: 400;
+			width: 450upx;
+			color: rgba(178, 178, 178, 1);
+			line-height: 50upx;
+			margin: 70upx auto 0;
+		}
 	}
 
 	.left_icon image {
