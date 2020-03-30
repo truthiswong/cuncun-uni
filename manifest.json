@@ -118,5 +118,9 @@
     },
     "mp-toutiao" : {
         "usingComponents" : true
+    },
+    "h5" : {
+        "title" : "存存",
+        "template" : "index.html"
     }
 }
