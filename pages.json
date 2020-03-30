@@ -13,6 +13,7 @@
 			"path": "pages/tabs/tab1",
 			"style": {
 				"navigationBarTitleText": "存存",
+				"enablePullDownRefresh": true,
 				"app-plus": {
 					"bounce": "none"
 				}
@@ -114,6 +115,60 @@
 			"path": "pages/tab2/addOrder",
 			"style": {
 				"navigationBarTitleText": "添加订单",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab2/orderDetailsPay",
+			"style": {
+				"navigationBarTitleText": "订单详情未支付",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab2/orderDetailsSuccess",
+			"style": {
+				"navigationBarTitleText": "订单详情支付成功",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab2/orderDetailsCancel",
+			"style": {
+				"navigationBarTitleText": "订单详情已取消",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab2/orderDetailsStorageSuccess",
+			"style": {
+				"navigationBarTitleText": "仓储已支付",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab2/orderPay",
+			"style": {
+				"navigationBarTitleText": "订单支付",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab2/orderSuccess",
+			"style": {
+				"navigationBarTitleText": "订单成功",
 				"app-plus": {
 					"bounce": "none"
 				}
