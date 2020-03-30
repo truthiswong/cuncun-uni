@@ -3,6 +3,11 @@
   "bounce": "none",
   "usingComponents": {
     "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
-    "uni-number-box": "/components/uni-number-box/uni-number-box"
+    "uni-number-box": "/components/uni-number-box/uni-number-box",
+    "uni-collapse": "/components/uni-collapse/uni-collapse",
+    "uni-collapse-item": "/components/uni-collapse-item/uni-collapse-item",
+    "uni-list": "/components/uni-list/uni-list",
+    "uni-list-item": "/components/uni-list-item/uni-list-item",
+    "uni-popup": "/components/uni-popup/uni-popup"
   }
 }

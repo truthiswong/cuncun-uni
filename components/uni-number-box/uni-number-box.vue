@@ -1,11 +1,11 @@
 <template>
 	<view class="uni-numbox">
-		<view @click="_calcValue('minus')" class="uni-numbox__minus">
-			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue <= min || disabled }">-</text>
+		<view @click="_calcValue('minus')" class="uni-numbox__minus" :class="{ 'uni-numbox__minus--disabled': inputValue <= min || disabled }">
+			<p class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue <= min || disabled }">-</p>
 		</view>
-		<input :disabled="disabled" @blur="_onBlur" class="uni-numbox__value" type="number" v-model="inputValue" />
-		<view @click="_calcValue('plus')" class="uni-numbox__plus">
-			<text class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue >= max || disabled }">+</text>
+		<input :disabled="disabledInput" @blur="_onBlur" class="uni-numbox__value" type="number" v-model="inputValue" />
+		<view @click="_calcValue('plus')" class="uni-numbox__plus" :class="{ 'uni-numbox__plus--disabled': inputValue >= max || disabled }">
+			<p class="uni-numbox--text" :class="{ 'uni-numbox--disabled': inputValue >= max || disabled }">+</p>
 		</view>
 	</view>
 </template>
@@ -30,6 +30,10 @@
 				default: 1
 			},
 			disabled: {
+				type: Boolean,
+				default: false
+			},
+			disabledInput: {
 				type: Boolean,
 				default: false
 			}
@@ -106,12 +110,12 @@
 	};
 </script>
 <style lang="scss" scoped>
-	$box-height: 35px;
+	$box-height: 70upx;
 	/* #ifdef APP-NVUE */
-	$box-line-height: 35px;
+	$box-line-height: 70upx;
 	/* #endif */
-	$box-line-height: 26px;
-	$box-width: 35px;
+	$box-line-height: 70upx;
+	$box-width: 70upx;
 
 	.uni-numbox {
 		/* #ifndef APP-NVUE */
@@ -120,12 +124,12 @@
 		flex-direction: row;
 		height: $box-height;
 		line-height: $box-height;
-		width: 120px;
+		width: 260upx;
 	}
 
 	.uni-numbox__value {
 		background-color: $uni-bg-color;
-		width: 40px;
+		width: 120upx;
 		height: $box-height;
 		text-align: center;
 		font-size: $uni-font-size-lg;
@@ -137,48 +141,39 @@
 	}
 
 	.uni-numbox__minus {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
 		width: $box-width;
 		height: $box-height;
-		// line-height: $box-line-height;
-		// text-align: center;
+		line-height: $box-line-height;
+		text-align: center;
 		font-size: 20px;
 		color: $uni-text-color;
 		background-color: $uni-bg-color-grey;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-border-color;
-		border-top-left-radius: $uni-border-radius-base;
-		border-bottom-left-radius: $uni-border-radius-base;
-		border-right-width: 0;
+		border: 0 none;
 	}
 
 	.uni-numbox__plus {
-		/* #ifndef APP-NVUE */
-		display: flex;
-		/* #endif */
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
 		width: $box-width;
 		height: $box-height;
-		border-width: 1rpx;
-		border-style: solid;
-		border-color: $uni-border-color;
-		border-top-right-radius: $uni-border-radius-base;
-		border-bottom-right-radius: $uni-border-radius-base;
+		line-height: $box-line-height;
+		text-align: center;
+		font-size: 20px;
+		color: $uni-text-color;
 		background-color: $uni-bg-color-grey;
-		border-left-width: 0;
+		border: 0 none;
 	}
 
 	.uni-numbox--text {
-		font-size: 40rpx;
+		font-size: 60upx;
 		color: $uni-text-color;
+		line-height: 62upx;
+	}
+	
+	.uni-numbox__minus--disabled {
+		background-color: #F2F2F2 !important;
+	}
+	
+	.uni-numbox__minus--disabled {
+		background-color: #F2F2F2 !important;
 	}
 
 	.uni-numbox--disabled {

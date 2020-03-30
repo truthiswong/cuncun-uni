@@ -9,12 +9,16 @@
     "pages/tab1/shoes",
     "pages/tab1/storage",
     "pages/tab1/search",
-    "pages/tab2/demo7",
-    "pages/tab1/index",
     "pages/notfound/notfound",
     "pages/login/reg",
     "pages/login/agreement",
     "pages/tab2/addOrder",
+    "pages/tab2/orderDetailsPay",
+    "pages/tab2/orderDetailsSuccess",
+    "pages/tab2/orderDetailsCancel",
+    "pages/tab2/orderDetailsStorageSuccess",
+    "pages/tab2/orderPay",
+    "pages/tab2/orderSuccess",
     "pages/tab3/setting",
     "pages/tab3/address"
   ],
@@ -66,6 +70,8 @@
     "uni-list-item": "/components/uni-list-item/uni-list-item",
     "uni-tag": "/components/uni-tag/uni-tag",
     "uni-number-box": "/components/uni-number-box/uni-number-box",
-    "uni-icons": "/components/uni-icons/uni-icons"
+    "uni-collapse": "/components/uni-collapse/uni-collapse",
+    "uni-collapse-item": "/components/uni-collapse-item/uni-collapse-item",
+    "uni-segmented-control": "/components/uni-segmented-control/uni-segmented-control"
   }
 }

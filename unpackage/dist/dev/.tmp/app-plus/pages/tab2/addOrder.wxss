@@ -28,7 +28,7 @@
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding: 0 30rpx 120rpx;
+  padding: 0 60rpx 120rpx;
 }
 .top_text.data-v-78e3c102 {
   font-size: 32rpx;
@@ -85,12 +85,12 @@
 .total_tip .total_tip_right.data-v-78e3c102 {
     position: absolute;
     right: 0;
-    width: 530rpx;
+    width: 470rpx;
     height: 188rpx;
     box-sizing: border-box;
-    padding: 12rpx 24rpx 24rpx 54rpx;
+    padding: 20rpx 30rpx 20rpx 55rpx;
 }
-.total_tip .total_tip_right text.data-v-78e3c102 {
+.total_tip .total_tip_right ._p.data-v-78e3c102 {
       font-size: 26rpx;
       font-weight: 500;
       color: #548c8c;
@@ -113,6 +113,17 @@
   line-height: 37rpx;
   -webkit-text-decoration: underline solid #9b9b9b;
           text-decoration: underline solid #9b9b9b;
+}
+.popup_wrap.data-v-78e3c102 {
+  width: 100%;
+  height: 1000rpx;
+  background: white;
+  border-radius: 20rpx 20rpx 0 0;
+  overflow-y: scroll;
+}
+.popup_cont.data-v-78e3c102 {
+  box-sizing: border-box;
+  padding: 30rpx;
 }
 .button_block.data-v-78e3c102 {
   position: fixed;

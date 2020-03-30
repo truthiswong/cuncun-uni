@@ -40,6 +40,7 @@ const getCategories = () => {
   });
 }
 
+
 const getCategoryByCid = (cid) => {
   return getCategories().then((categories) => {
     let found = false

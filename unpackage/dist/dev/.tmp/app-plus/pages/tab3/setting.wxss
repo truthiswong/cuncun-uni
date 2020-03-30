@@ -8,6 +8,7 @@
 .content.data-v-4f2d620c {
 	position: relative;
 	width: 100%;
+	box-sizing: border-box;
 }
 .list.data-v-4f2d620c {
 	background-color: #ffffff;

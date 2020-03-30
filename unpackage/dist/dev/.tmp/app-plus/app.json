@@ -13,6 +13,12 @@
     "pages/login/reg",
     "pages/login/agreement",
     "pages/tab2/addOrder",
+    "pages/tab2/orderDetailsPay",
+    "pages/tab2/orderDetailsSuccess",
+    "pages/tab2/orderDetailsCancel",
+    "pages/tab2/orderDetailsStorageSuccess",
+    "pages/tab2/orderPay",
+    "pages/tab2/orderSuccess",
     "pages/tab3/setting",
     "pages/tab3/address"
   ],
@@ -65,6 +71,7 @@
     "uni-tag": "/components/uni-tag/uni-tag",
     "uni-number-box": "/components/uni-number-box/uni-number-box",
     "uni-collapse": "/components/uni-collapse/uni-collapse",
-    "uni-collapse-item": "/components/uni-collapse-item/uni-collapse-item"
+    "uni-collapse-item": "/components/uni-collapse-item/uni-collapse-item",
+    "uni-segmented-control": "/components/uni-segmented-control/uni-segmented-control"
   }
 }

@@ -359,6 +359,26 @@ navigator:active {
 .list_custom_margin20 {
 	margin: 20rpx 0;
 }
+.list_custom_margin40 {
+	margin: 40rpx 0;
+}
+.list_padding30 {
+	padding: 0 30rpx;
+}
+.list_custom .uni-list-item {
+	padding-left: 0 !important;
+}
+.uni-list-item__container {
+	padding: 24rpx 0 !important;
+}
+.list_custom_align_start .uni-list-item__container {
+	-webkit-align-items: flex-start !important;
+	-webkit-box-align: start !important;
+	        align-items: flex-start !important;
+}
+.list_custom_padding40 .uni-list-item__container {
+	padding: 40rpx 0 !important;
+}
 .list_custom .uni-list-item--hover {
 	background-color: rgba(0, 0, 0, 0) !important;
 }
@@ -372,11 +392,11 @@ navigator:active {
 	font-weight: 500;
 	color: rgba(40, 40, 40, 1) !important;
 }
-.list_custom .uni-list-item__container:after {
-	height: 1rpx !important;
-	-webkit-transform: scaleY(0.1) !important;
-	transform: scaleY(0.1) !important;
-	background-color: #c8c7cc !important;
+.list_custom .uni-list-item .uni-list-item__container:after {
+    height: 0rpx !important;
+    -webkit-transform: scaleY(0.1) !important;
+    transform: scaleY(0.1) !important;
+    background-color: #c8c7cc !important;
 }
 .list_custom_img1 .uni-list-item__icon-img {
 	width: 184rpx !important;
@@ -389,6 +409,76 @@ navigator:active {
 .list_custom_img3 .uni-list-item__icon-img {
 	width: 283rpx !important;
 	height: 36rpx !important;
+}
+.list_custom_img56 .uni-list-item__icon-img {
+	width: 56rpx !important;
+	height: 56rpx !important;
+}
+/* 折叠面板 */
+.collapse_custom .uni-collapse-cell__title {
+	padding: 24rpx 24rpx 24rpx 0 !important;
+}
+.collapse_custom .uni-collapse-cell--open {
+	background-color: rgba(0, 0, 0, 0) !important;
+}
+.collapse_custom .uni-collapse-cell__title:active {
+	background-color: rgba(0, 0, 0, 0) !important;
+}
+.collapse_custom .uni-collapse-cell {
+	border: 0 !important;
+}
+/* 分段器 */
+.segmented_custom .segmented-control__item--text {
+	border: 0 none !important;
+}
+.segmented_custom .segmented-control__text {
+	font-size: 28rpx !important;
+	font-weight: 500 !important;
+}
+/* 弹窗 */
+.uni-modal__btn_primary {
+	background-color: #3BC1BB !important;
+}
+/* 数字输入框 */
+.number_box_custom {
+	width: 260rpx !important;
+}
+.number_box_custom .uni-numbox__minus,
+.number_box_custom .uni-numbox__plus {
+	display: block !important;
+	width: 70rpx !important;
+	height: 70rpx !important;
+	background-color: #3BC1BB !important;
+	border: 0 none !important;
+	border-radius: 4rpx !important;
+}
+.number_box_custom .uni-numbox--text {
+	color: #FFFFFF !important;
+	font-size: 60rpx !important;
+}
+.number_box_custom .uni-numbox__value {
+	width: 120rpx !important;
+	border: 0 none !important;
+}
+.popup_title {
+	position: relative;
+	width: 100%;
+	height: 90rpx;
+	text-align: center;
+	background: rgba(242, 242, 242, 1);
+	border-radius: 20rpx 20rpx 0 0;
+	font-size: 30rpx;
+	font-weight: 400;
+	color: rgba(40, 40, 40, 1);
+	line-height: 90rpx;
+}
+.close_btn {
+	position: absolute;
+	right: 0;
+	width: 90rpx;
+	height: 90rpx;
+	box-sizing: border-box;
+	padding: 30rpx;
 }
 .flex_between {
 	display: -webkit-flex;

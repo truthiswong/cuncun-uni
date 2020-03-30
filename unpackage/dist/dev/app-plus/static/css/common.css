@@ -29,6 +29,31 @@
 	margin: 20upx 0;
 }
 
+.list_custom_margin40 {
+	margin: 40upx 0;
+}
+
+.list_padding30 {
+	padding: 0 30upx;
+}
+
+.list_custom .uni-list-item {
+	padding-left: 0 !important;
+}
+
+.uni-list-item__container {
+	padding: 24upx 0 !important;
+}
+
+.list_custom_align_start .uni-list-item__container {
+	-webkit-align-items: flex-start !important;
+	align-items: flex-start !important;
+}
+
+.list_custom_padding40 .uni-list-item__container {
+	padding: 40upx 0 !important;
+}
+
 .list_custom .uni-list-item--hover {
 	background-color: rgba(0, 0, 0, 0) !important;
 }
@@ -44,36 +69,111 @@
 	font-weight: 500;
 	color: rgba(40, 40, 40, 1) !important;
 }
-
-.list_custom .uni-list-item__container:after {
-	height: 1upx !important;
-	-webkit-transform: scaleY(0.1) !important;
-	transform: scaleY(0.1) !important;
-	background-color: #c8c7cc !important;
+.list_custom .uni-list-item .uni-list-item__container:after {
+    height: 0upx !important;
+    -webkit-transform: scaleY(0.1) !important;
+    transform: scaleY(0.1) !important;
+    background-color: #c8c7cc !important;
 }
 
 .list_custom_img1 .uni-list-item__icon-img {
 	width: 184upx !important;
 	height: 36upx !important;
 }
+
 .list_custom_img2 .uni-list-item__icon-img {
 	width: 219upx !important;
 	height: 36upx !important;
 }
+
 .list_custom_img3 .uni-list-item__icon-img {
 	width: 283upx !important;
 	height: 36upx !important;
+}
+
+.list_custom_img56 .uni-list-item__icon-img {
+	width: 56upx !important;
+	height: 56upx !important;
 }
 
 /* 折叠面板 */
 .collapse_custom .uni-collapse-cell__title {
 	padding: 24upx 24upx 24upx 0 !important;
 }
+
 .collapse_custom .uni-collapse-cell--open {
-    background-color: rgba(0, 0, 0, 0) !important;
+	background-color: rgba(0, 0, 0, 0) !important;
 }
+
 .collapse_custom .uni-collapse-cell__title:active {
 	background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.collapse_custom .uni-collapse-cell {
+	border: 0 !important;
+}
+
+/* 分段器 */
+.segmented_custom .segmented-control__item--text {
+	border: 0 none !important;
+}
+
+.segmented_custom .segmented-control__text {
+	font-size: 28upx !important;
+	font-weight: 500 !important;
+}
+
+/* 弹窗 */
+.uni-modal__btn_primary {
+	background-color: #3BC1BB !important;
+}
+
+/* 数字输入框 */
+.number_box_custom {
+	width: 260upx !important;
+}
+
+.number_box_custom .uni-numbox__minus,
+.number_box_custom .uni-numbox__plus {
+	display: block !important;
+	width: 70upx !important;
+	height: 70upx !important;
+	background-color: #3BC1BB !important;
+	border: 0 none !important;
+	border-radius: 4upx !important;
+}
+
+.number_box_custom .uni-numbox--text {
+	color: #FFFFFF !important;
+	font-size: 60upx !important;
+}
+
+.number_box_custom .uni-numbox__value {
+	width: 120upx !important;
+	border: 0 none !important;
+}
+
+
+.popup_title {
+	position: relative;
+	width: 100%;
+	height: 90upx;
+	text-align: center;
+	background: rgba(242, 242, 242, 1);
+	border-radius: 20upx 20upx 0 0;
+	font-size: 30upx;
+	font-weight: 400;
+	color: rgba(40, 40, 40, 1);
+	line-height: 90upx;
+}
+
+.close_btn {
+	position: absolute;
+	right: 0;
+	width: 90upx;
+	height: 90upx;
+	box-sizing: border-box;
+	padding: 30upx;
 }
 
 .flex_between {

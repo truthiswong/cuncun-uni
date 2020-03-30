@@ -37,14 +37,16 @@
 				</view>
 			</view>
 		</view>
-		<uni-list class="list_custom">
-			<!-- <navigator> -->
-				<uni-list-item title="其他" thumb="../../static/tab3/ohter.png"></uni-list-item>
-			<!-- </navigator> -->
-			<!-- <navigator> -->
-				<uni-list-item title="客服电话" thumb="../../static//tab3/server.png" rightText="021-34283744"></uni-list-item>
-			<!-- </navigator> -->
-		</uni-list>
+		<view class="content_bottom">
+			<uni-list class="list_custom">
+				<!-- <navigator> -->
+					<uni-list-item title="其他" thumb="../../static/tab3/ohter.png"></uni-list-item>
+				<!-- </navigator> -->
+				<!-- <navigator> -->
+					<uni-list-item title="客服电话" thumb="../../static//tab3/server.png" rightText="021-34283744"></uni-list-item>
+				<!-- </navigator> -->
+			</uni-list>
+		</view>
 	</view>
 </template>
 
@@ -87,6 +89,7 @@
 		background-color: #f6f6f6;
 		position: relative;
 	}
+	
 	.header_icon {
 		width: 200upx;
 		height: 44px;
@@ -158,5 +161,9 @@
 	.head_word image {
 		width: 84upx;
 		height: 130upx;
+	}
+	.content_bottom {
+		padding: 0 30upx;
+		background-color: #FFFFFF;
 	}
 </style>

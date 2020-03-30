@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "存存",
+  "enablePullDownRefresh": true,
   "bounce": "none",
   "usingComponents": {
     "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
