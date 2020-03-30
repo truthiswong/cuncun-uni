@@ -3,7 +3,7 @@
 		<uni-nav-bar left-icon="back" @clickLeft="onClickBack" title="设置" status-bar="true" fixed="true"></uni-nav-bar>
 		<!-- 内容 -->
 		<view class="content">
-			<view class="list_custom_margin20">
+			<view class="list_padding30 list_custom_margin20" style="background-color: #FFFFFF;">
 				<uni-list class="list_custom">
 					<uni-list-item title="头像">
 						<view slot="right">
@@ -13,7 +13,7 @@
 					</uni-list-item>
 				</uni-list>
 			</view>
-			<view class="list_custom_margin20">
+			<view class="list_padding30 list_custom_margin20" style="background-color: #FFFFFF;">
 				<uni-list class="list_custom list_custom_margin20">
 					<uni-list-item title="昵称" rightText="Ding Han"></uni-list-item>
 					<uni-list-item title="手机号" rightText="021-34283744"></uni-list-item>
@@ -22,7 +22,7 @@
 					</navigator>
 				</uni-list>
 			</view>
-			<view class="list_custom_margin20">
+			<view class="list_padding30 list_custom_margin20" style="background-color: #FFFFFF;">
 				<uni-list class="list_custom list_custom_margin20">
 					<uni-list-item title="注册账号" @click="onLogout"></uni-list-item>
 				</uni-list>
@@ -75,7 +75,10 @@
 							uni.navigateTo({
 								url: '/pages/login/login'
 							})
-							uni.toastSuccess('退出成功')
+							uni.showToast({
+								title: '退出成功',
+								icon: 'none'
+							})
 						}
 					}
 				})
@@ -95,6 +98,7 @@
 	.content {
 		position: relative;
 		width: 100%;
+		box-sizing: border-box;
 	}
 
 	.list {
