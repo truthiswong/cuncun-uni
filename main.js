@@ -3,6 +3,8 @@ import App from './App'
 
 Vue.config.productionTip = false
 
+import config from './config.js'; // 导入私有配置
+Vue.prototype.$http_config = config
 
 // 导航栏全局注册
 import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
@@ -29,6 +31,9 @@ import uniCollapse from '@/components/uni-collapse/uni-collapse.vue'
 import uniCollapseItem from '@/components/uni-collapse-item/uni-collapse-item.vue'
 Vue.component('uni-collapse', uniCollapse)
 Vue.component('uni-collapse-item', uniCollapseItem)
+// SegmentedControl 分段器
+import uniSegmentedControl from "@/components/uni-segmented-control/uni-segmented-control.vue"
+Vue.component('uni-segmented-control', uniSegmentedControl)
 
 App.mpType = 'app'
 
