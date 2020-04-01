@@ -7,16 +7,21 @@
 				<uni-list class="list_custom">
 					<uni-list-item title="头像">
 						<view slot="right">
-							<image style="width: 120upx;height: 120upx;border-radius: 50%;margin-left: 300upx;" src="../../static/tab3/my_image.png"
-							 mode=""></image>
+							<image @click="chooseHeadImage" style="width: 120upx;height: 120upx;border-radius: 50%;margin-left: 300upx;"
+							 :src="headImage"></image>
 						</view>
 					</uni-list-item>
 				</uni-list>
 			</view>
 			<view class="list_padding30 list_custom_margin20" style="background-color: #FFFFFF;">
 				<uni-list class="list_custom list_custom_margin20">
-					<uni-list-item title="昵称" rightText="Ding Han"></uni-list-item>
-					<uni-list-item title="手机号" rightText="021-34283744"></uni-list-item>
+					<uni-list-item title="昵称" @click="onNick" :rightText="nickname"></uni-list-item>
+					<navigator url="/pages/tab3/changePhone">
+						<uni-list-item title="手机号" rightText="021-34283744"></uni-list-item>
+					</navigator>
+					<navigator url="/pages/tab3/realName">
+						<uni-list-item title="实名认证" rightText="未实名"></uni-list-item>
+					</navigator>
 					<navigator url="/pages/tab3/address">
 						<uni-list-item title="地址管理"></uni-list-item>
 					</navigator>
@@ -28,7 +33,16 @@
 				</uni-list>
 			</view>
 		</view>
-		<button @click="onExit" class="logout" block>退出账号</button>
+		<uni-popup ref="nick">
+			<view class="nickname">
+				<input type="text" placeholder="请输入昵称" v-model="nickname" placeholder-style="font-size:14px;font-weight:400;color:rgba(204,204,204,1);margin-left:20upx" />
+				<view class="flex_between">
+					<button class="button_cancel" @click="buttonCancel">取消</button>
+					<button class="button_confirm" @click="buttonConfirm">确定</button>
+				</view>
+			</view>
+		</uni-popup>
+		<button @click="onExit" class="logout">退出账号</button>
 	</view>
 </template>
 
@@ -36,19 +50,48 @@
 	export default {
 		components: {},
 		data() {
-			return {};
+			return {
+				headImage: require('../../static/tab3/my_image.png'),
+				nickname: 'Ding Han',
+			};
 		},
-		watch: {},
-		computed: {},
-		created() {},
-		activated() {},
-		deactivated() {},
-		mounted() {},
 		methods: {
 			onClickBack() {
 				uni.navigateBack({
 					delta: 1
 				})
+			},
+			chooseHeadImage() {
+				uni.chooseImage({
+					count: 1,
+					success: (chooseImageRes) => {
+						const tempFilePaths = chooseImageRes.tempFilePaths;
+						this.positiveImg = tempFilePaths[0]
+						this.name = true
+						console.log(tempFilePaths)
+						// uni.uploadFile({
+						//     url: 'https://www.example.com/upload', //仅为示例，非真实的接口地址
+						//     filePath: tempFilePaths[0],
+						//     name: 'file',
+						//     formData: {
+						//         'user': 'test'
+						//     },
+						//     success: (uploadFileRes) => {
+						//         console.log(uploadFileRes.data);
+						//     }
+						// });
+					}
+				});
+			},
+			onNick() {
+				this.$refs.nick.open()
+			},
+			buttonCancel() {
+				this.$refs.nick.close()
+			},
+			buttonConfirm() {
+				this
+				this.$refs.nick.close()
 			},
 			onAddress() {
 				this.$router.push({
@@ -87,7 +130,7 @@
 	};
 </script>
 
-<style scoped="scoped">
+<style scoped lang="scss">
 	.layout {
 		width: 100%;
 		height: 100%;
@@ -110,6 +153,51 @@
 		width: 120upx;
 		height: 120upx;
 		border-radius: 50%;
+	}
+
+	.nickname {
+		width: 710upx;
+		box-sizing: border-box;
+		background: rgba(255, 255, 255, 1);
+		box-shadow: 0 2upx 10upx 0 rgba(0, 0, 0, 0.03);
+		border-radius: 3upx;
+		padding: 20upx;
+
+		input {
+			width: 670upx;
+			height: 68upx;
+			background: rgba(246, 246, 246, 1);
+			border-radius: 3upx;
+			border: 1upx solid rgba(242, 242, 242, 1);
+			font-size: 28upx;
+			padding-left: 20upx;
+		}
+
+		button {
+			width: 325upx;
+			height: 80upx;
+			border-radius: 3upx;
+			margin: 15px 0 0;
+			border: 0 none;
+			line-height: 80upx;
+			font-size: 28upx;
+			font-weight: 600;
+			background-color: #FFFFFF;
+			letter-spacing: 2upx;
+		}
+
+		uni-button:after {
+			border: 0 none;
+		}
+
+		.button_cancel {
+			color: rgba(74, 74, 74, 1);
+		}
+
+		.button_confirm {
+			background: rgba(59, 193, 187, 1);
+			color: rgba(255, 255, 255, 1);
+		}
 	}
 
 	.logout {
