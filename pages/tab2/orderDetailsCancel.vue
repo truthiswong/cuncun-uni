@@ -3,8 +3,8 @@
 		<uni-nav-bar color="#FFFFFF" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true"
 		 v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
 		</uni-nav-bar>
-		<uni-nav-bar color="#000000" left-icon="back" title="订单详情" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true"
-		 v-if="!headerShow" shadow="true" style="position: absolute; top: 0;">
+		<uni-nav-bar color="#000000" left-icon="back" title="订单详情" @clickLeft="onClickBack" class="header" status-bar="true"
+		 fixed="true" v-if="!headerShow" shadow="true" style="position: absolute; top: 0;">
 		</uni-nav-bar>
 		<!-- 内容 -->
 		<view class="content">
@@ -18,7 +18,7 @@
 					<view style="margin: 0 30upx;padding: 10upx 0;">
 						<uni-list class="list_custom">
 							<uni-list-item title="感谢您对存存的信任，期待再次光临" note="you deserve better" :showArrow="false">
-								<view slot='right'>
+								<view slot='right' @click="onDetails">
 									<image class="top_button_right" src="../../static/tab2/more_info.png" mode=""></image>
 								</view>
 							</uni-list-item>
@@ -152,18 +152,77 @@
 			<text></text>
 			<button class="button_block">重新下单</button>
 		</view>
+		<uni-popup ref="popup" type="center">
+			<view class="popup_wrap">
+				<view class="popup_title">
+					<text>订单状态</text>
+					<image class="close_btn" @click="onClosePopup" src="../../static/tab2/close.png" mode=""></image>
+				</view>
+				<scroll-view class="scroll_content" :scroll-top="scrollTop" scroll-y="true">
+					<custom-steps :options="optionsReverse" :active="active"></custom-steps>
+				</scroll-view>
+			</view>
+		</uni-popup>
 	</view>
 </template>
 
 <script>
-	import api from '../../utils/api.js'
-	import util from '../../utils/util.js'
-	import config from '../../config.js'
+	import customSteps from '../../components/customSteps.vue'
+
 	export default {
-		components: {},
+		components: {
+			'custom-steps': customSteps
+		},
 		data() {
 			return {
 				headerShow: true,
+				options: [{
+					title: '已完成',
+					mmdd: '11-11',
+					hhmm: '12:00',
+					desc: '[取货地址]上海市 嘉定区 叶城五街坊 裕民1180弄78号102室'
+				}, {
+					title: '安检完成',
+					mmdd: '11-11',
+					hhmm: '12:00',
+					desc: ''
+				}, {
+					title: '物品进入安检',
+					mmdd: '11-11',
+					hhmm: '12:00',
+					desc: ''
+				}, {
+					title: '入库作业中',
+					mmdd: '11-11',
+					hhmm: '12:00',
+					desc: ''
+				}, {
+					title: '回库中',
+					mmdd: '11-11',
+					hhmm: '12:00',
+					desc: '物件正在运往存存库存中心物件正在运往存存库存中心物件正在运往存存库存中心物件正在运往存存库存中心物件正在运往存存库存中心物件正在运往存存库存中心'
+				}, {
+					title: '取货完成',
+					mmdd: '11-11',
+					hhmm: '12:00',
+					desc: ''
+				}, {
+					title: '',
+					mmdd: '11-11',
+					hhmm: '12:00',
+					desc: '[上海市]上海市骑手，正在前往取货，联系电话 23948029834'
+				}, {
+					title: '已受理',
+					mmdd: '11-11',
+					hhmm: '12:00',
+					desc: ''
+				}, {
+					title: '等待接单',
+					mmdd: '11-11',
+					hhmm: '12:00',
+					desc: ''
+				}],
+				active: 3
 			}
 		},
 		onLoad() {},
@@ -177,7 +236,9 @@
 		},
 		watch: {},
 		computed: {
-
+			optionsReverse() {
+				return this.options.reverse()
+			}
 		},
 		methods: {
 			onClickBack() {
@@ -185,6 +246,12 @@
 					delta: 1
 				})
 			},
+			onDetails() {
+				this.$refs.popup.open()
+			},
+			onClosePopup() {
+				this.$refs.popup.close()
+			}
 		}
 
 	}
@@ -224,6 +291,7 @@
 				color: rgba(255, 255, 255, 1);
 				line-height: 56upx;
 			}
+
 			p {
 				font-size: 30upx;
 				font-weight: 400;
@@ -284,14 +352,14 @@
 			.segmented_list_content {
 				height: 240upx;
 				padding: 0 20upx;
-			
+
 				.list_content_left {
 					font-size: 28upx;
 					font-weight: 500;
 					color: rgba(40, 40, 40, 1);
 					line-height: 70upx;
 				}
-			
+
 				.list_content_right {
 					font-size: 26upx;
 					font-weight: 400;
@@ -377,11 +445,14 @@
 	}
 
 	.popup_wrap {
-		width: 100%;
-		height: 660upx;
+		position: relative;
+		width: 707upx;
+		height: 1000upx;
 		background: rgba(255, 255, 255, 1);
-		border-radius: 20upx 20upx 0 0;
-		overflow-y: scroll;
+		border-radius: 20upx;
+		.scroll_content {
+			height: 910upx;
+		}
 	}
 
 	.popup_cont {
