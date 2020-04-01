@@ -147,6 +147,10 @@
 				}
 			},
 			login() {
+				uni.setStorage({
+				  key: 'token',
+				  data: true
+				});
 				uni.switchTab({
 					url: '/pages/tabs/tab1'
 				})
@@ -155,7 +159,7 @@
 	}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.hint {
 		padding: 108upx 50upx 0;
 	}
@@ -175,7 +179,7 @@
 
 	.input_item {
 		margin-top: 20upx;
-		border-bottom: 2upx solid rgba(156, 168, 179, 1);
+		border-bottom: 1upx solid rgba(156, 168, 179, 0.28);
 	}
 
 	.input_text {
