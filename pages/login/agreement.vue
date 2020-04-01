@@ -1,63 +1,56 @@
 <template>
-  <div class="layout">
-    <hx-navbar :back="true" title="用户协议" color="rgba(40,40,40,1)" barPlaceholder="hidden" transparent="auto"
-     :background-color="[255, 255, 255]">
-    	<view slot="left">
-    		<image @click="onClickBack" src="../../static/images/header-back.png" style="width: 40upx; height: 40upx; margin: 30upx 32upx 0;"></image>
-    	</view>
-    </hx-navbar>
-    <!-- 内容 -->
-    <div class="content">用户协议</div>
-  </div>
+	<view>
+		<uni-nav-bar color="#000000" left-icon="back" title="用户协议" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true"
+		 v-if="headerShow" backgroundColor="#ffffff">
+		</uni-nav-bar>
+		<uni-nav-bar color="#000000" left-icon="back" title="用户协议" @clickLeft="onClickBack" class="header" status-bar="true"
+		 fixed="true" v-if="!headerShow" shadow="true">
+		</uni-nav-bar>
+		<!-- 内容 -->
+		<view class="content">
+			32130821301983091
+		</view>
+	</view>
 </template>
 
 <script>
-export default {
-  components: {},
-  data() {
-    return {};
-  },
-  created() {},
-  activated() {},
-  deactivated() {},
-  mounted() {},
-  methods: {
-    onClickLeft() {
-      this.$router.go(-1);
-    },
-    onClickRight(index) {
-      if (index == 1) {
-        console.log(1);
-      } else if (index == 2) {
-        console.log(2);
-      }
-    }
-  }
-};
-</script>
+	export default {
+		components: {
+		},
+		data() {
+			return {
+				headerShow: true,
+			}
+		},
+		onLoad() {},
+		onShow() {},
+		onPageScroll(options) {
+			if (options.scrollTop > 60) {
+				this.headerShow = false;
+			} else {
+				this.headerShow = true;
+			}
+		},
+		watch: {},
+		computed: {
+		},
+		methods: {
+			onClickBack() {
+				uni.navigateBack({
+					delta: 1
+				})
+			},
+		}
 
-<style scoped="scoped">
-.layout {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-.content {
-  position: relative;
-  width: 100%;
-  height: calc(100% - 0.92rem);
-  overflow-x: hidden;
-  overflow-y: scroll;
-  padding: 0.2rem;
-}
-.content_seed {
-  position: relative;
-  width: 100%;
-  height: 6.25rem;
-  background: linear-gradient(
-    180deg,
-    rgba(125, 184, 254, 1) 0%,
-    rgba(208, 248, 254, 1) 100%
-  );
-}
+	}
+</script>
+<style>
+	page {
+		/* background: rgba(242, 242, 242, 1); */
+	}
+</style>
+<style scoped lang="scss">
+	.content {
+		padding: 20upx;
+	}
 </style>
