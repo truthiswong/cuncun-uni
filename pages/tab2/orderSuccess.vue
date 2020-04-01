@@ -14,7 +14,7 @@
 						<text>7月27日 09:00～10:00</text>
 						<text class="text_button">待受理</text>
 					</view>
-					<p>上海市嘉定区叶城五街坊裕民1180弄78号1…</p>
+					<p>上海市嘉定区叶城五街坊裕民1180弄78号123322222222222222222222222</p>
 				</view>
 				<image src="../../static/tab2/map.png"></image>
 			</view>
@@ -74,8 +74,11 @@
 	.map {
 		position: relative;
 		width: 100%;
-		height: 300upx;
+		height: 400upx;
 		margin-top: 60upx;
+		border-radius: 20upx;
+		overflow: hidden;
+		box-shadow: 0 2upx 8upx 0 grey;
 		.map_top {
 			position: absolute;
 			top: 0;
@@ -83,9 +86,19 @@
 			right: 0;
 			z-index: 1;
 			background-color: #FFFFFF;
-			width: 560upx;
+			width: 590upx;
+			height: 133upx;
 			margin: 20upx auto 0;
 			border-radius: 20upx;
+			padding: 20upx;
+			box-sizing: border-box;
+			box-shadow: 0 2upx 8upx 0 grey;
+			text {
+				font-size:28upx;
+				font-weight:600;
+				color:rgba(40,40,40,1);
+				line-height:40upx;
+			}
 			.text_button {
 				width:98upx;
 				height:48upx;
@@ -95,8 +108,19 @@
 				font-weight:500;
 				color:rgba(255,255,255,1);
 				line-height:48upx;
+				text-align: center;
+				
 			}
-			
+			p {
+				font-size:26upx;
+				font-weight:400;
+				color:rgba(74,74,74,1);
+				line-height:37upx;
+				margin-top: 12upx;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
 		}
 		image {
 			width: 100%;
