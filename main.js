@@ -34,6 +34,9 @@ Vue.component('uni-collapse-item', uniCollapseItem)
 // SegmentedControl 分段器
 import uniSegmentedControl from "@/components/uni-segmented-control/uni-segmented-control.vue"
 Vue.component('uni-segmented-control', uniSegmentedControl)
+// Steps 步骤条
+import uniSteps from '@/components/uni-steps/uni-steps.vue'
+Vue.component('uni-uni-steps', uniSteps)
 
 App.mpType = 'app'
 

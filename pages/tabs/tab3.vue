@@ -55,12 +55,9 @@
 	import config from '../../config.js'
 	import util from '../../utils/util.js'
 
-	import iheader from '../../components/header.vue'
-
 	export default {
 		components: {
-			uniRate,
-			iheader
+			uniRate
 		},
 		data() {
 			return {

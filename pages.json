@@ -1,237 +1,270 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+    "pages" : [
+        //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/login/login",
+			"path": "pages/login/init",
 			"style": {
-				"navigationBarTitleText": "登录",
-				"app-plus": {
-					"bounce": "none" //关闭窗口回弹效果
-				}
+				"navigationBarTitleText": "入口页"
 			}
-		},
-		{
-			"path": "pages/tabs/tab1",
+		}, {
+			"path": "pages/login/guide",
 			"style": {
-				"navigationBarTitleText": "存存",
-				"enablePullDownRefresh": true,
+				"navigationBarTitleText": "引导页",
+				"titleNView": false,
 				"app-plus": {
 					"bounce": "none"
 				}
 			}
 		},
-		{
-			"path": "pages/tabs/tab2",
-			"style": {
-				"navigationBarTitleText": "我的订单",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/tabs/tab3",
-			"style": {
-				"navigationBarTitleText": "我的",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		// 首页
-		{
-			"path": "pages/tab1/book",
-			"style": {
-				"navigationBarTitleText": "我的书架",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/tab1/clothes",
-			"style": {
-				"navigationBarTitleText": "我的衣柜",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/tab1/shoes",
-			"style": {
-				"navigationBarTitleText": "我的鞋柜",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/tab1/storage",
-			"style": {
-				"navigationBarTitleText": "我的储藏室",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/tab1/search",
-			"style": {
-				"navigationBarTitleText": "搜索",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/notfound/notfound",
-			"style": {
-				"navigationBarTitleText": "未找到对象",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/login/reg",
-			"style": {
-				"navigationBarTitleText": "注册",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/login/agreement",
-			"style": {
-				"navigationBarTitleText": "存存用户服务协议",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		// 订单
-		{
-			"path": "pages/tab2/addOrder",
-			"style": {
-				"navigationBarTitleText": "添加订单",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/tab2/orderDetailsPay",
-			"style": {
-				"navigationBarTitleText": "订单详情未支付",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/tab2/orderDetailsSuccess",
-			"style": {
-				"navigationBarTitleText": "订单详情支付成功",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/tab2/orderDetailsCancel",
-			"style": {
-				"navigationBarTitleText": "订单详情已取消",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/tab2/orderDetailsStorageSuccess",
-			"style": {
-				"navigationBarTitleText": "仓储已支付",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/tab2/orderPay",
-			"style": {
-				"navigationBarTitleText": "订单支付",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/tab2/orderSuccess",
-			"style": {
-				"navigationBarTitleText": "订单成功",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		// 我的
-		{
-			"path": "pages/tab3/setting",
-			"style": {
-				"navigationBarTitleText": "设置",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/tab3/address",
-			"style": {
-				"navigationBarTitleText": "地址",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		}
-	],
-	"tabBar": {
-		"list": [{
-				"pagePath": "pages/tabs/tab1",
-				"text": "存存",
-				"iconPath": "static/tabs/tab1_off.png",
-				"selectedIconPath": "static/tabs/tab1_on.png"
-			},
-			{
-				"pagePath": "pages/tabs/tab2",
-				"text": "订单",
-				"iconPath": "static/tabs/tab2_off.png",
-				"selectedIconPath": "static/tabs/tab2_on.png"
-			},
-			{
-				"pagePath": "pages/tabs/tab3",
-				"text": "我的",
-				"iconPath": "static/tabs/tab3_off.png",
-				"selectedIconPath": "static/tabs/tab3_on.png"
-			}
-		],
-		"backgroundColor": "#ffffff",
-		"color": "#888888",
-		"selectedColor": "rgba(59, 193, 187, 1)"
-	},
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "cuncun-app",
-		"navigationBarBackgroundColor": "#FFFFFF",
-		"backgroundColor": "#FFFFFF",
-		"navigationStyle": "custom"
-	},
-	"pageOrientation": "portrait",
-	"condition": { //模式配置，仅开发期间生效
-		"current": 0, //当前激活的模式(list 的索引项)
-		"list": [{
-			"name": "", //模式名称
-			"path": "", //启动页面，必选
-			"query": "" //启动参数，在页面的onLoad函数里面得到
-		}]
-	}
+        {
+            "path" : "pages/login/login",
+            "style" : {
+                "navigationBarTitleText" : "登录",
+                "app-plus" : {
+                    "bounce" : "none" //关闭窗口回弹效果
+                }
+            }
+        },
+        {
+            "path" : "pages/tabs/tab1",
+            "style" : {
+                "navigationBarTitleText" : "存存",
+                "enablePullDownRefresh" : true,
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tabs/tab2",
+            "style" : {
+                "navigationBarTitleText" : "我的订单",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tabs/tab3",
+            "style" : {
+                "navigationBarTitleText" : "我的",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        // 首页
+        {
+            "path" : "pages/tab1/book",
+            "style" : {
+                "navigationBarTitleText" : "我的书架",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tab1/clothes",
+            "style" : {
+                "navigationBarTitleText" : "我的衣柜",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tab1/shoes",
+            "style" : {
+                "navigationBarTitleText" : "我的鞋柜",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tab1/storage",
+            "style" : {
+                "navigationBarTitleText" : "我的储藏室",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tab1/search",
+            "style" : {
+                "navigationBarTitleText" : "搜索",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/login/agreement",
+            "style" : {
+                "navigationBarTitleText" : "用户协议",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        // 订单
+        {
+            "path" : "pages/tab2/addOrder",
+            "style" : {
+                "navigationBarTitleText" : "添加订单",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tab2/orderDetailsPay",
+            "style" : {
+                "navigationBarTitleText" : "订单详情未支付",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tab2/orderDetailsSuccess",
+            "style" : {
+                "navigationBarTitleText" : "订单详情支付成功",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tab2/orderDetailsCancel",
+            "style" : {
+                "navigationBarTitleText" : "订单详情已取消",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tab2/orderDetailsStorageSuccess",
+            "style" : {
+                "navigationBarTitleText" : "仓储已支付",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tab2/orderPay",
+            "style" : {
+                "navigationBarTitleText" : "订单支付",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tab2/orderSuccess",
+            "style" : {
+                "navigationBarTitleText" : "订单成功",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        // 我的
+        {
+            "path" : "pages/tab3/setting",
+            "style" : {
+                "navigationBarTitleText" : "设置",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tab3/realName",
+            "style" : {
+                "navigationBarTitleText" : "实名认证",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tab3/address",
+            "style" : {
+                "navigationBarTitleText" : "地址",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tab3/addAddress",
+            "style" : {
+                "navigationBarTitleText" : "添加地址",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "pages/tab3/changePhone",
+            "style" : {
+                "navigationBarTitleText" : "修改手机号",
+                "app-plus" : {
+                    "bounce" : "none"
+                }
+            }
+        },
+        {
+            "path" : "components/customSteps",
+            "style" : {}
+        }
+    ],
+    "tabBar" : {
+        "list" : [
+            {
+                "pagePath" : "pages/tabs/tab1",
+                "text" : "存存",
+                "iconPath" : "static/tabs/tab1_off.png",
+                "selectedIconPath" : "static/tabs/tab1_on.png"
+            },
+            {
+                "pagePath" : "pages/tabs/tab2",
+                "text" : "订单",
+                "iconPath" : "static/tabs/tab2_off.png",
+                "selectedIconPath" : "static/tabs/tab2_on.png"
+            },
+            {
+                "pagePath" : "pages/tabs/tab3",
+                "text" : "我的",
+                "iconPath" : "static/tabs/tab3_off.png",
+                "selectedIconPath" : "static/tabs/tab3_on.png"
+            }
+        ],
+        "backgroundColor" : "#ffffff",
+        "color" : "#888888",
+        "selectedColor" : "rgba(59, 193, 187, 1)"
+    },
+    "globalStyle" : {
+        "navigationBarTextStyle" : "black",
+        "navigationBarTitleText" : "cuncun-app",
+        "navigationBarBackgroundColor" : "#FFFFFF",
+        "backgroundColor" : "#FFFFFF",
+        "navigationStyle" : "custom"
+    },
+    "pageOrientation" : "portrait",
+    "condition" : {
+        //模式配置，仅开发期间生效
+        "current" : 0, //当前激活的模式(list 的索引项)
+        "list" : [
+            {
+                "name" : "", //模式名称
+                "path" : "", //启动页面，必选
+                "query" : "" //启动参数，在页面的onLoad函数里面得到
+            }
+        ]
+    }
 }

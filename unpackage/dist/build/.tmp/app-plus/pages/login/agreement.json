@@ -1,5 +1,7 @@
 {
-  "navigationBarTitleText": "存存用户服务协议",
+  "navigationBarTitleText": "用户协议",
   "bounce": "none",
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar"
+  }
 }

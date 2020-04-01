@@ -24,37 +24,83 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.content.data-v-f74f4cb8 {
+.content.data-v-3fcd51e2 {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   padding: 180rpx 60rpx 130rpx;
 }
-.cont_top.data-v-f74f4cb8 {
+.cont_top.data-v-3fcd51e2 {
   text-align: center;
 }
-.cont_top image.data-v-f74f4cb8 {
+.cont_top image.data-v-3fcd51e2 {
     width: 104rpx;
     height: 100rpx;
     margin-top: 40rpx;
 }
-.cont_top ._p.data-v-f74f4cb8 {
+.cont_top ._p.data-v-3fcd51e2 {
     font-size: 30rpx;
     font-weight: 600;
     color: #282828;
     line-height: 42rpx;
     margin-top: 49rpx;
 }
-.map.data-v-f74f4cb8 {
+.map.data-v-3fcd51e2 {
+  position: relative;
   width: 100%;
-  height: 300rpx;
+  height: 400rpx;
   margin-top: 60rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx 0 grey;
 }
-.map image.data-v-f74f4cb8 {
+.map .map_top.data-v-3fcd51e2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: #FFFFFF;
+    width: 590rpx;
+    height: 133rpx;
+    margin: 20rpx auto 0;
+    border-radius: 20rpx;
+    padding: 20rpx;
+    box-sizing: border-box;
+    box-shadow: 0 2rpx 8rpx 0 grey;
+}
+.map .map_top text.data-v-3fcd51e2 {
+      font-size: 28rpx;
+      font-weight: 600;
+      color: #282828;
+      line-height: 40rpx;
+}
+.map .map_top .text_button.data-v-3fcd51e2 {
+      width: 98rpx;
+      height: 48rpx;
+      background: #3bc1bb;
+      border-radius: 4rpx;
+      font-size: 26rpx;
+      font-weight: 500;
+      color: white;
+      line-height: 48rpx;
+      text-align: center;
+}
+.map .map_top ._p.data-v-3fcd51e2 {
+      font-size: 26rpx;
+      font-weight: 400;
+      color: #4a4a4a;
+      line-height: 37rpx;
+      margin-top: 12rpx;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+}
+.map image.data-v-3fcd51e2 {
     width: 100%;
     height: 100%;
 }
-.top_text.data-v-f74f4cb8 {
+.top_text.data-v-3fcd51e2 {
   font-size: 32rpx;
   font-weight: 500;
   color: #282828;
@@ -62,11 +108,11 @@
   text-align: justify;
   margin-top: 60rpx;
 }
-.top_text .top_text_border.data-v-f74f4cb8 {
+.top_text .top_text_border.data-v-3fcd51e2 {
     box-sizing: border-box;
     border-bottom: 11rpx solid #94DCD9;
 }
-.button_block.data-v-f74f4cb8 {
+.button_block.data-v-3fcd51e2 {
   position: fixed;
   left: 0;
   right: 0;

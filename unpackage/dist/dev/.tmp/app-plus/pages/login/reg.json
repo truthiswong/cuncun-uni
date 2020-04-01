@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "注册",
-  "bounce": "none",
-  "usingComponents": {
-    "iheader": "/components/header"
-  }
-}

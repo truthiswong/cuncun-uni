@@ -16,7 +16,6 @@
 <script>
 	import loading from '../../components/loading.vue'
 	import search from '../../components/search.vue'
-	import tab from '../../components/tab.vue'
 
 	import api from '../../utils/api.js'
 	import util from '../../utils/util.js'
@@ -26,7 +25,6 @@
 		components: {
 			loading,
 			search,
-			tab,
 		},
 		data() {
 			return {

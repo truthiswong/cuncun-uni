@@ -371,6 +371,9 @@ navigator:active {
 .uni-list-item__container {
 	padding: 24rpx 0 !important;
 }
+.list_custom_item .uni-list-item__container {
+	padding: 30rpx 0 !important;
+}
 .list_custom_align_start .uni-list-item__container {
 	-webkit-align-items: flex-start !important;
 	-webkit-box-align: start !important;
@@ -393,10 +396,10 @@ navigator:active {
 	color: rgba(40, 40, 40, 1) !important;
 }
 .list_custom .uni-list-item .uni-list-item__container:after {
-    height: 0rpx !important;
-    -webkit-transform: scaleY(0.1) !important;
-    transform: scaleY(0.1) !important;
-    background-color: #c8c7cc !important;
+	height: 0rpx !important;
+	-webkit-transform: scaleY(0.1) !important;
+	transform: scaleY(0.1) !important;
+	background-color: #c8c7cc !important;
 }
 .list_custom_img1 .uni-list-item__icon-img {
 	width: 184rpx !important;
@@ -460,6 +463,10 @@ navigator:active {
 	width: 120rpx !important;
 	border: 0 none !important;
 }
+/* 弹窗 */
+.uni-popup {
+	z-index: 1000 !important;
+}
 .popup_title {
 	position: relative;
 	width: 100%;
@@ -490,6 +497,16 @@ navigator:active {
 	-webkit-box-pack: justify;
 	-webkit-justify-content: space-between;
 	        justify-content: space-between;
+}
+.row_flex_start {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	-webkit-box-align: start;
+	-webkit-align-items: flex-start;
+	        align-items: flex-start;
 }
 .row {
 	display: -webkit-box;

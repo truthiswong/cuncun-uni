@@ -1,28 +1,28 @@
 
-.doc-info.data-v-579575c0 {
+.doc-info.data-v-1b13582f {
 	font-size: 24rpx;
 	margin: 20rpx 0;
 }
-.doc-info image.data-v-579575c0 {
+.doc-info image.data-v-1b13582f {
 	height: 20rpx;
 	width: 20rpx;
 	margin-right: 6rpx;
 }
-.doc-info .item.data-v-579575c0 {
+.doc-info .item.data-v-1b13582f {
 	display: inline-block;
 	margin-right: 16rpx;
 }
-.doc-intro.data-v-579575c0 {
+.doc-intro.data-v-1b13582f {
 	font-size: 28rpx;
 	line-height: 170%;
 }
-.doc-list .row.data-v-579575c0 {
+.doc-list .row.data-v-1b13582f {
 	border-bottom: 1px solid #efefef;
 	margin-bottom: 30rpx;
 	padding-bottom: 30rpx;
 }
 @media (min-width: 768px) {
-.doc-info image.data-v-579575c0 {
+.doc-info image.data-v-1b13582f {
 		max-height: 18px;
 		max-width: 18px;
 		margin-right: 6px;

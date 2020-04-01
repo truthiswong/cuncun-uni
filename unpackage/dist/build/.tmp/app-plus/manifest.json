@@ -18,6 +18,7 @@
     "url": ""
   },
   "permissions": {
+    "UIWebview": {},
     "UniNView": {
       "description": "UniNView原生渲染"
     }
@@ -137,7 +138,7 @@
       }
     },
     "uni-app": {
-      "compilerVersion": "2.6.5",
+      "compilerVersion": "2.6.8",
       "control": "v8",
       "nvueCompiler": "uni-app",
       "renderer": "auto",

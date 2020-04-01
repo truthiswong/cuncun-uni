@@ -4,7 +4,6 @@
   "usingComponents": {
     "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
     "loading": "/components/loading",
-    "search": "/components/search",
-    "tab": "/components/tab"
+    "search": "/components/search"
   }
 }
