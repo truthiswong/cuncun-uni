@@ -3,15 +3,15 @@
 		<uni-nav-bar color="#282828" title="我的订单" class="header" status-bar="true" fixed="true" v-if="headerShow"
 		 backgroundColor="#FFFFFF">
 			<view slot="right">
-				<view class="header_icon">
-					<image @click="onClickRight" src="../../static/tab1/add_green.png"></image>
+				<view class="header_icon" @click="onClickRight">
+					<image src="../../static/tab1/add_green.png"></image>
 				</view>
 			</view>
 		</uni-nav-bar>
 		<uni-nav-bar color="#282828" title="我的订单" class="header" status-bar="true" fixed="true" v-if="!headerShow" shadow="true">
 			<view slot="right">
-				<view class="header_icon">
-					<image @click="onClickRight" src="../../static/tab1/add_green.png"></image>
+				<view class="header_icon" @click="onClickRight">
+					<image src="../../static/tab1/add_green.png"></image>
 				</view>
 			</view>
 		</uni-nav-bar>
