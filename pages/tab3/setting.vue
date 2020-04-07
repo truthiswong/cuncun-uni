@@ -35,7 +35,7 @@
 		</view>
 		<uni-popup ref="nick">
 			<view class="nickname">
-				<input type="text" placeholder="请输入昵称" v-model="nickname" placeholder-style="font-size:14px;font-weight:400;color:rgba(204,204,204,1);margin-left:20upx" />
+				<input type="text" placeholder="请输入昵称" v-model="nicknameSet" placeholder-style="font-size:14px;font-weight:400;color:rgba(204,204,204,1);margin-left:20upx" />
 				<view class="flex_between">
 					<button class="button_cancel" @click="buttonCancel">取消</button>
 					<button class="button_confirm" @click="buttonConfirm">确定</button>
@@ -53,7 +53,18 @@
 			return {
 				headImage: require('../../static/tab3/my_image.png'),
 				nickname: 'Ding Han',
+				nicknameSet: ''
 			};
+		},
+		onLoad() {
+			let user = uni.getStorageSync('user')
+			if (user.headImage) {
+				this.headImage = user.headImage
+			}
+			if (user.nickname) {
+				this.nickname = user.nickname
+			}
+			// this.getUserInfo()
 		},
 		methods: {
 			onClickBack() {
@@ -66,20 +77,35 @@
 					count: 1,
 					success: (chooseImageRes) => {
 						const tempFilePaths = chooseImageRes.tempFilePaths;
-						this.positiveImg = tempFilePaths[0]
-						this.name = true
+						this.headImage = tempFilePaths[0]
 						console.log(tempFilePaths)
-						// uni.uploadFile({
-						//     url: 'https://www.example.com/upload', //仅为示例，非真实的接口地址
-						//     filePath: tempFilePaths[0],
-						//     name: 'file',
-						//     formData: {
-						//         'user': 'test'
-						//     },
-						//     success: (uploadFileRes) => {
-						//         console.log(uploadFileRes.data);
-						//     }
-						// });
+						uni.uploadFile({
+							url: 'http://cuncun.app.iisu.cn/server/data/user/upload/portrait', //仅为示例，非真实的接口地址
+							filePath: tempFilePaths[0],
+							header: {
+								// 'Content-Type': 'application/x-www-form-urlencoded',
+								'X-TENANT-ID': 'cuncun:cc@2020',
+								'Authorization': uni.getStorageSync('token')
+							},
+							name: 'portrait',
+							formData: {},
+							success: (res) => {
+								let data = res.data
+								let img = JSON.parse(data)
+								this.headImage = img.data
+								try {
+									const user = uni.getStorageSync('user');
+									if (user) {
+										user.headImage = this.headImage
+										uni.setStorage({
+											key: 'user',
+											data: user
+										});
+									}
+								} catch (e) {
+								}
+							}
+						});
 					}
 				});
 			},
@@ -90,8 +116,76 @@
 				this.$refs.nick.close()
 			},
 			buttonConfirm() {
-				this
-				this.$refs.nick.close()
+				if (!this.nicknameSet) {
+					uni.showToast({
+						icon: 'none',
+						title: '昵称不能为空'
+					});
+				} else {
+					uni.request({
+						url: 'http://cuncun.app.iisu.cn/server/data/user/set/nickname',
+						data: {
+							name: this.nicknameSet,
+						},
+						method: 'POST',
+						header: {
+							'Content-Type': 'application/x-www-form-urlencoded',
+							'X-TENANT-ID': 'cuncun:cc@2020',
+							'Authorization': uni.getStorageSync('token')
+						},
+						success: (res) => {
+							let data = res.data
+							console.log(data)
+							if (data.success) {
+								uni.showToast({
+									icon: 'none',
+									title: '昵称修改成功'
+								});
+								this.nickname = this.nicknameSet
+								try {
+									const user = uni.getStorageSync('user');
+									if (user) {
+										user.nickname = this.nickname
+										uni.setStorage({
+											key: 'user',
+											data: user
+										});
+									}
+								} catch (e) {
+								}
+								this.$refs.nick.close()
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: data.message
+								});
+							}
+						}
+					});
+				}
+			},
+			getUserInfo() {
+				uni.request({
+					url: 'http://cuncun.app.iisu.cn/server/data/user/current',
+					method: 'GET',
+					header: {
+						'Content-Type': 'application/x-www-form-urlencoded',
+						'X-TENANT-ID': 'cuncun:cc@2020',
+						'Authorization': uni.getStorageSync('token')
+					},
+					success: (res) => {
+						let data = res.data
+						console.log(data)
+						if (data.success) {
+							console.log(data.data)
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					}
+				});
 			},
 			onAddress() {
 				this.$router.push({
