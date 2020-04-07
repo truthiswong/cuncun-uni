@@ -1,6 +1,6 @@
 <template>
 	<view class="guide">
-		<swiper class="swiper" :circular="true" indicator-active-color='#3BC1BB' :indicator-dots="true" @change="changeTab">
+		<swiper class="swiper" indicator-active-color='#3BC1BB' :indicator-dots="true" @change="changeTab">
 			<swiper-item class="item" v-for="(item, index) in guidelList" :key="index">
 				<image :src="item.url" mode="aspectFill"></image>
 				<view class="guide_title">
