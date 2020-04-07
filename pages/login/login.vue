@@ -46,7 +46,7 @@
 		components: {},
 		data() {
 			return {
-				username: "15617693243", //手机号
+				username: "", //手机号
 				sms: "", //验证码
 				smsText: "发送验证码",
 				agreement: false,
@@ -107,7 +107,7 @@
 					})
 				} else {
 					uni.request({
-					    url: 'http://cuncun.app.iisu.cn/server/sso/code/send', //仅为示例，并非真实接口地址。
+					    url: 'http://cuncun.app.iisu.cn/server/sso/code/send',
 					    data: {
 							type: 'mobile',
 							account: this.username
@@ -118,42 +118,94 @@
 					        'X-TENANT-ID': 'cuncun:cc@2020'
 					    },
 					    success: (res) => {
-					        console.log(res.data);
-					        this.text = 'request success';
+					        let data = res.data
+							if (data.success) {
+								uni.showToast({
+									icon: 'none',
+									title: data.message
+								});
+								this.disabled = true;
+								let num = 30;
+								this.smsText = num;
+								this.timer = setInterval(() => {
+									num--;
+									if (num >= 0) {
+										this.smsText = num;
+									} else {
+										clearInterval(this.timer);
+										this.smsText = "再次获取";
+										this.disabled = false;
+									}
+								}, 1000);
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: data.message
+								});
+							}
 					    }
 					});
-					// this.disabled = true;
-					// let num = 30;
-					// this.smsText = num;
-					// this.timer = setInterval(() => {
-					// 	num--;
-					// 	if (num >= 0) {
-					// 		this.smsText = num;
-					// 	} else {
-					// 		clearInterval(this.timer);
-					// 		this.smsText = "再次获取";
-					// 		this.disabled = false;
-					// 	}
-					// }, 1000);
-
-					// http.post('/code/send', {
-					// 	type: 'mobile',
-					// 	account: this.username
-					// }).then(res => {
-					// 	console.log(res)
-					// }).catch(error => {
-
-					// })
 				}
 			},
 			login() {
-				uni.setStorage({
-				  key: 'token',
-				  data: true
-				});
-				uni.switchTab({
-					url: '/pages/tabs/tab1'
-				})
+				if (!this.username || this.username.length != 11) {
+					uni.showToast({
+						title: '请输入正确的手机号',
+						icon: 'none'
+					})
+				} else if (!this.sms) {
+					uni.showToast({
+						title: '请输入验证码',
+						icon: 'none'
+					})
+				} else if (!this.agreement) {
+					uni.showToast({
+						title: '您必须同意用户协议',
+						icon: 'none'
+					})
+				} else {
+					uni.request({
+					    url: 'http://cuncun.app.iisu.cn/server/sso/auth/login4authcode',
+					    data: {
+							type: 'mobile',
+							account: this.username,
+							code: this.sms,
+							autoreg: 'y'
+						},
+						method: 'POST',
+					    header: {
+							'Content-Type': 'application/x-www-form-urlencoded',
+					        'X-TENANT-ID': 'cuncun:cc@2020'
+					    },
+					    success: (res) => {
+							let data = res.data
+							if (data.success) {
+								uni.showToast({
+									icon: 'none',
+									title: data.message
+								});
+								let token = `Bearer ${data.data.token}`
+								uni.setStorage({
+								  key: 'token',
+								  data: token
+								});
+								console.log(data.data.account)
+								uni.setStorage({
+									key: 'user',
+									data: data.data.account
+								});
+								uni.switchTab({
+									url: '/pages/tabs/tab1'
+								})
+							} else{
+								uni.showToast({
+									icon: 'none',
+									title: data.message
+								});
+							}
+					    }
+					});
+				}
 			},
 		}
 	}
