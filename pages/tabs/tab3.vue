@@ -67,6 +67,7 @@
 		},
 		onLoad(op) {
 			if (config.debug) console.log("onLoad", op)
+			console.log(this.cont_top_bg)
 		},
 		onShow() {},
 		onPageScroll(options) {

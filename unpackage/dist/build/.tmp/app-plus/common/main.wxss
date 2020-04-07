@@ -465,7 +465,7 @@ navigator:active {
 }
 /* 弹窗 */
 .uni-popup {
-	z-index: 1000 !important;
+	z-index: 900 !important;
 }
 .popup_title {
 	position: relative;

@@ -4,7 +4,7 @@ import App from './App'
 Vue.config.productionTip = false
 
 import config from './config.js'; // 导入私有配置
-Vue.prototype.$http_config = config
+Vue.prototype.$http = config
 
 // 导航栏全局注册
 import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"

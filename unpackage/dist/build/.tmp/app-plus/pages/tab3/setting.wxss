@@ -24,27 +24,27 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.layout.data-v-8aff154a {
+.layout.data-v-1d3ad0b4 {
   width: 100%;
   height: 100%;
   overflow: hidden;
   background: #f9f9f9;
 }
-.content.data-v-8aff154a {
+.content.data-v-1d3ad0b4 {
   position: relative;
   width: 100%;
   box-sizing: border-box;
 }
-.list.data-v-8aff154a {
+.list.data-v-1d3ad0b4 {
   background-color: #ffffff;
   margin: 20rpx 0;
 }
-.head_image ._img.data-v-8aff154a {
+.head_image ._img.data-v-1d3ad0b4 {
   width: 120rpx;
   height: 120rpx;
   border-radius: 50%;
 }
-.nickname.data-v-8aff154a {
+.nickname.data-v-1d3ad0b4 {
   width: 710rpx;
   box-sizing: border-box;
   background: white;
@@ -52,7 +52,7 @@
   border-radius: 3rpx;
   padding: 20rpx;
 }
-.nickname input.data-v-8aff154a {
+.nickname input.data-v-1d3ad0b4 {
     width: 670rpx;
     height: 68rpx;
     background: #f6f6f6;
@@ -61,7 +61,7 @@
     font-size: 28rpx;
     padding-left: 20rpx;
 }
-.nickname button.data-v-8aff154a {
+.nickname button.data-v-1d3ad0b4 {
     width: 325rpx;
     height: 80rpx;
     border-radius: 3rpx;
@@ -73,17 +73,17 @@
     background-color: #FFFFFF;
     letter-spacing: 2rpx;
 }
-.nickname uni-button.data-v-8aff154a:after {
+.nickname uni-button.data-v-1d3ad0b4:after {
     border: 0 none;
 }
-.nickname .button_cancel.data-v-8aff154a {
+.nickname .button_cancel.data-v-1d3ad0b4 {
     color: #4a4a4a;
 }
-.nickname .button_confirm.data-v-8aff154a {
+.nickname .button_confirm.data-v-1d3ad0b4 {
     background: #3bc1bb;
     color: white;
 }
-.logout.data-v-8aff154a {
+.logout.data-v-1d3ad0b4 {
   position: absolute;
   bottom: 0;
   width: 100%;

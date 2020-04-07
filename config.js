@@ -1,10 +1,11 @@
-let host = 'http://localhost:8088'
+let host1 = 'http://cuncun.app.iisu.cn/server/sso/'
+let host2 = 'http://cuncun.app.iisu.cn/server/data/'
 
 //  http 请求配置项
 const http = {
 	//  开发者服务器接口地址
 	// url: "http://localhost:3000/",
-	url: "https://nztser.shienkeji.com/api/",
+	url: "http://cuncun.app.iisu.cn/server/sso/",
 	imgurl: "https://nztser.shienkeji.com/",
 	//  请求的参数   
 	data: {},

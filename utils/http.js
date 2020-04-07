@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import config from './config'; // 导入私有配置
+import config from '../config.js'; // 导入私有配置
 
 
 function urlRequest(url, param, way, callBack) {
