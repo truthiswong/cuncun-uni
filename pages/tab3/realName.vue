@@ -9,18 +9,28 @@
 			<uni-list class="list_custom list_custom_item list_custom_margin20">
 				<uni-list-item title="姓名：" :showArrow="false">
 					<view slot="right" class="input">
-						<input type="text" v-model="user" placeholder="请输入您的姓名" placeholder-style="color: #CCCCCC;font-size:14px;" />
+						<input type="text" v-model="username" disabled placeholder="请输入您的姓名" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
 				<uni-list-item title="身份证：" :showArrow="false">
 					<view slot="right" class="input">
-						<input type="idcard" v-model="idCard" maxlength="18" placeholder="请输入您的身份证号码" placeholder-style="color: #CCCCCC;font-size:14px;" />
+						<input type="idcard" v-model="idCard" disabled maxlength="18" placeholder="请输入您的身份证号码" placeholder-style="color: #CCCCCC;font-size:14px;" />
+					</view>
+				</uni-list-item>
+				<uni-list-item title="签证机关：" :showArrow="false">
+					<view slot="right" class="input">
+						<input type="idcard" v-model="idOrgan" disabled maxlength="18" placeholder="请输入您的身份证号码" placeholder-style="color: #CCCCCC;font-size:14px;" />
+					</view>
+				</uni-list-item>
+				<uni-list-item title="有效日期：" :showArrow="false">
+					<view slot="right" class="input">
+						<input type="idcard" v-model="idDate" disabled maxlength="18" placeholder="请输入您的身份证号码" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
 				<uni-list-item title="证件照片：" :showArrow="false"></uni-list-item>
 				<view class="flex_between id_card">
-					<image @click="changeIDCardImage1" src="../../static/common/idcard-z.png" mode=""></image>
-					<image @click="changeIDCardImage2" src="../../static/common/idcard-f.png" mode=""></image>
+					<image @click="changeIDCardImage1" :src="idCardSrc1" mode=""></image>
+					<image @click="changeIDCardImage2" :src="idCardSrc2" mode=""></image>
 				</view>
 			</uni-list>
 		</view>
@@ -33,35 +43,32 @@
 		components: {},
 		data() {
 			return {
-				user: '',
+				username: '',
 				idCard: '',
+				idCardSrc1: '../../static/common/idcard-z.png',
+				idCardSrc2: '../../static/common/idcard-f.png',
+				idOrgan: '',
+				idDate: '',
 				buttonActive: false, // 颜色控制
 			};
 		},
 		watch: {
-			user() {
-				if (this.user && this.idCard && this.userNew && this.smsNew) {
+			username() {
+				if (this.username && this.idCard && this.usernameNew && this.smsNew) {
 					this.buttonActive = true;
 				} else {
 					this.buttonActive = false;
 				}
 			},
 			smsOld() {
-				if (this.userOld && this.smsOld && this.userNew && this.smsNew) {
+				if (this.usernameOld && this.smsOld && this.usernameNew && this.smsNew) {
 					this.buttonActive = true;
 				} else {
 					this.buttonActive = false;
 				}
 			},
-			userNew() {
-				if (this.userOld && this.smsOld && this.userNew && this.smsNew) {
-					this.buttonActive = true;
-				} else {
-					this.buttonActive = false;
-				}
-			},
-			smsNew() {
-				if (this.userOld && this.smsOld && this.userNew && this.smsNew) {
+			usernameNew() {
+				if (this.usernameOld && this.smsOld && this.usernameNew && this.smsNew) {
 					this.buttonActive = true;
 				} else {
 					this.buttonActive = false;
@@ -77,38 +84,80 @@
 			changeIDCardImage1() {
 				uni.chooseImage({
 					count: 1,
-					success: (res) => {
-						const filePaths = res.tempFilePaths;
-						// uni.uploadFile({
-						//     url: 'https://www.example.com/upload', //仅为示例，非真实的接口地址
-						//     filePath: filePaths[0],
-						//     name: 'file',
-						//     formData: {
-						//         'user': 'test'
-						//     },
-						//     success: (uploadFileRes) => {
-						//         console.log(uploadFileRes.data);
-						//     }
-						// });
+					success: (chooseImageRes) => {
+						const tempFilePaths = chooseImageRes.tempFilePaths;
+						uni.uploadFile({
+							url: 'http://cuncun.app.iisu.cn/server/data/user/upload/idcarda',
+							filePath: tempFilePaths[0],
+							header: {
+								// 'Content-Type': 'application/x-www-form-urlencoded',
+								'X-TENANT-ID': 'cuncun:cc@2020',
+								'Authorization': uni.getStorageSync('token')
+							},
+							name: 'a',
+							formData: {},
+							success: (res) => {
+								let data = res.data
+								let img = JSON.parse(data)
+								console.log(img)
+								this.idCardSrc1 = img.data.idCardA
+								this.username = img.data.name
+								this.idCard = img.data.idNo
+								try {
+									const user = uni.getStorageSync('user');
+									if (user) {
+										user.username = this.username
+										user.idCard = this.idCard
+										user.idCardSrc1 = this.idCardSrc1
+										uni.setStorage({
+											key: 'user',
+											data: user
+										});
+									}
+								} catch (e) {
+								}
+							}
+						});
 					}
 				});
 			},
 			changeIDCardImage2() {
 				uni.chooseImage({
 					count: 1,
-					success: (res) => {
-						const filePaths = res.tempFilePaths;
-						// uni.uploadFile({
-						//     url: 'https://www.example.com/upload', //仅为示例，非真实的接口地址
-						//     filePath: filePaths[0],
-						//     name: 'file',
-						//     formData: {
-						//         'user': 'test'
-						//     },
-						//     success: (uploadFileRes) => {
-						//         console.log(uploadFileRes.data);
-						//     }
-						// });
+					success: (chooseImageRes) => {
+						const tempFilePaths = chooseImageRes.tempFilePaths;
+						uni.uploadFile({
+							url: 'http://cuncun.app.iisu.cn/server/data/user/upload/idcardb',
+							filePath: tempFilePaths[0],
+							header: {
+								// 'Content-Type': 'application/x-www-form-urlencoded',
+								'X-TENANT-ID': 'cuncun:cc@2020',
+								'Authorization': uni.getStorageSync('token')
+							},
+							name: 'b',
+							formData: {},
+							success: (res) => {
+								let data = res.data
+								let img = JSON.parse(data)
+								console.log(img)
+								this.idCardSrc2 = img.data.idCardB
+								this.idOrgan = img.data.idIssueOrgan
+								this.idDate = `${img.data.idIssueDate}-${img.data.idExpiryDate}`
+								try {
+									const user = uni.getStorageSync('user');
+									if (user) {
+										user.idCardSrc2 = this.idCardSrc2
+										user.idOrgan = this.idOrgan
+										user.idDate = this.idDate
+										uni.setStorage({
+											key: 'user',
+											data: user
+										});
+									}
+								} catch (e) {
+								}
+							}
+						});
 					}
 				});
 			},
