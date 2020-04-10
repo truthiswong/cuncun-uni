@@ -5,18 +5,18 @@
 			const value = uni.getStorageSync('launchFlag');
 			const token = uni.getStorageSync('token');
 			if (value) {
-				uni.redirectTo({
-					url: '/pages/login/login'
-				});
-				// if (token) {
-				// 	uni.switchTab({
-				// 		url: '/pages/tabs/tab1'
-				// 	})
-				// } else{
-				// 	uni.redirectTo({
-				// 	  url: '/pages/login/login'
-				// 	});
-				// }
+				// uni.redirectTo({
+				// 	url: '/pages/login/login'
+				// });
+				if (token) {
+					uni.switchTab({
+						url: '/pages/tabs/tab1'
+					})
+				} else{
+					uni.redirectTo({
+					  url: '/pages/login/login'
+					});
+				}
 			} else {
 				uni.setStorage({
 					key: 'launchFlag',

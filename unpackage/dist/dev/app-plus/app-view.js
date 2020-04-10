@@ -16715,7 +16715,7 @@ var render = function() {
                   type: "text",
                   placeholder: "请输入昵称",
                   "placeholder-style":
-                    "font-size:14px;font-weight:400;color:rgba(204,204,204,1);margin-left:20upx",
+                    "font-size:14px;font-weight:400;color:rgba(204,204,204,1);",
                   _i: 21
                 },
                 model: {

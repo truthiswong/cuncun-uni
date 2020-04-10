@@ -34,7 +34,7 @@
 		</view>
 		<uni-popup ref="nick">
 			<view class="nickname">
-				<input type="text" placeholder="请输入昵称" v-model="nicknameSet" placeholder-style="font-size:14px;font-weight:400;color:rgba(204,204,204,1);margin-left:20upx" />
+				<input type="text" placeholder="请输入昵称" v-model="nicknameSet" placeholder-style="font-size:14px;font-weight:400;color:rgba(204,204,204,1);" />
 				<view class="flex_between">
 					<button class="button_cancel" @click="buttonCancel">取消</button>
 					<button class="button_confirm" @click="buttonConfirm">确定</button>
@@ -90,7 +90,7 @@
 						quality = Math.floor(quality)
 						console.log(imageSize)
 						console.log(quality)
-						this.headImage = tempFilePaths[0]
+						// this.headImage = tempFilePaths[0]
 						uni.compressImage({
 							src: tempFilePaths[0],
 							quality: quality,

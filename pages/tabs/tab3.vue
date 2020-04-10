@@ -93,8 +93,10 @@
 					let data = res.data
 					if (data.success) {
 						console.log(data.data)
-						this.headImage = data.data.portrait
-						this.nickName = data.data.nickName
+						setTimeout(()=>{
+							this.headImage = data.data.portrait
+							this.nickName = data.data.nickName
+						}, 1500)
 						uni.setStorage({
 							key: 'user',
 							data: data.data
