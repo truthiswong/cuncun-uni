@@ -19,9 +19,8 @@
 					<navigator url="/pages/tab3/changePhone">
 						<uni-list-item title="手机号" rightText="021-34283744"></uni-list-item>
 					</navigator>
-					<navigator url="/pages/tab3/realName">
-						<uni-list-item title="实名认证" rightText="未实名"></uni-list-item>
-					</navigator>
+					<uni-list-item title="实名认证" @click="onRealName" :rightText="realName"></uni-list-item>
+
 					<navigator url="/pages/tab3/address">
 						<uni-list-item title="地址管理"></uni-list-item>
 					</navigator>
@@ -29,7 +28,7 @@
 			</view>
 			<view class="list_padding30 list_custom_margin20" style="background-color: #FFFFFF;">
 				<uni-list class="list_custom list_custom_margin20">
-					<uni-list-item title="注册账号" @click="onLogout"></uni-list-item>
+					<uni-list-item title="注销账号" @click="onLogout"></uni-list-item>
 				</uni-list>
 			</view>
 		</view>
@@ -53,18 +52,26 @@
 			return {
 				headImage: require('../../static/tab3/my_image.png'),
 				nickname: 'Ding Han',
-				nicknameSet: ''
+				nicknameSet: '',
+				realName: '未实名',
+				realNameConfirm: false
 			};
 		},
 		onLoad() {
 			let user = uni.getStorageSync('user')
-			if (user.headImage) {
-				this.headImage = user.headImage
+			if (user.portrait) {
+				this.headImage = user.portrait
 			}
-			if (user.nickname) {
-				this.nickname = user.nickname
+			if (user.nickName) {
+				this.nicknameSet = user.nickName
 			}
-			// this.getUserInfo()
+			if (user.realNameConfirm) {
+				this.realName = user.realNameConfirm ? "已实名" : "未实名"
+				this.realNameConfirm = user.realNameConfirm
+			}
+		},
+		onShow() {
+			
 		},
 		methods: {
 			onClickBack() {
@@ -75,37 +82,50 @@
 			chooseHeadImage() {
 				uni.chooseImage({
 					count: 1,
+					sizeType: ['original'],
 					success: (chooseImageRes) => {
-						const tempFilePaths = chooseImageRes.tempFilePaths;
+						const tempFilePaths = chooseImageRes.tempFilePaths
+						let imageSize = chooseImageRes.tempFiles[0].size
+						let quality = 100000000 / imageSize > 100 ? 100 : 100000000 / imageSize
+						quality = Math.floor(quality)
+						console.log(imageSize)
+						console.log(quality)
 						this.headImage = tempFilePaths[0]
-						console.log(tempFilePaths)
-						uni.uploadFile({
-							url: 'http://cuncun.app.iisu.cn/server/data/user/upload/portrait', //仅为示例，非真实的接口地址
-							filePath: tempFilePaths[0],
-							header: {
-								// 'Content-Type': 'application/x-www-form-urlencoded',
-								'X-TENANT-ID': 'cuncun:cc@2020',
-								'Authorization': uni.getStorageSync('token')
-							},
-							name: 'portrait',
-							formData: {},
-							success: (res) => {
-								let data = res.data
-								let img = JSON.parse(data)
-								this.headImage = img.data
-								try {
-									const user = uni.getStorageSync('user');
-									if (user) {
-										user.headImage = this.headImage
-										uni.setStorage({
-											key: 'user',
-											data: user
-										});
+						uni.compressImage({
+							src: tempFilePaths[0],
+							quality: quality,
+							success: res => {
+								console.log(res.tempFilePath)
+								uni.uploadFile({
+									url: 'http://cuncun.app.iisu.cn/server/data/user/upload/portrait',
+									filePath: res.tempFilePath,
+									header: {
+										// 'Content-Type': 'application/x-www-form-urlencoded',
+										'X-TENANT-ID': 'cuncun:cc@2020',
+										'Authorization': uni.getStorageSync('token')
+									},
+									name: 'portrait',
+									formData: {},
+									success: (res) => {
+										let data = JSON.parse(res.data)
+										console.log(data)
+										if (data.success) {
+											this.headImage = data.data
+											console.log(this.headImage)
+											uni.showToast({
+												icon: 'none',
+												title: '修改成功'
+											});
+										} else {
+											uni.showToast({
+												icon: 'none',
+												title: data.message
+											});
+										}
 									}
-								} catch (e) {
-								}
+								})
 							}
-						});
+						})
 					}
 				});
 			},
@@ -122,52 +142,47 @@
 						title: '昵称不能为空'
 					});
 				} else {
-					uni.request({
-						url: 'http://cuncun.app.iisu.cn/server/data/user/set/nickname',
-						data: {
-							name: this.nicknameSet,
-						},
-						method: 'POST',
-						header: {
-							'Content-Type': 'application/x-www-form-urlencoded',
-							'X-TENANT-ID': 'cuncun:cc@2020',
-							'Authorization': uni.getStorageSync('token')
-						},
-						success: (res) => {
-							let data = res.data
-							console.log(data)
-							if (data.success) {
-								uni.showToast({
-									icon: 'none',
-									title: '昵称修改成功'
-								});
-								this.nickname = this.nicknameSet
-								try {
-									const user = uni.getStorageSync('user');
-									if (user) {
-										user.nickname = this.nickname
-										uni.setStorage({
-											key: 'user',
-											data: user
-										});
-									}
-								} catch (e) {
+					let data = {
+						name: this.nicknameSet,
+					}
+					this.$http('user/set/nickname', "POST", data, res => {
+						let data = res.data
+						console.log(data)
+						if (data.success) {
+							uni.showToast({
+								icon: 'none',
+								title: '昵称修改成功'
+							});
+							this.nickname = this.nicknameSet
+							this.$refs.nick.close()
+							try {
+								const user = uni.getStorageSync('user');
+								if (user) {
+									user.nickName = this.nickname
+									uni.setStorage({
+										key: 'user',
+										data: user
+									});
 								}
-								this.$refs.nick.close()
-							} else {
-								uni.showToast({
-									icon: 'none',
-									title: data.message
-								});
+							} catch (e) {
 							}
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
 						}
-					});
+					})
 				}
 			},
-			getUserInfo() {
+			onRealName() {
+				uni.navigateTo({
+					url: "/pages/tab3/realName"
+				})
+				return
 				uni.request({
-					url: 'http://cuncun.app.iisu.cn/server/data/user/current',
-					method: 'GET',
+					url: 'http://cuncun.app.iisu.cn/server/data/user/realname/confirm',
+					method: 'POST',
 					header: {
 						'Content-Type': 'application/x-www-form-urlencoded',
 						'X-TENANT-ID': 'cuncun:cc@2020',
@@ -175,9 +190,11 @@
 					},
 					success: (res) => {
 						let data = res.data
-						console.log(data)
 						if (data.success) {
-							console.log(data.data)
+							console.log(data)
+							// uni.navigateTo({
+							// 	url: "/pages/tab3/realName?realNameConfirm=" + encodeURIComponent(JSON.stringify(detail))
+							// })
 						} else {
 							uni.showToast({
 								icon: 'none',
@@ -264,6 +281,7 @@
 			border-radius: 3upx;
 			border: 1upx solid rgba(242, 242, 242, 1);
 			font-size: 28upx;
+			box-sizing: border-box;
 			padding-left: 20upx;
 		}
 

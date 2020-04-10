@@ -222,9 +222,6 @@
 </template>
 
 <script>
-	import api from '../../utils/api.js'
-	import util from '../../utils/util.js'
-	import config from '../../config.js'
 	export default {
 		components: {},
 		data() {
@@ -240,8 +237,10 @@
 				long_active: false, //长按显示编辑按钮
 			}
 		},
-		onLoad() {},
-		onShow() {},
+		onLoad() {
+		},
+		onShow() {
+		},
 		onPageScroll(options) {
 			if (config.debug) console.log("onPageScroll", options)
 			if (options.scrollTop > 60) {

@@ -3,8 +3,7 @@ import App from './App'
 
 Vue.config.productionTip = false
 
-import config from './config.js'; // 导入私有配置
-Vue.prototype.$http = config
+import './utils/http.js'
 
 // 导航栏全局注册
 import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"
@@ -37,6 +36,9 @@ Vue.component('uni-segmented-control', uniSegmentedControl)
 // Steps 步骤条
 import uniSteps from '@/components/uni-steps/uni-steps.vue'
 Vue.component('uni-uni-steps', uniSteps)
+
+import pickRegions from '@/components/pick-regions/pick-regions.vue'
+Vue.component('pick-regions', pickRegions)
 
 App.mpType = 'app'
 

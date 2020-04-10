@@ -1,1 +1,153 @@
-"use weex:vue";var __wxConfig = {"debug":false,"appname":"存存","entryPagePath":"pages/login/init.html","page":{"pages/login/init.html":{"window":{"navigationBarTitleText":"入口页","usingComponents":{}}},"pages/login/guide.html":{"window":{"navigationBarTitleText":"引导页","titleNView":false,"bounce":"none","usingComponents":{}}},"pages/login/login.html":{"window":{"navigationBarTitleText":"登录","bounce":"none","usingComponents":{}}},"pages/tabs/tab1.html":{"window":{"navigationBarTitleText":"存存","enablePullDownRefresh":true,"bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item"}}},"pages/tabs/tab2.html":{"window":{"navigationBarTitleText":"我的订单","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-segmented-control":"/components/uni-segmented-control/uni-segmented-control","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item"}}},"pages/tabs/tab3.html":{"window":{"navigationBarTitleText":"我的","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-rate":"/components/uni-rate/uni-rate","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item"}}},"pages/tab1/book.html":{"window":{"navigationBarTitleText":"我的书架","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar"}}},"pages/tab1/clothes.html":{"window":{"navigationBarTitleText":"我的衣柜","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar"}}},"pages/tab1/shoes.html":{"window":{"navigationBarTitleText":"我的鞋柜","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar"}}},"pages/tab1/storage.html":{"window":{"navigationBarTitleText":"我的储藏室","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar"}}},"pages/tab1/search.html":{"window":{"navigationBarTitleText":"搜索","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","loading":"/components/loading","search":"/components/search"}}},"pages/login/agreement.html":{"window":{"navigationBarTitleText":"用户协议","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar"}}},"pages/tab2/addOrder.html":{"window":{"navigationBarTitleText":"添加订单","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-number-box":"/components/uni-number-box/uni-number-box","uni-collapse":"/components/uni-collapse/uni-collapse","uni-collapse-item":"/components/uni-collapse-item/uni-collapse-item","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item","uni-popup":"/components/uni-popup/uni-popup"}}},"pages/tab2/orderDetailsPay.html":{"window":{"navigationBarTitleText":"订单详情未支付","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item","uni-popup":"/components/uni-popup/uni-popup"}}},"pages/tab2/orderDetailsSuccess.html":{"window":{"navigationBarTitleText":"订单详情支付成功","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item"}}},"pages/tab2/orderDetailsCancel.html":{"window":{"navigationBarTitleText":"订单详情已取消","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item","uni-popup":"/components/uni-popup/uni-popup","custom-steps":"/components/customSteps"}}},"pages/tab2/orderDetailsStorageSuccess.html":{"window":{"navigationBarTitleText":"仓储已支付","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item"}}},"pages/tab2/orderPay.html":{"window":{"navigationBarTitleText":"订单支付","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item","uni-popup":"/components/uni-popup/uni-popup"}}},"pages/tab2/orderSuccess.html":{"window":{"navigationBarTitleText":"订单成功","bounce":"none","usingComponents":{}}},"pages/tab3/setting.html":{"window":{"navigationBarTitleText":"设置","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item","uni-popup":"/components/uni-popup/uni-popup"}}},"pages/tab3/realName.html":{"window":{"navigationBarTitleText":"实名认证","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item"}}},"pages/tab3/address.html":{"window":{"navigationBarTitleText":"地址","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-tag":"/components/uni-tag/uni-tag"}}},"pages/tab3/addAddress.html":{"window":{"navigationBarTitleText":"添加地址","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item"}}},"pages/tab3/changePhone.html":{"window":{"navigationBarTitleText":"修改手机号","bounce":"none","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item"}}},"components/customSteps.html":{"window":{"usingComponents":{"uni-icons":"/components/uni-icons/uni-icons"}}}},"global":{"window":{"navigationBarTextStyle":"black","navigationBarTitleText":"cuncun-app","navigationBarBackgroundColor":"#FFFFFF","backgroundColor":"#FFFFFF","navigationStyle":"custom"}},"tabBar":{"color":"#888888","selectedColor":"rgba(59, 193, 187, 1)","backgroundColor":"#ffffff","borderStyle":"black","list":[{"pagePath":"pages/tabs/tab1.html","text":"存存","iconPath":"static/tabs/tab1_off.png","selectedIconPath":"static/tabs/tab1_on.png"},{"pagePath":"pages/tabs/tab2.html","text":"订单","iconPath":"static/tabs/tab2_off.png","selectedIconPath":"static/tabs/tab2_on.png"},{"pagePath":"pages/tabs/tab3.html","text":"我的","iconPath":"static/tabs/tab3_off.png","selectedIconPath":"static/tabs/tab3_on.png"}],"position":"bottom"},"networkTimeout":{"request":60000,"connectSocket":60000,"uploadFile":60000,"downloadFile":60000},"platform":"devtools","pages":["pages/login/init","pages/login/guide","pages/login/login","pages/tabs/tab1","pages/tabs/tab2","pages/tabs/tab3","pages/tab1/book","pages/tab1/clothes","pages/tab1/shoes","pages/tab1/storage","pages/tab1/search","pages/login/agreement","pages/tab2/addOrder","pages/tab2/orderDetailsPay","pages/tab2/orderDetailsSuccess","pages/tab2/orderDetailsCancel","pages/tab2/orderDetailsStorageSuccess","pages/tab2/orderPay","pages/tab2/orderSuccess","pages/tab3/setting","pages/tab3/realName","pages/tab3/address","pages/tab3/addAddress","pages/tab3/changePhone","components/customSteps"],"nvueCompiler":"uni-app","renderer":"auto","splashscreen":{"alwaysShowBeforeRender":true,"autoclose":false},"compilerVersion":"2.6.8","usingComponents":{"uni-nav-bar":"/components/uni-nav-bar/uni-nav-bar","uni-popup":"/components/uni-popup/uni-popup","uni-search-bar":"/components/uni-search-bar/uni-search-bar","uni-list":"/components/uni-list/uni-list","uni-list-item":"/components/uni-list-item/uni-list-item","uni-tag":"/components/uni-tag/uni-tag","uni-number-box":"/components/uni-number-box/uni-number-box","uni-collapse":"/components/uni-collapse/uni-collapse","uni-collapse-item":"/components/uni-collapse-item/uni-collapse-item","uni-segmented-control":"/components/uni-segmented-control/uni-segmented-control","uni-uni-steps":"/components/uni-steps/uni-steps"}};
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// install a JSONP callback for chunk loading
+/******/ 	function webpackJsonpCallback(data) {
+/******/ 		var chunkIds = data[0];
+/******/ 		var moreModules = data[1];
+/******/ 		var executeModules = data[2];
+/******/
+/******/ 		// add "moreModules" to the modules object,
+/******/ 		// then flag all "chunkIds" as loaded and fire callback
+/******/ 		var moduleId, chunkId, i = 0, resolves = [];
+/******/ 		for(;i < chunkIds.length; i++) {
+/******/ 			chunkId = chunkIds[i];
+/******/ 			if(installedChunks[chunkId]) {
+/******/ 				resolves.push(installedChunks[chunkId][0]);
+/******/ 			}
+/******/ 			installedChunks[chunkId] = 0;
+/******/ 		}
+/******/ 		for(moduleId in moreModules) {
+/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
+/******/ 				modules[moduleId] = moreModules[moduleId];
+/******/ 			}
+/******/ 		}
+/******/ 		if(parentJsonpFunction) parentJsonpFunction(data);
+/******/
+/******/ 		while(resolves.length) {
+/******/ 			resolves.shift()();
+/******/ 		}
+/******/
+/******/ 		// add entry modules from loaded chunk to deferred list
+/******/ 		deferredModules.push.apply(deferredModules, executeModules || []);
+/******/
+/******/ 		// run deferred modules when all chunks ready
+/******/ 		return checkDeferredModules();
+/******/ 	};
+/******/ 	function checkDeferredModules() {
+/******/ 		var result;
+/******/ 		for(var i = 0; i < deferredModules.length; i++) {
+/******/ 			var deferredModule = deferredModules[i];
+/******/ 			var fulfilled = true;
+/******/ 			for(var j = 1; j < deferredModule.length; j++) {
+/******/ 				var depId = deferredModule[j];
+/******/ 				if(installedChunks[depId] !== 0) fulfilled = false;
+/******/ 			}
+/******/ 			if(fulfilled) {
+/******/ 				deferredModules.splice(i--, 1);
+/******/ 				result = __webpack_require__(__webpack_require__.s = deferredModule[0]);
+/******/ 			}
+/******/ 		}
+/******/ 		return result;
+/******/ 	}
+/******/
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// object to store loaded and loading chunks
+/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 	// Promise = chunk loading, 0 = chunk loaded
+/******/ 	var installedChunks = {
+/******/ 		"app-config": 0
+/******/ 	};
+/******/
+/******/ 	var deferredModules = [];
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/";
+/******/
+/******/ 	var jsonpArray = this["webpackJsonp"] = this["webpackJsonp"] || [];
+/******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
+/******/ 	jsonpArray.push = webpackJsonpCallback;
+/******/ 	jsonpArray = jsonpArray.slice();
+/******/ 	for(var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
+/******/ 	var parentJsonpFunction = oldJsonpFunction;
+/******/
+/******/
+/******/ 	// run deferred modules from other chunks
+/******/ 	checkDeferredModules();
+/******/ })
+/************************************************************************/
+/******/ ([]);

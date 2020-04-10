@@ -21,10 +21,10 @@
 		<view class="content">
 			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
 				<view class="head_image">
-					<!-- <img src="../../static/tab3/my_image.png" alt /> -->
-					<image src="../../static/tab3/my_image.png"></image>
+					<!-- <img :src="headImage" alt /> -->
+					<image :src="headImage"></image>
 					<view>
-						<p style="margin-bottom: 20upx;">Ding Han</p>
+						<p style="width: 510upx; margin-bottom: 20upx;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">{{nickname}}</p>
 						<uni-rate disabled="true" size="14" value="3.5"></uni-rate>
 					</view>
 				</view>
@@ -51,25 +51,35 @@
 </template>
 
 <script>
-	import uniRate from '@/components/uni-rate/uni-rate.vue' //评分
-	import config from '../../config.js'
-	import util from '../../utils/util.js'
-
 	export default {
-		components: {
-			uniRate
-		},
+		components: {},
 		data() {
 			return {
 				headerShow: true,
+				headImage: '../../static/tab3/my_image.png',
+				nickname: 'Ding Han',
 				cont_top_bg: '../../static/tab3/tab3_bg.png',
 			}
 		},
 		onLoad(op) {
-			if (config.debug) console.log("onLoad", op)
-			console.log(this.cont_top_bg)
+			
+			
+			// if (user.realNameConfirm) {
+			// 	this.realName = user.realNameConfirm ? "已实名" : "未实名"
+			// 	this.realNameConfirm = user.realNameConfirm
+			// }
 		},
-		onShow() {},
+		onShow() {
+			this.getUserInfo()
+			let user = uni.getStorageSync('user')
+			if (user.portrait) {
+				this.headImage = user.portrait
+			}
+			if (user.nickName) {
+				this.nickname = user.nickName
+				
+			}
+		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
@@ -77,11 +87,31 @@
 				this.headerShow = true;
 			}
 		},
-		methods: {}
+		methods: {
+			getUserInfo() {
+				this.$http('user/current', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						console.log(data.data)
+						this.headImage = data.data.portrait
+						this.nickName = data.data.nickName
+						uni.setStorage({
+							key: 'user',
+							data: data.data
+						});
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
+		}
 	}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	page,
 	.page {
 		background-color: #f6f6f6;
@@ -115,21 +145,19 @@
 		align-items: center;
 		-webkit-align-items: center;
 		flex-wrap: wrap;
-	}
-
-	.head_image>image {
-		width: 128upx;
-		height: 128upx;
-		border-radius: 50%;
-		border: 6upx solid white;
-		margin: 0 30upx;
-	}
-
-	.head_image>view p {
-		font-size: 56upx;
-		font-weight: 600;
-		color: rgba(255, 255, 255, 1);
-		line-height: 78upx;
+		img, image {
+			width: 128upx;
+			height: 128upx;
+			border-radius: 50%;
+			border: 6upx solid white;
+			margin: 0 30upx;
+		}
+		view p {
+			font-size: 56upx;
+			font-weight: 600;
+			color: rgba(255, 255, 255, 1);
+			line-height: 78upx;
+		}
 	}
 
 	.head_word {
@@ -142,7 +170,9 @@
 		-webkit-align-items: center;
 		justify-content: space-between;
 		-webkit-justify-content: space-between;
-		margin-left: 30upx;
+		width: 100%;
+		box-sizing: border-box;
+		padding-left: 30upx;
 	}
 
 	.head_word p {

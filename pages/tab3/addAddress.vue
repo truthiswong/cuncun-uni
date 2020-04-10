@@ -17,7 +17,13 @@
 				<uni-list-item title="所在地区：">
 					<view slot="right" class="change_address">
 						<!-- <input type="text" value="" placeholder="请选择所在地区" /> -->
-						<text>请选择所在地区</text>
+						<pick-regions :default-regions="defaultRegions" @getRegions="handleGetRegions">
+							<text :class="{change_address_active:addressText != '请选择所在地区'}">{{addressText}}</text>
+						</pick-regions>
+						<!-- <picker @change="bindPickerChange" :value="index" :range="array">
+							<text>请选择所在地区</text>
+							<view>{{array[index]}}</view>
+						</picker> -->
 					</view>
 				</uni-list-item>
 				<uni-list-item title="详细地址：" :showArrow="false">
@@ -78,6 +84,10 @@
 					value: '默认地址',
 					checked: false
 				}],
+				array: ['中国', '美国', '巴西', '日本'],
+				index: 0,
+				addressText: '请选择所在地区',
+				defaultRegions: ['北京市', '市辖区', '东城区'],
 				tagsList: [{
 					id: 0,
 					name: '家',
@@ -100,10 +110,6 @@
 		},
 		watch: {},
 		computed: {},
-		created() {},
-		activated() {},
-		deactivated() {},
-		mounted() {},
 		methods: {
 			onClickBack() {
 				uni.navigateBack({
@@ -127,6 +133,15 @@
 						this.addressList[i].checked = false
 					}
 				}
+			},
+			bindPickerChange(e) {
+				console.log('picker发送选择改变，携带值为', e.target.value)
+				this.index = e.target.value
+			},
+			handleGetRegions(regions) {
+				console.log(regions)
+				this.regions = regions
+				this.addressText = this.regions.map(item => item.name).join('-')
 			},
 			onChangeTags(id) {
 				for (let item of this.tagsList) {
@@ -172,6 +187,9 @@
 		font-weight: 400;
 		color: #CCCCCC;
 		line-height: 40upx;
+		.change_address_active {
+			color: #333333;
+		}
 	}
 
 	.textarea {

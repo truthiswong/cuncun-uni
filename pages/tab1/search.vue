@@ -16,11 +16,6 @@
 <script>
 	import loading from '../../components/loading.vue'
 	import search from '../../components/search.vue'
-
-	import api from '../../utils/api.js'
-	import util from '../../utils/util.js'
-	import config from '../../config.js'
-
 	export default {
 		components: {
 			loading,
@@ -102,8 +97,6 @@
 			},
 			execSearch: function() {
 				let that = this
-				let api = config.api.searchDoc
-
 				that.showTab = true
 
 				that.title = that.wd + " · 搜索"
@@ -123,45 +116,6 @@
 				that.loading = true
 				that.pending = true
 
-				if (that.tabValue != "doc") {
-					api = config.api.searchBook
-				}
-
-				util.request(api, {
-					wd: that.wd,
-					page: that.page,
-					size: that.size,
-				}).then((res) => {
-					if (config.debug) console.log(config.api.searchBook, res)
-					let page = that.page + 1
-					let result = []
-					if (res.data && res.data.result) {
-						result = res.data.result
-						if (res.data.result.length < that.size) {
-							page = 0
-						}
-					} else {
-						page = 0
-					}
-					if (that.tabValue == 'doc') {
-						result = result.map(function(item) {
-							item.created_at = util.relativeTime(item.created_at)
-							item.vcnt = util.fixView(item.vcnt)
-							return item
-						})
-					}
-					that.page = page
-					that.lists = that.lists.concat(result)
-					that.loading = page > 0
-					that.tips = "没有找到更多资源..."
-				}).catch((e) => {
-					if (config.debug) console.log(e)
-					that.loading = false
-					that.tips = e.data.message || e.errMsg
-					that.page = 0
-				}).finally(function() {
-					that.pending = false
-				})
 			},
 		}
 	}

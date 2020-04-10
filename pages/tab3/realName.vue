@@ -9,22 +9,22 @@
 			<uni-list class="list_custom list_custom_item list_custom_margin20">
 				<uni-list-item title="姓名：" :showArrow="false">
 					<view slot="right" class="input">
-						<input type="text" v-model="username" disabled placeholder="请输入您的姓名" placeholder-style="color: #CCCCCC;font-size:14px;" />
+						<input type="text" v-model="username" disabled placeholder="上传身份照片认证" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
 				<uni-list-item title="身份证：" :showArrow="false">
 					<view slot="right" class="input">
-						<input type="idcard" v-model="idCard" disabled maxlength="18" placeholder="请输入您的身份证号码" placeholder-style="color: #CCCCCC;font-size:14px;" />
+						<input type="idcard" v-model="idCard" disabled placeholder="上传身份照片认证" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
 				<uni-list-item title="签证机关：" :showArrow="false">
 					<view slot="right" class="input">
-						<input type="idcard" v-model="idOrgan" disabled maxlength="18" placeholder="请输入您的身份证号码" placeholder-style="color: #CCCCCC;font-size:14px;" />
+						<input type="idcard" v-model="idOrgan" disabled placeholder="上传身份照片认证" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
 				<uni-list-item title="有效日期：" :showArrow="false">
 					<view slot="right" class="input">
-						<input type="idcard" v-model="idDate" disabled maxlength="18" placeholder="请输入您的身份证号码" placeholder-style="color: #CCCCCC;font-size:14px;" />
+						<input type="idcard" v-model="idDate" disabled placeholder="上传身份照片认证" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
 				<uni-list-item title="证件照片：" :showArrow="false"></uni-list-item>
@@ -34,7 +34,7 @@
 				</view>
 			</uni-list>
 		</view>
-		<button type="default" class="address_button" :class="{address_button_active: buttonActive}">确 认</button>
+		<button @click="onConfirm" v-if="!realNameConfirm" class="address_button" :class="{address_button_active: buttonActive}">确 认</button>
 	</view>
 </template>
 
@@ -50,30 +50,28 @@
 				idOrgan: '',
 				idDate: '',
 				buttonActive: false, // 颜色控制
+				realNameConfirm: false, //是否实名
 			};
 		},
 		watch: {
-			username() {
-				if (this.username && this.idCard && this.usernameNew && this.smsNew) {
+			idCardSrc1() {
+				if (this.username && this.idOrgan) {
 					this.buttonActive = true;
 				} else {
 					this.buttonActive = false;
 				}
 			},
-			smsOld() {
-				if (this.usernameOld && this.smsOld && this.usernameNew && this.smsNew) {
-					this.buttonActive = true;
-				} else {
-					this.buttonActive = false;
-				}
-			},
-			usernameNew() {
-				if (this.usernameOld && this.smsOld && this.usernameNew && this.smsNew) {
+			idCardSrc2() {
+				if (this.username && this.idOrgan) {
 					this.buttonActive = true;
 				} else {
 					this.buttonActive = false;
 				}
 			}
+		},
+		onLoad(op) {
+			console.log(op.realNameConfirm)
+			this.getIdinfo()
 		},
 		methods: {
 			onClickBack() {
@@ -82,92 +80,166 @@
 				})
 			},
 			changeIDCardImage1() {
+				if (this.realNameConfirm) {
+					return
+				}
 				uni.chooseImage({
 					count: 1,
 					success: (chooseImageRes) => {
-						const tempFilePaths = chooseImageRes.tempFilePaths;
-						uni.uploadFile({
-							url: 'http://cuncun.app.iisu.cn/server/data/user/upload/idcarda',
-							filePath: tempFilePaths[0],
-							header: {
-								// 'Content-Type': 'application/x-www-form-urlencoded',
-								'X-TENANT-ID': 'cuncun:cc@2020',
-								'Authorization': uni.getStorageSync('token')
-							},
-							name: 'a',
-							formData: {},
-							success: (res) => {
-								let data = res.data
-								let img = JSON.parse(data)
-								console.log(img)
-								this.idCardSrc1 = img.data.idCardA
-								this.username = img.data.name
-								this.idCard = img.data.idNo
-								try {
-									const user = uni.getStorageSync('user');
-									if (user) {
-										user.username = this.username
-										user.idCard = this.idCard
-										user.idCardSrc1 = this.idCardSrc1
-										uni.setStorage({
-											key: 'user',
-											data: user
-										});
+						let imageSize = chooseImageRes.tempFiles[0].size
+						let quality = 100000000 / imageSize > 100 ? 100 : 100000000 / imageSize
+						quality = Math.floor(quality)
+						console.log(imageSize)
+						console.log(quality)
+						const tempFilePaths = chooseImageRes.tempFilePaths
+						uni.compressImage({
+							src: tempFilePaths[0],
+							quality: quality,
+							success: res => {
+								console.log(res.tempFilePath)
+								uni.uploadFile({
+									url: 'http://cuncun.app.iisu.cn/server/data/user/upload/idcarda',
+									filePath: res.tempFilePath ,
+									header: {
+										// 'Content-Type': 'application/x-www-form-urlencoded',
+										'X-TENANT-ID': 'cuncun:cc@2020',
+										'Authorization': uni.getStorageSync('token')
+									},
+									name: 'a',
+									formData: {},
+									success: (res) => {
+										let data = res.data
+										let img = JSON.parse(data)
+										console.log(img)
+										this.idCardSrc1 = img.data.idCardA
+										this.username = img.data.name
+										this.idCard = img.data.idNo
+										try {
+											const user = uni.getStorageSync('user');
+											if (user) {
+												user.username = this.username
+												user.idCard = this.idCard
+												user.idCardSrc1 = this.idCardSrc1
+												uni.setStorage({
+													key: 'user',
+													data: user
+												});
+											}
+										} catch (e) {
+										}
 									}
-								} catch (e) {
-								}
+								})
 							}
-						});
+						})
 					}
 				});
 			},
 			changeIDCardImage2() {
+				if (this.realNameConfirm) {
+					return
+				}
 				uni.chooseImage({
 					count: 1,
 					success: (chooseImageRes) => {
-						const tempFilePaths = chooseImageRes.tempFilePaths;
-						uni.uploadFile({
-							url: 'http://cuncun.app.iisu.cn/server/data/user/upload/idcardb',
-							filePath: tempFilePaths[0],
-							header: {
-								// 'Content-Type': 'application/x-www-form-urlencoded',
-								'X-TENANT-ID': 'cuncun:cc@2020',
-								'Authorization': uni.getStorageSync('token')
-							},
-							name: 'b',
-							formData: {},
-							success: (res) => {
-								let data = res.data
-								let img = JSON.parse(data)
-								console.log(img)
-								this.idCardSrc2 = img.data.idCardB
-								this.idOrgan = img.data.idIssueOrgan
-								this.idDate = `${img.data.idIssueDate}-${img.data.idExpiryDate}`
-								try {
-									const user = uni.getStorageSync('user');
-									if (user) {
-										user.idCardSrc2 = this.idCardSrc2
-										user.idOrgan = this.idOrgan
-										user.idDate = this.idDate
-										uni.setStorage({
-											key: 'user',
-											data: user
-										});
+						let imageSize = chooseImageRes.tempFiles[0].size
+						let quality = 100000000 / imageSize > 100 ? 100 : 100000000 / imageSize
+						quality = Math.floor(quality)
+						console.log(imageSize)
+						console.log(quality)
+						const tempFilePaths = chooseImageRes.tempFilePaths
+						uni.compressImage({
+							src: tempFilePaths[0],
+							quality: quality,
+							success: res => {
+								console.log(res.tempFilePath)
+								uni.uploadFile({
+									url: 'http://cuncun.app.iisu.cn/server/data/user/upload/idcardb',
+									filePath: res.tempFilePath,
+									header: {
+										// 'Content-Type': 'application/x-www-form-urlencoded',
+										'X-TENANT-ID': 'cuncun:cc@2020',
+										'Authorization': uni.getStorageSync('token')
+									},
+									name: 'b',
+									formData: {},
+									success: (res) => {
+										let data = res.data
+										let img = JSON.parse(data)
+										console.log(img)
+										this.idCardSrc2 = img.data.idCardB
+										this.idOrgan = img.data.idIssueOrgan
+										this.idDate = `${img.data.idIssueDate}-${img.data.idExpiryDate}`
+										try {
+											const user = uni.getStorageSync('user');
+											if (user) {
+												user.idCardSrc2 = this.idCardSrc2
+												user.idOrgan = this.idOrgan
+												user.idDate = this.idDate
+												uni.setStorage({
+													key: 'user',
+													data: user
+												});
+											}
+										} catch (e) {
+										}
 									}
-								} catch (e) {
-								}
+								})
 							}
-						});
+						})
 					}
 				});
 			},
-		}
+			onConfirm() {
+				if (!this.username) {
+					uni.showToast({
+						icon: 'none',
+						title: '请上传身份正面'
+					});
+				} else if (!this.idOrgan) {
+					uni.showToast({
+						icon: 'none',
+						title: '请上传身份反面'
+					});
+				} else {
+					uni.navigateBack({
+						delta: 1
+					})
+				}
+			},
+			getIdinfo() {
+				uni.request({
+					url: 'http://cuncun.app.iisu.cn/server/data/user/idinfo',
+					method: 'GET',
+					header: {
+						'Content-Type': 'application/x-www-form-urlencoded',
+						'X-TENANT-ID': 'cuncun:cc@2020',
+						'Authorization': uni.getStorageSync('token')
+					},
+					success: (res) => {
+						let data = res.data
+						if (data.success) {
+							this.username = data.data.name
+							this.idCard = data.data.idNo
+							// this.idCardSrc1 = data.data.idNo
+							// this.idCardSrc2 = data.data.idNo
+							this.idOrgan = data.data.idIssueOrgan
+							this.idDate = data.data.idIssueDate + '-' + data.data.idExpiryDate
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					}
+				});
+			},
+		},
 	};
 </script>
 
 <style scoped lang="scss">
 	.top_img {
-		margin: 80upx auto;
+		margin: 40upx auto 0;
 		text-align: center;
 		image{
 			width: 200upx;

@@ -1,30 +1,28 @@
 import Vue from 'vue'
-import config from '../config.js'; // 导入私有配置
 
+const host = 'http://cuncun.app.iisu.cn/server/data/'
+// const hostLogin = 'http://cuncun.app.iisu.cn/server/data/'
 
-function urlRequest(url, param, way, callBack) {
-	let token = "";
-	config.header['token'] = uni.getStorageSync('token')
-	let timestamp = Date.parse(new Date());
-
-	// //第一次无token配置请求头为空,在这边更新下header里面的token
-	// config.header['token'] = uni.getStorageSync('token')
-	// #ifdef MP-WEIXIN
-	param.privateFlag = 'private1'
-	// #endif
-	// console.log(param)
+function urlRequest(url, method, param, callBack) {
+	// let timestamp = Date.parse(new Date());
 	uni.request({
-		url: config.url + url, //仅为示例，并非真实接口地址。
+		url: host + url, //仅为示例，并非真实接口地址。
 		data: param,
 		header: {
-			'token': config.header.token,
+			'Authorization': uni.getStorageSync('token'),
 			'X-TENANT-ID': 'cuncun:cc@2020',
 			'Content-Type': 'application/x-www-form-urlencoded', //自定义请求头信息
 		},
-		method: way,
+		method: method,
+		dataType: "json",
 		success: (res) => {
-			// callBack res
-			callBack(res)
+			if (res.statusCode == 401) {
+				uni.navigateTo({
+					url: '/pages/login/login'
+				})
+			} else {
+				callBack(res)
+			}
 		}
 	});
 }

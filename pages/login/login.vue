@@ -37,11 +37,6 @@
 </template>
 
 <script>
-	import config from '../../config.js'
-	import util from '../../utils/util.js'
-	import api from '../../utils/api.js'
-	// import http from '@/utils/http.js'
-
 	export default {
 		components: {},
 		data() {
@@ -54,24 +49,9 @@
 				disabled: false, // 是否可以点击
 			}
 		},
-		onLoad: function(op) {
-			if (config.debug) console.log("onLoad", op)
+		onLoad(op) {
 		},
-		onShow: function() {
-			let token = util.getToken()
-			if (token) {
-				let url = decodeURIComponent(this.redirect)
-				if (url.indexOf("?") > -1) {
-					uni.redirectTo({
-						url: url
-					})
-				} else {
-					uni.switchTab({
-						url: url
-					})
-				}
-			}
-		},
+		onShow() {},
 		watch: {
 			username() {
 				if (this.username && this.sms && this.agreement) {
@@ -189,6 +169,7 @@
 								  key: 'token',
 								  data: token
 								});
+								// this.getUserInfo()
 								console.log(data.data.account)
 								uni.setStorage({
 									key: 'user',
@@ -206,6 +187,28 @@
 					    }
 					});
 				}
+			},
+			getUserInfo() {
+				uni.request({
+					url: 'http://cuncun.app.iisu.cn/server/data/user/current',
+					method: 'GET',
+					header: {
+						'Content-Type': 'application/x-www-form-urlencoded',
+						'X-TENANT-ID': 'cuncun:cc@2020',
+						'Authorization': uni.getStorageSync('token')
+					},
+					success: (res) => {
+						let data = res.data
+						if (data.success) {
+							console.log(data.data)
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					}
+				});
 			},
 		}
 	}

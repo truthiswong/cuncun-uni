@@ -151,9 +151,6 @@
 </template>
 
 <script>
-	import api from '../../utils/api.js'
-	import util from '../../utils/util.js'
-	import config from '../../config.js'
 	export default {
 		components: {},
 		data() {
