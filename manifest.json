@@ -31,6 +31,7 @@
                 "permissions" : [
                     "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
                     "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
                     "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>"
                 ]
@@ -76,28 +77,28 @@
             "splashscreen" : {
                 "ios" : {
                     "iphone" : {
-                        "retina47" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/750*1334.png",
-                        "portrait-896h@3x" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/1242*2668.png",
-                        "landscape-896h@3x" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/2668*1242.png",
-                        "portrait-896h@2x" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/828*1792.png",
-                        "landscape-896h@2x" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/1792*828.png",
-                        "iphonex" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/1125*2436.png",
-                        "iphonexl" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/2436*1125.png",
-                        "retina55" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/1242*2208.png",
-                        "retina55l" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/2208*1242.png",
-                        "retina40" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/640*1136.png",
-                        "retina40l" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/1136*640.png",
-                        "retina35" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/640*960.png"
+                        "retina47" : "C:/Users/11/Desktop/存存/存存启动页/750_1334.png",
+                        "portrait-896h@3x" : "C:/Users/11/Desktop/存存/存存启动页/1242_2668.png",
+                        "landscape-896h@3x" : "C:/Users/11/Desktop/存存/存存启动页/2668_1242.png",
+                        "portrait-896h@2x" : "C:/Users/11/Desktop/存存/存存启动页/828_1792.png",
+                        "landscape-896h@2x" : "C:/Users/11/Desktop/存存/存存启动页/1792_828.png",
+                        "iphonex" : "C:/Users/11/Desktop/存存/存存启动页/1125_2436.png",
+                        "iphonexl" : "C:/Users/11/Desktop/存存/存存启动页/2436_1125.png",
+                        "retina55" : "C:/Users/11/Desktop/存存/存存启动页/1242_2208.png",
+                        "retina55l" : "C:/Users/11/Desktop/存存/存存启动页/2208_1242.png",
+                        "retina40" : "C:/Users/11/Desktop/存存/存存启动页/640_1136.png",
+                        "retina40l" : "C:/Users/11/Desktop/存存/存存启动页/1136_640.png",
+                        "retina35" : "C:/Users/11/Desktop/存存/存存启动页/640_960.png"
                     },
                     "ipad" : {
-                        "portrait-1366h@2x" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/2048*2732.png",
-                        "landscape-1366h@2x" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/2732*2048.png"
+                        "portrait-1366h@2x" : "C:/Users/11/Desktop/存存/存存启动页/2048_2732.png",
+                        "landscape-1366h@2x" : "C:/Users/11/Desktop/存存/存存启动页/2732_2048.png"
                     }
                 },
                 "android" : {
-                    "hdpi" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/Android/480*762.png",
-                    "xhdpi" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/Android/720*1242.png",
-                    "xxhdpi" : "/Users/wanghuanqing/Desktop/aisu/存存物料/存存启动页/Android/1080*1882.png"
+                    "hdpi" : "C:/Users/11/Desktop/存存/存存启动页/Android/480_762.png",
+                    "xhdpi" : "C:/Users/11/Desktop/存存/存存启动页/Android/720_1242.png",
+                    "xxhdpi" : "C:/Users/11/Desktop/存存/存存启动页/Android/1080_1882.png"
                 }
             }
         }
