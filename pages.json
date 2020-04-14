@@ -84,7 +84,16 @@
 		{
 			"path": "pages/tab1/storage",
 			"style": {
-				"navigationBarTitleText": "我的储藏室",
+				"navigationBarTitleText": "我的杂物架",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab1/groceries",
+			"style": {
+				"navigationBarTitleText": "我的杂物架",
 				"app-plus": {
 					"bounce": "none"
 				}
@@ -177,6 +186,42 @@
 			"path": "pages/tab3/setting",
 			"style": {
 				"navigationBarTitleText": "设置",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab3/other",
+			"style": {
+				"navigationBarTitleText": "其它",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab3/otherPage1",
+			"style": {
+				"navigationBarTitleText": "存存服务协议",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab3/otherPage2",
+			"style": {
+				"navigationBarTitleText": "存存服务须知",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab3/otherPage3",
+			"style": {
+				"navigationBarTitleText": "关于存存",
 				"app-plus": {
 					"bounce": "none"
 				}

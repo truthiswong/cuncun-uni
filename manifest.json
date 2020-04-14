@@ -3,7 +3,7 @@
     "appid" : "__UNI__tech.cuncun.cuncun",
     "description" : "",
     "versionName" : "1.0.0",
-    "versionCode" : 100,
+    "versionCode" : 1003,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -18,7 +18,7 @@
             "alwaysShowBeforeRender" : true,
             "waiting" : false,
             "autoclose" : true,
-            "delay" : 0
+            "delay" : 1000
         },
         /* 模块配置 */
         "modules" : {
@@ -31,6 +31,8 @@
                 "permissions" : [
                     "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PRIVILEGED\"/>",
                     "<uses-permission android:name=\"android.permission.CAMERA\"/>",
                     "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
                     "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>"
