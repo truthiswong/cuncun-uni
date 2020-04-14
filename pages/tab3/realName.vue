@@ -70,8 +70,13 @@
 			}
 		},
 		onLoad(op) {
-			console.log(op.realNameConfirm)
 			this.getIdinfo()
+		},
+		onShow() {
+			let user = uni.getStorageSync('user')
+			if (user.realNameConfirm) {
+				this.realNameConfirm = user.realNameConfirm
+			}
 		},
 		methods: {
 			onClickBack() {
