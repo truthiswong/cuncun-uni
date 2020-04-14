@@ -8,6 +8,9 @@
 		</uni-nav-bar>
 		<!-- 内容 -->
 		<view class="content">
+			<view class="cont_top">
+				<image src="../../static/tab2/people.png" mode=""></image>
+			</view>
 			<view class="top_text">
 				<text>我们将为你的物品提供高标准的日式管理，维护，让你无顾之忧的同时，又一手轻松掌握。请简单告知我们你要存的东西，以便我们准备打包材料。</text>
 			</view>
@@ -23,30 +26,39 @@
 				</view>
 			</view>
 			<view style="margin-top: 40upx;">
-				<uni-collapse class="collapse_custom">
+				<!-- <uni-collapse class="collapse_custom">
 					<uni-collapse-item title="请选择储存纸箱：" style="font-size:32upx; font-weight:600;color:rgba(40,40,40,1);line-height:45px;">
-						<view class="flex_between" v-for="(item,index) in boxList" :key="index" style="margin-top: 40upx;">
-							<view class="collapse_left">
-								<h4>{{item.name}}</h4>
-								<p>重量上限(kg)：{{item.weight}}</p>
-								<p>储存费用/天(¥)：{{item.fee}}</p>
-								<text @click="onBoxDetail(item.id)">纸箱详情介绍 ></text>
-							</view>
-							<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" :value="item.number"
-							 @change="changeBoxNumber($event,index)" />
-						</view>
+						
 					</uni-collapse-item>
-				</uni-collapse>
-				<uni-list class="list_custom list_custom_top_border">
-					<uni-list-item style="padding: 30upx 0;" title="预计存储费用：" note="根据您所选的箱子预计每月存储费用" :showArrow="false">
-						<view slot='right' class="total_fee">
-							<p>¥<text>70</text></p>
+				</uni-collapse> -->
+				<view class="box_size">
+					<h4>请选择储存纸箱：</h4>
+					<text>请根据您的需求选择您所需要用到的箱子</text>
+					<view class="flex_between" v-for="(item,index) in boxList" v-if="index <= boxNumber" :key="index" style="margin-top: 40upx;">
+						<view class="collapse_left">
+							<h4>{{item.name}}</h4>
+							<p>重量上限(kg)：{{item.weight}}</p>
+							<p>储存费用/天(¥)：{{item.fee}}</p>
+							<text @click="onBoxDetail(item.id)">纸箱详情介绍 ></text>
 						</view>
-					</uni-list-item>
-				</uni-list>
+						<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" :value="item.number" @change="changeBoxNumber($event,index)" />
+					</view>
+					<view @click="onSeeMore" class="button_more">
+						<text>显示全部纸箱</text>
+						<image :class="{image_active: boxNumber == 20}" src="../../static/tab1/arrows.png" mode=""></image>
+					</view>
+				</view>
+				<view class="border_fee">
+					<uni-list class="list_custom">
+						<uni-list-item title="预计存储费用：" note="根据您所选的箱子预计每月存储费用" :showArrow="false">
+							<view slot='right' class="total_fee">
+								<p>¥<text>70</text></p>
+							</view>
+						</uni-list-item>
+					</uni-list>
+				</view>
 				<view class="row total_tip">
-					<image src="../../static/tab2/people.png" mode=""></image>
-					<view class="total_tip_right" :style="{background: 'url('+ total_tip_right_bg +') no-repeat center center / cover'}">
+					<view class="total_tip_right">
 						<p>这些东西可以为您剩下8平米左右的空间，您可以用来好好享受您的时间啦～（具体内容管理端定了直接改）</p>
 					</view>
 				</view>
@@ -146,7 +158,7 @@
 						number: 0
 					}
 				],
-				total_tip_right_bg: '../../static/tab2/dialog_green.png',
+				boxNumber: 1,
 				agree1: false,
 				agree2: false,
 				buttonActive: false,
@@ -185,6 +197,13 @@
 				uni.navigateBack({
 					delta: 1
 				})
+			},
+			onSeeMore() {
+				if (this.boxNumber == 1) {
+					this.boxNumber = 20
+				} else {
+					this.boxNumber = 1
+				}
 			},
 			onAddList() {
 				this.inputListNumber++
@@ -248,14 +267,24 @@
 		height: 100%;
 		box-sizing: border-box;
 		padding: 0 60upx 120upx;
-	}
 
-	.top_text {
-		font-size: 32upx;
-		font-weight: 500;
-		color: rgba(40, 40, 40, 1);
-		line-height: 64upx;
-		text-align: justify;
+		.cont_top {
+			text-align: center;
+
+			image {
+				width: 262upx;
+				height: 189upx;
+			}
+		}
+
+		.top_text {
+			font-size: 32upx;
+			font-weight: 500;
+			color: rgba(40, 40, 40, 1);
+			line-height: 64upx;
+			text-align: justify;
+			margin-top: 40upx;
+		}
 	}
 
 	.add_input {
@@ -290,42 +319,96 @@
 		}
 	}
 
-	.total_fee {
-		p {
-			font-size: 24upx;
+	.box_size {
+		font-size: 0;
+		border-top: 1upx solid rgba(242, 242, 242, 0.58);
+		padding-top: 40upx;
+
+		h4 {
+			font-size: 32upx;
 			font-weight: 600;
 			color: rgba(40, 40, 40, 1);
+			line-height: 45upx;
 		}
 
 		text {
-			font-size: 36upx;
-			font-weight: 600;
-			color: rgba(40, 40, 40, 1);
-			margin-left: 8upx;
+			font-size: 26upx;
+			font-weight: 400;
+			color: rgba(178, 178, 178, 1);
+			line-height: 42upx;
+			margin-top: 4upx;
+		}
+
+		.button_more {
+			width: 100%;
+			height: 80upx;
+			line-height: 80upx;
+			box-shadow: 0 -2upx 10upx 0 rgba(0, 0, 0, 0.05);
+			font-size: 26upx;
+			font-weight: 400;
+			background: rgba(240, 240, 240, 0.75);
+			margin-top: 40upx;
+			color: rgba(155, 155, 155, 1);
+			text-align: center;
+
+			image {
+				width: 20upx;
+				height: 20upx;
+				transition: 0.5s;
+				-moz-transition: 0.5s; /* Firefox 4 */
+				-webkit-transition: 0.5s; /* Safari and Chrome */
+			}
+
+			.image_active {
+				transform: rotate(180deg);
+				-ms-transform: rotate(180deg); /* IE 9 */
+				-moz-transform: rotate(180deg); /* Firefox */
+				-webkit-transform: rotate(180deg); /* Safari 和 Chrome */
+			}
 		}
 	}
 
-	.total_tip {
-		position: relative;
+	.border_fee {
+		border-top: 1upx solid rgba(242, 242, 242, 0.58);
+		border-bottom: 1upx solid rgba(242, 242, 242, 0.58);
+		padding: 16upx 0;
+		box-sizing: border-box;
+		margin: 40upx 0;
 
-		image {
-			width: 191upx;
-			height: 184upx;
-		}
-
-		.total_tip_right {
-			position: absolute;
-			right: 0;
-			width: 470upx;
-			height: 188upx;
-			box-sizing: border-box;
-			padding: 20upx 30upx 20upx 55upx;
+		.total_fee {
 
 			p {
+				font-size: 24upx;
+				font-weight: 600;
+				color: rgba(40, 40, 40, 1);
+			}
+
+			text {
+				font-size: 36upx;
+				font-weight: 600;
+				color: rgba(40, 40, 40, 1);
+				margin-left: 8upx;
+			}
+		}
+	}
+
+
+	.total_tip {
+		box-sizing: border-box;
+		padding: 26upx;
+		background: rgba(239, 247, 247, 1);
+		border-radius: 10px;
+		height: 172upx;
+
+		.total_tip_right {
+			width: 100%;
+
+			p {
+				text-align: justify;
 				font-size: 26upx;
 				font-weight: 500;
 				color: rgba(84, 140, 140, 1);
-				line-height: 37upx;
+				line-height: 40upx;
 			}
 		}
 	}
@@ -349,7 +432,7 @@
 		line-height: 37upx;
 		text-decoration: underline solid rgba(155, 155, 155, 1);
 	}
-	
+
 	.popup_wrap {
 		width: 100%;
 		height: 1000upx;

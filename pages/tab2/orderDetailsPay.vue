@@ -17,7 +17,7 @@
 					<view class="button_left"></view>
 					<view style="margin: 0 30upx;padding: 10upx 0;">
 						<uni-list class="list_custom">
-							<uni-list-item title="7月27日 09:00～10:00" note="送达时间" :showArrow="false">
+							<uni-list-item title="7月27日 09:00～10:00" note="申请时间" :showArrow="false">
 								<view slot='right'>
 									<text class="top_button_right">取消订单</text>
 								</view>
@@ -50,7 +50,7 @@
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>需支付费用</p>
-						<text style="color:rgba(208,2,27,1);">¥ <text style="color:rgba(208,2,27,1);font-size:32upx;margin-left: 10upx;">96</text></text>
+						<text>¥ <text style="font-size:32upx;margin-left: 10upx;">96</text></text>
 					</view>
 				</view>
 			</view>
@@ -327,7 +327,7 @@
 
 			text {
 				font-size: 20upx;
-				font-weight: 400;
+				font-weight: 600;
 				color: rgba(40, 40, 40, 1);
 				line-height: 28upx;
 			}

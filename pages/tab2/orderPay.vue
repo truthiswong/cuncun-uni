@@ -28,7 +28,7 @@
 					</uni-list-item>
 					<uni-list-item title="备注">
 						<view slot="right">
-							<input class="input_remark" type="text" placeholder="给快递员叔叔有什么特别的吩咐吗" style="font-size:28upx;padding-left: 20upx;color: #282828;"
+							<input class="input_remark" type="text" placeholder="对我们的服务人员有什么特别的吩咐吗" style="font-size:28upx;padding-left: 20upx;color: #282828;"
 							 placeholder-style="font-size:14px; font-weight:400; color:rgba(178,178,178,1); line-height:40upx;" />
 						</view>
 					</uni-list-item>
@@ -38,6 +38,10 @@
 				<view class="flex_between total_fee">
 					<text>支付定金</text>
 					<text>¥ 70</text>
+				</view>
+				<view style="font-size:26upx;font-weight:400;color:rgba(40,40,40,1);line-height:42upx;margin: 14upx 0 20upx;">
+					定金是根据您所需的箱子来暂定收费，实际费用以当天收到的物品为准进行多退少补，请放心。
+					<br />存存承诺服务不出现任何隐形费用，服务人员也绝对不会出现追加费用现象，如有发现，欢迎告知。
 				</view>
 				<view class="flex_between pay_info_list">
 					<text>运输费</text>
@@ -60,7 +64,7 @@
 		<uni-popup ref="popupDate" type="bottom" @touchmove.stop.prevent @touchend.stop>
 			<view class="popup_wrap">
 				<view class="popup_title">
-					<text>选择送达时间</text>
+					<text>上门取件时间</text>
 					<image class="close_btn" @click="closePopupDate" src="../../static/tab2/close.png" mode=""></image>
 				</view>
 				<view>
