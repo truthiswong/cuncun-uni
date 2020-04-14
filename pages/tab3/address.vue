@@ -8,29 +8,26 @@
 		<!-- 内容 -->
 		<view class="content">
 			<view class="address_list" v-for="item in addressList" :key="item.id">
-				<radio-group @change="onPayChangeStyle">
+				<radio-group @change="onSetDefault">
 					<view class="row list_top">
-						<text class="top_name">{{item.name}}</text>
-						<text class="top_phone">13928863927</text>
-						<uni-tag :text="item.tags" size="small" :inverted="true" type="error"></uni-tag>
+						<text class="top_name">{{item.linkman}}</text>
+						<text class="top_phone">{{item.mobile}}</text>
+						<uni-tag :text="item.tag[0].name" size="small" :inverted="true" type="error"></uni-tag>
 					</view>
-					<text class="address">上海市静安区西藏南路666号大型创意园C666</text>
+					<text class="address">{{item.detailAddress}}</text>
 					<view class="row flex_between list_bottom">
 						<view>
-							<!-- <checkbox-group class="check_box">
-								<checkbox style="transform:scale(0.8);" color="rgba(59, 193, 187, 1)" />
-							</checkbox-group> -->
 							<label>
-								<radio :value="item.id" :checked="item.checked" style="transform:scale(0.8);" color="rgba(59, 193, 187, 1)" />
+								<radio :value="item.id" :checked="item.dft" style="transform:scale(0.8);" color="rgba(59, 193, 187, 1)" />
 								<text>默认地址</text>
 							</label>
 						</view>
 						<view class="row">
-							<view class="row image1">
+							<view @click="onDetele(item.id)" class="row image1">
 								<image src="../../static/tab3/delete.png" mode=""></image>
 								<text class="custom_text">删除</text>
 							</view>
-							<view class="row image2">
+							<view @click="onEdit(item)" class="row image2">
 								<image src="../../static/tab3/editor.png" mode=""></image>
 								<text class="custom_text">编辑</text>
 							</view>
@@ -48,39 +45,16 @@
 		data() {
 			return {
 				checked: true,
-				addressList: [{
-					id: '000',
-					name: '王女士',
-					phone: '13928863927',
-					tags: '学校',
-					address: '上海市静安区西藏南路666号大型创意园C666',
-					value: '默认地址',
-					checked: true
-				},{
-					id: '111',
-					name: '牛皮糖',
-					phone: '13928863927',
-					tags: '家',
-					address: '上海市静安区西藏南路666号大型创意园C666',
-					value: '默认地址',
-					checked: false
-				},{
-					id: '222',
-					name: '王女士',
-					phone: '13928863927',
-					tags: '公司',
-					address: '上海市静安区西藏南路666号大型创意园C666',
-					value: '默认地址',
-					checked: false
-				}]
+				addressList: []
 			};
 		},
+		onLoad() {
+			
+		},
+		onShow() {
+			this.getAddressList()
+		},
 		watch: {},
-		computed: {},
-		created() {},
-		activated() {},
-		deactivated() {},
-		mounted() {},
 		methods: {
 			onClickBack() {
 				uni.navigateBack({
@@ -95,16 +69,74 @@
 			onDefaultAddress() {
 				this.checked = !this.checked
 			},
-			onPayChangeStyle(evt) {
-				console.log(evt.target.value)
+			onSetDefault(evt) {
 				for (let i = 0; i < this.addressList.length; i++) {
 					if (this.addressList[i].id === evt.target.value) {
-						this.addressList[i].checked = true
+						let data = {
+							id: evt.target.value
+						}
+						this.$http('user/addr/dft', "POST", data, res => {
+							let data = res.data
+							if (data.success) {
+								uni.showToast({
+									icon: 'none',
+									title: '成功'
+								});
+								this.getAddressList()
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: data.message
+								});
+							}
+						})
 					} else {
-						this.addressList[i].checked = false
+						this.addressList[i].dft = false
 					}
 				}
 			},
+			onDetele(id) {
+				let data = {
+					id: id
+				}
+				this.$http('user/addr/del', "POST", data, res => {
+					let data = res.data
+					if (data.success) {
+						uni.showToast({
+							icon: 'none',
+							title: '删除成功'
+						});
+						this.getAddressList()
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
+			onEdit(item) {
+				uni.navigateTo({
+					url: '/pages/tab3/addAddress?address=' + encodeURIComponent(JSON.stringify(item))
+				})
+			},
+			getAddressList() {
+				this.$http('user/addr/list', "GET", '', res => {
+					let data = res.data
+					console.log(data)
+					if (data.success) {
+						for (let item of data.data) {
+							item.detailAddress = item.area.province + item.area.city + item.area.district +' '+ item.address
+						}
+						this.addressList = data.data
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			}
 		}
 	};
 </script>
@@ -122,7 +154,7 @@
 	}
 
 	.header_icon text {
-		font-size: 28upx;
+		font-size: 30upx;
 		font-weight: 600;
 		color: rgba(3, 166, 166, 1);
 		line-height: 40upx;
