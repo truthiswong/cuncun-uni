@@ -153,15 +153,15 @@
 						</scroll-view>
 					</view>
 				</view>
-				<!-- 储藏室 -->
-				<view @longpress="longpress('储藏室')" class="list_margin50">
+				<!-- 杂物架 -->
+				<view @longpress="longpress('杂物架')" class="list_margin50">
 					<view class="list_padding30">
 						<uni-list class="list_custom list_custom_img2">
 							<view v-show="long_active" class="list_hide_show">
 								<image v-show="false" src="../../static/tab1/show.png"></image>
 								<image v-show="true" src="../../static/tab1/hide.png"></image>
 							</view>
-							<uni-list-item thumb="../../static/tab1/storage_title.png" :showArrow="false">
+							<uni-list-item thumb="../../static/tab1/sundries_title.png" :showArrow="false">
 								<view slot="right">
 									<navigator url="/pages/tab1/storage">
 										<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
@@ -173,10 +173,8 @@
 					</view>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_content2" v-for="(item,index) in 8" :key='index' style="display: inline-block;">
-								<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
+							<view class="scroll_content scroll_content4" v-for="(item,index) in 8" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
 								<image src="../../static/tab1/sofa_img1.png"></image>
-								<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
 							</view>
 						</scroll-view>
 					</view>
@@ -191,7 +189,7 @@
 							</view>
 							<uni-list-item thumb="../../static/tab1/groceries_title.png" :showArrow="false">
 								<view slot="right">
-									<navigator url="/pages/tab1/storage">
+									<navigator url="/pages/tab1/groceries">
 										<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
 											 src="../../static/tab1/right.png"></image></span>
 									</navigator>
@@ -208,7 +206,7 @@
 							<view>
 								<text>箱子{{item + 1}}</text>
 							</view>
-							<text class="box_groceries_text" style="color: #4A4A4A;">内含：羽毛球、羽毛球拍、篮球、排球、足球、排球手…   </text>
+							<text class="box_groceries_text" style="color: #4A4A4A;">内含：羽毛球、羽毛球拍、篮球、排球、足球、排球手… </text>
 						</view>
 					</view>
 				</view>
@@ -237,12 +235,9 @@
 				long_active: false, //长按显示编辑按钮
 			}
 		},
-		onLoad() {
-		},
-		onShow() {
-		},
+		onLoad() {},
+		onShow() {},
 		onPageScroll(options) {
-			if (config.debug) console.log("onPageScroll", options)
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
 			} else {
@@ -297,6 +292,7 @@
 
 	.header_icon {
 		width: 200upx;
+
 		image {
 			width: 44upx;
 			height: 44upx;
@@ -321,6 +317,7 @@
 		left: 30upx;
 		width: 513upx;
 		height: 262upx;
+
 		h3 {
 			font-size: 36upx;
 			font-weight: 600;
@@ -328,6 +325,7 @@
 			line-height: 50upx;
 			padding: 40upx 40upx 0 30upx;
 		}
+
 		p {
 			font-size: 28upx;
 			font-weight: 400;
@@ -340,10 +338,12 @@
 	.no_data {
 		text-align: center;
 		padding: 116upx 0;
+
 		image {
 			width: 338upx;
 			height: 326upx;
 		}
+
 		p {
 			font-size: 28upx;
 			font-weight: 400;
@@ -384,14 +384,17 @@
 		height: 234upx;
 		background-color: #FFFFFF;
 	}
+
 	.box_wrong_left {
 		position: relative;
 	}
+
 	.box_wrong_left image {
 		width: 308upx;
 		height: 210upx;
 		margin-top: 60upx;
 	}
+
 	.box_wrong_left text {
 		position: absolute;
 		right: 80upx;
@@ -415,21 +418,24 @@
 		line-height: 46upx;
 		margin-top: 10upx;
 	}
-	
+
 	.box_groceries_content {
 		position: relative;
 		width: 100%;
 		height: 234upx;
 		background-color: #FFFFFF;
 	}
+
 	.box_groceries_left {
 		position: relative;
 	}
+
 	.box_groceries_left image {
 		width: 308upx;
 		height: 230upx;
 		margin-top: 60upx;
 	}
+
 	.box_groceries_left text {
 		position: absolute;
 		right: 80upx;
@@ -438,15 +444,16 @@
 		font-weight: 700;
 		color: #90785e;
 	}
-	
+
 	.box_groceries_right {
 		width: 380upx;
 		font-size: 28upx;
 		font-weight: 500;
-		color: rgba(40,40,40,1);
+		color: rgba(40, 40, 40, 1);
 		line-height: 50upx;
 		margin: 20upx 50upx 0 0;
 	}
+
 	.box_groceries_text {
 		font-weight: 400;
 		line-height: 46upx;
@@ -496,6 +503,21 @@
 	.scroll_content2 image {
 		width: 230upx;
 		height: 230upx;
+	}
+
+	.scroll_content4 {
+		width: 200upx;
+		height: 200upx;
+		box-sizing: border-box;
+		padding: 18upx 18upx 0;
+		background: rgba(230, 230, 230, 1);
+		margin-right: 10upx;
+
+		image {
+			width: 184upx;
+			height: 184upx;
+			
+		}
 	}
 
 	.common_button {

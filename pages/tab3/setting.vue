@@ -54,24 +54,25 @@
 				nickname: 'Ding Han',
 				nicknameSet: '',
 				realName: '未实名',
-				realNameConfirm: false
+				realNameConfirm: false,
 			};
 		},
 		onLoad() {
+			
+		},
+		onShow() {
 			let user = uni.getStorageSync('user')
+			console.log(user)
 			if (user.portrait) {
 				this.headImage = user.portrait
 			}
 			if (user.nickName) {
-				this.nicknameSet = user.nickName
+				this.nickname = user.nickName
 			}
 			if (user.realNameConfirm) {
 				this.realName = user.realNameConfirm ? "已实名" : "未实名"
 				this.realNameConfirm = user.realNameConfirm
 			}
-		},
-		onShow() {
-			
 		},
 		methods: {
 			onClickBack() {
@@ -100,7 +101,6 @@
 									url: 'http://cuncun.app.iisu.cn/server/data/user/upload/portrait',
 									filePath: res.tempFilePath,
 									header: {
-										// 'Content-Type': 'application/x-www-form-urlencoded',
 										'X-TENANT-ID': 'cuncun:cc@2020',
 										'Authorization': uni.getStorageSync('token')
 									},
@@ -179,30 +179,6 @@
 				uni.navigateTo({
 					url: "/pages/tab3/realName"
 				})
-				return
-				uni.request({
-					url: 'http://cuncun.app.iisu.cn/server/data/user/realname/confirm',
-					method: 'POST',
-					header: {
-						'Content-Type': 'application/x-www-form-urlencoded',
-						'X-TENANT-ID': 'cuncun:cc@2020',
-						'Authorization': uni.getStorageSync('token')
-					},
-					success: (res) => {
-						let data = res.data
-						if (data.success) {
-							console.log(data)
-							// uni.navigateTo({
-							// 	url: "/pages/tab3/realName?realNameConfirm=" + encodeURIComponent(JSON.stringify(detail))
-							// })
-						} else {
-							uni.showToast({
-								icon: 'none',
-								title: data.message
-							});
-						}
-					}
-				});
 			},
 			onAddress() {
 				this.$router.push({

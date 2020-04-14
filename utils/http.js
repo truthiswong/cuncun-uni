@@ -26,11 +26,4 @@ function urlRequest(url, method, param, callBack) {
 		}
 	});
 }
-
-// export default {
-// 	urlRequest: function(url, param, way) {
-// 		return urlRequest(url, param, way);
-// 	}
-// }
-
 Vue.prototype.$http = urlRequest

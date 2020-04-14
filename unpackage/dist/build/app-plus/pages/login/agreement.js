@@ -1,2 +1,0 @@
-setCssToHead(["body { }\n@charset \x22UTF-8\x22;\n.",[1],"content.",[1],"data-v-6e2068b3 { padding: ",[0,20],"; }\n",],undefined,{path:"./pages/login/agreement.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/login/agreement.wxml') } }));

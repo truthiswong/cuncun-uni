@@ -1,6 +1,7 @@
 <template>
 	<view class="page">
-		<uni-nav-bar color="#FFFFFF" title="我的" class="header" status-bar="true" fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
+		<uni-nav-bar color="#FFFFFF" title="我的" class="header" status-bar="true" fixed="true" v-if="headerShow"
+		 backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
 			<view slot="right">
 				<navigator url="../tab3/setting">
 					<view class="header_icon">
@@ -9,7 +10,8 @@
 				</navigator>
 			</view>
 		</uni-nav-bar>
-		<uni-nav-bar color="#FFFFFF" title="我的" class="header" status-bar="true" fixed="true" v-if="!headerShow" backgroundColor="rgb(59, 193, 187)" style="position: absolute; top: 0;" shadow="true">
+		<uni-nav-bar color="#FFFFFF" title="我的" class="header" status-bar="true" fixed="true" v-if="!headerShow"
+		 backgroundColor="rgb(59, 193, 187)" style="position: absolute; top: 0;" shadow="true">
 			<view slot="right">
 				<navigator url="../tab3/setting">
 					<view class="header_icon">
@@ -22,7 +24,8 @@
 			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
 				<view class="head_image">
 					<!-- <img :src="headImage" alt /> -->
-					<image :src="headImage"></image>
+					<image class="head_image_img" :src="headImage"></image>
+					<!-- <cover-image class="head_image_img" :src="headImage"></cover-image> -->
 					<view>
 						<p style="width: 510upx; margin-bottom: 20upx;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">{{nickname}}</p>
 						<uni-rate disabled="true" size="14" value="3.5"></uni-rate>
@@ -39,11 +42,11 @@
 		</view>
 		<view class="content_bottom">
 			<uni-list class="list_custom">
-				<!-- <navigator> -->
+				<navigator url="../tab3/other">
 					<uni-list-item title="其他" thumb="../../static/tab3/ohter.png"></uni-list-item>
-				<!-- </navigator> -->
+				</navigator>
 				<!-- <navigator> -->
-					<uni-list-item title="客服电话" thumb="../../static//tab3/server.png" rightText="021-34283744"></uni-list-item>
+				<uni-list-item @click="onCall" title="客服电话" thumb="../../static//tab3/server.png" rightText="021-34283744"></uni-list-item>
 				<!-- </navigator> -->
 			</uni-list>
 		</view>
@@ -61,24 +64,18 @@
 				cont_top_bg: '../../static/tab3/tab3_bg.png',
 			}
 		},
-		onLoad(op) {
-			
-			
-			// if (user.realNameConfirm) {
-			// 	this.realName = user.realNameConfirm ? "已实名" : "未实名"
-			// 	this.realNameConfirm = user.realNameConfirm
-			// }
-		},
+		onLoad(op) {},
 		onShow() {
 			this.getUserInfo()
 			let user = uni.getStorageSync('user')
+			console.log(user)
 			if (user.portrait) {
 				this.headImage = user.portrait
 			}
 			if (user.nickName) {
 				this.nickname = user.nickName
-				
 			}
+			console.log(this.headImage)
 		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
@@ -93,14 +90,27 @@
 					let data = res.data
 					if (data.success) {
 						console.log(data.data)
-						setTimeout(()=>{
-							this.headImage = data.data.portrait
-							this.nickName = data.data.nickName
-						}, 1500)
-						uni.setStorage({
-							key: 'user',
-							data: data.data
-						});
+						const user = uni.getStorageSync('user');
+						if (user) {
+							user.portrait = data.data.portrait
+							uni.setStorage({
+								key: 'user',
+								data: user
+							});
+							this.headImage = user.portrait
+						}
+						// console.log(uni.getStorageSync('user'))
+						
+						this.nickName = data.data.nickName
+						// uni.setStorage({
+						// 	key: 'user',
+						// 	data: data.data
+						// });
+						
+						// try {
+							
+						// } catch (e) {
+						// }
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -109,6 +119,19 @@
 					}
 				})
 			},
+			onCall() {
+				uni.showModal({
+					title: '提示',
+					content: '是否要拨打客服电话021-34283744',
+					success(res) {
+						if (res.confirm) {
+							uni.makePhoneCall({
+								phoneNumber: '021-34283744'
+							});
+						}
+					}
+				})
+			}
 		}
 	}
 </script>
@@ -119,12 +142,12 @@
 		background-color: #f6f6f6;
 		position: relative;
 	}
-	
+
 	.header_icon {
 		width: 200upx;
 		height: 44px;
 	}
-	
+
 	.header_icon image {
 		width: 44upx;
 		height: 44upx;
@@ -147,13 +170,15 @@
 		align-items: center;
 		-webkit-align-items: center;
 		flex-wrap: wrap;
-		img, image {
+
+		.head_image_img {
 			width: 128upx;
 			height: 128upx;
 			border-radius: 50%;
 			border: 6upx solid white;
 			margin: 0 30upx;
 		}
+
 		view p {
 			font-size: 56upx;
 			font-weight: 600;
@@ -192,6 +217,7 @@
 		width: 84upx;
 		height: 130upx;
 	}
+
 	.content_bottom {
 		padding: 0 30upx;
 		background-color: #FFFFFF;

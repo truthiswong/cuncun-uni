@@ -16,7 +16,7 @@
 			</view>
 		</uni-nav-bar>
 		<view class="content">
-			<view v-show="false" class="no_data">
+			<view v-if="false" class="no_data">
 				<image src="../../static/tab1/no_data.png"></image>
 				<p>欢迎使用存存，赶紧来存点东西吧～</p>
 				<button class="common_button" @click="onClickRight">去存点东西</button>
@@ -28,7 +28,7 @@
 				</view>
 				<scroll-view scroll-y="true">
 					<view class="segmented_content">
-						<view v-show="current === 0">
+						<view v-if="current === 0">
 							<view v-for="(item,index) in 4" :key="index">
 								<view class="segmented_list">
 									<navigator url="/pages/tab2/orderDetailsPay">
@@ -198,7 +198,7 @@
 								</view>
 							</view>
 						</view>
-						<view v-show="current === 1">
+						<view v-if="current === 1">
 							<view class="segmented_list" v-for="item in 8" :key="item">
 								<uni-list class="list_custom list_custom_align_start">
 									<uni-list-item title="存单" :note="'上门地址：学校寝室'" :showArrow="false">
@@ -255,7 +255,7 @@
 								</view>
 							</view>
 						</view>
-						<view v-show="current === 2">
+						<view v-if="current === 2">
 							<view class="segmented_list" v-for="item in 8" :key="item">
 								<uni-list class="list_custom list_custom_align_start">
 									<uni-list-item title="存单" :note="'上门地址：学校寝室'" :showArrow="false">
@@ -308,7 +308,7 @@
 								</view>
 							</view>
 						</view>
-						<view v-show="current === 3">
+						<view v-if="current === 3">
 							<view class="segmented_list" v-for="item in 8" :key='item'>
 								<uni-list class="list_custom list_custom_align_start">
 									<uni-list-item title="取单" :note="'送到：父母家'" :showArrow="false">
@@ -328,7 +328,7 @@
 								</view>
 							</view>
 						</view>
-						<view v-show="current === 4">
+						<view v-if="current === 4">
 							<view class="segmented_list" v-for="item in 8" :key='item'>
 								<uni-list class="list_custom list_custom_align_start">
 									<uni-list-item title="仓储订单" :showArrow="false">
