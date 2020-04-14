@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<uni-nav-bar color="#FFFFFF" title="我的储藏柜" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
+		<uni-nav-bar color="#FFFFFF" title="我的杂物架" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
 			<view slot="right">
 				<view class="header_icon">
 					<image @click="onClickRight(1)" style="" src="../../static/tab1/search_white.png"></image>
@@ -8,7 +8,7 @@
 				</view>
 			</view>
 		</uni-nav-bar>
-		<uni-nav-bar color="#000000" title="我的储藏柜" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true" v-if="!headerShow" style="position: absolute; top: 0;"
+		<uni-nav-bar color="#000000" title="我的杂物架" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true" v-if="!headerShow" style="position: absolute; top: 0;"
 		 shadow="true">
 			<view slot="right">
 				<view class="header_icon">
@@ -23,15 +23,9 @@
 				<p>您一共放了 <text>32</text> 件物品</p>
 				<p>需要的时候随时拿，要的就是这种感觉～</p>
 			</view>
-			<view>
-				<!-- <view class="scroll_content" :style="{background: 'url('+ scroll_bg3 +') no-repeat center center / cover'}"
-				 style="display: inline-block;" v-for="(item,index) in 19" :key='index'>
+			<view style="padding: 0 30upx;">
+				<view class="scroll_content4" v-for="(item,index) in 15" :key='index' style="display: inline-block;">
 					<image src="../../static/tab1/sofa_img1.png"></image>
-				</view> -->
-				<view class="scroll_content" v-for="(item,index) in 15" :key='index' style="display: inline-block;">
-					<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
-					<image src="../../static/tab1/sofa_img1.png"></image>
-					<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 102upx;" src="../../static/tab1/shoes_box1.png"></image>
 				</view>
 			</view>
 		</view>
@@ -81,7 +75,7 @@
 	}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.header_icon {
 		width: 200upx;
 		height: 44px;
@@ -183,48 +177,19 @@
 		height: 16upx;
 	}
 
-	.scroll_content {
+	.scroll_content4 {
 		position: relative;
-		width: 33.33333333%;
-		height: 260upx;
+		width: 32%;
+		height: 200upx;
 		text-align: center;
-		margin-top: 16upx;
-	}
-
-	.scroll_contentbg1 {
-		background: url("/static/tab1/bookbox.png") no-repeat center center / cover;
-
-	}
-
-	.scroll_contentbg2 {
-		background: url("/static/tab1/clothes_box.png") no-repeat center center;
-		background-size: 100%;
-	}
-
-	.scroll_contentbg3 {
-		background: url("/static/tab1/shoes_box.png") no-repeat center center;
-		background-size: 100%;
-	}
-
-	.scroll_content image {
-		position: absolute;
-		left: 0;
-		right: 0;
-		margin: auto;
-		z-index: 3;
-		width: 200upx;
-		height: 216upx;
-	}
-
-	.common_button {
-		width: 398upx;
-		height: 90upx;
-		line-height: 90upx;
-		background: rgba(59, 193, 187, 1);
-		border-radius: 45upx;
-		font-size: 30upx;
-		font-weight: 500;
-		color: white;
-		margin: 80upx auto 0;
+		margin: 16upx 5upx 50upx;
+		box-sizing: border-box;
+		padding: 20upx 18upx 0;
+		background: rgba(230, 230, 230, 1);
+			
+		image {
+			width: 180upx;
+			height: 180upx;
+		}
 	}
 </style>
