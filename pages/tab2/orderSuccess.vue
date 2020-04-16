@@ -51,7 +51,7 @@
 		width: 100%;
 		height: 100%;
 		box-sizing: border-box;
-		padding: 180upx 60upx 130upx;
+		padding: 100upx 60upx 140upx;
 	}
 
 	.cont_top {
@@ -146,11 +146,11 @@
 		position: fixed;
 		left: 0;
 		right: 0;
-		bottom: 0;
+		bottom: 30upx;
 		margin: auto;
 		width: 650upx;
 		box-sizing: border-box;
-		height: 98upx;
+		height: 90upx;
 		background: rgba(59, 193, 187, 1);
 		border-radius: 6upx;
 		line-height: 98upx;

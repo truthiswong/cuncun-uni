@@ -400,7 +400,6 @@
 		onPullDownRefresh() {
 			console.log(this.pageIndex++)
 		},
-		onReachBottom: function() {},
 		methods: {
 			onClickRight() {
 				uni.navigateTo({

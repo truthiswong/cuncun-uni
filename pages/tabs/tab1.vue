@@ -35,7 +35,7 @@
 					<image style="position: absolute;right: 45upx; width: 46upx;height: 34upx;" src="../../static/tab1/mark_right.png"></image>
 				</view>
 			</view>
-			<view class="no_data" v-show="false">
+			<view class="no_data" v-if="false">
 				<image src="../../static/tab1/no_data.png" mode=""></image>
 				<p>您的存存空空如也，跟我们的收纳达人和打包小哥约起来，赶紧的！！！</p>
 				<button class="common_button">约！约！约!</button>
@@ -74,9 +74,9 @@
 				<view @longpress="longpress('书架')" class="list_margin50">
 					<view class="list_padding30">
 						<uni-list class="list_custom list_custom_img1">
-							<view v-show="long_active" class="list_hide_show">
-								<image v-show="false" src="../../static/tab1/show.png"></image>
-								<image v-show="true" src="../../static/tab1/hide.png"></image>
+							<view v-if="long_active" class="list_hide_show">
+								<image v-if="false" src="../../static/tab1/show.png"></image>
+								<image v-if="true" src="../../static/tab1/hide.png"></image>
 							</view>
 							<uni-list-item thumb="../../static/tab1/books_title.png" :showArrow="false">
 								<view slot="right">
@@ -88,7 +88,7 @@
 							</uni-list-item>
 						</uni-list>
 					</view>
-					<view v-show="true">
+					<view v-if="true">
 						<scroll-view class="scroll_x" scroll-x="true">
 							<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
 							 style="display: inline-block;" v-for="(item,index) in 9" :key='index'>
@@ -101,9 +101,9 @@
 				<view @longpress="longpress('衣柜')" class="list_margin50">
 					<view class="list_padding30">
 						<uni-list class="list_custom list_custom_img1">
-							<view v-show="long_active" class="list_hide_show">
-								<image v-show="false" src="../../static/tab1/show.png"></image>
-								<image v-show="true" src="../../static/tab1/hide.png"></image>
+							<view v-if="long_active" class="list_hide_show">
+								<image v-if="false" src="../../static/tab1/show.png"></image>
+								<image v-if="true" src="../../static/tab1/hide.png"></image>
 							</view>
 							<uni-list-item thumb="../../static/tab1/clothes_title.png" :showArrow="false">
 								<view slot="right">
@@ -115,7 +115,7 @@
 							</uni-list-item>
 						</uni-list>
 					</view>
-					<view>
+					<view v-if="true">
 						<scroll-view class="scroll_x" scroll-x="true">
 							<view class="scroll_content scroll_content2" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
 							 v-for="(item,index) in 7" :key='index' style="display: inline-block;">
@@ -143,7 +143,7 @@
 							</uni-list-item>
 						</uni-list>
 					</view>
-					<view>
+					<view v-if="true">
 						<scroll-view class="scroll_x" scroll-x="true">
 							<view class="scroll_content scroll_content2" v-for="(item,index) in 7" :key='index' style="display: inline-block;">
 								<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
@@ -171,7 +171,7 @@
 							</uni-list-item>
 						</uni-list>
 					</view>
-					<view>
+					<view v-if="true">
 						<scroll-view class="scroll_x" scroll-x="true">
 							<view class="scroll_content scroll_content4" v-for="(item,index) in 8" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
 								<image src="../../static/tab1/sofa_img1.png"></image>
@@ -197,14 +197,14 @@
 							</uni-list-item>
 						</uni-list>
 					</view>
-					<view class="box_groceries_content flex_between" v-for="item in 3" :key="item">
+					<view v-if="true" class="box_groceries_content flex_between" v-for="item in 3" :key="item">
 						<view class="box_groceries_left">
 							<image src="../../static/tab1/box_null.png"></image>
-							<text>{{item + 1}}</text>
+							<text>{{item}}</text>
 						</view>
 						<view class="box_groceries_right" style="color: rgba(40,40,40,1);">
 							<view>
-								<text>箱子{{item + 1}}</text>
+								<text>箱子{{item}}</text>
 							</view>
 							<text class="box_groceries_text" style="color: #4A4A4A;">内含：羽毛球、羽毛球拍、篮球、排球、足球、排球手… </text>
 						</view>
@@ -281,7 +281,6 @@
 				this.long_active = false
 			}
 		}
-
 	}
 </script>
 

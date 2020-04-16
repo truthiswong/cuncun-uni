@@ -15,8 +15,8 @@
 					</navigator>
 				</uni-list>
 				<uni-list class="list_custom list_custom_margin20">
-					<navigator url="/pages/tab3/otherPage3">
-						<uni-list-item title="关于存存" :rightText="versions"></uni-list-item>
+					<navigator :url="'/pages/tab3/otherPage3?versions=' + versions">
+						<uni-list-item title="关于存存" :rightText="'版本 ' + versions"></uni-list-item>
 					</navigator>
 				</uni-list>
 			</view>
@@ -29,18 +29,17 @@
 		components: {},
 		data() {
 			return {
-				versions: 'v 1.1.0'
+				versions: '1.0.0.0'
 			};
 		},
 		onLoad() {
-			try {
-			    const res = uni.getSystemInfoSync();
-			    console.log(res.version);
-			    console.log(res.platform);
-				console.log(plus.runtime.version)
-			} catch (e) {
-			    // error
-			}
+			// #ifdef APP-PLUS
+			// 查询版本信息
+			plus.runtime.getProperty(plus.runtime.appid, (wgtInfo)=> {
+				console.log(wgtInfo)
+				this.versions = wgtInfo.version
+			});
+			// #endif
 		},
 		onShow() {
 			

@@ -29,7 +29,6 @@
 			"path": "pages/tabs/tab1",
 			"style": {
 				"navigationBarTitleText": "存存",
-				"enablePullDownRefresh": true,
 				"app-plus": {
 					"bounce": "none"
 				}
@@ -39,6 +38,7 @@
 			"path": "pages/tabs/tab2",
 			"style": {
 				"navigationBarTitleText": "我的订单",
+				"enablePullDownRefresh": true,
 				"app-plus": {
 					"bounce": "none"
 				}

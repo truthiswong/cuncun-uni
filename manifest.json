@@ -2,7 +2,7 @@
     "name" : "存存",
     "appid" : "__UNI__tech.cuncun.cuncun",
     "description" : "",
-    "versionName" : "1.0.0",
+    "versionName" : "1.0.0.3",
     "versionCode" : 1003,
     "transformPx" : false,
     /* 5+App特有相关 */
@@ -18,7 +18,7 @@
             "alwaysShowBeforeRender" : true,
             "waiting" : false,
             "autoclose" : true,
-            "delay" : 1000
+            "delay" : 500
         },
         /* 模块配置 */
         "modules" : {

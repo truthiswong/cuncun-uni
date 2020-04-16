@@ -370,7 +370,7 @@
 	}
 
 	.input_remark {
-		width: 420upx;
+		width: 500upx;
 		height: 60upx;
 		font-size: 28px;
 		font-family: PingFangSC-Regular, PingFang SC;
