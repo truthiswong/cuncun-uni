@@ -10914,7 +10914,7 @@ var render = function() {
                                 [
                                   _vm._v("¥"),
                                   _c("v-uni-text", { attrs: { _i: 34 } }, [
-                                    _vm._v("70")
+                                    _vm._v(_vm._$g(34, "t0-0"))
                                   ])
                                 ],
                                 1
@@ -11130,104 +11130,142 @@ var render = function() {
                 ],
                 1
               ),
-              _vm._l(_vm._$g(57, "f"), function(item, index, $22, $32) {
-                return _c(
-                  "v-uni-view",
-                  {
-                    key: item,
-                    staticClass: _vm._$g("57-" + $32, "sc"),
-                    attrs: { _i: "57-" + $32 }
-                  },
-                  [
-                    _c(
-                      "v-uni-view",
-                      {
-                        staticClass: _vm._$g("58-" + $32, "sc"),
-                        attrs: { _i: "58-" + $32 }
-                      },
-                      [
-                        _c(
-                          "v-uni-view",
-                          { attrs: { _i: "59-" + $32 } },
-                          [
-                            _c("v-uni-image", {
-                              staticStyle: {
-                                width: "310upx",
-                                height: "310upx"
-                              },
-                              attrs: {
-                                src: _vm._$g("60-" + $32, "a-src"),
-                                _i: "60-" + $32
-                              }
-                            })
-                          ],
-                          1
-                        ),
-                        _c(
-                          "v-uni-view",
-                          {
-                            staticClass: _vm._$g("61-" + $32, "sc"),
-                            attrs: { _i: "61-" + $32 }
-                          },
-                          [
-                            _c("h4", { attrs: { _i: "62-" + $32 } }, [
-                              _vm._v(_vm._$g("62-" + $32, "t0-0"))
-                            ]),
-                            _c("p", { attrs: { _i: "63-" + $32 } }, [
-                              _vm._v("箱子规格(cm)：60*40*20")
-                            ]),
-                            _c("p", { attrs: { _i: "64-" + $32 } }, [
-                              _vm._v(
-                                "重量(kg)：" + _vm._$g("64-" + $32, "t0-0")
-                              )
-                            ]),
-                            _c("p", { attrs: { _i: "65-" + $32 } }, [
-                              _vm._v("物流起步价(¥)：12")
-                            ]),
-                            _c("p", { attrs: { _i: "66-" + $32 } }, [
-                              _vm._v("物流公里价(¥)：8")
-                            ]),
-                            _c("p", { attrs: { _i: "67-" + $32 } }, [
-                              _vm._v(
-                                "储存费用/天(¥)：" +
-                                  _vm._$g("67-" + $32, "t0-0")
-                              )
-                            ])
-                          ],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _c(
-                      "v-uni-text",
-                      {
-                        staticStyle: {
-                          "font-size": "26upx",
-                          color: "rgba(40,40,40,1)",
-                          "line-height": "37upx"
-                        },
-                        attrs: { _i: "68-" + $32 }
-                      },
-                      [_vm._v("大概可以存放8本书，4件T恤，一双鞋子。")]
-                    ),
-                    _c("v-uni-image", {
-                      staticStyle: {
-                        width: "688upx",
-                        height: "440upx",
-                        "margin-top": "40upx"
-                      },
-                      attrs: {
-                        src: _vm._$g("69-" + $32, "a-src"),
-                        _i: "69-" + $32
-                      }
-                    })
-                  ],
-                  1
-                )
-              })
+              _c(
+                "v-uni-scroll-view",
+                {
+                  staticStyle: { height: "900upx" },
+                  attrs: { "scroll-y": "true", _i: 57 }
+                },
+                _vm._l(_vm._$g(58, "f"), function(item, index, $22, $32) {
+                  return _c(
+                    "v-uni-view",
+                    {
+                      key: item,
+                      staticClass: _vm._$g("58-" + $32, "sc"),
+                      attrs: { _i: "58-" + $32 }
+                    },
+                    [
+                      _vm._$g("59-" + $32, "i")
+                        ? _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g("59-" + $32, "sc"),
+                              attrs: { _i: "59-" + $32 }
+                            },
+                            [
+                              _c(
+                                "v-uni-view",
+                                {
+                                  staticClass: _vm._$g("60-" + $32, "sc"),
+                                  attrs: { _i: "60-" + $32 }
+                                },
+                                [
+                                  _c(
+                                    "v-uni-view",
+                                    { attrs: { _i: "61-" + $32 } },
+                                    [
+                                      _c("v-uni-image", {
+                                        staticStyle: {
+                                          width: "310upx",
+                                          height: "310upx"
+                                        },
+                                        attrs: {
+                                          src: _vm._$g("62-" + $32, "a-src"),
+                                          _i: "62-" + $32
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  ),
+                                  _c(
+                                    "v-uni-view",
+                                    {
+                                      staticClass: _vm._$g("63-" + $32, "sc"),
+                                      attrs: { _i: "63-" + $32 }
+                                    },
+                                    [
+                                      _c("h4", { attrs: { _i: "64-" + $32 } }, [
+                                        _vm._v(_vm._$g("64-" + $32, "t0-0"))
+                                      ]),
+                                      _c("p", { attrs: { _i: "65-" + $32 } }, [
+                                        _vm._v(
+                                          "箱子规格(cm)：" +
+                                            _vm._$g("65-" + $32, "t0-0") +
+                                            "*" +
+                                            _vm._$g("65-" + $32, "t0-1") +
+                                            "*" +
+                                            _vm._$g("65-" + $32, "t0-2")
+                                        )
+                                      ]),
+                                      _c("p", { attrs: { _i: "66-" + $32 } }, [
+                                        _vm._v(
+                                          "重量(kg)：" +
+                                            _vm._$g("66-" + $32, "t0-0")
+                                        )
+                                      ]),
+                                      _c("p", { attrs: { _i: "67-" + $32 } }, [
+                                        _vm._v(
+                                          "物流起步价(¥)：" +
+                                            _vm._$g("67-" + $32, "t0-0")
+                                        )
+                                      ]),
+                                      _c("p", { attrs: { _i: "68-" + $32 } }, [
+                                        _vm._v(
+                                          "物流公里价(¥)：" +
+                                            _vm._$g("68-" + $32, "t0-0")
+                                        )
+                                      ]),
+                                      _c("p", { attrs: { _i: "69-" + $32 } }, [
+                                        _vm._v(
+                                          "储存费用/天(¥)：" +
+                                            _vm._$g("69-" + $32, "t0-0")
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._$g("70-" + $32, "i")
+                                ? _c(
+                                    "v-uni-text",
+                                    {
+                                      staticStyle: {
+                                        "font-size": "26upx",
+                                        color: "rgba(40,40,40,1)",
+                                        "line-height": "37upx"
+                                      },
+                                      attrs: { _i: "70-" + $32 }
+                                    },
+                                    [_vm._v(_vm._$g("70-" + $32, "t0-0"))]
+                                  )
+                                : _vm._e(),
+                              _vm._$g("71-" + $32, "i")
+                                ? _c("v-uni-image", {
+                                    staticStyle: {
+                                      width: "688upx",
+                                      height: "440upx",
+                                      "margin-top": "40upx"
+                                    },
+                                    attrs: {
+                                      src: _vm._$g("71-" + $32, "a-src"),
+                                      _i: "71-" + $32
+                                    }
+                                  })
+                                : _vm._e()
+                            ],
+                            1
+                          )
+                        : _vm._e()
+                    ],
+                    1
+                  )
+                }),
+                1
+              )
             ],
-            2
+            1
           )
         ],
         1
@@ -11235,9 +11273,9 @@ var render = function() {
       _c(
         "v-uni-button",
         {
-          staticClass: _vm._$g(70, "sc"),
-          class: _vm._$g(70, "c"),
-          attrs: { _i: 70 },
+          staticClass: _vm._$g(72, "sc"),
+          class: _vm._$g(72, "c"),
+          attrs: { _i: 72 },
           on: {
             click: function($event) {
               return _vm.$handleViewEvent($event)
@@ -12009,7 +12047,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../tool/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.content[data-v-5ca9bd1a] {\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  padding: 0 60upx 120upx;\n}\n.content .cont_top[data-v-5ca9bd1a] {\n    text-align: center;\n}\n.content .cont_top uni-image[data-v-5ca9bd1a] {\n      width: 262upx;\n      height: 189upx;\n}\n.content .top_text[data-v-5ca9bd1a] {\n    font-size: 32upx;\n    font-weight: 500;\n    color: #282828;\n    line-height: 64upx;\n    text-align: justify;\n    margin-top: 40upx;\n}\n.add_input[data-v-5ca9bd1a] {\n  width: 300upx;\n  height: 70upx;\n  background: #f9f9f9;\n  border: 1px solid #f2f2f2;\n}\n.collapse_left h4[data-v-5ca9bd1a] {\n  font-size: 32upx;\n  font-weight: 600;\n  color: #282828;\n  line-height: 45upx;\n  margin-bottom: 10upx;\n}\n.collapse_left p[data-v-5ca9bd1a] {\n  font-size: 26upx;\n  font-weight: 400;\n  color: #4a4a4a;\n  line-height: 37upx;\n}\n.collapse_left uni-text[data-v-5ca9bd1a] {\n  font-size: 26upx;\n  font-weight: 400;\n  color: #9b9b9b;\n  line-height: 37upx;\n  -webkit-text-decoration: underline solid #9b9b9b;\n          text-decoration: underline solid #9b9b9b;\n}\n.box_size[data-v-5ca9bd1a] {\n  font-size: 0;\n  border-top: 1upx solid rgba(242, 242, 242, 0.58);\n  padding-top: 40upx;\n}\n.box_size h4[data-v-5ca9bd1a] {\n    font-size: 32upx;\n    font-weight: 600;\n    color: #282828;\n    line-height: 45upx;\n}\n.box_size uni-text[data-v-5ca9bd1a] {\n    font-size: 26upx;\n    font-weight: 400;\n    color: #b2b2b2;\n    line-height: 42upx;\n    margin-top: 4upx;\n}\n.box_size .button_more[data-v-5ca9bd1a] {\n    width: 100%;\n    height: 80upx;\n    line-height: 80upx;\n    box-shadow: 0 -2upx 10upx 0 rgba(0, 0, 0, 0.05);\n    font-size: 26upx;\n    font-weight: 400;\n    background: rgba(240, 240, 240, 0.75);\n    margin-top: 40upx;\n    color: #9b9b9b;\n    text-align: center;\n}\n.box_size .button_more uni-image[data-v-5ca9bd1a] {\n      width: 20upx;\n      height: 20upx;\n      transition: 0.5s;\n      -moz-transition: 0.5s;\n      /* Firefox 4 */\n      -webkit-transition: 0.5s;\n      /* Safari and Chrome */\n}\n.box_size .button_more .image_active[data-v-5ca9bd1a] {\n      transform: rotate(180deg);\n      -ms-transform: rotate(180deg);\n      /* IE 9 */\n      -moz-transform: rotate(180deg);\n      /* Firefox */\n      -webkit-transform: rotate(180deg);\n      /* Safari 和 Chrome */\n}\n.border_fee[data-v-5ca9bd1a] {\n  border-top: 1upx solid rgba(242, 242, 242, 0.58);\n  border-bottom: 1upx solid rgba(242, 242, 242, 0.58);\n  padding: 16upx 0;\n  box-sizing: border-box;\n  margin: 40upx 0;\n}\n.border_fee .total_fee p[data-v-5ca9bd1a] {\n    font-size: 24upx;\n    font-weight: 600;\n    color: #282828;\n}\n.border_fee .total_fee uni-text[data-v-5ca9bd1a] {\n    font-size: 36upx;\n    font-weight: 600;\n    color: #282828;\n    margin-left: 8upx;\n}\n.total_tip[data-v-5ca9bd1a] {\n  box-sizing: border-box;\n  padding: 26upx;\n  background: #eff7f7;\n  border-radius: 10px;\n  height: 172upx;\n}\n.total_tip .total_tip_right[data-v-5ca9bd1a] {\n    width: 100%;\n}\n.total_tip .total_tip_right p[data-v-5ca9bd1a] {\n      text-align: justify;\n      font-size: 26upx;\n      font-weight: 500;\n      color: #548c8c;\n      line-height: 40upx;\n}\n.button[data-v-5ca9bd1a] {\n  font-size: 28upx;\n  margin: 0;\n  font-weight: 400;\n  border: 0 none;\n  padding: 0;\n}\n.button_left[data-v-5ca9bd1a] {\n  color: #03a6a6;\n  line-height: 40upx;\n}\n.button_right[data-v-5ca9bd1a] {\n  font-size: 26upx;\n  color: #9b9b9b;\n  line-height: 37upx;\n  -webkit-text-decoration: underline solid #9b9b9b;\n          text-decoration: underline solid #9b9b9b;\n}\n.popup_wrap[data-v-5ca9bd1a] {\n  width: 100%;\n  height: 1000upx;\n  background: white;\n  border-radius: 20upx 20upx 0 0;\n  overflow-y: scroll;\n}\n.popup_cont[data-v-5ca9bd1a] {\n  box-sizing: border-box;\n  padding: 30upx;\n}\n.button_block[data-v-5ca9bd1a] {\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  height: 90upx;\n  line-height: 90upx;\n  box-shadow: 0 -2upx 10upx 0 rgba(0, 0, 0, 0.05);\n  font-size: 32upx;\n  font-weight: 500;\n  background-color: #B2B2B2;\n  color: #FFFFFF;\n}\n.button_block_active[data-v-5ca9bd1a] {\n  background: #3BC1BB;\n}\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.content[data-v-5ca9bd1a] {\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  padding: 0 60upx 120upx;\n}\n.content .cont_top[data-v-5ca9bd1a] {\n    text-align: center;\n}\n.content .cont_top uni-image[data-v-5ca9bd1a] {\n      width: 262upx;\n      height: 189upx;\n}\n.content .top_text[data-v-5ca9bd1a] {\n    font-size: 32upx;\n    font-weight: 500;\n    color: #282828;\n    line-height: 64upx;\n    text-align: justify;\n    margin-top: 40upx;\n}\n.add_input[data-v-5ca9bd1a] {\n  width: 300upx;\n  height: 70upx;\n  background: #f9f9f9;\n  border: 1px solid #f2f2f2;\n}\n.collapse_left h4[data-v-5ca9bd1a] {\n  font-size: 32upx;\n  font-weight: 600;\n  color: #282828;\n  line-height: 45upx;\n  margin-bottom: 10upx;\n}\n.collapse_left p[data-v-5ca9bd1a] {\n  font-size: 26upx;\n  font-weight: 400;\n  color: #4a4a4a;\n  line-height: 37upx;\n}\n.collapse_left uni-text[data-v-5ca9bd1a] {\n  font-size: 26upx;\n  font-weight: 400;\n  color: #9b9b9b;\n  line-height: 37upx;\n  -webkit-text-decoration: underline solid #9b9b9b;\n          text-decoration: underline solid #9b9b9b;\n}\n.box_size[data-v-5ca9bd1a] {\n  font-size: 0;\n  border-top: 1upx solid rgba(242, 242, 242, 0.58);\n  padding-top: 40upx;\n}\n.box_size h4[data-v-5ca9bd1a] {\n    font-size: 32upx;\n    font-weight: 600;\n    color: #282828;\n    line-height: 45upx;\n}\n.box_size uni-text[data-v-5ca9bd1a] {\n    font-size: 26upx;\n    font-weight: 400;\n    color: #b2b2b2;\n    line-height: 42upx;\n    margin-top: 4upx;\n}\n.box_size .button_more[data-v-5ca9bd1a] {\n    width: 100%;\n    height: 80upx;\n    line-height: 80upx;\n    box-shadow: 0 -2upx 10upx 0 rgba(0, 0, 0, 0.05);\n    font-size: 26upx;\n    font-weight: 400;\n    background: rgba(240, 240, 240, 0.75);\n    margin-top: 40upx;\n    color: #9b9b9b;\n    text-align: center;\n}\n.box_size .button_more uni-image[data-v-5ca9bd1a] {\n      width: 16upx;\n      height: 16upx;\n      margin-left: 10upx;\n      transition: 0.5s;\n      -moz-transition: 0.5s;\n      /* Firefox 4 */\n      -webkit-transition: 0.5s;\n      /* Safari and Chrome */\n}\n.box_size .button_more .image_active[data-v-5ca9bd1a] {\n      transform: rotate(180deg);\n      -ms-transform: rotate(180deg);\n      /* IE 9 */\n      -moz-transform: rotate(180deg);\n      /* Firefox */\n      -webkit-transform: rotate(180deg);\n      /* Safari 和 Chrome */\n}\n.border_fee[data-v-5ca9bd1a] {\n  border-top: 1upx solid rgba(242, 242, 242, 0.58);\n  border-bottom: 1upx solid rgba(242, 242, 242, 0.58);\n  padding: 16upx 0;\n  box-sizing: border-box;\n  margin: 40upx 0;\n}\n.border_fee .total_fee p[data-v-5ca9bd1a] {\n    font-size: 24upx;\n    font-weight: 600;\n    color: #282828;\n}\n.border_fee .total_fee uni-text[data-v-5ca9bd1a] {\n    font-size: 36upx;\n    font-weight: 600;\n    color: #282828;\n    margin-left: 8upx;\n}\n.total_tip[data-v-5ca9bd1a] {\n  box-sizing: border-box;\n  padding: 26upx;\n  background: #eff7f7;\n  border-radius: 10px;\n  height: 172upx;\n}\n.total_tip .total_tip_right[data-v-5ca9bd1a] {\n    width: 100%;\n}\n.total_tip .total_tip_right p[data-v-5ca9bd1a] {\n      text-align: justify;\n      font-size: 26upx;\n      font-weight: 500;\n      color: #548c8c;\n      line-height: 40upx;\n}\n.button[data-v-5ca9bd1a] {\n  font-size: 28upx;\n  margin: 0;\n  font-weight: 400;\n  border: 0 none;\n  padding: 0;\n}\n.button_left[data-v-5ca9bd1a] {\n  color: #03a6a6;\n  line-height: 40upx;\n}\n.button_right[data-v-5ca9bd1a] {\n  font-size: 26upx;\n  color: #9b9b9b;\n  line-height: 37upx;\n  -webkit-text-decoration: underline solid #9b9b9b;\n          text-decoration: underline solid #9b9b9b;\n}\n.popup_wrap[data-v-5ca9bd1a] {\n  width: 100%;\n  height: 1000upx;\n  background: white;\n  border-radius: 20upx 20upx 0 0;\n  overflow-y: scroll;\n}\n.popup_cont .popup_item[data-v-5ca9bd1a] {\n  box-sizing: border-box;\n  padding: 30upx;\n}\n.button_block[data-v-5ca9bd1a] {\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  height: 90upx;\n  line-height: 90upx;\n  box-shadow: 0 -2upx 10upx 0 rgba(0, 0, 0, 0.05);\n  font-size: 32upx;\n  font-weight: 500;\n  background-color: #B2B2B2;\n  color: #FFFFFF;\n}\n.button_block_active[data-v-5ca9bd1a] {\n  background: #3BC1BB;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -15762,6 +15800,42 @@ var render = function() {
               ),
               _c(
                 "v-uni-view",
+                { staticClass: _vm._$g(23, "sc"), attrs: { _i: 23 } },
+                [
+                  _c("v-uni-text", { attrs: { _i: 24 } }, [_vm._v("运输费")]),
+                  _c("v-uni-text", { attrs: { _i: 25 } }, [_vm._v("¥ 0")])
+                ],
+                1
+              ),
+              _c(
+                "v-uni-view",
+                { staticClass: _vm._$g(26, "sc"), attrs: { _i: 26 } },
+                [
+                  _c("v-uni-text", { attrs: { _i: 27 } }, [_vm._v("打包费")]),
+                  _c("v-uni-text", { attrs: { _i: 28 } }, [_vm._v("¥ 0")])
+                ],
+                1
+              ),
+              _c(
+                "v-uni-view",
+                { staticClass: _vm._$g(29, "sc"), attrs: { _i: 29 } },
+                [
+                  _c("v-uni-text", { attrs: { _i: 30 } }, [_vm._v("箱子费")]),
+                  _c("v-uni-text", { attrs: { _i: 31 } }, [_vm._v("¥ 0")])
+                ],
+                1
+              ),
+              _c(
+                "v-uni-view",
+                { staticClass: _vm._$g(32, "sc"), attrs: { _i: 32 } },
+                [
+                  _c("v-uni-text", { attrs: { _i: 33 } }, [_vm._v("调整费")]),
+                  _c("v-uni-text", { attrs: { _i: 34 } }, [_vm._v("¥ 0")])
+                ],
+                1
+              ),
+              _c(
+                "v-uni-view",
                 {
                   staticStyle: {
                     "font-size": "26upx",
@@ -15770,52 +15844,16 @@ var render = function() {
                     "line-height": "42upx",
                     margin: "14upx 0 20upx"
                   },
-                  attrs: { _i: 23 }
+                  attrs: { _i: 35 }
                 },
                 [
                   _vm._v(
                     "\n\t\t\t\t定金是根据您所需的箱子来暂定收费，实际费用以当天收到的物品为准进行多退少补，请放心。\n\t\t\t\t"
                   ),
-                  _c("br", { attrs: { _i: 24 } }),
+                  _c("br", { attrs: { _i: 36 } }),
                   _vm._v(
                     "存存承诺服务不出现任何隐形费用，服务人员也绝对不会出现追加费用现象，如有发现，欢迎告知。\n\t\t\t"
                   )
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                { staticClass: _vm._$g(25, "sc"), attrs: { _i: 25 } },
-                [
-                  _c("v-uni-text", { attrs: { _i: 26 } }, [_vm._v("运输费")]),
-                  _c("v-uni-text", { attrs: { _i: 27 } }, [_vm._v("¥ 0")])
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                { staticClass: _vm._$g(28, "sc"), attrs: { _i: 28 } },
-                [
-                  _c("v-uni-text", { attrs: { _i: 29 } }, [_vm._v("打包费")]),
-                  _c("v-uni-text", { attrs: { _i: 30 } }, [_vm._v("¥ 0")])
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                { staticClass: _vm._$g(31, "sc"), attrs: { _i: 31 } },
-                [
-                  _c("v-uni-text", { attrs: { _i: 32 } }, [_vm._v("箱子费")]),
-                  _c("v-uni-text", { attrs: { _i: 33 } }, [_vm._v("¥ 0")])
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                { staticClass: _vm._$g(34, "sc"), attrs: { _i: 34 } },
-                [
-                  _c("v-uni-text", { attrs: { _i: 35 } }, [_vm._v("调整费")]),
-                  _c("v-uni-text", { attrs: { _i: 36 } }, [_vm._v("¥ 0")])
                 ],
                 1
               )
@@ -16076,7 +16114,9 @@ var render = function() {
         "v-uni-view",
         { staticClass: _vm._$g(62, "sc"), attrs: { _i: 62 } },
         [
-          _c("v-uni-text", { attrs: { _i: 63 } }, [_vm._v("¥ 820.0")]),
+          _c("v-uni-text", { attrs: { _i: 63 } }, [
+            _vm._v("¥ " + _vm._$g(63, "t0-0"))
+          ]),
           _c(
             "v-uni-button",
             {

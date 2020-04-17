@@ -9,7 +9,7 @@
 		<!-- 内容 -->
 		<view class="content">
 			<view class="cont_top">
-				<image src="../../static/tab2/save_top.png"></image>
+				<image src="../../static/tab2/people.png"></image>
 			</view>
 			<view class="top_text">
 				<text>我们经验丰富的收纳咨询师和训练有素的打包小哥正在准备，会按照跟您<text class="top_text_border">约定的时间到达</text>，请注意您的<text class="top_text_border">手机保持通知畅通</text>～</text>
@@ -39,10 +39,6 @@
 					<text>支付定金</text>
 					<text>¥ 70</text>
 				</view>
-				<view style="font-size:26upx;font-weight:400;color:rgba(40,40,40,1);line-height:42upx;margin: 14upx 0 20upx;">
-					定金是根据您所需的箱子来暂定收费，实际费用以当天收到的物品为准进行多退少补，请放心。
-					<br />存存承诺服务不出现任何隐形费用，服务人员也绝对不会出现追加费用现象，如有发现，欢迎告知。
-				</view>
 				<view class="flex_between pay_info_list">
 					<text>运输费</text>
 					<text>¥ 0</text>
@@ -58,6 +54,10 @@
 				<view class="flex_between pay_info_list">
 					<text>调整费</text>
 					<text>¥ 0</text>
+				</view>
+				<view style="font-size:26upx;font-weight:400;color:rgba(40,40,40,1);line-height:42upx;margin: 14upx 0 20upx;">
+					定金是根据您所需的箱子来暂定收费，实际费用以当天收到的物品为准进行多退少补，请放心。
+					<br />存存承诺服务不出现任何隐形费用，服务人员也绝对不会出现追加费用现象，如有发现，欢迎告知。
 				</view>
 			</view>
 		</view>
@@ -104,7 +104,7 @@
 			</view>
 		</uni-popup>
 		<view class="flex_between bottom_pay">
-			<text>¥ 820.0</text>
+			<text>¥ {{total_fee}}</text>
 			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">确认支付</button>
 		</view>
 	</view>
@@ -251,9 +251,12 @@
 				buttonActive: false,
 				time: '12:01',
 				date: '请选择送达时间',
+				total_fee: 0
 			}
 		},
-		onLoad() {},
+		onLoad(op) {
+			this.total_fee = op.total_fee
+		},
 		onShow() {},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {

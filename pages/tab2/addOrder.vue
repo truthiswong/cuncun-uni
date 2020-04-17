@@ -9,7 +9,7 @@
 		<!-- 内容 -->
 		<view class="content">
 			<view class="cont_top">
-				<image src="../../static/tab2/people.png" mode=""></image>
+				<image src="../../static/tab2/save_top.png" mode=""></image>
 			</view>
 			<view class="top_text">
 				<text>我们将为你的物品提供高标准的日式管理，维护，让你无顾之忧的同时，又一手轻松掌握。请简单告知我们你要存的东西，以便我们准备打包材料。</text>
@@ -18,7 +18,7 @@
 				<view class="flex_between" v-for="(item,index) in inputList" :key="index" style="margin-top: 40upx;">
 					<input class="add_input" type="text" v-model="item.value" placeholder="如：文档，书本…" style="font-size:28upx;padding-left: 20upx;color: #282828;"
 					 placeholder-style="font-size:14px; font-weight:400; color:rgba(178,178,178,1); line-height:40upx;" />
-					<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" v-model="item.number" @change="changeInputNumber($event,index)" />
+					<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" v-model="item.number" @change="changeInputNumber($event,index, item)" />
 				</view>
 				<view class="flex_between" style="margin-top: 60upx;">
 					<text class="button button_left" @click="onAddList">+ 添加</text>
@@ -26,11 +26,6 @@
 				</view>
 			</view>
 			<view style="margin-top: 40upx;">
-				<!-- <uni-collapse class="collapse_custom">
-					<uni-collapse-item title="请选择储存纸箱：" style="font-size:32upx; font-weight:600;color:rgba(40,40,40,1);line-height:45px;">
-						
-					</uni-collapse-item>
-				</uni-collapse> -->
 				<view class="box_size">
 					<h4>请选择储存纸箱：</h4>
 					<text>请根据您的需求选择您所需要用到的箱子</text>
@@ -38,10 +33,10 @@
 						<view class="collapse_left">
 							<h4>{{item.name}}</h4>
 							<p>重量上限(kg)：{{item.weight}}</p>
-							<p>储存费用/天(¥)：{{item.fee}}</p>
+							<p>储存费用/天(¥)：{{item.storePerDayFee}}</p>
 							<text @click="onBoxDetail(item.id)">纸箱详情介绍 ></text>
 						</view>
-						<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" :value="item.number" @change="changeBoxNumber($event,index)" />
+						<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" :value="item.number" @change="changeBoxNumber($event,index, item)" />
 					</view>
 					<view @click="onSeeMore" class="button_more">
 						<text>显示全部纸箱</text>
@@ -52,7 +47,7 @@
 					<uni-list class="list_custom">
 						<uni-list-item title="预计存储费用：" note="根据您所选的箱子预计每月存储费用" :showArrow="false">
 							<view slot='right' class="total_fee">
-								<p>¥<text>70</text></p>
+								<p>¥<text>{{total_fee}}</text></p>
 							</view>
 						</uni-list-item>
 					</uni-list>
@@ -93,23 +88,27 @@
 					<text>纸箱详情介绍</text>
 					<image class="close_btn" @click="closePopup" src="../../static/tab2/close.png" mode=""></image>
 				</view>
-				<view class="popup_cont" v-for="(item,index) in boxList" :key="index">
-					<view class="flex_between">
-						<view>
-							<image style="width: 310upx;height: 310upx;" src="../../static/tab2/box_size.png"></image>
-						</view>
-						<view class="collapse_left">
-							<h4>{{item.name}}</h4>
-							<p>箱子规格(cm)：60*40*20</p>
-							<p>重量(kg)：{{item.weight}}</p>
-							<p>物流起步价(¥)：12</p>
-							<p>物流公里价(¥)：8</p>
-							<p>储存费用/天(¥)：{{item.fee}}</p>
+				<scroll-view style="height: 900upx;" scroll-y="true">
+					<view class="popup_cont" v-for="(item,index) in boxList" :key="index">
+						<view class="popup_item" v-if="boxIndex == item.id">
+							<view class="flex_between">
+								<view>
+									<image style="width: 310upx;height: 310upx;" :src="item.pic"></image>
+								</view>
+								<view class="collapse_left">
+									<h4>{{item.name}}</h4>
+									<p>箱子规格(cm)：{{item.width}}*{{item.length}}*{{item.height}}</p>
+									<p>重量(kg)：{{item.weight}}</p>
+									<p>物流起步价(¥)：{{item.transStartFee}}</p>
+									<p>物流公里价(¥)：{{item.transPerKmFee}}</p>
+									<p>储存费用/天(¥)：{{item.storePerDayFee}}</p>
+								</view>
+							</view>
+							<text style="font-size:26upx;color:rgba(40,40,40,1);line-height:37upx;" v-if="item.remark">{{item.remark}}</text>
+							<image style="width:688upx;height:440upx;margin-top: 40upx;" v-if="item.sceneryPic" :src="item.sceneryPic"></image>
 						</view>
 					</view>
-					<text style="font-size:26upx;color:rgba(40,40,40,1);line-height:37upx;">大概可以存放8本书，4件T恤，一双鞋子。</text>
-					<image style="width:688upx;height:440upx;margin-top: 40upx;" src="../../static/tab2/box_detail.png"></image>
-				</view>
+				</scroll-view>
 			</view>
 		</uni-popup>
 		<button @click="onNext" class="button_block" :class="{button_block_active: buttonActive}">下一步</button>
@@ -158,6 +157,8 @@
 						number: 0
 					}
 				],
+				boxIndex: '',
+				mday: 0, //每月有多少天
 				boxNumber: 1,
 				agree1: false,
 				agree2: false,
@@ -165,8 +166,29 @@
 			}
 		},
 		onLoad() {
-			this.info = uni.getSystemInfoSync()
-			console.log(this.info)
+			this.getBoxList()
+			this.getUserInputList()
+			let myDate = new Date()
+			let yy = myDate.getFullYear() //获取完整的年份(4位,1970-????)
+			let mm = myDate.getMonth() + 1 //获取当前月份(0-11,0代表1月)
+			if ((yy % 4 == 0 && yy % 100 != 0) || yy % 400 == 0) {
+				if (mm == 2) {
+					this.mday = 29
+				} else if (mm == 4 || mm == 6 || mm == 9 || mm == 11) {
+					this.mday = 30
+				} else {
+					this.mday = 31
+				}
+			} else {
+				if (mm == 2) {
+					this.mday = 28
+				} else if (mm == 4 || mm == 6 || mm == 9 || mm == 11) {
+					this.mday = 30
+				} else {
+					this.mday = 31
+				}
+			}
+			console.log(this.mday)
 		},
 		onShow() {},
 		onPageScroll(options) {
@@ -192,6 +214,15 @@
 				}
 			}
 		},
+		computed: {
+			total_fee() {
+				let fee = 0
+				for (let item of this.boxList) {
+					fee += Number(item.storePerDayFee) * Number(item.number)
+				}
+				return fee * this.mday
+			}
+		},
 		methods: {
 			onClickBack() {
 				uni.navigateBack({
@@ -213,32 +244,68 @@
 					number: 1
 				})
 			},
-			changeInputNumber(value, index) {
-				console.log(value, index)
-				if (value <= 0) {
+			changeInputNumber(number, index, item) {
+				if (number <= 0) {
 					uni.showModal({
 						title: '提示',
 						content: '是否删除该物品？',
-						cancelColor: '#3BC1BB',
-						confirmColor: '#FFFFFF',
 						success: (res) => {
 							if (res.confirm) {
-								this.inputList.splice(index, 1)
+								if (typeof(item.id) == 'string') {
+									this.$http('user/deposit/pack/goods/del?id=' + item.id, "POST", '', res => {
+										let data = res.data
+										if (data.success) {
+											this.inputList.splice(index, 1)
+											uni.showToast({
+												icon: 'none',
+												title: '删除成功'
+											});
+										} else {
+											uni.showToast({
+												icon: 'none',
+												title: data.message
+											});
+										}
+									})
+								} else{
+									this.inputList.splice(index, 1)
+									uni.showToast({
+										icon: 'none',
+										title: '删除成功'
+									});
+								}
 							} else if (res.cancel) {
 								// this.$set(this.inputList[index],'number', 1);
 							}
 						}
 					})
 				} else {
-					this.inputList[index].number = value;
+					this.inputList[index].number = number;
 				}
 			},
-			changeBoxNumber(value, index) {
-				this.boxList[index].number = value;
+			changeBoxNumber(number, index, item) {
+				console.log(number, index, item)
+				if (number <= 0) {
+					this.$http('user/deposit/pack/box/del?id=' + item.id, "POST", '', res => {
+						let data = res.data
+						this.boxList[index].number = number;
+						if (data.success) {
+							this.boxList[index].number = number;
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					})
+				} else {
+					this.boxList[index].number = number;
+				}
 			},
 			// 箱子详情
-			onBoxDetail(index) {
-				console.log(index)
+			onBoxDetail(id) {
+				console.log(id)
+				this.boxIndex = id
 				this.$refs.popup.open()
 			},
 			closePopup() {
@@ -252,12 +319,106 @@
 				}
 			},
 			onNext() {
-				uni.navigateTo({
-					url: "/pages/tab2/orderPay"
+				let dataInputStr = ''
+				let dataBoxStr = ''
+				for (let item of this.inputList) {
+					if (item.value) {
+						dataInputStr += `name=${item.value}&amount=${item.number}&`
+					}
+				}
+				for (let item of this.boxList) {
+					if (item.number > 0) {
+						dataBoxStr += `boxId=${item.id}&amount=${item.number}&`
+					}
+				}
+				dataInputStr = dataInputStr.substr(0, dataInputStr.length - 1)
+				dataBoxStr = dataBoxStr.substr(0, dataBoxStr.length - 1)
+				if (!dataInputStr || !dataBoxStr) {
+					uni.showToast({
+						title: '请完善订单',
+						icon: 'none'
+					})
+				} else if (!this.agree1 || !this.agree2) {
+					uni.showToast({
+						title: '您必须同意协议',
+						icon: 'none'
+					})
+				} else {
+					this.$http('user/deposit/pack/goods/add?' + dataInputStr, "POST", '', res => {
+						let data = res.data
+						if (data.success) {
+							this.$http('user/deposit/pack/box/add?' + dataBoxStr, "POST", '', res => {
+								let data = res.data
+								if (data.success) {
+									uni.navigateTo({
+										url: "/pages/tab2/orderPay?total_fee="+this.total_fee
+									})
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: data.message
+									});
+								}
+							})
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					})
+				}
+			},
+			getBoxList() {
+				this.$http('user/box/list', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						for (let item of data.data) {
+							item.number = 0
+						}
+						this.boxList = data.data
+						this.$http('user/deposit/pack/box/list', "GET", '', res1 => {
+							if (res1.data.success) {
+								for (let item of res1.data.data) {
+									for (let box of this.boxList) {
+										if (box.id == item.box.id) {
+											box.number = item.amount
+										}
+									}
+								}
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: data.message
+								});
+							}
+						})
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
+			getUserInputList() {
+				this.$http('user/deposit/pack/goods/list', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						for (let item of data.data) {
+							item.value = item.name
+							item.number = item.amount
+						}
+						this.inputList = data.data
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
 				})
 			}
 		}
-
 	}
 </script>
 
@@ -352,18 +513,24 @@
 			text-align: center;
 
 			image {
-				width: 20upx;
-				height: 20upx;
+				width: 16upx;
+				height: 16upx;
+				margin-left: 10upx;
 				transition: 0.5s;
-				-moz-transition: 0.5s; /* Firefox 4 */
-				-webkit-transition: 0.5s; /* Safari and Chrome */
+				-moz-transition: 0.5s;
+				/* Firefox 4 */
+				-webkit-transition: 0.5s;
+				/* Safari and Chrome */
 			}
 
 			.image_active {
 				transform: rotate(180deg);
-				-ms-transform: rotate(180deg); /* IE 9 */
-				-moz-transform: rotate(180deg); /* Firefox */
-				-webkit-transform: rotate(180deg); /* Safari 和 Chrome */
+				-ms-transform: rotate(180deg);
+				/* IE 9 */
+				-moz-transform: rotate(180deg);
+				/* Firefox */
+				-webkit-transform: rotate(180deg);
+				/* Safari 和 Chrome */
 			}
 		}
 	}
@@ -442,8 +609,10 @@
 	}
 
 	.popup_cont {
-		box-sizing: border-box;
-		padding: 30upx;
+		.popup_item {
+			box-sizing: border-box;
+			padding: 30upx;
+		}
 	}
 
 	.button_block {

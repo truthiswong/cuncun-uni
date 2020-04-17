@@ -153,15 +153,15 @@
 						</scroll-view>
 					</view>
 				</view>
-				<!-- 杂物架 -->
-				<view @longpress="longpress('杂物架')" class="list_margin50">
+				<!-- 储藏室 -->
+				<view @longpress="longpress('储藏室')" class="list_margin50">
 					<view class="list_padding30">
 						<uni-list class="list_custom list_custom_img2">
 							<view v-show="long_active" class="list_hide_show">
 								<image v-show="false" src="../../static/tab1/show.png"></image>
 								<image v-show="true" src="../../static/tab1/hide.png"></image>
 							</view>
-							<uni-list-item thumb="../../static/tab1/sundries_title.png" :showArrow="false">
+							<uni-list-item thumb="../../static/tab1/storage_title.png" :showArrow="false">
 								<view slot="right">
 									<navigator url="/pages/tab1/storage">
 										<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
