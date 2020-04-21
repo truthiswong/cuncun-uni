@@ -9,12 +9,14 @@
 		<view class="content">
 			<view class="address_list" v-for="item in addressList" :key="item.id">
 				<radio-group @change="onSetDefault">
-					<view class="row list_top">
-						<text class="top_name">{{item.linkman}}</text>
-						<text class="top_phone">{{item.mobile}}</text>
-						<uni-tag :text="item.tag[0].name" size="small" :inverted="true" type="error"></uni-tag>
+					<view @click="onChooseAddress(item)">
+						<view class="row list_top">
+							<text class="top_name">{{item.linkman}}</text>
+							<text class="top_phone">{{item.mobile}}</text>
+							<uni-tag :text="item.tag[0].name" size="small" :inverted="true" type="error"></uni-tag>
+						</view>
+						<text class="address">{{item.detailAddress}}</text>
 					</view>
-					<text class="address">{{item.detailAddress}}</text>
 					<view class="row flex_between list_bottom">
 						<view>
 							<label>
@@ -45,11 +47,12 @@
 		data() {
 			return {
 				checked: true,
-				addressList: []
+				addressList: [],
+				chooseAddress: false, // 是否选择地址
 			};
 		},
-		onLoad() {
-			
+		onLoad(op) {
+			this.chooseAddress = op.chooseAddress
 		},
 		onShow() {
 			this.getAddressList()
@@ -68,6 +71,24 @@
 			},
 			onDefaultAddress() {
 				this.checked = !this.checked
+			},
+			onChooseAddress(item) {
+				console.log(item)
+				if (this.chooseAddress) {
+					// var pages = getCurrentPages();
+					// var currPage = pages[pages.length - 1]; //当前页面
+					// var prevPage = pages[pages.length - 2]; //上一个页面
+					// console.log(pages)
+					// console.log(currPage)
+					// console.log(prevPage)
+					// prevPage.$data.address=item
+					// uni.navigateBack();
+					let pages = getCurrentPages();             //获取所有页面栈实例列表
+					let nowPage = pages[ pages.length - 1];    //当前页页面实例
+					let prevPage = pages[ pages.length - 2 ];  //上一页页面实例
+					prevPage.$vm.address = item;         //修改上一页data里面的couponNumber参数值为value
+					uni.navigateBack();
+				}
 			},
 			onSetDefault(evt) {
 				for (let i = 0; i < this.addressList.length; i++) {
@@ -126,7 +147,7 @@
 					console.log(data)
 					if (data.success) {
 						for (let item of data.data) {
-							item.detailAddress = item.area.province + item.area.city + item.area.district +' '+ item.address
+							item.detailAddress = item.area.province + item.area.city + item.area.district + ' ' + item.address
 						}
 						this.addressList = data.data
 					} else {
@@ -160,6 +181,7 @@
 		line-height: 40upx;
 		vertical-align: middle;
 	}
+
 	.header_right {
 		font-size: 0.28rem;
 		color: rgba(3, 166, 166, 1);
@@ -169,60 +191,71 @@
 		margin-top: 0.2rem;
 		background-color: #FFFFFF;
 		padding: 30upx;
+
 		.list_top {
-			font-size:28upx;
-			font-weight:500;
-			color:rgba(40,40,40,1);
+			font-size: 28upx;
+			font-weight: 500;
+			color: rgba(40, 40, 40, 1);
+
 			.top_name {
 				display: block;
 				width: 140upx;
 			}
+
 			.top_phone {
 				margin-right: 40upx;
 			}
 		}
+
 		.address {
-			font-size:26upx;
-			font-weight:400;
-			color:rgba(104,104,104,1);
-			line-height:37upx;
+			font-size: 26upx;
+			font-weight: 400;
+			color: rgba(104, 104, 104, 1);
+			line-height: 37upx;
 		}
+
 		.list_bottom {
 			border-top: 2upx solid #F2F2F2;
 			padding-top: 20upx;
 			margin-top: 20upx;
+
 			.check_box {
 				.uni-checkbox-input {
 					background-color: #03A6A6;
 					color: #FFFFFF;
 					border-radius: 50%;
 				}
-				
+
 			}
+
 			text {
-				font-size:28upx;
-				font-weight:400;
-				color:rgba(68,68,68,1);
+				font-size: 28upx;
+				font-weight: 400;
+				color: rgba(68, 68, 68, 1);
 			}
+
 			.image1 {
 				image {
 					width: 18upx;
 					height: 26upx;
 				}
 			}
+
 			.image2 {
 				margin-left: 40upx;
+
 				image {
 					width: 26upx;
 					height: 26upx;
 				}
 			}
+
 			.custom_text {
-				background-color: rgba(0,0,0,0);
+				background-color: rgba(0, 0, 0, 0);
 				border: 0 none;
-				font-size:28upx;
-				font-weight:400;
-				color:rgba(68,68,68,1);
+				font-size: 28upx;
+				font-weight: 400;
+				color: rgba(68, 68, 68, 1);
 				vertical-align: top;
 				margin-left: 10upx;
 			}

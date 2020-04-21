@@ -291,11 +291,6 @@
 						this.boxList[index].number = number;
 						if (data.success) {
 							this.boxList[index].number = number;
-						} else {
-							uni.showToast({
-								icon: 'none',
-								title: data.message
-							});
 						}
 					})
 				} else {

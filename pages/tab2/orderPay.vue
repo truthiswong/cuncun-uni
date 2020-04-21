@@ -16,7 +16,25 @@
 			</view>
 			<view style="margin-top: 60upx;">
 				<uni-list class="list_custom list_custom_padding40">
-					<uni-list-item title="请添加您的地址"></uni-list-item>
+					<uni-list-item @click="onChooseAddress">
+						<view class="">
+							<view class="" v-if="!address.id">
+								<text>请添加您的地址</text>
+							</view>
+							<view class="choose_address" v-else>
+								<view class="row address">
+									<p class="address_detail">
+										<uni-tag style="display: inline-block;margin-right: 30upx;" :text="address.tag[0].name" size="small" :inverted="true" type="error"></uni-tag>
+										{{address.detailAddress}}
+									</p>
+								</view>
+								<view class="top_name">
+									<text>{{address.linkman}}</text>
+									<text style="margin-left: 30upx;">{{address.mobile}}</text>
+								</view>
+							</view>
+						</view>
+					</uni-list-item>
 					<uni-list-item title="上门时间">
 						<view slot="right">
 							<!-- <picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
@@ -68,7 +86,7 @@
 					<image class="close_btn" @click="closePopupDate" src="../../static/tab2/close.png" mode=""></image>
 				</view>
 				<view>
-					<picker-view style="height: 570upx;" :value="dateValue" @change="changeDate">
+					<picker-view style="height: 480upx;" :value="dateValue" @change="changeDate">
 						<picker-view-column>
 							<view class="date_item" v-for="(item,index) in dates" :key="index">{{item.value}}</view>
 						</picker-view-column>
@@ -119,6 +137,8 @@
 			})
 			return {
 				headerShow: true,
+				address: {
+				},
 				dates: [{
 						id: 0,
 						value: '07-27（周六）',
@@ -231,7 +251,7 @@
 						checked: 'false',
 					}
 				],
-				dateValue: [3,3],
+				dateValue: [3, 3],
 				dateValue1: 0,
 				dateValue2: 0,
 				payStyleList: [{
@@ -248,6 +268,7 @@
 						imgUrl: '../../static/tab2/WeChatpay.png'
 					}
 				],
+				payStyle: 'Alipay',
 				buttonActive: false,
 				time: '12:01',
 				date: '请选择送达时间',
@@ -257,7 +278,9 @@
 		onLoad(op) {
 			this.total_fee = op.total_fee
 		},
-		onShow() {},
+		onShow(e) {
+			console.log(this.address)
+		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
@@ -278,6 +301,11 @@
 			onClickBack() {
 				uni.navigateBack({
 					delta: 1
+				})
+			},
+			onChooseAddress() {
+				uni.navigateTo({
+					url: '../tab3/address?chooseAddress=true'
 				})
 			},
 			bindTimeChange(e) {
@@ -322,23 +350,63 @@
 			closePopup() {
 				this.$refs.popup.close()
 			},
+			onOrder() {
+				// let dataStr = `addressId=${this.address.id}&bookFetchDate=${}&bookFetchTime={}&bookFetchTime={}`
+				// this.$http('user/deposit/order/create?' + dataStr, "POST", '', res => {
+				// 	let data = res.data
+				// 	if (data.success) {
+				// 	} else {
+				// 		uni.showToast({
+				// 			icon: 'none',
+				// 			title: data.message
+				// 		});
+				// 	}
+				// })
+			},
 			onPayChangeStyle(evt) {
 				console.log(evt.target.value)
-				// for (let i = 0; i < this.payStyleList.length; i++) {
-				// 	if (this.payStyleList[i].value === evt.target.value) {
-				// 		this.current = i;
-				// 		break;
-				// 	}
-				// }
+				this.payStyle = evt.target.value
+				// uni.getProvider({
+				//     service: 'payment',
+				//     success: (res)=> {
+				//         console.log(res.provider)
+				//     }
+				// });
 			},
 			onComfirmPay() {
+				if (this.payStyle == 'Alipay') {
+					// #ifdef APP-PLUS
+					uni.requestPayment({
+					    provider: 'alipay',
+					    orderInfo: 'orderInfo', //微信、支付宝订单数据
+					    success: function (res) {
+					        console.log('success:' + JSON.stringify(res));
+					    },
+					    fail: function (err) {
+					        console.log('fail:' + JSON.stringify(err));
+					    }
+					});
+					// #endif
+				} else {
+					// #ifdef APP-PLUS
+					uni.requestPayment({
+					    provider: 'wxpay',
+					    orderInfo: 'orderInfo', //微信、支付宝订单数据
+					    success: function (res) {
+					        console.log('success:' + JSON.stringify(res));
+					    },
+					    fail: function (err) {
+					        console.log('fail:' + JSON.stringify(err));
+					    }
+					});
+					// #endif
+				}
 				uni.navigateTo({
 					url: "/pages/tab2/orderSuccess"
 				})
 				this.$refs.popup.close()
 			}
 		}
-
 	}
 </script>
 
@@ -356,6 +424,25 @@
 		image {
 			width: 394upx;
 			height: 260upx;
+		}
+	}
+	
+	.choose_address {
+		.address {
+			.address_detail {
+				font-size:32upx;
+				font-weight:500;
+				color:rgba(40,40,40,1);
+				line-height:52upx;
+				text-align: justify;
+			}
+		}
+		.top_name {
+			font-size:26upx;
+			font-weight:400;
+			color:rgba(178,178,178,1);
+			line-height:37upx;
+			margin-top: 10upx;
 		}
 	}
 
@@ -416,7 +503,6 @@
 		height: 660upx;
 		background: rgba(255, 255, 255, 1);
 		border-radius: 20upx 20upx 0 0;
-		overflow-y: scroll;
 	}
 
 	.popup_cont {
@@ -434,13 +520,15 @@
 			line-height: 100upx;
 		}
 	}
+
 	.date_item {
-		height: 60upx;
-		line-height: 60upx;
+		width: 100%;
+		height: 68upx;
+		line-height: 68upx;
 		text-align: center;
-		font-size:26upx;
-		font-weight:400;
-		color:rgba(40,40,40,1);
+		font-size: 26upx;
+		font-weight: 400;
+		color: rgba(40, 40, 40, 1);
 	}
 
 	.bottom_pay {
