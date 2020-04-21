@@ -3,8 +3,7 @@
 		<swiper class="swiper" indicator-active-color='#3BC1BB' :indicator-dots="true" @change="changeTab">
 			<swiper-item class="item" v-for="(item, index) in guidelList" :key="index">
 				<view class="guide_img">
-					<!-- <image :src="item.url" mode="aspectFill"></image> -->
-					<img :src="item.url" />
+					<image :src="item.url" mode="aspectFit"></image>
 				</view>
 				<view class="guide_fixed">
 					<view class="guide_title">
@@ -90,8 +89,9 @@
 				width: 750upx;
 				max-width: 375px;
 				margin: auto;
-				img {
+				image {
 					width: 100%;
+					height: 100%;
 				}
 			}
 
