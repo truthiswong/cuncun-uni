@@ -15,10 +15,6 @@
 				// 	plus.navigator.closeSplashscreen()
 				// }, 1000)
 				if (value) {
-					// uni.redirectTo({
-					// 	url: '/pages/login/login'
-					// });
-					
 					if (token) {
 						this.$nextTick(()=>{
 							uni.switchTab({

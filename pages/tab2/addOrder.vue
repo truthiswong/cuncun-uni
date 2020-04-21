@@ -267,7 +267,7 @@
 											});
 										}
 									})
-								} else{
+								} else {
 									this.inputList.splice(index, 1)
 									uni.showToast({
 										icon: 'none',
@@ -346,7 +346,7 @@
 								let data = res.data
 								if (data.success) {
 									uni.navigateTo({
-										url: "/pages/tab2/orderPay?total_fee="+this.total_fee
+										url: "/pages/tab2/orderPay?total_fee=" + this.total_fee
 									})
 								} else {
 									uni.showToast({
@@ -381,11 +381,6 @@
 										}
 									}
 								}
-							} else {
-								uni.showToast({
-									icon: 'none',
-									title: data.message
-								});
 							}
 						})
 					} else {

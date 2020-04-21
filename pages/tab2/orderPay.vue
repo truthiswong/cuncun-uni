@@ -24,8 +24,8 @@
 							<view class="choose_address" v-else>
 								<view class="row address">
 									<p class="address_detail">
-										<uni-tag style="display: inline-block;margin-right: 30upx;" :text="address.tag[0].name" size="small" :inverted="true" type="error"></uni-tag>
-										{{address.detailAddress}}
+										<uni-tag class="address_tag" :text="address.tag[0].name" size="small" :inverted="true" type="error"></uni-tag>
+										<text>{{address.detailAddress}}</text>
 									</p>
 								</view>
 								<view class="top_name">
@@ -430,11 +430,24 @@
 	.choose_address {
 		.address {
 			.address_detail {
-				font-size:32upx;
-				font-weight:500;
-				color:rgba(40,40,40,1);
-				line-height:52upx;
-				text-align: justify;
+				.address_tag {
+					display: inline-block;
+					height: 30upx;
+					line-height: 30upx;
+					font-size: 22upx;
+					font-weight: 400;
+					color: rgba(189, 103, 108, 1);
+					margin-right: 30upx;
+					vertical-align: middle;
+				}
+				text {
+					font-size:32upx;
+					font-weight:500;
+					color:rgba(40,40,40,1);
+					line-height:52upx;
+					text-align: justify;
+					vertical-align: middle;
+				}
 			}
 		}
 		.top_name {

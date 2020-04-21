@@ -13,7 +13,7 @@
 						<view class="row list_top">
 							<text class="top_name">{{item.linkman}}</text>
 							<text class="top_phone">{{item.mobile}}</text>
-							<uni-tag :text="item.tag[0].name" size="small" :inverted="true" type="error"></uni-tag>
+							<uni-tag class="address_tag" :text="item.tag[0].name" size="small" :inverted="true" type="error"></uni-tag>
 						</view>
 						<text class="address">{{item.detailAddress}}</text>
 					</view>
@@ -83,10 +83,10 @@
 					// console.log(prevPage)
 					// prevPage.$data.address=item
 					// uni.navigateBack();
-					let pages = getCurrentPages();             //获取所有页面栈实例列表
-					let nowPage = pages[ pages.length - 1];    //当前页页面实例
-					let prevPage = pages[ pages.length - 2 ];  //上一页页面实例
-					prevPage.$vm.address = item;         //修改上一页data里面的couponNumber参数值为value
+					let pages = getCurrentPages(); //获取所有页面栈实例列表
+					let nowPage = pages[pages.length - 1]; //当前页页面实例
+					let prevPage = pages[pages.length - 2]; //上一页页面实例
+					prevPage.$vm.address = item; //修改上一页data里面的couponNumber参数值为value
 					uni.navigateBack();
 				}
 			},
@@ -204,6 +204,14 @@
 
 			.top_phone {
 				margin-right: 40upx;
+			}
+
+			.address_tag {
+				height: 30upx;
+				line-height: 30upx;
+				font-size: 22upx;
+				font-weight: 400;
+				color: rgba(189, 103, 108, 1);
 			}
 		}
 

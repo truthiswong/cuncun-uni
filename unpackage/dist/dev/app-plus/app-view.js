@@ -543,8 +543,12 @@ var render = function() {
                   attrs: { _i: "3-" + $30 }
                 },
                 [
-                  _c("img", {
-                    attrs: { src: _vm._$g("4-" + $30, "a-src"), _i: "4-" + $30 }
+                  _c("v-uni-image", {
+                    attrs: {
+                      src: _vm._$g("4-" + $30, "a-src"),
+                      mode: "aspectFit",
+                      _i: "4-" + $30
+                    }
                   })
                 ],
                 1
@@ -1161,7 +1165,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../tool/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.guide[data-v-0e9bad71] {\n  width: 100%;\n  height: 100%;\n}\n.swiper[data-v-0e9bad71] {\n  width: 100%;\n  height: 100%;\n}\n.swiper .item[data-v-0e9bad71] {\n    width: 100%;\n    height: 100%;\n}\n.swiper .item .guide_img[data-v-0e9bad71] {\n      position: absolute;\n      top: 0;\n      left: 0;\n      right: 0;\n      bottom: 444upx;\n      display: -webkit-box;\n      display: -webkit-flex;\n      display: flex;\n      -webkit-box-align: center;\n      -webkit-align-items: center;\n              align-items: center;\n      width: 750upx;\n      max-width: 375px;\n      margin: auto;\n}\n.swiper .item .guide_img img[data-v-0e9bad71] {\n        width: 100%;\n}\n.swiper .item .guide_fixed[data-v-0e9bad71] {\n      position: fixed;\n      bottom: 0;\n      width: 100%;\n      height: 444upx;\n      margin: auto;\n}\n.swiper .item .guide_title[data-v-0e9bad71] {\n      padding: 0 50upx;\n}\n.swiper .item .guide_title uni-text[data-v-0e9bad71] {\n        display: block;\n        font-size: 36upx;\n        font-weight: 600;\n        color: #282828;\n        line-height: 50upx;\n        margin: 100upx auto 0;\n        text-align: center;\n        letter-spacing: 1px;\n}\n.swiper .item .guide_title p[data-v-0e9bad71] {\n        font-size: 26upx;\n        font-weight: 400;\n        color: #4a4a4a;\n        line-height: 50upx;\n        margin-top: 34upx;\n        text-align: left;\n}\n.swiper .item .guide_title .center[data-v-0e9bad71] {\n        text-align: center;\n}\n.swiper .item .guide_button[data-v-0e9bad71] {\n      text-align: center;\n}\n.swiper .item .guide_button uni-image[data-v-0e9bad71] {\n        width: 260upx;\n        height: 120upx;\n}\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.guide[data-v-0e9bad71] {\n  width: 100%;\n  height: 100%;\n}\n.swiper[data-v-0e9bad71] {\n  width: 100%;\n  height: 100%;\n}\n.swiper .item[data-v-0e9bad71] {\n    width: 100%;\n    height: 100%;\n}\n.swiper .item .guide_img[data-v-0e9bad71] {\n      position: absolute;\n      top: 0;\n      left: 0;\n      right: 0;\n      bottom: 444upx;\n      display: -webkit-box;\n      display: -webkit-flex;\n      display: flex;\n      -webkit-box-align: center;\n      -webkit-align-items: center;\n              align-items: center;\n      width: 750upx;\n      max-width: 375px;\n      margin: auto;\n}\n.swiper .item .guide_img uni-image[data-v-0e9bad71] {\n        width: 100%;\n        height: 100%;\n}\n.swiper .item .guide_fixed[data-v-0e9bad71] {\n      position: fixed;\n      bottom: 0;\n      width: 100%;\n      height: 444upx;\n      margin: auto;\n}\n.swiper .item .guide_title[data-v-0e9bad71] {\n      padding: 0 50upx;\n}\n.swiper .item .guide_title uni-text[data-v-0e9bad71] {\n        display: block;\n        font-size: 36upx;\n        font-weight: 600;\n        color: #282828;\n        line-height: 50upx;\n        margin: 100upx auto 0;\n        text-align: center;\n        letter-spacing: 1px;\n}\n.swiper .item .guide_title p[data-v-0e9bad71] {\n        font-size: 26upx;\n        font-weight: 400;\n        color: #4a4a4a;\n        line-height: 50upx;\n        margin-top: 34upx;\n        text-align: left;\n}\n.swiper .item .guide_title .center[data-v-0e9bad71] {\n        text-align: center;\n}\n.swiper .item .guide_button[data-v-0e9bad71] {\n      text-align: center;\n}\n.swiper .item .guide_button uni-image[data-v-0e9bad71] {\n        width: 260upx;\n        height: 120upx;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -15784,13 +15788,14 @@ var render = function() {
                                         },
                                         [
                                           _c("uni-tag", {
-                                            staticStyle: {
-                                              display: "inline-block",
-                                              "margin-right": "30upx"
-                                            },
+                                            staticClass: _vm._$g(19, "sc"),
                                             attrs: { _i: 19 }
                                           }),
-                                          _vm._v(_vm._$g(18, "t1-0"))
+                                          _c(
+                                            "v-uni-text",
+                                            { attrs: { _i: 20 } },
+                                            [_vm._v(_vm._$g(20, "t0-0"))]
+                                          )
                                         ],
                                         1
                                       )
@@ -15800,12 +15805,12 @@ var render = function() {
                                   _c(
                                     "v-uni-view",
                                     {
-                                      staticClass: _vm._$g(20, "sc"),
-                                      attrs: { _i: 20 }
+                                      staticClass: _vm._$g(21, "sc"),
+                                      attrs: { _i: 21 }
                                     },
                                     [
-                                      _c("v-uni-text", { attrs: { _i: 21 } }, [
-                                        _vm._v(_vm._$g(21, "t0-0"))
+                                      _c("v-uni-text", { attrs: { _i: 22 } }, [
+                                        _vm._v(_vm._$g(22, "t0-0"))
                                       ]),
                                       _c(
                                         "v-uni-text",
@@ -15813,9 +15818,9 @@ var render = function() {
                                           staticStyle: {
                                             "margin-left": "30upx"
                                           },
-                                          attrs: { _i: 22 }
+                                          attrs: { _i: 23 }
                                         },
-                                        [_vm._v(_vm._$g(22, "t0-0"))]
+                                        [_vm._v(_vm._$g(23, "t0-0"))]
                                       )
                                     ],
                                     1
@@ -15831,11 +15836,11 @@ var render = function() {
                   ),
                   _c(
                     "uni-list-item",
-                    { attrs: { _i: 23 } },
+                    { attrs: { _i: 24 } },
                     [
                       _c(
                         "v-uni-view",
-                        { attrs: { slot: "right", _i: 24 }, slot: "right" },
+                        { attrs: { slot: "right", _i: 25 }, slot: "right" },
                         [
                           _c(
                             "v-uni-view",
@@ -15844,14 +15849,14 @@ var render = function() {
                                 "font-size": "28upx",
                                 color: "rgba(3,166,166,1)"
                               },
-                              attrs: { _i: 25 },
+                              attrs: { _i: 26 },
                               on: {
                                 click: function($event) {
                                   return _vm.$handleViewEvent($event)
                                 }
                               }
                             },
-                            [_vm._v(_vm._$g(25, "t0-0"))]
+                            [_vm._v(_vm._$g(26, "t0-0"))]
                           )
                         ],
                         1
@@ -15861,14 +15866,14 @@ var render = function() {
                   ),
                   _c(
                     "uni-list-item",
-                    { attrs: { _i: 26 } },
+                    { attrs: { _i: 27 } },
                     [
                       _c(
                         "v-uni-view",
-                        { attrs: { slot: "right", _i: 27 }, slot: "right" },
+                        { attrs: { slot: "right", _i: 28 }, slot: "right" },
                         [
                           _c("v-uni-input", {
-                            staticClass: _vm._$g(28, "sc"),
+                            staticClass: _vm._$g(29, "sc"),
                             staticStyle: {
                               "font-size": "28upx",
                               "padding-left": "20upx",
@@ -15879,7 +15884,7 @@ var render = function() {
                               placeholder: "对我们的服务人员有什么特别的吩咐吗",
                               "placeholder-style":
                                 "font-size:14px; font-weight:400; color:rgba(178,178,178,1); line-height:40upx;",
-                              _i: 28
+                              _i: 29
                             }
                           })
                         ],
@@ -15896,50 +15901,50 @@ var render = function() {
           ),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(29, "sc"), attrs: { _i: 29 } },
+            { staticClass: _vm._$g(30, "sc"), attrs: { _i: 30 } },
             [
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(30, "sc"), attrs: { _i: 30 } },
+                { staticClass: _vm._$g(31, "sc"), attrs: { _i: 31 } },
                 [
-                  _c("v-uni-text", { attrs: { _i: 31 } }, [_vm._v("支付定金")]),
-                  _c("v-uni-text", { attrs: { _i: 32 } }, [_vm._v("¥ 70")])
+                  _c("v-uni-text", { attrs: { _i: 32 } }, [_vm._v("支付定金")]),
+                  _c("v-uni-text", { attrs: { _i: 33 } }, [_vm._v("¥ 70")])
                 ],
                 1
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(33, "sc"), attrs: { _i: 33 } },
+                { staticClass: _vm._$g(34, "sc"), attrs: { _i: 34 } },
                 [
-                  _c("v-uni-text", { attrs: { _i: 34 } }, [_vm._v("运输费")]),
-                  _c("v-uni-text", { attrs: { _i: 35 } }, [_vm._v("¥ 0")])
+                  _c("v-uni-text", { attrs: { _i: 35 } }, [_vm._v("运输费")]),
+                  _c("v-uni-text", { attrs: { _i: 36 } }, [_vm._v("¥ 0")])
                 ],
                 1
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(36, "sc"), attrs: { _i: 36 } },
+                { staticClass: _vm._$g(37, "sc"), attrs: { _i: 37 } },
                 [
-                  _c("v-uni-text", { attrs: { _i: 37 } }, [_vm._v("打包费")]),
-                  _c("v-uni-text", { attrs: { _i: 38 } }, [_vm._v("¥ 0")])
+                  _c("v-uni-text", { attrs: { _i: 38 } }, [_vm._v("打包费")]),
+                  _c("v-uni-text", { attrs: { _i: 39 } }, [_vm._v("¥ 0")])
                 ],
                 1
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(39, "sc"), attrs: { _i: 39 } },
+                { staticClass: _vm._$g(40, "sc"), attrs: { _i: 40 } },
                 [
-                  _c("v-uni-text", { attrs: { _i: 40 } }, [_vm._v("箱子费")]),
-                  _c("v-uni-text", { attrs: { _i: 41 } }, [_vm._v("¥ 0")])
+                  _c("v-uni-text", { attrs: { _i: 41 } }, [_vm._v("箱子费")]),
+                  _c("v-uni-text", { attrs: { _i: 42 } }, [_vm._v("¥ 0")])
                 ],
                 1
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(42, "sc"), attrs: { _i: 42 } },
+                { staticClass: _vm._$g(43, "sc"), attrs: { _i: 43 } },
                 [
-                  _c("v-uni-text", { attrs: { _i: 43 } }, [_vm._v("调整费")]),
-                  _c("v-uni-text", { attrs: { _i: 44 } }, [_vm._v("¥ 0")])
+                  _c("v-uni-text", { attrs: { _i: 44 } }, [_vm._v("调整费")]),
+                  _c("v-uni-text", { attrs: { _i: 45 } }, [_vm._v("¥ 0")])
                 ],
                 1
               ),
@@ -15953,13 +15958,13 @@ var render = function() {
                     "line-height": "42upx",
                     margin: "14upx 0 20upx"
                   },
-                  attrs: { _i: 45 }
+                  attrs: { _i: 46 }
                 },
                 [
                   _vm._v(
                     "\n\t\t\t\t定金是根据您所需的箱子来暂定收费，实际费用以当天收到的物品为准进行多退少补，请放心。\n\t\t\t\t"
                   ),
-                  _c("br", { attrs: { _i: 46 } }),
+                  _c("br", { attrs: { _i: 47 } }),
                   _vm._v(
                     "存存承诺服务不出现任何隐形费用，服务人员也绝对不会出现追加费用现象，如有发现，欢迎告知。\n\t\t\t"
                   )
@@ -15976,7 +15981,7 @@ var render = function() {
         "uni-popup",
         {
           ref: "popupDate",
-          attrs: { _i: 47 },
+          attrs: { _i: 48 },
           on: {
             touchmove: function($event) {
               return _vm.$handleViewEvent($event, { stop: true, prevent: true })
@@ -15989,18 +15994,18 @@ var render = function() {
         [
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(48, "sc"), attrs: { _i: 48 } },
+            { staticClass: _vm._$g(49, "sc"), attrs: { _i: 49 } },
             [
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(49, "sc"), attrs: { _i: 49 } },
+                { staticClass: _vm._$g(50, "sc"), attrs: { _i: 50 } },
                 [
-                  _c("v-uni-text", { attrs: { _i: 50 } }, [
+                  _c("v-uni-text", { attrs: { _i: 51 } }, [
                     _vm._v("上门取件时间")
                   ]),
                   _c("v-uni-image", {
-                    staticClass: _vm._$g(51, "sc"),
-                    attrs: { src: _vm._$g(51, "a-src"), mode: "", _i: 51 },
+                    staticClass: _vm._$g(52, "sc"),
+                    attrs: { src: _vm._$g(52, "a-src"), mode: "", _i: 52 },
                     on: {
                       click: function($event) {
                         return _vm.$handleViewEvent($event)
@@ -16012,13 +16017,13 @@ var render = function() {
               ),
               _c(
                 "v-uni-view",
-                { attrs: { _i: 52 } },
+                { attrs: { _i: 53 } },
                 [
                   _c(
                     "v-uni-picker-view",
                     {
                       staticStyle: { height: "480upx" },
-                      attrs: { value: _vm._$g(53, "a-value"), _i: 53 },
+                      attrs: { value: _vm._$g(54, "a-value"), _i: 54 },
                       on: {
                         change: function($event) {
                           return _vm.$handleViewEvent($event)
@@ -16028,8 +16033,8 @@ var render = function() {
                     [
                       _c(
                         "v-uni-picker-view-column",
-                        { attrs: { _i: 54 } },
-                        _vm._l(_vm._$g(55, "f"), function(
+                        { attrs: { _i: 55 } },
+                        _vm._l(_vm._$g(56, "f"), function(
                           item,
                           index,
                           $20,
@@ -16039,18 +16044,18 @@ var render = function() {
                             "v-uni-view",
                             {
                               key: item,
-                              staticClass: _vm._$g("55-" + $30, "sc"),
-                              attrs: { _i: "55-" + $30 }
+                              staticClass: _vm._$g("56-" + $30, "sc"),
+                              attrs: { _i: "56-" + $30 }
                             },
-                            [_vm._v(_vm._$g("55-" + $30, "t0-0"))]
+                            [_vm._v(_vm._$g("56-" + $30, "t0-0"))]
                           )
                         }),
                         1
                       ),
                       _c(
                         "v-uni-picker-view-column",
-                        { attrs: { _i: 56 } },
-                        _vm._l(_vm._$g(57, "f"), function(
+                        { attrs: { _i: 57 } },
+                        _vm._l(_vm._$g(58, "f"), function(
                           item,
                           index,
                           $21,
@@ -16060,10 +16065,10 @@ var render = function() {
                             "v-uni-view",
                             {
                               key: item,
-                              staticClass: _vm._$g("57-" + $31, "sc"),
-                              attrs: { _i: "57-" + $31 }
+                              staticClass: _vm._$g("58-" + $31, "sc"),
+                              attrs: { _i: "58-" + $31 }
                             },
-                            [_vm._v(_vm._$g("57-" + $31, "t0-0"))]
+                            [_vm._v(_vm._$g("58-" + $31, "t0-0"))]
                           )
                         }),
                         1
@@ -16084,7 +16089,7 @@ var render = function() {
         "uni-popup",
         {
           ref: "popup",
-          attrs: { _i: 58 },
+          attrs: { _i: 59 },
           on: {
             touchmove: function($event) {
               return _vm.$handleViewEvent($event, { stop: true, prevent: true })
@@ -16097,18 +16102,18 @@ var render = function() {
         [
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(59, "sc"), attrs: { _i: 59 } },
+            { staticClass: _vm._$g(60, "sc"), attrs: { _i: 60 } },
             [
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(60, "sc"), attrs: { _i: 60 } },
+                { staticClass: _vm._$g(61, "sc"), attrs: { _i: 61 } },
                 [
-                  _c("v-uni-text", { attrs: { _i: 61 } }, [
+                  _c("v-uni-text", { attrs: { _i: 62 } }, [
                     _vm._v("选择支付方式")
                   ]),
                   _c("v-uni-image", {
-                    staticClass: _vm._$g(62, "sc"),
-                    attrs: { src: _vm._$g(62, "a-src"), mode: "", _i: 62 },
+                    staticClass: _vm._$g(63, "sc"),
+                    attrs: { src: _vm._$g(63, "a-src"), mode: "", _i: 63 },
                     on: {
                       click: function($event) {
                         return _vm.$handleViewEvent($event)
@@ -16120,23 +16125,23 @@ var render = function() {
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(63, "sc"), attrs: { _i: 63 } },
+                { staticClass: _vm._$g(64, "sc"), attrs: { _i: 64 } },
                 [
                   _c(
                     "v-uni-view",
-                    { attrs: { _i: 64 } },
+                    { attrs: { _i: 65 } },
                     [
                       _c(
                         "v-uni-radio-group",
                         {
-                          attrs: { _i: 65 },
+                          attrs: { _i: 66 },
                           on: {
                             change: function($event) {
                               return _vm.$handleViewEvent($event)
                             }
                           }
                         },
-                        _vm._l(_vm._$g(66, "f"), function(
+                        _vm._l(_vm._$g(67, "f"), function(
                           item,
                           index,
                           $22,
@@ -16146,37 +16151,37 @@ var render = function() {
                             "uni-list",
                             {
                               key: item,
-                              staticClass: _vm._$g("66-" + $32, "sc"),
-                              attrs: { _i: "66-" + $32 }
+                              staticClass: _vm._$g("67-" + $32, "sc"),
+                              attrs: { _i: "67-" + $32 }
                             },
                             [
                               _c(
                                 "uni-list-item",
-                                { attrs: { _i: "67-" + $32 } },
+                                { attrs: { _i: "68-" + $32 } },
                                 [
                                   _c(
                                     "v-uni-view",
                                     {
-                                      attrs: { slot: "right", _i: "68-" + $32 },
+                                      attrs: { slot: "right", _i: "69-" + $32 },
                                       slot: "right"
                                     },
                                     [
                                       _c(
                                         "v-uni-label",
-                                        { attrs: { _i: "69-" + $32 } },
+                                        { attrs: { _i: "70-" + $32 } },
                                         [
                                           _c("v-uni-radio", {
                                             attrs: {
                                               value: _vm._$g(
-                                                "70-" + $32,
+                                                "71-" + $32,
                                                 "a-value"
                                               ),
                                               checked: _vm._$g(
-                                                "70-" + $32,
+                                                "71-" + $32,
                                                 "a-checked"
                                               ),
                                               color: "rgba(59, 193, 187, 1)",
-                                              _i: "70-" + $32
+                                              _i: "71-" + $32
                                             }
                                           })
                                         ],
@@ -16200,8 +16205,8 @@ var render = function() {
                   _c(
                     "v-uni-button",
                     {
-                      staticClass: _vm._$g(71, "sc"),
-                      attrs: { _i: 71 },
+                      staticClass: _vm._$g(72, "sc"),
+                      attrs: { _i: 72 },
                       on: {
                         click: function($event) {
                           return _vm.$handleViewEvent($event)
@@ -16221,17 +16226,17 @@ var render = function() {
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(72, "sc"), attrs: { _i: 72 } },
+        { staticClass: _vm._$g(73, "sc"), attrs: { _i: 73 } },
         [
-          _c("v-uni-text", { attrs: { _i: 73 } }, [
-            _vm._v("¥ " + _vm._$g(73, "t0-0"))
+          _c("v-uni-text", { attrs: { _i: 74 } }, [
+            _vm._v("¥ " + _vm._$g(74, "t0-0"))
           ]),
           _c(
             "v-uni-button",
             {
-              staticClass: _vm._$g(74, "sc"),
-              class: _vm._$g(74, "c"),
-              attrs: { _i: 74 },
+              staticClass: _vm._$g(75, "sc"),
+              class: _vm._$g(75, "c"),
+              attrs: { _i: 75 },
               on: {
                 click: function($event) {
                   return _vm.$handleViewEvent($event)
@@ -16530,7 +16535,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../tool/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.content[data-v-fb528c32] {\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  padding: 0 60upx 130upx;\n}\n.cont_top[data-v-fb528c32] {\n  text-align: center;\n}\n.cont_top uni-image[data-v-fb528c32] {\n    width: 394upx;\n    height: 260upx;\n}\n.choose_address .address .address_detail[data-v-fb528c32] {\n  font-size: 32upx;\n  font-weight: 500;\n  color: #282828;\n  line-height: 52upx;\n  text-align: justify;\n}\n.choose_address .top_name[data-v-fb528c32] {\n  font-size: 26upx;\n  font-weight: 400;\n  color: #b2b2b2;\n  line-height: 37upx;\n  margin-top: 10upx;\n}\n.top_text[data-v-fb528c32] {\n  font-size: 32upx;\n  font-weight: 500;\n  color: #282828;\n  line-height: 64upx;\n  text-align: justify;\n}\n.top_text .top_text_border[data-v-fb528c32] {\n    box-sizing: border-box;\n    border-bottom: 11upx solid #94DCD9;\n}\n.input_remark[data-v-fb528c32] {\n  width: 500upx;\n  height: 60upx;\n  font-size: 28px;\n  font-family: PingFangSC-Regular, PingFang SC;\n  font-weight: 400;\n  color: #b2b2b2;\n  line-height: 60upx;\n  background: rgba(249, 249, 249, 0);\n  border: 0 none;\n  text-align: right;\n}\n.input_remark .item[data-v-fb528c32] {\n    width: 30%;\n    height: 300px;\n}\n.pay_info[data-v-fb528c32] {\n  margin: 40upx 0;\n}\n.pay_info .pay_info_list[data-v-fb528c32] {\n    font-size: 24upx;\n    font-weight: 400;\n    color: #b2b2b2;\n    line-height: 33upx;\n    margin-top: 6upx;\n}\n.total_fee uni-text[data-v-fb528c32] {\n  font-size: 28upx;\n  font-weight: 600;\n  color: #282828;\n  line-height: 40upx;\n}\n.popup_wrap[data-v-fb528c32] {\n  width: 100%;\n  height: 660upx;\n  background: white;\n  border-radius: 20upx 20upx 0 0;\n}\n.popup_cont[data-v-fb528c32] {\n  box-sizing: border-box;\n  padding: 30upx;\n}\n.popup_cont .pay_button[data-v-fb528c32] {\n    width: 100%;\n    height: 100upx;\n    margin-top: 160upx;\n    background: #3bc1bb;\n    border-radius: 3upx;\n    font-size: 32upx;\n    color: white;\n    line-height: 100upx;\n}\n.date_item[data-v-fb528c32] {\n  width: 100%;\n  height: 68upx;\n  line-height: 68upx;\n  text-align: center;\n  font-size: 26upx;\n  font-weight: 400;\n  color: #282828;\n}\n.bottom_pay[data-v-fb528c32] {\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  box-sizing: border-box;\n  height: 110upx;\n  background: #4a4a4a;\n  box-shadow: 0 -2upx 10upx 0 rgba(0, 0, 0, 0.05);\n  padding: 0 30upx;\n}\n.bottom_pay uni-text[data-v-fb528c32] {\n    font-size: 36upx;\n    font-weight: 600;\n    color: white;\n}\n.bottom_pay .button_block[data-v-fb528c32] {\n    width: 212upx;\n    height: 80upx;\n    background: #3bc1bb;\n    border-radius: 3px;\n    line-height: 80upx;\n    font-size: 28upx;\n    font-weight: 500;\n    color: #FFFFFF;\n    margin: 0;\n}\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.content[data-v-fb528c32] {\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  padding: 0 60upx 130upx;\n}\n.cont_top[data-v-fb528c32] {\n  text-align: center;\n}\n.cont_top uni-image[data-v-fb528c32] {\n    width: 394upx;\n    height: 260upx;\n}\n.choose_address .address .address_detail .address_tag[data-v-fb528c32] {\n  display: inline-block;\n  height: 30upx;\n  line-height: 30upx;\n  font-size: 22upx;\n  font-weight: 400;\n  color: #bd676c;\n  margin-right: 30upx;\n  vertical-align: middle;\n}\n.choose_address .address .address_detail uni-text[data-v-fb528c32] {\n  font-size: 32upx;\n  font-weight: 500;\n  color: #282828;\n  line-height: 52upx;\n  text-align: justify;\n  vertical-align: middle;\n}\n.choose_address .top_name[data-v-fb528c32] {\n  font-size: 26upx;\n  font-weight: 400;\n  color: #b2b2b2;\n  line-height: 37upx;\n  margin-top: 10upx;\n}\n.top_text[data-v-fb528c32] {\n  font-size: 32upx;\n  font-weight: 500;\n  color: #282828;\n  line-height: 64upx;\n  text-align: justify;\n}\n.top_text .top_text_border[data-v-fb528c32] {\n    box-sizing: border-box;\n    border-bottom: 11upx solid #94DCD9;\n}\n.input_remark[data-v-fb528c32] {\n  width: 500upx;\n  height: 60upx;\n  font-size: 28px;\n  font-family: PingFangSC-Regular, PingFang SC;\n  font-weight: 400;\n  color: #b2b2b2;\n  line-height: 60upx;\n  background: rgba(249, 249, 249, 0);\n  border: 0 none;\n  text-align: right;\n}\n.input_remark .item[data-v-fb528c32] {\n    width: 30%;\n    height: 300px;\n}\n.pay_info[data-v-fb528c32] {\n  margin: 40upx 0;\n}\n.pay_info .pay_info_list[data-v-fb528c32] {\n    font-size: 24upx;\n    font-weight: 400;\n    color: #b2b2b2;\n    line-height: 33upx;\n    margin-top: 6upx;\n}\n.total_fee uni-text[data-v-fb528c32] {\n  font-size: 28upx;\n  font-weight: 600;\n  color: #282828;\n  line-height: 40upx;\n}\n.popup_wrap[data-v-fb528c32] {\n  width: 100%;\n  height: 660upx;\n  background: white;\n  border-radius: 20upx 20upx 0 0;\n}\n.popup_cont[data-v-fb528c32] {\n  box-sizing: border-box;\n  padding: 30upx;\n}\n.popup_cont .pay_button[data-v-fb528c32] {\n    width: 100%;\n    height: 100upx;\n    margin-top: 160upx;\n    background: #3bc1bb;\n    border-radius: 3upx;\n    font-size: 32upx;\n    color: white;\n    line-height: 100upx;\n}\n.date_item[data-v-fb528c32] {\n  width: 100%;\n  height: 68upx;\n  line-height: 68upx;\n  text-align: center;\n  font-size: 26upx;\n  font-weight: 400;\n  color: #282828;\n}\n.bottom_pay[data-v-fb528c32] {\n  position: fixed;\n  bottom: 0;\n  width: 100%;\n  box-sizing: border-box;\n  height: 110upx;\n  background: #4a4a4a;\n  box-shadow: 0 -2upx 10upx 0 rgba(0, 0, 0, 0.05);\n  padding: 0 30upx;\n}\n.bottom_pay uni-text[data-v-fb528c32] {\n    font-size: 36upx;\n    font-weight: 600;\n    color: white;\n}\n.bottom_pay .button_block[data-v-fb528c32] {\n    width: 212upx;\n    height: 80upx;\n    background: #3bc1bb;\n    border-radius: 3px;\n    line-height: 80upx;\n    font-size: 28upx;\n    font-weight: 500;\n    color: #FFFFFF;\n    margin: 0;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -18635,7 +18640,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("确 认")]
+            [_vm._v("确\n\t\t认")]
           )
         : _vm._e()
     ],
@@ -18910,7 +18915,10 @@ var render = function() {
                             },
                             [_vm._v(_vm._$g("10-" + $30, "t0-0"))]
                           ),
-                          _c("uni-tag", { attrs: { _i: "11-" + $30 } })
+                          _c("uni-tag", {
+                            staticClass: _vm._$g("11-" + $30, "sc"),
+                            attrs: { _i: "11-" + $30 }
+                          })
                         ],
                         1
                       ),
@@ -19184,7 +19192,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../tool/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.header_icon[data-v-bf46c2d0] {\n  width: 200upx;\n  height: 44px;\n}\n.header_icon uni-text[data-v-bf46c2d0] {\n  font-size: 30upx;\n  font-weight: 600;\n  color: #03a6a6;\n  line-height: 40upx;\n  vertical-align: middle;\n}\n.header_right[data-v-bf46c2d0] {\n  font-size: 0.28rem;\n  color: #03a6a6;\n}\n.address_list[data-v-bf46c2d0] {\n  margin-top: 0.2rem;\n  background-color: #FFFFFF;\n  padding: 30upx;\n}\n.address_list .list_top[data-v-bf46c2d0] {\n    font-size: 28upx;\n    font-weight: 500;\n    color: #282828;\n}\n.address_list .list_top .top_name[data-v-bf46c2d0] {\n      display: block;\n      width: 140upx;\n}\n.address_list .list_top .top_phone[data-v-bf46c2d0] {\n      margin-right: 40upx;\n}\n.address_list .address[data-v-bf46c2d0] {\n    font-size: 26upx;\n    font-weight: 400;\n    color: #686868;\n    line-height: 37upx;\n}\n.address_list .list_bottom[data-v-bf46c2d0] {\n    border-top: 2upx solid #F2F2F2;\n    padding-top: 20upx;\n    margin-top: 20upx;\n}\n.address_list .list_bottom .check_box .uni-checkbox-input[data-v-bf46c2d0] {\n      background-color: #03A6A6;\n      color: #FFFFFF;\n      border-radius: 50%;\n}\n.address_list .list_bottom uni-text[data-v-bf46c2d0] {\n      font-size: 28upx;\n      font-weight: 400;\n      color: #444444;\n}\n.address_list .list_bottom .image1 uni-image[data-v-bf46c2d0] {\n      width: 18upx;\n      height: 26upx;\n}\n.address_list .list_bottom .image2[data-v-bf46c2d0] {\n      margin-left: 40upx;\n}\n.address_list .list_bottom .image2 uni-image[data-v-bf46c2d0] {\n        width: 26upx;\n        height: 26upx;\n}\n.address_list .list_bottom .custom_text[data-v-bf46c2d0] {\n      background-color: transparent;\n      border: 0 none;\n      font-size: 28upx;\n      font-weight: 400;\n      color: #444444;\n      vertical-align: top;\n      margin-left: 10upx;\n}\n.change_address[data-v-bf46c2d0] {\n  display: -webkit-box;\n  display: flex;\n  display: -webkit-flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-align-items: center;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  -webkit-justify-content: space-between;\n}\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\n/* 颜色变量 */\n/* 行为相关颜色 */\n/* 文字基本颜色 */\n/* 背景颜色 */\n/* 边框颜色 */\n/* 尺寸变量 */\n/* 文字尺寸 */\n/* 图片尺寸 */\n/* Border Radius */\n/* 水平间距 */\n/* 垂直间距 */\n/* 透明度 */\n/* 文章场景相关 */\n.header_icon[data-v-bf46c2d0] {\n  width: 200upx;\n  height: 44px;\n}\n.header_icon uni-text[data-v-bf46c2d0] {\n  font-size: 30upx;\n  font-weight: 600;\n  color: #03a6a6;\n  line-height: 40upx;\n  vertical-align: middle;\n}\n.header_right[data-v-bf46c2d0] {\n  font-size: 0.28rem;\n  color: #03a6a6;\n}\n.address_list[data-v-bf46c2d0] {\n  margin-top: 0.2rem;\n  background-color: #FFFFFF;\n  padding: 30upx;\n}\n.address_list .list_top[data-v-bf46c2d0] {\n    font-size: 28upx;\n    font-weight: 500;\n    color: #282828;\n}\n.address_list .list_top .top_name[data-v-bf46c2d0] {\n      display: block;\n      width: 140upx;\n}\n.address_list .list_top .top_phone[data-v-bf46c2d0] {\n      margin-right: 40upx;\n}\n.address_list .list_top .address_tag[data-v-bf46c2d0] {\n      height: 30upx;\n      line-height: 30upx;\n      font-size: 22upx;\n      font-weight: 400;\n      color: #bd676c;\n}\n.address_list .address[data-v-bf46c2d0] {\n    font-size: 26upx;\n    font-weight: 400;\n    color: #686868;\n    line-height: 37upx;\n}\n.address_list .list_bottom[data-v-bf46c2d0] {\n    border-top: 2upx solid #F2F2F2;\n    padding-top: 20upx;\n    margin-top: 20upx;\n}\n.address_list .list_bottom .check_box .uni-checkbox-input[data-v-bf46c2d0] {\n      background-color: #03A6A6;\n      color: #FFFFFF;\n      border-radius: 50%;\n}\n.address_list .list_bottom uni-text[data-v-bf46c2d0] {\n      font-size: 28upx;\n      font-weight: 400;\n      color: #444444;\n}\n.address_list .list_bottom .image1 uni-image[data-v-bf46c2d0] {\n      width: 18upx;\n      height: 26upx;\n}\n.address_list .list_bottom .image2[data-v-bf46c2d0] {\n      margin-left: 40upx;\n}\n.address_list .list_bottom .image2 uni-image[data-v-bf46c2d0] {\n        width: 26upx;\n        height: 26upx;\n}\n.address_list .list_bottom .custom_text[data-v-bf46c2d0] {\n      background-color: transparent;\n      border: 0 none;\n      font-size: 28upx;\n      font-weight: 400;\n      color: #444444;\n      vertical-align: top;\n      margin-left: 10upx;\n}\n.change_address[data-v-bf46c2d0] {\n  display: -webkit-box;\n  display: flex;\n  display: -webkit-flex;\n  -webkit-box-align: center;\n          align-items: center;\n  -webkit-align-items: center;\n  -webkit-box-pack: justify;\n          justify-content: space-between;\n  -webkit-justify-content: space-between;\n}\n", ""]);
 // Exports
 module.exports = exports;
 

@@ -34,7 +34,9 @@
 				</view>
 			</uni-list>
 		</view>
-		<button @click="onConfirm" v-if="!realNameConfirm" class="address_button" :class="{address_button_active: buttonActive}">确 认</button>
+		<!-- <button type="default" @click="onFace">人脸识别</button> -->
+		<button @click="onConfirm" v-if="!realNameConfirm" class="address_button" :class="{address_button_active: buttonActive}">确
+			认</button>
 	</view>
 </template>
 
@@ -84,6 +86,20 @@
 					delta: 1
 				})
 			},
+			onFace() {
+				uni.request({
+					url: 'https://dtplus-cn-shanghai.data.aliyuncs.com/face/attribute',
+					method: 'POST',
+					header: {
+						'Content-Type': 'application/x-www-form-urlencoded',
+						'X-TENANT-ID': 'cuncun:cc@2020',
+						'Authorization': uni.getStorageSync('token')
+					},
+					success: (res) => {
+
+					}
+				});
+			},
 			changeIDCardImage1() {
 				if (this.realNameConfirm) {
 					return
@@ -104,7 +120,7 @@
 								console.log(res.tempFilePath)
 								uni.uploadFile({
 									url: 'http://cuncun.app.iisu.cn/server/data/user/upload/idcarda',
-									filePath: res.tempFilePath ,
+									filePath: res.tempFilePath,
 									header: {
 										// 'Content-Type': 'application/x-www-form-urlencoded',
 										'X-TENANT-ID': 'cuncun:cc@2020',
@@ -130,8 +146,7 @@
 													data: user
 												});
 											}
-										} catch (e) {
-										}
+										} catch (e) {}
 									}
 								})
 							}
@@ -185,8 +200,7 @@
 													data: user
 												});
 											}
-										} catch (e) {
-										}
+										} catch (e) {}
 									}
 								})
 							}
@@ -212,31 +226,22 @@
 				}
 			},
 			getIdinfo() {
-				uni.request({
-					url: 'http://cuncun.app.iisu.cn/server/data/user/idinfo',
-					method: 'GET',
-					header: {
-						'Content-Type': 'application/x-www-form-urlencoded',
-						'X-TENANT-ID': 'cuncun:cc@2020',
-						'Authorization': uni.getStorageSync('token')
-					},
-					success: (res) => {
-						let data = res.data
-						if (data.success) {
-							this.username = data.data.name
-							this.idCard = data.data.idNo
-							// this.idCardSrc1 = data.data.idNo
-							// this.idCardSrc2 = data.data.idNo
-							this.idOrgan = data.data.idIssueOrgan
-							this.idDate = data.data.idIssueDate + '-' + data.data.idExpiryDate
-						} else {
-							uni.showToast({
-								icon: 'none',
-								title: data.message
-							});
-						}
+				this.$http('user/idinfo', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						this.username = data.data.name
+						this.idCard = data.data.idNo
+						// this.idCardSrc1 = data.data.idNo
+						// this.idCardSrc2 = data.data.idNo
+						this.idOrgan = data.data.idIssueOrgan
+						this.idDate = data.data.idIssueDate + '-' + data.data.idExpiryDate
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
 					}
-				});
+				})
 			},
 		},
 	};
@@ -246,23 +251,27 @@
 	.top_img {
 		margin: 40upx auto 0;
 		text-align: center;
-		image{
+
+		image {
 			width: 200upx;
 			height: 276upx;
 		}
 	}
+
 	.input {
 		width: 520upx;
 		font-weight: 400;
 		font-size: 28upx;
 		line-height: 40upx;
 	}
+
 	.id_card {
 		image {
 			width: 330upx;
 			height: 210upx;
 		}
 	}
+
 	.address_button {
 		width: 690upx;
 		height: 98upx;

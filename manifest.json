@@ -18,12 +18,13 @@
             "alwaysShowBeforeRender" : true,
             "waiting" : false,
             "autoclose" : true,
-            "delay" : 500
+            "delay" : 1000
         },
         /* 模块配置 */
         "modules" : {
             "UIWebview" : {},
-            "Payment" : {}
+            "Payment" : {},
+            "FaceID" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -54,7 +55,8 @@
                         "appid" : "wx637cf15d6e0ee338",
                         "UniversalLinks" : "https://cuncun.cloud/cclink/"
                     },
-                    "alipay" : {}
+                    "alipay" : {},
+                    "appleiap" : {}
                 }
             },
             "icons" : {
@@ -116,7 +118,8 @@
                     "xxhdpi" : "C:/Users/11/Desktop/存存/存存启动页/Android/1080_1882.png"
                 }
             }
-        }
+        },
+        "nativePlugins" : {}
     },
     /* 快应用特有相关 */
     "quickapp" : {},
