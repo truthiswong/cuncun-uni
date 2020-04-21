@@ -2,13 +2,18 @@
 	<view class="guide">
 		<swiper class="swiper" indicator-active-color='#3BC1BB' :indicator-dots="true" @change="changeTab">
 			<swiper-item class="item" v-for="(item, index) in guidelList" :key="index">
-				<image :src="item.url" mode="aspectFill"></image>
-				<view class="guide_title">
-					<text>{{item.title}}</text>
-					<p :class="{'center': index == 0}">{{item.desc}}</p>
+				<view class="guide_img">
+					<!-- <image :src="item.url" mode="aspectFill"></image> -->
+					<img :src="item.url" />
 				</view>
-				<view class="guide_button" @click="onTry" v-if="index == guidelList.length-1">
-					<image src="../../static/common/try.png" mode=""></image>
+				<view class="guide_fixed">
+					<view class="guide_title">
+						<text>{{item.title}}</text>
+						<p :class="{'center': index == 0}">{{item.desc}}</p>
+					</view>
+					<view class="guide_button" @click="onTry" v-if="index == guidelList.length-1">
+						<image src="../../static/common/try.png" mode=""></image>
+					</view>
 				</view>
 			</swiper-item>
 		</swiper>
@@ -48,7 +53,7 @@
 			},
 			onTry() {
 				uni.redirectTo({
-				  url: '/pages/login/login'
+					url: '/pages/login/login'
 				});
 			}
 		}
@@ -74,22 +79,42 @@
 			width: 100%;
 			height: 100%;
 
-			image {
+			.guide_img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 444upx;
+				display: flex;
+				align-items: center;
+				width: 750upx;
+				max-width: 375px;
+				margin: auto;
+				img {
+					width: 100%;
+				}
+			}
+
+			.guide_fixed {
+				position: fixed;
+				bottom: 0;
 				width: 100%;
-				height: 1070upx;
+				height: 444upx;
+				margin: auto;
 			}
 
 			.guide_title {
-				padding: 0 60upx;
+				padding: 0 50upx;
 
 				text {
 					display: block;
 					font-size: 36upx;
-					font-weight: 500;
+					font-weight: 600;
 					color: rgba(40, 40, 40, 1);
 					line-height: 50upx;
 					margin: 100upx auto 0;
 					text-align: center;
+					letter-spacing:1px;
 				}
 
 				p {
@@ -97,9 +122,10 @@
 					font-weight: 400;
 					color: rgba(74, 74, 74, 1);
 					line-height: 50upx;
-					margin-top: 30upx;
+					margin-top: 34upx;
 					text-align: left;
 				}
+
 				.center {
 					text-align: center;
 				}
