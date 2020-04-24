@@ -23,9 +23,7 @@
 		<view class="content">
 			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
 				<view class="head_image">
-					<!-- <img :src="headImage" alt /> -->
 					<image class="head_image_img" :src="headImage"></image>
-					<!-- <cover-image class="head_image_img" :src="headImage"></cover-image> -->
 					<view>
 						<p style="width: 510upx; margin-bottom: 20upx;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">{{nickname}}</p>
 						<uni-rate disabled="true" size="14" value="3.5"></uni-rate>
@@ -75,7 +73,6 @@
 			if (user.nickName) {
 				this.nickname = user.nickName
 			}
-			console.log(this.headImage)
 		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
@@ -89,28 +86,15 @@
 				this.$http('user/current', "GET", '', res => {
 					let data = res.data
 					if (data.success) {
-						console.log(data.data)
-						const user = uni.getStorageSync('user');
-						if (user) {
-							user.portrait = data.data.portrait
-							uni.setStorage({
-								key: 'user',
-								data: user
-							});
-							this.headImage = user.portrait
-						}
-						// console.log(uni.getStorageSync('user'))
-						
-						this.nickName = data.data.nickName
-						// uni.setStorage({
-						// 	key: 'user',
-						// 	data: data.data
-						// });
-						
-						// try {
-							
-						// } catch (e) {
-						// }
+						try {
+							const user = uni.getStorageSync('user');
+							if (user) {
+								uni.setStorage({
+									key: 'user',
+									data: data.data
+								});
+							}
+						} catch (e) {}
 					} else {
 						uni.showToast({
 							icon: 'none',
