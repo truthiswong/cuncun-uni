@@ -36,7 +36,7 @@ Vue.component('uni-segmented-control', uniSegmentedControl)
 // Steps 步骤条
 import uniSteps from '@/components/uni-steps/uni-steps.vue'
 Vue.component('uni-uni-steps', uniSteps)
-
+// 地址选择框
 import pickRegions from '@/components/pick-regions/pick-regions.vue'
 Vue.component('pick-regions', pickRegions)
 

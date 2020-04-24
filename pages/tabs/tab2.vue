@@ -359,7 +359,9 @@
 			},
 			// 订单支付
 			onConfirmOrder(id) {
-
+				uni.navigateTo({
+					url: '/pages/tab2/orderDetailsPay'
+				})
 			}
 		}
 	}

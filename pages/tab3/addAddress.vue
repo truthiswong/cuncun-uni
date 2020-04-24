@@ -14,7 +14,7 @@
 						<input class="input" type="number" v-model="phone" maxlength="11" placeholder="请输入联系电话" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
-				<uni-list-item title="所在地区：">
+				<uni-list-item title="所在地区：" @click="gotoAddress">
 					<view slot="right" class="change_address">
 						<pick-regions :default-regions="defaultRegions" @getRegions="handleGetRegions">
 							<!-- <input type="" v-model="addressText" disabled placeholder="请选择所在地区" placeholder-style="color: #CCCCCC;font-size:14px;" /> -->
@@ -228,6 +228,11 @@
 				console.log('picker发送选择改变，携带值为', e.target.value)
 				this.index = e.target.value
 			},
+			gotoAddress() {
+				// uni.navigateTo({
+				// 	url: '/pages/tab3/addAddressConform'
+				// })
+			},
 			handleGetRegions(regions) {
 				console.log(regions)
 				this.regions = regions
@@ -280,6 +285,8 @@
 						title: '请选择标签类型'
 					});
 				} else {
+					// "longitude": 121.477355,
+					// "latitude": 31.234643
 					let data = {
 						id: this.addressId,
 						linkman: this.name,
@@ -287,7 +294,9 @@
 						areaId: this.areaId,
 						address: this.detailAddress,
 						tag: this.addressTag,
-						dft: this.isDefault
+						dft: this.isDefault,
+						lng: 121.477355,
+						lat: 31.234643
 					}
 					this.$http('user/addr/save', "POST", data, res => {
 						let data = res.data

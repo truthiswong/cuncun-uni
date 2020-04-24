@@ -334,60 +334,78 @@
 					bookFetchDate: this.dateDate,
 					bookFetchTime1: this.hourValue1,
 					bookFetchTime2: this.hourValue2,
-					userRemark: this.userRemark,
+					prepaid: this.pay_fee,
+					userRemark: this.userRemark
 				}
 				this.$http('user/deposit/order/create', "POST", data, res => {
 					let data = res.data
 					console.log(data)
-					let dataObj = {
-						orderId: data.data.id
-					}
-					if (this.payStyle == 'Alipay') {
-						this.$http('user/deposit/order/prepay/alipay', "POST", dataObj, res1 => {
-							if (res1.data.success) {
-								console.log(res1.data.data)
-								// #ifdef APP-PLUS
-								uni.requestPayment({
-									provider: 'alipay',
-									orderInfo: res1.data.data,
-									success: (res) => {
-										this.$refs.popup.close()
-										uni.navigateTo({
-											url: "/pages/tab2/orderSuccess"
-										})
-									},
-									fail: (err) => {
-										this.$refs.popup.close()
-										// uni.navigateTo({
-										// 	url: "/pages/tab2/orderSuccess"
-										// })
-									}
-								});
-								// #endif
-							} else {
-								uni.showToast({
-									icon: 'none',
-									title: data.message
-								});
-							}
-						})
+					if (data.success) {
+						let dataObj = {
+							orderId: data.data.id
+						}
+						if (this.payStyle == 'Alipay') {
+							this.$http('user/deposit/order/prepay/alipay', "POST", dataObj, res1 => {
+								if (res1.data.success) {
+									console.log(res1.data.data)
+									// #ifdef APP-PLUS
+									uni.requestPayment({
+										provider: 'alipay',
+										orderInfo: res1.data.data,
+										success: (res) => {
+											this.$refs.popup.close()
+											uni.navigateTo({
+												url: "/pages/tab2/orderSuccess"
+											})
+										},
+										fail: (err) => {
+											this.$refs.popup.close()
+											this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
+												if (res2.data.success) {
+													console.log(res2.data)
+													uni.switchTab({
+														url: '/pages/tabs/tab2'
+													})
+												} else {
+													uni.showToast({
+														icon: 'none',
+														title: res2.data.message
+													});
+												}
+											})
+										}
+									});
+									// #endif
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: res1.data.message
+									});
+								}
+							})
+						} else {
+							this.$refs.popup.close()
+							uni.navigateTo({
+								url: "/pages/tab2/orderSuccess"
+							})
+							// #ifdef APP-PLUS
+							uni.requestPayment({
+								provider: 'wxpay',
+								orderInfo: 'orderInfo', //微信、支付宝订单数据
+								success: (res) => {
+									console.log(res);
+								},
+								fail: (err) => {
+									console.log(err);
+								}
+							});
+							// #endif
+						}
 					} else {
-						this.$refs.popup.close()
-						uni.navigateTo({
-							url: "/pages/tab2/orderSuccess"
-						})
-						// #ifdef APP-PLUS
-						uni.requestPayment({
-							provider: 'wxpay',
-							orderInfo: 'orderInfo', //微信、支付宝订单数据
-							success: (res) => {
-								console.log(res);
-							},
-							fail: (err) => {
-								console.log(err);
-							}
+						uni.showToast({
+							icon: 'none',
+							title: data.message
 						});
-						// #endif
 					}
 				})
 			}

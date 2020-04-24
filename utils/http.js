@@ -20,6 +20,11 @@ function urlRequest(url, method, param, callBack) {
 				uni.navigateTo({
 					url: '/pages/login/login'
 				})
+			} else if (res.statusCode == 502) {
+				uni.showToast({
+					icon: 'none',
+					title: '服务器开小差了,请稍后再试'
+				});
 			} else {
 				callBack(res)
 			}

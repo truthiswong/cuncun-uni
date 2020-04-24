@@ -2,8 +2,8 @@
     "name" : "存存",
     "appid" : "__UNI__tech.cuncun.cuncun",
     "description" : "",
-    "versionName" : "1.0.5",
-    "versionCode" : 105,
+    "versionName" : "1.0.6",
+    "versionCode" : 106,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -24,7 +24,8 @@
         "modules" : {
             "UIWebview" : {},
             "Payment" : {},
-            "FaceID" : {}
+            "FaceID" : {},
+            "Maps" : {}
         },
         /* 应用发布信息 */
         "distribute" : {
@@ -57,6 +58,12 @@
                     },
                     "alipay" : {},
                     "appleiap" : {}
+                },
+                "maps" : {
+                    "baidu" : {
+                        "appkey_ios" : "ufxTYN5WCu5ZruOVMsBlZba5RbqDEMGs",
+                        "appkey_android" : "BpvyFZvz9x9B77KUTD2XztGfwR6Cw9IT"
+                    }
                 }
             },
             "icons" : {

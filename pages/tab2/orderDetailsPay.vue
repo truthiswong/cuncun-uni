@@ -31,6 +31,50 @@
 				<view class="order_list_image">
 					<image class="order_list_image_img" v-for="item in 10" :key="item" src="../../static/tab1/book_img2.png" mode=""></image>
 				</view>
+				<!-- <view class="order_list_image">
+					<view class="row segmented_list_content">
+						<view class="col-6 row">
+							<view class="col-8 list_content_left">
+								<text>21寸电视</text>
+							</view>
+							<view class="col-4 list_content_right">
+								<text>× 1</text>
+							</view>
+							<view class="col-8 list_content_left">
+								<text>2人沙发</text>
+							</view>
+							<view class="col-4 list_content_right">
+								<text>× 1</text>
+							</view>
+							<view class="col-8 list_content_left">
+								<text>60L旅行箱</text>
+							</view>
+							<view class="col-4 list_content_right">
+								<text>× 2</text>
+							</view>
+						</view>
+						<view class="col-6 row">
+							<view class="col-8 list_content_left">
+								<text>21寸电视</text>
+							</view>
+							<view class="col-4 list_content_right">
+								<text>× 1</text>
+							</view>
+							<view class="col-8 list_content_left">
+								<text>2人沙发</text>
+							</view>
+							<view class="col-4 list_content_right">
+								<text>× 1</text>
+							</view>
+							<view class="col-8 list_content_left">
+								<text>60L旅行箱</text>
+							</view>
+							<view class="col-4 list_content_right">
+								<text>× 2</text>
+							</view>
+						</view>
+					</view>
+				</view> -->
 				<view style="">
 					<view class="flex_between order_list_fee">
 						<p>第三方快递运输费</p>

@@ -291,6 +291,15 @@
 			}
 		},
 		{
+			"path": "pages/tab3/addAddressConform",
+			"style": {
+				"navigationBarTitleText": "确认地址",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
 			"path": "pages/tab3/changePhone",
 			"style": {
 				"navigationBarTitleText": "修改手机号",

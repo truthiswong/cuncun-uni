@@ -12,18 +12,18 @@
 				<br />
 				<text>运单号码：9832749272394</text>
 			</view>
+			<view class="map">
+				<image src="../../static/tab1/order_back_car.png"></image>
+			</view>
 			<view class="pay_info">
 				<view class="flex_between">
 					<text class="left">支付金额</text>
 					<text class="right">¥17</text>
 				</view>
-				<view class="flex_between">
+				<view class="flex_between" style="margin-top: 20upx;">
 					<text class="left">支付方式</text>
 					<text class="right">支付宝</text>
 				</view>
-			</view>
-			<view class="map">
-				<image src="../../static/tab1/order_back_car.png"></image>
 			</view>
 		</view>
 		<button @click="onPayChange" class="button_block">完成</button>
@@ -103,6 +103,15 @@
 	
 	.pay_info {
 		padding: 0 60upx;
+		font-size:28upx;
+		font-weight:400;
+		line-height:40upx;
+		.left {
+			color:rgba(178,178,178,1);
+		}
+		.right {
+			color:rgba(40,40,40,1);
+		}
 	}
 
 	.button_block {
