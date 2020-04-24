@@ -231,7 +231,7 @@
 			},
 			onSeeMore() {
 				if (this.boxNumber == 1) {
-					this.boxNumber = 20
+					this.boxNumber = 9999
 				} else {
 					this.boxNumber = 1
 				}
@@ -314,21 +314,22 @@
 				}
 			},
 			onNext() {
-				let dataInputStr = ''
-				let dataBoxStr = ''
+				let dataInput = {}
+				let dataBox = {}
+				let inputIndex = 0
+				let boxIndex = 0
 				for (let item of this.inputList) {
-					if (item.value) {
-						dataInputStr += `name=${item.value}&amount=${item.number}&`
-					}
+					dataInput['name[' + inputIndex + ']'] = item.value
+					dataInput['amount[' + inputIndex + ']'] = item.number
 				}
 				for (let item of this.boxList) {
-					if (item.number > 0) {
-						dataBoxStr += `boxId=${item.id}&amount=${item.number}&`
+					if (item.number>0) {
+						dataBox['boxId[' + boxIndex + ']'] = item.id
+						dataBox['amount[' + boxIndex + ']'] = item.number
+						boxIndex++
 					}
 				}
-				dataInputStr = dataInputStr.substr(0, dataInputStr.length - 1)
-				dataBoxStr = dataBoxStr.substr(0, dataBoxStr.length - 1)
-				if (!dataInputStr || !dataBoxStr) {
+				if (!dataInput || !dataBox) {
 					uni.showToast({
 						title: '请完善订单',
 						icon: 'none'
@@ -339,14 +340,14 @@
 						icon: 'none'
 					})
 				} else {
-					this.$http('user/deposit/pack/goods/add?' + dataInputStr, "POST", '', res => {
+					this.$http('user/deposit/pack/goods/add', "POST", dataInput, res => {
 						let data = res.data
 						if (data.success) {
-							this.$http('user/deposit/pack/box/add?' + dataBoxStr, "POST", '', res => {
+							this.$http('user/deposit/pack/box/add', "POST", dataBox, res => {
 								let data = res.data
 								if (data.success) {
 									uni.navigateTo({
-										url: "/pages/tab2/orderPay?total_fee=" + this.total_fee
+										url: "/pages/tab2/orderPay?boxNum=" + boxIndex
 									})
 								} else {
 									uni.showToast({
@@ -400,11 +401,6 @@
 							item.number = item.amount
 						}
 						this.inputList = data.data
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
 					}
 				})
 			}
