@@ -1,0 +1,498 @@
+<template>
+	<view>
+		<uni-nav-bar color="#FFFFFF" title="返送专线" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true"
+		 fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;"></uni-nav-bar>
+		<uni-nav-bar color="#000000" title="返送专线" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true"
+		 fixed="true" v-if="!headerShow" style="position: absolute; top: 0;" shadow="true"></uni-nav-bar>
+		</hx-navbar>
+		<!-- 内容 -->
+		<view class="content">
+			<view class="cont_top" @click="isAddShow=false" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}"></view>
+			<view class="cont_cont" @click="isAddShow=false" style="border-radius:20upx 20upx 0 0;">
+				<view class="cont_title">
+					<text>我们立刻去为您打包～请核实返送信息：</text>
+				</view>
+				<uni-list class="list_custom list_custom_padding40">
+					<uni-list-item @click="onChooseAddress">
+						<view class="">
+							<view class="" v-if="!address.id">
+								<text>请添加您的地址</text>
+							</view>
+							<view class="choose_address" v-else>
+								<view class="row address">
+									<p class="address_detail">
+										<uni-tag class="address_tag" :text="address.tag[0].name" size="small" :inverted="true" type="error"></uni-tag>
+										<text>{{address.detailAddress}}</text>
+									</p>
+								</view>
+								<view class="top_name">
+									<text>{{address.linkman}}</text>
+									<text style="margin-left: 30upx;">{{address.mobile}}</text>
+								</view>
+							</view>
+						</view>
+					</uni-list-item>
+					<uni-list-item title="备注">
+						<view slot="right">
+							<input class="input_remark" v-model="userRemark" type="text" placeholder="对我们的服务人员有什么特别的吩咐吗" style="font-size:28upx;padding-left: 20upx;color: #282828;"
+							 placeholder-style="font-size:14px; font-weight:400; color:rgba(178,178,178,1); line-height:40upx;" />
+						</view>
+					</uni-list-item>
+				</uni-list>
+				<view class="pay_info">
+					<view class="flex_between total_fee">
+						<text>支付定金</text>
+						<text>¥ 70</text>
+					</view>
+					<view class="flex_between pay_info_list">
+						<text>运输费</text>
+						<text>¥ 0</text>
+					</view>
+					<view class="flex_between pay_info_list">
+						<text>打包费</text>
+						<text>¥ 0</text>
+					</view>
+					<view class="flex_between pay_info_list">
+						<text>箱子费</text>
+						<text>¥ 0</text>
+					</view>
+					<view class="flex_between pay_info_list">
+						<text>调整费</text>
+						<text>¥ 0</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<uni-popup ref="popup" type="bottom" @touchmove.stop.prevent @touchend.stop>
+			<view class="popup_wrap">
+				<view class="popup_title">
+					<text>选择支付方式</text>
+					<image class="close_btn" @click="closePopup" src="../../static/tab2/close.png" mode=""></image>
+				</view>
+				<view class="popup_cont">
+					<view class="">
+						<radio-group @change="onPayChangeStyle">
+							<uni-list class="list_custom list_custom_img56" v-for="(item, index) in payStyleList" :key="index">
+								<uni-list-item :title="item.name" :thumb="item.imgUrl" :showArrow="false">
+									<view slot="right">
+										<label>
+											<radio :value="item.value" :checked="item.checked" color="rgba(59, 193, 187, 1)" />
+										</label>
+									</view>
+								</uni-list-item>
+							</uni-list>
+						</radio-group>
+					</view>
+					<button class="pay_button" @click="onComfirmPay">立即支付</button>
+				</view>
+			</view>
+		</uni-popup>
+		<view class="flex_between bottom_pay">
+			<text>¥ {{total_fee}}</text>
+			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">确认支付</button>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		components: {},
+		data() {
+			return {
+				headerShow: true,
+				address: {},
+				userRemark: '', //备注
+				total_fee: 0,
+				payStyleList: [{
+						id: 0,
+						value: 'Alipay',
+						name: '支付宝',
+						checked: 'false',
+						imgUrl: '../../static/tab2/Alipay.png'
+					},
+					{
+						id: 1,
+						value: 'WeChatpay',
+						name: '微信支付',
+						imgUrl: '../../static/tab2/WeChatpay.png'
+					}
+				],
+				payStyle: 'Alipay',
+				buttonActive: false,
+				cont_top_bg: '../../static/tab1/order_back_bg2.png',
+			}
+		},
+		onLoad() {
+
+		},
+		onShow() {},
+		onPageScroll(options) {
+			if (options.scrollTop > 60) {
+				this.headerShow = false;
+			} else {
+				this.headerShow = true;
+			}
+		},
+		watch: {
+			address() {
+				if (this.address) {
+					this.buttonActive = true;
+				} else {
+					this.buttonActive = false;
+				}
+			}
+		},
+		methods: {
+			onClickBack() {
+				uni.navigateBack({
+					delta: 1
+				})
+			},
+			onChooseAddress() {
+				uni.navigateTo({
+					url: '/pages/tab3/address?chooseAddress=true'
+				})
+			},
+			onPayChangeStyle(evt) {
+				console.log(evt.target.value)
+				this.payStyle = evt.target.value
+			},
+			closePopup() {
+				this.$refs.popup.close()
+			},
+			onPayChange() {
+				if (!this.address.id) {
+					uni.showToast({
+						title: '请选择地址',
+						icon: 'none'
+					})
+				} else {
+					this.$refs.popup.open()
+				}
+			},
+			onComfirmPay() {
+				uni.navigateTo({
+					url: "/pages/tab1/orderBackSuccess"
+				})
+				return
+				this.$http('user/deposit/order/create?' + dataStr, "POST", '', res => {
+					let data = res.data
+					console.log(data)
+					let dataObj = {
+						orderId: data.data.id
+					}
+					if (this.payStyle == 'Alipay') {
+						this.$http('user/deposit/order/prepay/alipay', "POST", dataObj, res1 => {
+							if (res1.data.success) {
+								console.log(res1.data.data)
+								// #ifdef APP-PLUS
+								uni.requestPayment({
+									provider: 'alipay',
+									orderInfo: res1.data.data,
+									success: (res) => {
+										this.$refs.popup.close()
+										uni.navigateTo({
+											url: "/pages/tab2/orderSuccess"
+										})
+									},
+									fail: (err) => {
+										this.$refs.popup.close()
+										// uni.navigateTo({
+										// 	url: "/pages/tab2/orderSuccess"
+										// })
+									}
+								});
+								// #endif
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: data.message
+								});
+							}
+						})
+					} else {
+						this.$refs.popup.close()
+						uni.navigateTo({
+							url: "/pages/tab2/orderSuccess"
+						})
+						// #ifdef APP-PLUS
+						uni.requestPayment({
+							provider: 'wxpay',
+							orderInfo: 'orderInfo', //微信、支付宝订单数据
+							success: (res) => {
+								console.log(res);
+							},
+							fail: (err) => {
+								console.log(err);
+							}
+						});
+						// #endif
+					}
+				})
+			}
+		}
+
+	}
+</script>
+
+<style scoped lang="scss">
+	.header_icon {
+		width: 200upx;
+		height: 44px;
+	}
+
+	.header_icon image {
+		width: 44upx;
+		height: 44upx;
+		vertical-align: middle;
+	}
+
+	.content {
+		width: 100%;
+		height: 100%;
+
+		.cont_top {
+			width: 100%;
+			height: 618upx;
+			box-sizing: border-box;
+			text-align: center;
+			padding-top: 200upx;
+		}
+
+		.cont_cont {
+			margin-top: -60upx;
+			background: rgba(252, 252, 252, 1);
+			border-radius: 20upx 20upx 0 0;
+			padding: 0 30upx 160upx;
+
+			.cont_title {
+				width: 100%;
+				line-height: 125upx;
+				border-bottom: 1upx solid rgba(242, 242, 242, .58);
+
+				text {
+					font-size: 32upx;
+					font-weight: 600;
+					color: rgba(40, 40, 40, 1);
+					border-bottom: 10upx solid rgba(148, 220, 217, 1);
+				}
+			}
+
+			.cont_list {
+				text {
+					font-size: 28upx;
+					font-weight: 400;
+					color: rgba(74, 74, 74, 1);
+					line-height: 46upx;
+				}
+
+				.list_middle {
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+
+				.list_right {
+					align-items: center;
+
+					image {
+						width: 50upx;
+						height: 50upx;
+					}
+
+					text {
+						font-size: 20upx;
+						font-weight: 400;
+						color: rgba(178, 178, 178, 1);
+						line-height: 24upx;
+					}
+				}
+			}
+		}
+
+		.bottom_button {
+			position: fixed;
+			bottom: 0upx;
+			width: 100%;
+			z-index: 20;
+			text-align: center;
+
+			image {
+				width: 324upx;
+				height: 127upx;
+			}
+
+			.bottom_alert {
+				position: absolute;
+				left: 73upx;
+				bottom: 160upx;
+				width: 270upx;
+				background: rgba(255, 255, 255, 1);
+				box-shadow: 0px 2upx 14upx 0px rgba(0, 0, 0, 0.1);
+				// box-shadow: 0px 30upx 110upx 0px rgba(0, 0, 0, 0.3);
+
+				.alert_list {
+					font-size: 28upx;
+					font-weight: 400;
+					color: rgba(40, 40, 40, 1);
+					border-bottom: 1upx solid rgba(242, 242, 242, .58);
+					line-height: 100upx;
+					text-align: left;
+					padding-left: 30upx;
+				}
+			}
+
+			.bottom_alert::after {
+				content: "";
+				position: absolute;
+				bottom: -20upx;
+				left: 30upx;
+				border-top: 20upx solid white;
+				border-left: 20upx solid transparent;
+				border-right: 20upx solid transparent;
+			}
+		}
+	}
+
+	.popup_wrap {
+		width: 100%;
+		height: 660upx;
+		background: rgba(255, 255, 255, 1);
+		border-radius: 20upx 20upx 0 0;
+	}
+
+	.popup_cont {
+		box-sizing: border-box;
+		padding: 30upx;
+
+		.pay_button {
+			width: 100%;
+			height: 100upx;
+			margin-top: 160upx;
+			background: rgba(59, 193, 187, 1);
+			border-radius: 3upx;
+			font-size: 32upx;
+			color: rgba(255, 255, 255, 1);
+			line-height: 100upx;
+		}
+	}
+
+	.choose_address {
+		.address {
+			.address_detail {
+				.address_tag {
+					display: inline-block;
+					height: 30upx;
+					line-height: 30upx;
+					font-size: 22upx;
+					font-weight: 400;
+					color: rgba(189, 103, 108, 1);
+					margin-right: 30upx;
+					vertical-align: middle;
+				}
+
+				text {
+					font-size: 32upx;
+					font-weight: 500;
+					color: rgba(40, 40, 40, 1);
+					line-height: 52upx;
+					text-align: justify;
+					vertical-align: middle;
+				}
+			}
+		}
+
+		.top_name {
+			font-size: 26upx;
+			font-weight: 400;
+			color: rgba(178, 178, 178, 1);
+			line-height: 37upx;
+			margin-top: 10upx;
+		}
+	}
+
+	.top_text {
+		font-size: 32upx;
+		font-weight: 500;
+		color: rgba(40, 40, 40, 1);
+		line-height: 64upx;
+		text-align: justify;
+
+		.top_text_border {
+			box-sizing: border-box;
+			border-bottom: 11upx solid #94DCD9;
+		}
+	}
+
+	.input_remark {
+		width: 500upx;
+		height: 60upx;
+		font-size: 28px;
+		font-family: PingFangSC-Regular, PingFang SC;
+		font-weight: 400;
+		color: rgba(178, 178, 178, 1);
+		line-height: 60upx;
+		background: rgba(249, 249, 249, 0);
+		border: 0 none;
+		text-align: right;
+
+		.item {
+			width: 30%;
+			height: 300px;
+		}
+	}
+
+	.pay_info {
+		margin: 40upx 0;
+
+		.pay_info_list {
+			font-size: 24upx;
+			font-weight: 400;
+			color: rgba(178, 178, 178, 1);
+			line-height: 33upx;
+			margin-top: 6upx;
+		}
+	}
+
+	.total_fee {
+		text {
+			font-size: 28upx;
+			font-weight: 600;
+			color: rgba(40, 40, 40, 1);
+			line-height: 40upx;
+		}
+	}
+
+	.bottom_pay {
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		box-sizing: border-box;
+		height: 110upx;
+		background: rgba(74, 74, 74, 1);
+		box-shadow: 0 -2upx 10upx 0 rgba(0, 0, 0, 0.05);
+		padding: 0 30upx;
+
+		text {
+			font-size: 36upx;
+			font-weight: 600;
+			color: rgba(255, 255, 255, 1);
+		}
+
+		.button_block {
+			width: 212upx;
+			height: 80upx;
+			background-color: #B2B2B2;
+			border-radius: 3px;
+			line-height: 80upx;
+			font-size: 28upx;
+			font-weight: 500;
+			color: #FFFFFF;
+			margin: 0;
+		}
+
+		.button_block_active {
+			background: rgba(59, 193, 187, 1);
+		}
+	}
+</style>
