@@ -12,6 +12,9 @@
 				<uni-list class="list_custom list_custom_margin20">
 					<!-- <uni-list-item title="功能介绍"></uni-list-item> -->
 					<uni-list-item @click="appUpdate" title="版本更新"></uni-list-item>
+					<!-- <uni-list-item @click="openMarket()" title="使用应用商店打开指定App"></uni-list-item>
+					<uni-list-item @click="openMarket('com.tencent.android.qqdownloader')" title="强制使用应用宝打开指定App"></uni-list-item>
+					<uni-list-item @click="openTaobao('taobao://s.taobao.com/search?q=uni-app')" title="打开淘宝搜索"></uni-list-item> -->
 				</uni-list>
 			</view>
 		</view>
@@ -36,6 +39,40 @@
 				uni.navigateBack({
 					delta: 1
 				})
+			},
+			openMarket(marketPackageName) {
+				var appurl;
+				if (plus.os.name=="Android") {
+					appurl = "market://details?id=io.dcloud.hellouniapp";//可能部分应用商店没有收录
+				}
+				else{
+					appurl = "itms-apps://itunes.apple.com/cn/app/hello-uni-app/id1417078253";
+				}
+				if (typeof(marketPackageName)=="undefined") {
+					plus.runtime.openURL(appurl, function(res) {
+						console.log(res);
+					});
+				} else{//强制指定某个Android应用市场的包名，通过这个包名启动指定app
+					if (plus.os.name=="Android") {
+						plus.runtime.openURL(appurl, function(res) {
+							plus.nativeUI.alert("本机没有安装应用宝");
+						},marketPackageName);
+					} else{
+						plus.nativeUI.alert("仅Android手机才支持应用宝");
+					}
+				}
+			},
+			openTaobao(url){
+				plus.runtime.openURL(url, function(res) {
+					uni.showModal({
+						content:"本机未检测到淘宝客户端，是否打开浏览器访问淘宝？",
+						success:function(res){
+							if (res.confirm) {
+								plus.runtime.openURL("https://s.taobao.com/search?q=uni-app")
+							}
+						}
+					})
+				});
 			},
 			appUpdate() {
 				let info = uni.getSystemInfoSync()

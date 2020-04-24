@@ -184,6 +184,20 @@
 	padding: 30upx;
 }
 
+/* 多选框 */
+.checkbox_custom uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
+    background-color: rgb(59, 193, 187);
+}
+.checkbox_custom uni-checkbox .uni-checkbox-input {
+	margin: 0;
+    border: 1px solid #d1d1d1;
+    border-radius: 50%;
+    position: relative;
+}
+.checkbox_custom uni-checkbox:not([disabled]) .uni-checkbox-input:hover {
+    border-color: rgb(59, 193, 187);
+}
+
 .flex_between {
 	display: -webkit-flex;
 	display: flex;
@@ -210,13 +224,13 @@
 }
 
 .col-1 {
-	flex: 0 0 8.333333%;
-	max-width: 8.333333%;
+	flex: 0 0 8.333333333%;
+	max-width: 8.333333333%;
 }
 
 .col-2 {
-	flex: 0 0 16.666667%;
-	max-width: 16.666667%;
+	flex: 0 0 16.66666666%;
+	max-width: 16.66666666%;
 }
 
 .col-3 {
@@ -230,8 +244,8 @@
 }
 
 .col-5 {
-	flex: 0 0 41.666667%;
-	max-width: 41.666667%;
+	flex: 0 0 41.6666666666%;
+	max-width: 41.666666666%;
 }
 
 .col-6 {
@@ -245,8 +259,8 @@
 }
 
 .col-8 {
-	flex: 0 0 66.666667%;
-	max-width: 66.666667%;
+	flex: 0 0 66.666666666%;
+	max-width: 66.6666666666%;
 }
 
 .col-9 {
@@ -255,13 +269,13 @@
 }
 
 .col-10 {
-	flex: 0 0 83.333333%;
-	max-width: 83.333333%;
+	flex: 0 0 83.333333333%;
+	max-width: 83.333333333%;
 }
 
 .col-11 {
-	flex: 0 0 91.666667%;
-	max-width: 91.666667%;
+	flex: 0 0 91.666666666%;
+	max-width: 91.666666666%;
 }
 
 .col-12 {

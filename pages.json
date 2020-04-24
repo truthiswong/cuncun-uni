@@ -117,6 +117,33 @@
 				}
 			}
 		},
+		{
+			"path": "pages/tab1/orderBack",
+			"style": {
+				"navigationBarTitleText": "返送清单",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab1/orderBackPay",
+			"style": {
+				"navigationBarTitleText": "返送清单",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab1/orderBackSuccess",
+			"style": {
+				"navigationBarTitleText": "返送清单",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
 		// 订单
 		{
 			"path": "pages/tab2/addOrder",
@@ -176,6 +203,15 @@
 			"path": "pages/tab2/orderSuccess",
 			"style": {
 				"navigationBarTitleText": "订单成功",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab2/picker",
+			"style": {
+				"navigationBarTitleText": "时间日期选择",
 				"app-plus": {
 					"bounce": "none"
 				}

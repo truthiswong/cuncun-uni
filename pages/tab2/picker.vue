@@ -12,11 +12,31 @@
 					<view class="item" v-for="(item,index) in days" :key="index">{{item}}日</view>
 				</picker-view-column>
 			</picker-view>
+			<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
+				<view class="uni-input">{{date}}</view>
+			</picker>
 		</view>
 	</view>
 </template>
 
 <script>
+	function getDate(type) {
+		const date = new Date();
+	
+		let year = date.getFullYear();
+		let month = date.getMonth() + 1;
+		let day = date.getDate();
+	
+		if (type === 'start') {
+			year = year - 60;
+		} else if (type === 'end') {
+			year = year + 2;
+		}
+		month = month > 9 ? month : '0' + month;;
+		day = day > 9 ? day : '0' + day;
+	
+		return `${year}-${month}-${day}`;
+	}
 	export default {
 		components: {},
 		data: function() {
@@ -46,7 +66,12 @@
 				day,
 				value: [9999, month - 1, day - 1],
 				visible: true,
-				indicatorStyle: `height: ${Math.round(uni.getSystemInfoSync().screenWidth/(750/100))}px;`
+				indicatorStyle: `height: ${Math.round(uni.getSystemInfoSync().screenWidth/(750/100))}px;`,
+				date: getDate({
+					format: true
+				}),
+				startDate:getDate('start'),
+				endDate:getDate('end'),
 			}
 		},
 		methods: {
@@ -54,7 +79,11 @@
 				const val = e.detail.value
 				this.month = this.months[val[0]]
 				this.day = this.days[val[1]]
-			}
+			},
+			bindDateChange: function(e) {
+				console.log(e)
+				this.date = e.detail.value
+			},
 		}
 
 	}

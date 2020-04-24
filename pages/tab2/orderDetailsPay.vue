@@ -144,6 +144,7 @@
 		data() {
 			return {
 				headerShow: true,
+				orderId: '',
 				payStyleList: [{
 						id: 0,
 						value: 'Alipay',
@@ -161,8 +162,14 @@
 				buttonActive: false,
 			}
 		},
-		onLoad() {},
-		onShow() {},
+		onLoad(op) {
+			this.orderId = op.id
+		},
+		onShow() {
+			if (this.orderId) {
+				this.getOrderDetail()
+			}
+		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
@@ -171,9 +178,6 @@
 			}
 		},
 		watch: {},
-		computed: {
-
-		},
 		methods: {
 			onClickBack() {
 				uni.navigateBack({
@@ -200,6 +204,20 @@
 				// 	url: "/pages/tab2/orderSuccess"
 				// })
 				this.$refs.popup.close()
+			},
+			getOrderDetail() {
+				this.$http('user/deposit/order/detail/'+this.orderId, "GET", '', res => {
+					console.log(res)
+					let data = res.data
+					if (data.success) {
+						console.log(data.data)
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
 			}
 		}
 
