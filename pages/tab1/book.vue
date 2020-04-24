@@ -1,19 +1,20 @@
 <template>
 	<view>
-		<uni-nav-bar color="#FFFFFF" title="我的书架" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
+		<uni-nav-bar color="#FFFFFF" title="我的书架" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true"
+		 fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
 			<view slot="right">
 				<view class="header_icon">
 					<image @click="onClickRight(1)" style="" src="../../static/tab1/search_white.png"></image>
-					<button @click="onClickRight(2)" plain="true" class="choose_button">选择</button>
+					<button @click="onClickRight(chooseButton)" plain="true" class="choose_button">{{chooseButton}}</button>
 				</view>
 			</view>
 		</uni-nav-bar>
-		<uni-nav-bar color="#000000" title="我的书架" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true" v-if="!headerShow" style="position: absolute; top: 0;"
-		 shadow="true">
+		<uni-nav-bar color="#000000" title="我的书架" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true"
+		 fixed="true" v-if="!headerShow" style="position: absolute; top: 0;" shadow="true">
 			<view slot="right">
 				<view class="header_icon">
 					<image @click="onClickRight(1)" src="../../static/tab1/search_green.png"></image>
-					<button @click="onClickRight(2)" plain="true" class="choose_button choose_button_scroll">选择</button>
+					<button @click="onClickRight(chooseButton)" plain="true" class="choose_button choose_button_scroll">{{chooseButton}}</button>
 				</view>
 			</view>
 		</uni-nav-bar>
@@ -25,10 +26,22 @@
 				<p>您已经超过了 <text>50%</text> 的收纳小伙伴咯～</p>
 			</view>
 			<view>
-				<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
-				 style="display: inline-block;" v-for="(item,index) in 18" :key='index'>
-					<image src="../../static/tab1/book_img1.png"></image>
-				</view>
+				<checkbox-group class="checkbox_custom" @change="onCheckboxChange">
+
+					<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}" style="display: inline-block;"
+					 v-for="(item,index) in list" :key='index'>
+						<image :src="item.src"></image>
+						<view class="checkbox_item" v-if="isCheckedShow">
+							<label>
+								<checkbox :value="item.id" :checked="item.checked" color="white" /><text></text>
+							</label>
+						</view>
+					</view>
+				</checkbox-group>
+			</view>
+			<view class="bottom_button" v-if="isCheckedShow">
+				<image @click="onCancel" style="width: 218upx;height: 124upx;" src="../../static/tab1/long_cancel.png" mode=""></image>
+				<image @click="onConfirm" style="width: 268upx;height: 124upx;" src="../../static/tab1/come_back.png" mode=""></image>
 			</view>
 		</view>
 	</view>
@@ -40,7 +53,29 @@
 		data() {
 			return {
 				headerShow: true,
-				platform: '',
+				list: [{
+						id: '0000',
+						src: '../../static/tab1/book_img1.png',
+						checked: false,
+					},
+					{
+						id: '111',
+						src: '../../static/tab1/book_img1.png',
+						checked: false,
+					},
+					{
+						id: '2222',
+						src: '../../static/tab1/book_img1.png',
+						checked: false,
+					},
+					{
+						id: '3333',
+						src: '../../static/tab1/book_img1.png',
+						checked: false,
+					},
+				],
+				isCheckedShow: false,
+				chooseButton: '选择',
 				cont_top_bg: '../../static/tab1/book_bg.png',
 				scroll_bg1: '../../static/tab1/bookbox.png',
 			}
@@ -67,27 +102,54 @@
 					uni.navigateTo({
 						url: "/pages/tab1/search"
 					})
-				} else if (index == 2) {
-					console.log(2);
+				} else if (index == '选择') {
+					this.isCheckedShow = true
+					this.chooseButton = '全选'
+				} else if (index == '全选') {
+					for (let item of this.list) {
+						item.checked = true
+					}
 				}
 			},
+			onCheckboxChange(e) {
+				for (let item of this.list) {
+					if (e.detail.value.includes(item.id)) {
+						item.checked = true
+					} else {
+						item.checked = false
+					}
+				}
+				console.log(this.list)
+			},
+			onCancel() {
+				this.isCheckedShow = false
+				this.chooseButton = '选择'
+				for (let item of this.list) {
+					item.checked = false
+				}
+			},
+			onConfirm() {
+				uni.navigateTo({
+					url: '/pages/tab1/orderBack'
+				})
+			}
 		}
 
 	}
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 	.header_icon {
 		width: 200upx;
 		height: 44px;
 	}
-	
+
 	.header_icon image {
 		width: 44upx;
 		height: 44upx;
 		vertical-align: middle;
 	}
-	
+
 	.choose_button {
 		display: inline-block;
 		width: 96upx;
@@ -103,6 +165,7 @@
 		margin-left: 50upx;
 		box-sizing: border-box;
 	}
+
 	.choose_button_scroll {
 		border: 1px solid rgba(0, 0, 0, 1);
 		color: #000000;
@@ -121,18 +184,32 @@
 		padding-top: 200upx;
 		margin-bottom: 30upx;
 	}
+
 	.cont_top p {
-		font-size:28upx;
-		font-weight:400;
-		color:rgba(255,255,255,1);
-		line-height:46upx;
+		font-size: 28upx;
+		font-weight: 400;
+		color: rgba(255, 255, 255, 1);
+		line-height: 46upx;
 		margin: 20upx;
 	}
+
 	.cont_top p text {
-		font-size:40upx;
-		font-weight:400;
-		color:rgba(255,255,255,1);
-		line-height:46upx;
+		font-size: 40upx;
+		font-weight: 400;
+		color: rgba(255, 255, 255, 1);
+		line-height: 46upx;
+	}
+
+	.bottom_button {
+		position: fixed;
+		right: 0;
+		bottom: 0upx;
+		z-index: 20;
+
+		image {
+			width: 218upx;
+			height: 120upx;
+		}
 	}
 
 	.no_data {
@@ -183,6 +260,13 @@
 		height: 260upx;
 		text-align: center;
 		margin-top: 16upx;
+		position: relative;
+
+		.checkbox_item {
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
 	}
 
 	.scroll_contentbg1 {
@@ -209,6 +293,7 @@
 		width: 220upx;
 		height: 200upx;
 	}
+
 	.common_button {
 		width: 398upx;
 		height: 90upx;
