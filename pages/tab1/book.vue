@@ -30,12 +30,12 @@
 
 					<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}" style="display: inline-block;"
 					 v-for="(item,index) in list" :key='index'>
-						<image :src="item.src"></image>
-						<view class="checkbox_item" v-if="isCheckedShow">
-							<label>
-								<checkbox :value="item.id" :checked="item.checked" color="white" /><text></text>
-							</label>
-						</view>
+						<label>
+							<image :src="item.src"></image>
+							<view class="checkbox_item" v-if="isCheckedShow">
+								<checkbox :value="item.id" :checked="item.checked" color="white" />
+							</view>
+						</label>
 					</view>
 				</checkbox-group>
 			</view>
