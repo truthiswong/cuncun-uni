@@ -8,7 +8,7 @@
 			<view class="top_text">
 				<text>我们随时跟进我们的物流情况，根据需要会跟你订单留的号码 <text class="top_text_border">17493279824</text> 联系，<text class="top_text_border">请保持电话畅通</text>。</text>
 				<br />
-				<text>本次物流由 xxxxxx 配送</text>
+				<text>本次物流由 顺丰快递 配送</text>
 				<br />
 				<text>运单号码：9832749272394</text>
 			</view>

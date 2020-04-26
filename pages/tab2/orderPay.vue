@@ -1,10 +1,10 @@
 <template>
 	<view>
 		<uni-nav-bar color="#000000" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true"
-		 v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
+		 v-if="headerShow" backgroundColor="rgba(0,0,0,0)">
 		</uni-nav-bar>
 		<uni-nav-bar color="#000000" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true"
-		 v-if="!headerShow" shadow="true" style="position: absolute; top: 0;">
+		 v-if="!headerShow" shadow="true">
 		</uni-nav-bar>
 		<!-- 内容 -->
 		<view class="content">
@@ -69,7 +69,7 @@
 					<text>箱子费</text>
 					<text>¥ 0</text>
 				</view>
-				<view style="font-size:26upx;font-weight:400;color:rgba(40,40,40,1);line-height:42upx;margin: 14upx 0 20upx;">
+				<view style="font-size:26upx;font-weight:400;color:rgba(40,40,40,1);text-align: justify;line-height:42upx;margin: 60upx 0 20upx;">
 					定金是根据您所需的箱子来暂定收费，实际费用以当天收到的物品为准进行多退少补，请放心。
 					<br />存存承诺服务不出现任何隐形费用，服务人员也绝对不会出现追加费用现象，如有发现，欢迎告知。
 				</view>

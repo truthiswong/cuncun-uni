@@ -4,9 +4,10 @@
 			<view class="cont_top">
 				<image src="../../static/tab2/ok.png"></image>
 				<p>一切都搞定！！！！！</p>
+				<text>您只要翘着脚等着就行～</text>
 			</view>
 			<view class="top_text">
-				<text>我们会在预定的时间和地点拜访; 你只要翘着脚等着就行了~</text>
+				<text>您的订单我们已经收到，我们将会受理您的订单并给予您确认。正常情况下，我们会在预定的时间、地点拜访。</text>
 			</view>
 			<view class="map">
 				<view class="map_top">
@@ -70,6 +71,12 @@
 			line-height: 42upx;
 			margin-top: 49upx;
 		}
+		text {
+			font-size:30upx;
+			font-weight:600;
+			color:rgba(40,40,40,1);
+			line-height:56upx;
+		}
 	}
 	.map {
 		position: relative;
@@ -130,7 +137,7 @@
 
 	.top_text {
 		font-size: 32upx;
-		font-weight: 500;
+		font-weight: 600;
 		color: rgba(40, 40, 40, 1);
 		line-height: 64upx;
 		text-align: justify;

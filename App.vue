@@ -66,6 +66,5 @@
 
 <style>
 	/*每个页面公共css */
-	@import url("static/css/bookchat.css");
 	@import url("static/css/common.css");
 </style>

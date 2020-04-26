@@ -34,8 +34,8 @@
 									<navigator :url="'/pages/tab2/orderDetailsPay?id='+item.id">
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="存单" :note="item.address" :showArrow="false">
-												<view slot='right' class="list_right_orange">
-													<text>待付款</text>
+												<view slot='right' class="list_right_text">
+													<text class="list_right_orange">待付款</text>
 												</view>
 											</uni-list-item>
 										</uni-list>
@@ -59,8 +59,8 @@
 									<navigator :url="'/pages/tab2/orderDetailsPay?id='+item.id">
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="取单" :note="'送到: '+item.address" :showArrow="false">
-												<view slot='right' class="list_right_orange">
-													<text>待付款</text>
+												<view slot='right' class="list_right_text">
+													<text class="list_right_orange">待付款</text>
 												</view>
 											</uni-list-item>
 										</uni-list>
@@ -83,8 +83,8 @@
 									<navigator :url="'/pages/tab2/orderDetailsPay?id='+item.id">
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="仓储订单" :note="item.address" :showArrow="false">
-												<view slot='right' class="list_right_orange">
-													<text>待付款</text>
+												<view slot='right' class="list_right_text">
+													<text class="list_right_orange">待付款</text>
 												</view>
 											</uni-list-item>
 										</uni-list>
@@ -123,12 +123,18 @@
 						</view>
 						<view v-if="current === 1">
 							<view v-for="(item,index) in orderList1" :key="index">
-								<view class="segmented_list" v-if="item.prepaidStatus.code == 'wait'">
-									<navigator :url="'/pages/tab2/orderDetailsPay?id='+item.id">
+								<view class="segmented_list">
+									<view @click="onOrder1Detail(item)">
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="存单" :note="'上门地址：'+item.address" :showArrow="false">
-												<view slot='right' class="list_right_orange">
-													<text>待付款</text>
+												<view slot='right' class="list_right_text">
+													<text class="list_right_orange" v-if="item.status.code == 'waipay'">待付款</text>
+													<text class="list_right_blue" v-if="item.status.code == 'init'">待接单</text>
+													<text class="list_right_blue" v-if="item.status.code == 'fetch'">待取货</text>
+													<text class="list_right_blue" v-if="item.status.code == 'delivery'">回库中</text>
+													<text class="list_right_blue" v-if="item.status.code == 'inputwork'">入库作业中</text>
+													<text class="list_right_gray" v-if="item.status.code == 'finish'">已完成</text>
+													<text class="list_right_gray" v-if="item.status.code == 'cancel'">已取消</text>
 												</view>
 											</uni-list-item>
 										</uni-list>
@@ -142,29 +148,10 @@
 												</view>
 											</view>
 										</view>
-									</navigator>
-									<view class="segmented_list_button">
+									</view>
+									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' && (item.status.code == 'init' || item.status.code == 'waipay')">
 										<button class="button_cancel" @click="onCancelOrder(item.id)">取消订单</button>
 										<button class="button_confirm" @click="onConfirmOrder(item.id)">立即付款</button>
-									</view>
-								</view>
-								<view class="segmented_list" v-if="item.prepaidStatus.code == 'payed' || item.prepaidStatus.code == 'processing'">
-									<uni-list class="list_custom list_custom_align_start">
-										<uni-list-item title="存单" :note="'上门地址：'+item.address" :showArrow="false">
-											<view slot='right' :class="{'list_right_gray':item.status.code == 'init', 'list_right_red':item.status.code == 'cancel'}">
-												<text>{{item.status.name}}</text>
-											</view>
-										</uni-list-item>
-									</uni-list>
-									<view class="row segmented_list_content">
-										<view class="col-6 row" v-for="goods in item.goods" :key="goods.id">
-											<view class="col-8 list_content_left">
-												<text>{{goods.name}}</text>
-											</view>
-											<view class="col-4 list_content_right">
-												<text>× {{goods.amount}}</text>
-											</view>
-										</view>
 									</view>
 								</view>
 							</view>
@@ -175,8 +162,8 @@
 									<navigator :url="'/pages/tab2/orderDetailsPay?id='+item.id">
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="取单" :note="'送到: '+item.address" :showArrow="false">
-												<view slot='right' class="list_right_orange">
-													<text>待付款</text>
+												<view slot='right' class="list_right_text">
+													<text class="list_right_orange">待付款</text>
 												</view>
 											</uni-list-item>
 										</uni-list>
@@ -198,8 +185,8 @@
 								<view class="segmented_list">
 									<uni-list class="list_custom list_custom_align_start">
 										<uni-list-item title="取单" :note="'送到：父母家'" :showArrow="false">
-											<view slot='right' class="list_right_black">
-												<text>待分配骑手</text>
+											<view slot='right' class="list_right_text">
+												<text class="list_right_black">待分配骑手</text>
 											</view>
 										</uni-list-item>
 									</uni-list>
@@ -220,8 +207,8 @@
 								<view class="segmented_list">
 									<uni-list class="list_custom list_custom_align_start">
 										<uni-list-item title="仓储订单" :showArrow="false">
-											<view slot='right' class="list_right_orange">
-												<text>待付款</text>
+											<view slot='right' class="list_right_text">
+												<text class="list_right_orange">待付款</text>
 											</view>
 										</uni-list-item>
 									</uni-list>
@@ -249,8 +236,8 @@
 								<view class="segmented_list">
 									<uni-list class="list_custom list_custom_align_start">
 										<uni-list-item title="仓储订单" :showArrow="false">
-											<view slot='right' class="list_right_gray">
-												<text>已支付</text>
+											<view slot='right' class="list_right_text">
+												<text class="list_right_gray">已支付</text>
 											</view>
 										</uni-list-item>
 									</uni-list>
@@ -300,7 +287,16 @@
 		components: {},
 		onLoad() {},
 		onShow() {
-
+			console.log(this.current)
+			if (this.current == 0) {
+				
+			} else if (this.current == 1) {
+				this.getOrderList1()
+			} else if (this.current == 2) {
+				
+			} else if (this.current == 3) {
+				
+			}
 		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
@@ -321,7 +317,15 @@
 			onClickItem(e) {
 				if (this.current !== e.currentIndex) {
 					this.current = e.currentIndex;
-					this.getOrderList1()
+					if (this.current == 0) {
+						
+					} else if (this.current == 1) {
+						this.getOrderList1()
+					} else if (this.current == 2) {
+						
+					} else if (this.current == 3) {
+						
+					}
 				}
 			},
 			getOrderList1() {
@@ -337,6 +341,21 @@
 						});
 					}
 				})
+			},
+			// 去订单详情
+			onOrder1Detail(item) {
+				if (item.status.code == 'init') {
+					uni.navigateTo({
+						url: '/pages/tab2/orderDetailsPay?id=' + item.id
+					})
+				} else if (item.status.code == 'finish') {
+					uni.navigateTo({
+						url: '/pages/tab2/orderDetailsPay?id=' + item.id
+					})
+				} else{
+					
+				}
+				
 			},
 			// 订单取消
 			onCancelOrder(id) {
@@ -413,19 +432,18 @@
 			background-color: #FFFFFF;
 			padding: 0 20upx 20upx;
 			margin-top: 20upx;
-
-			.list_right_red {
+			.list_right_text {
 				font-size: 28upx;
 				font-weight: 500;
-				color: #E74243;
 				line-height: 28upx;
 			}
 
+			.list_right_red {
+				color: #E74243;
+			}
+
 			.list_right_orange {
-				font-size: 28upx;
-				font-weight: 500;
 				color: rgba(245, 166, 35, 1);
-				line-height: 28upx;
 			}
 
 			.list_right_black {
@@ -439,6 +457,12 @@
 				font-size: 28upx;
 				font-weight: 500;
 				color: rgba(178, 178, 178, 1);
+				line-height: 46upx;
+			}
+			.list_right_blue {
+				font-size: 28upx;
+				font-weight: 500;
+				color: #0269D0;
 				line-height: 46upx;
 			}
 

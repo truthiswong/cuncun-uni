@@ -55,6 +55,15 @@
 		},
 		// 首页
 		{
+			"path": "pages/tab1/failBox",
+			"style": {
+				"navigationBarTitleText": "未过安检的箱子",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
 			"path": "pages/tab1/book",
 			"style": {
 				"navigationBarTitleText": "我的书架",

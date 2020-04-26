@@ -319,8 +319,11 @@
 				let inputIndex = 0
 				let boxIndex = 0
 				for (let item of this.inputList) {
-					dataInput['name[' + inputIndex + ']'] = item.value
-					dataInput['amount[' + inputIndex + ']'] = item.number
+					if (item.number>0 && item.value) {
+						dataInput['name[' + inputIndex + ']'] = item.value
+						dataInput['amount[' + inputIndex + ']'] = item.number
+						inputIndex++
+					}
 				}
 				for (let item of this.boxList) {
 					if (item.number>0) {
@@ -329,7 +332,7 @@
 						boxIndex++
 					}
 				}
-				if (!dataInput || !dataBox) {
+				if (!inputIndex || !boxIndex) {
 					uni.showToast({
 						title: '请完善订单',
 						icon: 'none'

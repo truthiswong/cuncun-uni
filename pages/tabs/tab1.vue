@@ -47,7 +47,7 @@
 						<uni-list class="list_custom list_custom_img3">
 							<uni-list-item thumb="../../static/tab1/box_wrong_title.png" :showArrow="false">
 								<view slot="right">
-									<navigator url="/pages/tab1/book">
+									<navigator url="/pages/tab1/failBox">
 										<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
 											 src="../../static/tab1/right.png"></image></span>
 									</navigator>

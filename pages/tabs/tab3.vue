@@ -43,9 +43,7 @@
 				<navigator url="../tab3/other">
 					<uni-list-item title="其他" thumb="../../static/tab3/ohter.png"></uni-list-item>
 				</navigator>
-				<!-- <navigator> -->
-				<uni-list-item @click="onCall" title="客服电话" thumb="../../static//tab3/server.png" rightText="021-34283744"></uni-list-item>
-				<!-- </navigator> -->
+				<uni-list-item @click="onCall(phone)" title="客服电话" thumb="../../static//tab3/server.png" :rightText="phone"></uni-list-item>
 			</uni-list>
 		</view>
 	</view>
@@ -60,13 +58,13 @@
 				headImage: '../../static/tab3/my_image.png',
 				nickname: 'Ding Han',
 				cont_top_bg: '../../static/tab3/tab3_bg.png',
+				phone: '021-34283744',
 			}
 		},
 		onLoad(op) {},
 		onShow() {
 			this.getUserInfo()
 			let user = uni.getStorageSync('user')
-			console.log(user)
 			if (user.portrait) {
 				this.headImage = user.portrait
 			}
@@ -103,15 +101,17 @@
 					}
 				})
 			},
-			onCall() {
+			onCall(phone) {
 				uni.showModal({
 					title: '提示',
-					content: '是否要拨打客服电话021-34283744',
+					content: '是否要拨打客服电话' + phone,
 					success(res) {
 						if (res.confirm) {
+							// #ifdef APP-PLUS
 							uni.makePhoneCall({
-								phoneNumber: '021-34283744'
+								phoneNumber: phone
 							});
+							// #endif
 						}
 					}
 				})
