@@ -177,6 +177,9 @@
 			if (op.id) {
 				this.orderId = op.id
 			}
+			if (op.gotoPage) {
+				this.gotoPage = op.gotoPage
+			}
 		},
 		onShow() {
 			if (this.orderId) {
@@ -193,9 +196,29 @@
 		watch: {},
 		methods: {
 			onClickBack() {
-				uni.navigateBack({
-					delta: 1
-				})
+				console.log(this.gotoPage)
+				if (this.gotoPage == 'tab20') {
+					uni.switchTab({
+						url: '/pages/tabs/tab2?gotoPage=tab20'
+					})
+				} else if (this.gotoPage == 'tab21') {
+					console.log(11111111111)
+					uni.switchTab({
+						url: '/pages/tabs/tab2?gotoPage=tab21'
+					})
+				}  else if (this.gotoPage == 'tab22') {
+					uni.switchTab({
+						url: '/pages/tabs/tab2?gotoPage=tab22'
+					})
+				}  else if (this.gotoPage == 'tab23') {
+					uni.switchTab({
+						url: '/pages/tabs/tab2?gotoPage=tab23'
+					})
+				} else {
+					uni.navigateBack({
+						delta: 1
+					})
+				}
 			},
 			onPayChange() {
 				this.$refs.popup.open()

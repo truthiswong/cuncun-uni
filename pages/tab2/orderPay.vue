@@ -241,7 +241,7 @@
 						icon: 'none',
 						title: '请先选择地址'
 					});
-				} else{
+				} else {
 					let data = {
 						addressId: this.address.id,
 						h1: this.hourValue1,
@@ -264,7 +264,7 @@
 			},
 			debounce(fn, time) {
 				let Mytime = null;
-				return ()=> {
+				return () => {
 					clearTimeout(Mytime); // 清除定时器
 					Mytime = setTimeout(() => {
 						fn.apply(this, arguments)
@@ -344,6 +344,7 @@
 						let dataObj = {
 							orderId: data.data.id
 						}
+						let payFail = false
 						if (this.payStyle == 'Alipay') {
 							this.$http('user/deposit/order/prepay/alipay', "POST", dataObj, res1 => {
 								if (res1.data.success) {
@@ -360,11 +361,13 @@
 										},
 										fail: (err) => {
 											this.$refs.popup.close()
+											payFail = true
 											this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
 												if (res2.data.success) {
 													console.log(res2.data)
-													uni.switchTab({
-														url: '/pages/tabs/tab2'
+													console.log("fail")
+													uni.navigateTo({
+														url: `/pages/tab2/orderDetailsPay?id=${dataObj.orderId}&gotoPage=tab21`
 													})
 												} else {
 													uni.showToast({
@@ -373,6 +376,27 @@
 													});
 												}
 											})
+										},
+										complete: (e) => {
+											console.log('走到了最后')
+											if (payFail == false) {
+												if (e.errMsg == 'requestPayment:fail') {
+													console.log('走到了最后请求')
+													this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
+														if (res2.data.success) {
+															console.log(res2.data)
+															uni.navigateTo({
+																url: `/pages/tab2/orderDetailsPay?id=${dataObj.orderId}&gotoPage=tab21`
+															})
+														} else {
+															uni.showToast({
+																icon: 'none',
+																title: res2.data.message
+															});
+														}
+													})
+												}
+											}
 										}
 									});
 									// #endif

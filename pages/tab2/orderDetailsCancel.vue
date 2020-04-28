@@ -27,118 +27,84 @@
 				</view>
 			</view>
 			<view class="order_list">
-				<p>返送清单</p>
-				<view class="order_list_image">
-					<view class="row segmented_list_content">
-						<view class="col-6 row">
-							<view class="col-8 list_content_left">
-								<text>21寸电视</text>
-							</view>
-							<view class="col-4 list_content_right">
-								<text>× 1</text>
-							</view>
-							<view class="col-8 list_content_left">
-								<text>2人沙发</text>
-							</view>
-							<view class="col-4 list_content_right">
-								<text>× 1</text>
-							</view>
-							<view class="col-8 list_content_left">
-								<text>60L旅行箱</text>
-							</view>
-							<view class="col-4 list_content_right">
-								<text>× 2</text>
-							</view>
+				<p>存单物品</p>
+				<view class="row segmented_list_content">
+					<view v-for="(goodsItem,index) in order.goods" :key="index" class="col-6 row">
+						<view class="col-8 list_content_left">
+							<text>{{goodsItem.name}}</text>
 						</view>
-						<view class="col-6 row">
-							<view class="col-8 list_content_left">
-								<text>21寸电视</text>
-							</view>
-							<view class="col-4 list_content_right">
-								<text>× 1</text>
-							</view>
-							<view class="col-8 list_content_left">
-								<text>2人沙发</text>
-							</view>
-							<view class="col-4 list_content_right">
-								<text>× 1</text>
-							</view>
-							<view class="col-8 list_content_left">
-								<text>60L旅行箱</text>
-							</view>
-							<view class="col-4 list_content_right">
-								<text>× 2</text>
-							</view>
+						<view class="col-4 list_content_right">
+							<text>× {{goodsItem.amount}}</text>
 						</view>
 					</view>
 				</view>
 				<view style="">
 					<view class="flex_between order_list_fee">
 						<p>第三方快递运输费</p>
-						<text>¥ 24</text>
+						<text>¥ 0</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>打包费用</p>
-						<text>¥ 24</text>
+						<text>¥ 0</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>箱子费用</p>
-						<text>¥ 24</text>
+						<text>¥ 0</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>调整费用</p>
-						<text>¥ 24</text>
+						<text>¥ 0</text>
 					</view>
-					<view class="flex_between order_list_fee" style="margin-top: 10upx;">
-						<p>支付总费用</p>
-						<text>¥ <text style="font-size:32upx;margin-left: 10upx;">96</text></text>
+					<view class="flex_between order_list_fee">
+						<p>需支付费用</p>
+						<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.prepaid}}</text></text>
 					</view>
 				</view>
 			</view>
 			<view class="order_list">
-				<p>返送信息</p>
+				<p>存单信息</p>
 				<view>
 					<view class="flex_between order_list_phone">
-						<p>送达时间</p>
-						<text>7月27日 09:08</text>
+						<p>上门时间</p>
+						<text>{{order.detailTime}}</text>
 					</view>
 					<view class="row order_list_phone" style="align-items: flex-start;">
-						<p class="col-4">返送地址</p>
+						<p class="col-4">上门地址</p>
 						<view class="col-8" style="text-align: right;">
-							<p>上海市 嘉定区 叶城五街坊 裕民1180弄78号102室</p>
-							<text>王（女士） 13928863927</text>
+							<p style="color:rgba(40,40,40,1);">{{order.detailAddress}}</p>
+							<text>{{order.linkman}} {{order.mobile}}</text>
 						</view>
 					</view>
 				</view>
 			</view>
 			<view class="order_list">
-				<p>订单信息</p>
+				<p>存单信息</p>
 				<view>
-					<view class="flex_between order_list_phone">
+					<view class="flex_between order_list_phone" @click="onCopy(order.orderNo)">
 						<p>订单号</p>
 						<view>
-							<text>0249 3849 5232 5432 543</text>
+							<text>{{order.orderNo}}</text>
 							<text style="margin: 0 30upx;color:rgba(222,222,222,1);">|</text>
 							<text style="font-size:28upx;font-weight:400;color:rgba(2,105,208,1);">复制</text>
 						</view>
 					</view>
 					<view class="flex_between order_list_phone">
 						<p>支付方式</p>
-						<text>微信支付</text>
+						<text>支付宝支付</text>
 					</view>
 					<view class="flex_between order_list_phone">
 						<p>下单时间</p>
-						<text>2019-07-25 12:11</text>
+						<text>{{order.bookFetchDate}}</text>
 					</view>
 					<view class="flex_between order_list_phone">
 						<p>订单备注</p>
-						<text>小心易碎物品！辛苦您啦～</text>
+						<text>{{order.userRemark}}</text>
 					</view>
 				</view>
 			</view>
 			<view class="order_list">
 				<p>客服信息</p>
-				<view class="flex_between order_list_phone">
+				<view class="flex_between order_list_phone" @click="onCall">
 					<p>客服电话</p>
 					<view>
 						<text>021-34283744</text>
@@ -158,7 +124,7 @@
 					<text>订单状态</text>
 					<image class="close_btn" @click="onClosePopup" src="../../static/tab2/close.png" mode=""></image>
 				</view>
-				<scroll-view class="scroll_content" :scroll-top="scrollTop" scroll-y="true">
+				<scroll-view class="scroll_content" scroll-y="true">
 					<custom-steps :options="optionsReverse" :active="active"></custom-steps>
 				</scroll-view>
 			</view>
@@ -176,6 +142,9 @@
 		data() {
 			return {
 				headerShow: true,
+				order: '',
+				orderId: '',
+				gotoPage: '',
 				options: [{
 					title: '已完成',
 					mmdd: '11-11',
@@ -225,8 +194,25 @@
 				active: 3
 			}
 		},
-		onLoad() {},
-		onShow() {},
+		onLoad(op) {
+			console.log(op)
+			if (op.id) {
+				this.orderId = op.id
+			}
+			if (op.gotoPage) {
+				this.gotoPage = op.gotoPage
+			}
+		},
+		computed: {
+			optionsReverse() {
+				return this.options.reverse()
+			}
+		},
+		onShow() {
+			if (this.orderId) {
+				this.getOrderDetail()
+			}
+		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
@@ -235,25 +221,193 @@
 			}
 		},
 		watch: {},
-		computed: {
-			optionsReverse() {
-				return this.options.reverse()
-			}
-		},
 		methods: {
 			onClickBack() {
-				uni.navigateBack({
-					delta: 1
-				})
+				console.log(this.gotoPage)
+				if (this.gotoPage == 'tab20') {
+					uni.switchTab({
+						url: '/pages/tabs/tab2?gotoPage=tab20'
+					})
+				} else if (this.gotoPage == 'tab21') {
+					console.log(11111111111)
+					uni.switchTab({
+						url: '/pages/tabs/tab2?gotoPage=tab21'
+					})
+				}  else if (this.gotoPage == 'tab22') {
+					uni.switchTab({
+						url: '/pages/tabs/tab2?gotoPage=tab22'
+					})
+				}  else if (this.gotoPage == 'tab23') {
+					uni.switchTab({
+						url: '/pages/tabs/tab2?gotoPage=tab23'
+					})
+				} else {
+					uni.navigateBack({
+						delta: 1
+					})
+				}
 			},
 			onDetails() {
 				this.$refs.popup.open()
 			},
 			onClosePopup() {
 				this.$refs.popup.close()
+			},
+			onPayChangeStyle(evt) {
+				console.log(evt.target.value)
+				this.payStyle = evt.target.value
+				// for (let i = 0; i < this.payStyleList.length; i++) {
+				// 	if (this.payStyleList[i].value === evt.target.value) {
+				// 		this.current = i;
+				// 		break;
+				// 	}
+				// }
+			},
+			onComfirmPay() {
+				// uni.navigateTo({
+				// 	url: "/pages/tab2/orderSuccess"
+				// })
+				let data = {
+					addressId: this.order.id,
+					bookFetchDate: this.order.bookFetchDate,
+					bookFetchTime1: this.order.bookFetchTime[0],
+					bookFetchTime2: this.order.bookFetchTime[1],
+					prepaid: this.order.prepaid,
+					userRemark: this.order.userRemark
+				}
+				console.log(this.payStyle)
+				return
+				this.$http('user/deposit/order/create', "POST", data, res => {
+					let data = res.data
+					console.log(data)
+					if (data.success) {
+						let dataObj = {
+							orderId: data.data.id
+						}
+						if (this.payStyle == 'Alipay') {
+							this.$http('user/deposit/order/prepay/alipay', "POST", dataObj, res1 => {
+								if (res1.data.success) {
+									console.log(res1.data.data)
+									// #ifdef APP-PLUS
+									uni.requestPayment({
+										provider: 'alipay',
+										orderInfo: res1.data.data,
+										success: (res) => {
+											this.$refs.popup.close()
+											uni.navigateTo({
+												url: "/pages/tab2/orderSuccess"
+											})
+										},
+										fail: (err) => {
+											this.$refs.popup.close()
+											this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
+												if (res2.data.success) {
+													console.log(res2.data)
+													uni.switchTab({
+														url: '/pages/tabs/tab2'
+													})
+												} else {
+													uni.showToast({
+														icon: 'none',
+														title: res2.data.message
+													});
+												}
+											})
+										}
+									});
+									// #endif
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: res1.data.message
+									});
+								}
+							})
+						} else {
+							this.$refs.popup.close()
+							uni.navigateTo({
+								url: "/pages/tab2/orderSuccess"
+							})
+							// #ifdef APP-PLUS
+							uni.requestPayment({
+								provider: 'wxpay',
+								orderInfo: 'orderInfo', //微信、支付宝订单数据
+								success: (res) => {
+									console.log(res);
+								},
+								fail: (err) => {
+									console.log(err);
+								}
+							});
+							// #endif
+						}
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
+			getOrderDetail() {
+				this.$http('user/deposit/order/detail/' + this.orderId, "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						data.data.detailAddress = data.data.area.province + ' ' + data.data.area.city + ' ' + data.data.area.district +
+							' ' + data.data.address
+						data.data.detailTime =
+							`${data.data.bookFetchDate} ${data.data.bookFetchTime[0]}:00~${data.data.bookFetchTime[1]}:00`
+						this.order = data.data
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
+			// 订单取消
+			onCancelOrder(id) {
+				this.$http('user/deposit/order/cancel?id=' + id, "POST", '', res => {
+					let data = res.data
+					if (data.success) {
+						uni.navigateBack({
+							delta: 1
+						})
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
+			onCopy(id) {
+				// #ifdef APP-PLUS
+				uni.setClipboardData({
+					data: id,
+					success: () => {
+						console.log(id);
+					}
+				})
+				// #endif
+			},
+			onCall() {
+				uni.showModal({
+					title: '提示',
+					content: '是否要拨打客服电话021-34283744',
+					success(res) {
+						if (res.confirm) {
+							// #ifdef APP-PLUS
+							uni.makePhoneCall({
+								phoneNumber: '021-34283744'
+							});
+							// #endif
+						}
+					}
+				})
 			}
 		}
-
 	}
 </script>
 <style>
@@ -450,6 +604,7 @@
 		height: 1000upx;
 		background: rgba(255, 255, 255, 1);
 		border-radius: 20upx;
+
 		.scroll_content {
 			height: 910upx;
 		}

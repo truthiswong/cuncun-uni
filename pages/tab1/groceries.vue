@@ -1,6 +1,7 @@
 <template>
 	<view>
-		<uni-nav-bar color="#FFFFFF" title="我的杂货架" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
+		<uni-nav-bar color="#FFFFFF" title="我的杂货架" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true"
+		 fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
 			<view slot="right">
 				<view class="header_icon">
 					<image @click="onClickRight(1)" style="" src="../../static/tab1/search_white.png"></image>
@@ -8,8 +9,8 @@
 				</view>
 			</view>
 		</uni-nav-bar>
-		<uni-nav-bar color="#000000" title="我的杂货架" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true" v-if="!headerShow" style="position: absolute; top: 0;"
-		 shadow="true">
+		<uni-nav-bar color="#000000" title="我的杂货架" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true"
+		 fixed="true" v-if="!headerShow" style="position: absolute; top: 0;" shadow="true">
 			<view slot="right">
 				<view class="header_icon">
 					<image @click="onClickRight(1)" src="../../static/tab1/search_green.png"></image>
@@ -37,9 +38,9 @@
 						</label>
 						<view class="box_groceries_right" style="color: rgba(40,40,40,1);">
 							<view>
-								<text>箱子{{index + 1}}</text>
+								<text>箱子 {{index + 1}}</text>
 							</view>
-							<text class="box_groceries_text" style="color: #4A4A4A;">内含：羽毛球、羽毛球拍、篮球、排球、足球、排球手… </text>
+							<text class="box_groceries_text">内含：羽毛球、羽毛球拍、篮球、排球、足球、排球手… </text>
 						</view>
 					</view>
 				</checkbox-group>
@@ -158,13 +159,13 @@
 		width: 200upx;
 		height: 44px;
 	}
-	
+
 	.header_icon image {
 		width: 44upx;
 		height: 44upx;
 		vertical-align: middle;
 	}
-	
+
 	.choose_button {
 		display: inline-block;
 		width: 96upx;
@@ -180,6 +181,7 @@
 		margin-left: 50upx;
 		box-sizing: border-box;
 	}
+
 	.choose_button_scroll {
 		border: 1px solid rgba(0, 0, 0, 1);
 		color: #000000;
@@ -197,27 +199,29 @@
 		text-align: center;
 		padding-top: 200upx;
 		margin-bottom: 30upx;
+
 		p {
-			font-size:28upx;
-			font-weight:400;
-			color:rgba(255,255,255,1);
-			line-height:46upx;
+			font-size: 28upx;
+			font-weight: 400;
+			color: rgba(255, 255, 255, 1);
+			line-height: 46upx;
 			margin: 20upx;
+
 			text {
-				font-size:40upx;
-				font-weight:400;
-				color:rgba(255,255,255,1);
-				line-height:46upx;
+				font-size: 40upx;
+				font-weight: 400;
+				color: rgba(255, 255, 255, 1);
+				line-height: 46upx;
 			}
 		}
 	}
-	
+
 	.bottom_button {
 		position: fixed;
 		right: 0;
 		bottom: 0upx;
 		z-index: 20;
-	
+
 		image {
 			width: 218upx;
 			height: 120upx;
@@ -227,10 +231,12 @@
 	.no_data {
 		text-align: center;
 		padding: 116upx 0;
+
 		image {
 			width: 338upx;
 			height: 326upx;
 		}
+
 		p {
 			font-size: 28upx;
 			font-weight: 400;
@@ -241,73 +247,56 @@
 		}
 	}
 
-	.left_icon image {
-		width: 184upx;
-		height: 36upx;
-		margin: 0px 30upx -8upx;
-	}
-
-	.right_icon {
-		/* width: 184upx; */
-		margin-right: 18upx;
-	}
-
-	.right_icon text {
-		font-size: 28upx;
-		font-weight: 400;
-		color: rgba(59, 193, 187, 1);
-		line-height: 40upx;
-		margin-right: 8upx;
-	}
-
-	.right_icon image {
-		width: 16upx;
-		height: 16upx;
-	}
-
 	.box_groceries_content {
 		position: relative;
 		width: 100%;
 		height: 234upx;
 		background-color: #FFFFFF;
-	}
-	
-	.box_groceries_left {
-		position: relative;
-		image {
-			width: 308upx;
-			height: 230upx;
-			margin-top: 60upx;
+
+		.box_groceries_left {
+			position: relative;
+
+			image {
+				width: 308upx;
+				height: 230upx;
+				margin-top: 60upx;
+			}
+
+			text {
+				position: absolute;
+				right: 80upx;
+				bottom: 80upx;
+				font-size: 50upx;
+				font-weight: 700;
+				color: #90785e;
+			}
+
+			.checkbox_item {
+				position: absolute;
+				top: 50upx;
+				right: 10upx;
+				z-index: 10;
+			}
 		}
-		text {
-			position: absolute;
-			right: 80upx;
-			bottom: 80upx;
-			font-size: 50upx;
-			font-weight: 700;
-			color: #90785e;
+
+		.box_groceries_right {
+			width: 380upx;
+			font-size: 28upx;
+			font-weight: 500;
+			color: rgba(40, 40, 40, 1);
+			line-height: 50upx;
+			margin: 20upx 50upx 0 0;
 		}
-		.checkbox_item {
-			position: absolute;
-			top: 50upx;
-			right: 10upx;
-			z-index: 10;
+
+		.box_groceries_text {
+			font-weight: 400;
+			line-height: 46upx;
+			margin-top: 10upx;
+			color: #4A4A4A;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+			overflow: hidden;
 		}
-	}
-	
-	.box_groceries_right {
-		width: 380upx;
-		font-size: 28upx;
-		font-weight: 500;
-		color: rgba(40, 40, 40, 1);
-		line-height: 50upx;
-		margin: 20upx 50upx 0 0;
-	}
-	
-	.box_groceries_text {
-		font-weight: 400;
-		line-height: 46upx;
-		margin-top: 10upx;
-		color: #4A4A4A;
 	}
 </style>

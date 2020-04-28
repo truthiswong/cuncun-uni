@@ -40,7 +40,7 @@
 					</view>
 					<view @click="onSeeMore" class="button_more">
 						<text>显示全部纸箱</text>
-						<image :class="{image_active: boxNumber == 20}" src="../../static/tab1/arrows.png" mode=""></image>
+						<image :class="{image_active: boxNumber == 9999}" src="../../static/tab1/arrows.png" mode=""></image>
 					</view>
 				</view>
 				<view class="border_fee">
@@ -244,6 +244,7 @@
 					number: 1
 				})
 			},
+			// 物品增减
 			changeInputNumber(number, index, item) {
 				if (number <= 0) {
 					uni.showModal({
@@ -252,7 +253,10 @@
 						success: (res) => {
 							if (res.confirm) {
 								if (typeof(item.id) == 'string') {
-									this.$http('user/deposit/pack/goods/del?id=' + item.id, "POST", '', res => {
+									let data = {
+										id: item.id
+									}
+									this.$http('user/deposit/goods/del', "POST", data, res => {
 										let data = res.data
 										if (data.success) {
 											this.inputList.splice(index, 1)
@@ -283,10 +287,14 @@
 					this.inputList[index].number = number;
 				}
 			},
+			// 箱子增减
 			changeBoxNumber(number, index, item) {
 				console.log(number, index, item)
 				if (number <= 0) {
-					this.$http('user/deposit/pack/box/del?id=' + item.id, "POST", '', res => {
+					let data = {
+						id: item.id
+					}
+					this.$http('user/deposit/box/del', "POST", data, res => {
 						let data = res.data
 						this.boxList[index].number = number;
 						if (data.success) {
@@ -343,10 +351,10 @@
 						icon: 'none'
 					})
 				} else {
-					this.$http('user/deposit/pack/goods/add', "POST", dataInput, res => {
+					this.$http('user/deposit/goods/add', "POST", dataInput, res => {
 						let data = res.data
 						if (data.success) {
-							this.$http('user/deposit/pack/box/add', "POST", dataBox, res => {
+							this.$http('user/deposit/box/add', "POST", dataBox, res => {
 								let data = res.data
 								if (data.success) {
 									uni.navigateTo({
@@ -376,7 +384,7 @@
 							item.number = 0
 						}
 						this.boxList = data.data
-						this.$http('user/deposit/pack/box/list', "GET", '', res1 => {
+						this.$http('user/deposit/box/list', "GET", '', res1 => {
 							if (res1.data.success) {
 								for (let item of res1.data.data) {
 									for (let box of this.boxList) {
@@ -396,7 +404,7 @@
 				})
 			},
 			getUserInputList() {
-				this.$http('user/deposit/pack/goods/list', "GET", '', res => {
+				this.$http('user/deposit/goods/list', "GET", '', res => {
 					let data = res.data
 					if (data.success) {
 						for (let item of data.data) {
