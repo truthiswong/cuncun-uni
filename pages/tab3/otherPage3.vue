@@ -42,31 +42,31 @@
 			},
 			openMarket(marketPackageName) {
 				var appurl;
-				if (plus.os.name=="Android") {
-					appurl = "market://details?id=io.dcloud.hellouniapp";//可能部分应用商店没有收录
+				if (plus.os.name == "Android") {
+					appurl = "market://details?id=io.dcloud.hellouniapp"; //可能部分应用商店没有收录
+				} else {
+					// appurl = "itms-apps://itunes.apple.com/cn/app/hello-uni-app/id1417078253";
+					appurl = "https://testflight.apple.com/join/YTk1s8uF";
 				}
-				else{
-					appurl = "itms-apps://itunes.apple.com/cn/app/hello-uni-app/id1417078253";
-				}
-				if (typeof(marketPackageName)=="undefined") {
+				if (typeof(marketPackageName) == "undefined") {
 					plus.runtime.openURL(appurl, function(res) {
 						console.log(res);
 					});
-				} else{//强制指定某个Android应用市场的包名，通过这个包名启动指定app
-					if (plus.os.name=="Android") {
+				} else { //强制指定某个Android应用市场的包名，通过这个包名启动指定app
+					if (plus.os.name == "Android") {
 						plus.runtime.openURL(appurl, function(res) {
 							plus.nativeUI.alert("本机没有安装应用宝");
-						},marketPackageName);
-					} else{
+						}, marketPackageName);
+					} else {
 						plus.nativeUI.alert("仅Android手机才支持应用宝");
 					}
 				}
 			},
-			openTaobao(url){
+			openTaobao(url) {
 				plus.runtime.openURL(url, function(res) {
 					uni.showModal({
-						content:"本机未检测到淘宝客户端，是否打开浏览器访问淘宝？",
-						success:function(res){
+						content: "本机未检测到淘宝客户端，是否打开浏览器访问淘宝？",
+						success: function(res) {
 							if (res.confirm) {
 								plus.runtime.openURL("https://s.taobao.com/search?q=uni-app")
 							}
@@ -122,6 +122,11 @@
 								});
 							}
 						})
+					} else {
+						var appurl = "https://testflight.apple.com/join/YTk1s8uF"
+						plus.runtime.openURL(appurl, function(res) {
+							console.log(res);
+						});
 					}
 				});
 				// #endif
