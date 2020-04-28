@@ -84,7 +84,7 @@
 
 		.middle_active {
 			position: absolute;
-			top: -16upx;
+			top: 6upx;
 			left: 0;
 			right: 0;
 			margin: auto;
@@ -106,11 +106,14 @@
 
 	.step_right {
 		padding-top: 30upx;
+		padding-right: 40upx;
+		box-sizing: border-box;
 		.right_title {
 			font-size: 28upx;
 			font-weight: 500;
 			color: rgba(59, 60, 62, 1);
 			line-height: 40upx;
+			text-align: justify;
 		}
 
 		.right_describe {
@@ -118,6 +121,7 @@
 			font-weight: 400;
 			color: rgba(155, 155, 155, 1);
 			line-height: 37upx;
+			text-align: justify;
 		}
 	}
 </style>
