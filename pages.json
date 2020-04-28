@@ -138,7 +138,7 @@
 		{
 			"path": "pages/tab1/orderBackPay",
 			"style": {
-				"navigationBarTitleText": "返送清单",
+				"navigationBarTitleText": "返送清单支付",
 				"app-plus": {
 					"bounce": "none"
 				}
@@ -147,7 +147,16 @@
 		{
 			"path": "pages/tab1/orderBackSuccess",
 			"style": {
-				"navigationBarTitleText": "返送清单",
+				"navigationBarTitleText": "返送清单完成",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab1/orderBackDetails",
+			"style": {
+				"navigationBarTitleText": "返送清单详情",
 				"app-plus": {
 					"bounce": "none"
 				}
@@ -164,36 +173,18 @@
 			}
 		},
 		{
-			"path": "pages/tab2/orderDetailsPay",
+			"path": "pages/tab2/orderDetails",
 			"style": {
-				"navigationBarTitleText": "订单详情未支付",
+				"navigationBarTitleText": "订单详情",
 				"app-plus": {
 					"bounce": "none"
 				}
 			}
 		},
 		{
-			"path": "pages/tab2/orderDetailsSuccess",
+			"path": "pages/tab2/orderStorageDetails",
 			"style": {
-				"navigationBarTitleText": "订单详情支付成功",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/tab2/orderDetailsCancel",
-			"style": {
-				"navigationBarTitleText": "订单详情已取消",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
-			"path": "pages/tab2/orderDetailsStorageSuccess",
-			"style": {
-				"navigationBarTitleText": "仓储已支付",
+				"navigationBarTitleText": "存储订单详情",
 				"app-plus": {
 					"bounce": "none"
 				}

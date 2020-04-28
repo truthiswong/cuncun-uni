@@ -367,7 +367,7 @@
 													console.log(res2.data)
 													console.log("fail")
 													uni.navigateTo({
-														url: `/pages/tab2/orderDetailsPay?id=${dataObj.orderId}&gotoPage=tab21`
+														url: `/pages/tab2/orderDetails?id=${dataObj.orderId}&gotoPage=tab21`
 													})
 												} else {
 													uni.showToast({
@@ -386,7 +386,7 @@
 														if (res2.data.success) {
 															console.log(res2.data)
 															uni.navigateTo({
-																url: `/pages/tab2/orderDetailsPay?id=${dataObj.orderId}&gotoPage=tab21`
+																url: `/pages/tab2/orderDetails?id=${dataObj.orderId}&gotoPage=tab21`
 															})
 														} else {
 															uni.showToast({

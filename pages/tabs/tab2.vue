@@ -31,7 +31,7 @@
 						<view v-if="current === 0">
 							<view v-for="(item,index) in 1" :key="index">
 								<view class="segmented_list">
-									<navigator :url="'/pages/tab2/orderDetailsPay?id='+item.id">
+									<navigator :url="'/pages/tab2/orderDetails?id='+item.id">
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="存单" :note="item.address" :showArrow="false">
 												<view slot='right' class="list_right_text">
@@ -56,7 +56,7 @@
 									</view>
 								</view>
 								<view class="segmented_list">
-									<navigator :url="'/pages/tab2/orderDetailsPay?id='+item.id">
+									<navigator :url="'/pages/tab2/orderDetails?id='+item.id">
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="取单" :note="'送到: '+item.address" :showArrow="false">
 												<view slot='right' class="list_right_text">
@@ -80,7 +80,7 @@
 									</view>
 								</view>
 								<view class="segmented_list">
-									<navigator :url="'/pages/tab2/orderDetailsPay?id='+item.id">
+									<navigator :url="'/pages/tab2/orderDetails?id='+item.id">
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="仓储订单" :note="item.address" :showArrow="false">
 												<view slot='right' class="list_right_text">
@@ -150,113 +150,83 @@
 										</view>
 									</view>
 									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' || item.status.code == 'waipay'">
-										<button class="button_cancel" v-if="item.status.code == 'waipay'" @click="onCancelOrder(item.id)">取消订单</button>
-										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse'" @click="onConfirmOrder(item.id)">立即付款</button>
-										<!-- || adjustPayStatus.code == 'wait' -->
+										<button class="button_cancel" v-if="item.status.code == 'waipay'" @click="onCancelOrder1(item.id)">取消订单</button>
+										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse'" @click="onConfirmOrder1(item.id)">立即付款</button>
 									</view>
 								</view>
 							</view>
 						</view>
 						<view v-if="current === 2">
-							<view v-for="(item,index) in 1" :key="index">
+							<view v-for="(item,index) in orderList1" :key="index">
 								<view class="segmented_list">
-									<navigator :url="'/pages/tab2/orderDetailsPay?id='+item.id">
+									<view @click="onOrder2Detail(item)">
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="取单" :note="'送到: '+item.address" :showArrow="false">
 												<view slot='right' class="list_right_text">
-													<text class="list_right_orange">待付款</text>
+													<text class="list_right_orange" v-if="item.status.code == 'waipay'">待付款</text>
+													<text class="list_right_blue" v-if="item.status.code == 'init'">待接单</text>
+													<text class="list_right_blue" v-if="item.status.code == 'fetch'">待取货</text>
+													<text class="list_right_blue" v-if="item.status.code == 'delivery'">回库中</text>
+													<text class="list_right_blue" v-if="item.status.code == 'inputwork'">入库作业中</text>
+													<text class="list_right_gray" v-if="item.status.code == 'finish'">已完成</text>
+													<text class="list_right_gray" v-if="item.status.code == 'cancel'">已取消</text>
 												</view>
 											</uni-list-item>
 										</uni-list>
 										<view class="flex_between">
 											<view style="height: 100upx;">
-												<image v-for="item in 3" :key="item" style="width: 100upx;height: 100upx;background-color: #F2F2F2;box-sizing: border-box;padding: 8upx;margin-right: 20upx;"
+												<image v-for="goods in 3" :key="goods" style="width: 100upx;height: 100upx;background-color: #F2F2F2;box-sizing: border-box;padding: 8upx;margin-right: 20upx;"
 												 src="../../static/tab1/book_img2.png" mode=""></image>
 											</view>
 											<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
 												<text>… 等六件物品</text>
 											</view>
 										</view>
-									</navigator>
-									<view class="segmented_list_button">
-										<button class="button_cancel" @click="onCancelOrder(item.id)">取消订单</button>
-										<button class="button_confirm" @click="onConfirmOrder(item.id)">立即付款</button>
 									</view>
-								</view>
-								<view class="segmented_list">
-									<uni-list class="list_custom list_custom_align_start">
-										<uni-list-item title="取单" :note="'送到：父母家'" :showArrow="false">
-											<view slot='right' class="list_right_text">
-												<text class="list_right_black">待分配骑手</text>
-											</view>
-										</uni-list-item>
-									</uni-list>
-									<view class="flex_between">
-										<view style="height: 100upx;">
-											<image v-for="item in 3" :key="item" style="width: 100upx;height: 100upx;background-color: #F2F2F2;box-sizing: border-box;padding: 8upx;margin-right: 20upx;"
-											 src="../../static/tab1/book_img2.png" mode=""></image>
-										</view>
-										<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
-											<text>… 等六件物品</text>
-										</view>
+									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' || item.status.code == 'waipay'">
+										<button class="button_cancel" v-if="item.status.code == 'waipay'" @click="onCancelOrder2(item.id)">取消订单</button>
+										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse'" @click="onConfirmOrder2(item.id)">立即付款</button>
 									</view>
 								</view>
 							</view>
 						</view>
 						<view v-if="current === 3">
-							<view v-for="(item,index) in 1" :key="index">
+							<view v-for="(item,index) in orderList1" :key="index">
 								<view class="segmented_list">
-									<uni-list class="list_custom list_custom_align_start">
-										<uni-list-item title="仓储订单" :showArrow="false">
-											<view slot='right' class="list_right_text">
-												<text class="list_right_orange">待付款</text>
+									<view @click="onOrder3Detail(item)">
+										<uni-list class="list_custom list_custom_align_start">
+											<uni-list-item title="仓储订单" :showArrow="false">
+												<view slot='right' class="list_right_text">
+													<text class="list_right_orange" v-if="item.status.code == 'waipay'">待付款</text>
+													<text class="list_right_blue" v-if="item.status.code == 'init'">待接单</text>
+													<text class="list_right_blue" v-if="item.status.code == 'fetch'">待取货</text>
+													<text class="list_right_blue" v-if="item.status.code == 'delivery'">回库中</text>
+													<text class="list_right_blue" v-if="item.status.code == 'inputwork'">入库作业中</text>
+													<text class="list_right_gray" v-if="item.status.code == 'finish'">已完成</text>
+													<text class="list_right_gray" v-if="item.status.code == 'cancel'">已取消</text>
+												</view>
+											</uni-list-item>
+										</uni-list>
+										<view class="row" style="margin-bottom: 20upx;">
+											<view class="col-6 row" v-for="box in 5" :key="box">
+												<view style="height: 100upx;">
+													<image style="width: 120upx;height: 120upx;box-sizing: border-box;padding: 8upx;margin-right: 20upx;" src="../../static/tab2/storge_box.png"
+													 mode=""></image>
+												</view>
+												<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
+													<text>A箱 ×3</text>
+												</view>
 											</view>
-										</uni-list-item>
-									</uni-list>
-									<view class="row" style="margin-bottom: 20upx;">
-										<view class="col-6 row" v-for="box in 5" :key="box">
-											<view style="height: 100upx;">
-												<image style="width: 120upx;height: 120upx;box-sizing: border-box;padding: 8upx;margin-right: 20upx;" src="../../static/tab2/storge_box.png"
-												 mode=""></image>
-											</view>
-											<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
-												<text>A箱 ×3</text>
+										</view>
+										<view style="width: 100%;text-align: right;">
+											<view style="font-size:24upx;color:rgba(74,74,74,1);line-height:46upx;">
+												仓储费用：<text style="font-size: 30upx;margin-right: 30upx;">¥400</text> 费用周期：2月1日-2月29日
 											</view>
 										</view>
 									</view>
-									<view style="width: 100%;text-align: right;">
-										<view style="font-size:24upx;color:rgba(74,74,74,1);line-height:46upx;">
-											仓储费用：<text style="font-size: 30upx;margin-right: 30upx;">¥400</text> 费用周期：2月1日-2月29日
-										</view>
-									</view>
-									<view class="segmented_list_button">
-										<button class="button_cancel" @click="onCancelOrder(item.id)">取消订单</button>
-										<button class="button_confirm" @click="onConfirmOrder(item.id)">立即付款</button>
-									</view>
-								</view>
-								<view class="segmented_list">
-									<uni-list class="list_custom list_custom_align_start">
-										<uni-list-item title="仓储订单" :showArrow="false">
-											<view slot='right' class="list_right_text">
-												<text class="list_right_gray">已支付</text>
-											</view>
-										</uni-list-item>
-									</uni-list>
-									<view class="row" style="margin-bottom: 20upx;">
-										<view class="col-6 row" v-for="box in 5" :key="box">
-											<view style="height: 100upx;">
-												<image style="width: 120upx;height: 120upx;box-sizing: border-box;padding: 8upx;margin-right: 20upx;" src="../../static/tab2/storge_box.png"
-												 mode=""></image>
-											</view>
-											<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
-												<text>A箱 ×3</text>
-											</view>
-										</view>
-									</view>
-									<view style="width: 100%;text-align: right;">
-										<view style="font-size:24upx;color:rgba(74,74,74,1);line-height:46upx;">
-											仓储费用：<text style="font-size: 30upx;margin-right: 30upx;">¥400</text> 费用周期：2月1日-2月29日
-										</view>
+									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' || item.status.code == 'waipay'">
+										<button class="button_cancel" v-if="item.status.code == 'waipay'" @click="onCancelOrder3(item.id)">取消订单</button>
+										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse'" @click="onConfirmOrder3(item.id)">立即付款</button>
 									</view>
 								</view>
 							</view>
@@ -308,9 +278,9 @@
 			} else if (this.current == 1) {
 				this.getOrderList1()
 			} else if (this.current == 2) {
-
+				this.getOrderList1()
 			} else if (this.current == 3) {
-
+				this.getOrderList1()
 			}
 		},
 		onPageScroll(options) {
@@ -337,9 +307,9 @@
 					} else if (this.current == 1) {
 						this.getOrderList1()
 					} else if (this.current == 2) {
-
+						this.getOrderList1()
 					} else if (this.current == 3) {
-
+						this.getOrderList1()
 					}
 				}
 			},
@@ -357,24 +327,60 @@
 					}
 				})
 			},
-			// 去订单详情
+			// 去存单详情
 			onOrder1Detail(item) {
 				if (item.status.code == 'init') {
 					uni.navigateTo({
-						url: '/pages/tab2/orderDetailsPay?id=' + item.id
+						url: '/pages/tab2/orderDetails?id=' + item.id
 					})
 				} else if (item.status.code == 'finish') {
 					uni.navigateTo({
-						url: '/pages/tab1/orderDetailsSuccess?id=' + item.id
+						url: '/pages/tab2/orderDetails?id=' + item.id
 					})
 				} else if (item.status.code == 'cancel') {
 					uni.navigateTo({
-						url: '/pages/tab2/orderDetailsCancel?id=' + item.id
+						url: '/pages/tab2/orderDetails?id=' + item.id
 					})
 				}
 			},
-			// 订单取消
-			onCancelOrder(id) {
+			// 去取单详情
+			onOrder2Detail(item) {
+				if (item.status.code == 'init') {
+					uni.navigateTo({
+						url: '/pages/tab1/orderBackDetails?id=' + item.id
+					})
+				} else if (item.status.code == 'finish') {
+					uni.navigateTo({
+						url: '/pages/tab1/orderBackDetails?id=' + item.id
+					})
+				} else if (item.status.code == 'cancel') {
+					uni.navigateTo({
+						url: '/pages/tab1/orderBackDetails?id=' + item.id
+					})
+				}
+			},
+			// 去仓储订单详情
+			onOrder3Detail(item) {
+				uni.navigateTo({
+					url: '/pages/tab2/orderStorageDetails?id=' + item.id
+				})
+				return
+				if (item.status.code == 'init') {
+					uni.navigateTo({
+						url: '/pages/tab2/orderStorageDetails?id=' + item.id
+					})
+				} else if (item.status.code == 'finish') {
+					uni.navigateTo({
+						url: '/pages/tab2/orderStorageDetails?id=' + item.id
+					})
+				} else if (item.status.code == 'cancel') {
+					uni.navigateTo({
+						url: '/pages/tab2/orderStorageDetails?id=' + item.id
+					})
+				}
+			},
+			// 存单取消
+			onCancelOrder1(id) {
 				let data = {
 					id: id
 				}
@@ -394,10 +400,64 @@
 					}
 				})
 			},
-			// 订单支付
-			onConfirmOrder(id) {
+			// 存单支付
+			onConfirmOrder1(id) {
 				uni.navigateTo({
-					url: '/pages/tab2/orderDetailsPay?id=' + id
+					url: '/pages/tab2/orderDetails?id=' + id
+				})
+			},
+			// 取单取消
+			onCancelOrder2(id) {
+				let data = {
+					id: id
+				}
+				this.$http('user/deposit/order/cancel', "POST", data, res => {
+					let data = res.data
+					if (data.success) {
+						uni.showToast({
+							icon: 'none',
+							title: '取消成功'
+						});
+						this.getOrderList1()
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
+			// 取单支付
+			onConfirmOrder2(id) {
+				uni.navigateTo({
+					url: '/pages/tab1/orderBackDetails?id=' + id
+				})
+			},
+			// 仓储取消
+			onCancelOrder3(id) {
+				let data = {
+					id: id
+				}
+				this.$http('user/deposit/order/cancel', "POST", data, res => {
+					let data = res.data
+					if (data.success) {
+						uni.showToast({
+							icon: 'none',
+							title: '取消成功'
+						});
+						this.getOrderList1()
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
+			// 仓储支付
+			onConfirmOrder3(id) {
+				uni.navigateTo({
+					url: '/pages/tab2/orderStorageDetails?id=' + id
 				})
 			}
 		}
