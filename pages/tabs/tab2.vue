@@ -149,9 +149,10 @@
 											</view>
 										</view>
 									</view>
-									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' && (item.status.code == 'init' || item.status.code == 'waipay')">
-										<button class="button_cancel" @click="onCancelOrder(item.id)">取消订单</button>
-										<button class="button_confirm" @click="onConfirmOrder(item.id)">立即付款</button>
+									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' || item.status.code == 'waipay'">
+										<button class="button_cancel" v-if="item.status.code == 'waipay'" @click="onCancelOrder(item.id)">取消订单</button>
+										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse'" @click="onConfirmOrder(item.id)">立即付款</button>
+										<!-- || adjustPayStatus.code == 'wait' -->
 									</view>
 								</view>
 							</view>
@@ -285,17 +286,31 @@
 			}
 		},
 		components: {},
-		onLoad() {},
+		onLoad(op) {
+			if (op.gotoPage) {
+				this.gotoPage = op.gotoPage
+			}
+		},
 		onShow() {
 			console.log(this.current)
+			console.log(this.gotoPage)
+			if (this.gotoPage == 'tab20') {
+				this.current = 0
+			} else if (this.gotoPage == 'tab21') {
+				this.current = 1
+			} else if (this.gotoPage == 'tab22') {
+				this.current = 2
+			} else if (this.gotoPage == 'tab23') {
+				this.current = 3
+			}
 			if (this.current == 0) {
-				
+
 			} else if (this.current == 1) {
 				this.getOrderList1()
 			} else if (this.current == 2) {
-				
+
 			} else if (this.current == 3) {
-				
+
 			}
 		},
 		onPageScroll(options) {
@@ -318,13 +333,13 @@
 				if (this.current !== e.currentIndex) {
 					this.current = e.currentIndex;
 					if (this.current == 0) {
-						
+
 					} else if (this.current == 1) {
 						this.getOrderList1()
 					} else if (this.current == 2) {
-						
+
 					} else if (this.current == 3) {
-						
+
 					}
 				}
 			},
@@ -350,19 +365,22 @@
 					})
 				} else if (item.status.code == 'finish') {
 					uni.navigateTo({
-						url: '/pages/tab2/orderDetailsPay?id=' + item.id
+						url: '/pages/tab1/orderDetailsSuccess?id=' + item.id
 					})
-				} else{
-					
+				} else if (item.status.code == 'cancel') {
+					uni.navigateTo({
+						url: '/pages/tab2/orderDetailsCancel?id=' + item.id
+					})
 				}
-				
 			},
 			// 订单取消
 			onCancelOrder(id) {
-				this.$http('user/deposit/order/cancel?id=' + id, "POST", '', res => {
+				let data = {
+					id: id
+				}
+				this.$http('user/deposit/order/cancel', "POST", data, res => {
 					let data = res.data
 					if (data.success) {
-						console.log(data.data)
 						uni.showToast({
 							icon: 'none',
 							title: '取消成功'
@@ -379,7 +397,7 @@
 			// 订单支付
 			onConfirmOrder(id) {
 				uni.navigateTo({
-					url: '/pages/tab2/orderDetailsPay'
+					url: '/pages/tab2/orderDetailsPay?id=' + id
 				})
 			}
 		}
@@ -432,6 +450,7 @@
 			background-color: #FFFFFF;
 			padding: 0 20upx 20upx;
 			margin-top: 20upx;
+
 			.list_right_text {
 				font-size: 28upx;
 				font-weight: 500;
@@ -459,6 +478,7 @@
 				color: rgba(178, 178, 178, 1);
 				line-height: 46upx;
 			}
+
 			.list_right_blue {
 				font-size: 28upx;
 				font-weight: 500;
@@ -490,8 +510,6 @@
 
 			.segmented_list_button {
 				text-align: right;
-				margin-top: 20upx;
-				height: 76upx;
 
 				button {
 					display: inline-block;
@@ -501,6 +519,7 @@
 					font-size: 28upx;
 					font-weight: 400;
 					line-height: 76upx;
+					margin-top: 20upx;
 				}
 
 				.button_cancel {

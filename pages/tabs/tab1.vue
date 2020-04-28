@@ -197,16 +197,16 @@
 							</uni-list-item>
 						</uni-list>
 					</view>
-					<view v-if="true" class="box_groceries_content flex_between" v-for="item in 3" :key="item">
+					<view v-if="true" class="box_groceries_content flex_between" v-for="(item,index) in 3" :key="index">
 						<view class="box_groceries_left">
 							<image src="../../static/tab1/box_null.png"></image>
-							<text>{{item}}</text>
+							<text>{{index+1}}</text>
 						</view>
 						<view class="box_groceries_right" style="color: rgba(40,40,40,1);">
 							<view>
-								<text>箱子{{item}}</text>
+								<text>箱子 {{index+1}}</text>
 							</view>
-							<text class="box_groceries_text" style="color: #4A4A4A;">内含：羽毛球、羽毛球拍、篮球、排球、足球、排球手… </text>
+							<text class="box_groceries_text">内含：羽毛球、羽毛球拍、篮球、排球、足球、排球手… </text>
 						</view>
 					</view>
 				</view>
@@ -416,6 +416,10 @@
 		font-weight: 400;
 		line-height: 46upx;
 		margin-top: 10upx;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
 	}
 
 	.box_groceries_content {
@@ -458,6 +462,10 @@
 		line-height: 46upx;
 		margin-top: 10upx;
 		color: #4A4A4A;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		overflow: hidden;
 	}
 
 	.scroll_x {
