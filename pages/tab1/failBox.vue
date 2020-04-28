@@ -38,7 +38,7 @@
 							<view>
 								<text>箱子{{index + 1}}</text>
 							</view>
-							<text class="box_groceries_text" style="color: #4A4A4A;">内含：羽毛球、羽毛球拍、篮球、排球、足球、排球手… </text>
+							<text class="box_groceries_text">内含：羽毛球、羽毛球拍、篮球、排球、足球、排球手 羽毛球、羽毛球拍、篮球、排球、足球、排球手</text>
 						</view>
 					</view>
 				</checkbox-group>
@@ -289,6 +289,10 @@
 			line-height: 46upx;
 			margin-top: 10upx;
 			color: #4A4A4A;
+			display: -webkit-box;
+			-webkit-box-orient: vertical;
+			-webkit-line-clamp: 2;
+			overflow: hidden;
 		}
 	}
 </style>
