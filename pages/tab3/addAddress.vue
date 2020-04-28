@@ -229,9 +229,9 @@
 				this.index = e.target.value
 			},
 			gotoAddress() {
-				// uni.navigateTo({
-				// 	url: '/pages/tab3/addAddressConform'
-				// })
+				uni.navigateTo({
+					url: '/pages/tab3/addAddressConform'
+				})
 			},
 			handleGetRegions(regions) {
 				console.log(regions)

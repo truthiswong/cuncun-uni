@@ -24,7 +24,7 @@
 		onLoad(option) {
 			// #ifdef APP-PLUS
 			uni.getLocation({
-			    type: 'wgs84',
+			    type: 'gcj02',
 			    success: (res)=> {
 					this.localtion.longitude = res.longitude
 					this.localtion.latitude = res.latitude
