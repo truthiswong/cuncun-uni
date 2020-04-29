@@ -274,6 +274,7 @@
 		onShow() {
 			if (this.orderId) {
 				this.getOrderDetail()
+				this.getOrderDetailSteps()
 			}
 		},
 		computed: {
@@ -431,6 +432,31 @@
 						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD hh:mm:ss')
 						// data.data.detailAdjustPayStatus = data.data.adjustPayStatus.code
 						this.order = data.data
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
+			getOrderDetailSteps() {
+				this.$http('user/deposit/workflow/list?orderId=' + this.orderId, "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						if (data.data.length > 0) {
+							for (let item of data.data) {
+								item.title = item.status.name
+								item.mmdd = this.$moment(item.timeCreated).from('YYYY-MM-DD')
+								item.hhmm = this.$moment(item.timeCreated).from('hh:mm:ss')
+								item.desc = item.remark
+							}
+							this.options = data.data
+							this.active = data.data.length
+						} else {
+							this.options = []
+							this.active = 0
+						}
 					} else {
 						uni.showToast({
 							icon: 'none',

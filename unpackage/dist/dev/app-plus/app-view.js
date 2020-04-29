@@ -2691,7 +2691,12 @@ var render = function() {
                                     expression: "_$g(112,'v-show')"
                                   }
                                 ],
-                                attrs: { src: _vm._$g(112, "a-src"), _i: 112 }
+                                attrs: { src: _vm._$g(112, "a-src"), _i: 112 },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  }
+                                }
                               }),
                               _c("v-uni-image", {
                                 directives: [
@@ -2702,7 +2707,12 @@ var render = function() {
                                     expression: "_$g(113,'v-show')"
                                   }
                                 ],
-                                attrs: { src: _vm._$g(113, "a-src"), _i: 113 }
+                                attrs: { src: _vm._$g(113, "a-src"), _i: 113 },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.$handleViewEvent($event)
+                                  }
+                                }
                               })
                             ],
                             1

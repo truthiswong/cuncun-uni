@@ -184,8 +184,8 @@
 					<view class="list_padding30">
 						<uni-list class="list_custom list_custom_img2">
 							<view v-show="long_active" class="list_hide_show">
-								<image v-show="true" src="../../static/tab1/show.png"></image>
-								<image v-show="false" src="../../static/tab1/hide.png"></image>
+								<image v-show="true" @click="isShowHide('groceriesShow')" src="../../static/tab1/show.png"></image>
+								<image v-show="false" @click="isShowHide('groceriesHide')" src="../../static/tab1/hide.png"></image>
 							</view>
 							<uni-list-item thumb="../../static/tab1/groceries_title.png" :showArrow="false">
 								<view slot="right">
@@ -233,10 +233,18 @@
 				scroll_bg2: '../../static/tab1/clothes_box.png',
 				scroll_bg3: '../../static/tab1/shoes_box2.png',
 				long_active: false, //长按显示编辑按钮
+				bookData: {}, //书架
+				clotheData: {}, //衣柜
+				shoeData: {}, //鞋柜
+				storageData: {}, //储藏室
+				groceriesData: {}, //杂货架
 			}
 		},
 		onLoad() {},
-		onShow() {},
+		onShow() {
+			this.getGoodsList()
+			
+		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
@@ -274,11 +282,37 @@
 				// 	}
 				// })
 			},
+			isShowHide(type) {
+				if (type == 'groceriesShow') {
+					
+				} else if (type == 'groceriesHide') {
+					
+				} else{
+					
+				}
+			},
 			longpress_comfirm() {
 				this.long_active = false
 			},
 			longpress_cancel() {
 				this.long_active = false
+			},
+			getGoodsList() {
+				this.$http('user/goods/all', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						this.bookData = data.data.bookcase //书架
+						this.clotheData = data.data.armoire //衣柜
+						this.shoeData = data.data.shoebox //鞋柜
+						this.storageData = data.data.storeroom //储藏室
+						this.groceriesData = data.data.sundries //杂货架
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
 			}
 		}
 	}
