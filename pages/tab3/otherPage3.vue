@@ -123,6 +123,39 @@
 							}
 						})
 					} else {
+						let data = {
+							os: String(info.platform).toLowerCase(), // 操作系统（苹果：ios / 安卓：android）
+							ver: 'release' // 版本类别（正式：release / 演示：demo / 测试：beta）
+						}
+						this.$http('open/appver/latest', "GET", data, res => {
+							let data = res.data
+							if (data.success) {
+								if (info.versionCode < data.build) {
+									uni.showModal({
+										title: "提示",
+										content: "发现新版本APP，您是否要升级体验？",
+										success: (action) => {
+											if (action.confirm) {
+												plus.runtime.openURL(data.url)
+											} else if (res.cancel) {}
+										}
+									})
+								} else {
+									uni.showModal({
+										title: "提示",
+										content: "已是最新版本",
+										success: (action) => {
+						
+										}
+									})
+								}
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: data.message
+								});
+							}
+						})
 						var appurl = "https://testflight.apple.com/join/YTk1s8uF"
 						plus.runtime.openURL(appurl, function(res) {
 							console.log(res);

@@ -84,15 +84,10 @@
 				this.$http('user/current', "GET", '', res => {
 					let data = res.data
 					if (data.success) {
-						try {
-							const user = uni.getStorageSync('user');
-							if (user) {
-								uni.setStorage({
-									key: 'user',
-									data: data.data
-								});
-							}
-						} catch (e) {}
+						uni.setStorage({
+							key: 'user',
+							data: data.data
+						});
 					} else {
 						uni.showToast({
 							icon: 'none',

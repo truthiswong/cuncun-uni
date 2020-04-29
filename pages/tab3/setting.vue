@@ -202,6 +202,12 @@
 					content: '您确定要退出登录吗？',
 					success(res) {
 						if (res.confirm) {
+							uni.removeStorage({
+								key: 'user'
+							})
+							uni.removeStorage({
+								key: 'token'
+							})
 							uni.navigateTo({
 								url: '/pages/login/login'
 							})

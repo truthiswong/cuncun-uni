@@ -2,8 +2,8 @@
     "name" : "存存",
     "appid" : "__UNI__tech.cuncun.cuncun",
     "description" : "",
-    "versionName" : "1.0.8",
-    "versionCode" : 108,
+    "versionName" : "1.0.9",
+    "versionCode" : 109,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -33,17 +33,22 @@
             "android" : {
                 "permissions" : [
                     "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
                     "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
                     "<uses-permission android:name=\"android.permission.CALL_PRIVILEGED\"/>",
                     "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.INTERNET\"/>",
                     "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
                     "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
                     "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
-                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>"
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
                 ]
             },
             /* ios打包配置 */
@@ -60,9 +65,9 @@
                     "appleiap" : {}
                 },
                 "maps" : {
-                    "baidu" : {
-                        "appkey_ios" : "yAzOtMlTt3S4yizqa43gR3GrRNQQz8Wn",
-                        "appkey_android" : "BpvyFZvz9x9B77KUTD2XztGfwR6Cw9IT"
+                    "amap" : {
+                        "appkey_ios" : "a9fb8dfcd37db260276809597a8c446c",
+                        "appkey_android" : "dab150191c68d0743e39f41a9dd22478"
                     }
                 }
             },

@@ -3,7 +3,11 @@ import App from './App'
 
 Vue.config.productionTip = false
 
+// 自定义请求
 import './utils/http.js'
+// 时间格式化
+import moment from './utils/moment.js'
+Vue.prototype.$moment = moment
 
 // 导航栏全局注册
 import uniNavBar from "@/components/uni-nav-bar/uni-nav-bar.vue"

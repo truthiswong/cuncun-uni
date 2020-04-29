@@ -2,42 +2,88 @@
 	<view class="layout">
 		<uni-nav-bar left-icon="back" @clickLeft="onClickBack" title="确认地址" status-bar="true" fixed="true"></uni-nav-bar>
 		<!-- 内容 -->
-		<view style="margin-top: 20upx;padding: 0 30upx;background-color: #FFFFFF;">
-			<view class="">
-				<uni-search-bar :radius="100" @confirm="onSearch"></uni-search-bar>
+		<view class="content">
+			<view class="address_search">
+				<uni-search-bar :radius="100" @input="onInput"></uni-search-bar>
+			</view>
+			<view class="address_content">
+				<scroll-view scroll-y="true">
+					<view>
+						<view class="address_list" @click="onChooseAddress(item)" v-for="(item,index) in tipsList" :key="index">
+							<h4>{{item.name}}</h4>
+							<p>{{item.district}} {{item.address}}</p>
+						</view>
+					</view>
+				</scroll-view>
 			</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	import amap from '../../js_sdk/js-amap/amap-wx.js';
 	export default {
 		components: {},
 		data() {
 			return {
+				amapPlugin: null,
+				key: '0d068c7ca336957fbbb8d534d547ccc7',
 				localtion: {
 					longitude: 0,
 					latitude: 0
-				}
+				},
+				tipsList: [],
 			};
 		},
 		onLoad(option) {
 			// #ifdef APP-PLUS
 			uni.getLocation({
-			    type: 'gcj02',
-			    success: (res)=> {
+				type: 'gcj02',
+				success: (res) => {
+					console.log(res)
 					this.localtion.longitude = res.longitude
 					this.localtion.latitude = res.latitude
 					console.log(this.localtion)
-			    }
+					const latitude = res.latitude;
+					const longitude = res.longitude;
+				}
 			});
 			// #endif
+			this.amapPlugin = new amap.AMapWX({
+				key: this.key
+			});
 		},
 		methods: {
 			onClickBack() {
 				uni.navigateBack({
 					delta: 1
 				})
+			},
+			onInput(e) {
+				this.amapPlugin.getInputtips({
+					keywords: e.value,
+					location: '',
+					success: (data)=> {
+						if (data && data.tips) {
+							this.tipsList = data.tips
+						}
+					}
+				})
+				// if (!e.value) {
+				// 	uni.showToast({
+				// 		icon: 'none',
+				// 		title: '请输入地址'
+				// 	});
+				// } else {
+					
+				// }
+			},
+			onChooseAddress(item) {
+				let pages = getCurrentPages(); //获取所有页面栈实例列表
+				let nowPage = pages[pages.length - 1]; //当前页页面实例
+				let prevPage = pages[pages.length - 2]; //上一页页面实例
+				prevPage.$vm.tipsAddress = item; //修改上一页data里面的couponNumber参数值为value
+				uni.navigateBack();
 			},
 			onSearch(e) {
 				console.log(e)
@@ -47,18 +93,16 @@
 						title: '请输入地址'
 					});
 				} else {
-					let data = {
-						point: {
-							latitude: res.longitude,
-							longitude: res.latitude
-						},
-						key: e.value,
-						radius: 10000,
-						index: 1
-					}
-					plus.maps.Search()
-					uni.poiSearchNearBy(data, (res) => {
-						console.log(res)
+					this.amapPlugin.getInputtips({
+						keywords: e.value,
+						location: '',
+						success: function(data) {
+							console.log(data)
+							if (data && data.tips) {
+
+							}
+
+						}
 					})
 				}
 			}
@@ -68,131 +112,53 @@
 
 <style>
 	page {
-		background-color: #F9F9F9;
+		background-color: #FFFFFF;
 	}
 </style>
 
 <style scoped lang="scss">
-	.popup_wrap {
-		width: 100%;
-		height: 660upx;
-		background: rgba(255, 255, 255, 1);
-		border-radius: 20upx 20upx 0 0;
+	.content {
+		padding: 0 30upx;
+	}
+	.address_search {
+		box-sizing: border-box;
+		padding-top: 20upx;
+		position: fixed;
+		left: 30upx;
+		right: 30upx;
+		z-index: 3;
+		background-color: #FFFFFF;
+	}
+	.uni-searchbar {
+		padding: 0;
+	}
+	.address_content {
+		padding-top: 90upx;
+	}
+	.address_list {
+		border-bottom: 1upx solid #f3f4f5;
+		margin: 20upx 0;
 
-		.pick_view {
-			width: 100%;
-			height: 570upx;
+		h4 {
+			font-size: 28upx;
+			font-weight: 600;
+			color: rgba(40, 40, 40, 1);
+			line-height: 40upx;
+			text-align: justify;
 		}
 
-		.date_item {
-			height: 60upx;
-			line-height: 60upx;
-			text-align: center;
+		p {
+			display: inline-block;
 			font-size: 26upx;
 			font-weight: 400;
-			color: rgba(40, 40, 40, 1);
+			color: rgba(104, 104, 104, 1);
+			line-height: 38upx;
+			margin: 0 0 10upx;
+			text-align: justify;
 		}
 	}
 
-	.header_icon {
-		width: 200upx;
-		height: 44px;
-	}
-
-	.input {
-		width: 429upx;
-		font-weight: 400;
-		font-size: 28upx;
-		line-height: 40upx;
-		color: #333333;
-	}
-
-	.change_address {
-		width: 388upx;
-		font-weight: 400;
-		color: #CCCCCC;
-		line-height: 40upx;
-
-		.change_address_active {
-			font-weight: 400;
-			font-size: 28upx;
-			line-height: 40upx;
-			color: #333333;
-		}
-	}
-
-	.textarea {
-		width: 429upx;
-		font-weight: 400;
-		font-size: 28upx;
-		line-height: 40upx;
-		overflow: hidden;
-	}
-
-	.button_tag {
-		text {
-			display: inline-block;
-			width: 100upx;
-			height: 60upx;
-			border-radius: 5upx;
-			border: 1px solid rgba(218, 218, 218, 1);
-			font-size: 28upx;
-			font-weight: 400;
-			color: rgba(74, 74, 74, 1);
-			line-height: 60upx;
-			margin-left: 20upx;
-			text-align: center;
-		}
-
-		.button_tag_active {
-			background: rgba(254, 242, 243, 1);
-			border: 1px solid rgba(189, 103, 108, 1);
-			color: rgba(189, 103, 108, 1);
-		}
-	}
-
-	.input::-webkit-input-placeholder {
-		font-size: 28upx;
-		font-weight: 400;
-		color: #CCCCCC;
-	}
-
-	.input:-moz-placeholder {
-		font-size: 28upx;
-		font-weight: 400;
-		color: #CCCCCC;
-	}
-
-	.input:-ms-input-placeholder {
-		font-size: 28upx;
-		font-weight: 400;
-		color: #CCCCCC;
-	}
-
-	.change_address {
-		display: flex;
-		display: -webkit-flex;
-		align-items: center;
-		-webkit-align-items: center;
-		justify-content: space-between;
-		-webkit-justify-content: space-between;
-	}
-
-	.address_button {
-		width: 690upx;
-		height: 98upx;
-		background: rgba(238, 238, 238, 1);
-		border-radius: 6upx;
-		font-size: 30upx;
-		font-weight: 500;
-		color: rgba(178, 178, 178, 1);
-		line-height: 98upx;
-		text-align: center;
-		margin-top: 80upx;
-	}
-
-	.address_button_active {
-		background-color: #3BC1BB;
-		color: #FFFFFF;
-	}
+	// .address_list:nth-last-child(1) {
+	// 	border-bottom: 0;
+	// }
 </style>

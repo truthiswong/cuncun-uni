@@ -16,22 +16,16 @@
 				</uni-list-item>
 				<uni-list-item title="所在地区：" @click="gotoAddress">
 					<view slot="right" class="change_address">
-						<pick-regions :default-regions="defaultRegions" @getRegions="handleGetRegions">
-							<!-- <input type="" v-model="addressText" disabled placeholder="请选择所在地区" placeholder-style="color: #CCCCCC;font-size:14px;" /> -->
+						<text style="font-size: 28upx;" v-if="!tipsAddress.name">{{addressText}}</text>
+						<text style="font-size: 28upx;" v-else :class="{change_address_active:tipsAddress.name}">{{tipsAddress.name}}</text>
+						<!-- <pick-regions :default-regions="defaultRegions" @getRegions="handleGetRegions">
 							<text style="font-size: 14px;" :class="{change_address_active:addressText != '请选择所在地区'}">{{addressText}}</text>
-						</pick-regions>
-						<!-- <view @click="onChangeAddress" style="font-size:28upx; color:rgba(3,166,166,1);">{{date}}</view> -->
-						
-						<!-- <picker @change="bindPickerChange" :value="index" :range="array">
-							<text>请选择所在地区</text>
-							<view>{{array[index]}}</view>
-						</picker> -->
+						</pick-regions> -->
 					</view>
 				</uni-list-item>
 				<uni-list-item title="详细地址：" :showArrow="false">
 					<view slot="right">
 						<input class="input" type="text" v-model="detailAddress" placeholder="请输入街道、楼牌号等" placeholder-style="color: #CCCCCC;font-size:14px;" />
-						<!-- <textarea class="textarea" :adjust-position="true" :auto-height="true" placeholder-style="color:#CCCCCC" placeholder="请输入街道、楼牌号等" /> -->
 					</view>
 				</uni-list-item>
 				<uni-list-item title="邮政编码：" :showArrow="false">
@@ -51,27 +45,6 @@
 				</uni-list-item>
 			</uni-list>
 		</view>
-		<!-- <uni-popup ref="popupDate" type="bottom" @touchmove.stop.prevent @touchend.stop>
-			<view class="popup_wrap">
-				<view class="popup_title">
-					<text>选择送达时间</text>
-					<image class="close_btn" @click="closePopupDate" src="../../static/tab2/close.png" mode=""></image>
-				</view>
-				<view>
-					<picker-view class="pick_view" :value="dateValue" @change="changeDate">
-						<picker-view-column>
-							<view class="date_item" v-for="(item,index) in provinceList" :key="index">{{item.name}}</view>
-						</picker-view-column>
-						<picker-view-column>
-							<view class="date_item" v-for="(item,index) in hours" :key="index">{{item.value}}</view>
-						</picker-view-column>
-						<picker-view-column>
-							<view class="date_item" v-for="(item,index) in hours" :key="index">{{item.value}}</view>
-						</picker-view-column>
-					</picker-view>
-				</view>
-			</view>
-		</uni-popup> -->
 		<button @click="onConfirm" class="address_button" :class="{address_button_active: buttonActive}">确定</button>
 	</view>
 </template>
@@ -86,6 +59,7 @@
 				name: '',
 				phone: '',
 				addressText: '请选择所在地区',
+				tipsAddress: {},
 				areaId: '',
 				defaultRegions: ['北京市', '市辖区', '东城区'],
 				postcode: '',
@@ -145,42 +119,42 @@
 		},
 		watch: {
 			name() {
-				if (this.name && this.phone && this.areaId && this.detailAddress && this.postcode && this.addressTag) {
+				if (this.name && this.phone && this.tipsAddress.location && this.detailAddress && this.postcode && this.addressTag) {
 					this.buttonActive = true;
 				} else {
 					this.buttonActive = false;
 				}
 			},
 			phone() {
-				if (this.name && this.phone && this.areaId && this.detailAddress && this.postcode && this.addressTag) {
+				if (this.name && this.phone && this.tipsAddress.location && this.detailAddress && this.postcode && this.addressTag) {
 					this.buttonActive = true;
 				} else {
 					this.buttonActive = false;
 				}
 			},
 			addressText() {
-				if (this.name && this.phone && this.areaId && this.detailAddress && this.postcode && this.addressTag) {
+				if (this.name && this.phone && this.tipsAddress.location && this.detailAddress && this.postcode && this.addressTag) {
 					this.buttonActive = true;
 				} else {
 					this.buttonActive = false;
 				}
 			},
 			detailAddress() {
-				if (this.name && this.phone && this.areaId && this.detailAddress && this.postcode && this.addressTag) {
+				if (this.name && this.phone && this.tipsAddress.location && this.detailAddress && this.postcode && this.addressTag) {
 					this.buttonActive = true;
 				} else {
 					this.buttonActive = false;
 				}
 			},
 			postcode() {
-				if (this.name && this.phone && this.areaId && this.detailAddress && this.postcode && this.addressTag) {
+				if (this.name && this.phone && this.tipsAddress.location && this.detailAddress && this.postcode && this.addressTag) {
 					this.buttonActive = true;
 				} else {
 					this.buttonActive = false;
 				}
 			},
 			addressTag() {
-				if (this.name && this.phone && this.areaId && this.detailAddress && this.postcode && this.addressTag) {
+				if (this.name && this.phone && this.tipsAddress.location && this.detailAddress && this.postcode && this.addressTag) {
 					this.buttonActive = true;
 				} else {
 					this.buttonActive = false;
@@ -253,18 +227,17 @@
 				}
 			},
 			onConfirm() {
-				console.log(this.areaId)
 				if (!this.name) {
 					uni.showToast({
 						icon: 'none',
-						title: '请输入收货人'
+						title: '请输入收货人姓名'
 					});
 				} else if (!this.phone) {
 					uni.showToast({
 						icon: 'none',
 						title: '请输入手机号'
 					});
-				} else if (!this.areaId) {
+				} else if (!this.tipsAddress.location) {
 					uni.showToast({
 						icon: 'none',
 						title: '请选择所在地区'
@@ -287,16 +260,17 @@
 				} else {
 					// "longitude": 121.477355,
 					// "latitude": 31.234643
+					let lnglat = this.tipsAddress.location.split(',');
 					let data = {
 						id: this.addressId,
 						linkman: this.name,
 						mobile: this.phone,
-						areaId: this.areaId,
+						areaId: this.tipsAddress.adcode,
 						address: this.detailAddress,
 						tag: this.addressTag,
 						dft: this.isDefault,
-						lng: 121.477355,
-						lat: 31.234643
+						lng: lnglat[0],
+						lat: lnglat[1]
 					}
 					this.$http('user/addr/save', "POST", data, res => {
 						let data = res.data
@@ -354,7 +328,7 @@
 	}
 
 	.input {
-		width: 429upx;
+		width: 430upx;
 		font-weight: 400;
 		font-size: 28upx;
 		line-height: 40upx;
@@ -362,10 +336,11 @@
 	}
 
 	.change_address {
-		width: 388upx;
+		width: 390upx;
 		font-weight: 400;
 		color: #CCCCCC;
 		line-height: 40upx;
+		font-size: 28upx;
 		.change_address_active {
 			font-weight: 400;
 			font-size: 28upx;
