@@ -108,17 +108,17 @@
 							<text style="font-size:28upx;font-weight:400;color:rgba(2,105,208,1);">复制</text>
 						</view>
 					</view>
-					<view class="flex_between order_list_phone">
+					<!-- <view class="flex_between order_list_phone">
 						<p>支付方式</p>
 						<text>支付宝支付</text>
-					</view>
+					</view> -->
 					<view class="flex_between order_list_phone">
 						<p>下单时间</p>
-						<text>{{order.bookFetchDate}}</text>
+						<text>{{order.orderTime}}</text>
 					</view>
 					<view class="flex_between order_list_phone">
 						<p>订单备注</p>
-						<text>{{order.userRemark}}</text>
+						<text>{{order.remark}}</text>
 					</view>
 				</view>
 			</view>
@@ -428,6 +428,7 @@
 							`${data.data.bookFetchDate} ${data.data.bookFetchTime[0]}:00~${data.data.bookFetchTime[1]}:00`
 						data.data.detailStatus = data.data.status.code
 						data.data.detailPrepaidStatus = data.data.prepaidStatus.code
+						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD hh:mm:ss')
 						// data.data.detailAdjustPayStatus = data.data.adjustPayStatus.code
 						this.order = data.data
 					} else {
