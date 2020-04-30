@@ -128,7 +128,7 @@
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="存单" :note="'上门地址：'+item.address" :showArrow="false">
 												<view slot='right' class="list_right_text">
-													<text class="list_right_orange" v-if="item.status.code == 'waipay'">待付款</text>
+													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
 													<text class="list_right_blue" v-if="item.status.code == 'init'">待接单</text>
 													<text class="list_right_blue" v-if="item.status.code == 'fetch'">待取货</text>
 													<text class="list_right_blue" v-if="item.status.code == 'delivery'">回库中</text>
@@ -149,8 +149,8 @@
 											</view>
 										</view>
 									</view>
-									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' || item.status.code == 'waipay'">
-										<button class="button_cancel" v-if="item.status.code == 'waipay'" @click="onCancelOrder1(item.id)">取消订单</button>
+									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' || item.status.code == 'waitpay'">
+										<button class="button_cancel" v-if="item.status.code == 'waitpay'" @click="onCancelOrder1(item.id)">取消订单</button>
 										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse'" @click="onConfirmOrder1(item.id)">立即付款</button>
 									</view>
 								</view>
@@ -163,7 +163,7 @@
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="取单" :note="'送到: '+item.address" :showArrow="false">
 												<view slot='right' class="list_right_text">
-													<text class="list_right_orange" v-if="item.status.code == 'waipay'">待付款</text>
+													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
 													<text class="list_right_blue" v-if="item.status.code == 'init'">待接单</text>
 													<text class="list_right_blue" v-if="item.status.code == 'fetch'">待取货</text>
 													<text class="list_right_blue" v-if="item.status.code == 'delivery'">回库中</text>
@@ -183,8 +183,8 @@
 											</view>
 										</view>
 									</view>
-									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' || item.status.code == 'waipay'">
-										<button class="button_cancel" v-if="item.status.code == 'waipay'" @click="onCancelOrder2(item.id)">取消订单</button>
+									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' || item.status.code == 'waitpay'">
+										<button class="button_cancel" v-if="item.status.code == 'waitpay'" @click="onCancelOrder2(item.id)">取消订单</button>
 										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse'" @click="onConfirmOrder2(item.id)">立即付款</button>
 									</view>
 								</view>
@@ -197,7 +197,7 @@
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="仓储订单" :showArrow="false">
 												<view slot='right' class="list_right_text">
-													<text class="list_right_orange" v-if="item.status.code == 'waipay'">待付款</text>
+													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
 													<text class="list_right_blue" v-if="item.status.code == 'init'">待接单</text>
 													<text class="list_right_blue" v-if="item.status.code == 'fetch'">待取货</text>
 													<text class="list_right_blue" v-if="item.status.code == 'delivery'">回库中</text>
@@ -224,8 +224,8 @@
 											</view>
 										</view>
 									</view>
-									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' || item.status.code == 'waipay'">
-										<button class="button_cancel" v-if="item.status.code == 'waipay'" @click="onCancelOrder3(item.id)">取消订单</button>
+									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' || item.status.code == 'waitpay'">
+										<button class="button_cancel" v-if="item.status.code == 'waitpay'" @click="onCancelOrder3(item.id)">取消订单</button>
 										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse'" @click="onConfirmOrder3(item.id)">立即付款</button>
 									</view>
 								</view>

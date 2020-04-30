@@ -7,13 +7,13 @@
 		 fixed="true" v-if="!headerShow" shadow="true" style="position: absolute; top: 0;">
 		</uni-nav-bar>
 		<!-- 内容 -->
-		<view class="content" :class="{'content_active': order.detailStatus == 'waipay' || order.detailStatus == 'cancel'}">
+		<view class="content" :class="{'content_active': order.detailStatus == 'waitpay' || order.detailStatus == 'cancel'}">
 			<view class="cont_top">
 				<view class="top_text">
 					<view v-if="order.detailStatus == 'finish'">
 						<h4>订单已支付，放心存储吧～</h4>
 					</view>
-					<view v-if="order.detailStatus == 'waipay'">
+					<view v-if="order.detailStatus == 'waitpay'">
 						<h4>您的订单还未付款，请及时付款</h4>
 						<p>此订单需要在7月26日00:00为止需要支付，否则订单将自动取消。</p>
 					</view>
@@ -38,7 +38,7 @@
 									</view>
 								</view>
 								<view slot='right' class="top_button_right">
-									<text @click="onCancelOrder(order.id)" v-if="order.detailStatus == 'waipay'">取消订单</text>
+									<text @click="onCancelOrder(order.id)" v-if="order.detailStatus == 'waitpay'">取消订单</text>
 									<image @click="onDetails" v-else src="../../static/tab2/more_info.png" mode=""></image>
 								</view>
 							</uni-list-item>
@@ -169,11 +169,11 @@
 				</view>
 			</view>
 		</uni-popup>
-		<view class="flex_between bottom_pay" v-if="order.detailStatus == 'waipay'">
+		<view class="flex_between bottom_pay" v-if="order.detailStatus == 'waitpay'">
 			<text>¥ {{order.prepaid}}</text>
 			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">确认支付</button>
 		</view>
-		<!-- <view class="flex_between bottom_pay" v-if="order.detailAdjustPayStatus == 'waipay'">
+		<!-- <view class="flex_between bottom_pay" v-if="order.detailAdjustPayStatus == 'waitpay'">
 			<text>¥ {{order.prepaid}}</text>
 			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">调整支付</button>
 		</view> -->

@@ -91,8 +91,8 @@
 					<view v-if="true">
 						<scroll-view class="scroll_x" scroll-x="true">
 							<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
-							 style="display: inline-block;" v-for="(item,index) in 9" :key='index'>
-								<image src="../../static/tab1/book_img1.png"></image>
+							 style="display: inline-block;" v-for="(item,index) in bookData" :key='index'>
+								<image :src="item.coverPic"></image>
 							</view>
 						</scroll-view>
 					</view>
@@ -118,8 +118,8 @@
 					<view v-if="true">
 						<scroll-view class="scroll_x" scroll-x="true">
 							<view class="scroll_content scroll_content2" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
-							 v-for="(item,index) in 7" :key='index' style="display: inline-block;">
-								<image src="../../static/tab1/clothes_img1.png"></image>
+							 v-for="(item,index) in clotheData" :key='index' style="display: inline-block;">
+								<image :src="item.coverPic"></image>
 								<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 112upx;" src="../../static/tab1/clothes_box1.png"></image>
 							</view>
 						</scroll-view>
@@ -145,9 +145,9 @@
 					</view>
 					<view v-if="true">
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_content2" v-for="(item,index) in 7" :key='index' style="display: inline-block;">
+							<view class="scroll_content scroll_content2" v-for="(item,index) in shoeData" :key='index' style="display: inline-block;">
 								<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
-								<image src="../../static/tab1/shoes_img1.png"></image>
+								<image :src="item.coverPic"></image>
 								<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
 							</view>
 						</scroll-view>
@@ -173,8 +173,8 @@
 					</view>
 					<view v-if="true">
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_content4" v-for="(item,index) in 8" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
-								<image src="../../static/tab1/sofa_img1.png"></image>
+							<view class="scroll_content scroll_content4" v-for="(item,index) in storageData" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
+								<image :src="item.coverPic"></image>
 							</view>
 						</scroll-view>
 					</view>
@@ -197,14 +197,14 @@
 							</uni-list-item>
 						</uni-list>
 					</view>
-					<view v-if="true" class="box_groceries_content flex_between" v-for="(item,index) in 3" :key="index">
+					<view v-if="true" class="box_groceries_content flex_between" v-for="(item,index) in groceriesData" :key="index">
 						<view class="box_groceries_left">
-							<image src="../../static/tab1/box_null.png"></image>
-							<text>{{index+1}}</text>
+							<image :src="item.coverPic"></image>
+							<!-- <text>{{index+1}}</text> -->
 						</view>
 						<view class="box_groceries_right" style="color: rgba(40,40,40,1);">
 							<view>
-								<text>箱子 {{index+1}}</text>
+								<text>{{item.name}}</text>
 							</view>
 							<text class="box_groceries_text">内含：羽毛球、羽毛球拍、篮球、排球、足球、排球手… </text>
 						</view>
@@ -233,11 +233,11 @@
 				scroll_bg2: '../../static/tab1/clothes_box.png',
 				scroll_bg3: '../../static/tab1/shoes_box2.png',
 				long_active: false, //长按显示编辑按钮
-				bookData: {}, //书架
-				clotheData: {}, //衣柜
-				shoeData: {}, //鞋柜
-				storageData: {}, //储藏室
-				groceriesData: {}, //杂货架
+				bookData: [], //书架
+				clotheData: [], //衣柜
+				shoeData: [], //鞋柜
+				storageData: [], //储藏室
+				groceriesData: [], //杂货架
 			}
 		},
 		onLoad() {},
@@ -300,6 +300,7 @@
 			getGoodsList() {
 				this.$http('user/goods/all', "GET", '', res => {
 					let data = res.data
+					console.log(data)
 					if (data.success) {
 						this.bookData = data.data.bookcase //书架
 						this.clotheData = data.data.armoire //衣柜
