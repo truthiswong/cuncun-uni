@@ -35,14 +35,14 @@
 					<image style="position: absolute;right: 45upx; width: 46upx;height: 34upx;" src="../../static/tab1/mark_right.png"></image>
 				</view>
 			</view>
-			<view class="no_data" v-if="failData.length<=0 && bookData.length<=0 && clotheData.length<=0 && shoeData.length<=0 && storageData.length<=0 && groceriesData.length<=0">
+			<view class="no_data" v-if="failData.length<=0 && bookData.dataNumber<=0 && clotheData.dataNumber<=0 && shoeData.dataNumber<=0 && storageData.dataNumber<=0 && groceriesData.dataNumber<=0">
 				<image src="../../static/tab1/no_data.png" mode=""></image>
 				<p>您的存存空空如也，跟我们的收纳达人和打包小哥约起来，赶紧的！！！</p>
-				<button class="common_button">约！约！约!</button>
+				<button @click="onClickRight(2)" class="common_button">约！约！约!</button>
 			</view>
 			<view>
 				<!-- 未过安检的箱子 -->
-				<view @longpress="longpress" class="list_margin50" v-if="failData.length>0">
+				<view @longpress="longpress" class="list_margin50" v-if="failData.length>0" style="background-color: #FFFFFF;">
 					<view class="list_padding30">
 						<uni-list class="list_custom list_custom_img3">
 							<uni-list-item thumb="../../static/tab1/box_wrong_title.png" :showArrow="false">
@@ -71,142 +71,155 @@
 					</view>
 				</view>
 				<!-- 书架 -->
-				<view @longpress="longpress('书架')" class="list_margin50">
-					<view class="list_padding30">
-						<uni-list class="list_custom list_custom_img1">
-							<view v-if="long_active" class="list_hide_show">
-								<image v-if="false" src="../../static/tab1/show.png"></image>
-								<image v-if="true" src="../../static/tab1/hide.png"></image>
-							</view>
-							<uni-list-item thumb="../../static/tab1/books_title.png" :showArrow="false">
-								<view slot="right">
-									<navigator url="/pages/tab1/book">
-										<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
-											 src="../../static/tab1/right.png"></image></span>
-									</navigator>
+				<view @longpress="longpress('书架')" class="list_margin50" v-if="long_active || bookData.dataNumber>0" style="background-color: #FFFFFF;">
+					<view v-if="tab1ShowHide.bookShowHideTitle == true">
+						<view class="list_padding30">
+							<uni-list class="list_custom list_custom_img1">
+								<view v-if="long_active" class="list_hide_show">
+									<image v-show="tab1ShowHide.bookShowHide == false" @click="isShowHide('bookShow')" src="../../static/tab1/show.png"></image>
+									<image v-show="tab1ShowHide.bookShowHide == true" @click="isShowHide('bookHide')" src="../../static/tab1/hide.png"></image>
 								</view>
-							</uni-list-item>
-						</uni-list>
-					</view>
-					<view>
-						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
-							 style="display: inline-block;" v-for="(item,index) in bookData.goods" :key='index'>
-								<image :src="item.coverPic"></image>
-							</view>
-						</scroll-view>
+								<uni-list-item thumb="../../static/tab1/books_title.png" :showArrow="false">
+									<view slot="right">
+										<navigator url="/pages/tab1/book">
+											<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+												 src="../../static/tab1/right.png"></image></span>
+										</navigator>
+									</view>
+								</uni-list-item>
+							</uni-list>
+						</view>
+						<view v-if="tab1ShowHide.bookShowHide == true">
+							<scroll-view class="scroll_x" scroll-x="true">
+								<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
+								 style="display: inline-block;" v-for="(item,index) in bookData.goods" :key='index'>
+									<image :src="item.coverPic"></image>
+								</view>
+							</scroll-view>
+						</view>
 					</view>
 				</view>
 				<!-- 衣柜 -->
-				<view @longpress="longpress('衣柜')" class="list_margin50">
-					<view class="list_padding30">
-						<uni-list class="list_custom list_custom_img1">
-							<view v-if="long_active" class="list_hide_show">
-								<image v-if="false" src="../../static/tab1/show.png"></image>
-								<image v-if="true" src="../../static/tab1/hide.png"></image>
-							</view>
-							<uni-list-item thumb="../../static/tab1/clothes_title.png" :showArrow="false">
-								<view slot="right">
-									<navigator url="/pages/tab1/clothes">
-										<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
-											 src="../../static/tab1/right.png"></image></span>
-									</navigator>
+				<view @longpress="longpress('衣柜')" class="list_margin50" v-if="long_active || clotheData.dataNumber>0" style="background-color: #FFFFFF;">
+					<view v-if="tab1ShowHide.clotheShowHideTitle == true">
+						<view class="list_padding30">
+							<uni-list class="list_custom list_custom_img1">
+								<view v-if="long_active" class="list_hide_show">
+									<image v-show="tab1ShowHide.clotheShowHide == false" @click="isShowHide('clotheShow')" src="../../static/tab1/show.png"></image>
+									<image v-show="tab1ShowHide.clotheShowHide == true" @click="isShowHide('clotheHide')" src="../../static/tab1/hide.png"></image>
 								</view>
-							</uni-list-item>
-						</uni-list>
-					</view>
-					<view v-if="true">
-						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_content2" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
-							 v-for="(item,index) in clotheData.goods" :key='index' style="display: inline-block;">
-								<image :src="item.coverPic"></image>
-								<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 112upx;" src="../../static/tab1/clothes_box1.png"></image>
-							</view>
-						</scroll-view>
+								<uni-list-item thumb="../../static/tab1/clothes_title.png" :showArrow="false">
+									<view slot="right">
+										<navigator url="/pages/tab1/clothes">
+											<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+												 src="../../static/tab1/right.png"></image></span>
+										</navigator>
+									</view>
+								</uni-list-item>
+							</uni-list>
+						</view>
+						<view v-if="tab1ShowHide.clotheShowHide == true">
+							<scroll-view class="scroll_x" scroll-x="true">
+								<view class="scroll_content scroll_content2" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
+								 v-for="(item,index) in clotheData.goods" :key='index' style="display: inline-block;">
+									<image :src="item.coverPic"></image>
+									<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 112upx;" src="../../static/tab1/clothes_box1.png"></image>
+								</view>
+							</scroll-view>
+						</view>
 					</view>
 				</view>
 				<!-- 鞋柜 -->
-				<view @longpress="longpress('鞋柜')" class="list_margin50">
-					<view class="list_padding30">
-						<uni-list class="list_custom list_custom_img1">
-							<view v-show="long_active" class="list_hide_show">
-								<image v-show="false" src="../../static/tab1/show.png"></image>
-								<image v-show="true" src="../../static/tab1/hide.png"></image>
-							</view>
-							<uni-list-item thumb="../../static/tab1/shoes_title.png" :showArrow="false">
-								<view slot="right">
-									<navigator url="/pages/tab1/shoes">
-										<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
-											 src="../../static/tab1/right.png"></image></span>
-									</navigator>
+				<view @longpress="longpress('鞋柜')" class="list_margin50" v-if="long_active || shoeData.dataNumber>0" style="background-color: #FFFFFF;">
+					<view v-if="tab1ShowHide.shoeShowHideTitle == true">
+						<view class="list_padding30">
+							<uni-list class="list_custom list_custom_img1">
+								<view v-show="long_active" class="list_hide_show">
+									<image v-show="tab1ShowHide.shoeShowHide == false" @click="isShowHide('shoeShow')" src="../../static/tab1/show.png"></image>
+									<image v-show="tab1ShowHide.shoeShowHide == true" @click="isShowHide('shoeHide')" src="../../static/tab1/hide.png"></image>
 								</view>
-							</uni-list-item>
-						</uni-list>
-					</view>
-					<view v-if="true">
-						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_content2" v-for="(item,index) in shoeData.goods" :key='index' style="display: inline-block;">
-								<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
-								<image :src="item.coverPic"></image>
-								<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
-							</view>
-						</scroll-view>
+								<uni-list-item thumb="../../static/tab1/shoes_title.png" :showArrow="false">
+									<view slot="right">
+										<navigator url="/pages/tab1/shoes">
+											<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+												 src="../../static/tab1/right.png"></image></span>
+										</navigator>
+									</view>
+								</uni-list-item>
+							</uni-list>
+						</view>
+						<view v-if="tab1ShowHide.shoeShowHide == true">
+							<scroll-view class="scroll_x" scroll-x="true">
+								<view class="scroll_content scroll_content2" v-for="(item,index) in shoeData.goods" :key='index' style="display: inline-block;">
+									<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
+									<image :src="item.coverPic"></image>
+									<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
+								</view>
+							</scroll-view>
+						</view>
 					</view>
 				</view>
 				<!-- 储藏室 -->
-				<view @longpress="longpress('储藏室')" class="list_margin50">
-					<view class="list_padding30">
-						<uni-list class="list_custom list_custom_img2">
-							<view v-show="long_active" class="list_hide_show">
-								<image v-show="false" src="../../static/tab1/show.png"></image>
-								<image v-show="true" src="../../static/tab1/hide.png"></image>
-							</view>
-							<uni-list-item thumb="../../static/tab1/storage_title.png" :showArrow="false">
-								<view slot="right">
-									<navigator url="/pages/tab1/storage">
-										<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
-											 src="../../static/tab1/right.png"></image></span>
-									</navigator>
+				<view @longpress="longpress('储藏室')" class="list_margin50" v-if="long_active || storageData.dataNumber>0" style="background-color: #FFFFFF;">
+					<view v-if="tab1ShowHide.storageShowHideTitle == true">
+						<view class="list_padding30">
+							<uni-list class="list_custom list_custom_img2">
+								<view v-show="long_active" class="list_hide_show">
+									<image v-show="tab1ShowHide.storageShowHide == false" @click="isShowHide('storageShow')" src="../../static/tab1/show.png"></image>
+									<image v-show="tab1ShowHide.storageShowHide == true" @click="isShowHide('storageHide')" src="../../static/tab1/hide.png"></image>
 								</view>
-							</uni-list-item>
-						</uni-list>
+								<uni-list-item thumb="../../static/tab1/storage_title.png" :showArrow="false">
+									<view slot="right">
+										<navigator url="/pages/tab1/storage">
+											<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+												 src="../../static/tab1/right.png"></image></span>
+										</navigator>
+									</view>
+								</uni-list-item>
+							</uni-list>
+						</view>
+						<view v-if="tab1ShowHide.storageShowHide == true">
+							<scroll-view class="scroll_x" scroll-x="true">
+								<view class="scroll_content scroll_content4" v-for="(item,index) in storageData.goods" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
+									<image :src="item.coverPic"></image>
+								</view>
+							</scroll-view>
+						</view>
 					</view>
-					<view v-if="true">
-						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_content4" v-for="(item,index) in storageData.goods" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
-								<image :src="item.coverPic"></image>
-							</view>
-						</scroll-view>
-					</view>
+					
 				</view>
 				<!-- 杂货架 -->
-				<view @longpress="longpress('杂货架')" class="list_margin50">
-					<view class="list_padding30">
-						<uni-list class="list_custom list_custom_img2">
-							<view v-show="long_active" class="list_hide_show">
-								<image v-show="true" @click="isShowHide('groceriesShow')" src="../../static/tab1/show.png"></image>
-								<image v-show="false" @click="isShowHide('groceriesHide')" src="../../static/tab1/hide.png"></image>
-							</view>
-							<uni-list-item thumb="../../static/tab1/groceries_title.png" :showArrow="false">
-								<view slot="right">
-									<navigator url="/pages/tab1/groceries">
-										<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
-											 src="../../static/tab1/right.png"></image></span>
-									</navigator>
+				<view @longpress="longpress('杂货架')" class="list_margin50" v-if="long_active || groceriesData.dataNumber>0" style="background-color: #FFFFFF;">
+					<view v-if="tab1ShowHide.groceriesShowHideTitle == true">
+						<view class="list_padding30">
+							<uni-list class="list_custom list_custom_img2">
+								<view v-show="long_active" class="list_hide_show">
+									<image v-show="tab1ShowHide.groceriesShowHide == false" @click="isShowHide('groceriesShow')" src="../../static/tab1/show.png"></image>
+									<image v-show="tab1ShowHide.groceriesShowHide == true" @click="isShowHide('groceriesHide')" src="../../static/tab1/hide.png"></image>
 								</view>
-							</uni-list-item>
-						</uni-list>
-					</view>
-					<view v-if="true" class="box_groceries_content flex_between" v-for="(item,index) in groceriesData.goods" :key="index">
-						<view class="box_groceries_left">
-							<image :src="item.coverPic"></image>
-							<text>{{index+1}}</text>
+								<uni-list-item thumb="../../static/tab1/groceries_title.png" :showArrow="false">
+									<view slot="right">
+										<navigator url="/pages/tab1/groceries">
+											<span style="font-size: 14px;font-weight: 400;color: rgba(59, 193, 187, 1);">查看全部 <image style="width: 16upx;height: 16upx;margin-left: 10upx;"
+												 src="../../static/tab1/right.png"></image></span>
+										</navigator>
+									</view>
+								</uni-list-item>
+							</uni-list>
 						</view>
-						<view class="box_groceries_right" style="color: rgba(40,40,40,1);">
-							<view>
-								<text>{{item.name}}</text>
+						<view v-if="tab1ShowHide.groceriesShowHide == true">
+							<view class="box_groceries_content flex_between" v-for="(item,index) in groceriesData.packs" :key="index">
+								<view class="box_groceries_left">
+									<image src="../../static/tab1/box_null.png"></image>
+									<text>{{index+1}}</text>
+								</view>
+								<view class="box_groceries_right" style="color: rgba(40,40,40,1);">
+									<view>
+										<text>{{item.code}}</text>
+									</view>
+									<text class="box_groceries_text">内含：{{item.remark}}</text>
+								</view>
 							</view>
-							<text class="box_groceries_text">内含：羽毛球、羽毛球拍、篮球、排球、足球、排球手… </text>
 						</view>
 					</view>
 				</view>
@@ -239,12 +252,28 @@
 				shoeData: [], //鞋柜
 				storageData: [], //储藏室
 				groceriesData: [], //杂货架
+				tab1ShowHide: {
+					bookShowHide: true, //书架
+					bookShowHideTitle: true,
+					clotheShowHide: true, //衣柜
+					clotheShowHideTitle: true,
+					shoeShowHide: true, //鞋柜
+					shoeShowHideTitle: true,
+					storageShowHide: true, //储藏室
+					storageShowHideTitle: true,
+					groceriesShowHide: true, //杂货架
+					groceriesShowHideTitle: true
+				}
 			}
 		},
 		onLoad() {},
 		onShow() {
 			this.getGoodsList()
 			this.getFailList()
+			if (uni.getStorageSync('tab1ShowHide')) {
+				console.log(uni.getStorageSync('tab1ShowHide'))
+				this.tab1ShowHide = uni.getStorageSync('tab1ShowHide')
+			}
 		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
@@ -267,30 +296,71 @@
 			},
 			longpress(name) {
 				this.long_active = true
-				// uni.showModal({
-				// 	title: "提示",
-				// 	content: `是否移除${name}？`,
-				// 	success: (action) => {
-				// 		if (action.confirm) {
-				// 			if (config.debug) console.log("确定移除")
-				// 			uni.showToast({
-				// 				title: '移除成功',
-				// 			})
-				// 		}
-				// 	}
-				// })
+				this.tab1ShowHide.bookShowHideTitle = true
+				this.tab1ShowHide.clotheShowHideTitle = true
+				this.tab1ShowHide.shoeShowHideTitle = true
+				this.tab1ShowHide.storageShowHideTitle = true
+				this.tab1ShowHide.groceriesShowHideTitle = true
 			},
 			isShowHide(type) {
-				if (type == 'groceriesShow') {
-
+				console.log(type)
+				if (type == 'bookShow') {
+					this.tab1ShowHide.bookShowHide = true
+				} else if (type == 'bookHide') {
+					this.tab1ShowHide.bookShowHide = false
+				} else if (type == 'clotheShow') {
+					this.tab1ShowHide.clotheShowHide = true
+				} else if (type == 'clotheHide') {
+					this.tab1ShowHide.clotheShowHide = false
+				} else if (type == 'shoeShow') {
+					this.tab1ShowHide.shoeShowHide = true
+				} else if (type == 'shoeHide') {
+					this.tab1ShowHide.shoeShowHide = false
+				} else if (type == 'storageShow') {
+					this.tab1ShowHide.storageShowHide = true
+				} else if (type == 'storageHide') {
+					this.tab1ShowHide.storageShowHide = false
+				} else if (type == 'groceriesShow') {
+					this.tab1ShowHide.groceriesShowHide = true
 				} else if (type == 'groceriesHide') {
-
-				} else {
-
+					this.tab1ShowHide.groceriesShowHide = false
 				}
+				uni.setStorage({
+					key: 'tab1ShowHide',
+					data: this.tab1ShowHide
+				});
 			},
 			longpress_comfirm() {
 				this.long_active = false
+				if (this.tab1ShowHide.bookShowHide == true) {
+					this.tab1ShowHide.bookShowHideTitle = true
+				} else if (this.tab1ShowHide.bookShowHide == false) {
+					this.tab1ShowHide.bookShowHideTitle = false
+				}
+				if (this.tab1ShowHide.clotheShowHide == true) {
+					this.tab1ShowHide.clotheShowHideTitle = true
+				} else if (this.tab1ShowHide.clotheShowHide == false) {
+					this.tab1ShowHide.clotheShowHideTitle = false
+				}
+				if (this.tab1ShowHide.shoeShowHide == true) {
+					this.tab1ShowHide.shoeShowHideTitle = true
+				} else if (this.tab1ShowHide.shoeShowHide == false) {
+					this.tab1ShowHide.shoeShowHideTitle = false
+				}
+				if (this.tab1ShowHide.storageShowHide == true) {
+					this.tab1ShowHide.storageShowHideTitle = true
+				} else if (this.tab1ShowHide.storageShowHide == false) {
+					this.tab1ShowHide.storageShowHideTitle = false
+				}
+				if (this.tab1ShowHide.groceriesShowHide == true) {
+					this.tab1ShowHide.groceriesShowHideTitle = true
+				} else if (this.tab1ShowHide.groceriesShowHide == false) {
+					this.tab1ShowHide.groceriesShowHideTitle = false
+				}
+				uni.setStorage({
+					key: 'tab1ShowHide',
+					data: this.tab1ShowHide
+				});
 			},
 			longpress_cancel() {
 				this.long_active = false
@@ -302,10 +372,15 @@
 					console.log(data)
 					if (data.success) {
 						this.bookData = data.data.bookcase //书架
+						this.bookData.dataNumber = data.data.bookcase.goods.length
 						this.clotheData = data.data.armoire //衣柜
+						this.clotheData.dataNumber = data.data.armoire.goods.length
 						this.shoeData = data.data.shoebox //鞋柜
+						this.shoeData.dataNumber = data.data.shoebox.goods.length
 						this.storageData = data.data.storeroom //储藏室
+						this.storageData.dataNumber = data.data.storeroom.goods.length
 						this.groceriesData = data.data.sundries //杂货架
+						this.groceriesData.dataNumber = data.data.sundries.packs.length
 					} else {
 						uni.showToast({
 							icon: 'none',
