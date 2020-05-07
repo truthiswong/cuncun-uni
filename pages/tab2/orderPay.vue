@@ -221,6 +221,7 @@
 				this.dateDate = this.dates[this.dateValue1].date
 				this.hourValue1 = this.hours[this.dateValue2].valueStart
 				this.hourValue2 = this.hours[this.dateValue2].valueEnd
+				this.getFee()
 			},
 			closePopupDate() {
 				this.$refs.popupDate.close()
@@ -329,7 +330,7 @@
 				this.payStyle = evt.target.value
 			},
 			onComfirmPay() {
-				let data = {
+				let orderObj = {
 					addressId: this.address.id,
 					bookFetchDate: this.dateDate,
 					bookFetchTime1: this.hourValue1,
@@ -337,7 +338,7 @@
 					prepaid: this.pay_fee,
 					userRemark: this.userRemark
 				}
-				this.$http('user/deposit/order/create', "POST", data, res => {
+				this.$http('user/deposit/order/create', "POST", orderObj, res => {
 					let data = res.data
 					console.log(data)
 					if (data.success) {
@@ -357,7 +358,7 @@
 											console.log(respay)
 											this.$refs.popup.close()
 											uni.navigateTo({
-												url: "/pages/tab2/orderSuccess"
+												url: "/pages/tab2/orderSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(data.data))
 											})
 										},
 										fail: (err) => {
