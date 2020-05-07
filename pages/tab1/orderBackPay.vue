@@ -4,7 +4,6 @@
 		 fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;"></uni-nav-bar>
 		<uni-nav-bar color="#000000" title="返送专线" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true"
 		 fixed="true" v-if="!headerShow" style="position: absolute; top: 0;" shadow="true"></uni-nav-bar>
-		</hx-navbar>
 		<!-- 内容 -->
 		<view class="content">
 			<view class="cont_top" @click="isAddShow=false" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}"></view>
@@ -42,11 +41,11 @@
 				<view class="pay_info">
 					<view class="flex_between total_fee">
 						<text>支付定金</text>
-						<text>¥ 70</text>
+						<text>¥ {{total_fee}}</text>
 					</view>
 					<view class="flex_between pay_info_list">
 						<text>运输费</text>
-						<text>¥ 0</text>
+						<text>¥ {{total_fee}}</text>
 					</view>
 					<view class="flex_between pay_info_list">
 						<text>打包费</text>
@@ -54,10 +53,6 @@
 					</view>
 					<view class="flex_between pay_info_list">
 						<text>箱子费</text>
-						<text>¥ 0</text>
-					</view>
-					<view class="flex_between pay_info_list">
-						<text>调整费</text>
 						<text>¥ 0</text>
 					</view>
 				</view>
@@ -125,7 +120,9 @@
 		onLoad() {
 
 		},
-		onShow() {},
+		onShow() {
+			this.getFee()
+		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
@@ -171,18 +168,18 @@
 				}
 			},
 			onComfirmPay() {
-				uni.navigateTo({
-					url: "/pages/tab1/orderBackSuccess"
-				})
-				return
-				this.$http('user/deposit/order/create?' + dataStr, "POST", '', res => {
+				let orderObj = {
+					addressId: this.address.id,
+					userRemark: this.userRemark
+				}
+				this.$http('user/withdraw/order/create', "POST", orderObj, res => {
 					let data = res.data
 					console.log(data)
 					let dataObj = {
 						orderId: data.data.id
 					}
 					if (this.payStyle == 'Alipay') {
-						this.$http('user/deposit/order/prepay/alipay', "POST", dataObj, res1 => {
+						this.$http('user/withdraw/order/pay/alipay', "POST", dataObj, res1 => {
 							if (res1.data.success) {
 								console.log(res1.data.data)
 								// #ifdef APP-PLUS
@@ -192,21 +189,31 @@
 									success: (res) => {
 										this.$refs.popup.close()
 										uni.navigateTo({
-											url: "/pages/tab2/orderSuccess"
+											url: "/pages/tab1/orderBackSuccess"
 										})
 									},
 									fail: (err) => {
 										this.$refs.popup.close()
-										// uni.navigateTo({
-										// 	url: "/pages/tab2/orderSuccess"
-										// })
+										this.$http('user/withdraw/order/pay/fail', "POST", dataObj, res2 => {
+											if (res2.data.success) {
+												console.log(res2.data)
+												uni.switchTab({
+													url: '/pages/tabs/tab2'
+												})
+											} else {
+												uni.showToast({
+													icon: 'none',
+													title: res2.data.message
+												});
+											}
+										})
 									}
 								});
 								// #endif
 							} else {
 								uni.showToast({
 									icon: 'none',
-									title: data.message
+									title: res1.data.message
 								});
 							}
 						})
@@ -227,6 +234,19 @@
 							}
 						});
 						// #endif
+					}
+				})
+			},
+			getFee() {
+				this.$http('user/withdraw/param/freight', "POST", '', res => {
+					let data = res.data
+					if (data.success) {
+						this.total_fee = data.data
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
 					}
 				})
 			}
