@@ -13,7 +13,7 @@
 					<view v-if="order.detailStatus == 'finish'">
 						<h4>订单已完成，感谢您的支持</h4>
 					</view>
-					<view v-if="order.detailStatus == 'waitpay'">
+					<view v-else-if="order.detailStatus == 'waitpay'">
 						<h4>您的订单还未付款，请及时付款</h4>
 						<p>此订单需要在7月26日00:00为止需要支付，否则订单将自动取消。</p>
 					</view>
@@ -173,13 +173,13 @@
 			<text>¥ {{order.prepaid}}</text>
 			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">确认支付</button>
 		</view>
-		<!-- <view class="flex_between bottom_pay" v-if="order.detailAdjustPayStatus == 'waitpay'">
+		<view class="flex_between bottom_pay" v-if="order.detailAdjustPayStatus == 'waitpay'">
 			<text>¥ {{order.prepaid}}</text>
 			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">调整支付</button>
-		</view> -->
+		</view>
 		<view class="flex_between bottom_pay" v-if="order.detailStatus == 'cancel'">
 			<text></text>
-			<button class="button_block">重新下单</button>
+			<button @click="onAgainOrder" class="button_block">重新下单</button>
 		</view>
 	</view>
 </template>
@@ -337,87 +337,120 @@
 				// uni.navigateTo({
 				// 	url: "/pages/tab2/orderSuccess"
 				// })
-				let data = {
-					addressId: this.order.id,
-					bookFetchDate: this.order.bookFetchDate,
-					bookFetchTime1: this.order.bookFetchTime[0],
-					bookFetchTime2: this.order.bookFetchTime[1],
-					prepaid: this.order.prepaid,
-					userRemark: this.order.userRemark
+				let orderObj = {
+					orderId: this.orderId
 				}
 				console.log(this.payStyle)
-				 return
-				this.$http('user/deposit/order/create', "POST", data, res => {
-					let data = res.data
-					console.log(data)
-					if (data.success) {
-						let dataObj = {
-							orderId: data.data.id
-						}
-						if (this.payStyle == 'Alipay') {
-							this.$http('user/deposit/order/prepay/alipay', "POST", dataObj, res1 => {
-								if (res1.data.success) {
-									console.log(res1.data.data)
-									// #ifdef APP-PLUS
-									uni.requestPayment({
-										provider: 'alipay',
-										orderInfo: res1.data.data,
-										success: (res) => {
-											this.$refs.popup.close()
-											uni.navigateTo({
-												url: "/pages/tab2/orderSuccess"
-											})
-										},
-										fail: (err) => {
-											this.$refs.popup.close()
-											this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
-												if (res2.data.success) {
-													console.log(res2.data)
-													uni.switchTab({
-														url: '/pages/tabs/tab2'
-													})
-												} else {
-													uni.showToast({
-														icon: 'none',
-														title: res2.data.message
-													});
-												}
-											})
-										}
-									});
-									// #endif
-								} else {
-									uni.showToast({
-										icon: 'none',
-										title: res1.data.message
-									});
-								}
-							})
-						} else {
-							this.$refs.popup.close()
-							uni.navigateTo({
-								url: "/pages/tab2/orderSuccess"
-							})
-							// #ifdef APP-PLUS
-							uni.requestPayment({
-								provider: 'wxpay',
-								orderInfo: 'orderInfo', //微信、支付宝订单数据
-								success: (res) => {
-									console.log(res);
-								},
-								fail: (err) => {
-									console.log(err);
-								}
-							});
-							// #endif
-						}
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
+				// 预付款
+				if (this.payStyle == 'Alipay') {
+					console.log(this.order.id)
+					if (this.order.prepaidStatus.code == 'wait') {
+						// 预支付
+						this.$http('user/deposit/order/prepay/alipay', "POST", orderObj, res => {
+							if (res.data.success) {
+								console.log(res.data.data)
+								// #ifdef APP-PLUS
+								uni.requestPayment({
+									provider: 'alipay',
+									orderInfo: res.data.data,
+									success: (res) => {
+										console.log(respay)
+										this.$refs.popupPay.close()
+										uni.navigateTo({
+											url: "/pages/tab2/orderSuccess"
+										})
+									},
+									fail: (errpay) => {
+										console.log(errpay)
+										this.$refs.popupPay.close()
+										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
+											console.log("支付取消1")
+											if (res2.data.success) {
+												console.log(res2.data)
+												uni.switchTab({
+													url: '/pages/tabs/tab2'
+												})
+											} else {
+												console.log("支付取消2")
+												uni.showToast({
+													icon: 'none',
+													title: res2.data.message
+												});
+											}
+										})
+									}
+								});
+								// #endif
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: res.data.message
+								});
+							}
+						})
+					} else if (this.order.adjustPayStatus.code == 'wait') {
+						// 补差价支付
+						this.$http('user/deposit/order/appendpay/alipay', "POST", orderObj, res => {
+							if (res.data.success) {
+								console.log(res.data.data)
+								// #ifdef APP-PLUS
+								uni.requestPayment({
+									provider: 'alipay',
+									orderInfo: res.data.data,
+									success: (res) => {
+										this.$refs.popupPay.close()
+										uni.navigateTo({
+											url: "/pages/tab2/orderSuccess"
+										})
+									},
+									fail: (err) => {
+										this.$refs.popupPay.close()
+										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
+											if (res2.data.success) {
+												console.log(res2.data)
+												uni.switchTab({
+													url: '/pages/tabs/tab2'
+												})
+											} else {
+												uni.showToast({
+													icon: 'none',
+													title: res2.data.message
+												});
+											}
+										})
+									}
+								});
+								// #endif
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: res.data.message
+								});
+							}
+						})
 					}
-				})
+					
+				} else {
+					this.$refs.popup.close()
+					uni.navigateTo({
+						url: "/pages/tab2/orderSuccess"
+					})
+					// #ifdef APP-PLUS
+					uni.requestPayment({
+						provider: 'wxpay',
+						orderInfo: 'orderInfo', //微信、支付宝订单数据
+						success: (res) => {
+							console.log(res);
+						},
+						fail: (err) => {
+							console.log(err);
+						}
+					});
+					// #endif
+				}
+			},
+			onAgainOrder(){
+				console.log("重新下单")
 			},
 			getOrderDetail() {
 				this.$http('user/deposit/order/detail/' + this.orderId, "GET", '', res => {
@@ -430,7 +463,7 @@
 						data.data.detailStatus = data.data.status.code
 						data.data.detailPrepaidStatus = data.data.prepaidStatus.code
 						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD hh:mm:ss')
-						// data.data.detailAdjustPayStatus = data.data.adjustPayStatus.code
+						data.data.detailAdjustPayStatus = data.data.adjustPayStatus.code
 						this.order = data.data
 					} else {
 						uni.showToast({
@@ -447,12 +480,12 @@
 						if (data.data.length > 0) {
 							for (let item of data.data) {
 								item.title = item.status.name
-								item.mmdd = this.$moment(item.timeCreated).from('YYYY-MM-DD')
-								item.hhmm = this.$moment(item.timeCreated).from('hh:mm:ss')
+								item.mmdd = this.$moment(item.timeCreated).format('MM-DD')
+								item.hhmm = this.$moment(item.timeCreated).format('hh:mm:ss')
 								item.desc = item.remark
 							}
 							this.options = data.data
-							this.active = data.data.length
+							this.active = data.data.length-1
 						} else {
 							this.options = []
 							this.active = 0
