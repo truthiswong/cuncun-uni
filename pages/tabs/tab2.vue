@@ -359,19 +359,9 @@
 			},
 			// 去存单详情
 			onOrder1Detail(item) {
-				if (item.status.code == 'init') {
-					uni.navigateTo({
-						url: '/pages/tab2/orderDetails?id=' + item.id
-					})
-				} else if (item.status.code == 'finish') {
-					uni.navigateTo({
-						url: '/pages/tab2/orderDetails?id=' + item.id
-					})
-				} else if (item.status.code == 'cancel') {
-					uni.navigateTo({
-						url: '/pages/tab2/orderDetails?id=' + item.id
-					})
-				}
+				uni.navigateTo({
+					url: '/pages/tab2/orderDetails?id=' + item.id
+				})
 			},
 			// 去取单详情
 			onOrder2Detail(item) {
