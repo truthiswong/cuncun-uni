@@ -7,11 +7,31 @@
 		 fixed="true" v-if="!headerShow" shadow="true" style="position: absolute; top: 0;">
 		</uni-nav-bar>
 		<!-- 内容 -->
-		<view class="content" :class="{'content_active': order.detailStatus == 'waitpay' || order.detailStatus == 'cancel'}">
+		<view class="content" :class="{'content_active': order.detailStatus == 'waitpay' || order.detailStatus == 'cancel' || order.detailStatus == 'waitsign'}">
 			<view class="cont_top">
 				<view class="top_text">
-					<h4>您的订单还未付款，请及时付款</h4>
-					<p>以免影响到发送时间，我们将在订单安排支付完成后整理发送。</p>
+					<view v-if="order.detailStatus == 'finish'">
+						<h4>订单已完成，感谢您的支持</h4>
+					</view>
+					<view v-else-if="order.detailStatus == 'waitpay'">
+						<h4>您的订单还未付款，请及时付款</h4>
+						<p>此订单需要在7月26日00:00为止需要支付，否则订单将自动取消。</p>
+					</view>
+					<view v-else-if="order.detailStatus == 'init'">
+						<h4>订单待处理</h4>
+					</view>
+					<view v-else-if="order.detailStatus == 'waitsend'">
+						<h4>订单待发货</h4>
+					</view>
+					<view v-else-if="order.detailStatus == 'waitsign'">
+						<h4>订单待签收</h4>
+					</view>
+					<view v-else-if="order.detailStatus == 'init'">
+						<h4>订单待处理</h4>
+					</view>
+					<view v-else-if="order.detailStatus == 'accept'">
+						<h4>订单待拣货</h4>
+					</view>
 				</view>
 				<view class="top_button">
 					<view class="button_left"></view>
@@ -24,7 +44,7 @@
 										<text>you deserve better</text>
 									</view>
 									<view class="top_button_left" v-else>
-										<p>{{order.detailTime}}</p>
+										<p>{{order.orderTime}}</p>
 										<text>申请时间</text>
 									</view>
 								</view>
@@ -40,40 +60,34 @@
 			<view class="order_list">
 				<p>返送清单</p>
 				<view class="order_list_image">
-					<image v-for="(item,index) in 3" :key="index" src="../../static/tab1/book_img2.png" mode=""></image>
-					<image v-for="(item,index) in 3" :key="index+3" src="../../static/tab1/clothes_img1.png" mode=""></image>
-					<image v-for="(item,index) in 4" :key="index+6" src="../../static/tab1/shoes_img2.png" mode=""></image>
+					<image v-for="(item,index) in order.goods" :key="index" :src="item.coverPic" mode=""></image>
 				</view>
 				<view style="">
 					<view class="flex_between order_list_fee">
 						<p>第三方快递运输费</p>
-						<text>¥ 0</text>
+						<text>¥ {{order.deliveryFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>打包费用</p>
-						<text>¥ 0</text>
+						<text>¥ {{order.packFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>箱子费用</p>
-						<text>¥ 0</text>
+						<text>¥ {{order.boxFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>调整费用</p>
-						<text>¥ 0</text>
+						<text>¥ {{order.adjustFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>需支付费用</p>
-						<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.prepaid}}</text></text>
+						<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.totalFee}}</text></text>
 					</view>
 				</view>
 			</view>
 			<view class="order_list">
 				<p>返送信息</p>
 				<view>
-					<view class="flex_between order_list_phone">
-						<p>上门时间</p>
-						<text>{{order.detailTime}}</text>
-					</view>
 					<view class="row order_list_phone" style="align-items: flex-start;">
 						<p class="col-4">上门地址</p>
 						<view class="col-8" style="text-align: right;">
@@ -95,16 +109,12 @@
 						</view>
 					</view>
 					<view class="flex_between order_list_phone">
-						<p>支付方式</p>
-						<text>支付宝支付</text>
-					</view>
-					<view class="flex_between order_list_phone">
 						<p>下单时间</p>
-						<text>{{order.bookFetchDate}}</text>
+						<text>{{order.orderTime}}</text>
 					</view>
 					<view class="flex_between order_list_phone">
 						<p>订单备注</p>
-						<text>{{order.userRemark}}</text>
+						<text>{{order.remark}}</text>
 					</view>
 				</view>
 			</view>
@@ -156,16 +166,16 @@
 			</view>
 		</uni-popup>
 		<view class="flex_between bottom_pay" v-if="order.detailStatus == 'waitpay'">
-			<text>¥ {{order.prepaid}}</text>
+			<text>¥ {{order.totalFee}}</text>
 			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">确认支付</button>
 		</view>
-		<!-- <view class="flex_between bottom_pay" v-if="order.detailAdjustPayStatus == 'waitpay'">
-			<text>¥ {{order.prepaid}}</text>
-			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">调整支付</button>
-		</view> -->
 		<view class="flex_between bottom_pay" v-if="order.detailStatus == 'cancel'">
 			<text></text>
 			<button class="button_block">重新下单</button>
+		</view>
+		<view class="flex_between bottom_pay" v-if="order.detailStatus == 'waitsign'">
+			<text></text>
+			<button @click="onConfirmGoods" class="button_block">确认收货</button>
 		</view>
 	</view>
 </template>
@@ -260,6 +270,7 @@
 		onShow() {
 			if (this.orderId) {
 				this.getOrderDetail()
+				this.getOrderDetailSteps()
 			}
 		},
 		computed: {
@@ -318,84 +329,88 @@
 				// 	}
 				// }
 			},
+			// 支付
 			onComfirmPay() {
 				// uni.navigateTo({
 				// 	url: "/pages/tab2/orderSuccess"
 				// })
-				let data = {
-					addressId: this.order.id,
-					bookFetchDate: this.order.bookFetchDate,
-					bookFetchTime1: this.order.bookFetchTime[0],
-					bookFetchTime2: this.order.bookFetchTime[1],
-					prepaid: this.order.prepaid,
-					userRemark: this.order.userRemark
+				let orderObj = {
+					orderId: this.orderId,
 				}
-				console.log(this.payStyle)
-				return
-				this.$http('user/deposit/order/create', "POST", data, res => {
-					let data = res.data
-					console.log(data)
-					if (data.success) {
-						let dataObj = {
-							orderId: data.data.id
-						}
-						if (this.payStyle == 'Alipay') {
-							this.$http('user/deposit/order/prepay/alipay', "POST", dataObj, res1 => {
-								if (res1.data.success) {
-									console.log(res1.data.data)
-									// #ifdef APP-PLUS
-									uni.requestPayment({
-										provider: 'alipay',
-										orderInfo: res1.data.data,
-										success: (res) => {
-											this.$refs.popup.close()
-											uni.navigateTo({
-												url: "/pages/tab2/orderSuccess"
-											})
-										},
-										fail: (err) => {
-											this.$refs.popup.close()
-											this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
-												if (res2.data.success) {
-													console.log(res2.data)
-													uni.switchTab({
-														url: '/pages/tabs/tab2'
-													})
-												} else {
-													uni.showToast({
-														icon: 'none',
-														title: res2.data.message
-													});
-												}
-											})
-										}
-									});
-									// #endif
-								} else {
-									uni.showToast({
-										icon: 'none',
-										title: res1.data.message
-									});
-								}
-							})
-						} else {
-							this.$refs.popup.close()
-							uni.navigateTo({
-								url: "/pages/tab2/orderSuccess"
-							})
+				if (this.payStyle == 'Alipay') {
+					this.$http('user/withdraw/order/pay/alipay', "POST", orderObj, res1 => {
+						if (res1.data.success) {
+							console.log(res1.data.data)
 							// #ifdef APP-PLUS
 							uni.requestPayment({
-								provider: 'wxpay',
-								orderInfo: 'orderInfo', //微信、支付宝订单数据
+								provider: 'alipay',
+								orderInfo: res1.data.data,
 								success: (res) => {
-									console.log(res);
+									console.log(res)
+									this.$refs.popupPay.close()
+									uni.navigateTo({
+										url: "/pages/tab2/orderSuccess"
+									})
 								},
 								fail: (err) => {
-									console.log(err);
+									this.$refs.popupPay.close()
+									this.$http('user/withdraw/order/pay/fail', "POST", orderObj, res2 => {
+										if (res2.data.success) {
+											console.log(res2.data)
+											uni.switchTab({
+												url: '/pages/tabs/tab2'
+											})
+										} else {
+											uni.showToast({
+												icon: 'none',
+												title: res2.data.message
+											});
+										}
+									})
 								}
 							});
 							// #endif
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: res1.data.message
+							});
 						}
+					})
+				} else {
+					this.$refs.popup.close()
+					uni.navigateTo({
+						url: "/pages/tab2/orderSuccess"
+					})
+					// #ifdef APP-PLUS
+					uni.requestPayment({
+						provider: 'wxpay',
+						orderInfo: 'orderInfo', //微信、支付宝订单数据
+						success: (res) => {
+							console.log(res);
+						},
+						fail: (err) => {
+							console.log(err);
+						}
+					});
+					// #endif
+				}
+			},
+			// 订单详情
+			getOrderDetail() {
+				this.$http('user/withdraw/order/detail/' + this.orderId, "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						data.data.detailAddress = data.data.area.province + ' ' + data.data.area.city + ' ' + data.data.area.district +
+							' ' + data.data.address
+						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD hh:mm:ss')
+						data.data.detailStatus = data.data.status.code
+						for (let item of data.data.goods) {
+							item.code = item.goods.code
+							item.coverPic = item.goods.coverPic
+							item.name = item.goods.name
+						}
+						this.order = data.data
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -404,18 +419,24 @@
 					}
 				})
 			},
-			getOrderDetail() {
-				this.$http('user/deposit/order/detail/' + this.orderId, "GET", '', res => {
+			// 订单状态
+			getOrderDetailSteps() {
+				this.$http('user/withdraw/workflow/list?orderId=' + this.orderId, "GET", '', res => {
 					let data = res.data
 					if (data.success) {
-						data.data.detailAddress = data.data.area.province + ' ' + data.data.area.city + ' ' + data.data.area.district +
-							' ' + data.data.address
-						data.data.detailTime =
-							`${data.data.bookFetchDate} ${data.data.bookFetchTime[0]}:00~${data.data.bookFetchTime[1]}:00`
-						data.data.detailStatus = data.data.status.code
-						data.data.detailPrepaidStatus = data.data.prepaidStatus.code
-						// data.data.detailAdjustPayStatus = data.data.adjustPayStatus.code
-						this.order = data.data
+						if (data.data.length > 0) {
+							for (let item of data.data) {
+								item.title = item.status.name
+								item.mmdd = this.$moment(item.timeCreated).format('MM-DD')
+								item.hhmm = this.$moment(item.timeCreated).format('hh:mm:ss')
+								item.desc = item.remark
+							}
+							this.options = data.data
+							this.active = data.data.length-1
+						} else {
+							this.options = []
+							this.active = 0
+						}
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -426,13 +447,35 @@
 			},
 			// 订单取消
 			onCancelOrder(id) {
-				this.$http('user/deposit/order/cancel?id=' + id, "POST", '', res => {
+				let data = {
+					id: id
+				}
+				this.$http('user/withdraw/order/cancel', "POST", data, res => {
 					let data = res.data
 					if (data.success) {
 						// uni.navigateBack({
 						// 	delta: 1
 						// })
 						this.getOrderDetail()
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
+			// 确认收货
+			onConfirmGoods(){
+				let data = {
+					id: this.orderId
+				}
+				this.$http('user/withdraw/order/confirm', "POST", data, res => {
+					let data = res.data
+					if (data.success) {
+						uni.navigateBack({
+							delta: 1
+						})
 					} else {
 						uni.showToast({
 							icon: 'none',
