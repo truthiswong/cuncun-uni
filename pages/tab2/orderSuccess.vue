@@ -12,15 +12,15 @@
 			<view class="map">
 				<view class="map_top">
 					<view class="flex_between">
-						<text>7月27日 09:00～10:00</text>
+						<text>{{orderInfo.detailTime}}</text>
 						<text class="text_button">待受理</text>
 					</view>
-					<p>上海市嘉定区叶城五街坊裕民1180弄78号123322222222222222222222222</p>
+					<p>{{orderInfo.detailAddress}}</p>
 				</view>
 				<image src="../../static/tab2/map.png"></image>
 			</view>
 			<view class="top_text">
-				<text>我们随时跟进我们的物流情况，根据需要会跟你订单留的号码<text class="top_text_border">17493279824</text>联系，<text class="top_text_border">请保持电话畅通</text>。</text>
+				<text>我们随时跟进我们的物流情况，根据需要会跟你订单留的号码<text class="top_text_border">{{orderInfo.mobile}}</text>联系，<text class="top_text_border">请保持电话畅通</text>。</text>
 			</view>
 		</view>
 		<button @click="onPayChange" class="button_block">完成</button>
@@ -32,15 +32,23 @@
 		components: {},
 		data() {
 			return {
+				orderInfo: {}
 			}
 		},
-		onLoad() {},
+		onLoad(option) {
+			this.orderInfo = JSON.parse(decodeURIComponent(option.orderInfo))
+			console.log(this.orderInfo)
+			this.orderInfo.detailTime =
+				`${this.orderInfo.bookFetchDate} ${this.orderInfo.bookFetchTime[0]}:00~${this.orderInfo.bookFetchTime[1]}:00`
+			this.orderInfo.detailAddress = this.orderInfo.area.province + ' ' + this.orderInfo.area.city + ' ' + this.orderInfo.area
+				.district + ' ' + this.orderInfo.address
+		},
 		onShow() {},
 		watch: {},
 		methods: {
 			onPayChange() {
 				uni.switchTab({
-					url: '/pages/tabs/tab2'
+					url: '/pages/tabs/tab2?gotoPage=tab21'
 				})
 			}
 		}
@@ -71,13 +79,15 @@
 			line-height: 42upx;
 			margin-top: 49upx;
 		}
+
 		text {
-			font-size:30upx;
-			font-weight:600;
-			color:rgba(40,40,40,1);
-			line-height:56upx;
+			font-size: 30upx;
+			font-weight: 600;
+			color: rgba(40, 40, 40, 1);
+			line-height: 56upx;
 		}
 	}
+
 	.map {
 		position: relative;
 		width: 100%;
@@ -86,6 +96,7 @@
 		border-radius: 20upx;
 		overflow: hidden;
 		box-shadow: 0 2upx 8upx 0 grey;
+
 		.map_top {
 			position: absolute;
 			top: 0;
@@ -100,35 +111,39 @@
 			padding: 20upx;
 			box-sizing: border-box;
 			box-shadow: 0 2upx 8upx 0 grey;
+
 			text {
-				font-size:28upx;
-				font-weight:600;
-				color:rgba(40,40,40,1);
-				line-height:40upx;
+				font-size: 28upx;
+				font-weight: 600;
+				color: rgba(40, 40, 40, 1);
+				line-height: 40upx;
 			}
+
 			.text_button {
-				width:98upx;
-				height:48upx;
-				background:rgba(59,193,187,1);
-				border-radius:4upx;
-				font-size:26upx;
-				font-weight:500;
-				color:rgba(255,255,255,1);
-				line-height:48upx;
+				width: 98upx;
+				height: 48upx;
+				background: rgba(59, 193, 187, 1);
+				border-radius: 4upx;
+				font-size: 26upx;
+				font-weight: 500;
+				color: rgba(255, 255, 255, 1);
+				line-height: 48upx;
 				text-align: center;
-				
+
 			}
+
 			p {
-				font-size:26upx;
-				font-weight:400;
-				color:rgba(74,74,74,1);
-				line-height:37upx;
+				font-size: 26upx;
+				font-weight: 400;
+				color: rgba(74, 74, 74, 1);
+				line-height: 37upx;
 				margin-top: 12upx;
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
 			}
 		}
+
 		image {
 			width: 100%;
 			height: 100%;
