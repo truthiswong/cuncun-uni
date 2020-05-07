@@ -4,7 +4,6 @@
 		 fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;"></uni-nav-bar>
 		<uni-nav-bar color="#000000" title="返送专线" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true"
 		 fixed="true" v-if="!headerShow" style="position: absolute; top: 0;" shadow="true"></uni-nav-bar>
-		</hx-navbar>
 		<!-- 内容 -->
 		<view class="content">
 			<view class="cont_top" @click="isAddShow=false" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}"></view>
@@ -16,12 +15,12 @@
 					<view class="row flex_between" style="margin-top: 40upx;">
 						<view class="col-2"><text>（ {{index+1}} ）</text></view>
 						<view class="col-2">
-							<image style="width: 120upx;height: 120upx;" :src="item.src"></image>
+							<image style="width: 120upx;height: 120upx;" :src="item.coverPic"></image>
 						</view>
 						<view class="col-5 list_middle">
-							<text>书籍名字1书籍名字书籍名字书籍名字</text>
+							<text>{{item.name}}</text>
 						</view>
-						<view class="col-2 flex_between list_right">
+						<view class="col-2 flex_between list_right" @click="onDeleteItem(item.id)">
 							<image src="../../static/tab1/minus.png"></image>
 							<text>这次不<br />用送回</text>
 						</view>
@@ -33,29 +32,29 @@
 				<image @click="onConfirm" src="../../static/tab1/order_back.png" mode=""></image>
 				<view class="bottom_alert" v-if="isAddShow">
 					<scroll-view scroll-y="true">
-						<navigator url="/pages/tab1/book">
+						<navigator url="/pages/tab1/book" v-if="bookCount>0">
 							<view class="alert_list">
-								<text>我的书架 (10)</text>
+								<text>我的书架 ({{bookCount}})</text>
 							</view>
 						</navigator>
-						<navigator url="/pages/tab1/clothes">
+						<navigator url="/pages/tab1/clothes" v-if="clotheCount>0">
 							<view class="alert_list">
-								<text>我的衣柜 (10)</text>
+								<text>我的衣柜 ({{clotheCount}})</text>
 							</view>
 						</navigator>
-						<navigator url="/pages/tab1/shoes">
+						<navigator url="/pages/tab1/shoes" v-if="shoeCount>0">
 							<view class="alert_list">
-								<text>我的鞋柜 (10)</text>
+								<text>我的鞋柜 ({{shoeCount}})</text>
 							</view>
 						</navigator>
-						<navigator url="/pages/tab1/storage">
+						<navigator url="/pages/tab1/storage" v-if="storageCount>0">
 							<view class="alert_list">
-								<text>我的储藏室 (10)</text>
+								<text>我的储藏室 ({{storageCount}})</text>
 							</view>
 						</navigator>
-						<navigator url="/pages/tab1/groceries">
+						<navigator url="/pages/tab1/groceries" v-if="groceriesCount>0">
 							<view class="alert_list" style="border-bottom: 0;">
-								<text>我的杂物架 (10)</text>
+								<text>我的杂物架 ({{groceriesCount}})</text>
 							</view>
 						</navigator>
 					</scroll-view>
@@ -111,7 +110,10 @@
 		onLoad() {
 
 		},
-		onShow() {},
+		onShow() {
+			this.getChooseList()
+			this.getAddCount()
+		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
@@ -149,6 +151,27 @@
 				}
 				console.log(this.list)
 			},
+			// 移除物品
+			onDeleteItem(id) {
+				let data = {
+					id: id
+				}
+				this.$http('user/withdraw/goods/del', "POST", data, res => {
+					let data = res.data
+					if (data.success) {
+						uni.showToast({
+							icon: 'none',
+							title: '删除成功'
+						});
+						this.getChooseList()
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
 			onAgainAdd() {
 				this.isAddShow = !this.isAddShow
 			},
@@ -156,6 +179,43 @@
 				this.isAddShow = false
 				uni.navigateTo({
 					url: '/pages/tab1/orderBackPay'
+				})
+			},
+			getChooseList() {
+				this.$http('user/withdraw/goods/list', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						for (let item of data.data) {
+							item.code = item.goods.code
+							item.coverPic = item.goods.coverPic
+							item.name = item.goods.name
+						}
+						this.list = data.data
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
+			// 获取再追加列表数据
+			getAddCount() {
+				this.$http('user/store/count', "GET", '', res => {
+					let data = res.data
+					console.log(data)
+					if (data.success) {
+						this.bookCount = data.data.bookcase //书架
+						this.clotheCount = data.data.armoire //衣柜
+						this.shoeCount = data.data.shoebox //鞋柜
+						this.storageCount = data.data.storeroom //储藏室
+						this.groceriesCount = data.data.sundries //杂货架
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
 				})
 			}
 		}
