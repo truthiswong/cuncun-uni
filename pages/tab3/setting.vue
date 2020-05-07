@@ -208,6 +208,9 @@
 							uni.removeStorage({
 								key: 'token'
 							})
+							uni.removeStorage({
+								key: 'tab1ShowHide'
+							})
 							uni.navigateTo({
 								url: '/pages/login/login'
 							})
