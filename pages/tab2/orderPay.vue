@@ -353,13 +353,15 @@
 									uni.requestPayment({
 										provider: 'alipay',
 										orderInfo: res1.data.data,
-										success: (res) => {
+										success: (respay) => {
+											console.log(respay)
 											this.$refs.popup.close()
 											uni.navigateTo({
 												url: "/pages/tab2/orderSuccess"
 											})
 										},
 										fail: (err) => {
+											console.log(err)
 											this.$refs.popup.close()
 											payFail = true
 											this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
