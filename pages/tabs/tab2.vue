@@ -151,23 +151,22 @@
 									</view>
 									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' || item.status.code == 'waitpay'">
 										<button class="button_cancel" v-if="item.status.code == 'waitpay'" @click="onCancelOrder1(item.id)">取消订单</button>
-										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse'" @click="onConfirmOrder1(item.id)">立即付款</button>
+										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse' && item.status.code != 'finish'" @click="onConfirmOrder1(item.id)">立即付款</button>
 									</view>
 								</view>
 							</view>
 						</view>
 						<view v-if="current === 2">
-							<view v-for="(item,index) in orderList1" :key="index">
+							<view v-for="(item,index) in orderList2" :key="index">
 								<view class="segmented_list">
 									<view @click="onOrder2Detail(item)">
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="取单" :note="'送到: '+item.address" :showArrow="false">
 												<view slot='right' class="list_right_text">
 													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
-													<text class="list_right_blue" v-if="item.status.code == 'init'">待接单</text>
-													<text class="list_right_blue" v-if="item.status.code == 'fetch'">待取货</text>
-													<text class="list_right_blue" v-if="item.status.code == 'delivery'">回库中</text>
-													<text class="list_right_blue" v-if="item.status.code == 'inputwork'">入库作业中</text>
+													<text class="list_right_blue" v-if="item.status.code == 'init'">待处理</text>
+													<text class="list_right_blue" v-if="item.status.code == 'waitsend'">待发货</text>
+													<text class="list_right_blue" v-if="item.status.code == 'waitsign'">待签收</text>
 													<text class="list_right_gray" v-if="item.status.code == 'finish'">已完成</text>
 													<text class="list_right_gray" v-if="item.status.code == 'cancel'">已取消</text>
 												</view>
@@ -183,9 +182,9 @@
 											</view>
 										</view>
 									</view>
-									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' || item.status.code == 'waitpay'">
+									<view class="segmented_list_button" v-if="item.status.code == 'waitpay'">
 										<button class="button_cancel" v-if="item.status.code == 'waitpay'" @click="onCancelOrder2(item.id)">取消订单</button>
-										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse'" @click="onConfirmOrder2(item.id)">立即付款</button>
+										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse' && item.status.code != 'finish'" @click="onConfirmOrder2(item.id)">立即付款</button>
 									</view>
 								</view>
 							</view>
@@ -226,7 +225,7 @@
 									</view>
 									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' || item.status.code == 'waitpay'">
 										<button class="button_cancel" v-if="item.status.code == 'waitpay'" @click="onCancelOrder3(item.id)">取消订单</button>
-										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse'" @click="onConfirmOrder3(item.id)">立即付款</button>
+										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse' && item.status.code != 'finish'" @click="onConfirmOrder3(item.id)">立即付款</button>
 									</view>
 								</view>
 							</view>
@@ -278,9 +277,9 @@
 			} else if (this.current == 1) {
 				this.getOrderList1()
 			} else if (this.current == 2) {
-				this.getOrderList1()
+				this.getOrderList2()
 			} else if (this.current == 3) {
-				this.getOrderList1()
+				this.getOrderList3()
 			}
 		},
 		onPageScroll(options) {
@@ -307,18 +306,49 @@
 					} else if (this.current == 1) {
 						this.getOrderList1()
 					} else if (this.current == 2) {
-						this.getOrderList1()
+						this.getOrderList2()
 					} else if (this.current == 3) {
-						this.getOrderList1()
+						this.getOrderList3()
 					}
 				}
 			},
+			// 获取存单列表
 			getOrderList1() {
 				this.$http('user/deposit/order/page', "GET", '', res => {
 					let data = res.data
 					if (data.success) {
 						console.log(data.data)
 						this.orderList1 = data.data.data
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
+			// 获取取单列表
+			getOrderList2() {
+				this.$http('user/withdraw/order/page', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						console.log(data.data)
+						this.orderList2 = data.data.data
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
+			// 获取仓储订单
+			getOrderList3() {
+				this.$http('user/withdraw/order/page', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						console.log(data.data)
+						this.orderList3 = data.data.data
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -345,19 +375,9 @@
 			},
 			// 去取单详情
 			onOrder2Detail(item) {
-				if (item.status.code == 'init') {
-					uni.navigateTo({
-						url: '/pages/tab1/orderBackDetails?id=' + item.id
-					})
-				} else if (item.status.code == 'finish') {
-					uni.navigateTo({
-						url: '/pages/tab1/orderBackDetails?id=' + item.id
-					})
-				} else if (item.status.code == 'cancel') {
-					uni.navigateTo({
-						url: '/pages/tab1/orderBackDetails?id=' + item.id
-					})
-				}
+				uni.navigateTo({
+					url: '/pages/tab1/orderBackDetails?id=' + item.id
+				})
 			},
 			// 去仓储订单详情
 			onOrder3Detail(item) {
