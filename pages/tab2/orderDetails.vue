@@ -7,19 +7,31 @@
 		 fixed="true" v-if="!headerShow" shadow="true" style="position: absolute; top: 0;">
 		</uni-nav-bar>
 		<!-- 内容 -->
-		<view class="content" :class="{'content_active': order.detailStatus == 'waitpay' || order.detailStatus == 'cancel'}">
+		<view class="content" :class="{'content_active': order.detailStatus == 'waitpay' || order.detailStatus == 'cancel' || order.detailAdjustPayStatus == 'wait'}">
 			<view class="cont_top">
 				<view class="top_text">
 					<view v-if="order.detailStatus == 'finish'">
 						<h4>订单已完成，感谢您的支持</h4>
 					</view>
-					<view v-else-if="order.detailStatus == 'waitpay'">
-						<h4>您的订单还未付款，请及时付款</h4>
-						<p>此订单需要在7月26日00:00为止需要支付，否则订单将自动取消。</p>
-					</view>
-					<view v-else>
+					<view v-else-if="order.detailStatus == 'cancel'">
 						<h4>订单已被取消。</h4>
 						<p>拒接理由内容拒接理由内容拒接理由内容，如有疑问请联系客服。</p>
+					</view>
+					<view v-else-if="order.detailStatus == 'waitpay'">
+						<h4>您的订单还未付款，请及时付款</h4>
+						<p>此订单需要及时支付，否则订单将自动取消。</p>
+					</view>
+					<view v-else-if="order.detailStatus == 'init'">
+						<h4>订单待处理</h4>
+					</view>
+					<view v-else-if="order.detailStatus == 'inputwork'">
+						<h4>订单入库作业中</h4>
+					</view>
+					<view v-else-if="order.detailStatus == 'delivery'">
+						<h4>订单回库中</h4>
+					</view>
+					<view v-else-if="order.detailStatus == 'assign'">
+						<h4>订单分配骑手</h4>
 					</view>
 				</view>
 				<view class="top_button">
@@ -173,7 +185,7 @@
 			<text>¥ {{order.prepaid}}</text>
 			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">确认支付</button>
 		</view>
-		<view class="flex_between bottom_pay" v-if="order.detailAdjustPayStatus == 'waitpay'">
+		<view class="flex_between bottom_pay" v-if="order.detailAdjustPayStatus == 'wait'">
 			<text>¥ {{order.prepaid}}</text>
 			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">调整支付</button>
 		</view>
@@ -356,8 +368,8 @@
 									success: (res) => {
 										console.log(respay)
 										this.$refs.popupPay.close()
-										uni.navigateTo({
-											url: "/pages/tab2/orderSuccess"
+										uni.navigateBack({
+											delta: 1
 										})
 									},
 									fail: (errpay) => {
@@ -367,8 +379,8 @@
 											console.log("支付取消1")
 											if (res2.data.success) {
 												console.log(res2.data)
-												uni.switchTab({
-													url: '/pages/tabs/tab2'
+												uni.navigateBack({
+													delta: 1
 												})
 											} else {
 												console.log("支付取消2")
@@ -399,8 +411,8 @@
 									orderInfo: res.data.data,
 									success: (res) => {
 										this.$refs.popupPay.close()
-										uni.navigateTo({
-											url: "/pages/tab2/orderSuccess"
+										uni.navigateBack({
+											delta: 1
 										})
 									},
 									fail: (err) => {
@@ -408,8 +420,8 @@
 										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
 											if (res2.data.success) {
 												console.log(res2.data)
-												uni.switchTab({
-													url: '/pages/tabs/tab2'
+												uni.navigateBack({
+													delta: 1
 												})
 											} else {
 												uni.showToast({
@@ -429,7 +441,6 @@
 							}
 						})
 					}
-					
 				} else {
 					this.$refs.popup.close()
 					uni.navigateTo({

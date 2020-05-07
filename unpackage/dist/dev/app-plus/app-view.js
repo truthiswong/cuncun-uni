@@ -1846,7 +1846,15 @@ var render = function() {
                   ]),
                   _c(
                     "v-uni-button",
-                    { staticClass: _vm._$g(26, "sc"), attrs: { _i: 26 } },
+                    {
+                      staticClass: _vm._$g(26, "sc"),
+                      attrs: { _i: 26 },
+                      on: {
+                        click: function($event) {
+                          return _vm.$handleViewEvent($event)
+                        }
+                      }
+                    },
                     [_vm._v("约！约！约!")]
                   )
                 ],
@@ -1862,6 +1870,7 @@ var render = function() {
                     "v-uni-view",
                     {
                       staticClass: _vm._$g(28, "sc"),
+                      staticStyle: { "background-color": "#FFFFFF" },
                       attrs: { _i: 28 },
                       on: {
                         longpress: function($event) {
@@ -2015,89 +2024,157 @@ var render = function() {
                     1
                   )
                 : _vm._e(),
-              _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(45, "sc"),
-                  attrs: { _i: 45 },
-                  on: {
-                    longpress: function($event) {
-                      return _vm.$handleViewEvent($event)
-                    }
-                  }
-                },
-                [
-                  _c(
+              _vm._$g(45, "i")
+                ? _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(46, "sc"), attrs: { _i: 46 } },
+                    {
+                      staticClass: _vm._$g(45, "sc"),
+                      staticStyle: { "background-color": "#FFFFFF" },
+                      attrs: { _i: 45 },
+                      on: {
+                        longpress: function($event) {
+                          return _vm.$handleViewEvent($event)
+                        }
+                      }
+                    },
                     [
-                      _c(
-                        "uni-list",
-                        { staticClass: _vm._$g(47, "sc"), attrs: { _i: 47 } },
-                        [
-                          _vm._$g(48, "i")
-                            ? _c(
-                                "v-uni-view",
-                                {
-                                  staticClass: _vm._$g(48, "sc"),
-                                  attrs: { _i: 48 }
-                                },
-                                [
-                                  false
-                                    ? undefined
-                                    : _vm._e(),
-                                  true
-                                    ? _c("v-uni-image", {
-                                        attrs: {
-                                          src: _vm._$g(50, "a-src"),
-                                          _i: 50
-                                        }
-                                      })
-                                    : undefined
-                                ],
-                                1
-                              )
-                            : _vm._e(),
-                          _c(
-                            "uni-list-item",
-                            { attrs: { _i: 51 } },
+                      _vm._$g(46, "i")
+                        ? _c(
+                            "v-uni-view",
+                            { attrs: { _i: 46 } },
                             [
                               _c(
                                 "v-uni-view",
                                 {
-                                  attrs: { slot: "right", _i: 52 },
-                                  slot: "right"
+                                  staticClass: _vm._$g(47, "sc"),
+                                  attrs: { _i: 47 }
                                 },
                                 [
                                   _c(
-                                    "v-uni-navigator",
+                                    "uni-list",
                                     {
-                                      attrs: { url: "/pages/tab1/book", _i: 53 }
+                                      staticClass: _vm._$g(48, "sc"),
+                                      attrs: { _i: 48 }
                                     },
                                     [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticStyle: {
-                                            "font-size": "14px",
-                                            "font-weight": "400",
-                                            color: "rgba(59, 193, 187, 1)"
-                                          },
-                                          attrs: { _i: 54 }
-                                        },
-                                        [
-                                          _vm._v("查看全部 "),
-                                          _c("v-uni-image", {
-                                            staticStyle: {
-                                              width: "16upx",
-                                              height: "16upx",
-                                              "margin-left": "10upx"
+                                      _vm._$g(49, "i")
+                                        ? _c(
+                                            "v-uni-view",
+                                            {
+                                              staticClass: _vm._$g(49, "sc"),
+                                              attrs: { _i: 49 }
                                             },
-                                            attrs: {
-                                              src: _vm._$g(55, "a-src"),
-                                              _i: 55
-                                            }
-                                          })
+                                            [
+                                              _c("v-uni-image", {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value: _vm._$g(
+                                                      50,
+                                                      "v-show"
+                                                    ),
+                                                    expression:
+                                                      "_$g(50,'v-show')"
+                                                  }
+                                                ],
+                                                attrs: {
+                                                  src: _vm._$g(50, "a-src"),
+                                                  _i: 50
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.$handleViewEvent(
+                                                      $event
+                                                    )
+                                                  }
+                                                }
+                                              }),
+                                              _c("v-uni-image", {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value: _vm._$g(
+                                                      51,
+                                                      "v-show"
+                                                    ),
+                                                    expression:
+                                                      "_$g(51,'v-show')"
+                                                  }
+                                                ],
+                                                attrs: {
+                                                  src: _vm._$g(51, "a-src"),
+                                                  _i: 51
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.$handleViewEvent(
+                                                      $event
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e(),
+                                      _c(
+                                        "uni-list-item",
+                                        { attrs: { _i: 52 } },
+                                        [
+                                          _c(
+                                            "v-uni-view",
+                                            {
+                                              attrs: { slot: "right", _i: 53 },
+                                              slot: "right"
+                                            },
+                                            [
+                                              _c(
+                                                "v-uni-navigator",
+                                                {
+                                                  attrs: {
+                                                    url: "/pages/tab1/book",
+                                                    _i: 54
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticStyle: {
+                                                        "font-size": "14px",
+                                                        "font-weight": "400",
+                                                        color:
+                                                          "rgba(59, 193, 187, 1)"
+                                                      },
+                                                      attrs: { _i: 55 }
+                                                    },
+                                                    [
+                                                      _vm._v("查看全部 "),
+                                                      _c("v-uni-image", {
+                                                        staticStyle: {
+                                                          width: "16upx",
+                                                          height: "16upx",
+                                                          "margin-left": "10upx"
+                                                        },
+                                                        attrs: {
+                                                          src: _vm._$g(
+                                                            56,
+                                                            "a-src"
+                                                          ),
+                                                          _i: 56
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
                                         ],
                                         1
                                       )
@@ -2106,146 +2183,217 @@ var render = function() {
                                   )
                                 ],
                                 1
-                              )
+                              ),
+                              _vm._$g(57, "i")
+                                ? _c(
+                                    "v-uni-view",
+                                    { attrs: { _i: 57 } },
+                                    [
+                                      _c(
+                                        "v-uni-scroll-view",
+                                        {
+                                          staticClass: _vm._$g(58, "sc"),
+                                          attrs: { "scroll-x": "true", _i: 58 }
+                                        },
+                                        _vm._l(_vm._$g(59, "f"), function(
+                                          item,
+                                          index,
+                                          $20,
+                                          $30
+                                        ) {
+                                          return _c(
+                                            "v-uni-view",
+                                            {
+                                              key: item,
+                                              staticClass: _vm._$g(
+                                                "59-" + $30,
+                                                "sc"
+                                              ),
+                                              staticStyle: {
+                                                display: "inline-block"
+                                              },
+                                              style: _vm._$g("59-" + $30, "s"),
+                                              attrs: { _i: "59-" + $30 }
+                                            },
+                                            [
+                                              _c("v-uni-image", {
+                                                attrs: {
+                                                  src: _vm._$g(
+                                                    "60-" + $30,
+                                                    "a-src"
+                                                  ),
+                                                  _i: "60-" + $30
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        }),
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e()
                             ],
                             1
                           )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _c(
-                    "v-uni-view",
-                    { attrs: { _i: 56 } },
-                    [
-                      _c(
-                        "v-uni-scroll-view",
-                        {
-                          staticClass: _vm._$g(57, "sc"),
-                          attrs: { "scroll-x": "true", _i: 57 }
-                        },
-                        _vm._l(_vm._$g(58, "f"), function(
-                          item,
-                          index,
-                          $20,
-                          $30
-                        ) {
-                          return _c(
-                            "v-uni-view",
-                            {
-                              key: item,
-                              staticClass: _vm._$g("58-" + $30, "sc"),
-                              staticStyle: { display: "inline-block" },
-                              style: _vm._$g("58-" + $30, "s"),
-                              attrs: { _i: "58-" + $30 }
-                            },
-                            [
-                              _c("v-uni-image", {
-                                attrs: {
-                                  src: _vm._$g("59-" + $30, "a-src"),
-                                  _i: "59-" + $30
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        }),
-                        1
-                      )
+                        : _vm._e()
                     ],
                     1
                   )
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(60, "sc"),
-                  attrs: { _i: 60 },
-                  on: {
-                    longpress: function($event) {
-                      return _vm.$handleViewEvent($event)
-                    }
-                  }
-                },
-                [
-                  _c(
+                : _vm._e(),
+              _vm._$g(61, "i")
+                ? _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(61, "sc"), attrs: { _i: 61 } },
+                    {
+                      staticClass: _vm._$g(61, "sc"),
+                      staticStyle: { "background-color": "#FFFFFF" },
+                      attrs: { _i: 61 },
+                      on: {
+                        longpress: function($event) {
+                          return _vm.$handleViewEvent($event)
+                        }
+                      }
+                    },
                     [
-                      _c(
-                        "uni-list",
-                        { staticClass: _vm._$g(62, "sc"), attrs: { _i: 62 } },
-                        [
-                          _vm._$g(63, "i")
-                            ? _c(
+                      _vm._$g(62, "i")
+                        ? _c(
+                            "v-uni-view",
+                            { attrs: { _i: 62 } },
+                            [
+                              _c(
                                 "v-uni-view",
                                 {
                                   staticClass: _vm._$g(63, "sc"),
                                   attrs: { _i: 63 }
                                 },
                                 [
-                                  false
-                                    ? undefined
-                                    : _vm._e(),
-                                  true
-                                    ? _c("v-uni-image", {
-                                        attrs: {
-                                          src: _vm._$g(65, "a-src"),
-                                          _i: 65
-                                        }
-                                      })
-                                    : undefined
-                                ],
-                                1
-                              )
-                            : _vm._e(),
-                          _c(
-                            "uni-list-item",
-                            { attrs: { _i: 66 } },
-                            [
-                              _c(
-                                "v-uni-view",
-                                {
-                                  attrs: { slot: "right", _i: 67 },
-                                  slot: "right"
-                                },
-                                [
                                   _c(
-                                    "v-uni-navigator",
+                                    "uni-list",
                                     {
-                                      attrs: {
-                                        url: "/pages/tab1/clothes",
-                                        _i: 68
-                                      }
+                                      staticClass: _vm._$g(64, "sc"),
+                                      attrs: { _i: 64 }
                                     },
                                     [
-                                      _c(
-                                        "span",
-                                        {
-                                          staticStyle: {
-                                            "font-size": "14px",
-                                            "font-weight": "400",
-                                            color: "rgba(59, 193, 187, 1)"
-                                          },
-                                          attrs: { _i: 69 }
-                                        },
-                                        [
-                                          _vm._v("查看全部 "),
-                                          _c("v-uni-image", {
-                                            staticStyle: {
-                                              width: "16upx",
-                                              height: "16upx",
-                                              "margin-left": "10upx"
+                                      _vm._$g(65, "i")
+                                        ? _c(
+                                            "v-uni-view",
+                                            {
+                                              staticClass: _vm._$g(65, "sc"),
+                                              attrs: { _i: 65 }
                                             },
-                                            attrs: {
-                                              src: _vm._$g(70, "a-src"),
-                                              _i: 70
-                                            }
-                                          })
+                                            [
+                                              _c("v-uni-image", {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value: _vm._$g(
+                                                      66,
+                                                      "v-show"
+                                                    ),
+                                                    expression:
+                                                      "_$g(66,'v-show')"
+                                                  }
+                                                ],
+                                                attrs: {
+                                                  src: _vm._$g(66, "a-src"),
+                                                  _i: 66
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.$handleViewEvent(
+                                                      $event
+                                                    )
+                                                  }
+                                                }
+                                              }),
+                                              _c("v-uni-image", {
+                                                directives: [
+                                                  {
+                                                    name: "show",
+                                                    rawName: "v-show",
+                                                    value: _vm._$g(
+                                                      67,
+                                                      "v-show"
+                                                    ),
+                                                    expression:
+                                                      "_$g(67,'v-show')"
+                                                  }
+                                                ],
+                                                attrs: {
+                                                  src: _vm._$g(67, "a-src"),
+                                                  _i: 67
+                                                },
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.$handleViewEvent(
+                                                      $event
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e(),
+                                      _c(
+                                        "uni-list-item",
+                                        { attrs: { _i: 68 } },
+                                        [
+                                          _c(
+                                            "v-uni-view",
+                                            {
+                                              attrs: { slot: "right", _i: 69 },
+                                              slot: "right"
+                                            },
+                                            [
+                                              _c(
+                                                "v-uni-navigator",
+                                                {
+                                                  attrs: {
+                                                    url: "/pages/tab1/clothes",
+                                                    _i: 70
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticStyle: {
+                                                        "font-size": "14px",
+                                                        "font-weight": "400",
+                                                        color:
+                                                          "rgba(59, 193, 187, 1)"
+                                                      },
+                                                      attrs: { _i: 71 }
+                                                    },
+                                                    [
+                                                      _vm._v("查看全部 "),
+                                                      _c("v-uni-image", {
+                                                        staticStyle: {
+                                                          width: "16upx",
+                                                          height: "16upx",
+                                                          "margin-left": "10upx"
+                                                        },
+                                                        attrs: {
+                                                          src: _vm._$g(
+                                                            72,
+                                                            "a-src"
+                                                          ),
+                                                          _i: 72
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
                                         ],
                                         1
                                       )
@@ -2254,179 +2402,232 @@ var render = function() {
                                   )
                                 ],
                                 1
-                              )
+                              ),
+                              _vm._$g(73, "i")
+                                ? _c(
+                                    "v-uni-view",
+                                    { attrs: { _i: 73 } },
+                                    [
+                                      _c(
+                                        "v-uni-scroll-view",
+                                        {
+                                          staticClass: _vm._$g(74, "sc"),
+                                          attrs: { "scroll-x": "true", _i: 74 }
+                                        },
+                                        _vm._l(_vm._$g(75, "f"), function(
+                                          item,
+                                          index,
+                                          $21,
+                                          $31
+                                        ) {
+                                          return _c(
+                                            "v-uni-view",
+                                            {
+                                              key: item,
+                                              staticClass: _vm._$g(
+                                                "75-" + $31,
+                                                "sc"
+                                              ),
+                                              staticStyle: {
+                                                display: "inline-block"
+                                              },
+                                              style: _vm._$g("75-" + $31, "s"),
+                                              attrs: { _i: "75-" + $31 }
+                                            },
+                                            [
+                                              _c("v-uni-image", {
+                                                attrs: {
+                                                  src: _vm._$g(
+                                                    "76-" + $31,
+                                                    "a-src"
+                                                  ),
+                                                  _i: "76-" + $31
+                                                }
+                                              }),
+                                              _c("v-uni-image", {
+                                                staticStyle: {
+                                                  position: "absolute",
+                                                  "z-index": "5",
+                                                  left: "0",
+                                                  bottom: "0",
+                                                  width: "100%",
+                                                  height: "112upx"
+                                                },
+                                                attrs: {
+                                                  src: _vm._$g(
+                                                    "77-" + $31,
+                                                    "a-src"
+                                                  ),
+                                                  _i: "77-" + $31
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        }),
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e()
                             ],
                             1
                           )
-                        ],
-                        1
-                      )
+                        : _vm._e()
                     ],
                     1
-                  ),
-                  true
-                    ? _c(
-                        "v-uni-view",
-                        { attrs: { _i: 71 } },
-                        [
-                          _c(
-                            "v-uni-scroll-view",
-                            {
-                              staticClass: _vm._$g(72, "sc"),
-                              attrs: { "scroll-x": "true", _i: 72 }
-                            },
-                            _vm._l(_vm._$g(73, "f"), function(
-                              item,
-                              index,
-                              $21,
-                              $31
-                            ) {
-                              return _c(
-                                "v-uni-view",
-                                {
-                                  key: item,
-                                  staticClass: _vm._$g("73-" + $31, "sc"),
-                                  staticStyle: { display: "inline-block" },
-                                  style: _vm._$g("73-" + $31, "s"),
-                                  attrs: { _i: "73-" + $31 }
-                                },
-                                [
-                                  _c("v-uni-image", {
-                                    attrs: {
-                                      src: _vm._$g("74-" + $31, "a-src"),
-                                      _i: "74-" + $31
-                                    }
-                                  }),
-                                  _c("v-uni-image", {
-                                    staticStyle: {
-                                      position: "absolute",
-                                      "z-index": "5",
-                                      left: "0",
-                                      bottom: "0",
-                                      width: "100%",
-                                      height: "112upx"
-                                    },
-                                    attrs: {
-                                      src: _vm._$g("75-" + $31, "a-src"),
-                                      _i: "75-" + $31
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            }),
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    : undefined
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(76, "sc"),
-                  attrs: { _i: 76 },
-                  on: {
-                    longpress: function($event) {
-                      return _vm.$handleViewEvent($event)
-                    }
-                  }
-                },
-                [
-                  _c(
+                  )
+                : _vm._e(),
+              _vm._$g(78, "i")
+                ? _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(77, "sc"), attrs: { _i: 77 } },
+                    {
+                      staticClass: _vm._$g(78, "sc"),
+                      staticStyle: { "background-color": "#FFFFFF" },
+                      attrs: { _i: 78 },
+                      on: {
+                        longpress: function($event) {
+                          return _vm.$handleViewEvent($event)
+                        }
+                      }
+                    },
                     [
-                      _c(
-                        "uni-list",
-                        { staticClass: _vm._$g(78, "sc"), attrs: { _i: 78 } },
-                        [
-                          _c(
+                      _vm._$g(79, "i")
+                        ? _c(
                             "v-uni-view",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm._$g(79, "v-show"),
-                                  expression: "_$g(79,'v-show')"
-                                }
-                              ],
-                              staticClass: _vm._$g(79, "sc"),
-                              attrs: { _i: 79 }
-                            },
-                            [
-                              _c("v-uni-image", {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm._$g(80, "v-show"),
-                                    expression: "_$g(80,'v-show')"
-                                  }
-                                ],
-                                attrs: { src: _vm._$g(80, "a-src"), _i: 80 }
-                              }),
-                              _c("v-uni-image", {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm._$g(81, "v-show"),
-                                    expression: "_$g(81,'v-show')"
-                                  }
-                                ],
-                                attrs: { src: _vm._$g(81, "a-src"), _i: 81 }
-                              })
-                            ],
-                            1
-                          ),
-                          _c(
-                            "uni-list-item",
-                            { attrs: { _i: 82 } },
+                            { attrs: { _i: 79 } },
                             [
                               _c(
                                 "v-uni-view",
                                 {
-                                  attrs: { slot: "right", _i: 83 },
-                                  slot: "right"
+                                  staticClass: _vm._$g(80, "sc"),
+                                  attrs: { _i: 80 }
                                 },
                                 [
                                   _c(
-                                    "v-uni-navigator",
+                                    "uni-list",
                                     {
-                                      attrs: {
-                                        url: "/pages/tab1/shoes",
-                                        _i: 84
-                                      }
+                                      staticClass: _vm._$g(81, "sc"),
+                                      attrs: { _i: 81 }
                                     },
                                     [
                                       _c(
-                                        "span",
+                                        "v-uni-view",
                                         {
-                                          staticStyle: {
-                                            "font-size": "14px",
-                                            "font-weight": "400",
-                                            color: "rgba(59, 193, 187, 1)"
-                                          },
-                                          attrs: { _i: 85 }
+                                          directives: [
+                                            {
+                                              name: "show",
+                                              rawName: "v-show",
+                                              value: _vm._$g(82, "v-show"),
+                                              expression: "_$g(82,'v-show')"
+                                            }
+                                          ],
+                                          staticClass: _vm._$g(82, "sc"),
+                                          attrs: { _i: 82 }
                                         },
                                         [
-                                          _vm._v("查看全部 "),
                                           _c("v-uni-image", {
-                                            staticStyle: {
-                                              width: "16upx",
-                                              height: "16upx",
-                                              "margin-left": "10upx"
-                                            },
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: _vm._$g(83, "v-show"),
+                                                expression: "_$g(83,'v-show')"
+                                              }
+                                            ],
                                             attrs: {
-                                              src: _vm._$g(86, "a-src"),
-                                              _i: 86
+                                              src: _vm._$g(83, "a-src"),
+                                              _i: 83
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.$handleViewEvent(
+                                                  $event
+                                                )
+                                              }
+                                            }
+                                          }),
+                                          _c("v-uni-image", {
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: _vm._$g(84, "v-show"),
+                                                expression: "_$g(84,'v-show')"
+                                              }
+                                            ],
+                                            attrs: {
+                                              src: _vm._$g(84, "a-src"),
+                                              _i: 84
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.$handleViewEvent(
+                                                  $event
+                                                )
+                                              }
                                             }
                                           })
+                                        ],
+                                        1
+                                      ),
+                                      _c(
+                                        "uni-list-item",
+                                        { attrs: { _i: 85 } },
+                                        [
+                                          _c(
+                                            "v-uni-view",
+                                            {
+                                              attrs: { slot: "right", _i: 86 },
+                                              slot: "right"
+                                            },
+                                            [
+                                              _c(
+                                                "v-uni-navigator",
+                                                {
+                                                  attrs: {
+                                                    url: "/pages/tab1/shoes",
+                                                    _i: 87
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticStyle: {
+                                                        "font-size": "14px",
+                                                        "font-weight": "400",
+                                                        color:
+                                                          "rgba(59, 193, 187, 1)"
+                                                      },
+                                                      attrs: { _i: 88 }
+                                                    },
+                                                    [
+                                                      _vm._v("查看全部 "),
+                                                      _c("v-uni-image", {
+                                                        staticStyle: {
+                                                          width: "16upx",
+                                                          height: "16upx",
+                                                          "margin-left": "10upx"
+                                                        },
+                                                        attrs: {
+                                                          src: _vm._$g(
+                                                            89,
+                                                            "a-src"
+                                                          ),
+                                                          _i: 89
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
                                         ],
                                         1
                                       )
@@ -2435,192 +2636,248 @@ var render = function() {
                                   )
                                 ],
                                 1
-                              )
+                              ),
+                              _vm._$g(90, "i")
+                                ? _c(
+                                    "v-uni-view",
+                                    { attrs: { _i: 90 } },
+                                    [
+                                      _c(
+                                        "v-uni-scroll-view",
+                                        {
+                                          staticClass: _vm._$g(91, "sc"),
+                                          attrs: { "scroll-x": "true", _i: 91 }
+                                        },
+                                        _vm._l(_vm._$g(92, "f"), function(
+                                          item,
+                                          index,
+                                          $22,
+                                          $32
+                                        ) {
+                                          return _c(
+                                            "v-uni-view",
+                                            {
+                                              key: item,
+                                              staticClass: _vm._$g(
+                                                "92-" + $32,
+                                                "sc"
+                                              ),
+                                              staticStyle: {
+                                                display: "inline-block"
+                                              },
+                                              attrs: { _i: "92-" + $32 }
+                                            },
+                                            [
+                                              _c("v-uni-image", {
+                                                staticStyle: {
+                                                  position: "absolute",
+                                                  "z-index": "0",
+                                                  left: "0",
+                                                  top: "0",
+                                                  width: "100%",
+                                                  height: "158upx"
+                                                },
+                                                attrs: {
+                                                  src: _vm._$g(
+                                                    "93-" + $32,
+                                                    "a-src"
+                                                  ),
+                                                  _i: "93-" + $32
+                                                }
+                                              }),
+                                              _c("v-uni-image", {
+                                                attrs: {
+                                                  src: _vm._$g(
+                                                    "94-" + $32,
+                                                    "a-src"
+                                                  ),
+                                                  _i: "94-" + $32
+                                                }
+                                              }),
+                                              _c("v-uni-image", {
+                                                staticStyle: {
+                                                  position: "absolute",
+                                                  "z-index": "5",
+                                                  left: "0",
+                                                  bottom: "0",
+                                                  width: "100%",
+                                                  height: "127upx"
+                                                },
+                                                attrs: {
+                                                  src: _vm._$g(
+                                                    "95-" + $32,
+                                                    "a-src"
+                                                  ),
+                                                  _i: "95-" + $32
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        }),
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e()
                             ],
                             1
                           )
-                        ],
-                        1
-                      )
+                        : _vm._e()
                     ],
                     1
-                  ),
-                  true
-                    ? _c(
-                        "v-uni-view",
-                        { attrs: { _i: 87 } },
-                        [
-                          _c(
-                            "v-uni-scroll-view",
-                            {
-                              staticClass: _vm._$g(88, "sc"),
-                              attrs: { "scroll-x": "true", _i: 88 }
-                            },
-                            _vm._l(_vm._$g(89, "f"), function(
-                              item,
-                              index,
-                              $22,
-                              $32
-                            ) {
-                              return _c(
-                                "v-uni-view",
-                                {
-                                  key: item,
-                                  staticClass: _vm._$g("89-" + $32, "sc"),
-                                  staticStyle: { display: "inline-block" },
-                                  attrs: { _i: "89-" + $32 }
-                                },
-                                [
-                                  _c("v-uni-image", {
-                                    staticStyle: {
-                                      position: "absolute",
-                                      "z-index": "0",
-                                      left: "0",
-                                      top: "0",
-                                      width: "100%",
-                                      height: "158upx"
-                                    },
-                                    attrs: {
-                                      src: _vm._$g("90-" + $32, "a-src"),
-                                      _i: "90-" + $32
-                                    }
-                                  }),
-                                  _c("v-uni-image", {
-                                    attrs: {
-                                      src: _vm._$g("91-" + $32, "a-src"),
-                                      _i: "91-" + $32
-                                    }
-                                  }),
-                                  _c("v-uni-image", {
-                                    staticStyle: {
-                                      position: "absolute",
-                                      "z-index": "5",
-                                      left: "0",
-                                      bottom: "0",
-                                      width: "100%",
-                                      height: "127upx"
-                                    },
-                                    attrs: {
-                                      src: _vm._$g("92-" + $32, "a-src"),
-                                      _i: "92-" + $32
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            }),
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    : undefined
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(93, "sc"),
-                  attrs: { _i: 93 },
-                  on: {
-                    longpress: function($event) {
-                      return _vm.$handleViewEvent($event)
-                    }
-                  }
-                },
-                [
-                  _c(
+                  )
+                : _vm._e(),
+              _vm._$g(96, "i")
+                ? _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(94, "sc"), attrs: { _i: 94 } },
+                    {
+                      staticClass: _vm._$g(96, "sc"),
+                      staticStyle: { "background-color": "#FFFFFF" },
+                      attrs: { _i: 96 },
+                      on: {
+                        longpress: function($event) {
+                          return _vm.$handleViewEvent($event)
+                        }
+                      }
+                    },
                     [
-                      _c(
-                        "uni-list",
-                        { staticClass: _vm._$g(95, "sc"), attrs: { _i: 95 } },
-                        [
-                          _c(
+                      _vm._$g(97, "i")
+                        ? _c(
                             "v-uni-view",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm._$g(96, "v-show"),
-                                  expression: "_$g(96,'v-show')"
-                                }
-                              ],
-                              staticClass: _vm._$g(96, "sc"),
-                              attrs: { _i: 96 }
-                            },
-                            [
-                              _c("v-uni-image", {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm._$g(97, "v-show"),
-                                    expression: "_$g(97,'v-show')"
-                                  }
-                                ],
-                                attrs: { src: _vm._$g(97, "a-src"), _i: 97 }
-                              }),
-                              _c("v-uni-image", {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm._$g(98, "v-show"),
-                                    expression: "_$g(98,'v-show')"
-                                  }
-                                ],
-                                attrs: { src: _vm._$g(98, "a-src"), _i: 98 }
-                              })
-                            ],
-                            1
-                          ),
-                          _c(
-                            "uni-list-item",
-                            { attrs: { _i: 99 } },
+                            { attrs: { _i: 97 } },
                             [
                               _c(
                                 "v-uni-view",
                                 {
-                                  attrs: { slot: "right", _i: 100 },
-                                  slot: "right"
+                                  staticClass: _vm._$g(98, "sc"),
+                                  attrs: { _i: 98 }
                                 },
                                 [
                                   _c(
-                                    "v-uni-navigator",
+                                    "uni-list",
                                     {
-                                      attrs: {
-                                        url: "/pages/tab1/storage",
-                                        _i: 101
-                                      }
+                                      staticClass: _vm._$g(99, "sc"),
+                                      attrs: { _i: 99 }
                                     },
                                     [
                                       _c(
-                                        "span",
+                                        "v-uni-view",
                                         {
-                                          staticStyle: {
-                                            "font-size": "14px",
-                                            "font-weight": "400",
-                                            color: "rgba(59, 193, 187, 1)"
-                                          },
-                                          attrs: { _i: 102 }
+                                          directives: [
+                                            {
+                                              name: "show",
+                                              rawName: "v-show",
+                                              value: _vm._$g(100, "v-show"),
+                                              expression: "_$g(100,'v-show')"
+                                            }
+                                          ],
+                                          staticClass: _vm._$g(100, "sc"),
+                                          attrs: { _i: 100 }
                                         },
                                         [
-                                          _vm._v("查看全部 "),
                                           _c("v-uni-image", {
-                                            staticStyle: {
-                                              width: "16upx",
-                                              height: "16upx",
-                                              "margin-left": "10upx"
-                                            },
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: _vm._$g(101, "v-show"),
+                                                expression: "_$g(101,'v-show')"
+                                              }
+                                            ],
                                             attrs: {
-                                              src: _vm._$g(103, "a-src"),
-                                              _i: 103
+                                              src: _vm._$g(101, "a-src"),
+                                              _i: 101
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.$handleViewEvent(
+                                                  $event
+                                                )
+                                              }
+                                            }
+                                          }),
+                                          _c("v-uni-image", {
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: _vm._$g(102, "v-show"),
+                                                expression: "_$g(102,'v-show')"
+                                              }
+                                            ],
+                                            attrs: {
+                                              src: _vm._$g(102, "a-src"),
+                                              _i: 102
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.$handleViewEvent(
+                                                  $event
+                                                )
+                                              }
                                             }
                                           })
+                                        ],
+                                        1
+                                      ),
+                                      _c(
+                                        "uni-list-item",
+                                        { attrs: { _i: 103 } },
+                                        [
+                                          _c(
+                                            "v-uni-view",
+                                            {
+                                              attrs: { slot: "right", _i: 104 },
+                                              slot: "right"
+                                            },
+                                            [
+                                              _c(
+                                                "v-uni-navigator",
+                                                {
+                                                  attrs: {
+                                                    url: "/pages/tab1/storage",
+                                                    _i: 105
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticStyle: {
+                                                        "font-size": "14px",
+                                                        "font-weight": "400",
+                                                        color:
+                                                          "rgba(59, 193, 187, 1)"
+                                                      },
+                                                      attrs: { _i: 106 }
+                                                    },
+                                                    [
+                                                      _vm._v("查看全部 "),
+                                                      _c("v-uni-image", {
+                                                        staticStyle: {
+                                                          width: "16upx",
+                                                          height: "16upx",
+                                                          "margin-left": "10upx"
+                                                        },
+                                                        attrs: {
+                                                          src: _vm._$g(
+                                                            107,
+                                                            "a-src"
+                                                          ),
+                                                          _i: 107
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
                                         ],
                                         1
                                       )
@@ -2629,179 +2886,218 @@ var render = function() {
                                   )
                                 ],
                                 1
-                              )
+                              ),
+                              _vm._$g(108, "i")
+                                ? _c(
+                                    "v-uni-view",
+                                    { attrs: { _i: 108 } },
+                                    [
+                                      _c(
+                                        "v-uni-scroll-view",
+                                        {
+                                          staticClass: _vm._$g(109, "sc"),
+                                          attrs: { "scroll-x": "true", _i: 109 }
+                                        },
+                                        _vm._l(_vm._$g(110, "f"), function(
+                                          item,
+                                          index,
+                                          $23,
+                                          $33
+                                        ) {
+                                          return _c(
+                                            "v-uni-view",
+                                            {
+                                              key: item,
+                                              staticClass: _vm._$g(
+                                                "110-" + $33,
+                                                "sc"
+                                              ),
+                                              staticStyle: {
+                                                display: "inline-block",
+                                                width: "220upx",
+                                                height: "200upx",
+                                                "font-size": "0"
+                                              },
+                                              attrs: { _i: "110-" + $33 }
+                                            },
+                                            [
+                                              _c("v-uni-image", {
+                                                attrs: {
+                                                  src: _vm._$g(
+                                                    "111-" + $33,
+                                                    "a-src"
+                                                  ),
+                                                  _i: "111-" + $33
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        }),
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e()
                             ],
                             1
                           )
-                        ],
-                        1
-                      )
+                        : _vm._e()
                     ],
                     1
-                  ),
-                  true
-                    ? _c(
-                        "v-uni-view",
-                        { attrs: { _i: 104 } },
-                        [
-                          _c(
-                            "v-uni-scroll-view",
-                            {
-                              staticClass: _vm._$g(105, "sc"),
-                              attrs: { "scroll-x": "true", _i: 105 }
-                            },
-                            _vm._l(_vm._$g(106, "f"), function(
-                              item,
-                              index,
-                              $23,
-                              $33
-                            ) {
-                              return _c(
-                                "v-uni-view",
-                                {
-                                  key: item,
-                                  staticClass: _vm._$g("106-" + $33, "sc"),
-                                  staticStyle: {
-                                    display: "inline-block",
-                                    width: "220upx",
-                                    height: "200upx",
-                                    "font-size": "0"
-                                  },
-                                  attrs: { _i: "106-" + $33 }
-                                },
-                                [
-                                  _c("v-uni-image", {
-                                    attrs: {
-                                      src: _vm._$g("107-" + $33, "a-src"),
-                                      _i: "107-" + $33
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            }),
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    : undefined
-                ],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(108, "sc"),
-                  attrs: { _i: 108 },
-                  on: {
-                    longpress: function($event) {
-                      return _vm.$handleViewEvent($event)
-                    }
-                  }
-                },
-                [
-                  _c(
+                  )
+                : _vm._e(),
+              _vm._$g(112, "i")
+                ? _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(109, "sc"), attrs: { _i: 109 } },
+                    {
+                      staticClass: _vm._$g(112, "sc"),
+                      staticStyle: { "background-color": "#FFFFFF" },
+                      attrs: { _i: 112 },
+                      on: {
+                        longpress: function($event) {
+                          return _vm.$handleViewEvent($event)
+                        }
+                      }
+                    },
                     [
-                      _c(
-                        "uni-list",
-                        { staticClass: _vm._$g(110, "sc"), attrs: { _i: 110 } },
-                        [
-                          _c(
+                      _vm._$g(113, "i")
+                        ? _c(
                             "v-uni-view",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm._$g(111, "v-show"),
-                                  expression: "_$g(111,'v-show')"
-                                }
-                              ],
-                              staticClass: _vm._$g(111, "sc"),
-                              attrs: { _i: 111 }
-                            },
-                            [
-                              _c("v-uni-image", {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm._$g(112, "v-show"),
-                                    expression: "_$g(112,'v-show')"
-                                  }
-                                ],
-                                attrs: { src: _vm._$g(112, "a-src"), _i: 112 },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.$handleViewEvent($event)
-                                  }
-                                }
-                              }),
-                              _c("v-uni-image", {
-                                directives: [
-                                  {
-                                    name: "show",
-                                    rawName: "v-show",
-                                    value: _vm._$g(113, "v-show"),
-                                    expression: "_$g(113,'v-show')"
-                                  }
-                                ],
-                                attrs: { src: _vm._$g(113, "a-src"), _i: 113 },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.$handleViewEvent($event)
-                                  }
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _c(
-                            "uni-list-item",
-                            { attrs: { _i: 114 } },
+                            { attrs: { _i: 113 } },
                             [
                               _c(
                                 "v-uni-view",
                                 {
-                                  attrs: { slot: "right", _i: 115 },
-                                  slot: "right"
+                                  staticClass: _vm._$g(114, "sc"),
+                                  attrs: { _i: 114 }
                                 },
                                 [
                                   _c(
-                                    "v-uni-navigator",
+                                    "uni-list",
                                     {
-                                      attrs: {
-                                        url: "/pages/tab1/groceries",
-                                        _i: 116
-                                      }
+                                      staticClass: _vm._$g(115, "sc"),
+                                      attrs: { _i: 115 }
                                     },
                                     [
                                       _c(
-                                        "span",
+                                        "v-uni-view",
                                         {
-                                          staticStyle: {
-                                            "font-size": "14px",
-                                            "font-weight": "400",
-                                            color: "rgba(59, 193, 187, 1)"
-                                          },
-                                          attrs: { _i: 117 }
+                                          directives: [
+                                            {
+                                              name: "show",
+                                              rawName: "v-show",
+                                              value: _vm._$g(116, "v-show"),
+                                              expression: "_$g(116,'v-show')"
+                                            }
+                                          ],
+                                          staticClass: _vm._$g(116, "sc"),
+                                          attrs: { _i: 116 }
                                         },
                                         [
-                                          _vm._v("查看全部 "),
                                           _c("v-uni-image", {
-                                            staticStyle: {
-                                              width: "16upx",
-                                              height: "16upx",
-                                              "margin-left": "10upx"
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: _vm._$g(117, "v-show"),
+                                                expression: "_$g(117,'v-show')"
+                                              }
+                                            ],
+                                            attrs: {
+                                              src: _vm._$g(117, "a-src"),
+                                              _i: 117
                                             },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.$handleViewEvent(
+                                                  $event
+                                                )
+                                              }
+                                            }
+                                          }),
+                                          _c("v-uni-image", {
+                                            directives: [
+                                              {
+                                                name: "show",
+                                                rawName: "v-show",
+                                                value: _vm._$g(118, "v-show"),
+                                                expression: "_$g(118,'v-show')"
+                                              }
+                                            ],
                                             attrs: {
                                               src: _vm._$g(118, "a-src"),
                                               _i: 118
+                                            },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.$handleViewEvent(
+                                                  $event
+                                                )
+                                              }
                                             }
                                           })
+                                        ],
+                                        1
+                                      ),
+                                      _c(
+                                        "uni-list-item",
+                                        { attrs: { _i: 119 } },
+                                        [
+                                          _c(
+                                            "v-uni-view",
+                                            {
+                                              attrs: { slot: "right", _i: 120 },
+                                              slot: "right"
+                                            },
+                                            [
+                                              _c(
+                                                "v-uni-navigator",
+                                                {
+                                                  attrs: {
+                                                    url:
+                                                      "/pages/tab1/groceries",
+                                                    _i: 121
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticStyle: {
+                                                        "font-size": "14px",
+                                                        "font-weight": "400",
+                                                        color:
+                                                          "rgba(59, 193, 187, 1)"
+                                                      },
+                                                      attrs: { _i: 122 }
+                                                    },
+                                                    [
+                                                      _vm._v("查看全部 "),
+                                                      _c("v-uni-image", {
+                                                        staticStyle: {
+                                                          width: "16upx",
+                                                          height: "16upx",
+                                                          "margin-left": "10upx"
+                                                        },
+                                                        attrs: {
+                                                          src: _vm._$g(
+                                                            123,
+                                                            "a-src"
+                                                          ),
+                                                          _i: 123
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  )
+                                                ],
+                                                1
+                                              )
+                                            ],
+                                            1
+                                          )
                                         ],
                                         1
                                       )
@@ -2810,90 +3106,135 @@ var render = function() {
                                   )
                                 ],
                                 1
-                              )
+                              ),
+                              _vm._$g(124, "i")
+                                ? _c(
+                                    "v-uni-view",
+                                    { attrs: { _i: 124 } },
+                                    _vm._l(_vm._$g(125, "f"), function(
+                                      item,
+                                      index,
+                                      $24,
+                                      $34
+                                    ) {
+                                      return _c(
+                                        "v-uni-view",
+                                        {
+                                          key: item,
+                                          staticClass: _vm._$g(
+                                            "125-" + $34,
+                                            "sc"
+                                          ),
+                                          attrs: { _i: "125-" + $34 }
+                                        },
+                                        [
+                                          _c(
+                                            "v-uni-view",
+                                            {
+                                              staticClass: _vm._$g(
+                                                "126-" + $34,
+                                                "sc"
+                                              ),
+                                              attrs: { _i: "126-" + $34 }
+                                            },
+                                            [
+                                              _c("v-uni-image", {
+                                                attrs: {
+                                                  src: _vm._$g(
+                                                    "127-" + $34,
+                                                    "a-src"
+                                                  ),
+                                                  _i: "127-" + $34
+                                                }
+                                              }),
+                                              _c(
+                                                "v-uni-text",
+                                                { attrs: { _i: "128-" + $34 } },
+                                                [
+                                                  _vm._v(
+                                                    _vm._$g(
+                                                      "128-" + $34,
+                                                      "t0-0"
+                                                    )
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          ),
+                                          _c(
+                                            "v-uni-view",
+                                            {
+                                              staticClass: _vm._$g(
+                                                "129-" + $34,
+                                                "sc"
+                                              ),
+                                              staticStyle: {
+                                                color: "rgba(40,40,40,1)"
+                                              },
+                                              attrs: { _i: "129-" + $34 }
+                                            },
+                                            [
+                                              _c(
+                                                "v-uni-view",
+                                                { attrs: { _i: "130-" + $34 } },
+                                                [
+                                                  _c(
+                                                    "v-uni-text",
+                                                    {
+                                                      attrs: {
+                                                        _i: "131-" + $34
+                                                      }
+                                                    },
+                                                    [
+                                                      _vm._v(
+                                                        _vm._$g(
+                                                          "131-" + $34,
+                                                          "t0-0"
+                                                        )
+                                                      )
+                                                    ]
+                                                  )
+                                                ],
+                                                1
+                                              ),
+                                              _c(
+                                                "v-uni-text",
+                                                {
+                                                  staticClass: _vm._$g(
+                                                    "132-" + $34,
+                                                    "sc"
+                                                  ),
+                                                  attrs: { _i: "132-" + $34 }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    "内含：" +
+                                                      _vm._$g(
+                                                        "132-" + $34,
+                                                        "t0-0"
+                                                      )
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    }),
+                                    1
+                                  )
+                                : _vm._e()
                             ],
                             1
                           )
-                        ],
-                        1
-                      )
+                        : _vm._e()
                     ],
                     1
-                  ),
-                  _vm._l(_vm._$g(119, "f"), function(item, index, $24, $34) {
-                    return true
-                      ? _c(
-                          "v-uni-view",
-                          {
-                            key: item,
-                            staticClass: _vm._$g("119-" + $34, "sc"),
-                            attrs: { _i: "119-" + $34 }
-                          },
-                          [
-                            _c(
-                              "v-uni-view",
-                              {
-                                staticClass: _vm._$g("120-" + $34, "sc"),
-                                attrs: { _i: "120-" + $34 }
-                              },
-                              [
-                                _c("v-uni-image", {
-                                  attrs: {
-                                    src: _vm._$g("121-" + $34, "a-src"),
-                                    _i: "121-" + $34
-                                  }
-                                }),
-                                _c(
-                                  "v-uni-text",
-                                  { attrs: { _i: "122-" + $34 } },
-                                  [_vm._v(_vm._$g("122-" + $34, "t0-0"))]
-                                )
-                              ],
-                              1
-                            ),
-                            _c(
-                              "v-uni-view",
-                              {
-                                staticClass: _vm._$g("123-" + $34, "sc"),
-                                staticStyle: { color: "rgba(40,40,40,1)" },
-                                attrs: { _i: "123-" + $34 }
-                              },
-                              [
-                                _c(
-                                  "v-uni-view",
-                                  { attrs: { _i: "124-" + $34 } },
-                                  [
-                                    _c(
-                                      "v-uni-text",
-                                      { attrs: { _i: "125-" + $34 } },
-                                      [_vm._v(_vm._$g("125-" + $34, "t0-0"))]
-                                    )
-                                  ],
-                                  1
-                                ),
-                                _c(
-                                  "v-uni-text",
-                                  {
-                                    staticClass: _vm._$g("126-" + $34, "sc"),
-                                    attrs: { _i: "126-" + $34 }
-                                  },
-                                  [
-                                    _vm._v(
-                                      "内含：羽毛球、羽毛球拍、篮球、排球、足球、排球手… "
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          ],
-                          1
-                        )
-                      : undefined
-                  })
-                ],
-                2
-              ),
+                  )
+                : _vm._e(),
               _c(
                 "v-uni-view",
                 {
@@ -2901,16 +3242,16 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm._$g(127, "v-show"),
-                      expression: "_$g(127,'v-show')"
+                      value: _vm._$g(133, "v-show"),
+                      expression: "_$g(133,'v-show')"
                     }
                   ],
-                  staticClass: _vm._$g(127, "sc"),
-                  attrs: { _i: 127 }
+                  staticClass: _vm._$g(133, "sc"),
+                  attrs: { _i: 133 }
                 },
                 [
                   _c("v-uni-image", {
-                    attrs: { src: _vm._$g(128, "a-src"), _i: 128 },
+                    attrs: { src: _vm._$g(134, "a-src"), _i: 134 },
                     on: {
                       click: function($event) {
                         return _vm.$handleViewEvent($event)
@@ -2918,7 +3259,7 @@ var render = function() {
                     }
                   }),
                   _c("v-uni-image", {
-                    attrs: { src: _vm._$g(129, "a-src"), _i: 129 },
+                    attrs: { src: _vm._$g(135, "a-src"), _i: 135 },
                     on: {
                       click: function($event) {
                         return _vm.$handleViewEvent($event)
@@ -15704,24 +16045,9 @@ var render = function() {
                         { attrs: { _i: 8 } },
                         [
                           _c("h4", { attrs: { _i: 9 } }, [
-                            _vm._v("您的订单还未付款，请及时付款")
-                          ]),
-                          _c("p", { attrs: { _i: 10 } }, [
-                            _vm._v(
-                              "此订单需要在7月26日00:00为止需要支付，否则订单将自动取消。"
-                            )
-                          ])
-                        ],
-                        1
-                      )
-                    : _c(
-                        "v-uni-view",
-                        { attrs: { _i: 11 } },
-                        [
-                          _c("h4", { attrs: { _i: 12 } }, [
                             _vm._v("订单已被取消。")
                           ]),
-                          _c("p", { attrs: { _i: 13 } }, [
+                          _c("p", { attrs: { _i: 10 } }, [
                             _vm._v(
                               "拒接理由内容拒接理由内容拒接理由内容，如有疑问请联系客服。"
                             )
@@ -15729,52 +16055,111 @@ var render = function() {
                         ],
                         1
                       )
+                    : _vm._$g(11, "e")
+                    ? _c(
+                        "v-uni-view",
+                        { attrs: { _i: 11 } },
+                        [
+                          _c("h4", { attrs: { _i: 12 } }, [
+                            _vm._v("您的订单还未付款，请及时付款")
+                          ]),
+                          _c("p", { attrs: { _i: 13 } }, [
+                            _vm._v("此订单需要及时支付，否则订单将自动取消。")
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._$g(14, "e")
+                    ? _c(
+                        "v-uni-view",
+                        { attrs: { _i: 14 } },
+                        [
+                          _c("h4", { attrs: { _i: 15 } }, [
+                            _vm._v("订单待处理")
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._$g(16, "e")
+                    ? _c(
+                        "v-uni-view",
+                        { attrs: { _i: 16 } },
+                        [
+                          _c("h4", { attrs: { _i: 17 } }, [
+                            _vm._v("订单入库作业中")
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._$g(18, "e")
+                    ? _c(
+                        "v-uni-view",
+                        { attrs: { _i: 18 } },
+                        [
+                          _c("h4", { attrs: { _i: 19 } }, [
+                            _vm._v("订单回库中")
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._$g(20, "e")
+                    ? _c(
+                        "v-uni-view",
+                        { attrs: { _i: 20 } },
+                        [
+                          _c("h4", { attrs: { _i: 21 } }, [
+                            _vm._v("订单分配骑手")
+                          ])
+                        ],
+                        1
+                      )
+                    : _vm._e()
                 ],
                 1
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
+                { staticClass: _vm._$g(22, "sc"), attrs: { _i: 22 } },
                 [
                   _c("v-uni-view", {
-                    staticClass: _vm._$g(15, "sc"),
-                    attrs: { _i: 15 }
+                    staticClass: _vm._$g(23, "sc"),
+                    attrs: { _i: 23 }
                   }),
                   _c(
                     "v-uni-view",
                     {
                       staticStyle: { margin: "0 30upx", padding: "10upx 0" },
-                      attrs: { _i: 16 }
+                      attrs: { _i: 24 }
                     },
                     [
                       _c(
                         "uni-list",
-                        { staticClass: _vm._$g(17, "sc"), attrs: { _i: 17 } },
+                        { staticClass: _vm._$g(25, "sc"), attrs: { _i: 25 } },
                         [
                           _c(
                             "uni-list-item",
-                            { attrs: { _i: 18 } },
+                            { attrs: { _i: 26 } },
                             [
                               _c(
                                 "v-uni-view",
-                                { attrs: { _i: 19 } },
+                                { attrs: { _i: 27 } },
                                 [
-                                  _vm._$g(20, "i")
+                                  _vm._$g(28, "i")
                                     ? _c(
                                         "v-uni-view",
                                         {
-                                          staticClass: _vm._$g(20, "sc"),
-                                          attrs: { _i: 20 }
+                                          staticClass: _vm._$g(28, "sc"),
+                                          attrs: { _i: 28 }
                                         },
                                         [
-                                          _c("p", { attrs: { _i: 21 } }, [
+                                          _c("p", { attrs: { _i: 29 } }, [
                                             _vm._v(
                                               "感谢您对存存的信任，期待再次光临"
                                             )
                                           ]),
                                           _c(
                                             "v-uni-text",
-                                            { attrs: { _i: 22 } },
+                                            { attrs: { _i: 30 } },
                                             [_vm._v("you deserve better")]
                                           )
                                         ],
@@ -15783,16 +16168,16 @@ var render = function() {
                                     : _c(
                                         "v-uni-view",
                                         {
-                                          staticClass: _vm._$g(23, "sc"),
-                                          attrs: { _i: 23 }
+                                          staticClass: _vm._$g(31, "sc"),
+                                          attrs: { _i: 31 }
                                         },
                                         [
-                                          _c("p", { attrs: { _i: 24 } }, [
-                                            _vm._v(_vm._$g(24, "t0-0"))
+                                          _c("p", { attrs: { _i: 32 } }, [
+                                            _vm._v(_vm._$g(32, "t0-0"))
                                           ]),
                                           _c(
                                             "v-uni-text",
-                                            { attrs: { _i: 25 } },
+                                            { attrs: { _i: 33 } },
                                             [_vm._v("申请时间")]
                                           )
                                         ],
@@ -15804,16 +16189,16 @@ var render = function() {
                               _c(
                                 "v-uni-view",
                                 {
-                                  staticClass: _vm._$g(26, "sc"),
-                                  attrs: { slot: "right", _i: 26 },
+                                  staticClass: _vm._$g(34, "sc"),
+                                  attrs: { slot: "right", _i: 34 },
                                   slot: "right"
                                 },
                                 [
-                                  _vm._$g(27, "i")
+                                  _vm._$g(35, "i")
                                     ? _c(
                                         "v-uni-text",
                                         {
-                                          attrs: { _i: 27 },
+                                          attrs: { _i: 35 },
                                           on: {
                                             click: function($event) {
                                               return _vm.$handleViewEvent(
@@ -15826,9 +16211,9 @@ var render = function() {
                                       )
                                     : _c("v-uni-image", {
                                         attrs: {
-                                          src: _vm._$g(28, "a-src"),
+                                          src: _vm._$g(36, "a-src"),
                                           mode: "",
-                                          _i: 28
+                                          _i: 36
                                         },
                                         on: {
                                           click: function($event) {
@@ -15856,30 +16241,30 @@ var render = function() {
           ),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(29, "sc"), attrs: { _i: 29 } },
+            { staticClass: _vm._$g(37, "sc"), attrs: { _i: 37 } },
             [
-              _c("p", { attrs: { _i: 30 } }, [_vm._v("上门取货清单")]),
+              _c("p", { attrs: { _i: 38 } }, [_vm._v("上门取货清单")]),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(31, "sc"), attrs: { _i: 31 } },
-                _vm._l(_vm._$g(32, "f"), function(goodsItem, index, $20, $30) {
+                { staticClass: _vm._$g(39, "sc"), attrs: { _i: 39 } },
+                _vm._l(_vm._$g(40, "f"), function(goodsItem, index, $20, $30) {
                   return _c(
                     "v-uni-view",
                     {
                       key: goodsItem,
-                      staticClass: _vm._$g("32-" + $30, "sc"),
-                      attrs: { _i: "32-" + $30 }
+                      staticClass: _vm._$g("40-" + $30, "sc"),
+                      attrs: { _i: "40-" + $30 }
                     },
                     [
                       _c(
                         "v-uni-view",
                         {
-                          staticClass: _vm._$g("33-" + $30, "sc"),
-                          attrs: { _i: "33-" + $30 }
+                          staticClass: _vm._$g("41-" + $30, "sc"),
+                          attrs: { _i: "41-" + $30 }
                         },
                         [
-                          _c("v-uni-text", { attrs: { _i: "34-" + $30 } }, [
-                            _vm._v(_vm._$g("34-" + $30, "t0-0"))
+                          _c("v-uni-text", { attrs: { _i: "42-" + $30 } }, [
+                            _vm._v(_vm._$g("42-" + $30, "t0-0"))
                           ])
                         ],
                         1
@@ -15887,12 +16272,12 @@ var render = function() {
                       _c(
                         "v-uni-view",
                         {
-                          staticClass: _vm._$g("35-" + $30, "sc"),
-                          attrs: { _i: "35-" + $30 }
+                          staticClass: _vm._$g("43-" + $30, "sc"),
+                          attrs: { _i: "43-" + $30 }
                         },
                         [
-                          _c("v-uni-text", { attrs: { _i: "36-" + $30 } }, [
-                            _vm._v("× " + _vm._$g("36-" + $30, "t0-0"))
+                          _c("v-uni-text", { attrs: { _i: "44-" + $30 } }, [
+                            _vm._v("× " + _vm._$g("44-" + $30, "t0-0"))
                           ])
                         ],
                         1
@@ -15905,54 +16290,54 @@ var render = function() {
               ),
               _c(
                 "v-uni-view",
-                { attrs: { _i: 37 } },
+                { attrs: { _i: 45 } },
                 [
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(38, "sc"), attrs: { _i: 38 } },
+                    { staticClass: _vm._$g(46, "sc"), attrs: { _i: 46 } },
                     [
-                      _c("p", { attrs: { _i: 39 } }, [
+                      _c("p", { attrs: { _i: 47 } }, [
                         _vm._v("第三方快递运输费")
                       ]),
-                      _c("v-uni-text", { attrs: { _i: 40 } }, [_vm._v("¥ 0")])
+                      _c("v-uni-text", { attrs: { _i: 48 } }, [_vm._v("¥ 0")])
                     ],
                     1
                   ),
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(41, "sc"), attrs: { _i: 41 } },
+                    { staticClass: _vm._$g(49, "sc"), attrs: { _i: 49 } },
                     [
-                      _c("p", { attrs: { _i: 42 } }, [_vm._v("打包费用")]),
-                      _c("v-uni-text", { attrs: { _i: 43 } }, [_vm._v("¥ 0")])
+                      _c("p", { attrs: { _i: 50 } }, [_vm._v("打包费用")]),
+                      _c("v-uni-text", { attrs: { _i: 51 } }, [_vm._v("¥ 0")])
                     ],
                     1
                   ),
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(44, "sc"), attrs: { _i: 44 } },
+                    { staticClass: _vm._$g(52, "sc"), attrs: { _i: 52 } },
                     [
-                      _c("p", { attrs: { _i: 45 } }, [_vm._v("箱子费用")]),
-                      _c("v-uni-text", { attrs: { _i: 46 } }, [_vm._v("¥ 0")])
+                      _c("p", { attrs: { _i: 53 } }, [_vm._v("箱子费用")]),
+                      _c("v-uni-text", { attrs: { _i: 54 } }, [_vm._v("¥ 0")])
                     ],
                     1
                   ),
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(47, "sc"), attrs: { _i: 47 } },
+                    { staticClass: _vm._$g(55, "sc"), attrs: { _i: 55 } },
                     [
-                      _c("p", { attrs: { _i: 48 } }, [_vm._v("调整费用")]),
-                      _c("v-uni-text", { attrs: { _i: 49 } }, [_vm._v("¥ 0")])
+                      _c("p", { attrs: { _i: 56 } }, [_vm._v("调整费用")]),
+                      _c("v-uni-text", { attrs: { _i: 57 } }, [_vm._v("¥ 0")])
                     ],
                     1
                   ),
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(50, "sc"), attrs: { _i: 50 } },
+                    { staticClass: _vm._$g(58, "sc"), attrs: { _i: 58 } },
                     [
-                      _c("p", { attrs: { _i: 51 } }, [_vm._v("需支付费用")]),
+                      _c("p", { attrs: { _i: 59 } }, [_vm._v("需支付费用")]),
                       _c(
                         "v-uni-text",
-                        { attrs: { _i: 52 } },
+                        { attrs: { _i: 60 } },
                         [
                           _vm._v("¥ "),
                           _c(
@@ -15962,9 +16347,9 @@ var render = function() {
                                 "font-size": "32upx",
                                 "margin-left": "10upx"
                               },
-                              attrs: { _i: 53 }
+                              attrs: { _i: 61 }
                             },
-                            [_vm._v(_vm._$g(53, "t0-0"))]
+                            [_vm._v(_vm._$g(61, "t0-0"))]
                           )
                         ],
                         1
@@ -15980,20 +16365,20 @@ var render = function() {
           ),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(54, "sc"), attrs: { _i: 54 } },
+            { staticClass: _vm._$g(62, "sc"), attrs: { _i: 62 } },
             [
-              _c("p", { attrs: { _i: 55 } }, [_vm._v("上门取货信息")]),
+              _c("p", { attrs: { _i: 63 } }, [_vm._v("上门取货信息")]),
               _c(
                 "v-uni-view",
-                { attrs: { _i: 56 } },
+                { attrs: { _i: 64 } },
                 [
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(57, "sc"), attrs: { _i: 57 } },
+                    { staticClass: _vm._$g(65, "sc"), attrs: { _i: 65 } },
                     [
-                      _c("p", { attrs: { _i: 58 } }, [_vm._v("上门时间")]),
-                      _c("v-uni-text", { attrs: { _i: 59 } }, [
-                        _vm._v(_vm._$g(59, "t0-0"))
+                      _c("p", { attrs: { _i: 66 } }, [_vm._v("上门时间")]),
+                      _c("v-uni-text", { attrs: { _i: 67 } }, [
+                        _vm._v(_vm._$g(67, "t0-0"))
                       ])
                     ],
                     1
@@ -16001,35 +16386,35 @@ var render = function() {
                   _c(
                     "v-uni-view",
                     {
-                      staticClass: _vm._$g(60, "sc"),
+                      staticClass: _vm._$g(68, "sc"),
                       staticStyle: { "align-items": "flex-start" },
-                      attrs: { _i: 60 }
+                      attrs: { _i: 68 }
                     },
                     [
                       _c(
                         "p",
-                        { staticClass: _vm._$g(61, "sc"), attrs: { _i: 61 } },
+                        { staticClass: _vm._$g(69, "sc"), attrs: { _i: 69 } },
                         [_vm._v("上门地址")]
                       ),
                       _c(
                         "v-uni-view",
                         {
-                          staticClass: _vm._$g(62, "sc"),
+                          staticClass: _vm._$g(70, "sc"),
                           staticStyle: { "text-align": "right" },
-                          attrs: { _i: 62 }
+                          attrs: { _i: 70 }
                         },
                         [
                           _c(
                             "p",
                             {
                               staticStyle: { color: "rgba(40,40,40,1)" },
-                              attrs: { _i: 63 }
+                              attrs: { _i: 71 }
                             },
-                            [_vm._v(_vm._$g(63, "t0-0"))]
+                            [_vm._v(_vm._$g(71, "t0-0"))]
                           ),
-                          _c("v-uni-text", { attrs: { _i: 64 } }, [
+                          _c("v-uni-text", { attrs: { _i: 72 } }, [
                             _vm._v(
-                              _vm._$g(64, "t0-0") + " " + _vm._$g(64, "t0-1")
+                              _vm._$g(72, "t0-0") + " " + _vm._$g(72, "t0-1")
                             )
                           ])
                         ],
@@ -16046,18 +16431,18 @@ var render = function() {
           ),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(65, "sc"), attrs: { _i: 65 } },
+            { staticClass: _vm._$g(73, "sc"), attrs: { _i: 73 } },
             [
-              _c("p", { attrs: { _i: 66 } }, [_vm._v("订单信息")]),
+              _c("p", { attrs: { _i: 74 } }, [_vm._v("订单信息")]),
               _c(
                 "v-uni-view",
-                { attrs: { _i: 67 } },
+                { attrs: { _i: 75 } },
                 [
                   _c(
                     "v-uni-view",
                     {
-                      staticClass: _vm._$g(68, "sc"),
-                      attrs: { _i: 68 },
+                      staticClass: _vm._$g(76, "sc"),
+                      attrs: { _i: 76 },
                       on: {
                         click: function($event) {
                           return _vm.$handleViewEvent($event)
@@ -16065,13 +16450,13 @@ var render = function() {
                       }
                     },
                     [
-                      _c("p", { attrs: { _i: 69 } }, [_vm._v("订单号")]),
+                      _c("p", { attrs: { _i: 77 } }, [_vm._v("订单号")]),
                       _c(
                         "v-uni-view",
-                        { attrs: { _i: 70 } },
+                        { attrs: { _i: 78 } },
                         [
-                          _c("v-uni-text", { attrs: { _i: 71 } }, [
-                            _vm._v(_vm._$g(71, "t0-0"))
+                          _c("v-uni-text", { attrs: { _i: 79 } }, [
+                            _vm._v(_vm._$g(79, "t0-0"))
                           ]),
                           _c(
                             "v-uni-text",
@@ -16080,7 +16465,7 @@ var render = function() {
                                 margin: "0 30upx",
                                 color: "rgba(222,222,222,1)"
                               },
-                              attrs: { _i: 72 }
+                              attrs: { _i: 80 }
                             },
                             [_vm._v("|")]
                           ),
@@ -16092,7 +16477,7 @@ var render = function() {
                                 "font-weight": "400",
                                 color: "rgba(2,105,208,1)"
                               },
-                              attrs: { _i: 73 }
+                              attrs: { _i: 81 }
                             },
                             [_vm._v("复制")]
                           )
@@ -16104,22 +16489,22 @@ var render = function() {
                   ),
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(74, "sc"), attrs: { _i: 74 } },
+                    { staticClass: _vm._$g(82, "sc"), attrs: { _i: 82 } },
                     [
-                      _c("p", { attrs: { _i: 75 } }, [_vm._v("下单时间")]),
-                      _c("v-uni-text", { attrs: { _i: 76 } }, [
-                        _vm._v(_vm._$g(76, "t0-0"))
+                      _c("p", { attrs: { _i: 83 } }, [_vm._v("下单时间")]),
+                      _c("v-uni-text", { attrs: { _i: 84 } }, [
+                        _vm._v(_vm._$g(84, "t0-0"))
                       ])
                     ],
                     1
                   ),
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(77, "sc"), attrs: { _i: 77 } },
+                    { staticClass: _vm._$g(85, "sc"), attrs: { _i: 85 } },
                     [
-                      _c("p", { attrs: { _i: 78 } }, [_vm._v("订单备注")]),
-                      _c("v-uni-text", { attrs: { _i: 79 } }, [
-                        _vm._v(_vm._$g(79, "t0-0"))
+                      _c("p", { attrs: { _i: 86 } }, [_vm._v("订单备注")]),
+                      _c("v-uni-text", { attrs: { _i: 87 } }, [
+                        _vm._v(_vm._$g(87, "t0-0"))
                       ])
                     ],
                     1
@@ -16132,14 +16517,14 @@ var render = function() {
           ),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(80, "sc"), attrs: { _i: 80 } },
+            { staticClass: _vm._$g(88, "sc"), attrs: { _i: 88 } },
             [
-              _c("p", { attrs: { _i: 81 } }, [_vm._v("客服信息")]),
+              _c("p", { attrs: { _i: 89 } }, [_vm._v("客服信息")]),
               _c(
                 "v-uni-view",
                 {
-                  staticClass: _vm._$g(82, "sc"),
-                  attrs: { _i: 82 },
+                  staticClass: _vm._$g(90, "sc"),
+                  attrs: { _i: 90 },
                   on: {
                     click: function($event) {
                       return _vm.$handleViewEvent($event)
@@ -16147,12 +16532,12 @@ var render = function() {
                   }
                 },
                 [
-                  _c("p", { attrs: { _i: 83 } }, [_vm._v("客服电话")]),
+                  _c("p", { attrs: { _i: 91 } }, [_vm._v("客服电话")]),
                   _c(
                     "v-uni-view",
-                    { attrs: { _i: 84 } },
+                    { attrs: { _i: 92 } },
                     [
-                      _c("v-uni-text", { attrs: { _i: 85 } }, [
+                      _c("v-uni-text", { attrs: { _i: 93 } }, [
                         _vm._v("021-34283744")
                       ]),
                       _c(
@@ -16162,7 +16547,7 @@ var render = function() {
                             margin: "0 30upx",
                             color: "rgba(222,222,222,1)"
                           },
-                          attrs: { _i: 86 }
+                          attrs: { _i: 94 }
                         },
                         [_vm._v("|")]
                       ),
@@ -16174,7 +16559,7 @@ var render = function() {
                             "font-weight": "400",
                             color: "rgba(2,105,208,1)"
                           },
-                          attrs: { _i: 87 }
+                          attrs: { _i: 95 }
                         },
                         [_vm._v("拨打")]
                       )
@@ -16192,20 +16577,20 @@ var render = function() {
       ),
       _c(
         "uni-popup",
-        { ref: "popupSteps", attrs: { _i: 88 } },
+        { ref: "popupSteps", attrs: { _i: 96 } },
         [
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(89, "sc"), attrs: { _i: 89 } },
+            { staticClass: _vm._$g(97, "sc"), attrs: { _i: 97 } },
             [
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(90, "sc"), attrs: { _i: 90 } },
+                { staticClass: _vm._$g(98, "sc"), attrs: { _i: 98 } },
                 [
-                  _c("v-uni-text", { attrs: { _i: 91 } }, [_vm._v("订单状态")]),
+                  _c("v-uni-text", { attrs: { _i: 99 } }, [_vm._v("订单状态")]),
                   _c("v-uni-image", {
-                    staticClass: _vm._$g(92, "sc"),
-                    attrs: { src: _vm._$g(92, "a-src"), mode: "", _i: 92 },
+                    staticClass: _vm._$g(100, "sc"),
+                    attrs: { src: _vm._$g(100, "a-src"), mode: "", _i: 100 },
                     on: {
                       click: function($event) {
                         return _vm.$handleViewEvent($event)
@@ -16218,10 +16603,10 @@ var render = function() {
               _c(
                 "v-uni-scroll-view",
                 {
-                  staticClass: _vm._$g(93, "sc"),
-                  attrs: { "scroll-y": "true", _i: 93 }
+                  staticClass: _vm._$g(101, "sc"),
+                  attrs: { "scroll-y": "true", _i: 101 }
                 },
-                [_c("custom-steps", { attrs: { _i: 94 } })],
+                [_c("custom-steps", { attrs: { _i: 102 } })],
                 1
               )
             ],
@@ -16234,7 +16619,7 @@ var render = function() {
         "uni-popup",
         {
           ref: "popupPay",
-          attrs: { _i: 95 },
+          attrs: { _i: 103 },
           on: {
             touchmove: function($event) {
               return _vm.$handleViewEvent($event, { stop: true, prevent: true })
@@ -16247,18 +16632,18 @@ var render = function() {
         [
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(96, "sc"), attrs: { _i: 96 } },
+            { staticClass: _vm._$g(104, "sc"), attrs: { _i: 104 } },
             [
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(97, "sc"), attrs: { _i: 97 } },
+                { staticClass: _vm._$g(105, "sc"), attrs: { _i: 105 } },
                 [
-                  _c("v-uni-text", { attrs: { _i: 98 } }, [
+                  _c("v-uni-text", { attrs: { _i: 106 } }, [
                     _vm._v("选择支付方式")
                   ]),
                   _c("v-uni-image", {
-                    staticClass: _vm._$g(99, "sc"),
-                    attrs: { src: _vm._$g(99, "a-src"), mode: "", _i: 99 },
+                    staticClass: _vm._$g(107, "sc"),
+                    attrs: { src: _vm._$g(107, "a-src"), mode: "", _i: 107 },
                     on: {
                       click: function($event) {
                         return _vm.$handleViewEvent($event)
@@ -16270,23 +16655,23 @@ var render = function() {
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(100, "sc"), attrs: { _i: 100 } },
+                { staticClass: _vm._$g(108, "sc"), attrs: { _i: 108 } },
                 [
                   _c(
                     "v-uni-view",
-                    { attrs: { _i: 101 } },
+                    { attrs: { _i: 109 } },
                     [
                       _c(
                         "v-uni-radio-group",
                         {
-                          attrs: { _i: 102 },
+                          attrs: { _i: 110 },
                           on: {
                             change: function($event) {
                               return _vm.$handleViewEvent($event)
                             }
                           }
                         },
-                        _vm._l(_vm._$g(103, "f"), function(
+                        _vm._l(_vm._$g(111, "f"), function(
                           item,
                           index,
                           $21,
@@ -16296,40 +16681,40 @@ var render = function() {
                             "uni-list",
                             {
                               key: item,
-                              staticClass: _vm._$g("103-" + $31, "sc"),
-                              attrs: { _i: "103-" + $31 }
+                              staticClass: _vm._$g("111-" + $31, "sc"),
+                              attrs: { _i: "111-" + $31 }
                             },
                             [
                               _c(
                                 "uni-list-item",
-                                { attrs: { _i: "104-" + $31 } },
+                                { attrs: { _i: "112-" + $31 } },
                                 [
                                   _c(
                                     "v-uni-view",
                                     {
                                       attrs: {
                                         slot: "right",
-                                        _i: "105-" + $31
+                                        _i: "113-" + $31
                                       },
                                       slot: "right"
                                     },
                                     [
                                       _c(
                                         "v-uni-label",
-                                        { attrs: { _i: "106-" + $31 } },
+                                        { attrs: { _i: "114-" + $31 } },
                                         [
                                           _c("v-uni-radio", {
                                             attrs: {
                                               value: _vm._$g(
-                                                "107-" + $31,
+                                                "115-" + $31,
                                                 "a-value"
                                               ),
                                               checked: _vm._$g(
-                                                "107-" + $31,
+                                                "115-" + $31,
                                                 "a-checked"
                                               ),
                                               color: "rgba(59, 193, 187, 1)",
-                                              _i: "107-" + $31
+                                              _i: "115-" + $31
                                             }
                                           })
                                         ],
@@ -16353,8 +16738,8 @@ var render = function() {
                   _c(
                     "v-uni-button",
                     {
-                      staticClass: _vm._$g(108, "sc"),
-                      attrs: { _i: 108 },
+                      staticClass: _vm._$g(116, "sc"),
+                      attrs: { _i: 116 },
                       on: {
                         click: function($event) {
                           return _vm.$handleViewEvent($event)
@@ -16372,20 +16757,20 @@ var render = function() {
         ],
         1
       ),
-      _vm._$g(109, "i")
+      _vm._$g(117, "i")
         ? _c(
             "v-uni-view",
-            { staticClass: _vm._$g(109, "sc"), attrs: { _i: 109 } },
+            { staticClass: _vm._$g(117, "sc"), attrs: { _i: 117 } },
             [
-              _c("v-uni-text", { attrs: { _i: 110 } }, [
-                _vm._v("¥ " + _vm._$g(110, "t0-0"))
+              _c("v-uni-text", { attrs: { _i: 118 } }, [
+                _vm._v("¥ " + _vm._$g(118, "t0-0"))
               ]),
               _c(
                 "v-uni-button",
                 {
-                  staticClass: _vm._$g(111, "sc"),
-                  class: _vm._$g(111, "c"),
-                  attrs: { _i: 111 },
+                  staticClass: _vm._$g(119, "sc"),
+                  class: _vm._$g(119, "c"),
+                  attrs: { _i: 119 },
                   on: {
                     click: function($event) {
                       return _vm.$handleViewEvent($event)
@@ -16398,20 +16783,20 @@ var render = function() {
             1
           )
         : _vm._e(),
-      _vm._$g(112, "i")
+      _vm._$g(120, "i")
         ? _c(
             "v-uni-view",
-            { staticClass: _vm._$g(112, "sc"), attrs: { _i: 112 } },
+            { staticClass: _vm._$g(120, "sc"), attrs: { _i: 120 } },
             [
-              _c("v-uni-text", { attrs: { _i: 113 } }, [
-                _vm._v("¥ " + _vm._$g(113, "t0-0"))
+              _c("v-uni-text", { attrs: { _i: 121 } }, [
+                _vm._v("¥ " + _vm._$g(121, "t0-0"))
               ]),
               _c(
                 "v-uni-button",
                 {
-                  staticClass: _vm._$g(114, "sc"),
-                  class: _vm._$g(114, "c"),
-                  attrs: { _i: 114 },
+                  staticClass: _vm._$g(122, "sc"),
+                  class: _vm._$g(122, "c"),
+                  attrs: { _i: 122 },
                   on: {
                     click: function($event) {
                       return _vm.$handleViewEvent($event)
@@ -16424,17 +16809,17 @@ var render = function() {
             1
           )
         : _vm._e(),
-      _vm._$g(115, "i")
+      _vm._$g(123, "i")
         ? _c(
             "v-uni-view",
-            { staticClass: _vm._$g(115, "sc"), attrs: { _i: 115 } },
+            { staticClass: _vm._$g(123, "sc"), attrs: { _i: 123 } },
             [
-              _c("v-uni-text", { attrs: { _i: 116 } }),
+              _c("v-uni-text", { attrs: { _i: 124 } }),
               _c(
                 "v-uni-button",
                 {
-                  staticClass: _vm._$g(117, "sc"),
-                  attrs: { _i: 117 },
+                  staticClass: _vm._$g(125, "sc"),
+                  attrs: { _i: 125 },
                   on: {
                     click: function($event) {
                       return _vm.$handleViewEvent($event)
@@ -18521,7 +18906,7 @@ var render = function() {
                     { staticClass: _vm._$g(10, "sc"), attrs: { _i: 10 } },
                     [
                       _c("v-uni-text", { attrs: { _i: 11 } }, [
-                        _vm._v("7月27日 09:00～10:00")
+                        _vm._v(_vm._$g(11, "t0-0"))
                       ]),
                       _c(
                         "v-uni-text",
@@ -18531,11 +18916,7 @@ var render = function() {
                     ],
                     1
                   ),
-                  _c("p", { attrs: { _i: 13 } }, [
-                    _vm._v(
-                      "上海市嘉定区叶城五街坊裕民1180弄78号123322222222222222222222222"
-                    )
-                  ])
+                  _c("p", { attrs: { _i: 13 } }, [_vm._v(_vm._$g(13, "t0-0"))])
                 ],
                 1
               ),
@@ -18559,7 +18940,7 @@ var render = function() {
                   _c(
                     "v-uni-text",
                     { staticClass: _vm._$g(17, "sc"), attrs: { _i: 17 } },
-                    [_vm._v("17493279824")]
+                    [_vm._v(_vm._$g(17, "t0-0"))]
                   ),
                   _vm._v("联系，"),
                   _c(
