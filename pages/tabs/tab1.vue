@@ -35,14 +35,14 @@
 					<image style="position: absolute;right: 45upx; width: 46upx;height: 34upx;" src="../../static/tab1/mark_right.png"></image>
 				</view>
 			</view>
-			<view class="no_data" v-if="false">
+			<view class="no_data" v-if="failData.length<=0 && bookData.length<=0 && clotheData.length<=0 && shoeData.length<=0 && storageData.length<=0 && groceriesData.length<=0">
 				<image src="../../static/tab1/no_data.png" mode=""></image>
 				<p>您的存存空空如也，跟我们的收纳达人和打包小哥约起来，赶紧的！！！</p>
 				<button class="common_button">约！约！约!</button>
 			</view>
 			<view>
 				<!-- 未过安检的箱子 -->
-				<view @longpress="longpress" class="list_margin50">
+				<view @longpress="longpress" class="list_margin50" v-if="failData.length>0">
 					<view class="list_padding30">
 						<uni-list class="list_custom list_custom_img3">
 							<uni-list-item thumb="../../static/tab1/box_wrong_title.png" :showArrow="false">
@@ -63,7 +63,7 @@
 							<view class="box_wrong_right">
 								<view class="flex_between">
 									<text>未过安检箱子</text>
-									<text>× 8</text>
+									<text>× {{failData.length}}</text>
 								</view>
 								<text class="box_wrong_text">您有箱子未过安检，请速申请返送。如有疑问请联系客服。</text>
 							</view>
@@ -88,10 +88,10 @@
 							</uni-list-item>
 						</uni-list>
 					</view>
-					<view v-if="true">
+					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
 							<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
-							 style="display: inline-block;" v-for="(item,index) in bookData" :key='index'>
+							 style="display: inline-block;" v-for="(item,index) in bookData.goods" :key='index'>
 								<image :src="item.coverPic"></image>
 							</view>
 						</scroll-view>
@@ -118,7 +118,7 @@
 					<view v-if="true">
 						<scroll-view class="scroll_x" scroll-x="true">
 							<view class="scroll_content scroll_content2" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
-							 v-for="(item,index) in clotheData" :key='index' style="display: inline-block;">
+							 v-for="(item,index) in clotheData.goods" :key='index' style="display: inline-block;">
 								<image :src="item.coverPic"></image>
 								<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 112upx;" src="../../static/tab1/clothes_box1.png"></image>
 							</view>
@@ -145,7 +145,7 @@
 					</view>
 					<view v-if="true">
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_content2" v-for="(item,index) in shoeData" :key='index' style="display: inline-block;">
+							<view class="scroll_content scroll_content2" v-for="(item,index) in shoeData.goods" :key='index' style="display: inline-block;">
 								<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
 								<image :src="item.coverPic"></image>
 								<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
@@ -173,7 +173,7 @@
 					</view>
 					<view v-if="true">
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_content4" v-for="(item,index) in storageData" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
+							<view class="scroll_content scroll_content4" v-for="(item,index) in storageData.goods" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
 								<image :src="item.coverPic"></image>
 							</view>
 						</scroll-view>
@@ -197,10 +197,10 @@
 							</uni-list-item>
 						</uni-list>
 					</view>
-					<view v-if="true" class="box_groceries_content flex_between" v-for="(item,index) in groceriesData" :key="index">
+					<view v-if="true" class="box_groceries_content flex_between" v-for="(item,index) in groceriesData.goods" :key="index">
 						<view class="box_groceries_left">
 							<image :src="item.coverPic"></image>
-							<!-- <text>{{index+1}}</text> -->
+							<text>{{index+1}}</text>
 						</view>
 						<view class="box_groceries_right" style="color: rgba(40,40,40,1);">
 							<view>
@@ -233,6 +233,7 @@
 				scroll_bg2: '../../static/tab1/clothes_box.png',
 				scroll_bg3: '../../static/tab1/shoes_box2.png',
 				long_active: false, //长按显示编辑按钮
+				failData: [], //未过安检的箱子
 				bookData: [], //书架
 				clotheData: [], //衣柜
 				shoeData: [], //鞋柜
@@ -243,7 +244,7 @@
 		onLoad() {},
 		onShow() {
 			this.getGoodsList()
-			
+			this.getFailList()
 		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
@@ -253,9 +254,6 @@
 			}
 		},
 		methods: {
-			onScroll(e) {
-				console.log(e)
-			},
 			onClickRight(index) {
 				if (index == 1) {
 					uni.navigateTo({
@@ -284,11 +282,11 @@
 			},
 			isShowHide(type) {
 				if (type == 'groceriesShow') {
-					
+
 				} else if (type == 'groceriesHide') {
-					
-				} else{
-					
+
+				} else {
+
 				}
 			},
 			longpress_comfirm() {
@@ -297,8 +295,9 @@
 			longpress_cancel() {
 				this.long_active = false
 			},
+			// 获取列表
 			getGoodsList() {
-				this.$http('user/goods/all', "GET", '', res => {
+				this.$http('user/store/show', "GET", '', res => {
 					let data = res.data
 					console.log(data)
 					if (data.success) {
@@ -307,6 +306,21 @@
 						this.shoeData = data.data.shoebox //鞋柜
 						this.storageData = data.data.storeroom //储藏室
 						this.groceriesData = data.data.sundries //杂货架
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
+			// 获取未过安检的列表
+			getFailList() {
+				this.$http('user/pack/list?type=B&top=9999&auditStatus=fail', "GET", '', res => {
+					let data = res.data
+					console.log(data)
+					if (data.success) {
+						this.failData = data.data //未过安检
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -385,6 +399,18 @@
 			color: rgba(178, 178, 178, 1);
 			line-height: 50upx;
 			margin: 70upx auto 0;
+		}
+
+		.common_button {
+			width: 398upx;
+			height: 90upx;
+			line-height: 90upx;
+			background: rgba(59, 193, 187, 1);
+			border-radius: 45upx;
+			font-size: 30upx;
+			font-weight: 500;
+			color: white;
+			margin: 80upx auto 0;
 		}
 	}
 
@@ -558,20 +584,8 @@
 		image {
 			width: 184upx;
 			height: 184upx;
-			
-		}
-	}
 
-	.common_button {
-		width: 398upx;
-		height: 90upx;
-		line-height: 90upx;
-		background: rgba(59, 193, 187, 1);
-		border-radius: 45upx;
-		font-size: 30upx;
-		font-weight: 500;
-		color: white;
-		margin: 80upx auto 0;
+		}
 	}
 
 	.list_margin50 {
