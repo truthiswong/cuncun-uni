@@ -25,11 +25,17 @@
 				<p>为您节省了 <text>2</text> 平米左右的空间咯～</p>
 			</view>
 			<view>
+				<view class="no_data" v-if="list.length<=0">
+					<image src="../../static/tab1/no_data.png" mode=""></image>
+					<navigator url="/pages/tab2/addOrder">
+						<button class="common_button">去存点衣服</button>
+					</navigator>
+				</view>
 				<checkbox-group class="checkbox_custom" @change="onCheckboxChange">
 					<view class="scroll_content" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
 					 v-for="(item,index) in list" :key='index' style="display: inline-block;">
 						<label>
-							<image :src="item.src"></image>
+							<image :src="item.coverPic"></image>
 							<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 80upx;" src="../../static/tab1/clothes_box1.png"></image>
 							<view class="checkbox_item" v-if="isCheckedShow">
 								<checkbox :value="item.id" :checked="item.checked" color="white" /><text></text>
@@ -84,7 +90,9 @@
 		onLoad() {
 
 		},
-		onShow() {},
+		onShow() {
+			this.getGoodsList()
+		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
@@ -104,6 +112,9 @@
 						url: "/pages/tab1/search"
 					})
 				} else if (index == '选择') {
+					if (this.list.length <= 0) {
+						return
+					}
 					this.isCheckedShow = true
 					this.chooseButton = '全选'
 				} else if (index == '全选') {
@@ -130,8 +141,50 @@
 				}
 			},
 			onConfirm() {
-				uni.navigateTo({
-					url: '/pages/tab1/orderBack'
+				let chooseData = {}
+				let chooseIndex = 0
+				for (let item of this.list) {
+					if (item.checked) {
+						chooseData['goodsId[' + chooseIndex + ']'] = item.id
+						chooseIndex++
+					}
+				}
+				if (!chooseIndex) {
+					uni.showToast({
+						title: '请选择要送回的物品',
+						icon: 'none'
+					})
+				} else {
+					this.$http('user/withdraw/goods/choose', "POST", chooseData, res => {
+						let data = res.data
+						if (data.success) {
+							uni.navigateTo({
+								url: '/pages/tab1/orderBack'
+							})
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					})
+				}
+			},
+			// 获取物品列表
+			getGoodsList() {
+				this.$http('user/goods/list?top=10&type=armoire', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						for (let item of data.data) {
+							item.checked = false
+						}
+						this.list = data.data //书架
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
 				})
 			}
 		}
@@ -215,20 +268,20 @@
 	.no_data {
 		text-align: center;
 		padding: 116upx 0;
-	}
 
-	.no_data>image {
-		width: 338upx;
-		height: 326upx;
-	}
+		image {
+			width: 338upx;
+			height: 326upx;
+		}
 
-	.no_data>p {
-		font-size: 28upx;
-		font-weight: 400;
-		width: 450upx;
-		color: rgba(178, 178, 178, 1);
-		line-height: 50upx;
-		margin: 70upx auto 0;
+		p {
+			font-size: 28upx;
+			font-weight: 400;
+			width: 450upx;
+			color: rgba(178, 178, 178, 1);
+			line-height: 50upx;
+			margin: 70upx auto 0;
+		}
 	}
 
 	.left_icon image {

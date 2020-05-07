@@ -21,10 +21,16 @@
 		<!-- 内容 -->
 		<view class="content">
 			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
-				<p>您一共放了 <text>32</text> 件物品</p>
+				<p>您一共放了 <text>{{list.length}}</text> 件物品</p>
 				<p>需要的时候随时拿，要的就是这种感觉～</p>
 			</view>
 			<view>
+				<view class="no_data" v-if="list.length<=0">
+					<image src="../../static/tab1/no_data.png" mode=""></image>
+					<navigator url="/pages/tab2/addOrder">
+						<button class="common_button">去存点东西</button>
+					</navigator>
+				</view>
 				<checkbox-group class="checkbox_custom" @change="onCheckboxChange">
 					<view class="box_groceries_content flex_between" v-for="(item,index) in list" :key="index">
 						<label>
@@ -63,35 +69,7 @@
 				scroll_bg1: '../../static/tab1/bookbox.png',
 				scroll_bg2: '../../static/tab1/clothes_box.png',
 				scroll_bg3: '../../static/tab1/shoes_box.png',
-				list: [{
-						id: '0000',
-						checked: false,
-					},
-					{
-						id: '111',
-						checked: false,
-					},
-					{
-						id: '2222',
-						checked: false,
-					},
-					{
-						id: '3333',
-						checked: false,
-					},
-					{
-						id: '4444',
-						checked: false,
-					},
-					{
-						id: '5555',
-						checked: false,
-					},
-					{
-						id: '6666',
-						checked: false,
-					},
-				],
+				list: [],
 				isCheckedShow: false,
 				chooseButton: '选择',
 			}
@@ -99,7 +77,9 @@
 		onLoad() {
 
 		},
-		onShow() {},
+		onShow() {
+			this.getGoodsList()
+		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
@@ -119,6 +99,9 @@
 						url: "/pages/tab1/search"
 					})
 				} else if (index == '选择') {
+					if (this.list.length <= 0) {
+						return
+					}
 					this.isCheckedShow = true
 					this.chooseButton = '全选'
 				} else if (index == '全选') {
@@ -145,12 +128,53 @@
 				}
 			},
 			onConfirm() {
-				uni.navigateTo({
-					url: '/pages/tab1/orderBack'
+				let chooseData = {}
+				let chooseIndex = 0
+				for (let item of this.list) {
+					if (item.checked) {
+						chooseData['packId[' + chooseIndex + ']'] = item.id
+						chooseIndex++
+					}
+				}
+				if (!chooseIndex) {
+					uni.showToast({
+						title: '请选择要送回的物品',
+						icon: 'none'
+					})
+				} else {
+					this.$http('user/withdraw/pack/choose', "POST", chooseData, res => {
+						let data = res.data
+						if (data.success) {
+							uni.navigateTo({
+								url: '/pages/tab1/orderBack'
+							})
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					})
+				}
+			},
+			// 获取物品列表
+			getGoodsList() {
+				this.$http('user/goods/list?top=10&type=sundries', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						for (let item of data.data) {
+							item.checked = false
+						}
+						this.list = data.data //书架
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
 				})
 			}
 		}
-
 	}
 </script>
 
@@ -298,5 +322,17 @@
 			-webkit-line-clamp: 2;
 			overflow: hidden;
 		}
+	}
+
+	.common_button {
+		width: 398upx;
+		height: 90upx;
+		line-height: 90upx;
+		background: rgba(59, 193, 187, 1);
+		border-radius: 45upx;
+		font-size: 30upx;
+		font-weight: 500;
+		color: white;
+		margin: 80upx auto 0;
 	}
 </style>

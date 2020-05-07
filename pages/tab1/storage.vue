@@ -1,6 +1,7 @@
 <template>
 	<view>
-		<uni-nav-bar color="#FFFFFF" title="我的储藏室" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
+		<uni-nav-bar color="#FFFFFF" title="我的储藏室" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true"
+		 fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
 			<view slot="right">
 				<view class="header_icon">
 					<image @click="onClickRight(1)" style="" src="../../static/tab1/search_white.png"></image>
@@ -8,8 +9,8 @@
 				</view>
 			</view>
 		</uni-nav-bar>
-		<uni-nav-bar color="#000000" title="我的储藏室" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true" fixed="true" v-if="!headerShow" style="position: absolute; top: 0;"
-		 shadow="true">
+		<uni-nav-bar color="#000000" title="我的储藏室" left-icon="back" @clickLeft="onClickBack" class="header" status-bar="true"
+		 fixed="true" v-if="!headerShow" style="position: absolute; top: 0;" shadow="true">
 			<view slot="right">
 				<view class="header_icon">
 					<image @click="onClickRight(1)" src="../../static/tab1/search_green.png"></image>
@@ -20,14 +21,20 @@
 		<!-- 内容 -->
 		<view class="content">
 			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
-				<p>您一共放了 <text>32</text> 件物品</p>
+				<p>您一共放了 <text>{{list.length}}</text> 件物品</p>
 				<p>需要的时候随时拿，要的就是这种感觉～</p>
 			</view>
 			<view style="padding: 0 30upx;">
+				<view class="no_data" v-if="list.length<=0">
+					<image src="../../static/tab1/no_data.png" mode=""></image>
+					<navigator url="/pages/tab2/addOrder">
+						<button class="common_button">去存点鞋子</button>
+					</navigator>
+				</view>
 				<checkbox-group class="checkbox_custom" @change="onCheckboxChange">
 					<view class="scroll_content4" v-for="(item,index) in list" :key='index' style="display: inline-block;">
 						<label>
-							<image :src="item.src"></image>
+							<image :src="item.coverPic"></image>
 							<view class="checkbox_item" v-if="isCheckedShow">
 								<checkbox :value="item.id" :checked="item.checked" color="white" />
 							</view>
@@ -53,27 +60,7 @@
 				scroll_bg1: '../../static/tab1/bookbox.png',
 				scroll_bg2: '../../static/tab1/clothes_box.png',
 				scroll_bg3: '../../static/tab1/shoes_box.png',
-				list: [{
-						id: '0000',
-						src: '../../static/tab1/sofa_img1.png',
-						checked: false,
-					},
-					{
-						id: '111',
-						src: '../../static/tab1/sofa_img1.png',
-						checked: false,
-					},
-					{
-						id: '2222',
-						src: '../../static/tab1/sofa_img1.png',
-						checked: false,
-					},
-					{
-						id: '3333',
-						src: '../../static/tab1/sofa_img1.png',
-						checked: false,
-					},
-				],
+				list: [],
 				isCheckedShow: false,
 				chooseButton: '选择',
 			}
@@ -81,7 +68,9 @@
 		onLoad() {
 
 		},
-		onShow() {},
+		onShow() {
+			this.getGoodsList()
+		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
@@ -101,6 +90,9 @@
 						url: "/pages/tab1/search"
 					})
 				} else if (index == '选择') {
+					if (this.list.length <= 0) {
+						return
+					}
 					this.isCheckedShow = true
 					this.chooseButton = '全选'
 				} else if (index == '全选') {
@@ -127,12 +119,53 @@
 				}
 			},
 			onConfirm() {
-				uni.navigateTo({
-					url: '/pages/tab1/orderBack'
+				let chooseData = {}
+				let chooseIndex = 0
+				for (let item of this.list) {
+					if (item.checked) {
+						chooseData['goodsId[' + chooseIndex + ']'] = item.id
+						chooseIndex++
+					}
+				}
+				if (!chooseIndex) {
+					uni.showToast({
+						title: '请选择要送回的物品',
+						icon: 'none'
+					})
+				} else {
+					this.$http('user/withdraw/goods/choose', "POST", chooseData, res => {
+						let data = res.data
+						if (data.success) {
+							uni.navigateTo({
+								url: '/pages/tab1/orderBack'
+							})
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					})
+				}
+			},
+			// 获取物品列表
+			getGoodsList() {
+				this.$http('user/goods/list?top=10&type=storeroom', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						for (let item of data.data) {
+							item.checked = false
+						}
+						this.list = data.data //书架
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
 				})
 			}
 		}
-
 	}
 </script>
 
@@ -141,13 +174,13 @@
 		width: 200upx;
 		height: 44px;
 	}
-	
+
 	.header_icon image {
 		width: 44upx;
 		height: 44upx;
 		vertical-align: middle;
 	}
-	
+
 	.choose_button {
 		display: inline-block;
 		width: 96upx;
@@ -163,6 +196,7 @@
 		margin-left: 50upx;
 		box-sizing: border-box;
 	}
+
 	.choose_button_scroll {
 		border: 1px solid rgba(0, 0, 0, 1);
 		color: #000000;
@@ -181,26 +215,28 @@
 		padding-top: 200upx;
 		margin-bottom: 30upx;
 	}
+
 	.cont_top p {
-		font-size:28upx;
-		font-weight:400;
-		color:rgba(255,255,255,1);
-		line-height:46upx;
+		font-size: 28upx;
+		font-weight: 400;
+		color: rgba(255, 255, 255, 1);
+		line-height: 46upx;
 		margin: 20upx;
 	}
+
 	.cont_top p text {
-		font-size:40upx;
-		font-weight:400;
-		color:rgba(255,255,255,1);
-		line-height:46upx;
+		font-size: 40upx;
+		font-weight: 400;
+		color: rgba(255, 255, 255, 1);
+		line-height: 46upx;
 	}
-	
+
 	.bottom_button {
 		position: fixed;
 		right: 0;
 		bottom: 0upx;
 		z-index: 20;
-	
+
 		image {
 			width: 218upx;
 			height: 120upx;
@@ -259,11 +295,12 @@
 		box-sizing: border-box;
 		padding: 20upx 18upx 0;
 		background: rgba(230, 230, 230, 1);
-			
+
 		image {
 			width: 180upx;
 			height: 180upx;
 		}
+
 		.checkbox_item {
 			position: absolute;
 			top: 0;

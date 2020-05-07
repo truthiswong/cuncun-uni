@@ -21,15 +21,21 @@
 		<!-- 内容 -->
 		<view class="content">
 			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
-				<p>里面有鞋子 <text>13</text> 双</p>
+				<p>里面有鞋子 <text>{{list.length}}</text> 双</p>
 				<p>您已经超过了 <text>76%</text> 的收纳小伙伴咯～</p>
 			</view>
 			<view>
+				<view class="no_data" v-if="list.length<=0">
+					<image src="../../static/tab1/no_data.png" mode=""></image>
+					<navigator url="/pages/tab2/addOrder">
+						<button class="common_button">去存点鞋子</button>
+					</navigator>
+				</view>
 				<checkbox-group class="checkbox_custom" @change="onCheckboxChange">
 					<view class="scroll_content" v-for="(item,index) in list" :key='index' style="display: inline-block;">
 						<label>
 							<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
-							<image :src="item.src"></image>
+							<image :src="item.coverPic"></image>
 							<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 102upx;" src="../../static/tab1/shoes_box1.png"></image>
 							<view class="checkbox_item" v-if="isCheckedShow">
 								<checkbox :value="item.id" :checked="item.checked" color="white" /><text></text>
@@ -56,27 +62,7 @@
 				scroll_bg1: '../../static/tab1/bookbox.png',
 				scroll_bg2: '../../static/tab1/clothes_box.png',
 				scroll_bg3: '../../static/tab1/shoes_box.png',
-				list: [{
-						id: '0000',
-						src: '../../static/tab1/shoes_img1.png',
-						checked: false,
-					},
-					{
-						id: '111',
-						src: '../../static/tab1/shoes_img1.png',
-						checked: false,
-					},
-					{
-						id: '2222',
-						src: '../../static/tab1/shoes_img1.png',
-						checked: false,
-					},
-					{
-						id: '3333',
-						src: '../../static/tab1/shoes_img1.png',
-						checked: false,
-					},
-				],
+				list: [],
 				isCheckedShow: false,
 				chooseButton: '选择',
 			}
@@ -84,7 +70,9 @@
 		onLoad() {
 
 		},
-		onShow() {},
+		onShow() {
+			this.getGoodsList()
+		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
@@ -104,6 +92,9 @@
 						url: "/pages/tab1/search"
 					})
 				} else if (index == '选择') {
+					if (this.list.length <= 0) {
+						return
+					}
 					this.isCheckedShow = true
 					this.chooseButton = '全选'
 				} else if (index == '全选') {
@@ -130,8 +121,50 @@
 				}
 			},
 			onConfirm() {
-				uni.navigateTo({
-					url: '/pages/tab1/orderBack'
+				let chooseData = {}
+				let chooseIndex = 0
+				for (let item of this.list) {
+					if (item.checked) {
+						chooseData['goodsId[' + chooseIndex + ']'] = item.id
+						chooseIndex++
+					}
+				}
+				if (!chooseIndex) {
+					uni.showToast({
+						title: '请选择要送回的物品',
+						icon: 'none'
+					})
+				} else {
+					this.$http('user/withdraw/goods/choose', "POST", chooseData, res => {
+						let data = res.data
+						if (data.success) {
+							uni.navigateTo({
+								url: '/pages/tab1/orderBack'
+							})
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					})
+				}
+			},
+			// 获取物品列表
+			getGoodsList() {
+				this.$http('user/goods/list?top=10&type=shoebox', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						for (let item of data.data) {
+							item.checked = false
+						}
+						this.list = data.data //书架
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
 				})
 			}
 		}
