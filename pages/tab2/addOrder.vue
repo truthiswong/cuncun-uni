@@ -29,7 +29,7 @@
 				<view class="box_size">
 					<h4>请选择储存纸箱：</h4>
 					<text>请根据您的需求选择您所需要用到的箱子</text>
-					<view class="flex_between" v-for="(item,index) in boxList" v-if="index <= boxNumber" :key="index" style="margin-top: 40upx;">
+					<view class="flex_between" v-for="(item,index) in boxList" v-show="index <= boxNumber" :key="index" style="margin-top: 40upx;">
 						<view class="collapse_left">
 							<h4>{{item.name}}</h4>
 							<p>重量上限(kg)：{{item.weight}}</p>
@@ -220,7 +220,7 @@
 				for (let item of this.boxList) {
 					fee += Number(item.storePerDayFee) * Number(item.number)
 				}
-				return fee * this.mday
+				return (fee * this.mday).toFixed(2)
 			}
 		},
 		methods: {
