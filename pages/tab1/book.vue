@@ -18,20 +18,24 @@
 				</view>
 			</view>
 		</uni-nav-bar>
-		</hx-navbar>
 		<!-- 内容 -->
 		<view class="content">
 			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
-				<p>里面有书籍 <text>28</text> 本</p>
+				<p>里面有书籍<text style="margin: 0 10upx;">{{list.length}}</text>本</p>
 				<p>您已经超过了 <text>50%</text> 的收纳小伙伴咯～</p>
 			</view>
 			<view>
+				<view class="no_data" v-if="list.length<=0">
+					<image src="../../static/tab1/no_data.png" mode=""></image>
+					<navigator url="/pages/tab2/addOrder">
+						<button class="common_button">去存点书</button>
+					</navigator>
+				</view>
 				<checkbox-group class="checkbox_custom" @change="onCheckboxChange">
-
 					<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}" style="display: inline-block;"
 					 v-for="(item,index) in list" :key='index'>
 						<label>
-							<image :src="item.src"></image>
+							<image :src="item.coverPic"></image>
 							<view class="checkbox_item" v-if="isCheckedShow">
 								<checkbox :value="item.id" :checked="item.checked" color="white" />
 							</view>
@@ -53,27 +57,7 @@
 		data() {
 			return {
 				headerShow: true,
-				list: [{
-						id: '0000',
-						src: '../../static/tab1/book_img1.png',
-						checked: false,
-					},
-					{
-						id: '111',
-						src: '../../static/tab1/book_img1.png',
-						checked: false,
-					},
-					{
-						id: '2222',
-						src: '../../static/tab1/book_img1.png',
-						checked: false,
-					},
-					{
-						id: '3333',
-						src: '../../static/tab1/book_img1.png',
-						checked: false,
-					},
-				],
+				list: [],
 				isCheckedShow: false,
 				chooseButton: '选择',
 				cont_top_bg: '../../static/tab1/book_bg.png',
@@ -83,7 +67,9 @@
 		onLoad() {
 
 		},
-		onShow() {},
+		onShow() {
+			this.getGoodsList()
+		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
@@ -103,6 +89,9 @@
 						url: "/pages/tab1/search"
 					})
 				} else if (index == '选择') {
+					if (this.list.length <= 0) {
+						return
+					}
 					this.isCheckedShow = true
 					this.chooseButton = '全选'
 				} else if (index == '全选') {
@@ -119,7 +108,6 @@
 						item.checked = false
 					}
 				}
-				console.log(this.list)
 			},
 			onCancel() {
 				this.isCheckedShow = false
@@ -129,8 +117,50 @@
 				}
 			},
 			onConfirm() {
-				uni.navigateTo({
-					url: '/pages/tab1/orderBack'
+				let chooseData = {}
+				let chooseIndex = 0
+				for (let item of this.list) {
+					if (item.checked) {
+						chooseData['goodsId[' + chooseIndex + ']'] = item.id
+						chooseIndex++
+					}
+				}
+				if (!chooseIndex) {
+					uni.showToast({
+						title: '请选择要送回的物品',
+						icon: 'none'
+					})
+				} else {
+					this.$http('user/withdraw/goods/choose', "POST", chooseData, res => {
+						let data = res.data
+						if (data.success) {
+							uni.navigateTo({
+								url: '/pages/tab1/orderBack'
+							})
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					})
+				}
+			},
+			// 获取物品列表
+			getGoodsList() {
+				this.$http('user/goods/list?top=10&type=bookcase', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						for (let item of data.data) {
+							item.checked = false
+						}
+						this.list = data.data //书架
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
 				})
 			}
 		}
@@ -215,20 +245,18 @@
 	.no_data {
 		text-align: center;
 		padding: 116upx 0;
-	}
-
-	.no_data>image {
-		width: 338upx;
-		height: 326upx;
-	}
-
-	.no_data>p {
-		font-size: 28upx;
-		font-weight: 400;
-		width: 450upx;
-		color: rgba(178, 178, 178, 1);
-		line-height: 50upx;
-		margin: 70upx auto 0;
+		image {
+			width: 338upx;
+			height: 326upx;
+		}
+		p {
+			font-size: 28upx;
+			font-weight: 400;
+			width: 450upx;
+			color: rgba(178, 178, 178, 1);
+			line-height: 50upx;
+			margin: 70upx auto 0;
+		}
 	}
 
 	.left_icon image {

@@ -2,8 +2,8 @@
     "name" : "存存",
     "appid" : "__UNI__tech.cuncun.cuncun",
     "description" : "",
-    "versionName" : "1.0.9",
-    "versionCode" : 109,
+    "versionName" : "1.1.3",
+    "versionCode" : 113,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -18,11 +18,10 @@
             "alwaysShowBeforeRender" : true,
             "waiting" : false,
             "autoclose" : true,
-            "delay" : 1000
+            "delay" : 1500
         },
         /* 模块配置 */
         "modules" : {
-            "UIWebview" : {},
             "Payment" : {},
             "FaceID" : {},
             "Maps" : {}
