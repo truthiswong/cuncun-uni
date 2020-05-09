@@ -175,65 +175,64 @@
 				this.$http('user/withdraw/order/create', "POST", orderObj, res => {
 					let data = res.data
 					console.log(data)
-					let dataObj = {
-						orderId: data.data.id
-					}
-					if (this.payStyle == 'Alipay') {
-						this.$http('user/withdraw/order/pay/alipay', "POST", dataObj, res1 => {
-							if (res1.data.success) {
-								console.log(res1.data.data)
-								// #ifdef APP-PLUS
-								uni.requestPayment({
-									provider: 'alipay',
-									orderInfo: res1.data.data,
-									success: (res) => {
-										this.$refs.popup.close()
-										uni.navigateTo({
-											url: "/pages/tab1/orderBackSuccess"
-										})
-									},
-									fail: (err) => {
-										this.$refs.popup.close()
-										this.$http('user/withdraw/order/pay/fail', "POST", dataObj, res2 => {
-											if (res2.data.success) {
-												console.log(res2.data)
+					if (data.success) {
+						let dataObj = {
+							orderId: data.data.id
+						}
+						if (this.payStyle == 'Alipay') {
+							this.$http('user/withdraw/order/pay/alipay', "POST", dataObj, res1 => {
+								if (res1.data.success) {
+									console.log(res1.data.data)
+									// #ifdef APP-PLUS
+									uni.requestPayment({
+										provider: 'alipay',
+										orderInfo: res1.data.data,
+										success: (res) => {
+											this.$refs.popup.close()
+											data.data.payStyle = 'Alipay'
+											uni.navigateTo({
+												url: "/pages/tab1/orderBackSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(data.data))
+											})
+										},
+										fail: (err) => {
+											this.$http('user/withdraw/order/pay/fail', "POST", dataObj, res2 => {
 												uni.switchTab({
 													url: '/pages/tabs/tab2'
 												})
-											} else {
-												uni.showToast({
-													icon: 'none',
-													title: res2.data.message
-												});
-											}
-										})
-									}
-								});
-								// #endif
-							} else {
-								uni.showToast({
-									icon: 'none',
-									title: res1.data.message
-								});
-							}
-						})
-					} else {
-						this.$refs.popup.close()
-						uni.navigateTo({
-							url: "/pages/tab2/orderSuccess"
-						})
-						// #ifdef APP-PLUS
-						uni.requestPayment({
-							provider: 'wxpay',
-							orderInfo: 'orderInfo', //微信、支付宝订单数据
-							success: (res) => {
-								console.log(res);
-							},
-							fail: (err) => {
-								console.log(err);
-							}
+											})
+										}
+									});
+									// #endif
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: res1.data.message
+									});
+								}
+							})
+						} else {
+							this.$refs.popup.close()
+							uni.navigateTo({
+								url: "/pages/tab2/orderSuccess"
+							})
+							// #ifdef APP-PLUS
+							uni.requestPayment({
+								provider: 'wxpay',
+								orderInfo: 'orderInfo', //微信、支付宝订单数据
+								success: (res) => {
+									console.log(res);
+								},
+								fail: (err) => {
+									console.log(err);
+								}
+							});
+							// #endif
+						}
+					} else{
+						uni.showToast({
+							icon: 'none',
+							title: res.data.message
 						});
-						// #endif
 					}
 				})
 			},
