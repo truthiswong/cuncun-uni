@@ -44,9 +44,9 @@
 						</label>
 						<view class="box_groceries_right" style="color: rgba(40,40,40,1);">
 							<view>
-								<text>箱子 {{index + 1}}</text>
+								<text>{{item.code}}</text>
 							</view>
-							<text class="box_groceries_text">内含：羽毛球、羽毛球拍、篮球、排球、足球、排球手… </text>
+							<text class="box_groceries_text">内含：{{item.remark}}</text>
 						</view>
 					</view>
 				</checkbox-group>
@@ -70,6 +70,7 @@
 				scroll_bg2: '../../static/tab1/clothes_box.png',
 				scroll_bg3: '../../static/tab1/shoes_box.png',
 				list: [],
+				pageNo: 1,
 				isCheckedShow: false,
 				chooseButton: '选择',
 			}
@@ -159,13 +160,13 @@
 			},
 			// 获取物品列表
 			getGoodsList() {
-				this.$http('user/goods/list?top=10&type=sundries', "GET", '', res => {
+				this.$http(`user/pack/page?type=B&auditStatus=pass&pageNo=${this.pageNo}&pageSize=20`, "GET", '', res => {
 					let data = res.data
 					if (data.success) {
-						for (let item of data.data) {
+						for (let item of data.data.data) {
 							item.checked = false
 						}
-						this.list = data.data //书架
+						this.list = data.data.data //杂货架
 					} else {
 						uni.showToast({
 							icon: 'none',

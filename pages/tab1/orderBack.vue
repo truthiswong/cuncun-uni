@@ -20,7 +20,7 @@
 						<view class="col-5 list_middle">
 							<text>{{item.name}}</text>
 						</view>
-						<view class="col-2 flex_between list_right" @click="onDeleteItem(item.id)">
+						<view class="col-2 flex_between list_right" @click="onDeleteItem(item)">
 							<image src="../../static/tab1/minus.png"></image>
 							<text>这次不<br />用送回</text>
 						</view>
@@ -70,37 +70,7 @@
 		data() {
 			return {
 				headerShow: true,
-				list: [{
-						id: '0000',
-						src: '../../static/tab1/book_img1.png',
-						checked: false,
-					},
-					{
-						id: '111',
-						src: '../../static/tab1/book_img1.png',
-						checked: false,
-					},
-					{
-						id: '2222',
-						src: '../../static/tab1/book_img1.png',
-						checked: false,
-					},
-					{
-						id: '3333',
-						src: '../../static/tab1/book_img1.png',
-						checked: false,
-					},
-					{
-						id: '444',
-						src: '../../static/tab1/book_img1.png',
-						checked: false,
-					},
-					{
-						id: '555',
-						src: '../../static/tab1/book_img1.png',
-						checked: false,
-					},
-				],
+				list: [],
 				isAddShow: false,
 				chooseButton: '选择',
 				cont_top_bg: '../../static/tab1/order_back_bg1.png',
@@ -152,58 +122,70 @@
 				console.log(this.list)
 			},
 			// 移除物品
-			onDeleteItem(id) {
+			onDeleteItem(item) {
 				let data = {
-					id: id
+					id: item.id
 				}
-				this.$http('user/withdraw/goods/del', "POST", data, res => {
-					let data = res.data
-					if (data.success) {
-						uni.showToast({
-							icon: 'none',
-							title: '删除成功'
-						});
-						this.getChooseList()
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
-					}
-				})
+				if (item.type == 'goods') {
+					this.$http('user/withdraw/goods/del', "POST", data, res => {
+						let data = res.data
+						if (data.success) {
+							uni.showToast({
+								icon: 'none',
+								title: '删除成功'
+							});
+							this.getChooseList()
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					})
+				} else {
+					this.$http('user/withdraw/pack/del', "POST", data, res => {
+						let data = res.data
+						if (data.success) {
+							uni.showToast({
+								icon: 'none',
+								title: '删除成功'
+							});
+							this.getChooseList()
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					})
+				}
 			},
 			onAgainAdd() {
 				this.isAddShow = !this.isAddShow
 			},
 			onConfirm() {
 				this.isAddShow = false
-				uni.navigateTo({
-					url: '/pages/tab1/orderBackPay'
-				})
+				if (this.list.length <= 0) {
+					uni.showToast({
+						icon: 'none',
+						title: '请选择返送物品'
+					});
+				} else {
+					uni.navigateTo({
+						url: '/pages/tab1/orderBackPay'
+					})
+				}
 			},
 			getChooseList() {
-				this.$http('user/withdraw/goods/list', "GET", '', res => {
+				this.$http('user/withdraw/param/choose/list', "GET", '', res => {
 					let data = res.data
-					if (data.success) {
-						for (let item of data.data) {
-							item.code = item.goods.code
-							item.coverPic = item.goods.coverPic
-							item.name = item.goods.name
-						}
-						this.list = data.data
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
-					}
+					this.list = data.data
 				})
 			},
 			// 获取再追加列表数据
 			getAddCount() {
 				this.$http('user/store/count', "GET", '', res => {
 					let data = res.data
-					console.log(data)
 					if (data.success) {
 						this.bookCount = data.data.bookcase //书架
 						this.clotheCount = data.data.armoire //衣柜
