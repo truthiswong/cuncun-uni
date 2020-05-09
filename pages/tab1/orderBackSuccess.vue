@@ -6,11 +6,9 @@
 				<p>支付完成</p>
 			</view>
 			<view class="top_text">
-				<text>我们随时跟进我们的物流情况，根据需要会跟你订单留的号码 <text class="top_text_border">17493279824</text> 联系，<text class="top_text_border">请保持电话畅通</text>。</text>
+				<text>我们随时跟进我们的物流情况，根据需要会跟你订单留的号码 <text class="top_text_border">{{orderInfo.mobile}}</text> 联系，<text class="top_text_border">请保持电话畅通</text>。</text>
 				<br />
 				<text>本次物流由 顺丰快递 配送</text>
-				<br />
-				<text>运单号码：9832749272394</text>
 			</view>
 			<view class="map">
 				<image src="../../static/tab1/order_back_car.png"></image>
@@ -18,11 +16,11 @@
 			<view class="pay_info">
 				<view class="flex_between">
 					<text class="left">支付金额</text>
-					<text class="right">¥17</text>
+					<text class="right">¥{{orderInfo.totalFee}}</text>
 				</view>
 				<view class="flex_between" style="margin-top: 20upx;">
 					<text class="left">支付方式</text>
-					<text class="right">支付宝</text>
+					<text class="right">{{orderInfo.payStyle=='Alipay'?'支付宝':'微信'}}</text>
 				</view>
 			</view>
 		</view>
@@ -34,9 +32,14 @@
 	export default {
 		components: {},
 		data() {
-			return {}
+			return {
+				orderInfo: {}
+			}
 		},
-		onLoad() {},
+		onLoad(option) {
+			this.orderInfo = JSON.parse(decodeURIComponent(option.orderInfo))
+			console.log(this.orderInfo)
+		},
 		onShow() {},
 		watch: {},
 		methods: {
