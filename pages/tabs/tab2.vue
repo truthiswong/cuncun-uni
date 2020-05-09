@@ -355,7 +355,6 @@
 				this.$http('user/deposit/order/page', "GET", '', res => {
 					let data = res.data
 					if (data.success) {
-						console.log(data.data)
 						this.orderList1 = data.data.data
 					} else {
 						uni.showToast({

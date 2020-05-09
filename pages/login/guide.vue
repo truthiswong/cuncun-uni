@@ -11,7 +11,7 @@
 						<p :class="{'center': index == 0}">{{item.desc}}</p>
 					</view>
 					<view class="guide_button" @click="onTry" v-if="index == guidelList.length-1">
-						<image src="../../static/common/try.png" mode=""></image>
+						<text>马上体验</text>
 					</view>
 				</view>
 			</swiper-item>
@@ -133,10 +133,23 @@
 
 			.guide_button {
 				text-align: center;
+				
 
 				image {
 					width: 260upx;
 					height: 120upx;
+				}
+				text {
+					display: block;
+					width: 220upx;
+					height: 80upx;
+					margin: 20upx auto;
+					font-size: 30upx;
+					font-weight: 300;
+					line-height: 80upx;
+					background-color: #3BC1BB;
+					color: #ffffff;
+					border-radius: 40upx;
 				}
 			}
 		}
