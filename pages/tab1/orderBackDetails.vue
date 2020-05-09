@@ -17,6 +17,10 @@
 						<h4>您的订单还未付款，请及时付款</h4>
 						<p>此订单需要在7月26日00:00为止需要支付，否则订单将自动取消。</p>
 					</view>
+					<view v-else-if="order.detailStatus == 'cancel'">
+						<h4>订单已被取消。</h4>
+						<p>拒接理由内容拒接理由内容拒接理由内容，如有疑问请联系客服。</p>
+					</view>
 					<view v-else-if="order.detailStatus == 'init'">
 						<h4>订单待处理</h4>
 					</view>
@@ -403,7 +407,7 @@
 					if (data.success) {
 						data.data.detailAddress = data.data.area.province + ' ' + data.data.area.city + ' ' + data.data.area.district +
 							' ' + data.data.address
-						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD hh:mm:ss')
+						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD HH:mm:ss')
 						data.data.detailStatus = data.data.status.code
 						for (let item of data.data.goods) {
 							item.code = item.goods.code
