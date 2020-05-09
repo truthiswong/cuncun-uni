@@ -112,28 +112,28 @@
             "splashscreen" : {
                 "ios" : {
                     "iphone" : {
-                        "retina47" : "C:/Users/11/Desktop/存存/存存启动页/750_1334.png",
-                        "portrait-896h@3x" : "C:/Users/11/Desktop/存存/存存启动页/1242_2668.png",
-                        "landscape-896h@3x" : "C:/Users/11/Desktop/存存/存存启动页/2668_1242.png",
-                        "portrait-896h@2x" : "C:/Users/11/Desktop/存存/存存启动页/828_1792.png",
-                        "landscape-896h@2x" : "C:/Users/11/Desktop/存存/存存启动页/1792_828.png",
-                        "iphonex" : "C:/Users/11/Desktop/存存/存存启动页/1125_2436.png",
-                        "iphonexl" : "C:/Users/11/Desktop/存存/存存启动页/2436_1125.png",
-                        "retina55" : "C:/Users/11/Desktop/存存/存存启动页/1242_2208.png",
-                        "retina55l" : "C:/Users/11/Desktop/存存/存存启动页/2208_1242.png",
-                        "retina40" : "C:/Users/11/Desktop/存存/存存启动页/640_1136.png",
-                        "retina40l" : "C:/Users/11/Desktop/存存/存存启动页/1136_640.png",
-                        "retina35" : "C:/Users/11/Desktop/存存/存存启动页/640_960.png"
+                        "retina47" : "unpackage/res/splash/ios/750*1334.png",
+                        "portrait-896h@3x" : "unpackage/res/splash/ios/640*960.png",
+                        "landscape-896h@3x" : "",
+                        "portrait-896h@2x" : "unpackage/res/splash/ios/828*1792.png",
+                        "landscape-896h@2x" : "",
+                        "iphonex" : "unpackage/res/splash/ios/1125*2436.png",
+                        "iphonexl" : "",
+                        "retina55" : "unpackage/res/splash/ios/1242*2208.png",
+                        "retina55l" : "",
+                        "retina40" : "unpackage/res/splash/ios/640*1136.png",
+                        "retina40l" : "",
+                        "retina35" : "unpackage/res/splash/ios/640*960.png"
                     },
                     "ipad" : {
-                        "portrait-1366h@2x" : "C:/Users/11/Desktop/存存/存存启动页/2048_2732.png",
-                        "landscape-1366h@2x" : "C:/Users/11/Desktop/存存/存存启动页/2732_2048.png"
+                        "portrait-1366h@2x" : "unpackage/res/splash/ios/2048*2732.png",
+                        "landscape-1366h@2x" : ""
                     }
                 },
                 "android" : {
-                    "hdpi" : "C:/Users/11/Desktop/存存/存存启动页/Android/480_762.png",
-                    "xhdpi" : "C:/Users/11/Desktop/存存/存存启动页/Android/720_1242.png",
-                    "xxhdpi" : "C:/Users/11/Desktop/存存/存存启动页/Android/1080_1882.png"
+                    "hdpi" : "unpackage/res/splash/android/480*762.png",
+                    "xhdpi" : "unpackage/res/splash/android/720*1242.png",
+                    "xxhdpi" : "unpackage/res/splash/android/1080*1882.png"
                 }
             }
         },
