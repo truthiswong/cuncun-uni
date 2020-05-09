@@ -77,7 +77,6 @@
 			appUpdate() {
 				let info = uni.getSystemInfoSync()
 				info.versionCode = 0
-
 				// #ifdef APP-PLUS
 				// 查询版本信息
 				plus.runtime.getProperty(plus.runtime.appid, (wgtInfo) => {
@@ -93,8 +92,6 @@
 						}
 						this.$http('open/appver/latest', "GET", data, res => {
 							let data = res.data
-							console.log(data)
-							if (config.debug) console.log("当前版本", info.versionCode, "最新版本", data.build)
 							if (data.success) {
 								if (info.versionCode < data.build) {
 									uni.showModal({
@@ -123,6 +120,11 @@
 							}
 						})
 					} else {
+						var appurl = "https://testflight.apple.com/join/YTk1s8uF"
+						plus.runtime.openURL(appurl, function(res) {
+							console.log(res);
+						});
+						return
 						let data = {
 							os: String(info.platform).toLowerCase(), // 操作系统（苹果：ios / 安卓：android）
 							ver: 'release' // 版本类别（正式：release / 演示：demo / 测试：beta）
@@ -130,6 +132,7 @@
 						this.$http('open/appver/latest', "GET", data, res => {
 							let data = res.data
 							if (data.success) {
+								console.log(data)
 								if (info.versionCode < data.build) {
 									uni.showModal({
 										title: "提示",
@@ -156,10 +159,6 @@
 								});
 							}
 						})
-						var appurl = "https://testflight.apple.com/join/YTk1s8uF"
-						plus.runtime.openURL(appurl, function(res) {
-							console.log(res);
-						});
 					}
 				});
 				// #endif

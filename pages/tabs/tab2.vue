@@ -29,8 +29,8 @@
 				<scroll-view scroll-y="true">
 					<view class="segmented_content">
 						<view v-if="current === 0">
-							<view v-for="(item,index) in 1" :key="index">
-								<view class="segmented_list">
+							<view>
+								<view class="segmented_list" v-for="item in orderList01" :key="item.id">
 									<navigator :url="'/pages/tab2/orderDetails?id='+item.id">
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="存单" :note="item.address" :showArrow="false">
@@ -51,11 +51,11 @@
 										</view>
 									</navigator>
 									<view class="segmented_list_button">
-										<button class="button_cancel" @click="onCancelOrder(item.id)">取消订单</button>
-										<button class="button_confirm" @click="onConfirmOrder(item.id)">立即付款</button>
+										<button class="button_cancel" @click="onCancelOrder1(item.id)">取消订单</button>
+										<button class="button_confirm" @click="onConfirmOrder1(item.id)">立即付款</button>
 									</view>
 								</view>
-								<view class="segmented_list">
+								<view class="segmented_list" v-for="item in orderList02" :key="item.id">
 									<navigator :url="'/pages/tab2/orderDetails?id='+item.id">
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="取单" :note="'送到: '+item.address" :showArrow="false">
@@ -66,25 +66,31 @@
 										</uni-list>
 										<view class="flex_between">
 											<view style="height: 100upx;">
-												<image v-for="item in 3" :key="item" style="width: 100upx;height: 100upx;background-color: #F2F2F2;box-sizing: border-box;padding: 8upx;margin-right: 20upx;"
-												 src="../../static/tab1/book_img2.png" mode=""></image>
+												<image v-for="goods in item.goods" :key="goods.id" style="width: 100upx;height: 100upx;background-color: #F2F2F2;box-sizing: border-box;padding: 8upx;margin-right: 20upx;"
+												 :src="goods.coverPic" v-show="item.goodsNumber <= 3"></image>
 											</view>
 											<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
-												<text>… 等六件物品</text>
+												<text>… 等{{item.goodsNumber}}件物品</text>
 											</view>
 										</view>
 									</navigator>
 									<view class="segmented_list_button">
-										<button class="button_cancel" @click="onCancelOrder(item.id)">取消订单</button>
-										<button class="button_confirm" @click="onConfirmOrder(item.id)">立即付款</button>
+										<button class="button_cancel" @click="onCancelOrder2(item.id)">取消订单</button>
+										<button class="button_confirm" @click="onConfirmOrder2(item.id)">立即付款</button>
 									</view>
 								</view>
-								<view class="segmented_list">
-									<navigator :url="'/pages/tab2/orderDetails?id='+item.id">
+								<view class="segmented_list" v-for="item in orderList03" :key="item.id">
+									<view @click="onOrder3Detail(item)">
 										<uni-list class="list_custom list_custom_align_start">
-											<uni-list-item title="仓储订单" :note="item.address" :showArrow="false">
+											<uni-list-item title="仓储订单" :showArrow="false">
 												<view slot='right' class="list_right_text">
-													<text class="list_right_orange">待付款</text>
+													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
+													<text class="list_right_blue" v-if="item.status.code == 'init'">待接单</text>
+													<text class="list_right_blue" v-if="item.status.code == 'fetch'">待取货</text>
+													<text class="list_right_blue" v-if="item.status.code == 'delivery'">回库中</text>
+													<text class="list_right_blue" v-if="item.status.code == 'inputwork'">入库作业中</text>
+													<text class="list_right_gray" v-if="item.status.code == 'finish'">已完成</text>
+													<text class="list_right_gray" v-if="item.status.code == 'cancel'">已取消</text>
 												</view>
 											</uni-list-item>
 										</uni-list>
@@ -95,7 +101,7 @@
 													 mode=""></image>
 												</view>
 												<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
-													<text>A箱 ×3</text>
+													<text>EC箱 ×{{item.boxECnum}}</text>
 												</view>
 											</view>
 											<view class="col-6 row">
@@ -104,25 +110,24 @@
 													 mode=""></image>
 												</view>
 												<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
-													<text>B箱 ×3</text>
+													<text>SD箱 ×{{item.boxSDnum}}</text>
 												</view>
 											</view>
 										</view>
 										<view style="width: 100%;text-align: right;">
 											<view style="font-size:24upx;color:rgba(74,74,74,1);line-height:46upx;">
-												仓储费用：<text style="font-size: 30upx;margin-right: 30upx;">¥400</text> 费用周期：2月1日-2月29日
+												仓储费用：<text style="font-size: 30upx;margin-right: 30upx;">¥{{item.settleFee?item.settleFee:item.fee}}</text> 费用周期：{{item.beginDate}}~{{item.endDate}}
 											</view>
 										</view>
-									</navigator>
-									<view class="segmented_list_button">
-										<button class="button_cancel" @click="onCancelOrder(item.id)">取消订单</button>
-										<button class="button_confirm" @click="onConfirmOrder(item.id)">立即付款</button>
+									</view>
+									<view class="segmented_list_button" v-if="item.status.code == 'waitpay'">
+										<button class="button_confirm" @click="onConfirmOrder3(item.id)">立即付款</button>
 									</view>
 								</view>
 							</view>
 						</view>
 						<view v-if="current === 1">
-							<view v-for="(item,index) in orderList1" :key="index">
+							<view v-for="item in orderList1" :key="item.id">
 								<view class="segmented_list">
 									<view @click="onOrder1Detail(item)">
 										<uni-list class="list_custom list_custom_align_start">
@@ -157,7 +162,7 @@
 							</view>
 						</view>
 						<view v-if="current === 2">
-							<view v-for="(item,index) in orderList2" :key="index">
+							<view v-for="item in orderList2" :key="item.id">
 								<view class="segmented_list">
 									<view @click="onOrder2Detail(item)">
 										<uni-list class="list_custom list_custom_align_start">
@@ -174,11 +179,11 @@
 										</uni-list>
 										<view class="flex_between">
 											<view style="height: 100upx;">
-												<image v-for="goods in 3" :key="goods" style="width: 100upx;height: 100upx;background-color: #F2F2F2;box-sizing: border-box;padding: 8upx;margin-right: 20upx;"
-												 src="../../static/tab1/book_img2.png" mode=""></image>
+												<image v-for="(goods, index) in item.goods" :key="goods.id" style="width: 100upx;height: 100upx;background-color: #F2F2F2;box-sizing: border-box;padding: 8upx;margin-right: 20upx;"
+												 :src="goods.coverPic" v-show="index < 3"></image>
 											</view>
 											<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
-												<text>… 等六件物品</text>
+												<text>… 等{{item.goodsNumber}}件物品</text>
 											</view>
 										</view>
 									</view>
@@ -190,42 +195,45 @@
 							</view>
 						</view>
 						<view v-if="current === 3">
-							<view v-for="(item,index) in orderList1" :key="index">
+							<view v-for="item in orderList3" :key="item.id">
 								<view class="segmented_list">
 									<view @click="onOrder3Detail(item)">
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="仓储订单" :showArrow="false">
 												<view slot='right' class="list_right_text">
 													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
-													<text class="list_right_blue" v-if="item.status.code == 'init'">待接单</text>
-													<text class="list_right_blue" v-if="item.status.code == 'fetch'">待取货</text>
-													<text class="list_right_blue" v-if="item.status.code == 'delivery'">回库中</text>
-													<text class="list_right_blue" v-if="item.status.code == 'inputwork'">入库作业中</text>
-													<text class="list_right_gray" v-if="item.status.code == 'finish'">已完成</text>
-													<text class="list_right_gray" v-if="item.status.code == 'cancel'">已取消</text>
+													<text class="list_right_gray" v-if="item.status.code == 'payed'">已完成</text>
 												</view>
 											</uni-list-item>
 										</uni-list>
 										<view class="row" style="margin-bottom: 20upx;">
-											<view class="col-6 row" v-for="box in 5" :key="box">
+											<view class="col-6 row" v-if="item.boxECnum>0">
 												<view style="height: 100upx;">
 													<image style="width: 120upx;height: 120upx;box-sizing: border-box;padding: 8upx;margin-right: 20upx;" src="../../static/tab2/storge_box.png"
 													 mode=""></image>
 												</view>
 												<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
-													<text>A箱 ×3</text>
+													<text>EC箱 ×{{item.boxECnum}}</text>
+												</view>
+											</view>
+											<view class="col-6 row" v-if="item.boxSDnum>0">
+												<view style="height: 100upx;">
+													<image style="width: 120upx;height: 120upx;box-sizing: border-box;padding: 8upx;margin-right: 20upx;" src="../../static/tab2/storge_box.png"
+													 mode=""></image>
+												</view>
+												<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
+													<text>SD箱 ×{{item.boxSDnum}}</text>
 												</view>
 											</view>
 										</view>
 										<view style="width: 100%;text-align: right;">
 											<view style="font-size:24upx;color:rgba(74,74,74,1);line-height:46upx;">
-												仓储费用：<text style="font-size: 30upx;margin-right: 30upx;">¥400</text> 费用周期：2月1日-2月29日
+												仓储费用：<text style="font-size: 30upx;margin-right: 30upx;">¥{{item.settleFee?item.settleFee:item.fee}}</text> 费用周期：{{item.beginDate}}~{{item.endDate}}
 											</view>
 										</view>
 									</view>
-									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' || item.status.code == 'waitpay'">
-										<button class="button_cancel" v-if="item.status.code == 'waitpay'" @click="onCancelOrder3(item.id)">取消订单</button>
-										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse' && item.status.code != 'finish'" @click="onConfirmOrder3(item.id)">立即付款</button>
+									<view class="segmented_list_button" v-if="item.status.code == 'waitpay'">
+										<button class="button_confirm" @click="onConfirmOrder3(item.id)">立即付款</button>
 									</view>
 								</view>
 							</view>
@@ -247,7 +255,11 @@
 				headerShow: true,
 				items: ['未支付', '存单', '取单', '仓储订单'],
 				current: 0,
+				gotoPage: '',
 				orderList0: [], //未支付单列表
+				orderList01: [], //存单未支付
+				orderList02: [], //取单未支付
+				orderList03: [], //仓储未支付
 				orderList1: [], //存单列表
 				orderList2: [], //取单列表
 				orderList3: [], //仓储订单列表
@@ -256,6 +268,7 @@
 		},
 		components: {},
 		onLoad(op) {
+			console.log(op)
 			if (op.gotoPage) {
 				this.gotoPage = op.gotoPage
 			}
@@ -273,7 +286,7 @@
 				this.current = 3
 			}
 			if (this.current == 0) {
-
+				this.getOrderList0()
 			} else if (this.current == 1) {
 				this.getOrderList1()
 			} else if (this.current == 2) {
@@ -302,7 +315,7 @@
 				if (this.current !== e.currentIndex) {
 					this.current = e.currentIndex;
 					if (this.current == 0) {
-
+						this.getOrderList0()
 					} else if (this.current == 1) {
 						this.getOrderList1()
 					} else if (this.current == 2) {
@@ -311,6 +324,31 @@
 						this.getOrderList3()
 					}
 				}
+			},
+			// 获取未支付列表
+			getOrderList0() {
+				this.$http('user/store/waitpay', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						console.log(data.data)
+						this.orderList01 = data.data.deposit // 存单
+						for (let item of data.data.withdraw) {
+							if (item.goods) {
+								for (let goodsIndex of item.goods) {
+									goodsIndex.coverPic = goodsIndex.goods.coverPic
+								}
+								item.goodsNumber = item.goods.length
+							}
+						}
+						this.orderList02 = data.data.withdraw // 取单
+						this.orderList03 = data.data.storage // 仓储
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
 			},
 			// 获取存单列表
 			getOrderList1() {
@@ -332,7 +370,14 @@
 				this.$http('user/withdraw/order/page', "GET", '', res => {
 					let data = res.data
 					if (data.success) {
-						console.log(data.data)
+						for (let item of data.data.data) {
+							if (item.goods) {
+								for (let goodsIndex of item.goods) {
+									goodsIndex.coverPic = goodsIndex.goods.coverPic
+								}
+								item.goodsNumber = item.goods.length
+							}
+						}
 						this.orderList2 = data.data.data
 					} else {
 						uni.showToast({
@@ -344,10 +389,9 @@
 			},
 			// 获取仓储订单
 			getOrderList3() {
-				this.$http('user/withdraw/order/page', "GET", '', res => {
+				this.$http('user/store/order/page', "GET", '', res => {
 					let data = res.data
 					if (data.success) {
-						console.log(data.data)
 						this.orderList3 = data.data.data
 					} else {
 						uni.showToast({
@@ -374,20 +418,6 @@
 				uni.navigateTo({
 					url: '/pages/tab2/orderStorageDetails?id=' + item.id
 				})
-				return
-				if (item.status.code == 'init') {
-					uni.navigateTo({
-						url: '/pages/tab2/orderStorageDetails?id=' + item.id
-					})
-				} else if (item.status.code == 'finish') {
-					uni.navigateTo({
-						url: '/pages/tab2/orderStorageDetails?id=' + item.id
-					})
-				} else if (item.status.code == 'cancel') {
-					uni.navigateTo({
-						url: '/pages/tab2/orderStorageDetails?id=' + item.id
-					})
-				}
 			},
 			// 存单取消
 			onCancelOrder1(id) {
@@ -401,7 +431,15 @@
 							icon: 'none',
 							title: '取消成功'
 						});
-						this.getOrderList1()
+						if (this.current == 0) {
+							this.getOrderList0()
+						} else if (this.current == 1) {
+							this.getOrderList1()
+						} else if (this.current == 2) {
+							this.getOrderList2()
+						} else if (this.current == 3) {
+							this.getOrderList3()
+						}
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -421,14 +459,22 @@
 				let data = {
 					id: id
 				}
-				this.$http('user/deposit/order/cancel', "POST", data, res => {
+				this.$http('user/withdraw/order/cancel', "POST", data, res => {
 					let data = res.data
 					if (data.success) {
 						uni.showToast({
 							icon: 'none',
 							title: '取消成功'
 						});
-						this.getOrderList1()
+						if (this.current == 0) {
+							this.getOrderList0()
+						} else if (this.current == 1) {
+							this.getOrderList1()
+						} else if (this.current == 2) {
+							this.getOrderList2()
+						} else if (this.current == 3) {
+							this.getOrderList3()
+						}
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -455,7 +501,15 @@
 							icon: 'none',
 							title: '取消成功'
 						});
-						this.getOrderList1()
+						if (this.current == 0) {
+							this.getOrderList0()
+						} else if (this.current == 1) {
+							this.getOrderList1()
+						} else if (this.current == 2) {
+							this.getOrderList2()
+						} else if (this.current == 3) {
+							this.getOrderList3()
+						}
 					} else {
 						uni.showToast({
 							icon: 'none',
