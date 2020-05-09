@@ -473,7 +473,7 @@
 							`${data.data.bookFetchDate} ${data.data.bookFetchTime[0]}:00~${data.data.bookFetchTime[1]}:00`
 						data.data.detailStatus = data.data.status.code
 						data.data.detailPrepaidStatus = data.data.prepaidStatus.code
-						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD hh:mm:ss')
+						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD HH:mm:ss')
 						data.data.detailAdjustPayStatus = data.data.adjustPayStatus.code
 						this.order = data.data
 					} else {
