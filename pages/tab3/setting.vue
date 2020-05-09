@@ -15,12 +15,15 @@
 			</view>
 			<view class="list_padding30 list_custom_margin20" style="background-color: #FFFFFF;">
 				<uni-list class="list_custom list_custom_margin20">
-					<uni-list-item title="昵称" @click="onNick" :rightText="nickname"></uni-list-item>
+					<uni-list-item title="昵称" @click="onNick">
+						<view slot='right' style="width: 500upx;color: #999;font-size: 24upx;text-align: right;">
+							<text>{{nickname}}</text>
+						</view>
+					</uni-list-item>
 					<navigator url="/pages/tab3/changePhone">
 						<uni-list-item title="手机号" rightText="021-34283744"></uni-list-item>
 					</navigator>
 					<uni-list-item title="实名认证" @click="onRealName" :rightText="realName"></uni-list-item>
-
 					<navigator url="/pages/tab3/address">
 						<uni-list-item title="地址管理"></uni-list-item>
 					</navigator>

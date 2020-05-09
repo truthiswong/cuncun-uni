@@ -9,15 +9,15 @@
 			<uni-list class="list_custom list_custom_item list_custom_margin20">
 				<uni-list-item title="姓名：" :showArrow="false">
 					<view slot="right" class="input">
-						<input type="text" v-model="username" disabled placeholder="上传身份照片认证" placeholder-style="color: #CCCCCC;font-size:14px;" />
+						<input type="text" v-model="username" placeholder="请输入姓名" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
 				<uni-list-item title="身份证：" :showArrow="false">
 					<view slot="right" class="input">
-						<input type="idcard" v-model="idCard" disabled placeholder="上传身份照片认证" placeholder-style="color: #CCCCCC;font-size:14px;" />
+						<input type="idcard" v-model="idCard" placeholder="请输入身份证号" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
-				<uni-list-item title="签证机关：" :showArrow="false">
+				<!-- <uni-list-item title="签证机关：" :showArrow="false">
 					<view slot="right" class="input">
 						<input type="idcard" v-model="idOrgan" disabled placeholder="上传身份照片认证" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
@@ -31,11 +31,11 @@
 				<view class="flex_between id_card">
 					<image @click="changeIDCardImage1" :src="idCardSrc1" mode=""></image>
 					<image @click="changeIDCardImage2" :src="idCardSrc2" mode=""></image>
-				</view>
+				</view> -->
 			</uni-list>
 		</view>
 		<!-- <button type="default" @click="onFace">人脸识别</button> -->
-		<button @click="onConfirm" v-if="!realNameConfirm" class="address_button" :class="{address_button_active: buttonActive}">确
+		<button @click="onConfirm" class="address_button" :class="{address_button_active: buttonActive}">确
 			认</button>
 	</view>
 </template>
@@ -56,15 +56,15 @@
 			};
 		},
 		watch: {
-			idCardSrc1() {
-				if (this.username && this.idOrgan) {
+			username() {
+				if (this.username && this.idCard) {
 					this.buttonActive = true;
 				} else {
 					this.buttonActive = false;
 				}
 			},
-			idCardSrc2() {
-				if (this.username && this.idOrgan) {
+			idCard() {
+				if (this.username && this.idCard) {
 					this.buttonActive = true;
 				} else {
 					this.buttonActive = false;
@@ -212,17 +212,40 @@
 				if (!this.username) {
 					uni.showToast({
 						icon: 'none',
-						title: '请上传身份正面'
+						title: '请输入姓名'
 					});
-				} else if (!this.idOrgan) {
+				} else if (!this.idCard) {
 					uni.showToast({
 						icon: 'none',
-						title: '请上传身份反面'
+						title: '请输入身份证号'
 					});
 				} else {
-					uni.navigateBack({
-						delta: 1
+					let data = {
+						certName: this.username,
+						certNo: this.idCard
+					}
+					this.$http('user/alipay/user/certify/init', "POST", data, res => {
+						let data = res.data
+						console.log(data)
+						if (data.success) {
+							// #ifdef APP-PLUS
+							plus.runtime.openURL('alipays://platformapi/startapp', function(res) {
+								console.log(res);
+							});
+							plus.runtime.openURL(data.data, function(res) {
+								console.log(res);
+							});
+							// #endif
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
 					})
+					// uni.navigateBack({
+					// 	delta: 1
+					// })
 				}
 			},
 			getIdinfo() {

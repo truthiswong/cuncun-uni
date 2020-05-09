@@ -11,9 +11,9 @@
 			try {
 				const value = uni.getStorageSync('launchFlag')
 				const token = uni.getStorageSync('token')
-				// setTimeout(()=>{
-				// 	plus.navigator.closeSplashscreen()
-				// }, 1000)
+				setTimeout(()=>{
+					plus.navigator.closeSplashscreen()
+				}, 1500)
 				if (value) {
 					if (token) {
 						this.$nextTick(()=>{

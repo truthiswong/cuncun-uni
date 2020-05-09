@@ -29,7 +29,7 @@
 				<view class="cont_dialog" :style="{background: 'url('+ cont_dialog_bg +') no-repeat center center / cover'}">
 					<image style="position: absolute;top: 20upx;left: 20upx; width: 46upx;height: 34upx;" src="../../static/tab1/mark_left.png"></image>
 					<view class="cont_dialog_text">
-						<h3>上午好，春奈小姐～</h3>
+						<h3>{{welcomeText}}</h3>
 						<p>我们的执照收纳咨询师和打包小哥正在随时待命中哦!</p>
 					</view>
 					<image style="position: absolute;right: 45upx; width: 46upx;height: 34upx;" src="../../static/tab1/mark_right.png"></image>
@@ -238,7 +238,7 @@
 		data() {
 			return {
 				headerShow: true,
-				platform: '',
+				welcomeText: '',
 				cont_top_bg: '../../static/tab1/tab1_top.png',
 				cont_dialog_bg: '../../static/tab1/tab1_bubble.png',
 				box_wrong_bg: '../../static/tab1/box_wrong_bg.png',
@@ -273,6 +273,19 @@
 			if (uni.getStorageSync('tab1ShowHide')) {
 				console.log(uni.getStorageSync('tab1ShowHide'))
 				this.tab1ShowHide = uni.getStorageSync('tab1ShowHide')
+			}
+			let user = uni.getStorageSync('user')
+			let nickname = ''
+			let nowHour = new Date().getHours()
+			if (user.nickName) {
+				nickname = user.nickName
+			}
+			if (nowHour>=5 && nowHour<=12) {
+				this.welcomeText = `上午好，${nickname}`
+			} else if (nowHour>12 && nowHour<=18) {
+				this.welcomeText = `下午好，${nickname}`
+			} else{
+				this.welcomeText = `晚上好，${nickname}`
 			}
 		},
 		onPageScroll(options) {
@@ -447,6 +460,9 @@
 			color: rgba(40, 40, 40, 1);
 			line-height: 50upx;
 			padding: 40upx 40upx 0 30upx;
+			overflow: hidden;
+			text-overflow:ellipsis;
+			white-space:nowrap;
 		}
 
 		p {

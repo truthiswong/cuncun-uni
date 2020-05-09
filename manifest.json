@@ -17,7 +17,7 @@
         "splashscreen" : {
             "alwaysShowBeforeRender" : true,
             "waiting" : false,
-            "autoclose" : true,
+            "autoclose" : false,
             "delay" : 0
         },
         /* 模块配置 */
@@ -57,8 +57,15 @@
                     "NSCameraUsageDescription" : "上传用户头像时拍摄图像作为用户头像",
                     "NSLocationWhenInUseUsageDescription" : "用于选择用户的收货地址",
                     "NSContactsUsageDescription" : "获取通讯录, 用于拨打电话"
+                },
+                "capabilities" : {
+                    "entitlements" : {
+                        "com.apple.developer.associated-domains" : [ "applinks:tech.cuncun.cuncun" ]
+                    },
+                    "plists" : {}
                 }
             },
+            // 合并到工程Info.plist文件的数据（json格式）  
             /* SDK配置 */
             "sdkConfigs" : {
                 "ad" : {},

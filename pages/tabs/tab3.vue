@@ -61,9 +61,10 @@
 				phone: '021-34283744',
 			}
 		},
-		onLoad(op) {},
-		onShow() {
+		onLoad(op) {
 			this.getUserInfo()
+		},
+		onShow() {
 			let user = uni.getStorageSync('user')
 			if (user.portrait) {
 				this.headImage = user.portrait
@@ -88,6 +89,12 @@
 							key: 'user',
 							data: data.data
 						});
+						if (data.data.portrait) {
+							this.headImage = data.data.portrait
+						}
+						if (data.data.nickName) {
+							this.nickname = data.data.nickName
+						}
 					} else {
 						uni.showToast({
 							icon: 'none',
