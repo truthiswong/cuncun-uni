@@ -21,9 +21,12 @@
 		<!-- 内容 -->
 		<view class="content">
 			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
-				<p>你一共有8个箱子，里面包含存存不能受理的物品，请及时取回。</p>
+				<p>你一共有{{list.length}}个箱子，里面包含存存不能受理的物品，请及时取回。</p>
 			</view>
 			<view>
+				<view class="no_data" v-if="list.length<=0">
+					<image src="../../static/tab1/no_data.png" mode=""></image>
+				</view>
 				<checkbox-group class="checkbox_custom" @change="onCheckboxChange">
 					<view class="box_groceries_content flex_between" v-for="(item,index) in list" :key="index">
 						<label>
@@ -36,9 +39,9 @@
 						</label>
 						<view class="box_groceries_right" style="color: rgba(40,40,40,1);">
 							<view>
-								<text>箱子{{index + 1}}</text>
+								<text>{{item.code}}</text>
 							</view>
-							<text class="box_groceries_text">内含：羽毛球、羽毛球拍、篮球、排球、足球、排球手 羽毛球、羽毛球拍、篮球、排球、足球、排球手</text>
+							<text class="box_groceries_text">内含：{{item.remark}}</text>
 						</view>
 					</view>
 				</checkbox-group>
@@ -58,35 +61,7 @@
 			return {
 				headerShow: true,
 				cont_top_bg: '../../static/tab1/storage_top_bg.png',
-				list: [{
-						id: '0000',
-						checked: false,
-					},
-					{
-						id: '111',
-						checked: false,
-					},
-					{
-						id: '2222',
-						checked: false,
-					},
-					{
-						id: '3333',
-						checked: false,
-					},
-					{
-						id: '4444',
-						checked: false,
-					},
-					{
-						id: '5555',
-						checked: false,
-					},
-					{
-						id: '6666',
-						checked: false,
-					},
-				],
+				list: [],
 				isCheckedShow: false,
 				chooseButton: '选择',
 			}
@@ -94,7 +69,9 @@
 		onLoad() {
 
 		},
-		onShow() {},
+		onShow() {
+			this.getFailList()
+		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
@@ -140,12 +117,51 @@
 				}
 			},
 			onConfirm() {
-				uni.navigateTo({
-					url: '/pages/tab1/orderBack'
+				let chooseData = {}
+				let chooseIndex = 0
+				for (let item of this.list) {
+					if (item.checked) {
+						chooseData['packId[' + chooseIndex + ']'] = item.id
+						chooseIndex++
+					}
+				}
+				if (!chooseIndex) {
+					uni.showToast({
+						title: '请选择要送回的物品',
+						icon: 'none'
+					})
+				} else {
+					this.$http('user/withdraw/pack/choose', "POST", chooseData, res => {
+						let data = res.data
+						if (data.success) {
+							uni.navigateTo({
+								url: '/pages/tab1/orderBack'
+							})
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					})
+				}
+			},
+			// 获取未过安检的列表
+			getFailList() {
+				this.$http('user/pack/list?type=B&top=9999&auditStatus=fail', "GET", '', res => {
+					let data = res.data
+					console.log(data)
+					if (data.success) {
+						this.list = data.data //未过安检
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
 				})
 			}
 		}
-
 	}
 </script>
 
