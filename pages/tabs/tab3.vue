@@ -85,6 +85,8 @@
 			goOhter(){
 				var UIApplication = plus.ios.import('UIApplication');
 				var NSURL = plus.ios.import('NSURL');
+				console.log(UIApplication)
+				console.log(NSURL)
 				var setting = NSURL.URLWithString('weixin://');
 				var application = UIApplication.sharedApplication();
 				application.openURL(setting);

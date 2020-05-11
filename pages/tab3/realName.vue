@@ -79,6 +79,15 @@
 			if (user.realNameConfirm) {
 				this.realNameConfirm = user.realNameConfirm
 			}
+			// #ifdef APP-PLUS
+				setTimeout(function() {
+					var args = plus.runtime.arguments;
+					if (args) {
+						// 处理args参数，如直达到某新页面等 
+						console.log(args)
+					}
+				}, 10);
+			// #endif
 		},
 		methods: {
 			onClickBack() {
