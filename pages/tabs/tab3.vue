@@ -40,6 +40,7 @@
 		</view>
 		<view class="content_bottom">
 			<uni-list class="list_custom">
+				<uni-list-item @click='goOhter' title="跳转" thumb="../../static/tab3/ohter.png"></uni-list-item>
 				<navigator url="../tab3/other">
 					<uni-list-item title="其他" thumb="../../static/tab3/ohter.png"></uni-list-item>
 				</navigator>
@@ -81,6 +82,15 @@
 			}
 		},
 		methods: {
+			goOhter(){
+				var UIApplication = plus.ios.import('UIApplication');
+				var NSURL = plus.ios.import('NSURL');
+				var setting = NSURL.URLWithString('weixin://');
+				var application = UIApplication.sharedApplication();
+				application.openURL(setting);
+				plus.ios.deleteObject(setting);
+				plus.ios.deleteObject(application);
+			},
 			getUserInfo() {
 				this.$http('user/current', "GET", '', res => {
 					let data = res.data

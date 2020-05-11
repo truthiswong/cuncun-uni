@@ -178,6 +178,9 @@
 		onShow(e) {
 			this.getDateList()
 			this.getHoursList()
+			if (!this.address.id) {
+				this.getAddressList()
+			}
 		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
@@ -263,14 +266,24 @@
 					})
 				}
 			},
-			debounce(fn, time) {
-				let Mytime = null;
-				return () => {
-					clearTimeout(Mytime); // 清除定时器
-					Mytime = setTimeout(() => {
-						fn.apply(this, arguments)
-					}, time)
-				}
+			getAddressList() {
+				this.$http('user/addr/list', "GET", '', res => {
+					let data = res.data
+					console.log(data)
+					if (data.success) {
+						for (let item of data.data) {
+							item.detailAddress = item.area.province + item.area.city + item.area.district + ' ' + item.address
+							if (item.dft) {
+								this.address = item
+							}
+						}
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
 			},
 			onPayChange() {
 				if (!this.address.id) {

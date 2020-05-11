@@ -117,11 +117,12 @@
 				cont_top_bg: '../../static/tab1/order_back_bg2.png',
 			}
 		},
-		onLoad() {
-
-		},
+		onLoad() {},
 		onShow() {
 			this.getFee()
+			if (!this.address.id) {
+				this.getAddressList()
+			}
 		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
@@ -228,7 +229,7 @@
 							});
 							// #endif
 						}
-					} else{
+					} else {
 						uni.showToast({
 							icon: 'none',
 							title: res.data.message
@@ -248,7 +249,25 @@
 						});
 					}
 				})
-			}
+			},
+			getAddressList() {
+				this.$http('user/addr/list', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						for (let item of data.data) {
+							item.detailAddress = item.area.province + item.area.city + item.area.district + ' ' + item.address
+							if (item.dft) {
+								this.address = item
+							}
+						}
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
 		}
 
 	}

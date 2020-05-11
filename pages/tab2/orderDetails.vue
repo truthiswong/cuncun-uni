@@ -10,28 +10,31 @@
 		<view class="content" :class="{'content_active': order.detailStatus == 'waitpay' || order.detailStatus == 'cancel' || order.detailAdjustPayStatus == 'wait'}">
 			<view class="cont_top">
 				<view class="top_text">
-					<view v-if="order.detailStatus == 'finish'">
-						<h4>订单已完成，感谢您的支持</h4>
-					</view>
-					<view v-else-if="order.detailStatus == 'cancel'">
-						<h4>订单已被取消。</h4>
-						<p>拒接理由内容拒接理由内容拒接理由内容，如有疑问请联系客服。</p>
-					</view>
-					<view v-else-if="order.detailStatus == 'waitpay'">
+					<view v-if="order.detailStatus == 'waitpay'">
 						<h4>您的订单还未付款，请及时付款</h4>
 						<p>此订单需要及时支付，否则订单将自动取消。</p>
 					</view>
 					<view v-else-if="order.detailStatus == 'init'">
 						<h4>订单待处理</h4>
 					</view>
-					<view v-else-if="order.detailStatus == 'inputwork'">
-						<h4>订单入库作业中</h4>
+					<view v-else-if="order.detailStatus == 'assign'">
+						<h4>订单分配骑手</h4>
+					</view>
+					<view v-else-if="order.detailStatus == 'fetch'">
+						<h4>订单待取货</h4>
 					</view>
 					<view v-else-if="order.detailStatus == 'delivery'">
 						<h4>订单回库中</h4>
 					</view>
-					<view v-else-if="order.detailStatus == 'assign'">
-						<h4>订单分配骑手</h4>
+					<view v-else-if="order.detailStatus == 'inputwork' || order.detailStatus == 'monitor' || order.detailStatus == 'photo' || order.detailStatus == 'ready'">
+						<h4>订单入库作业中</h4>
+					</view>
+					<view v-else-if="order.detailStatus == 'finish'">
+						<h4>订单已完成，感谢您的支持</h4>
+					</view>
+					<view v-else-if="order.detailStatus == 'cancel' || order.detailStatus == 'refuse'">
+						<h4>订单已被取消。</h4>
+						<p>拒接理由内容拒接理由内容拒接理由内容，如有疑问请联系客服。</p>
 					</view>
 				</view>
 				<view class="top_button">

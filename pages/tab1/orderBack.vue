@@ -71,18 +71,24 @@
 			return {
 				headerShow: true,
 				list: [],
+				orderInfo: {},
 				isAddShow: false,
 				chooseButton: '选择',
 				cont_top_bg: '../../static/tab1/order_back_bg1.png',
 				scroll_bg1: '../../static/tab1/bookbox.png',
 			}
 		},
-		onLoad() {
-
+		onLoad(option) {
+			if (option.orderInfo) {
+				this.orderInfo = JSON.parse(decodeURIComponent(option.orderInfo))
+				this.list = this.orderInfo.goods
+			}
 		},
 		onShow() {
-			this.getChooseList()
 			this.getAddCount()
+			if (!this.orderInfo.id) {
+				this.getChooseList()
+			}
 		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {

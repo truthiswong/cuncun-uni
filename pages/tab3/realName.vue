@@ -229,9 +229,9 @@
 						console.log(data)
 						if (data.success) {
 							// #ifdef APP-PLUS
-							plus.runtime.openURL('alipays://platformapi/startapp', function(res) {
-								console.log(res);
-							});
+							// plus.runtime.openURL('alipays://platformapi/startapp', function(res) {
+							// 	console.log(res);
+							// });
 							plus.runtime.openURL(data.data, function(res) {
 								console.log(res);
 							});

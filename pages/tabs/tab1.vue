@@ -279,6 +279,8 @@
 			let nowHour = new Date().getHours()
 			if (user.nickName) {
 				nickname = user.nickName
+			} else {
+				nickname = user.name
 			}
 			if (nowHour>=5 && nowHour<=12) {
 				this.welcomeText = `上午好，${nickname}`

@@ -10,31 +10,25 @@
 		<view class="content" :class="{'content_active': order.detailStatus == 'waitpay' || order.detailStatus == 'cancel' || order.detailStatus == 'waitsign'}">
 			<view class="cont_top">
 				<view class="top_text">
-					<view v-if="order.detailStatus == 'finish'">
-						<h4>订单已完成，感谢您的支持</h4>
-					</view>
-					<view v-else-if="order.detailStatus == 'waitpay'">
+					<view v-if="order.detailStatus == 'waitpay'">
 						<h4>您的订单还未付款，请及时付款</h4>
 						<p>此订单需要在7月26日00:00为止需要支付，否则订单将自动取消。</p>
-					</view>
-					<view v-else-if="order.detailStatus == 'cancel'">
-						<h4>订单已被取消。</h4>
-						<p>拒接理由内容拒接理由内容拒接理由内容，如有疑问请联系客服。</p>
 					</view>
 					<view v-else-if="order.detailStatus == 'init'">
 						<h4>订单待处理</h4>
 					</view>
-					<view v-else-if="order.detailStatus == 'waitsend'">
+					<view v-else-if="order.detailStatus == 'accept' || order.detailStatus == 'waitsend' || order.detailStatus == 'collect'">
 						<h4>订单待发货</h4>
 					</view>
 					<view v-else-if="order.detailStatus == 'waitsign'">
 						<h4>订单待签收</h4>
 					</view>
-					<view v-else-if="order.detailStatus == 'init'">
-						<h4>订单待处理</h4>
+					<view v-else-if="order.detailStatus == 'finish'">
+						<h4>订单已完成，感谢您的支持</h4>
 					</view>
-					<view v-else-if="order.detailStatus == 'accept'">
-						<h4>订单待拣货</h4>
+					<view v-else-if="order.detailStatus == 'cancel' || order.detailStatus == 'refuse'">
+						<h4>订单已被取消。</h4>
+						<p>拒接理由内容拒接理由内容拒接理由内容，如有疑问请联系客服。</p>
 					</view>
 				</view>
 				<view class="top_button">
@@ -175,7 +169,7 @@
 		</view>
 		<view class="flex_between bottom_pay" v-if="order.detailStatus == 'cancel'">
 			<text></text>
-			<button class="button_block">重新下单</button>
+			<button @click="onOrderAgain" class="button_block">重新下单</button>
 		</view>
 		<view class="flex_between bottom_pay" v-if="order.detailStatus == 'waitsign'">
 			<text></text>
@@ -486,6 +480,11 @@
 							title: data.message
 						});
 					}
+				})
+			},
+			onOrderAgain() {
+				uni.navigateTo({
+					url: '/pages/tab1/orderBack?orderInfo=' + encodeURIComponent(JSON.stringify(this.order))
 				})
 			},
 			onDetails() {

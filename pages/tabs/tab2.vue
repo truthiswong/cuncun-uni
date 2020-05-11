@@ -84,13 +84,7 @@
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="仓储订单" :showArrow="false">
 												<view slot='right' class="list_right_text">
-													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
-													<text class="list_right_blue" v-if="item.status.code == 'init'">待接单</text>
-													<text class="list_right_blue" v-if="item.status.code == 'fetch'">待取货</text>
-													<text class="list_right_blue" v-if="item.status.code == 'delivery'">回库中</text>
-													<text class="list_right_blue" v-if="item.status.code == 'inputwork'">入库作业中</text>
-													<text class="list_right_gray" v-if="item.status.code == 'finish'">已完成</text>
-													<text class="list_right_gray" v-if="item.status.code == 'cancel'">已取消</text>
+													<text class="list_right_orange">待付款</text>
 												</view>
 											</uni-list-item>
 										</uni-list>
@@ -135,11 +129,12 @@
 												<view slot='right' class="list_right_text">
 													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
 													<text class="list_right_blue" v-if="item.status.code == 'init'">待接单</text>
+													<text class="list_right_blue" v-if="item.status.code == 'assign'">待取货</text>
 													<text class="list_right_blue" v-if="item.status.code == 'fetch'">待取货</text>
 													<text class="list_right_blue" v-if="item.status.code == 'delivery'">回库中</text>
-													<text class="list_right_blue" v-if="item.status.code == 'inputwork'">入库作业中</text>
+													<text class="list_right_blue" v-if="item.status.code == 'inputwork' || item.status.code == 'monitor' || item.status.code == 'photo' || item.status.code == 'ready'">入库作业中</text>
 													<text class="list_right_gray" v-if="item.status.code == 'finish'">已完成</text>
-													<text class="list_right_gray" v-if="item.status.code == 'cancel'">已取消</text>
+													<text class="list_right_gray" v-if="item.status.code == 'cancel' || item.status.code == 'refuse'">已取消</text>
 												</view>
 											</uni-list-item>
 										</uni-list>
@@ -170,10 +165,10 @@
 												<view slot='right' class="list_right_text">
 													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
 													<text class="list_right_blue" v-if="item.status.code == 'init'">待处理</text>
-													<text class="list_right_blue" v-if="item.status.code == 'waitsend'">待发货</text>
+													<text class="list_right_blue" v-if="item.status.code == 'accept' || item.status.code == 'waitsend' || item.status.code == 'collect'">待发货</text>
 													<text class="list_right_blue" v-if="item.status.code == 'waitsign'">待签收</text>
 													<text class="list_right_gray" v-if="item.status.code == 'finish'">已完成</text>
-													<text class="list_right_gray" v-if="item.status.code == 'cancel'">已取消</text>
+													<text class="list_right_gray" v-if="item.status.code == 'cancel' || item.status.code == 'refuse'">已取消</text>
 												</view>
 											</uni-list-item>
 										</uni-list>
