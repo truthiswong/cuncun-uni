@@ -40,7 +40,7 @@
 		</view>
 		<view class="content_bottom">
 			<uni-list class="list_custom">
-				<uni-list-item @click='goOhter' title="跳转" thumb="../../static/tab3/ohter.png"></uni-list-item>
+				<!-- <uni-list-item @click='goOhter' title="跳转" thumb="../../static/tab3/ohter.png"></uni-list-item> -->
 				<navigator url="../tab3/other">
 					<uni-list-item title="其他" thumb="../../static/tab3/ohter.png"></uni-list-item>
 				</navigator>

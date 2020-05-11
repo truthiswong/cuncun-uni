@@ -275,6 +275,9 @@
 				this.tab1ShowHide = uni.getStorageSync('tab1ShowHide')
 			}
 			let user = uni.getStorageSync('user')
+			if (!user) {
+				this.getUserInfo()
+			}
 			let nickname = ''
 			let nowHour = new Date().getHours()
 			if (user.nickName) {
@@ -418,7 +421,36 @@
 						});
 					}
 				})
-			}
+			},
+			getUserInfo() {
+				this.$http('user/current', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						uni.setStorage({
+							key: 'user',
+							data: data.data
+						});
+						let nowHour = new Date().getHours()
+						if (data.data.nickName) {
+							this.nickname = data.data.nickName
+						} else {
+							this.nickname = data.data.name
+						}
+						if (nowHour>=5 && nowHour<=12) {
+							this.welcomeText = `上午好，${this.nickname}`
+						} else if (nowHour>12 && nowHour<=18) {
+							this.welcomeText = `下午好，${this.nickname}`
+						} else{
+							this.welcomeText = `晚上好，${this.nickname}`
+						}
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			},
 		}
 	}
 </script>

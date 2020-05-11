@@ -79,14 +79,15 @@
 			if (user.realNameConfirm) {
 				this.realNameConfirm = user.realNameConfirm
 			}
+			this.getRealNameReturn()
 			// #ifdef APP-PLUS
-				setTimeout(function() {
-					var args = plus.runtime.arguments;
-					if (args) {
-						// 处理args参数，如直达到某新页面等 
-						console.log(args)
-					}
-				}, 10);
+			setTimeout(function() {
+				var args = plus.runtime.arguments;
+				if (args) {
+					// 处理args参数，如直达到某新页面等 
+					console.log(args)
+				}
+			}, 10);
 			// #endif
 		},
 		methods: {
@@ -256,6 +257,20 @@
 					// 	delta: 1
 					// })
 				}
+			},
+			getRealNameReturn() {
+				this.$http('user/alipay/user/certify/query', "GET", '', res => {
+					let data = res.data
+					console.log(data)
+					if (data.success) {
+						
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
 			},
 			getIdinfo() {
 				this.$http('user/idinfo', "GET", '', res => {
