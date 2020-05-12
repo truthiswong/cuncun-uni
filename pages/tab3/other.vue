@@ -5,12 +5,12 @@
 		<view class="content">
 			<view class="list_padding30 list_custom_margin20" style="background-color: #FFFFFF;">
 				<uni-list class="list_custom list_custom_margin20">
-					<navigator url="/pages/tab3/otherPage1">
+					<navigator url="/pages/login/agreement">
 						<uni-list-item title="存存服务协议"></uni-list-item>
 					</navigator>
 				</uni-list>
 				<uni-list class="list_custom list_custom_margin20">
-					<navigator url="/pages/tab3/otherPage2">
+					<navigator url="/pages/login/agreement">
 						<uni-list-item title="存存服务须知"></uni-list-item>
 					</navigator>
 				</uni-list>
