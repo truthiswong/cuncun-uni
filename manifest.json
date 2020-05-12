@@ -30,11 +30,9 @@
         "distribute" : {
             /* android打包配置 */
             "android" : {
-				"google": {  
-					"schemes": [  
-						"cuncun", "realname"
-					]  
-				},
+                "google" : {
+                    "schemes" : [ "cuncun", "realname" ]
+                },
                 "permissions" : [
                     "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
                     "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
@@ -57,12 +55,12 @@
             },
             /* ios打包配置 */
             "ios" : {
-				"urltypes" : [
-					{
-						"urlidentifier" : "com.cuncun.cuncun",
-						"urlschemes" : [ "cuncun", "realname" ]
-					}
-				],
+                "urltypes" : [
+                    {
+                        "urlidentifier" : "com.cuncun.cuncun",
+                        "urlschemes" : [ "cuncun", "realname" ]
+                    }
+                ],
                 "privacyDescription" : {
                     "NSPhotoLibraryUsageDescription" : "上传用户头像时选择图片作为用户头像",
                     "NSCameraUsageDescription" : "上传用户头像时拍摄图像作为用户头像",
@@ -71,7 +69,7 @@
                 },
                 "capabilities" : {
                     "entitlements" : {
-                        "com.apple.developer.associated-domains" : [ "applinks:tech.cuncun.cuncun" ]
+                        "com.apple.developer.associated-domains" : [ "applinks: cuncun.cloud/cclink" ]
                     },
                     "plists" : {}
                 }
