@@ -169,12 +169,6 @@
 								  key: 'token',
 								  data: token
 								});
-								// this.getUserInfo()
-								console.log(data.data.account)
-								uni.setStorage({
-									key: 'user',
-									data: data.data.account
-								});
 								uni.switchTab({
 									url: '/pages/tabs/tab1'
 								})
