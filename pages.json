@@ -228,6 +228,15 @@
 			}
 		},
 		{
+			"path": "pages/tab3/payDetails",
+			"style": {
+				"navigationBarTitleText": "消费明细",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
 			"path": "pages/tab3/other",
 			"style": {
 				"navigationBarTitleText": "其它",

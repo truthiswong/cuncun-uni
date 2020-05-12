@@ -40,8 +40,10 @@
 		</view>
 		<view class="content_bottom">
 			<uni-list class="list_custom">
-				<!-- <uni-list-item @click='goOhter' title="跳转" thumb="../../static/tab3/ohter.png"></uni-list-item> -->
-				<navigator url="../tab3/other">
+				<navigator url="/pages/tab3/payDetails">
+					<uni-list-item title="消费明细" thumb="../../static/tab3/pay_detail.png"></uni-list-item>
+				</navigator>
+				<navigator url="/pages/tab3/other">
 					<uni-list-item title="其他" thumb="../../static/tab3/ohter.png"></uni-list-item>
 				</navigator>
 				<uni-list-item @click="onCall(phone)" title="客服电话" thumb="../../static//tab3/server.png" :rightText="phone"></uni-list-item>
