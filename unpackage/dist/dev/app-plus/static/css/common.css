@@ -1,5 +1,10 @@
 /* 头部 */
 .header {}
+/* 导航点击阴影 */
+.navigator-hover {
+	background-color: rgba(0, 0, 0, 0);
+	opacity: 1;
+}
 
 .header_bg_white {
 	background-color: #FFFFFF !important;
@@ -157,6 +162,7 @@
 	width: 120upx !important;
 	border: 0 none !important;
 }
+
 /* 弹窗 */
 .uni-popup {
 	z-index: 900 !important;
@@ -186,16 +192,18 @@
 
 /* 多选框 */
 .checkbox_custom uni-checkbox .uni-checkbox-input.uni-checkbox-input-checked {
-    background-color: rgb(59, 193, 187);
+	background-color: rgb(59, 193, 187);
 }
+
 .checkbox_custom uni-checkbox .uni-checkbox-input {
 	margin: 0;
-    border: 1px solid #d1d1d1;
-    border-radius: 50%;
-    position: relative;
+	border: 1px solid #d1d1d1;
+	border-radius: 50%;
+	position: relative;
 }
+
 .checkbox_custom uni-checkbox:not([disabled]) .uni-checkbox-input:hover {
-    border-color: rgb(59, 193, 187);
+	border-color: rgb(59, 193, 187);
 }
 
 .flex_between {
