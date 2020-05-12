@@ -17,13 +17,13 @@
 		<!-- 内容 -->
 		<view class="content">
 			<view v-for="(item,index) in 30" :key="index" class="flex_between pay_list" style="width: 100%;">
-				<view style="width: 40%;">
+				<view style="width: 30%;">
 					2020-06-{{item>9?item:'0'+item}}
 				</view>
-				<view style="width: 30%;margin-left: 30upx;">
+				<view style="width: 40%;text-align: center;padding-left: 2.5%;">
 					¥ {{item+'00'}}
 				</view>
-				<view style="width: 35%;text-align: right;">
+				<view style="width: 40%;text-align: right;">
 					返送费用¥ {{item+'00'}}
 				</view>
 			</view>

@@ -182,7 +182,7 @@
 <style scoped lang="scss">
 	.header_icon {
 		width: 200upx;
-		height: 44px;
+		height: 88upx;
 	}
 
 	.header_icon image {
