@@ -47,6 +47,7 @@
 				<uni-list-item @click="onCall(phone)" title="客服电话" thumb="../../static//tab3/server.png" :rightText="phone"></uni-list-item>
 			</uni-list>
 		</view>
+		<image src="../../static/tab3/tab3_bottom.png" class="tab3_bottom" mode=""></image>
 	</view>
 </template>
 
@@ -62,11 +63,12 @@
 				phone: '021-34283744',
 			}
 		},
-		onLoad(op) {
-			this.getUserInfo()
-		},
+		onLoad(op) {},
 		onShow() {
 			let user = uni.getStorageSync('user')
+			if (!user) {
+				this.getUserInfo()
+			}
 			if (user.portrait) {
 				this.headImage = user.portrait
 			}
@@ -82,7 +84,7 @@
 			}
 		},
 		methods: {
-			goOhter(){
+			goOhter() {
 				var UIApplication = plus.ios.import('UIApplication');
 				var NSURL = plus.ios.import('NSURL');
 				console.log(UIApplication)
@@ -134,11 +136,17 @@
 	}
 </script>
 
+<style>
+	page {
+		height: 100%;
+		background: rgba(252, 252, 252, 1)
+	}
+</style>
+
 <style scoped lang="scss">
-	page,
 	.page {
-		background-color: #f6f6f6;
 		position: relative;
+		height: 100%;
 	}
 
 	.header_icon {
@@ -219,5 +227,15 @@
 	.content_bottom {
 		padding: 0 30upx;
 		background-color: #FFFFFF;
+	}
+
+	.tab3_bottom {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 60upx;
+		margin: auto;
+		width: 422upx;
+		height: 80upx;
 	}
 </style>
