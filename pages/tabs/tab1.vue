@@ -93,7 +93,8 @@
 							<scroll-view class="scroll_x" scroll-x="true">
 								<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
 								 style="display: inline-block;" v-for="(item,index) in bookData.goods" :key='index'>
-									<image :src="item.coverPic"></image>
+									<image v-if="item.coverPic" :src="item.coverPic"></image>
+									<image v-else @click="onClickRight(2)" src="../../static/tab1/add_order.png" mode=""></image>
 								</view>
 							</scroll-view>
 						</view>
@@ -122,7 +123,8 @@
 							<scroll-view class="scroll_x" scroll-x="true">
 								<view class="scroll_content scroll_content2" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
 								 v-for="(item,index) in clotheData.goods" :key='index' style="display: inline-block;">
-									<image :src="item.coverPic"></image>
+									<image v-if="item.coverPic" :src="item.coverPic"></image>
+									<image v-else @click="onClickRight(2)" src="../../static/tab1/add_order.png" mode=""></image>
 									<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 112upx;" src="../../static/tab1/clothes_box1.png"></image>
 								</view>
 							</scroll-view>
@@ -152,7 +154,8 @@
 							<scroll-view class="scroll_x" scroll-x="true">
 								<view class="scroll_content scroll_content2" v-for="(item,index) in shoeData.goods" :key='index' style="display: inline-block;">
 									<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
-									<image :src="item.coverPic"></image>
+									<image v-if="item.coverPic" :src="item.coverPic"></image>
+									<image v-else @click="onClickRight(2)" src="../../static/tab1/add_order.png" mode=""></image>
 									<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
 								</view>
 							</scroll-view>
@@ -181,12 +184,13 @@
 						<view v-if="tab1ShowHide.storageShowHide == true">
 							<scroll-view class="scroll_x" scroll-x="true">
 								<view class="scroll_content scroll_content4" v-for="(item,index) in storageData.goods" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
-									<image :src="item.coverPic"></image>
+									<image v-if="item.coverPic" :src="item.coverPic"></image>
+									<image v-else @click="onClickRight(2)" src="../../static/tab1/add_order.png" mode=""></image>
 								</view>
 							</scroll-view>
 						</view>
 					</view>
-					
+
 				</view>
 				<!-- 杂货架 -->
 				<view @longpress="longpress('杂货架')" class="list_margin50" v-if="long_active || groceriesData.dataNumber>0" style="background-color: #FFFFFF;">
@@ -285,11 +289,11 @@
 			} else {
 				nickname = user.name
 			}
-			if (nowHour>=5 && nowHour<=12) {
+			if (nowHour >= 5 && nowHour <= 12) {
 				this.welcomeText = `上午好，${nickname}`
-			} else if (nowHour>12 && nowHour<=18) {
+			} else if (nowHour > 12 && nowHour <= 18) {
 				this.welcomeText = `下午好，${nickname}`
-			} else{
+			} else {
 				this.welcomeText = `晚上好，${nickname}`
 			}
 		},
@@ -389,6 +393,28 @@
 					let data = res.data
 					console.log(data)
 					if (data.success) {
+						let goodsData = {
+							id: '',
+							coverPic: ''
+						}
+						for (let i = 0; i < 10; i++) {
+							if (!data.data.bookcase.goods[i]) {
+								goodsData.id = i
+								data.data.bookcase.goods.push(goodsData)
+							}
+							if (!data.data.armoire.goods[i]) {
+								goodsData.id = i
+								data.data.armoire.goods.push(goodsData)
+							}
+							if (!data.data.shoebox.goods[i]) {
+								goodsData.id = i
+								data.data.shoebox.goods.push(goodsData)
+							}
+							if (!data.data.storeroom.goods[i]) {
+								goodsData.id = i
+								data.data.storeroom.goods.push(goodsData)
+							}
+						}
 						this.bookData = data.data.bookcase //书架
 						this.bookData.dataNumber = data.data.bookcase.goods.length
 						this.clotheData = data.data.armoire //衣柜
@@ -436,11 +462,11 @@
 						} else {
 							this.nickname = data.data.name
 						}
-						if (nowHour>=5 && nowHour<=12) {
+						if (nowHour >= 5 && nowHour <= 12) {
 							this.welcomeText = `上午好，${this.nickname}`
-						} else if (nowHour>12 && nowHour<=18) {
+						} else if (nowHour > 12 && nowHour <= 18) {
 							this.welcomeText = `下午好，${this.nickname}`
-						} else{
+						} else {
 							this.welcomeText = `晚上好，${this.nickname}`
 						}
 					} else {
@@ -495,8 +521,8 @@
 			line-height: 50upx;
 			padding: 40upx 40upx 0 30upx;
 			overflow: hidden;
-			text-overflow:ellipsis;
-			white-space:nowrap;
+			text-overflow: ellipsis;
+			white-space: nowrap;
 		}
 
 		p {
