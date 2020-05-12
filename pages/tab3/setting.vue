@@ -194,7 +194,10 @@
 					content: '注销账号后，该账号里所有数据将被清空。',
 					success(res) {
 						if (res.confirm) {
-							uni.toastSuccess('退出成功')
+							uni.showToast({
+								icon: 'none',
+								title: '注销成功'
+							})
 						}
 					}
 				})
