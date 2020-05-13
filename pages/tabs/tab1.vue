@@ -212,7 +212,7 @@
 							</uni-list>
 						</view>
 						<view v-if="tab1ShowHide.groceriesShowHide == true">
-							<view class="box_groceries_content flex_between" v-for="(item,index) in groceriesData.packs" :key="index">
+							<view class="box_groceries_content flex_between" v-for="(item,index) in groceriesData.packs" :key="index" v-show="index<3">
 								<view class="box_groceries_left">
 									<image src="../../static/tab1/box_null.png"></image>
 									<text>{{index+1}}</text>
