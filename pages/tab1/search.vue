@@ -7,10 +7,10 @@
 				</view>
 			</view>
 		</uni-nav-bar>
-		<view class='search_box'>
+		<view class='search_box' @click="isAddShow=false">
 			<uni-search-bar :radius="100" @confirm="onSearch"></uni-search-bar>
 		</view>
-		<view class="content">
+		<view class="content" @click="isAddShow=false">
 			<!-- 未过安检的箱子 -->
 			<view class="list_margin50" v-if="failData.length>0" style="background-color: #FFFFFF;">
 				<view class="list_padding30">
@@ -50,10 +50,17 @@
 					</view>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
-							 style="display: inline-block;" v-for="(item,index) in bookData.goods" :key='index'>
-								<image :src="item.coverPic"></image>
-							</view>
+							<checkbox-group class="checkbox_custom" @change="onCheckboxChange">
+								<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}" style="display: inline-block;"
+								 v-for="(item,index) in bookData.goods" :key='index'>
+									<label>
+										<image :src="item.coverPic"></image>
+										<view class="checkbox_item" v-if="isCheckedShow">
+											<checkbox :value="item.id" :checked="item.checked" color="white" />
+										</view>
+									</label>
+								</view>
+							</checkbox-group>
 						</scroll-view>
 					</view>
 				</view>
@@ -68,11 +75,18 @@
 					</view>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_content2" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
-							 v-for="(item,index) in clotheData.goods" :key='index' style="display: inline-block;">
-								<image :src="item.coverPic"></image>
-								<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 112upx;" src="../../static/tab1/clothes_box1.png"></image>
-							</view>
+							<checkbox-group class="checkbox_custom" @change="onCheckboxChange">
+								<view class="scroll_content scroll_content2" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
+								 v-for="(item,index) in clotheData.goods" :key='index' style="display: inline-block;">
+									<label>
+										<image :src="item.coverPic"></image>
+										<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 112upx;" src="../../static/tab1/clothes_box1.png"></image>
+										<view class="checkbox_item" v-if="isCheckedShow">
+											<checkbox :value="item.id" :checked="item.checked" color="white" />
+										</view>
+									</label>
+								</view>
+							</checkbox-group>
 						</scroll-view>
 					</view>
 				</view>
@@ -87,11 +101,18 @@
 					</view>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_content2" v-for="(item,index) in shoeData.goods" :key='index' style="display: inline-block;">
-								<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
-								<image :src="item.coverPic"></image>
-								<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
-							</view>
+							<checkbox-group class="checkbox_custom" @change="onCheckboxChange">
+								<view class="scroll_content scroll_content2" v-for="(item,index) in shoeData.goods" :key='index' style="display: inline-block;">
+									<label>
+										<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
+										<image :src="item.coverPic"></image>
+										<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
+										<view class="checkbox_item" v-if="isCheckedShow">
+											<checkbox :value="item.id" :checked="item.checked" color="white" />
+										</view>
+									</label>
+								</view>
+							</checkbox-group>
 						</scroll-view>
 					</view>
 				</view>
@@ -106,9 +127,17 @@
 					</view>
 					<view>
 						<scroll-view class="scroll_x" scroll-x="true">
-							<view class="scroll_content scroll_content4" v-for="(item,index) in storageData.goods" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
-								<image :src="item.coverPic"></image>
-							</view>
+							<checkbox-group class="checkbox_custom" @change="onCheckboxChange">
+								<view class="scroll_content scroll_content4" v-for="(item,index) in storageData.goods" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
+									<label>
+										<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
+										<image :src="item.coverPic"></image>
+										<view class="checkbox_item" v-if="isCheckedShow">
+											<checkbox :value="item.id" :checked="item.checked" color="white" />
+										</view>
+									</label>
+								</view>
+							</checkbox-group>
 						</scroll-view>
 					</view>
 				</view>
@@ -146,8 +175,37 @@
 			</view>
 		</view>
 		<view class="bottom_button" v-if="isCheckedShow">
-			<image @click="onCancel" style="width: 218upx;height: 124upx;" src="../../static/tab1/long_cancel.png" mode=""></image>
-			<image @click="onConfirm" style="width: 268upx;height: 124upx;" src="../../static/tab1/come_back.png" mode=""></image>
+			<image @click="onAgainAdd" src="../../static/tab1/again_add.png" mode=""></image>
+			<image @click="onConfirm" src="../../static/tab1/order_back.png" mode=""></image>
+			<view class="bottom_alert" v-if="isAddShow">
+				<scroll-view scroll-y="true">
+					<navigator url="/pages/tab1/book" v-if="bookCount>0">
+						<view class="alert_list">
+							<text>我的书架 ({{bookCount}})</text>
+						</view>
+					</navigator>
+					<navigator url="/pages/tab1/clothes" v-if="clotheCount>0">
+						<view class="alert_list">
+							<text>我的衣柜 ({{clotheCount}})</text>
+						</view>
+					</navigator>
+					<navigator url="/pages/tab1/shoes" v-if="shoeCount>0">
+						<view class="alert_list">
+							<text>我的鞋柜 ({{shoeCount}})</text>
+						</view>
+					</navigator>
+					<navigator url="/pages/tab1/storage" v-if="storageCount>0">
+						<view class="alert_list">
+							<text>我的储藏室 ({{storageCount}})</text>
+						</view>
+					</navigator>
+					<navigator url="/pages/tab1/groceries" v-if="groceriesCount>0">
+						<view class="alert_list" style="border-bottom: 0;">
+							<text>我的杂物架 ({{groceriesCount}})</text>
+						</view>
+					</navigator>
+				</scroll-view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -169,6 +227,7 @@
 				groceriesData: [], //杂货架
 				isCheckedShow: false,
 				chooseButton: '选择',
+				isAddShow: false,
 			}
 		},
 		onLoad(options) {
@@ -176,6 +235,7 @@
 		},
 		onShow() {
 			this.getGoodsList()
+			this.getAddCount()
 		},
 		onReachBottom() {
 
@@ -200,31 +260,26 @@
 			onClickRight(index) {
 				if (index == '选择') {
 					this.isCheckedShow = true
-					this.chooseButton = '全选'
-				} else if (index == '全选') {
-					for (let item of this.list) {
-						item.checked = true
-					}
+					this.chooseButton = '取消'
+				} else if (index == '取消') {
+					this.isCheckedShow = false
+					this.chooseButton = '选择'
 				}
 			},
 			onCheckboxChange(e) {
-				for (let item of this.list) {
-					if (e.detail.value.includes(item.id)) {
-						item.checked = true
-					} else {
-						item.checked = false
-					}
-				}
-				console.log(this.list)
+				// for (let item of this.list) {
+				// 	if (e.detail.value.includes(item.id)) {
+				// 		item.checked = true
+				// 	} else {
+				// 		item.checked = false
+				// 	}
+				// }
 			},
-			onCancel() {
-				this.isCheckedShow = false
-				this.chooseButton = '选择'
-				for (let item of this.list) {
-					item.checked = false
-				}
+			onAgainAdd() {
+				this.isAddShow = !this.isAddShow
 			},
 			onConfirm() {
+				this.isAddShow = false
 				let chooseData = {}
 				let chooseIndex = 0
 				for (let item of this.list) {
@@ -243,7 +298,7 @@
 						let data = res.data
 						if (data.success) {
 							uni.navigateTo({
-								url: '/pages/tab1/orderBack'
+								url: '/pages/tab1/orderBackPay'
 							})
 						} else {
 							uni.showToast({
@@ -277,6 +332,24 @@
 					}
 				})
 			},
+			// 获取再追加列表数据
+			getAddCount() {
+				this.$http('user/store/count', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						this.bookCount = data.data.bookcase //书架
+						this.clotheCount = data.data.armoire //衣柜
+						this.shoeCount = data.data.shoebox //鞋柜
+						this.storageCount = data.data.storeroom //储藏室
+						this.groceriesCount = data.data.sundries //杂货架
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+			}
 		}
 	}
 </script>
@@ -395,7 +468,7 @@
 			position: absolute;
 			top: 50upx;
 			right: 10upx;
-			z-index: 10;
+			z-index: 25;
 		}
 	}
 	.box_groceries_right {
@@ -430,6 +503,12 @@
 		width: 285upx;
 		height: 285upx;
 		text-align: center;
+		.checkbox_item {
+			position: absolute;
+			top: 0;
+			right: 10upx;
+			z-index: 25;
+		}
 	}
 
 	.scroll_contentbg1 {
@@ -479,13 +558,44 @@
 
 	.bottom_button {
 		position: fixed;
-		right: 0;
 		bottom: 0upx;
-		z-index: 20;
-
+		width: 100%;
+		z-index: 30;
+		text-align: center;
+	
 		image {
-			width: 218upx;
-			height: 120upx;
+			width: 324upx;
+			height: 127upx;
+		}
+	
+		.bottom_alert {
+			position: absolute;
+			left: 73upx;
+			bottom: 160upx;
+			width: 270upx;
+			background: rgba(255, 255, 255, 1);
+			box-shadow: 0px 2upx 14upx 0px rgba(0, 0, 0, 0.1);
+			// box-shadow: 0px 30upx 110upx 0px rgba(0, 0, 0, 0.3);
+	
+			.alert_list {
+				font-size: 28upx;
+				font-weight: 400;
+				color: rgba(40, 40, 40, 1);
+				border-bottom: 1upx solid rgba(242, 242, 242, .58);
+				line-height: 100upx;
+				text-align: left;
+				padding-left: 30upx;
+			}
+		}
+	
+		.bottom_alert::after {
+			content: "";
+			position: absolute;
+			bottom: -20upx;
+			left: 30upx;
+			border-top: 20upx solid white;
+			border-left: 20upx solid transparent;
+			border-right: 20upx solid transparent;
 		}
 	}
 </style>
