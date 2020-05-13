@@ -34,9 +34,7 @@
 				</view> -->
 			</uni-list>
 		</view>
-		<!-- <button type="default" @click="onFace">人脸识别</button> -->
-		<button @click="onConfirm" class="address_button" :class="{address_button_active: buttonActive}">确
-			认</button>
+		<button @click="onConfirm" :disabled="realNameConfirm" class="address_button" :class="{address_button_active: buttonActive}">{{realNameConfirm?'已实名':'确 认'}}</button>
 	</view>
 </template>
 
@@ -95,20 +93,6 @@
 				uni.navigateBack({
 					delta: 1
 				})
-			},
-			onFace() {
-				uni.request({
-					url: 'https://dtplus-cn-shanghai.data.aliyuncs.com/face/attribute',
-					method: 'POST',
-					header: {
-						'Content-Type': 'application/x-www-form-urlencoded',
-						'X-TENANT-ID': 'cuncun:cc@2020',
-						'Authorization': uni.getStorageSync('token')
-					},
-					success: (res) => {
-
-					}
-				});
 			},
 			changeIDCardImage1() {
 				if (this.realNameConfirm) {
@@ -263,7 +247,7 @@
 					let data = res.data
 					console.log(data)
 					if (data.success) {
-						
+						this.realNameConfirm = true
 					} else {
 						uni.showToast({
 							icon: 'none',

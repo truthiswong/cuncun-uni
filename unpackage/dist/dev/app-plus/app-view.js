@@ -22401,14 +22401,14 @@ var render = function() {
         {
           staticClass: _vm._$g(12, "sc"),
           class: _vm._$g(12, "c"),
-          attrs: { _i: 12 },
+          attrs: { disabled: _vm._$g(12, "a-disabled"), _i: 12 },
           on: {
             click: function($event) {
               return _vm.$handleViewEvent($event)
             }
           }
         },
-        [_vm._v("确\n\t\t认")]
+        [_vm._v(_vm._$g(12, "t0-0"))]
       )
     ],
     1
