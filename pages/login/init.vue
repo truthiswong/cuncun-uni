@@ -8,12 +8,13 @@
 		},
 		onReady() {
 			// 从本地缓存中同步获取指定 key 对应的内容，用于判断是否是第一次打开应用
+			setTimeout(()=>{
+				plus.navigator.closeSplashscreen()
+			}, 2000)
 			try {
 				const value = uni.getStorageSync('launchFlag')
 				const token = uni.getStorageSync('token')
-				setTimeout(()=>{
-					plus.navigator.closeSplashscreen()
-				}, 1500)
+				
 				if (value) {
 					if (token) {
 						this.$nextTick(()=>{
