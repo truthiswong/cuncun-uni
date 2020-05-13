@@ -3189,6 +3189,18 @@ var render = function() {
                                       return _c(
                                         "v-uni-view",
                                         {
+                                          directives: [
+                                            {
+                                              name: "show",
+                                              rawName: "v-show",
+                                              value: _vm._$g(
+                                                "129-" + $34,
+                                                "v-show"
+                                              ),
+                                              expression:
+                                                "_$g((\"129-\"+$34),'v-show')"
+                                            }
+                                          ],
                                           key: item,
                                           staticClass: _vm._$g(
                                             "129-" + $34,
@@ -11055,7 +11067,15 @@ var render = function() {
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
+        {
+          staticClass: _vm._$g(5, "sc"),
+          attrs: { _i: 5 },
+          on: {
+            click: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
         [
           _c("uni-search-bar", {
             attrs: { _i: 6 },
@@ -11070,7 +11090,15 @@ var render = function() {
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
+        {
+          staticClass: _vm._$g(7, "sc"),
+          attrs: { _i: 7 },
+          on: {
+            click: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
         [
           _vm._$g(8, "i")
             ? _c(
@@ -11262,32 +11290,86 @@ var render = function() {
                               staticClass: _vm._$g(31, "sc"),
                               attrs: { "scroll-x": "true", _i: 31 }
                             },
-                            _vm._l(_vm._$g(32, "f"), function(
-                              item,
-                              index,
-                              $20,
-                              $30
-                            ) {
-                              return _c(
-                                "v-uni-view",
+                            [
+                              _c(
+                                "v-uni-checkbox-group",
                                 {
-                                  key: item,
-                                  staticClass: _vm._$g("32-" + $30, "sc"),
-                                  staticStyle: { display: "inline-block" },
-                                  style: _vm._$g("32-" + $30, "s"),
-                                  attrs: { _i: "32-" + $30 }
-                                },
-                                [
-                                  _c("v-uni-image", {
-                                    attrs: {
-                                      src: _vm._$g("33-" + $30, "a-src"),
-                                      _i: "33-" + $30
+                                  staticClass: _vm._$g(32, "sc"),
+                                  attrs: { _i: 32 },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.$handleViewEvent($event)
                                     }
-                                  })
-                                ],
+                                  }
+                                },
+                                _vm._l(_vm._$g(33, "f"), function(
+                                  item,
+                                  index,
+                                  $20,
+                                  $30
+                                ) {
+                                  return _c(
+                                    "v-uni-view",
+                                    {
+                                      key: item,
+                                      staticClass: _vm._$g("33-" + $30, "sc"),
+                                      staticStyle: { display: "inline-block" },
+                                      style: _vm._$g("33-" + $30, "s"),
+                                      attrs: { _i: "33-" + $30 }
+                                    },
+                                    [
+                                      _c(
+                                        "v-uni-label",
+                                        { attrs: { _i: "34-" + $30 } },
+                                        [
+                                          _c("v-uni-image", {
+                                            attrs: {
+                                              src: _vm._$g(
+                                                "35-" + $30,
+                                                "a-src"
+                                              ),
+                                              _i: "35-" + $30
+                                            }
+                                          }),
+                                          _vm._$g("36-" + $30, "i")
+                                            ? _c(
+                                                "v-uni-view",
+                                                {
+                                                  staticClass: _vm._$g(
+                                                    "36-" + $30,
+                                                    "sc"
+                                                  ),
+                                                  attrs: { _i: "36-" + $30 }
+                                                },
+                                                [
+                                                  _c("v-uni-checkbox", {
+                                                    attrs: {
+                                                      value: _vm._$g(
+                                                        "37-" + $30,
+                                                        "a-value"
+                                                      ),
+                                                      checked: _vm._$g(
+                                                        "37-" + $30,
+                                                        "a-checked"
+                                                      ),
+                                                      color: "white",
+                                                      _i: "37-" + $30
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            : _vm._e()
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                }),
                                 1
                               )
-                            }),
+                            ],
                             1
                           )
                         ],
@@ -11300,30 +11382,30 @@ var render = function() {
                 1
               )
             : _vm._e(),
-          _vm._$g(34, "i")
+          _vm._$g(38, "i")
             ? _c(
                 "v-uni-view",
                 {
-                  staticClass: _vm._$g(34, "sc"),
+                  staticClass: _vm._$g(38, "sc"),
                   staticStyle: { "background-color": "#FFFFFF" },
-                  attrs: { _i: 34 }
+                  attrs: { _i: 38 }
                 },
                 [
                   _c(
                     "v-uni-view",
-                    { attrs: { _i: 35 } },
+                    { attrs: { _i: 39 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(36, "sc"), attrs: { _i: 36 } },
+                        { staticClass: _vm._$g(40, "sc"), attrs: { _i: 40 } },
                         [
                           _c(
                             "uni-list",
                             {
-                              staticClass: _vm._$g(37, "sc"),
-                              attrs: { _i: 37 }
+                              staticClass: _vm._$g(41, "sc"),
+                              attrs: { _i: 41 }
                             },
-                            [_c("uni-list-item", { attrs: { _i: 38 } })],
+                            [_c("uni-list-item", { attrs: { _i: 42 } })],
                             1
                           )
                         ],
@@ -11331,54 +11413,111 @@ var render = function() {
                       ),
                       _c(
                         "v-uni-view",
-                        { attrs: { _i: 39 } },
+                        { attrs: { _i: 43 } },
                         [
                           _c(
                             "v-uni-scroll-view",
                             {
-                              staticClass: _vm._$g(40, "sc"),
-                              attrs: { "scroll-x": "true", _i: 40 }
+                              staticClass: _vm._$g(44, "sc"),
+                              attrs: { "scroll-x": "true", _i: 44 }
                             },
-                            _vm._l(_vm._$g(41, "f"), function(
-                              item,
-                              index,
-                              $21,
-                              $31
-                            ) {
-                              return _c(
-                                "v-uni-view",
+                            [
+                              _c(
+                                "v-uni-checkbox-group",
                                 {
-                                  key: item,
-                                  staticClass: _vm._$g("41-" + $31, "sc"),
-                                  staticStyle: { display: "inline-block" },
-                                  style: _vm._$g("41-" + $31, "s"),
-                                  attrs: { _i: "41-" + $31 }
+                                  staticClass: _vm._$g(45, "sc"),
+                                  attrs: { _i: 45 },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.$handleViewEvent($event)
+                                    }
+                                  }
                                 },
-                                [
-                                  _c("v-uni-image", {
-                                    attrs: {
-                                      src: _vm._$g("42-" + $31, "a-src"),
-                                      _i: "42-" + $31
-                                    }
-                                  }),
-                                  _c("v-uni-image", {
-                                    staticStyle: {
-                                      position: "absolute",
-                                      "z-index": "5",
-                                      left: "0",
-                                      bottom: "0",
-                                      width: "100%",
-                                      height: "112upx"
+                                _vm._l(_vm._$g(46, "f"), function(
+                                  item,
+                                  index,
+                                  $21,
+                                  $31
+                                ) {
+                                  return _c(
+                                    "v-uni-view",
+                                    {
+                                      key: item,
+                                      staticClass: _vm._$g("46-" + $31, "sc"),
+                                      staticStyle: { display: "inline-block" },
+                                      style: _vm._$g("46-" + $31, "s"),
+                                      attrs: { _i: "46-" + $31 }
                                     },
-                                    attrs: {
-                                      src: _vm._$g("43-" + $31, "a-src"),
-                                      _i: "43-" + $31
-                                    }
-                                  })
-                                ],
+                                    [
+                                      _c(
+                                        "v-uni-label",
+                                        { attrs: { _i: "47-" + $31 } },
+                                        [
+                                          _c("v-uni-image", {
+                                            attrs: {
+                                              src: _vm._$g(
+                                                "48-" + $31,
+                                                "a-src"
+                                              ),
+                                              _i: "48-" + $31
+                                            }
+                                          }),
+                                          _c("v-uni-image", {
+                                            staticStyle: {
+                                              position: "absolute",
+                                              "z-index": "5",
+                                              left: "0",
+                                              bottom: "0",
+                                              width: "100%",
+                                              height: "112upx"
+                                            },
+                                            attrs: {
+                                              src: _vm._$g(
+                                                "49-" + $31,
+                                                "a-src"
+                                              ),
+                                              _i: "49-" + $31
+                                            }
+                                          }),
+                                          _vm._$g("50-" + $31, "i")
+                                            ? _c(
+                                                "v-uni-view",
+                                                {
+                                                  staticClass: _vm._$g(
+                                                    "50-" + $31,
+                                                    "sc"
+                                                  ),
+                                                  attrs: { _i: "50-" + $31 }
+                                                },
+                                                [
+                                                  _c("v-uni-checkbox", {
+                                                    attrs: {
+                                                      value: _vm._$g(
+                                                        "51-" + $31,
+                                                        "a-value"
+                                                      ),
+                                                      checked: _vm._$g(
+                                                        "51-" + $31,
+                                                        "a-checked"
+                                                      ),
+                                                      color: "white",
+                                                      _i: "51-" + $31
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            : _vm._e()
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                }),
                                 1
                               )
-                            }),
+                            ],
                             1
                           )
                         ],
@@ -11391,30 +11530,30 @@ var render = function() {
                 1
               )
             : _vm._e(),
-          _vm._$g(44, "i")
+          _vm._$g(52, "i")
             ? _c(
                 "v-uni-view",
                 {
-                  staticClass: _vm._$g(44, "sc"),
+                  staticClass: _vm._$g(52, "sc"),
                   staticStyle: { "background-color": "#FFFFFF" },
-                  attrs: { _i: 44 }
+                  attrs: { _i: 52 }
                 },
                 [
                   _c(
                     "v-uni-view",
-                    { attrs: { _i: 45 } },
+                    { attrs: { _i: 53 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(46, "sc"), attrs: { _i: 46 } },
+                        { staticClass: _vm._$g(54, "sc"), attrs: { _i: 54 } },
                         [
                           _c(
                             "uni-list",
                             {
-                              staticClass: _vm._$g(47, "sc"),
-                              attrs: { _i: 47 }
+                              staticClass: _vm._$g(55, "sc"),
+                              attrs: { _i: 55 }
                             },
-                            [_c("uni-list-item", { attrs: { _i: 48 } })],
+                            [_c("uni-list-item", { attrs: { _i: 56 } })],
                             1
                           )
                         ],
@@ -11422,148 +11561,127 @@ var render = function() {
                       ),
                       _c(
                         "v-uni-view",
-                        { attrs: { _i: 49 } },
+                        { attrs: { _i: 57 } },
                         [
                           _c(
                             "v-uni-scroll-view",
-                            {
-                              staticClass: _vm._$g(50, "sc"),
-                              attrs: { "scroll-x": "true", _i: 50 }
-                            },
-                            _vm._l(_vm._$g(51, "f"), function(
-                              item,
-                              index,
-                              $22,
-                              $32
-                            ) {
-                              return _c(
-                                "v-uni-view",
-                                {
-                                  key: item,
-                                  staticClass: _vm._$g("51-" + $32, "sc"),
-                                  staticStyle: { display: "inline-block" },
-                                  attrs: { _i: "51-" + $32 }
-                                },
-                                [
-                                  _c("v-uni-image", {
-                                    staticStyle: {
-                                      position: "absolute",
-                                      "z-index": "0",
-                                      left: "0",
-                                      top: "0",
-                                      width: "100%",
-                                      height: "158upx"
-                                    },
-                                    attrs: {
-                                      src: _vm._$g("52-" + $32, "a-src"),
-                                      _i: "52-" + $32
-                                    }
-                                  }),
-                                  _c("v-uni-image", {
-                                    attrs: {
-                                      src: _vm._$g("53-" + $32, "a-src"),
-                                      _i: "53-" + $32
-                                    }
-                                  }),
-                                  _c("v-uni-image", {
-                                    staticStyle: {
-                                      position: "absolute",
-                                      "z-index": "5",
-                                      left: "0",
-                                      bottom: "0",
-                                      width: "100%",
-                                      height: "127upx"
-                                    },
-                                    attrs: {
-                                      src: _vm._$g("54-" + $32, "a-src"),
-                                      _i: "54-" + $32
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            }),
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            : _vm._e(),
-          _vm._$g(55, "i")
-            ? _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(55, "sc"),
-                  staticStyle: { "background-color": "#FFFFFF" },
-                  attrs: { _i: 55 }
-                },
-                [
-                  _c(
-                    "v-uni-view",
-                    { attrs: { _i: 56 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(57, "sc"), attrs: { _i: 57 } },
-                        [
-                          _c(
-                            "uni-list",
                             {
                               staticClass: _vm._$g(58, "sc"),
-                              attrs: { _i: 58 }
+                              attrs: { "scroll-x": "true", _i: 58 }
                             },
-                            [_c("uni-list-item", { attrs: { _i: 59 } })],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "v-uni-view",
-                        { attrs: { _i: 60 } },
-                        [
-                          _c(
-                            "v-uni-scroll-view",
-                            {
-                              staticClass: _vm._$g(61, "sc"),
-                              attrs: { "scroll-x": "true", _i: 61 }
-                            },
-                            _vm._l(_vm._$g(62, "f"), function(
-                              item,
-                              index,
-                              $23,
-                              $33
-                            ) {
-                              return _c(
-                                "v-uni-view",
+                            [
+                              _c(
+                                "v-uni-checkbox-group",
                                 {
-                                  key: item,
-                                  staticClass: _vm._$g("62-" + $33, "sc"),
-                                  staticStyle: {
-                                    display: "inline-block",
-                                    width: "220upx",
-                                    height: "200upx",
-                                    "font-size": "0"
-                                  },
-                                  attrs: { _i: "62-" + $33 }
-                                },
-                                [
-                                  _c("v-uni-image", {
-                                    attrs: {
-                                      src: _vm._$g("63-" + $33, "a-src"),
-                                      _i: "63-" + $33
+                                  staticClass: _vm._$g(59, "sc"),
+                                  attrs: { _i: 59 },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.$handleViewEvent($event)
                                     }
-                                  })
-                                ],
+                                  }
+                                },
+                                _vm._l(_vm._$g(60, "f"), function(
+                                  item,
+                                  index,
+                                  $22,
+                                  $32
+                                ) {
+                                  return _c(
+                                    "v-uni-view",
+                                    {
+                                      key: item,
+                                      staticClass: _vm._$g("60-" + $32, "sc"),
+                                      staticStyle: { display: "inline-block" },
+                                      attrs: { _i: "60-" + $32 }
+                                    },
+                                    [
+                                      _c(
+                                        "v-uni-label",
+                                        { attrs: { _i: "61-" + $32 } },
+                                        [
+                                          _c("v-uni-image", {
+                                            staticStyle: {
+                                              position: "absolute",
+                                              "z-index": "0",
+                                              left: "0",
+                                              top: "0",
+                                              width: "100%",
+                                              height: "158upx"
+                                            },
+                                            attrs: {
+                                              src: _vm._$g(
+                                                "62-" + $32,
+                                                "a-src"
+                                              ),
+                                              _i: "62-" + $32
+                                            }
+                                          }),
+                                          _c("v-uni-image", {
+                                            attrs: {
+                                              src: _vm._$g(
+                                                "63-" + $32,
+                                                "a-src"
+                                              ),
+                                              _i: "63-" + $32
+                                            }
+                                          }),
+                                          _c("v-uni-image", {
+                                            staticStyle: {
+                                              position: "absolute",
+                                              "z-index": "5",
+                                              left: "0",
+                                              bottom: "0",
+                                              width: "100%",
+                                              height: "127upx"
+                                            },
+                                            attrs: {
+                                              src: _vm._$g(
+                                                "64-" + $32,
+                                                "a-src"
+                                              ),
+                                              _i: "64-" + $32
+                                            }
+                                          }),
+                                          _vm._$g("65-" + $32, "i")
+                                            ? _c(
+                                                "v-uni-view",
+                                                {
+                                                  staticClass: _vm._$g(
+                                                    "65-" + $32,
+                                                    "sc"
+                                                  ),
+                                                  attrs: { _i: "65-" + $32 }
+                                                },
+                                                [
+                                                  _c("v-uni-checkbox", {
+                                                    attrs: {
+                                                      value: _vm._$g(
+                                                        "66-" + $32,
+                                                        "a-value"
+                                                      ),
+                                                      checked: _vm._$g(
+                                                        "66-" + $32,
+                                                        "a-checked"
+                                                      ),
+                                                      color: "white",
+                                                      _i: "66-" + $32
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            : _vm._e()
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                }),
                                 1
                               )
-                            }),
+                            ],
                             1
                           )
                         ],
@@ -11576,30 +11694,30 @@ var render = function() {
                 1
               )
             : _vm._e(),
-          _vm._$g(64, "i")
+          _vm._$g(67, "i")
             ? _c(
                 "v-uni-view",
                 {
-                  staticClass: _vm._$g(64, "sc"),
+                  staticClass: _vm._$g(67, "sc"),
                   staticStyle: { "background-color": "#FFFFFF" },
-                  attrs: { _i: 64 }
+                  attrs: { _i: 67 }
                 },
                 [
                   _c(
                     "v-uni-view",
-                    { attrs: { _i: 65 } },
+                    { attrs: { _i: 68 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(66, "sc"), attrs: { _i: 66 } },
+                        { staticClass: _vm._$g(69, "sc"), attrs: { _i: 69 } },
                         [
                           _c(
                             "uni-list",
                             {
-                              staticClass: _vm._$g(67, "sc"),
-                              attrs: { _i: 67 }
+                              staticClass: _vm._$g(70, "sc"),
+                              attrs: { _i: 70 }
                             },
-                            [_c("uni-list-item", { attrs: { _i: 68 } })],
+                            [_c("uni-list-item", { attrs: { _i: 71 } })],
                             1
                           )
                         ],
@@ -11607,20 +11725,172 @@ var render = function() {
                       ),
                       _c(
                         "v-uni-view",
-                        { attrs: { _i: 69 } },
+                        { attrs: { _i: 72 } },
+                        [
+                          _c(
+                            "v-uni-scroll-view",
+                            {
+                              staticClass: _vm._$g(73, "sc"),
+                              attrs: { "scroll-x": "true", _i: 73 }
+                            },
+                            [
+                              _c(
+                                "v-uni-checkbox-group",
+                                {
+                                  staticClass: _vm._$g(74, "sc"),
+                                  attrs: { _i: 74 },
+                                  on: {
+                                    change: function($event) {
+                                      return _vm.$handleViewEvent($event)
+                                    }
+                                  }
+                                },
+                                _vm._l(_vm._$g(75, "f"), function(
+                                  item,
+                                  index,
+                                  $23,
+                                  $33
+                                ) {
+                                  return _c(
+                                    "v-uni-view",
+                                    {
+                                      key: item,
+                                      staticClass: _vm._$g("75-" + $33, "sc"),
+                                      staticStyle: {
+                                        display: "inline-block",
+                                        width: "220upx",
+                                        height: "200upx",
+                                        "font-size": "0"
+                                      },
+                                      attrs: { _i: "75-" + $33 }
+                                    },
+                                    [
+                                      _c(
+                                        "v-uni-label",
+                                        { attrs: { _i: "76-" + $33 } },
+                                        [
+                                          _c("v-uni-image", {
+                                            staticStyle: {
+                                              position: "absolute",
+                                              "z-index": "0",
+                                              left: "0",
+                                              top: "0",
+                                              width: "100%",
+                                              height: "158upx"
+                                            },
+                                            attrs: {
+                                              src: _vm._$g(
+                                                "77-" + $33,
+                                                "a-src"
+                                              ),
+                                              _i: "77-" + $33
+                                            }
+                                          }),
+                                          _c("v-uni-image", {
+                                            attrs: {
+                                              src: _vm._$g(
+                                                "78-" + $33,
+                                                "a-src"
+                                              ),
+                                              _i: "78-" + $33
+                                            }
+                                          }),
+                                          _vm._$g("79-" + $33, "i")
+                                            ? _c(
+                                                "v-uni-view",
+                                                {
+                                                  staticClass: _vm._$g(
+                                                    "79-" + $33,
+                                                    "sc"
+                                                  ),
+                                                  attrs: { _i: "79-" + $33 }
+                                                },
+                                                [
+                                                  _c("v-uni-checkbox", {
+                                                    attrs: {
+                                                      value: _vm._$g(
+                                                        "80-" + $33,
+                                                        "a-value"
+                                                      ),
+                                                      checked: _vm._$g(
+                                                        "80-" + $33,
+                                                        "a-checked"
+                                                      ),
+                                                      color: "white",
+                                                      _i: "80-" + $33
+                                                    }
+                                                  })
+                                                ],
+                                                1
+                                              )
+                                            : _vm._e()
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                }),
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._$g(81, "i")
+            ? _c(
+                "v-uni-view",
+                {
+                  staticClass: _vm._$g(81, "sc"),
+                  staticStyle: { "background-color": "#FFFFFF" },
+                  attrs: { _i: 81 }
+                },
+                [
+                  _c(
+                    "v-uni-view",
+                    { attrs: { _i: 82 } },
+                    [
+                      _c(
+                        "v-uni-view",
+                        { staticClass: _vm._$g(83, "sc"), attrs: { _i: 83 } },
+                        [
+                          _c(
+                            "uni-list",
+                            {
+                              staticClass: _vm._$g(84, "sc"),
+                              attrs: { _i: 84 }
+                            },
+                            [_c("uni-list-item", { attrs: { _i: 85 } })],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _c(
+                        "v-uni-view",
+                        { attrs: { _i: 86 } },
                         [
                           _c(
                             "v-uni-checkbox-group",
                             {
-                              staticClass: _vm._$g(70, "sc"),
-                              attrs: { _i: 70 },
+                              staticClass: _vm._$g(87, "sc"),
+                              attrs: { _i: 87 },
                               on: {
                                 change: function($event) {
                                   return _vm.$handleViewEvent($event)
                                 }
                               }
                             },
-                            _vm._l(_vm._$g(71, "f"), function(
+                            _vm._l(_vm._$g(88, "f"), function(
                               item,
                               index,
                               $24,
@@ -11630,39 +11900,39 @@ var render = function() {
                                 "v-uni-view",
                                 {
                                   key: item,
-                                  staticClass: _vm._$g("71-" + $34, "sc"),
-                                  attrs: { _i: "71-" + $34 }
+                                  staticClass: _vm._$g("88-" + $34, "sc"),
+                                  attrs: { _i: "88-" + $34 }
                                 },
                                 [
                                   _c(
                                     "v-uni-label",
-                                    { attrs: { _i: "72-" + $34 } },
+                                    { attrs: { _i: "89-" + $34 } },
                                     [
                                       _c(
                                         "v-uni-view",
                                         {
                                           staticClass: _vm._$g(
-                                            "73-" + $34,
+                                            "90-" + $34,
                                             "sc"
                                           ),
-                                          attrs: { _i: "73-" + $34 }
+                                          attrs: { _i: "90-" + $34 }
                                         },
                                         [
                                           _c("v-uni-image", {
                                             attrs: {
                                               src: _vm._$g(
-                                                "74-" + $34,
+                                                "91-" + $34,
                                                 "a-src"
                                               ),
-                                              _i: "74-" + $34
+                                              _i: "91-" + $34
                                             }
                                           }),
                                           _c(
                                             "v-uni-text",
-                                            { attrs: { _i: "75-" + $34 } },
+                                            { attrs: { _i: "92-" + $34 } },
                                             [
                                               _vm._v(
-                                                _vm._$g("75-" + $34, "t0-0")
+                                                _vm._$g("92-" + $34, "t0-0")
                                               )
                                             ]
                                           ),
@@ -11670,30 +11940,30 @@ var render = function() {
                                             "v-uni-view",
                                             {
                                               staticClass: _vm._$g(
-                                                "76-" + $34,
+                                                "93-" + $34,
                                                 "sc"
                                               ),
-                                              attrs: { _i: "76-" + $34 }
+                                              attrs: { _i: "93-" + $34 }
                                             },
                                             [
-                                              _vm._$g("77-" + $34, "i")
+                                              _vm._$g("94-" + $34, "i")
                                                 ? _c("v-uni-checkbox", {
                                                     attrs: {
                                                       value: _vm._$g(
-                                                        "77-" + $34,
+                                                        "94-" + $34,
                                                         "a-value"
                                                       ),
                                                       checked: _vm._$g(
-                                                        "77-" + $34,
+                                                        "94-" + $34,
                                                         "a-checked"
                                                       ),
                                                       color: "white",
-                                                      _i: "77-" + $34
+                                                      _i: "94-" + $34
                                                     }
                                                   })
                                                 : _vm._e(),
                                               _c("v-uni-text", {
-                                                attrs: { _i: "78-" + $34 }
+                                                attrs: { _i: "95-" + $34 }
                                               })
                                             ],
                                             1
@@ -11707,23 +11977,23 @@ var render = function() {
                                   _c(
                                     "v-uni-view",
                                     {
-                                      staticClass: _vm._$g("79-" + $34, "sc"),
+                                      staticClass: _vm._$g("96-" + $34, "sc"),
                                       staticStyle: {
                                         color: "rgba(40,40,40,1)"
                                       },
-                                      attrs: { _i: "79-" + $34 }
+                                      attrs: { _i: "96-" + $34 }
                                     },
                                     [
                                       _c(
                                         "v-uni-view",
-                                        { attrs: { _i: "80-" + $34 } },
+                                        { attrs: { _i: "97-" + $34 } },
                                         [
                                           _c(
                                             "v-uni-text",
-                                            { attrs: { _i: "81-" + $34 } },
+                                            { attrs: { _i: "98-" + $34 } },
                                             [
                                               _vm._v(
-                                                _vm._$g("81-" + $34, "t0-0")
+                                                _vm._$g("98-" + $34, "t0-0")
                                               )
                                             ]
                                           )
@@ -11734,15 +12004,15 @@ var render = function() {
                                         "v-uni-text",
                                         {
                                           staticClass: _vm._$g(
-                                            "82-" + $34,
+                                            "99-" + $34,
                                             "sc"
                                           ),
-                                          attrs: { _i: "82-" + $34 }
+                                          attrs: { _i: "99-" + $34 }
                                         },
                                         [
                                           _vm._v(
                                             "内含：" +
-                                              _vm._$g("82-" + $34, "t0-0")
+                                              _vm._$g("99-" + $34, "t0-0")
                                           )
                                         ]
                                       )
@@ -11768,14 +12038,13 @@ var render = function() {
         ],
         1
       ),
-      _vm._$g(83, "i")
+      _vm._$g(100, "i")
         ? _c(
             "v-uni-view",
-            { staticClass: _vm._$g(83, "sc"), attrs: { _i: 83 } },
+            { staticClass: _vm._$g(100, "sc"), attrs: { _i: 100 } },
             [
               _c("v-uni-image", {
-                staticStyle: { width: "218upx", height: "124upx" },
-                attrs: { src: _vm._$g(84, "a-src"), mode: "", _i: 84 },
+                attrs: { src: _vm._$g(101, "a-src"), mode: "", _i: 101 },
                 on: {
                   click: function($event) {
                     return _vm.$handleViewEvent($event)
@@ -11783,14 +12052,171 @@ var render = function() {
                 }
               }),
               _c("v-uni-image", {
-                staticStyle: { width: "268upx", height: "124upx" },
-                attrs: { src: _vm._$g(85, "a-src"), mode: "", _i: 85 },
+                attrs: { src: _vm._$g(102, "a-src"), mode: "", _i: 102 },
                 on: {
                   click: function($event) {
                     return _vm.$handleViewEvent($event)
                   }
                 }
-              })
+              }),
+              _vm._$g(103, "i")
+                ? _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(103, "sc"), attrs: { _i: 103 } },
+                    [
+                      _c(
+                        "v-uni-scroll-view",
+                        { attrs: { "scroll-y": "true", _i: 104 } },
+                        [
+                          _vm._$g(105, "i")
+                            ? _c(
+                                "v-uni-navigator",
+                                { attrs: { url: "/pages/tab1/book", _i: 105 } },
+                                [
+                                  _c(
+                                    "v-uni-view",
+                                    {
+                                      staticClass: _vm._$g(106, "sc"),
+                                      attrs: { _i: 106 }
+                                    },
+                                    [
+                                      _c("v-uni-text", { attrs: { _i: 107 } }, [
+                                        _vm._v(
+                                          "我的书架 (" +
+                                            _vm._$g(107, "t0-0") +
+                                            ")"
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._$g(108, "i")
+                            ? _c(
+                                "v-uni-navigator",
+                                {
+                                  attrs: { url: "/pages/tab1/clothes", _i: 108 }
+                                },
+                                [
+                                  _c(
+                                    "v-uni-view",
+                                    {
+                                      staticClass: _vm._$g(109, "sc"),
+                                      attrs: { _i: 109 }
+                                    },
+                                    [
+                                      _c("v-uni-text", { attrs: { _i: 110 } }, [
+                                        _vm._v(
+                                          "我的衣柜 (" +
+                                            _vm._$g(110, "t0-0") +
+                                            ")"
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._$g(111, "i")
+                            ? _c(
+                                "v-uni-navigator",
+                                {
+                                  attrs: { url: "/pages/tab1/shoes", _i: 111 }
+                                },
+                                [
+                                  _c(
+                                    "v-uni-view",
+                                    {
+                                      staticClass: _vm._$g(112, "sc"),
+                                      attrs: { _i: 112 }
+                                    },
+                                    [
+                                      _c("v-uni-text", { attrs: { _i: 113 } }, [
+                                        _vm._v(
+                                          "我的鞋柜 (" +
+                                            _vm._$g(113, "t0-0") +
+                                            ")"
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._$g(114, "i")
+                            ? _c(
+                                "v-uni-navigator",
+                                {
+                                  attrs: { url: "/pages/tab1/storage", _i: 114 }
+                                },
+                                [
+                                  _c(
+                                    "v-uni-view",
+                                    {
+                                      staticClass: _vm._$g(115, "sc"),
+                                      attrs: { _i: 115 }
+                                    },
+                                    [
+                                      _c("v-uni-text", { attrs: { _i: 116 } }, [
+                                        _vm._v(
+                                          "我的储藏室 (" +
+                                            _vm._$g(116, "t0-0") +
+                                            ")"
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e(),
+                          _vm._$g(117, "i")
+                            ? _c(
+                                "v-uni-navigator",
+                                {
+                                  attrs: {
+                                    url: "/pages/tab1/groceries",
+                                    _i: 117
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "v-uni-view",
+                                    {
+                                      staticClass: _vm._$g(118, "sc"),
+                                      staticStyle: { "border-bottom": "0" },
+                                      attrs: { _i: 118 }
+                                    },
+                                    [
+                                      _c("v-uni-text", { attrs: { _i: 119 } }, [
+                                        _vm._v(
+                                          "我的杂物架 (" +
+                                            _vm._$g(119, "t0-0") +
+                                            ")"
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e()
             ],
             1
           )
@@ -12155,7 +12581,7 @@ var ___CSS_LOADER_URL_REPLACEMENT_0___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_
 var ___CSS_LOADER_URL_REPLACEMENT_1___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_1___);
 var ___CSS_LOADER_URL_REPLACEMENT_2___ = ___CSS_LOADER_GET_URL_IMPORT___(___CSS_LOADER_URL_IMPORT_2___);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.header_icon[data-v-3b55ea46] {\r\n  width: 200upx;\r\n  height: 88upx;\r\n  text-align: right;\n}\n.choose_button[data-v-3b55ea46] {\r\n  display: inline-block;\r\n  width: 96upx;\r\n  height: 60upx;\r\n  border-radius: 5px;\r\n  border: 1upx solid white;\r\n  font-size: 28upx;\r\n  line-height: 58upx;\r\n  color: #000000;\r\n  padding: 0;\r\n  font-weight: 300;\r\n  text-align: center;\r\n  vertical-align: middle;\r\n  -webkit-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n  border: 1px solid black;\r\n  color: #000000;\n}\n.choose_button_scroll[data-v-3b55ea46] {\r\n  border: 1px solid black;\r\n  color: #000000;\n}\n.search_box[data-v-3b55ea46] {\r\n  -webkit-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n  padding: 20upx 30upx;\r\n  position: fixed;\r\n  left: 0;\r\n  right: 0;\r\n  z-index: 50;\r\n  background-color: #FFFFFF;\n}\n.search_box .uni-searchbar[data-v-3b55ea46] {\r\n  padding: 0;\n}\n.content[data-v-3b55ea46] {\r\n  padding: 120upx 0 0;\n}\n.box_wrong_content[data-v-3b55ea46] {\r\n  position: relative;\r\n  width: 100%;\r\n  height: 234upx;\r\n  background-color: #FFFFFF;\n}\n.box_wrong_left[data-v-3b55ea46] {\r\n  position: relative;\n}\n.box_wrong_left uni-image[data-v-3b55ea46] {\r\n  width: 308upx;\r\n  height: 210upx;\r\n  margin-top: 60upx;\n}\n.box_wrong_left uni-text[data-v-3b55ea46] {\r\n  position: absolute;\r\n  right: 80upx;\r\n  bottom: 70upx;\r\n  font-size: 50upx;\r\n  font-weight: 700;\r\n  color: #90785e;\n}\n.box_wrong_right[data-v-3b55ea46] {\r\n  width: 380upx;\r\n  font-size: 28upx;\r\n  font-weight: 500;\r\n  color: white;\r\n  line-height: 50upx;\r\n  margin: 20upx 50upx 0 0;\n}\n.box_wrong_text[data-v-3b55ea46] {\r\n  font-weight: 400;\r\n  line-height: 46upx;\r\n  margin-top: 10upx;\r\n  display: -webkit-box;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-line-clamp: 2;\r\n  overflow: hidden;\n}\n.box_groceries_content[data-v-3b55ea46] {\r\n  position: relative;\r\n  width: 100%;\r\n  height: 234upx;\r\n  background-color: #FFFFFF;\n}\n.box_groceries_left[data-v-3b55ea46] {\r\n  position: relative;\n}\n.box_groceries_left uni-image[data-v-3b55ea46] {\r\n  width: 308upx;\r\n  height: 230upx;\r\n  margin-top: 60upx;\n}\n.box_groceries_left uni-text[data-v-3b55ea46] {\r\n  position: absolute;\r\n  right: 80upx;\r\n  bottom: 80upx;\r\n  font-size: 50upx;\r\n  font-weight: 700;\r\n  color: #90785e;\n}\n.box_groceries_left .checkbox_item[data-v-3b55ea46] {\r\n  position: absolute;\r\n  top: 50upx;\r\n  right: 10upx;\r\n  z-index: 10;\n}\n.box_groceries_right[data-v-3b55ea46] {\r\n  width: 380upx;\r\n  font-size: 28upx;\r\n  font-weight: 500;\r\n  color: #282828;\r\n  line-height: 50upx;\r\n  margin: 20upx 50upx 0 0;\n}\n.box_groceries_text[data-v-3b55ea46] {\r\n  font-weight: 400;\r\n  line-height: 46upx;\r\n  margin-top: 10upx;\r\n  color: #4A4A4A;\r\n  display: -webkit-box;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-line-clamp: 2;\r\n  overflow: hidden;\n}\n.scroll_x[data-v-3b55ea46] {\r\n  white-space: nowrap;\r\n  width: 100%;\r\n  background-color: #FFFFFF;\r\n  overflow: auto;\n}\n.scroll_content[data-v-3b55ea46] {\r\n  position: relative;\r\n  width: 285upx;\r\n  height: 285upx;\r\n  text-align: center;\n}\n.scroll_contentbg1[data-v-3b55ea46] {\r\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") no-repeat center center/cover;\n}\n.scroll_contentbg2[data-v-3b55ea46] {\r\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ") no-repeat center center;\r\n  background-size: 100%;\n}\n.scroll_contentbg3[data-v-3b55ea46] {\r\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ") no-repeat center center;\r\n  background-size: 100%;\n}\n.scroll_content uni-image[data-v-3b55ea46] {\r\n  position: absolute;\r\n  left: 0;\r\n  right: 0;\r\n  margin: auto;\r\n  z-index: 3;\r\n  width: 200upx;\r\n  height: 230upx;\n}\n.scroll_content2 uni-image[data-v-3b55ea46] {\r\n  width: 230upx;\r\n  height: 230upx;\n}\n.scroll_content4[data-v-3b55ea46] {\r\n  width: 200upx;\r\n  height: 200upx;\r\n  -webkit-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n  padding: 18upx 18upx 0;\r\n  background: #e6e6e6;\r\n  margin-right: 10upx;\n}\n.scroll_content4 uni-image[data-v-3b55ea46] {\r\n  width: 184upx;\r\n  height: 184upx;\n}\n.bottom_button[data-v-3b55ea46] {\r\n  position: fixed;\r\n  right: 0;\r\n  bottom: 0upx;\r\n  z-index: 20;\n}\n.bottom_button uni-image[data-v-3b55ea46] {\r\n  width: 218upx;\r\n  height: 120upx;\n}\r\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\r\n/**\r\n * 这里是uni-app内置的常用样式变量\r\n *\r\n * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量\r\n * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App\r\n *\r\n */\r\n/**\r\n * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能\r\n *\r\n * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件\r\n */\r\n/* 颜色变量 */\r\n/* 行为相关颜色 */\r\n/* 文字基本颜色 */\r\n/* 背景颜色 */\r\n/* 边框颜色 */\r\n/* 尺寸变量 */\r\n/* 文字尺寸 */\r\n/* 图片尺寸 */\r\n/* Border Radius */\r\n/* 水平间距 */\r\n/* 垂直间距 */\r\n/* 透明度 */\r\n/* 文章场景相关 */\n.header_icon[data-v-3b55ea46] {\r\n  width: 200upx;\r\n  height: 88upx;\r\n  text-align: right;\n}\n.choose_button[data-v-3b55ea46] {\r\n  display: inline-block;\r\n  width: 96upx;\r\n  height: 60upx;\r\n  border-radius: 5px;\r\n  border: 1upx solid white;\r\n  font-size: 28upx;\r\n  line-height: 58upx;\r\n  color: #000000;\r\n  padding: 0;\r\n  font-weight: 300;\r\n  text-align: center;\r\n  vertical-align: middle;\r\n  -webkit-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n  border: 1px solid black;\r\n  color: #000000;\n}\n.choose_button_scroll[data-v-3b55ea46] {\r\n  border: 1px solid black;\r\n  color: #000000;\n}\n.search_box[data-v-3b55ea46] {\r\n  -webkit-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n  padding: 20upx 30upx;\r\n  position: fixed;\r\n  left: 0;\r\n  right: 0;\r\n  z-index: 50;\r\n  background-color: #FFFFFF;\n}\n.search_box .uni-searchbar[data-v-3b55ea46] {\r\n  padding: 0;\n}\n.content[data-v-3b55ea46] {\r\n  padding: 120upx 0 0;\n}\n.box_wrong_content[data-v-3b55ea46] {\r\n  position: relative;\r\n  width: 100%;\r\n  height: 234upx;\r\n  background-color: #FFFFFF;\n}\n.box_wrong_left[data-v-3b55ea46] {\r\n  position: relative;\n}\n.box_wrong_left uni-image[data-v-3b55ea46] {\r\n  width: 308upx;\r\n  height: 210upx;\r\n  margin-top: 60upx;\n}\n.box_wrong_left uni-text[data-v-3b55ea46] {\r\n  position: absolute;\r\n  right: 80upx;\r\n  bottom: 70upx;\r\n  font-size: 50upx;\r\n  font-weight: 700;\r\n  color: #90785e;\n}\n.box_wrong_right[data-v-3b55ea46] {\r\n  width: 380upx;\r\n  font-size: 28upx;\r\n  font-weight: 500;\r\n  color: white;\r\n  line-height: 50upx;\r\n  margin: 20upx 50upx 0 0;\n}\n.box_wrong_text[data-v-3b55ea46] {\r\n  font-weight: 400;\r\n  line-height: 46upx;\r\n  margin-top: 10upx;\r\n  display: -webkit-box;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-line-clamp: 2;\r\n  overflow: hidden;\n}\n.box_groceries_content[data-v-3b55ea46] {\r\n  position: relative;\r\n  width: 100%;\r\n  height: 234upx;\r\n  background-color: #FFFFFF;\n}\n.box_groceries_left[data-v-3b55ea46] {\r\n  position: relative;\n}\n.box_groceries_left uni-image[data-v-3b55ea46] {\r\n  width: 308upx;\r\n  height: 230upx;\r\n  margin-top: 60upx;\n}\n.box_groceries_left uni-text[data-v-3b55ea46] {\r\n  position: absolute;\r\n  right: 80upx;\r\n  bottom: 80upx;\r\n  font-size: 50upx;\r\n  font-weight: 700;\r\n  color: #90785e;\n}\n.box_groceries_left .checkbox_item[data-v-3b55ea46] {\r\n  position: absolute;\r\n  top: 50upx;\r\n  right: 10upx;\r\n  z-index: 25;\n}\n.box_groceries_right[data-v-3b55ea46] {\r\n  width: 380upx;\r\n  font-size: 28upx;\r\n  font-weight: 500;\r\n  color: #282828;\r\n  line-height: 50upx;\r\n  margin: 20upx 50upx 0 0;\n}\n.box_groceries_text[data-v-3b55ea46] {\r\n  font-weight: 400;\r\n  line-height: 46upx;\r\n  margin-top: 10upx;\r\n  color: #4A4A4A;\r\n  display: -webkit-box;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-line-clamp: 2;\r\n  overflow: hidden;\n}\n.scroll_x[data-v-3b55ea46] {\r\n  white-space: nowrap;\r\n  width: 100%;\r\n  background-color: #FFFFFF;\r\n  overflow: auto;\n}\n.scroll_content[data-v-3b55ea46] {\r\n  position: relative;\r\n  width: 285upx;\r\n  height: 285upx;\r\n  text-align: center;\n}\n.scroll_content .checkbox_item[data-v-3b55ea46] {\r\n  position: absolute;\r\n  top: 0;\r\n  right: 10upx;\r\n  z-index: 25;\n}\n.scroll_contentbg1[data-v-3b55ea46] {\r\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ") no-repeat center center/cover;\n}\n.scroll_contentbg2[data-v-3b55ea46] {\r\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_1___ + ") no-repeat center center;\r\n  background-size: 100%;\n}\n.scroll_contentbg3[data-v-3b55ea46] {\r\n  background: url(" + ___CSS_LOADER_URL_REPLACEMENT_2___ + ") no-repeat center center;\r\n  background-size: 100%;\n}\n.scroll_content uni-image[data-v-3b55ea46] {\r\n  position: absolute;\r\n  left: 0;\r\n  right: 0;\r\n  margin: auto;\r\n  z-index: 3;\r\n  width: 200upx;\r\n  height: 230upx;\n}\n.scroll_content2 uni-image[data-v-3b55ea46] {\r\n  width: 230upx;\r\n  height: 230upx;\n}\n.scroll_content4[data-v-3b55ea46] {\r\n  width: 200upx;\r\n  height: 200upx;\r\n  -webkit-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n  padding: 18upx 18upx 0;\r\n  background: #e6e6e6;\r\n  margin-right: 10upx;\n}\n.scroll_content4 uni-image[data-v-3b55ea46] {\r\n  width: 184upx;\r\n  height: 184upx;\n}\n.bottom_button[data-v-3b55ea46] {\r\n  position: fixed;\r\n  bottom: 0upx;\r\n  width: 100%;\r\n  z-index: 30;\r\n  text-align: center;\n}\n.bottom_button uni-image[data-v-3b55ea46] {\r\n  width: 324upx;\r\n  height: 127upx;\n}\n.bottom_button .bottom_alert[data-v-3b55ea46] {\r\n  position: absolute;\r\n  left: 73upx;\r\n  bottom: 160upx;\r\n  width: 270upx;\r\n  background: white;\r\n  -webkit-box-shadow: 0px 2upx 14upx 0px rgba(0, 0, 0, 0.1);\r\n          box-shadow: 0px 2upx 14upx 0px rgba(0, 0, 0, 0.1);\n}\n.bottom_button .bottom_alert .alert_list[data-v-3b55ea46] {\r\n  font-size: 28upx;\r\n  font-weight: 400;\r\n  color: #282828;\r\n  border-bottom: 1upx solid rgba(242, 242, 242, 0.58);\r\n  line-height: 100upx;\r\n  text-align: left;\r\n  padding-left: 30upx;\n}\n.bottom_button .bottom_alert[data-v-3b55ea46]::after {\r\n  content: \"\";\r\n  position: absolute;\r\n  bottom: -20upx;\r\n  left: 30upx;\r\n  border-top: 20upx solid white;\r\n  border-left: 20upx solid transparent;\r\n  border-right: 20upx solid transparent;\n}\r\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -25166,11 +25592,11 @@ var render = function() {
       _c(
         "v-uni-view",
         { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
-        _vm._l(30, function(item, index, $20, $30) {
+        _vm._l(_vm._$g(8, "f"), function(item, index, $20, $30) {
           return _c(
             "v-uni-view",
             {
-              key: index,
+              key: item,
               staticClass: _vm._$g("8-" + $30, "sc"),
               staticStyle: { width: "100%" },
               attrs: { _i: "8-" + $30 }
@@ -25179,7 +25605,12 @@ var render = function() {
               _c(
                 "v-uni-view",
                 { staticStyle: { width: "30%" }, attrs: { _i: "9-" + $30 } },
-                [_vm._v("2020-06-" + _vm._$g("9-" + $30, "t0-0"))]
+                [
+                  _c("v-uni-text", { attrs: { _i: "10-" + $30 } }, [
+                    _vm._v(_vm._$g("10-" + $30, "t0-0"))
+                  ])
+                ],
+                1
               ),
               _c(
                 "v-uni-view",
@@ -25189,17 +25620,29 @@ var render = function() {
                     "text-align": "center",
                     "padding-left": "2.5%"
                   },
-                  attrs: { _i: "10-" + $30 }
+                  attrs: { _i: "11-" + $30 }
                 },
-                [_vm._v("¥ " + _vm._$g("10-" + $30, "t0-0"))]
+                [
+                  _vm._$g("12-" + $30, "i")
+                    ? _c("v-uni-text", { attrs: { _i: "12-" + $30 } }, [
+                        _vm._v("¥ " + _vm._$g("12-" + $30, "t0-0"))
+                      ])
+                    : _vm._e()
+                ],
+                1
               ),
               _c(
                 "v-uni-view",
                 {
                   staticStyle: { width: "40%", "text-align": "right" },
-                  attrs: { _i: "11-" + $30 }
+                  attrs: { _i: "13-" + $30 }
                 },
-                [_vm._v("返送费用¥ " + _vm._$g("11-" + $30, "t0-0"))]
+                [
+                  _c("v-uni-text", { attrs: { _i: "14-" + $30 } }, [
+                    _vm._v(_vm._$g("14-" + $30, "t0-0"))
+                  ])
+                ],
+                1
               )
             ],
             1

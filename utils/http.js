@@ -20,6 +20,14 @@ function urlRequest(url, method, param, callBack) {
 				uni.navigateTo({
 					url: '/pages/login/login'
 				})
+			} else if (res.statusCode == 412) {
+				uni.showToast({
+					icon: 'none',
+					title: '未实名'
+				});
+				uni.navigateTo({
+					url: '/pages/tab3/realName.vue'
+				})
 			} else if (res.statusCode == 502) {
 				uni.showToast({
 					icon: 'none',
