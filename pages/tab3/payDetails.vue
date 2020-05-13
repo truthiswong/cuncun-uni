@@ -16,15 +16,15 @@
 		</uni-nav-bar>
 		<!-- 内容 -->
 		<view class="content">
-			<view v-for="(item,index) in 30" :key="index" class="flex_between pay_list" style="width: 100%;">
+			<view v-for="(item,index) in list" :key="index" class="flex_between pay_list" style="width: 100%;">
 				<view style="width: 30%;">
-					2020-06-{{item>9?item:'0'+item}}
+					<text>{{item.time}}</text>
 				</view>
 				<view style="width: 40%;text-align: center;padding-left: 2.5%;">
-					¥ {{item+'00'}}
+					<text v-if="item.amount">¥ {{item.amount}}</text>
 				</view>
 				<view style="width: 40%;text-align: right;">
-					返送费用¥ {{item+'00'}}
+					<text>{{item.type.name}}</text>
 				</view>
 			</view>
 		</view>
@@ -35,16 +35,35 @@
 	export default {
 		components: {},
 		data() {
-			return {};
+			return {
+				list: []
+			};
 		},
 		onLoad() {},
 		onShow() {
-
+			this.getDetails()
 		},
 		methods: {
 			onClickBack() {
 				uni.navigateBack({
 					delta: 1
+				})
+			},
+			getDetails() {
+				this.$http('user/payment/page', "GET", '', res => {
+					let data = res.data
+					console.log(data)
+					if (data.success) {
+						for (let item of data.data.data) {
+							item.time = this.$moment(item.payTime).format('YYYY-MM-DD')
+						}
+						this.list = data.data.data
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
 				})
 			}
 		}
