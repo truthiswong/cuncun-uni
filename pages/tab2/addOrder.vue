@@ -165,7 +165,10 @@
 				buttonActive: false,
 			}
 		},
-		onLoad() {
+		onLoad(option) {
+			if (option.orderInfo) {
+				let address = JSON.parse(decodeURIComponent(option.orderInfo))
+			}
 			this.getBoxList()
 			this.getUserInputList()
 			let myDate = new Date()

@@ -16,12 +16,14 @@
 			</view>
 		</uni-nav-bar>
 		<view class="content">
-			<view v-if="0" class="no_data">
-				<image src="../../static/tab1/no_data.png"></image>
-				<p>欢迎使用存存，赶紧来存点东西吧～</p>
-				<button class="common_button" @click="onClickRight">去存点东西</button>
+			<view v-if="orderList1.length<=0 && orderList2.length<=0 && orderList3.length<=0" class="no_data">
+				<view class="no_data_content">
+					<image src="../../static/tab1/no_data.png"></image>
+					<p>欢迎使用存存，赶紧来存点东西吧～</p>
+					<button class="common_button" @click="onClickRight">去存点东西</button>
+				</view>
 			</view>
-			<view>
+			<view v-else>
 				<view class="cont_nav" style="background-color: #FFFFFF;">
 					<uni-segmented-control style="color:rgba(178,178,178,1)" class="segmented_custom" :current="current" :values="items"
 					 @clickItem="onClickItem" styleType="text" activeColor="#03A6A6"></uni-segmented-control>
@@ -56,7 +58,7 @@
 									</view>
 								</view>
 								<view class="segmented_list" v-for="item in orderList02" :key="item.id">
-									<navigator :url="'/pages/tab2/orderDetails?id='+item.id">
+									<navigator :url="'/pages/tab1/orderBackDetails?id='+item.id">
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="取单" :note="'送到: '+item.address" :showArrow="false">
 												<view slot='right' class="list_right_text">
@@ -66,8 +68,8 @@
 										</uni-list>
 										<view class="flex_between">
 											<view style="height: 100upx;">
-												<image v-for="goods in item.goods" :key="goods.id" style="width: 100upx;height: 100upx;background-color: #F2F2F2;box-sizing: border-box;padding: 8upx;margin-right: 20upx;"
-												 :src="goods.coverPic" v-show="item.goodsNumber <= 3"></image>
+												<image v-for="(goods, index) in item.totalList" :key="goods.id" style="width: 100upx;height: 100upx;background-color: #F2F2F2;box-sizing: border-box;padding: 8upx;margin-right: 20upx;"
+												 :src="goods.coverPic" v-show="index < 3"></image>
 											</view>
 											<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
 												<text>… 等{{item.goodsNumber}}件物品</text>
@@ -89,7 +91,7 @@
 											</uni-list-item>
 										</uni-list>
 										<view class="row" style="margin-bottom: 20upx;">
-											<view class="col-6 row">
+											<view class="col-6 row" v-if="item.boxECnum>0">
 												<view style="height: 100upx;">
 													<image style="width: 120upx;height: 120upx;box-sizing: border-box;padding: 8upx;margin-right: 20upx;" src="../../static/tab2/storge_box.png"
 													 mode=""></image>
@@ -98,7 +100,7 @@
 													<text>EC箱 ×{{item.boxECnum}}</text>
 												</view>
 											</view>
-											<view class="col-6 row">
+											<view class="col-6 row" v-if="item.boxSDnum>0">
 												<view style="height: 100upx;">
 													<image style="width: 120upx;height: 120upx;box-sizing: border-box;padding: 8upx;margin-right: 20upx;" src="../../static/tab2/storge_box.png"
 													 mode=""></image>
@@ -110,7 +112,8 @@
 										</view>
 										<view style="width: 100%;text-align: right;">
 											<view style="font-size:24upx;color:rgba(74,74,74,1);line-height:46upx;">
-												仓储费用：<text style="font-size: 30upx;margin-right: 30upx;">¥{{item.settleFee?item.settleFee:item.fee}}</text> 费用周期：{{item.beginDate}}~{{item.endDate}}
+												仓储费用：<text style="font-size: 30upx;margin-right: 30upx;">¥{{item.settleFee?item.settleFee:item.fee}}</text>
+												费用周期：{{item.beginDate}}~{{item.endDate}}
 											</view>
 										</view>
 									</view>
@@ -151,7 +154,8 @@
 									</view>
 									<view class="segmented_list_button" v-if="item.prepaidStatus.code == 'wait' || item.status.code == 'waitpay'">
 										<button class="button_cancel" v-if="item.status.code == 'waitpay'" @click="onCancelOrder1(item.id)">取消订单</button>
-										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse' && item.status.code != 'finish'" @click="onConfirmOrder1(item.id)">立即付款</button>
+										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse' && item.status.code != 'finish'"
+										 @click="onConfirmOrder1(item.id)">立即付款</button>
 									</view>
 								</view>
 							</view>
@@ -174,7 +178,7 @@
 										</uni-list>
 										<view class="flex_between">
 											<view style="height: 100upx;">
-												<image v-for="(goods, index) in item.goods" :key="goods.id" style="width: 100upx;height: 100upx;background-color: #F2F2F2;box-sizing: border-box;padding: 8upx;margin-right: 20upx;"
+												<image v-for="(goods, index) in item.totalList" :key="goods.id" style="width: 100upx;height: 100upx;background-color: #F2F2F2;box-sizing: border-box;padding: 8upx;margin-right: 20upx;"
 												 :src="goods.coverPic" v-show="index < 3"></image>
 											</view>
 											<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
@@ -184,7 +188,8 @@
 									</view>
 									<view class="segmented_list_button" v-if="item.status.code == 'waitpay'">
 										<button class="button_cancel" v-if="item.status.code == 'waitpay'" @click="onCancelOrder2(item.id)">取消订单</button>
-										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse' && item.status.code != 'finish'" @click="onConfirmOrder2(item.id)">立即付款</button>
+										<button class="button_confirm" v-if="item.status.code != 'cancel' && item.status.code != 'refuse' && item.status.code != 'finish'"
+										 @click="onConfirmOrder2(item.id)">立即付款</button>
 									</view>
 								</view>
 							</view>
@@ -223,7 +228,8 @@
 										</view>
 										<view style="width: 100%;text-align: right;">
 											<view style="font-size:24upx;color:rgba(74,74,74,1);line-height:46upx;">
-												仓储费用：<text style="font-size: 30upx;margin-right: 30upx;">¥{{item.settleFee?item.settleFee:item.fee}}</text> 费用周期：{{item.beginDate}}~{{item.endDate}}
+												仓储费用：<text style="font-size: 30upx;margin-right: 30upx;">¥{{item.settleFee?item.settleFee:item.fee}}</text>
+												费用周期：{{item.beginDate}}~{{item.endDate}}
 											</view>
 										</view>
 									</view>
@@ -280,15 +286,20 @@
 			} else if (this.gotoPage == 'tab23') {
 				this.current = 3
 			}
-			if (this.current == 0) {
-				this.getOrderList0()
-			} else if (this.current == 1) {
-				this.getOrderList1()
-			} else if (this.current == 2) {
-				this.getOrderList2()
-			} else if (this.current == 3) {
-				this.getOrderList3()
-			}
+			// if (this.current == 0) {
+			// 	this.getOrderList0()
+			// 	this.getOrderList1()
+			// } else if (this.current == 1) {
+			// 	this.getOrderList1()
+			// } else if (this.current == 2) {
+			// 	this.getOrderList2()
+			// } else if (this.current == 3) {
+			// 	this.getOrderList3()
+			// }
+			this.getOrderList0()
+			this.getOrderList1()
+			this.getOrderList2()
+			this.getOrderList3()
 		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
@@ -328,14 +339,32 @@
 						console.log(data.data)
 						this.orderList01 = data.data.deposit // 存单
 						for (let item of data.data.withdraw) {
+							item.totalList = []
 							if (item.goods) {
 								for (let goodsIndex of item.goods) {
 									goodsIndex.coverPic = goodsIndex.goods.coverPic
+									item.totalList.push(goodsIndex)
 								}
-								item.goodsNumber = item.goods.length
+								if (item.packs) {
+									item.goodsNumber = item.goods.length + item.packs.length
+								} else {
+									item.goodsNumber = item.goods.length
+								}
+							}
+							if (item.packs) {
+								for (let goodsIndex of item.packs) {
+									goodsIndex.coverPic = '../../static/tab1/box_null.png'
+									item.totalList.push(goodsIndex)
+								}
+								if (item.goods) {
+									item.goodsNumber = item.goods.length + item.packs.length
+								} else {
+									item.goodsNumber = item.packs.length
+								}
 							}
 						}
 						this.orderList02 = data.data.withdraw // 取单
+						console.log(this.orderList02)
 						this.orderList03 = data.data.storage // 仓储
 					} else {
 						uni.showToast({
@@ -365,11 +394,28 @@
 					let data = res.data
 					if (data.success) {
 						for (let item of data.data.data) {
+							item.totalList = []
 							if (item.goods) {
 								for (let goodsIndex of item.goods) {
 									goodsIndex.coverPic = goodsIndex.goods.coverPic
+									item.totalList.push(goodsIndex)
 								}
-								item.goodsNumber = item.goods.length
+								if (item.packs) {
+									item.goodsNumber = item.goods.length + item.packs.length
+								} else {
+									item.goodsNumber = item.goods.length
+								}
+							}
+							if (item.packs) {
+								for (let goodsIndex of item.packs) {
+									goodsIndex.coverPic = '../../static/tab1/box_null.png'
+									item.totalList.push(goodsIndex)
+								}
+								if (item.goods) {
+									item.goodsNumber = item.goods.length + item.packs.length
+								} else {
+									item.goodsNumber = item.packs.length
+								}
 							}
 						}
 						this.orderList2 = data.data.data
@@ -524,6 +570,7 @@
 <style>
 	page {
 		background-color: #F2F2F2;
+		height: 100%;
 	}
 
 	uni-page-body {
@@ -538,7 +585,7 @@
 	.content {
 		box-sizing: border-box;
 		height: 100%;
-		padding-bottom: 20upx;
+		// padding-bottom: 20upx;
 		// padding: 88upx 0 20upx;
 		position: relative;
 	}
@@ -659,33 +706,37 @@
 		text-align: center;
 		width: 100%;
 		height: 100%;
-		box-sizing: border-box;
 		background-color: #FFFFFF;
-		padding: 272upx 0 116upx;
-
-		image {
-			width: 338upx;
-			height: 326upx;
-		}
-
-		p {
-			font-size: 28upx;
-			font-weight: 400;
-			color: rgba(178, 178, 178, 1);
-			line-height: 50upx;
-			margin: 70upx auto 0;
-		}
-
-		.common_button {
-			width: 398upx;
-			height: 90upx;
-			line-height: 90upx;
-			background: rgba(59, 193, 187, 1);
-			border-radius: 45upx;
-			font-size: 30upx;
-			font-weight: 500;
-			color: white;
-			margin: 120upx auto 0;
+		display: flex;
+		align-items: center;
+		
+		.no_data_content {
+			width: 100%;
+			height: 700upx;
+			image {
+				width: 338upx;
+				height: 326upx;
+			}
+			
+			p {
+				font-size: 28upx;
+				font-weight: 400;
+				color: rgba(178, 178, 178, 1);
+				line-height: 50upx;
+				margin: 70upx auto 0;
+			}
+			
+			.common_button {
+				width: 398upx;
+				height: 90upx;
+				line-height: 90upx;
+				background: rgba(59, 193, 187, 1);
+				border-radius: 45upx;
+				font-size: 30upx;
+				font-weight: 500;
+				color: white;
+				margin: 120upx auto 0;
+			}
 		}
 	}
 </style>

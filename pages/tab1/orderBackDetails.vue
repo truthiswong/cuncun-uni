@@ -58,7 +58,7 @@
 			<view class="order_list">
 				<p>返送清单</p>
 				<view class="order_list_image">
-					<image v-for="(item,index) in order.goods" :key="index" :src="item.coverPic" mode=""></image>
+					<image v-for="(item,index) in order.totalList" :key="index" :src="item.coverPic" mode=""></image>
 				</view>
 				<view style="">
 					<view class="flex_between order_list_fee">
@@ -91,6 +91,14 @@
 						<view class="col-8" style="text-align: right;">
 							<p style="color:rgba(40,40,40,1);">{{order.detailAddress}}</p>
 							<text>{{order.linkman}} {{order.mobile}}</text>
+						</view>
+					</view>
+					<view class="flex_between order_list_phone" v-if="order.waybillNo" @click="onCopy(order.waybillNo)">
+						<p>运单号</p>
+						<view>
+							<text>{{order.waybillNo}}</text>
+							<text style="margin: 0 30upx;color:rgba(222,222,222,1);">|</text>
+							<text style="font-size:28upx;font-weight:400;color:rgba(2,105,208,1);">复制</text>
 						</view>
 					</view>
 				</view>
@@ -329,9 +337,6 @@
 			},
 			// 支付
 			onComfirmPay() {
-				// uni.navigateTo({
-				// 	url: "/pages/tab2/orderSuccess"
-				// })
 				let orderObj = {
 					orderId: this.orderId,
 				}
@@ -403,10 +408,22 @@
 							' ' + data.data.address
 						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD HH:mm:ss')
 						data.data.detailStatus = data.data.status.code
-						for (let item of data.data.goods) {
-							item.code = item.goods.code
-							item.coverPic = item.goods.coverPic
-							item.name = item.goods.name
+						data.data.totalList = []
+						if (data.data.goods) {
+							for (let item of data.data.goods) {
+								item.code = item.goods.code
+								item.coverPic = item.goods.coverPic
+								item.name = item.goods.name
+								data.data.totalList.push(item)
+							}
+						}
+						if (data.data.packs) {
+							for (let item of data.data.packs) {
+								item.code = item.pack.code
+								item.coverPic = '../../static/tab1/box_null.png'
+								item.name = item.pack.name
+								data.data.totalList.push(item)
+							}
 						}
 						this.order = data.data
 					} else {

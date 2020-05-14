@@ -21,7 +21,7 @@
 						</view>
 					</uni-list-item>
 					<navigator url="/pages/tab3/changePhone">
-						<uni-list-item title="手机号" rightText="021-34283744"></uni-list-item>
+						<uni-list-item title="手机号" :rightText="mobile"></uni-list-item>
 					</navigator>
 					<uni-list-item title="实名认证" @click="onRealName" :rightText="realName"></uni-list-item>
 					<navigator url="/pages/tab3/address">
@@ -53,9 +53,10 @@
 		components: {},
 		data() {
 			return {
-				headImage: require('../../static/tab3/my_image.png'),
+				headImage: '../../static/tab3/my_image.png',
 				nickname: 'Ding Han',
 				nicknameSet: '',
+				mobile: '',
 				realName: '未实名',
 				realNameConfirm: false,
 			};
@@ -72,15 +73,52 @@
 			if (user.nickName) {
 				this.nickname = user.nickName
 			}
+			if (user.mobile) {
+				this.mobile = user.mobile
+			}
 			if (user.realNameConfirm) {
-				this.realName = user.realNameConfirm ? "已实名" : "未实名"
-				this.realNameConfirm = user.realNameConfirm
+				this.realName = "已实名"
+				this.realNameConfirm = true
+			} else {
+				this.realName = "未实名"
+				this.realNameConfirm = false
 			}
 		},
 		methods: {
 			onClickBack() {
 				uni.navigateBack({
 					delta: 1
+				})
+			},
+			getUserInfo() {
+				this.$http('user/current', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						uni.setStorage({
+							key: 'user',
+							data: data.data
+						});
+						if (data.data.portrait) {
+							this.headImage = data.data.portrait
+						}
+						if (data.data.nickName) {
+							this.nickname = data.data.nickName
+						}
+						if (data.data.mobile) {
+							this.mobile = data.data.mobile
+						}
+						if (data.data.realNameConfirm) {
+							this.realName = "已实名"
+							this.realNameConfirm = data.data.realNameConfirm
+						} else {
+							this.realName = "未实名"
+						}
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
 				})
 			},
 			chooseHeadImage() {
@@ -114,11 +152,11 @@
 										console.log(data)
 										if (data.success) {
 											this.headImage = data.data
-											console.log(this.headImage)
 											uni.showToast({
 												icon: 'none',
 												title: '修改成功'
 											});
+											this.getUserInfo()
 										} else {
 											uni.showToast({
 												icon: 'none',
@@ -158,17 +196,7 @@
 							});
 							this.nickname = this.nicknameSet
 							this.$refs.nick.close()
-							try {
-								const user = uni.getStorageSync('user');
-								if (user) {
-									user.nickName = this.nickname
-									uni.setStorage({
-										key: 'user',
-										data: user
-									});
-								}
-							} catch (e) {
-							}
+							this.getUserInfo()
 						} else {
 							uni.showToast({
 								icon: 'none',

@@ -15,7 +15,8 @@
 					<view class="row flex_between" style="margin-top: 40upx;">
 						<view class="col-2"><text>（ {{index+1}} ）</text></view>
 						<view class="col-2">
-							<image style="width: 120upx;height: 120upx;" :src="item.coverPic"></image>
+							<image v-if="item.type=='pack'" style="width: 120upx;height: 120upx;" src="../../static/tab1/box_null.png" mode=""></image>
+							<image v-else style="width: 120upx;height: 120upx;" :src="item.coverPic"></image>
 						</view>
 						<view class="col-5 list_middle">
 							<text>{{item.name}}</text>

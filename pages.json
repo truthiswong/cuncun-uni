@@ -38,7 +38,7 @@
 			"path": "pages/tabs/tab2",
 			"style": {
 				"navigationBarTitleText": "我的订单",
-				"enablePullDownRefresh": true,
+				// "enablePullDownRefresh": true,
 				"app-plus": {
 					"bounce": "none"
 				}

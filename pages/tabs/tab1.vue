@@ -40,7 +40,7 @@
 				<p>您的存存空空如也，跟我们的收纳达人和打包小哥约起来，赶紧的！！！</p>
 				<button @click="onClickRight(2)" class="common_button">约！约！约!</button>
 			</view>
-			<view>
+			<view v-else>
 				<!-- 未过安检的箱子 -->
 				<view @longpress="longpress" class="list_margin50" v-if="failData.length>0" style="background-color: #FFFFFF;">
 					<view class="list_padding30">
@@ -71,7 +71,7 @@
 					</view>
 				</view>
 				<!-- 书架 -->
-				<view @longpress="longpress('书架')" class="list_margin50" v-if="long_active || bookData.dataNumber>0" style="background-color: #FFFFFF;">
+				<view @longpress="longpress('书架')" class="list_margin50" v-if="long_active || bookData.dataNumber>=0" style="background-color: #FFFFFF;">
 					<view v-if="tab1ShowHide.bookShowHideTitle == true">
 						<view class="list_padding30">
 							<uni-list class="list_custom list_custom_img1">
@@ -101,7 +101,7 @@
 					</view>
 				</view>
 				<!-- 衣柜 -->
-				<view @longpress="longpress('衣柜')" class="list_margin50" v-if="long_active || clotheData.dataNumber>0" style="background-color: #FFFFFF;">
+				<view @longpress="longpress('衣柜')" class="list_margin50" v-if="long_active || clotheData.dataNumber>=0" style="background-color: #FFFFFF;">
 					<view v-if="tab1ShowHide.clotheShowHideTitle == true">
 						<view class="list_padding30">
 							<uni-list class="list_custom list_custom_img1">
@@ -132,7 +132,7 @@
 					</view>
 				</view>
 				<!-- 鞋柜 -->
-				<view @longpress="longpress('鞋柜')" class="list_margin50" v-if="long_active || shoeData.dataNumber>0" style="background-color: #FFFFFF;">
+				<view @longpress="longpress('鞋柜')" class="list_margin50" v-if="long_active || shoeData.dataNumber>=0" style="background-color: #FFFFFF;">
 					<view v-if="tab1ShowHide.shoeShowHideTitle == true">
 						<view class="list_padding30">
 							<uni-list class="list_custom list_custom_img1">
@@ -163,7 +163,7 @@
 					</view>
 				</view>
 				<!-- 储藏室 -->
-				<view @longpress="longpress('储藏室')" class="list_margin50" v-if="long_active || storageData.dataNumber>0" style="background-color: #FFFFFF;">
+				<view @longpress="longpress('储藏室')" class="list_margin50" v-if="long_active || storageData.dataNumber>=0" style="background-color: #FFFFFF;">
 					<view v-if="tab1ShowHide.storageShowHideTitle == true">
 						<view class="list_padding30">
 							<uni-list class="list_custom list_custom_img2">
@@ -190,10 +190,9 @@
 							</scroll-view>
 						</view>
 					</view>
-
 				</view>
 				<!-- 杂货架 -->
-				<view @longpress="longpress('杂货架')" class="list_margin50" v-if="long_active || groceriesData.dataNumber>0" style="background-color: #FFFFFF;">
+				<view @longpress="longpress('杂货架')" class="list_margin50" v-if="long_active || groceriesData.dataNumber>=0" style="background-color: #FFFFFF;">
 					<view v-if="tab1ShowHide.groceriesShowHideTitle == true">
 						<view class="list_padding30">
 							<uni-list class="list_custom list_custom_img2">
@@ -398,21 +397,37 @@
 							coverPic: ''
 						}
 						for (let i = 0; i < 10; i++) {
-							if (!data.data.bookcase.goods[i]) {
-								goodsData.id = i
-								data.data.bookcase.goods.push(goodsData)
-							}
-							if (!data.data.armoire.goods[i]) {
-								goodsData.id = i
-								data.data.armoire.goods.push(goodsData)
-							}
-							if (!data.data.shoebox.goods[i]) {
-								goodsData.id = i
-								data.data.shoebox.goods.push(goodsData)
-							}
-							if (!data.data.storeroom.goods[i]) {
-								goodsData.id = i
-								data.data.storeroom.goods.push(goodsData)
+							if (data.data.bookcase.goods.length<=0 && data.data.armoire.goods.length<=0 && data.data.shoebox.goods.length<=0 && data.data.storeroom.goods.length<=0 && data.data.sundries.packs.length<=0) {
+								console.log(data.data.bookcase.goods.length)
+								console.log(data.data.armoire.goods.length)
+								this.bookData = data.data.bookcase //书架
+								this.bookData.dataNumber = data.data.bookcase.goods.length
+								this.clotheData = data.data.armoire //衣柜
+								this.clotheData.dataNumber = data.data.armoire.goods.length
+								this.shoeData = data.data.shoebox //鞋柜
+								this.shoeData.dataNumber = data.data.shoebox.goods.length
+								this.storageData = data.data.storeroom //储藏室
+								this.storageData.dataNumber = data.data.storeroom.goods.length
+								this.groceriesData = data.data.sundries //杂货架
+								this.groceriesData.dataNumber = data.data.sundries.packs.length
+								return
+							} else{
+								if (!data.data.bookcase.goods[i]) {
+									goodsData.id = i
+									data.data.bookcase.goods.push(goodsData)
+								}
+								if (!data.data.armoire.goods[i]) {
+									goodsData.id = i
+									data.data.armoire.goods.push(goodsData)
+								}
+								if (!data.data.shoebox.goods[i]) {
+									goodsData.id = i
+									data.data.shoebox.goods.push(goodsData)
+								}
+								if (!data.data.storeroom.goods[i]) {
+									goodsData.id = i
+									data.data.storeroom.goods.push(goodsData)
+								}
 							}
 						}
 						this.bookData = data.data.bookcase //书架

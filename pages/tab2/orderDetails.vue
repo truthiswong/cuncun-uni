@@ -34,7 +34,7 @@
 					</view>
 					<view v-else-if="order.detailStatus == 'cancel' || order.detailStatus == 'refuse'">
 						<h4>订单已被取消。</h4>
-						<p>拒接理由内容拒接理由内容拒接理由内容，如有疑问请联系客服。</p>
+						<p>{{order.statusRemark?order.statusRemark:'拒接理由内容拒接理由内容拒接理由内容，如有疑问请联系客服。'}}</p>
 					</view>
 				</view>
 				<view class="top_button">
@@ -464,7 +464,22 @@
 				}
 			},
 			onAgainOrder(){
-				console.log("重新下单")
+				let data = {
+					id: this.orderId
+				}
+				this.$http('user/deposit/order/recall', "POST", data, res => {
+					let data = res.data
+					if (data.success) {
+						uni.navigateTo({
+							url: '/pages/tab2/addOrder'
+						})
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
 			},
 			getOrderDetail() {
 				this.$http('user/deposit/order/detail/' + this.orderId, "GET", '', res => {

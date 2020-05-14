@@ -77,7 +77,6 @@
 			if (user.realNameConfirm) {
 				this.realNameConfirm = user.realNameConfirm
 			}
-			this.getRealNameReturn()
 			// #ifdef APP-PLUS
 			setTimeout(function() {
 				var args = plus.runtime.arguments;

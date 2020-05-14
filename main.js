@@ -43,6 +43,9 @@ Vue.component('uni-uni-steps', uniSteps)
 // 地址选择框
 import pickRegions from '@/components/pick-regions/pick-regions.vue'
 Vue.component('pick-regions', pickRegions)
+// 下拉框
+import uniCombox from "@/components/uni-combox/uni-combox"
+Vue.component('uni-combox', uniCombox)
 
 App.mpType = 'app'
 

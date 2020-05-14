@@ -199,7 +199,7 @@
 
 			.top_name {
 				display: block;
-				width: 140upx;
+				width: 240upx;
 			}
 
 			.top_phone {

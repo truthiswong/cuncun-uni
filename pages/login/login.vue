@@ -166,12 +166,14 @@
 								});
 								let token = `Bearer ${data.data.token}`
 								uni.setStorage({
-								  key: 'token',
-								  data: token
+								    key: 'token',
+								    data: token,
+								    success: function () {
+								        uni.switchTab({
+								        	url: '/pages/tabs/tab1'
+								        })
+								    }
 								});
-								uni.switchTab({
-									url: '/pages/tabs/tab1'
-								})
 							} else{
 								uni.showToast({
 									icon: 'none',
