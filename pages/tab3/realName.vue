@@ -9,12 +9,12 @@
 			<uni-list class="list_custom list_custom_item list_custom_margin20">
 				<uni-list-item title="姓名：" :showArrow="false">
 					<view slot="right" class="input">
-						<input type="text" v-model="username" placeholder="请输入姓名" placeholder-style="color: #CCCCCC;font-size:14px;" />
+						<input type="text" v-model="username" :disabled="realNameConfirm" placeholder="请输入姓名" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
 				<uni-list-item title="身份证：" :showArrow="false">
 					<view slot="right" class="input">
-						<input type="idcard" v-model="idCard" placeholder="请输入身份证号" placeholder-style="color: #CCCCCC;font-size:14px;" />
+						<input type="idcard" v-model="idCard" maxlength="18" :disabled="realNameConfirm" placeholder="请输入身份证号" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
 				<!-- <uni-list-item title="签证机关：" :showArrow="false">
@@ -222,9 +222,10 @@
 						console.log(data)
 						if (data.success) {
 							// #ifdef APP-PLUS
-							// plus.runtime.openURL('alipays://platformapi/startapp', function(res) {
-							// 	console.log(res);
-							// });
+							// let openAlipayStr = 'alipays : //platformapi/startapp?appId=tech.cuncun.cuncun&url=' + encodeURIComponent(data.data)
+							// let openAlipayStr = 'alipays : //platformapi/startapp?appId=2021001154688136&url=' + encodeURIComponent(data.data)
+							//url的获取参考本文档“2.生成认证服务请求地址” 
+							// const certifyUrl = alipays: //platformapi/startapp?appId=20000067&url=encodeURIComponent(url);
 							plus.runtime.openURL(data.data, function(res) {
 								console.log(res);
 							});
