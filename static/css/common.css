@@ -1,5 +1,6 @@
 /* 头部 */
 .header {}
+
 /* 导航点击阴影 */
 .navigator-hover {
 	background-color: rgba(0, 0, 0, 0);
@@ -165,7 +166,7 @@
 
 /* 弹窗 */
 .uni-popup {
-	z-index: 900 !important;
+	z-index: 1500 !important;
 }
 
 .popup_title {
@@ -188,6 +189,15 @@
 	height: 90upx;
 	box-sizing: border-box;
 	padding: 30upx;
+}
+
+/* 提示框 */
+uni-toast {
+	z-index: 3000 !important;
+}
+
+.uni-toast {
+	z-index: 3000 !important;
 }
 
 /* 多选框 */
