@@ -68,14 +68,15 @@
 		onLoad(op) {},
 		onShow() {
 			let user = uni.getStorageSync('user')
-			if (!user) {
-				this.getUserInfo()
-			}
 			if (user.portrait) {
 				this.headImage = user.portrait
+			} else {
+				this.headImage = '../../static/tab3/my_image.png'
 			}
 			if (user.nickName) {
 				this.nickname = user.nickName
+			} else {
+				this.nickname = 'Ding Han'
 			}
 		},
 		onPageScroll(options) {
@@ -86,21 +87,11 @@
 			}
 		},
 		methods: {
-			goOhter() {
-				var UIApplication = plus.ios.import('UIApplication');
-				var NSURL = plus.ios.import('NSURL');
-				console.log(UIApplication)
-				console.log(NSURL)
-				var setting = NSURL.URLWithString('weixin://');
-				var application = UIApplication.sharedApplication();
-				application.openURL(setting);
-				plus.ios.deleteObject(setting);
-				plus.ios.deleteObject(application);
-			},
 			getUserInfo() {
 				this.$http('user/current', "GET", '', res => {
 					let data = res.data
 					if (data.success) {
+						console.log(data.data)
 						uni.setStorage({
 							key: 'user',
 							data: data.data
