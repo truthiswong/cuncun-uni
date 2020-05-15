@@ -18,54 +18,59 @@
 		<view class="content" @click="isAddShow=false">
 			<checkbox-group class="checkbox_custom" @change="onCheckboxChange">
 				<view class="list_margin50" v-if="allData.length>0" style="background-color: #FFFFFF;">
-					<view class="box_groceries_content flex_between" v-for="(item,index) in allData" :key="index">
+					<view class="search_list flex_between" v-for="(item,index) in allData" :key="index">
 						<label>
-							<view class="box_groceries_left">
-								<view v-if="item.type.code == 'bookcase'">
-									<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
-									 style="display: inline-block;">
+							<view class="search_list_left">
+								<view v-if="item.itemType == 'bookcase'">
+									<view class="list_left_view" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}">
 										<image :src="item.coverPic"></image>
 										<view class="checkbox_item" v-if="isCheckedShow">
 											<checkbox :value="item.id" :checked="item.checked" color="white" />
 										</view>
 									</view>
 								</view>
-								<view v-if="item.type.code == 'armoire'">
-									<image src="../../static/tab1/box_null.png"></image>
-									<view class="checkbox_item">
-										<checkbox v-if="isCheckedShow" :value="item.id" :checked="item.checked" color="white" /><text></text>
+								<view v-if="item.itemType == 'armoire'">
+									<view class="list_left_view" :style="{'background': 'url('+ scroll_bg2 +') no-repeat center center / cover','background-size': '100%'}">
+										<image style="width: 200upx;" :src="item.coverPic"></image>
+										<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 80upx;" src="../../static/tab1/clothes_box1.png"></image>
+										<view class="checkbox_item" v-if="isCheckedShow">
+											<checkbox :value="item.id" :checked="item.checked" color="white" /><text></text>
+										</view>
 									</view>
 								</view>
-								<view v-if="item.type.code == 'shoebox'">
-									<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
-									<image :src="item.coverPic"></image>
-									<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
-									<view class="checkbox_item" v-if="isCheckedShow">
-										<checkbox :value="item.id" :checked="item.checked" color="white" />
+								<view v-if="item.itemType == 'shoebox'">
+									<view class="list_left_view">
+										<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
+										<image style="width: 206upx;" :src="item.coverPic"></image>
+										<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
+										<view class="checkbox_item" v-if="isCheckedShow">
+											<checkbox :value="item.id" :checked="item.checked" color="white" />
+										</view>
 									</view>
 								</view>
-								<view v-if="item.type.code == 'storeroom'">
-									<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
-									<image :src="item.coverPic"></image>
-									<view class="checkbox_item" v-if="isCheckedShow">
-										<checkbox :value="item.id" :checked="item.checked" color="white" />
+								<view v-if="item.itemType == 'storeroom'">
+									<view class="list_left_view">
+										<image :src="item.coverPic"></image>
+										<view class="checkbox_item" v-if="isCheckedShow">
+											<checkbox :value="item.id" :checked="item.checked" color="white" />
+										</view>
 									</view>
 								</view>
-								<view v-if="item.type.code == 'sundries'">
-									<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
-									<image :src="item.coverPic"></image>
-									<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
-									<view class="checkbox_item" v-if="isCheckedShow">
-										<checkbox :value="item.id" :checked="item.checked" color="white" />
+								<view v-if="item.itemType == 'sundries'">
+									<view class="list_left_view">
+										<image style="width: 260upx;height: 220upx;" src="../../static/tab1/box_null.png"></image>
+										<view class="checkbox_item">
+											<checkbox v-if="isCheckedShow" :value="item.id" :checked="item.checked" color="white" /><text></text>
+										</view>
 									</view>
 								</view>
 							</view>
 						</label>
-						<view class="box_groceries_right" style="color: rgba(40,40,40,1);">
+						<view class="search_list_right" style="color: rgba(40,40,40,1);">
 							<view>
 								<text>{{item.code}}</text>
 							</view>
-							<text class="box_groceries_text">内含：{{item.remark}}</text>
+							<text class="search_list_text">内含：{{item.name}}</text>
 						</view>
 					</view>
 				</view>
@@ -88,12 +93,6 @@
 				scroll_bg2: '../../static/tab1/clothes_box.png',
 				scroll_bg3: '../../static/tab1/shoes_box2.png',
 				allData: [], // 所有搜索结果
-				failData: [], //未过安检的箱子
-				bookData: [], //书架
-				clotheData: [], //衣柜
-				shoeData: [], //鞋柜
-				storageData: [], //储藏室
-				groceriesData: [], //杂货架
 				candidates: ['物品', '箱子'],
 				candidatesDefault: '物品',
 				isCheckedShow: false,
@@ -132,17 +131,7 @@
 							if (data.success) {
 								for (let item of data.data.data) {
 									item.checked = false
-									// if (item.type.code == 'bookcase') {
-									// 	this.bookData.push(item) //书架
-									// } else if (item.type.code == 'armoire') {
-									// 	this.clotheData.push(item) //衣柜
-									// } else if (item.type.code == 'shoebox') {
-									// 	this.shoeData.push(item) //鞋柜
-									// } else if (item.type.code == 'storeroom') {
-									// 	this.storageData.push(item) //储藏室
-									// } else if (item.type.code == 'sundries') {
-									// 	this.groceriesData.push(item) //杂货架
-									// }
+									item.itemType = item.type.code
 								}
 								this.allData = data.data.data
 								console.log(this.allData)
@@ -159,17 +148,8 @@
 							if (data.success) {
 								for (let item of data.data.data) {
 									item.checked = false
-									// if (item.type.code == 'bookcase') {
-									// 	this.bookData.push(item) //书架
-									// } else if (item.type.code == 'armoire') {
-									// 	this.clotheData.push(item) //衣柜
-									// } else if (item.type.code == 'shoebox') {
-									// 	this.shoeData.push(item) //鞋柜
-									// } else if (item.type.code == 'storeroom') {
-									// 	this.storageData.push(item) //储藏室
-									// } else if (item.type.code == 'sundries') {
-									// 	this.groceriesData.push(item) //杂货架
-									// }
+									item.itemType = 'sundries'
+									item.name = item.remark
 								}
 								this.allData = data.data.data
 								console.log(this.allData)
@@ -191,21 +171,6 @@
 					for (let item of this.allData) {
 						item.checked = true
 					}
-					// for (let item of this.bookData) {
-					// 	item.checked = true
-					// }
-					// for (let item of this.clotheData) {
-					// 	item.checked = true
-					// }
-					// for (let item of this.shoeData) {
-					// 	item.checked = true
-					// }
-					// for (let item of this.storageData) {
-					// 	item.checked = true
-					// }
-					// for (let item of this.groceriesData) {
-					// 	item.checked = true
-					// }
 				}
 			},
 			onCheckboxChange(e) {
@@ -228,41 +193,74 @@
 				this.isAddShow = !this.isAddShow
 			},
 			onConfirm() {
-				console.log(this.allData)
-				return
-				this.isAddShow = false
 				let chooseData = {}
 				let chooseIndex = 0
-				for (let item of this.list) {
-					if (item.checked) {
-						chooseData['goodsId[' + chooseIndex + ']'] = item.id
-						chooseIndex++
-					}
-				}
-				if (!chooseIndex) {
-					uni.showToast({
-						title: '请选择要送回的物品',
-						icon: 'none'
-					})
-				} else {
-					this.$http('user/withdraw/goods/choose', "POST", chooseData, res => {
-						let data = res.data
-						if (data.success) {
-							uni.navigateTo({
-								url: '/pages/tab1/orderBackPay'
-							})
-						} else {
-							uni.showToast({
-								icon: 'none',
-								title: data.message
-							});
+				if (this.candidatesDefault == '物品') {
+					for (let item of this.allData) {
+						if (item.checked) {
+							chooseData['goodsId[' + chooseIndex + ']'] = item.id
+							chooseIndex++
 						}
-					})
+					}
+					if (!chooseIndex) {
+						uni.showToast({
+							title: '请选择要送回的物品',
+							icon: 'none'
+						})
+					} else {
+						this.$http('user/withdraw/goods/choose', "POST", chooseData, res => {
+							let data = res.data
+							if (data.success) {
+								uni.navigateTo({
+									url: '/pages/tab1/orderBack'
+								})
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: data.message
+								});
+							}
+						})
+					}
+				} else if (this.candidatesDefault == '箱子') {
+					
+					for (let item of this.allData) {
+						if (item.checked) {
+							chooseData['packId[' + chooseIndex + ']'] = item.id
+							chooseIndex++
+						}
+					}
+					if (!chooseIndex) {
+						uni.showToast({
+							title: '请选择要送回的物品',
+							icon: 'none'
+						})
+					} else {
+						this.$http('user/withdraw/pack/choose', "POST", chooseData, res => {
+							let data = res.data
+							if (data.success) {
+								uni.navigateTo({
+									url: '/pages/tab1/orderBack'
+								})
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: data.message
+								});
+							}
+						})
+					}
 				}
 			}
 		}
 	}
 </script>
+
+<style>
+	.uni-combox__input {
+		font-size: 14px;
+	}
+</style>
 
 <style scoped lang="scss">
 	.header_icon {
@@ -309,170 +307,72 @@
 	}
 
 	.content {
-		padding: 120upx 0 0;
+		padding: 120upx 30upx 0;
 	}
 
-	.box_wrong_content {
+	.search_list {
 		position: relative;
 		width: 100%;
-		height: 234upx;
+		height: 240upx;
 		background-color: #FFFFFF;
-	}
-
-	.box_wrong_left {
-		position: relative;
-
-		image {
-			width: 308upx;
-			height: 210upx;
-			margin-top: 60upx;
-		}
-
-		text {
-			position: absolute;
-			right: 80upx;
-			bottom: 70upx;
-			font-size: 50upx;
-			font-weight: 700;
-			color: #90785e;
-		}
-	}
-
-	.box_wrong_right {
-		width: 380upx;
-		font-size: 28upx;
-		font-weight: 500;
-		color: rgba(255, 255, 255, 1);
-		line-height: 50upx;
-		margin: 20upx 50upx 0 0;
-	}
-
-	.box_wrong_text {
-		font-weight: 400;
-		line-height: 46upx;
-		margin-top: 10upx;
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
-		overflow: hidden;
-	}
-
-	.box_groceries_content {
-		position: relative;
-		width: 100%;
-		height: 234upx;
-		background-color: #FFFFFF;
-	}
-
-	.box_groceries_left {
-		position: relative;
-
-		image {
-			width: 308upx;
+		margin-bottom: 40upx;
+		
+		.search_list_left {
+			position: relative;
+			width: 260upx;
 			height: 230upx;
-			margin-top: 60upx;
+			
+			.list_left_view {
+				width: 260upx;
+				height: 260upx;
+				text-align: center;
+				position: relative;
+				
+				image {
+					position: absolute;
+					left: 0;
+					right: 0;
+					margin: auto;
+					z-index: 3;
+					width: 180upx;
+					height: 200upx;
+				}
+			}
+		
+			text {
+				position: absolute;
+				right: 80upx;
+				bottom: 80upx;
+				font-size: 50upx;
+				font-weight: 700;
+				color: #90785e;
+			}
+		
+			.checkbox_item {
+				position: absolute;
+				top: 0;
+				right: 10upx;
+				z-index: 25;
+			}
 		}
-
-		text {
-			position: absolute;
-			right: 80upx;
-			bottom: 80upx;
-			font-size: 50upx;
-			font-weight: 700;
-			color: #90785e;
-		}
-
-		.checkbox_item {
-			position: absolute;
-			top: 50upx;
-			right: 10upx;
-			z-index: 25;
-		}
-	}
-
-	.box_groceries_right {
-		width: 380upx;
-		font-size: 28upx;
-		font-weight: 500;
-		color: rgba(40, 40, 40, 1);
-		line-height: 50upx;
-		margin: 20upx 50upx 0 0;
-	}
-
-	.box_groceries_text {
-		font-weight: 400;
-		line-height: 46upx;
-		margin-top: 10upx;
-		color: #4A4A4A;
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
-		overflow: hidden;
-	}
-
-	.scroll_x {
-		white-space: nowrap;
-		width: 100%;
-		background-color: #FFFFFF;
-		overflow: auto;
-	}
-
-	.scroll_content {
-		position: relative;
-		width: 285upx;
-		height: 285upx;
-		text-align: center;
-
-		.checkbox_item {
-			position: absolute;
-			top: 0;
-			right: 10upx;
-			z-index: 25;
-		}
-	}
-
-	.scroll_contentbg1 {
-		background: url("/static/tab1/bookbox.png") no-repeat center center / cover;
-
-	}
-
-	.scroll_contentbg2 {
-		background: url("/static/tab1/clothes_box.png") no-repeat center center;
-		background-size: 100%;
-	}
-
-	.scroll_contentbg3 {
-		background: url("/static/tab1/shoes_box.png") no-repeat center center;
-		background-size: 100%;
-	}
-
-	.scroll_content image {
-		position: absolute;
-		left: 0;
-		right: 0;
-		margin: auto;
-		z-index: 3;
-		width: 200upx;
-		height: 230upx;
-	}
-
-	.scroll_content2 image {
-		width: 230upx;
-		height: 230upx;
-	}
-
-	.scroll_content4 {
-		width: 200upx;
-		height: 200upx;
-		box-sizing: border-box;
-		padding: 18upx 18upx 0;
-		background: rgba(230, 230, 230, 1);
-		margin-right: 10upx;
-
-		image {
-			width: 184upx;
-			height: 184upx;
-
+		
+		.search_list_right {
+			width: 340upx;
+			font-size: 28upx;
+			font-weight: 500;
+			color: rgba(40, 40, 40, 1);
+			line-height: 50upx;
+			margin: 20upx 50upx 0 0;
+			.search_list_text {
+				font-weight: 400;
+				line-height: 46upx;
+				margin-top: 10upx;
+				color: #4A4A4A;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 2;
+				overflow: hidden;
+			}
 		}
 	}
 
