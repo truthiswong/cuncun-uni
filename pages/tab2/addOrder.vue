@@ -82,6 +82,30 @@
 				</view>
 			</label>
 		</view>
+		<uni-popup ref="popupAlert" :maskClick='false' type="center">
+			<view class="popup_alert_wrap">
+				<view class="popup_title">
+					<text>存单须知</text>
+					<image class="close_btn" @click="onClosePopup" src="../../static/tab2/close.png" mode=""></image>
+				</view>
+				<scroll-view class="scroll_content" scroll-y="true">
+					<alert-agreement></alert-agreement>
+				</scroll-view>
+				<view class="alert_bottom">
+					<label class="row">
+						<view class="col-5" style="text-align: right;">
+							<checkbox-group @change="agreement(3)">
+								<checkbox style="transform:scale(0.6);" color="rgba(59, 193, 187, 1)" />
+							</checkbox-group>
+						</view>
+						<view class="row col-7" style="font-size: 26upx;color: #282828; margin-top: 4upx;">
+							<text>不再显示</text>
+						</view>
+					</label>
+					<button @click="onClosePopup" class="alert_button">我知道了</button>
+				</view>
+			</view>
+		</uni-popup>
 		<uni-popup ref="popup" type="bottom" @touchmove.stop.prevent @touchend.stop>
 			<view class="popup_wrap">
 				<view class="popup_title">
@@ -116,8 +140,11 @@
 </template>
 
 <script>
+	import alertAgreement from '../../components/alertAgreement.vue'
 	export default {
-		components: {},
+		components: {
+			'alert-agreement': alertAgreement
+		},
 		data() {
 			return {
 				info: Object,
@@ -162,6 +189,7 @@
 				boxNumber: 1,
 				agree1: false,
 				agree2: false,
+				agree3: false,
 				buttonActive: false,
 			}
 		},
@@ -193,7 +221,15 @@
 			}
 			console.log(this.mday)
 		},
-		onShow() {},
+		onShow() {
+			this.$nextTick(()=>{
+				this.$refs.popupAlert.open()
+				let user = uni.getStorageSync('user')
+				if (!user.alertAgreement) {
+					this.$refs.popupAlert.open()
+				}
+			})
+		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
@@ -308,6 +344,18 @@
 					this.boxList[index].number = number;
 				}
 			},
+			// 注意事项
+			onClosePopup(){
+				this.$refs.popupAlert.close()
+				if (this.agree3) {
+					let user = uni.getStorageSync('user')
+					user.alertAgreement = true // 不显示
+					uni.setStorage({
+						key: 'user',
+						data: user
+					})
+				}
+			},
 			// 箱子详情
 			onBoxDetail(id) {
 				console.log(id)
@@ -322,6 +370,8 @@
 					this.agree1 = !this.agree1
 				} else if (index == 2) {
 					this.agree2 = !this.agree2
+				} else if (index == 3) {
+					this.agree3 = !this.agree3
 				}
 			},
 			onNext() {
@@ -598,6 +648,43 @@
 		color: rgba(155, 155, 155, 1);
 		line-height: 37upx;
 		text-decoration: underline solid rgba(155, 155, 155, 1);
+	}
+	
+	.popup_alert_wrap {
+		position: relative;
+		width: 707upx;
+		height: 80vh;
+		background: rgba(255, 255, 255, 1);
+		border-radius: 20upx;
+		z-index: 999;
+	
+		.scroll_content {
+			position: absolute;
+			top: 90upx;
+			left: 0;
+			right: 0;
+			bottom: 160upx;
+			margin: auto;
+			padding: 0 30upx;
+			box-sizing: border-box;
+		}
+		.alert_bottom {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 20upx;
+			margin: auto;
+			.alert_button {
+				width: 60%;
+				height: 80upx;
+				line-height: 80upx;
+				box-shadow: 0 -2upx 10upx 0 rgba(0, 0, 0, 0.05);
+				font-size: 28upx;
+				font-weight: 500;
+				color: #FFFFFF;
+				background: #3BC1BB;
+			}
+		}
 	}
 
 	.popup_wrap {
