@@ -2212,6 +2212,13 @@ var render = function() {
                                               attrs: {
                                                 "scroll-x": "true",
                                                 _i: 58
+                                              },
+                                              on: {
+                                                scroll: function($event) {
+                                                  return _vm.$handleViewEvent(
+                                                    $event
+                                                  )
+                                                }
                                               }
                                             },
                                             _vm._l(_vm._$g(59, "f"), function(
@@ -2466,6 +2473,13 @@ var render = function() {
                                               attrs: {
                                                 "scroll-x": "true",
                                                 _i: 75
+                                              },
+                                              on: {
+                                                scroll: function($event) {
+                                                  return _vm.$handleViewEvent(
+                                                    $event
+                                                  )
+                                                }
                                               }
                                             },
                                             _vm._l(_vm._$g(76, "f"), function(
@@ -2740,6 +2754,13 @@ var render = function() {
                                               attrs: {
                                                 "scroll-x": "true",
                                                 _i: 93
+                                              },
+                                              on: {
+                                                scroll: function($event) {
+                                                  return _vm.$handleViewEvent(
+                                                    $event
+                                                  )
+                                                }
                                               }
                                             },
                                             _vm._l(_vm._$g(94, "f"), function(
@@ -3028,6 +3049,13 @@ var render = function() {
                                               attrs: {
                                                 "scroll-x": "true",
                                                 _i: 112
+                                              },
+                                              on: {
+                                                scroll: function($event) {
+                                                  return _vm.$handleViewEvent(
+                                                    $event
+                                                  )
+                                                }
                                               }
                                             },
                                             _vm._l(_vm._$g(113, "f"), function(

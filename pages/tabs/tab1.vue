@@ -90,7 +90,7 @@
 							</uni-list>
 						</view>
 						<view v-if="tab1ShowHide.bookShowHide == true">
-							<scroll-view class="scroll_x" scroll-x="true">
+							<scroll-view class="scroll_x" scroll-x="true" @scroll="onScroll">
 								<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
 								 style="display: inline-block;" v-for="(item,index) in bookData.goods" :key='index'>
 									<image v-if="item.coverPic" :src="item.coverPic"></image>
@@ -120,7 +120,7 @@
 							</uni-list>
 						</view>
 						<view v-if="tab1ShowHide.clotheShowHide == true">
-							<scroll-view class="scroll_x" scroll-x="true">
+							<scroll-view class="scroll_x" scroll-x="true" @scroll="onScroll">
 								<view class="scroll_content scroll_content2" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
 								 v-for="(item,index) in clotheData.goods" :key='index' style="display: inline-block;">
 									<image v-if="item.coverPic" :src="item.coverPic"></image>
@@ -151,7 +151,7 @@
 							</uni-list>
 						</view>
 						<view v-if="tab1ShowHide.shoeShowHide == true">
-							<scroll-view class="scroll_x" scroll-x="true">
+							<scroll-view class="scroll_x" scroll-x="true" @scroll="onScroll">
 								<view class="scroll_content scroll_content2" v-for="(item,index) in shoeData.goods" :key='index' style="display: inline-block;">
 									<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
 									<image v-if="item.coverPic" :src="item.coverPic"></image>
@@ -182,7 +182,7 @@
 							</uni-list>
 						</view>
 						<view v-if="tab1ShowHide.storageShowHide == true">
-							<scroll-view class="scroll_x" scroll-x="true">
+							<scroll-view class="scroll_x" scroll-x="true" @scroll="onScroll">
 								<view class="scroll_content scroll_content4" v-for="(item,index) in storageData.goods" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
 									<image v-if="item.coverPic" :src="item.coverPic"></image>
 									<image v-else @click="onClickRight(4)" src="../../static/tab1/add_order.png" mode=""></image>
@@ -358,6 +358,10 @@
 				this.tab1ShowHide.shoeShowHideTitle = true
 				this.tab1ShowHide.storageShowHideTitle = true
 				this.tab1ShowHide.groceriesShowHideTitle = true
+			},
+			onScroll() {
+				console.log(23)
+				this.long_active = false
 			},
 			isShowHide(type) {
 				console.log(type)
