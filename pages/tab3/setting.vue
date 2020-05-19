@@ -57,12 +57,13 @@
 				nickname: 'Ding Han',
 				nicknameSet: '',
 				mobile: '',
+				userInfoUpdate: false,
 				realName: '未实名',
 				realNameConfirm: false,
 			};
 		},
 		onLoad() {
-			
+
 		},
 		onShow() {
 			let user = uni.getStorageSync('user')
@@ -82,6 +83,9 @@
 			} else {
 				this.realName = "未实名"
 				this.realNameConfirm = false
+			}
+			if (this.userInfoUpdate) {
+				this.getUserInfo()
 			}
 		},
 		methods: {
@@ -207,9 +211,15 @@
 				}
 			},
 			onRealName() {
-				uni.navigateTo({
-					url: "/pages/tab3/realName"
-				})
+				if (this.realNameConfirm) {
+					uni.navigateTo({
+						url: "/pages/tab3/realNameSuccess"
+					})
+				} else {
+					uni.navigateTo({
+						url: "/pages/tab3/realName"
+					})
+				}
 			},
 			onAddress() {
 				this.$router.push({

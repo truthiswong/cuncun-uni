@@ -255,15 +255,6 @@
 			}
 		},
 		{
-			"path": "pages/tab3/otherPage2",
-			"style": {
-				"navigationBarTitleText": "存存服务须知",
-				"app-plus": {
-					"bounce": "none"
-				}
-			}
-		},
-		{
 			"path": "pages/tab3/otherPage3",
 			"style": {
 				"navigationBarTitleText": "关于存存",
@@ -276,6 +267,24 @@
 			"path": "pages/tab3/realName",
 			"style": {
 				"navigationBarTitleText": "实名认证",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab3/realNameFail",
+			"style": {
+				"navigationBarTitleText": "实名认证失败",
+				"app-plus": {
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/tab3/realNameSuccess",
+			"style": {
+				"navigationBarTitleText": "实名认证成功",
 				"app-plus": {
 					"bounce": "none"
 				}

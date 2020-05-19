@@ -2,19 +2,19 @@
 	<view class="layout">
 		<uni-nav-bar left-icon="back" @clickLeft="onClickBack" title="实名认证" status-bar="true" fixed="true" :shadow="false"></uni-nav-bar>
 		<!-- 内容 -->
-		<view style="padding: 0 30upx">
+		<view style="padding: 0 60upx">
 			<view class="top_img">
 				<image src="../../static/common/finish.png" mode=""></image>
 			</view>
 			<uni-list class="list_custom list_custom_item list_custom_margin20">
 				<uni-list-item title="姓名：" :showArrow="false">
 					<view slot="right" class="input">
-						<input type="text" v-model="username" :disabled="realNameConfirm" placeholder="请输入姓名" placeholder-style="color: #CCCCCC;font-size:14px;" />
+						<input type="text" v-model="username" placeholder="请输入姓名" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
 				<uni-list-item title="身份证：" :showArrow="false">
 					<view slot="right" class="input">
-						<input type="idcard" v-model="idCard" maxlength="18" :disabled="realNameConfirm" placeholder="请输入身份证号" placeholder-style="color: #CCCCCC;font-size:14px;" />
+						<input type="idcard" v-model="idCard" maxlength="18" placeholder="请输入身份证号" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
 				<!-- <uni-list-item title="签证机关：" :showArrow="false">
@@ -34,7 +34,8 @@
 				</view> -->
 			</uni-list>
 		</view>
-		<button @click="onConfirm" :disabled="realNameConfirm" class="address_button" :class="{address_button_active: buttonActive}">{{realNameConfirm?'已实名':'确 认'}}</button>
+		<button @click="onConfirm" class="address_button">前往认证</button>
+		<text @click="onReturn" class="address_button address_button_active">暂不认证，先看看</text>
 	</view>
 </template>
 
@@ -70,7 +71,7 @@
 			}
 		},
 		onLoad(op) {
-			this.getIdinfo()
+			// this.getIdinfo()
 		},
 		onShow() {
 			let user = uni.getStorageSync('user')
@@ -242,6 +243,16 @@
 					// })
 				}
 			},
+			onReturn() {
+				uni.navigateBack({
+					delta: 1
+				})
+				// #ifdef APP-PLUS
+				uni.report('realNameReturn', {
+					'describe': '暂不认证'
+				})
+				// #endif
+			},
 			getRealNameReturn() {
 				this.$http('user/alipay/user/certify/query', "GET", '', res => {
 					let data = res.data
@@ -290,7 +301,7 @@
 	}
 
 	.input {
-		width: 520upx;
+		width: 500upx;
 		font-weight: 400;
 		font-size: 28upx;
 		line-height: 40upx;
@@ -304,20 +315,24 @@
 	}
 
 	.address_button {
-		width: 690upx;
+		width: 650upx;
 		height: 98upx;
-		background: rgba(238, 238, 238, 1);
+		background: rgba(59, 193, 187, 1);
 		border-radius: 6upx;
 		font-size: 30upx;
 		font-weight: 500;
-		color: rgba(178, 178, 178, 1);
+		color: #FFFFFF;
 		line-height: 98upx;
 		text-align: center;
 		margin-top: 80upx;
 	}
 
 	.address_button_active {
-		background-color: #3BC1BB;
-		color: #FFFFFF;
+		display: block;
+		text-align: center;
+		background: rgba(59, 193, 187, 0);
+		color: rgba(6, 185, 185, 1);
+		border: none;
+		margin: 20upx auto 0;
 	}
 </style>
