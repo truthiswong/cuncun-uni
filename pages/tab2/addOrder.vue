@@ -227,7 +227,7 @@
 		},
 		onShow() {
 			this.$nextTick(() => {
-				this.$refs.popupAlert.open()
+				// this.$refs.popupAlert.open()
 				let user = uni.getStorageSync('user')
 				if (!user.alertAgreement) {
 					this.$refs.popupAlert.open()
