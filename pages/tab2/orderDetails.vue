@@ -471,7 +471,14 @@
 					let data = res.data
 					if (data.success) {
 						uni.navigateTo({
-							url: '/pages/tab2/addOrder'
+							url: '/pages/tab2/addOrder',
+							success: () => {
+								// #ifdef APP-PLUS
+								uni.report('recallOrder', {
+									'describe': '存单重新下单'
+								})
+								// #endif
+							}
 						})
 					} else {
 						uni.showToast({

@@ -43,7 +43,13 @@
 			this.orderInfo.detailAddress = this.orderInfo.area.province + ' ' + this.orderInfo.area.city + ' ' + this.orderInfo.area
 				.district + ' ' + this.orderInfo.address
 		},
-		onShow() {},
+		onShow() {
+			// #ifdef APP-PLUS
+			uni.report('addOrderSuccess', {
+				'describe': '存单成功'
+			})
+			// #endif
+		},
 		watch: {},
 		methods: {
 			onPayChange() {

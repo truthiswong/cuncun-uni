@@ -109,7 +109,7 @@
 						}
 						if (data.data.realNameConfirm) {
 							this.realName = "已实名"
-							this.realNameConfirm = data.data.realNameConfirm
+							this.realNameConfirm = true
 						} else {
 							this.realName = "未实名"
 						}

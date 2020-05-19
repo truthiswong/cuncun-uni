@@ -219,10 +219,14 @@
 					this.mday = 31
 				}
 			}
-			console.log(this.mday)
+			// #ifdef APP-PLUS
+			uni.report('addOrderEdit', {
+				'describe': '添加存单页'
+			})
+			// #endif
 		},
 		onShow() {
-			this.$nextTick(()=>{
+			this.$nextTick(() => {
 				this.$refs.popupAlert.open()
 				let user = uni.getStorageSync('user')
 				if (!user.alertAgreement) {
@@ -345,7 +349,7 @@
 				}
 			},
 			// 注意事项
-			onClosePopup(){
+			onClosePopup() {
 				this.$refs.popupAlert.close()
 				if (this.agree3) {
 					let user = uni.getStorageSync('user')
@@ -355,12 +359,22 @@
 						data: user
 					})
 				}
+				// #ifdef APP-PLUS
+				uni.report('addOrderAlert', {
+					'describe': '添加存单弹窗'
+				})
+				// #endif
 			},
 			// 箱子详情
 			onBoxDetail(id) {
 				console.log(id)
 				this.boxIndex = id
 				this.$refs.popup.open()
+				// #ifdef APP-PLUS
+				uni.report('addOrderBoxDetail', {
+					'describe': '存单箱子弹窗'
+				})
+				// #endif
 			},
 			closePopup() {
 				this.$refs.popup.close()
@@ -380,14 +394,14 @@
 				let inputIndex = 0
 				let boxIndex = 0
 				for (let item of this.inputList) {
-					if (item.number>0 && item.value) {
+					if (item.number > 0 && item.value) {
 						dataInput['name[' + inputIndex + ']'] = item.value
 						dataInput['amount[' + inputIndex + ']'] = item.number
 						inputIndex++
 					}
 				}
 				for (let item of this.boxList) {
-					if (item.number>0) {
+					if (item.number > 0) {
 						dataBox['boxId[' + boxIndex + ']'] = item.id
 						dataBox['amount[' + boxIndex + ']'] = item.number
 						boxIndex++
@@ -411,7 +425,14 @@
 								let data = res.data
 								if (data.success) {
 									uni.navigateTo({
-										url: "/pages/tab2/orderPay?boxNum=" + boxIndex
+										url: "/pages/tab2/orderPay?boxNum=" + boxIndex,
+										success: () => {
+											// #ifdef APP-PLUS
+											uni.report('addOrderNext', {
+												'describe': '存单下一步'
+											})
+											// #endif
+										}
 									})
 								} else {
 									uni.showToast({
@@ -649,7 +670,7 @@
 		line-height: 37upx;
 		text-decoration: underline solid rgba(155, 155, 155, 1);
 	}
-	
+
 	.popup_alert_wrap {
 		position: relative;
 		width: 707upx;
@@ -657,7 +678,7 @@
 		background: rgba(255, 255, 255, 1);
 		border-radius: 20upx;
 		z-index: 999;
-	
+
 		.scroll_content {
 			position: absolute;
 			top: 90upx;
@@ -668,12 +689,14 @@
 			padding: 0 30upx;
 			box-sizing: border-box;
 		}
+
 		.alert_bottom {
 			position: absolute;
 			left: 0;
 			right: 0;
 			bottom: 20upx;
 			margin: auto;
+
 			.alert_button {
 				width: 60%;
 				height: 80upx;

@@ -71,7 +71,7 @@
 			if (user.portrait) {
 				this.headImage = user.portrait
 			} else {
-				this.headImage = '../../static/tab3/my_image.png'
+				this.headImage = require('../../static/tab3/my_image.png')
 			}
 			if (user.nickName) {
 				this.nickname = user.nickName

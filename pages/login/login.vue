@@ -104,6 +104,11 @@
 									icon: 'none',
 									title: data.message
 								});
+								// #ifdef APP-PLUS
+								uni.report('loginSms', {
+									'describe': '短信验证码'
+								})
+								// #endif
 								this.disabled = true;
 								let num = 30;
 								this.smsText = num;
@@ -170,7 +175,14 @@
 								    data: token,
 								    success: function () {
 								        uni.switchTab({
-								        	url: '/pages/tabs/tab1'
+								        	url: '/pages/tabs/tab1',
+											success: () => {
+												// #ifdef APP-PLUS
+												uni.report('login', {
+													'describe': '登录'
+												})
+												// #endif
+											}
 								        })
 								    }
 								});

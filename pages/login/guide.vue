@@ -52,7 +52,14 @@
 			},
 			onTry() {
 				uni.redirectTo({
-					url: '/pages/login/login'
+					url: '/pages/login/login',
+					success: () => {
+						// #ifdef APP-PLUS
+						uni.report('guide', {
+							'describe': '引导页'
+						})
+						// #endif
+					}
 				});
 			}
 		}

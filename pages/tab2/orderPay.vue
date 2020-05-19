@@ -298,6 +298,11 @@
 					})
 				} else {
 					this.$refs.popup.open()
+					// #ifdef APP-PLUS
+					uni.report('addOrderPayChange', {
+						'describe': '存单进入支付'
+					})
+					// #endif
 				}
 			},
 			closePopup() {
@@ -371,7 +376,14 @@
 											console.log(respay)
 											this.$refs.popup.close()
 											uni.navigateTo({
-												url: "/pages/tab2/orderSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(data.data))
+												url: "/pages/tab2/orderSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(data.data)),
+												success: () => {
+													// #ifdef APP-PLUS
+													uni.report('addOrderAlipay', {
+														'describe': '存单支付宝支付'
+													})
+													// #endif
+												}
 											})
 										},
 										fail: (err) => {

@@ -38,7 +38,7 @@
 			<view class="no_data" v-if="failData.length<=0 && bookData.dataNumber<=0 && clotheData.dataNumber<=0 && shoeData.dataNumber<=0 && storageData.dataNumber<=0 && groceriesData.dataNumber<=0">
 				<image src="../../static/tab1/no_data.png" mode=""></image>
 				<p>您的存存空空如也，跟我们的收纳达人和打包小哥约起来，赶紧的！！！</p>
-				<button @click="onClickRight(2)" class="common_button">约！约！约!</button>
+				<button @click="onClickRight(3)" class="common_button">约！约！约!</button>
 			</view>
 			<view v-else>
 				<!-- 未过安检的箱子 -->
@@ -94,7 +94,7 @@
 								<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
 								 style="display: inline-block;" v-for="(item,index) in bookData.goods" :key='index'>
 									<image v-if="item.coverPic" :src="item.coverPic"></image>
-									<image v-else @click="onClickRight(2)" src="../../static/tab1/add_order.png" mode=""></image>
+									<image v-else @click="onClickRight(4)" src="../../static/tab1/add_order.png" mode=""></image>
 								</view>
 							</scroll-view>
 						</view>
@@ -124,7 +124,7 @@
 								<view class="scroll_content scroll_content2" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
 								 v-for="(item,index) in clotheData.goods" :key='index' style="display: inline-block;">
 									<image v-if="item.coverPic" :src="item.coverPic"></image>
-									<image v-else @click="onClickRight(2)" src="../../static/tab1/add_order.png" mode=""></image>
+									<image v-else @click="onClickRight(4)" src="../../static/tab1/add_order.png" mode=""></image>
 									<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 112upx;" src="../../static/tab1/clothes_box1.png"></image>
 								</view>
 							</scroll-view>
@@ -155,7 +155,7 @@
 								<view class="scroll_content scroll_content2" v-for="(item,index) in shoeData.goods" :key='index' style="display: inline-block;">
 									<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
 									<image v-if="item.coverPic" :src="item.coverPic"></image>
-									<image v-else @click="onClickRight(2)" src="../../static/tab1/add_order.png" mode=""></image>
+									<image v-else @click="onClickRight(4)" src="../../static/tab1/add_order.png" mode=""></image>
 									<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
 								</view>
 							</scroll-view>
@@ -185,7 +185,7 @@
 							<scroll-view class="scroll_x" scroll-x="true">
 								<view class="scroll_content scroll_content4" v-for="(item,index) in storageData.goods" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
 									<image v-if="item.coverPic" :src="item.coverPic"></image>
-									<image v-else @click="onClickRight(2)" src="../../static/tab1/add_order.png" mode=""></image>
+									<image v-else @click="onClickRight(4)" src="../../static/tab1/add_order.png" mode=""></image>
 								</view>
 							</scroll-view>
 						</view>
@@ -271,6 +271,11 @@
 		},
 		onLoad() {},
 		onShow() {
+			// #ifdef APP-PLUS
+			uni.report('tab1', {
+				'describe': '首页'
+			})
+			// #endif
 			this.getGoodsList()
 			this.getFailList()
 			if (uni.getStorageSync('tab1ShowHide')) {
@@ -285,8 +290,10 @@
 			let nowHour = new Date().getHours()
 			if (user.nickName) {
 				nickname = user.nickName
-			} else {
+			} else if (user.name) {
 				nickname = user.name
+			} else {
+				this.getUserInfo()
 			}
 			if (nowHour >= 5 && nowHour <= 12) {
 				this.welcomeText = `上午好，${nickname}`
@@ -311,7 +318,36 @@
 					})
 				} else if (index == 2) {
 					uni.navigateTo({
-						url: '/pages/tab2/addOrder'
+						url: '/pages/tab2/addOrder',
+						success: () => {
+							// #ifdef APP-PLUS
+							uni.report('tab1Addorder', {
+								'describe': '首页加号'
+							})
+							// #endif
+						}
+					})
+				} else if (index == 3) {
+					uni.navigateTo({
+						url: '/pages/tab2/addOrder',
+						success: () => {
+							// #ifdef APP-PLUS
+							uni.report('tab1AddAdd', {
+								'describe': '首页约约约'
+							})
+							// #endif
+						}
+					})
+				} else if (index == 4) {
+					uni.navigateTo({
+						url: '/pages/tab2/addOrder',
+						success: () => {
+							// #ifdef APP-PLUS
+							uni.report('tab1ListAdd', {
+								'describe': '展示架加号'
+							})
+							// #endif
+						}
 					})
 				}
 			},
@@ -397,7 +433,8 @@
 							coverPic: ''
 						}
 						for (let i = 0; i < 10; i++) {
-							if (data.data.bookcase.goods.length<=0 && data.data.armoire.goods.length<=0 && data.data.shoebox.goods.length<=0 && data.data.storeroom.goods.length<=0 && data.data.sundries.packs.length<=0) {
+							if (data.data.bookcase.goods.length <= 0 && data.data.armoire.goods.length <= 0 && data.data.shoebox.goods.length <=
+								0 && data.data.storeroom.goods.length <= 0 && data.data.sundries.packs.length <= 0) {
 								console.log(data.data.bookcase.goods.length)
 								console.log(data.data.armoire.goods.length)
 								this.bookData = data.data.bookcase //书架
@@ -411,7 +448,7 @@
 								this.groceriesData = data.data.sundries //杂货架
 								this.groceriesData.dataNumber = data.data.sundries.packs.length
 								return
-							} else{
+							} else {
 								if (!data.data.bookcase.goods[i]) {
 									goodsData.id = i
 									data.data.bookcase.goods.push(goodsData)
@@ -440,6 +477,12 @@
 						this.storageData.dataNumber = data.data.storeroom.goods.length
 						this.groceriesData = data.data.sundries //杂货架
 						this.groceriesData.dataNumber = data.data.sundries.packs.length
+						console.log(this.failData)
+						console.log(this.bookData)
+						console.log(this.clotheData)
+						console.log(this.shoeData)
+						console.log(this.storageData)
+						console.log(this.groceriesData)
 					} else {
 						uni.showToast({
 							icon: 'none',

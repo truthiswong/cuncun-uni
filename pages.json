@@ -93,7 +93,7 @@
 		{
 			"path": "pages/tab1/storage",
 			"style": {
-				"navigationBarTitleText": "我的杂物架",
+				"navigationBarTitleText": "我的储藏室",
 				"app-plus": {
 					"bounce": "none"
 				}
@@ -162,11 +162,11 @@
 				}
 			}
 		},
-		// 订单
+		// 存单
 		{
 			"path": "pages/tab2/addOrder",
 			"style": {
-				"navigationBarTitleText": "添加订单",
+				"navigationBarTitleText": "添加存单",
 				"app-plus": {
 					"bounce": "none"
 				}
@@ -175,7 +175,7 @@
 		{
 			"path": "pages/tab2/orderDetails",
 			"style": {
-				"navigationBarTitleText": "订单详情",
+				"navigationBarTitleText": "存单详情",
 				"app-plus": {
 					"bounce": "none"
 				}
@@ -193,7 +193,7 @@
 		{
 			"path": "pages/tab2/orderPay",
 			"style": {
-				"navigationBarTitleText": "订单支付",
+				"navigationBarTitleText": "存单支付",
 				"app-plus": {
 					"bounce": "none"
 				}
@@ -202,7 +202,7 @@
 		{
 			"path": "pages/tab2/orderSuccess",
 			"style": {
-				"navigationBarTitleText": "订单成功",
+				"navigationBarTitleText": "存单成功",
 				"app-plus": {
 					"bounce": "none"
 				}

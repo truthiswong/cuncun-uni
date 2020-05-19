@@ -3,14 +3,14 @@
 		<uni-nav-bar color="#282828" title="我的订单" class="header" status-bar="true" fixed="true" v-if="headerShow"
 		 backgroundColor="#FFFFFF">
 			<view slot="right">
-				<view class="header_icon" @click="onClickRight">
+				<view class="header_icon" @click="onClickRight(1)">
 					<image src="../../static/tab1/add_green.png"></image>
 				</view>
 			</view>
 		</uni-nav-bar>
 		<uni-nav-bar color="#282828" title="我的订单" class="header" status-bar="true" fixed="true" v-if="!headerShow">
 			<view slot="right">
-				<view class="header_icon" @click="onClickRight">
+				<view class="header_icon" @click="onClickRight(1)">
 					<image src="../../static/tab1/add_green.png"></image>
 				</view>
 			</view>
@@ -20,7 +20,7 @@
 				<view class="no_data_content">
 					<image src="../../static/tab1/no_data.png"></image>
 					<p>欢迎使用存存，赶紧来存点东西吧～</p>
-					<button class="common_button" @click="onClickRight">去存点东西</button>
+					<button class="common_button" @click="onClickRight(2)">去存点东西</button>
 				</view>
 			</view>
 			<view v-else>
@@ -312,10 +312,30 @@
 			console.log(this.pageIndex++)
 		},
 		methods: {
-			onClickRight() {
-				uni.navigateTo({
-					url: "/pages/tab2/addOrder"
-				})
+			onClickRight(index) {
+				if (index == 1) {
+					uni.navigateTo({
+						url: "/pages/tab2/addOrder",
+						success: () => {
+							// #ifdef APP-PLUS
+							uni.report('tab2Add', {
+								'describe': '订单加号'
+							})
+							// #endif
+						}
+					})
+				} else if (index == 2) {
+					uni.navigateTo({
+						url: '/pages/tab2/addOrder',
+						success: () => {
+							// #ifdef APP-PLUS
+							uni.report('tab2AddThing', {
+								'describe': '订单存点东西'
+							})
+							// #endif
+						}
+					})
+				}
 			},
 			onClickItem(e) {
 				if (this.current !== e.currentIndex) {
