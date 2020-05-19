@@ -230,11 +230,27 @@
 				uni.showModal({
 					title: '提示',
 					content: '注销账号后，该账号里所有数据将被清空。',
-					success(res) {
+					success: (res) => {
 						if (res.confirm) {
-							uni.showToast({
-								icon: 'none',
-								title: '注销成功'
+							this.$http('user/killme', "GET", '', res => {
+								let data = res.data
+								console.log(data)
+								if (data.success) {
+									uni.navigateTo({
+										url: '/pages/login/login',
+										success: () => {
+											uni.showToast({
+												icon: 'none',
+												title: '注销成功'
+											})
+										}
+									})
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: data.message
+									});
+								}
 							})
 						}
 					}
@@ -256,11 +272,13 @@
 								key: 'tab1ShowHide'
 							})
 							uni.navigateTo({
-								url: '/pages/login/login'
-							})
-							uni.showToast({
-								title: '退出成功',
-								icon: 'none'
+								url: '/pages/login/login',
+								success: () => {
+									uni.showToast({
+										title: '退出成功',
+										icon: 'none'
+									})
+								}
 							})
 						}
 					}
