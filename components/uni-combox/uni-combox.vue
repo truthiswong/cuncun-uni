@@ -4,9 +4,9 @@
 			<text>{{label}}</text>
 		</view>
 		<view class="uni-combox__input-box">
-			<input class="uni-combox__input" type="text" :placeholder="placeholder" v-model="inputVal" @input="onInput"
-			 @focus="onFocus" @blur="onBlur" />
-			<uni-icons class="uni-combox__input-arrow" type="arrowdown" size="14" @click="toggleSelector"></uni-icons>
+			<input class="uni-combox__input" style="font-size: 28upx;" type="text" :placeholder="placeholder" disabled v-model="inputVal" @input="onInput"
+			 @click="onFocus" @blur="onBlur" />
+			<uni-icons class="uni-combox__input-arrow" style="padding-left: 0;" type="arrowdown" size="14" @click="toggleSelector"></uni-icons>
 			<view class="uni-combox__selector" v-if="showSelector">
 				<scroll-view scroll-y="true" class="uni-combox__selector-scroll">
 					<view class="uni-combox__selector-empty" v-if="filterCandidatesLength === 0">
@@ -72,9 +72,7 @@
 				}
 			},
 			filterCandidates() {
-				return this.candidates.filter((item) => {
-					return item.indexOf(this.inputVal) > -1
-				})
+				return this.candidates
 			},
 			filterCandidatesLength() {
 				return this.filterCandidates.length

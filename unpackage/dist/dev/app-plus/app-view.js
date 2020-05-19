@@ -11612,7 +11612,7 @@ var render = function() {
         [
           _c(
             "v-uni-view",
-            { staticStyle: { width: "20%" }, attrs: { _i: 6 } },
+            { staticStyle: { width: "16%" }, attrs: { _i: 6 } },
             [
               _c("uni-combox", {
                 attrs: { _i: 7 },
@@ -11627,7 +11627,7 @@ var render = function() {
           ),
           _c(
             "v-uni-view",
-            { staticStyle: { width: "80%" }, attrs: { _i: 8 } },
+            { staticStyle: { width: "84%" }, attrs: { _i: 8 } },
             [
               _c("uni-search-bar", {
                 attrs: { _i: 9 },
@@ -12265,16 +12265,18 @@ var render = function() {
         [
           _c("v-uni-input", {
             staticClass: _vm._$g(4, "sc"),
+            staticStyle: { "font-size": "28upx" },
             attrs: {
               type: "text",
               placeholder: _vm._$g(4, "a-placeholder"),
+              disabled: true,
               _i: 4
             },
             on: {
               input: function($event) {
                 return _vm.$handleViewEvent($event)
               },
-              focus: function($event) {
+              click: function($event) {
                 return _vm.$handleViewEvent($event)
               },
               blur: function($event) {
@@ -12289,6 +12291,7 @@ var render = function() {
           }),
           _c("uni-icons", {
             staticClass: _vm._$g(5, "sc"),
+            staticStyle: { "padding-left": "0" },
             attrs: { _i: 5 },
             on: {
               click: function($event) {

@@ -8,10 +8,10 @@
 			</view>
 		</uni-nav-bar>
 		<view class='search_box flex_between' @click="isAddShow=false">
-			<view style="width: 20%;">
+			<view style="width: 16%;">
 				<uni-combox :candidates="candidates" placeholder="选择" v-model="candidatesDefault"></uni-combox>
 			</view>
-			<view style="width: 80%;">
+			<view style="width: 84%;">
 				<uni-search-bar :radius="100" @confirm="onSearch"></uni-search-bar>
 			</view>
 		</view>
