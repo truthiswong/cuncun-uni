@@ -74,7 +74,7 @@
 						<text>¥ {{order.boxFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
-						<p>调整费用</p>
+						<p>调整费用 <text style="color: #3BC1BB;margin-left: 20upx;" v-if="order.adjustFeeReason" @click="onChangeFeeAlert(order.adjustFeeReason)">查看</text></p>
 						<text>¥ {{order.adjustFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
@@ -500,22 +500,45 @@
 				})
 			},
 			onOrderAgain() {
-				uni.navigateTo({
-					url: '/pages/tab1/orderBack?orderInfo=' + encodeURIComponent(JSON.stringify(this.order)),
-					success: () => {
-						// #ifdef APP-PLUS
-						uni.report('orderBackCopy', {
-							'describe': '取单复制订单'
+				let data = {
+					id: this.orderId
+				}
+				this.$http('user/withdraw/order/recall', "POST", data, res => {
+					let data = res.data
+					if (data.success) {
+						uni.navigateTo({
+							url: '/pages/tab1/orderBack',
+							success: () => {
+								// #ifdef APP-PLUS
+								uni.report('orderBackCopy', {
+									'describe': '取单复制订单'
+								})
+								// #endif
+							}
 						})
-						// #endif
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
 					}
 				})
+				
 			},
 			onDetails() {
 				this.$refs.popupSteps.open()
 			},
 			onClosePopup() {
 				this.$refs.popupSteps.close()
+			},
+			onChangeFeeAlert(index) {
+				if (index) {
+					uni.showModal({
+						title: '提示',
+						content: index,
+						showCancel: false
+					})
+				}
 			},
 			onCopy(id) {
 				// #ifdef APP-PLUS

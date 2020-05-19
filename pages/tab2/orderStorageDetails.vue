@@ -80,7 +80,7 @@
 						<text>¥ {{order.boxSDprice}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
-						<p>调整费用</p>
+						<p>调整费用 <text style="color: #3BC1BB;margin-left: 20upx;" v-if="order.adjustFeeReason" @click="onChangeFeeAlert(order.adjustFeeReason)">查看</text></p>
 						<text>¥ {{order.settleFee?order.settleFee-order.fee:0}}</text>
 					</view>
 					<view class="flex_between order_list_fee" style="margin-top: 10upx;">
@@ -339,6 +339,15 @@
 			},
 			onClosePopup() {
 				this.$refs.popupSteps.close()
+			},
+			onChangeFeeAlert(index) {
+				if (index) {
+					uni.showModal({
+						title: '提示',
+						content: index,
+						showCancel: false
+					})
+				}
 			},
 			onCopy(id) {
 				// #ifdef APP-PLUS

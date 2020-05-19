@@ -191,6 +191,11 @@
 	padding: 30upx;
 }
 
+/* 确认提示框 */
+uni-modal {
+	z-index: 3000 !important;
+}
+
 /* 提示框 */
 uni-toast {
 	z-index: 3000 !important;

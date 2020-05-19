@@ -72,7 +72,6 @@
 			return {
 				headerShow: true,
 				list: [],
-				orderInfo: {},
 				isAddShow: false,
 				chooseButton: '选择',
 				cont_top_bg: '../../static/tab1/order_back_bg1.png',
@@ -80,16 +79,10 @@
 			}
 		},
 		onLoad(option) {
-			if (option.orderInfo) {
-				this.orderInfo = JSON.parse(decodeURIComponent(option.orderInfo))
-				this.list = this.orderInfo.goods
-			}
 		},
 		onShow() {
 			this.getAddCount()
-			if (!this.orderInfo.id) {
-				this.getChooseList()
-			}
+			this.getChooseList()
 		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
