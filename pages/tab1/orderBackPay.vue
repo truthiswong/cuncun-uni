@@ -173,6 +173,11 @@
 					addressId: this.address.id,
 					userRemark: this.userRemark
 				}
+				// #ifdef APP-PLUS
+				uni.report('orderBackConfirmPay', {
+					'describe': '取单确认支付'
+				})
+				// #endif
 				this.$http('user/withdraw/order/create', "POST", orderObj, res => {
 					let data = res.data
 					console.log(data)
@@ -192,7 +197,14 @@
 											this.$refs.popup.close()
 											data.data.payStyle = 'Alipay'
 											uni.navigateTo({
-												url: "/pages/tab1/orderBackSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(data.data))
+												url: "/pages/tab1/orderBackSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(data.data)),
+												success: () => {
+													// #ifdef APP-PLUS
+													uni.report('orderBackAlipay', {
+														'describe': '取单支付宝支付'
+													})
+													// #endif
+												}
 											})
 										},
 										fail: (err) => {
@@ -214,7 +226,14 @@
 						} else {
 							this.$refs.popup.close()
 							uni.navigateTo({
-								url: "/pages/tab2/orderSuccess"
+								url: "/pages/tab2/orderSuccess",
+								success: () => {
+									// #ifdef APP-PLUS
+									uni.report('orderBackWxpay', {
+										'describe': '取单微信支付'
+									})
+									// #endif
+								}
 							})
 							// #ifdef APP-PLUS
 							uni.requestPayment({

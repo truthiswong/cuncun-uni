@@ -10,11 +10,6 @@
 					</navigator>
 				</uni-list>
 				<uni-list class="list_custom list_custom_margin20">
-					<navigator url="/pages/login/agreement">
-						<uni-list-item title="存存服务须知"></uni-list-item>
-					</navigator>
-				</uni-list>
-				<uni-list class="list_custom list_custom_margin20">
 					<navigator :url="'/pages/tab3/otherPage3?versions=' + versions">
 						<uni-list-item title="关于存存" :rightText="'版本 ' + versions"></uni-list-item>
 					</navigator>

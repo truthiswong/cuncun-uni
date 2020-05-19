@@ -501,7 +501,14 @@
 			},
 			onOrderAgain() {
 				uni.navigateTo({
-					url: '/pages/tab1/orderBack?orderInfo=' + encodeURIComponent(JSON.stringify(this.order))
+					url: '/pages/tab1/orderBack?orderInfo=' + encodeURIComponent(JSON.stringify(this.order)),
+					success: () => {
+						// #ifdef APP-PLUS
+						uni.report('orderBackCopy', {
+							'describe': '取单复制订单'
+						})
+						// #endif
+					}
 				})
 			},
 			onDetails() {

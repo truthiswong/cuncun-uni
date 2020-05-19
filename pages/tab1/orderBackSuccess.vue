@@ -40,7 +40,13 @@
 			this.orderInfo = JSON.parse(decodeURIComponent(option.orderInfo))
 			console.log(this.orderInfo)
 		},
-		onShow() {},
+		onShow() {
+			// #ifdef APP-PLUS
+			uni.report('orderBackSuccess', {
+				'describe': '取单成功'
+			})
+			// #endif
+		},
 		watch: {},
 		methods: {
 			onPayChange() {

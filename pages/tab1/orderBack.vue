@@ -179,7 +179,14 @@
 					});
 				} else {
 					uni.navigateTo({
-						url: '/pages/tab1/orderBackPay'
+						url: '/pages/tab1/orderBackPay',
+						success: () => {
+							// #ifdef APP-PLUS
+							uni.report('orderBackList', {
+								'describe': '取单把这些送回来'
+							})
+							// #endif
+						}
 					})
 				}
 			},

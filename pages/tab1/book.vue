@@ -135,7 +135,14 @@
 						let data = res.data
 						if (data.success) {
 							uni.navigateTo({
-								url: '/pages/tab1/orderBack'
+								url: '/pages/tab1/orderBack',
+								success: () => {
+									// #ifdef APP-PLUS
+									uni.report('orderBackCome', {
+										'describe': '把这些送回来'
+									})
+									// #endif
+								}
 							})
 						} else {
 							uni.showToast({
