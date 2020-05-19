@@ -1,5 +1,5 @@
 <template>
-	<view class="tab1">
+	<view class="page">
 		<uni-nav-bar class="header" status-bar="true" fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
 			<view slot="left" class="header_icon">
 				<image src="../../static/tab1/tab1_logo.png" style="width:306upx; height:68upx; margin: 0px 30upx -24upx;"></image>
@@ -24,7 +24,7 @@
 			</view>
 		</uni-nav-bar>
 		<!-- 内容 -->
-		<view class="content">
+		<view class="content" @longpress="longpress">
 			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
 				<view class="cont_dialog" :style="{background: 'url('+ cont_dialog_bg +') no-repeat center center / cover'}">
 					<image style="position: absolute;top: 20upx;left: 20upx; width: 46upx;height: 34upx;" src="../../static/tab1/mark_left.png"></image>
@@ -35,7 +35,7 @@
 					<image style="position: absolute;right: 45upx; width: 46upx;height: 34upx;" src="../../static/tab1/mark_right.png"></image>
 				</view>
 			</view>
-			<view class="no_data" v-if="failData.length<=0 && bookData.dataNumber<=0 && clotheData.dataNumber<=0 && shoeData.dataNumber<=0 && storageData.dataNumber<=0 && groceriesData.dataNumber<=0">
+			<view class="no_data" v-if="failData.length<=0 && bookData.length<=0 && clotheData.length<=0 && shoeData.length<=0 && storageData.length<=0 && groceriesData.length<=0">
 				<image src="../../static/tab1/no_data.png" mode=""></image>
 				<p>您的存存空空如也，跟我们的收纳达人和打包小哥约起来，赶紧的！！！</p>
 				<button @click="onClickRight(3)" class="common_button">约！约！约!</button>
@@ -71,7 +71,7 @@
 					</view>
 				</view>
 				<!-- 书架 -->
-				<view @longpress="longpress('书架')" class="list_margin50" v-if="long_active || bookData.dataNumber>=0" style="background-color: #FFFFFF;">
+				<view @longpress="longpress('书架')" class="list_margin50" v-if="long_active || bookData.length>=0" style="background-color: #FFFFFF;">
 					<view v-if="tab1ShowHide.bookShowHideTitle == true">
 						<view class="list_padding30">
 							<uni-list class="list_custom list_custom_img1">
@@ -92,7 +92,7 @@
 						<view v-if="tab1ShowHide.bookShowHide == true">
 							<scroll-view class="scroll_x" scroll-x="true" @scroll="onScroll">
 								<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
-								 style="display: inline-block;" v-for="(item,index) in bookData.goods" :key='index'>
+								 style="display: inline-block;" v-for="(item,index) in bookData" :key='index'>
 									<image v-if="item.coverPic" :src="item.coverPic"></image>
 									<image v-else @click="onClickRight(4)" src="../../static/tab1/add_order.png" mode=""></image>
 								</view>
@@ -101,7 +101,7 @@
 					</view>
 				</view>
 				<!-- 衣柜 -->
-				<view @longpress="longpress('衣柜')" class="list_margin50" v-if="long_active || clotheData.dataNumber>=0" style="background-color: #FFFFFF;">
+				<view @longpress="longpress('衣柜')" class="list_margin50" v-if="long_active || clotheData.length>=0" style="background-color: #FFFFFF;">
 					<view v-if="tab1ShowHide.clotheShowHideTitle == true">
 						<view class="list_padding30">
 							<uni-list class="list_custom list_custom_img1">
@@ -122,7 +122,7 @@
 						<view v-if="tab1ShowHide.clotheShowHide == true">
 							<scroll-view class="scroll_x" scroll-x="true" @scroll="onScroll">
 								<view class="scroll_content scroll_content2" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
-								 v-for="(item,index) in clotheData.goods" :key='index' style="display: inline-block;">
+								 v-for="(item,index) in clotheData" :key='index' style="display: inline-block;">
 									<image v-if="item.coverPic" :src="item.coverPic"></image>
 									<image v-else @click="onClickRight(4)" src="../../static/tab1/add_order.png" mode=""></image>
 									<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 112upx;" src="../../static/tab1/clothes_box1.png"></image>
@@ -132,7 +132,7 @@
 					</view>
 				</view>
 				<!-- 鞋柜 -->
-				<view @longpress="longpress('鞋柜')" class="list_margin50" v-if="long_active || shoeData.dataNumber>=0" style="background-color: #FFFFFF;">
+				<view @longpress="longpress('鞋柜')" class="list_margin50" v-if="long_active || shoeData.length>=0" style="background-color: #FFFFFF;">
 					<view v-if="tab1ShowHide.shoeShowHideTitle == true">
 						<view class="list_padding30">
 							<uni-list class="list_custom list_custom_img1">
@@ -152,7 +152,7 @@
 						</view>
 						<view v-if="tab1ShowHide.shoeShowHide == true">
 							<scroll-view class="scroll_x" scroll-x="true" @scroll="onScroll">
-								<view class="scroll_content scroll_content2" v-for="(item,index) in shoeData.goods" :key='index' style="display: inline-block;">
+								<view class="scroll_content scroll_content2" v-for="(item,index) in shoeData" :key='index' style="display: inline-block;">
 									<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
 									<image v-if="item.coverPic" :src="item.coverPic"></image>
 									<image v-else @click="onClickRight(4)" src="../../static/tab1/add_order.png" mode=""></image>
@@ -163,7 +163,7 @@
 					</view>
 				</view>
 				<!-- 储藏室 -->
-				<view @longpress="longpress('储藏室')" class="list_margin50" v-if="long_active || storageData.dataNumber>=0" style="background-color: #FFFFFF;">
+				<view @longpress="longpress('储藏室')" class="list_margin50" v-if="long_active || storageData.length>=0" style="background-color: #FFFFFF;">
 					<view v-if="tab1ShowHide.storageShowHideTitle == true">
 						<view class="list_padding30">
 							<uni-list class="list_custom list_custom_img2">
@@ -183,7 +183,7 @@
 						</view>
 						<view v-if="tab1ShowHide.storageShowHide == true">
 							<scroll-view class="scroll_x" scroll-x="true" @scroll="onScroll">
-								<view class="scroll_content scroll_content4" v-for="(item,index) in storageData.goods" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
+								<view class="scroll_content scroll_content4" v-for="(item,index) in storageData" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
 									<image v-if="item.coverPic" :src="item.coverPic"></image>
 									<image v-else @click="onClickRight(4)" src="../../static/tab1/add_order.png" mode=""></image>
 								</view>
@@ -192,7 +192,7 @@
 					</view>
 				</view>
 				<!-- 杂货架 -->
-				<view @longpress="longpress('杂货架')" class="list_margin50" v-if="long_active || groceriesData.dataNumber>=0" style="background-color: #FFFFFF;">
+				<view @longpress="longpress('杂货架')" class="list_margin50" v-if="long_active || groceriesData.length>=0" style="background-color: #FFFFFF;">
 					<view v-if="tab1ShowHide.groceriesShowHideTitle == true">
 						<view class="list_padding30">
 							<uni-list class="list_custom list_custom_img2">
@@ -211,7 +211,7 @@
 							</uni-list>
 						</view>
 						<view v-if="tab1ShowHide.groceriesShowHide == true">
-							<view class="box_groceries_content flex_between" v-for="(item,index) in groceriesData.packs" :key="index" v-show="index<3">
+							<view class="box_groceries_content flex_between" v-for="(item,index) in groceriesData" :key="index" v-show="index<3">
 								<view class="box_groceries_left">
 									<image src="../../static/tab1/box_null.png"></image>
 									<text>{{index+1}}</text>
@@ -360,7 +360,6 @@
 				this.tab1ShowHide.groceriesShowHideTitle = true
 			},
 			onScroll() {
-				console.log(23)
 				this.long_active = false
 			},
 			isShowHide(type) {
@@ -439,18 +438,16 @@
 						for (let i = 0; i < 10; i++) {
 							if (data.data.bookcase.goods.length <= 0 && data.data.armoire.goods.length <= 0 && data.data.shoebox.goods.length <=
 								0 && data.data.storeroom.goods.length <= 0 && data.data.sundries.packs.length <= 0) {
-								console.log(data.data.bookcase.goods.length)
-								console.log(data.data.armoire.goods.length)
-								this.bookData = data.data.bookcase //书架
-								this.bookData.dataNumber = data.data.bookcase.goods.length
-								this.clotheData = data.data.armoire //衣柜
-								this.clotheData.dataNumber = data.data.armoire.goods.length
-								this.shoeData = data.data.shoebox //鞋柜
-								this.shoeData.dataNumber = data.data.shoebox.goods.length
-								this.storageData = data.data.storeroom //储藏室
-								this.storageData.dataNumber = data.data.storeroom.goods.length
-								this.groceriesData = data.data.sundries //杂货架
-								this.groceriesData.dataNumber = data.data.sundries.packs.length
+								this.bookData = data.data.bookcase.goods //书架
+								// this.bookData.dataNumber = data.data.bookcase.goods.length
+								this.clotheData = data.data.armoire.goods //衣柜
+								// this.clotheData.dataNumber = data.data.armoire.goods.length
+								this.shoeData = data.data.shoebox.goods //鞋柜
+								// this.shoeData.dataNumber = data.data.shoebox.goods.length
+								this.storageData = data.data.storeroom.goods //储藏室
+								// this.storageData.dataNumber = data.data.storeroom.goods.length
+								this.groceriesData = data.data.sundries.packs //杂货架
+								// this.groceriesData.dataNumber = data.data.sundries.packs.length
 								return
 							} else {
 								if (!data.data.bookcase.goods[i]) {
@@ -471,16 +468,16 @@
 								}
 							}
 						}
-						this.bookData = data.data.bookcase //书架
-						this.bookData.dataNumber = data.data.bookcase.goods.length
-						this.clotheData = data.data.armoire //衣柜
-						this.clotheData.dataNumber = data.data.armoire.goods.length
-						this.shoeData = data.data.shoebox //鞋柜
-						this.shoeData.dataNumber = data.data.shoebox.goods.length
-						this.storageData = data.data.storeroom //储藏室
-						this.storageData.dataNumber = data.data.storeroom.goods.length
-						this.groceriesData = data.data.sundries //杂货架
-						this.groceriesData.dataNumber = data.data.sundries.packs.length
+						this.bookData = data.data.bookcase.goods //书架
+						// this.bookData.dataNumber = data.data.bookcase.goods.length
+						this.clotheData = data.data.armoire.goods //衣柜
+						// this.clotheData.dataNumber = data.data.armoire.goods.length
+						this.shoeData = data.data.shoebox.goods //鞋柜
+						// this.shoeData.dataNumber = data.data.shoebox.goods.length
+						this.storageData = data.data.storeroom.goods //储藏室
+						// this.storageData.dataNumber = data.data.storeroom.goods.length
+						this.groceriesData = data.data.sundries.packs //杂货架
+						// this.groceriesData.dataNumber = data.data.sundries.packs.length
 						console.log(this.failData)
 						console.log(this.bookData)
 						console.log(this.clotheData)
@@ -542,10 +539,15 @@
 		}
 	}
 </script>
-
+<style>
+	page {
+		height: 100%;
+	}
+</style>
 <style lang="scss" scoped>
-	.tab1 {
+	.page {
 		background-color: #FCFCFC;
+		height: 100%;
 	}
 
 	.header_icon {
