@@ -129,12 +129,18 @@
 						this.$http('user/goods/page?keywords=' + e.value, "GET", '', res => {
 							let data = res.data
 							if (data.success) {
-								for (let item of data.data.data) {
-									item.checked = false
-									item.itemType = item.type.code
+								if (data.data.data.length > 0) {
+									for (let item of data.data.data) {
+										item.checked = false
+										item.itemType = item.type.code
+									}
+									this.allData = data.data.data
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: '暂无数据, 换个关键词试试'
+									});
 								}
-								this.allData = data.data.data
-								console.log(this.allData)
 							} else {
 								uni.showToast({
 									icon: 'none',
@@ -146,12 +152,19 @@
 						this.$http('user/pack/page?keywords=' + e.value, "GET", '', res => {
 							let data = res.data
 							if (data.success) {
-								for (let item of data.data.data) {
-									item.checked = false
-									item.itemType = 'sundries'
-									item.name = item.remark
+								if (data.data.data.length > 0) {
+									for (let item of data.data.data) {
+										item.checked = false
+										item.itemType = 'sundries'
+										item.name = item.remark
+									}
+									this.allData = data.data.data
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: '暂无数据, 换个关键词试试'
+									});
 								}
-								this.allData = data.data.data
 								console.log(this.allData)
 							} else {
 								uni.showToast({
@@ -165,6 +178,13 @@
 			},
 			onClickRight(index) {
 				if (index == '选择') {
+					if (this.allData.length <= 0) {
+						uni.showToast({
+							icon: 'none',
+							title: '先搜索内容吧'
+						});
+						return
+					}
 					this.isCheckedShow = true
 					this.chooseButton = '全选'
 				} else if (index == '全选') {
@@ -223,7 +243,7 @@
 						})
 					}
 				} else if (this.candidatesDefault == '箱子') {
-					
+
 					for (let item of this.allData) {
 						if (item.checked) {
 							chooseData['packId[' + chooseIndex + ']'] = item.id
@@ -316,18 +336,18 @@
 		height: 240upx;
 		background-color: #FFFFFF;
 		margin-bottom: 40upx;
-		
+
 		.search_list_left {
 			position: relative;
 			width: 260upx;
 			height: 230upx;
-			
+
 			.list_left_view {
 				width: 260upx;
 				height: 260upx;
 				text-align: center;
 				position: relative;
-				
+
 				image {
 					position: absolute;
 					left: 0;
@@ -338,7 +358,7 @@
 					height: 200upx;
 				}
 			}
-		
+
 			text {
 				position: absolute;
 				right: 80upx;
@@ -347,7 +367,7 @@
 				font-weight: 700;
 				color: #90785e;
 			}
-		
+
 			.checkbox_item {
 				position: absolute;
 				top: 0;
@@ -355,7 +375,7 @@
 				z-index: 25;
 			}
 		}
-		
+
 		.search_list_right {
 			width: 340upx;
 			font-size: 28upx;
@@ -363,6 +383,7 @@
 			color: rgba(40, 40, 40, 1);
 			line-height: 50upx;
 			margin: 20upx 50upx 0 0;
+
 			.search_list_text {
 				font-weight: 400;
 				line-height: 46upx;
