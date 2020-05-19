@@ -86,7 +86,8 @@
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="仓储订单" :showArrow="false">
 												<view slot='right' class="list_right_text">
-													<text class="list_right_orange">待付款</text>
+													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
+													<text class="list_right_red" v-if="item.status.code == 'overdue7'">已逾期</text>
 												</view>
 											</uni-list-item>
 										</uni-list>
@@ -203,6 +204,7 @@
 												<view slot='right' class="list_right_text">
 													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
 													<text class="list_right_gray" v-if="item.status.code == 'payed'">已完成</text>
+													<text class="list_right_red" v-if="item.status.code == 'overdue7'">已逾期</text>
 												</view>
 											</uni-list-item>
 										</uni-list>

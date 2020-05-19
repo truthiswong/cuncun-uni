@@ -234,7 +234,6 @@
 						if (res.confirm) {
 							this.$http('user/killme', "GET", '', res => {
 								let data = res.data
-								console.log(data)
 								if (data.success) {
 									uni.navigateTo({
 										url: '/pages/login/login',
