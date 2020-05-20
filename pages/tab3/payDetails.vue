@@ -27,6 +27,9 @@
 					<text>{{item.type.name}}</text>
 				</view>
 			</view>
+			<view v-if="finished" style="text-align: center;font-size:24upx;font-weight:400;color:rgba(178,178,178,1);margin: 20upx 0;line-height:33upx;">
+				这是我的底线，没有更多的咯～
+			</view>
 		</view>
 	</view>
 </template>
@@ -36,11 +39,17 @@
 		components: {},
 		data() {
 			return {
-				list: []
+				list: [],
+				pageNumber: 0,
+				totalPages: 1,
+				finished: false
 			};
 		},
 		onLoad() {},
 		onShow() {
+			this.getDetails()
+		},
+		onReachBottom() {
 			this.getDetails()
 		},
 		methods: {
@@ -50,21 +59,29 @@
 				})
 			},
 			getDetails() {
-				this.$http('user/payment/page', "GET", '', res => {
-					let data = res.data
-					console.log(data)
-					if (data.success) {
-						for (let item of data.data.data) {
-							item.time = this.$moment(item.payTime).format('YYYY-MM-DD')
+				if (this.totalPages > this.pageNumber) {
+					this.$http('user/payment/page?pageSize=20&pageNumber=' + this.pageNumber, "GET", '', res => {
+						let data = res.data
+						if (data.success) {
+							for (let item of data.data.data) {
+								item.time = this.$moment(item.payTime).format('YYYY-MM-DD')
+							}
+							this.pageNumber++
+							this.list = this.list.concat(data.data.data)
+							this.totalPages = data.data.totalPages
+							if (this.totalPages == this.pageNumber) {
+								this.finished = true
+							}
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
 						}
-						this.list = data.data.data
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
-					}
-				})
+					})
+				} else {
+					this.finished = true
+				}
 			}
 		}
 	};
