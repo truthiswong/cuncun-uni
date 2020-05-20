@@ -16,15 +16,23 @@
 	export default {
 		components: {},
 		data() {
-			return {}
+			return {
+			}
 		},
 		watch: {},
-		onLoad(op) {},
-		onShow() {},
+		onLoad(option) {
+		},
+		onShow() {
+			// #ifdef APP-PLUS
+			uni.report('realNameSuccess', {
+				'describe': '认证成功'
+			})
+			// #endif
+		},
 		methods: {
 			onClickBack() {
-				uni.navigateBack({
-					delta: 1
+				uni.navigateTo({
+					url: '/pages/tab3/setting'
 				})
 			},
 			onConfirm() {

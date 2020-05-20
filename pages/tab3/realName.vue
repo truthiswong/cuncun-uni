@@ -79,128 +79,22 @@
 				this.realNameConfirm = user.realNameConfirm
 			}
 			// #ifdef APP-PLUS
-			setTimeout(function() {
+			this.$nextTick(()=>{
 				var args = plus.runtime.arguments;
-				if (args) {
+				if (args == 'cuncun://realname') {
 					// 处理args参数，如直达到某新页面等 
 					console.log(args)
+					this.getRealNameReturn()
 				}
-			}, 10);
+			})
 			// #endif
+			// cuncun://realname
 		},
 		methods: {
 			onClickBack() {
 				uni.navigateBack({
 					delta: 1
 				})
-			},
-			changeIDCardImage1() {
-				if (this.realNameConfirm) {
-					return
-				}
-				uni.chooseImage({
-					count: 1,
-					success: (chooseImageRes) => {
-						let imageSize = chooseImageRes.tempFiles[0].size
-						let quality = 100000000 / imageSize > 100 ? 100 : 100000000 / imageSize
-						quality = Math.floor(quality)
-						console.log(imageSize)
-						console.log(quality)
-						const tempFilePaths = chooseImageRes.tempFilePaths
-						uni.compressImage({
-							src: tempFilePaths[0],
-							quality: quality,
-							success: res => {
-								console.log(res.tempFilePath)
-								uni.uploadFile({
-									url: 'http://cuncun.app.iisu.cn/server/data/user/upload/idcarda',
-									filePath: res.tempFilePath,
-									header: {
-										// 'Content-Type': 'application/x-www-form-urlencoded',
-										'X-TENANT-ID': 'cuncun:cc@2020',
-										'Authorization': uni.getStorageSync('token')
-									},
-									name: 'a',
-									formData: {},
-									success: (res) => {
-										let data = res.data
-										let img = JSON.parse(data)
-										console.log(img)
-										this.idCardSrc1 = img.data.idCardA
-										this.username = img.data.name
-										this.idCard = img.data.idNo
-										try {
-											const user = uni.getStorageSync('user');
-											if (user) {
-												user.username = this.username
-												user.idCard = this.idCard
-												user.idCardSrc1 = this.idCardSrc1
-												uni.setStorage({
-													key: 'user',
-													data: user
-												});
-											}
-										} catch (e) {}
-									}
-								})
-							}
-						})
-					}
-				});
-			},
-			changeIDCardImage2() {
-				if (this.realNameConfirm) {
-					return
-				}
-				uni.chooseImage({
-					count: 1,
-					success: (chooseImageRes) => {
-						let imageSize = chooseImageRes.tempFiles[0].size
-						let quality = 100000000 / imageSize > 100 ? 100 : 100000000 / imageSize
-						quality = Math.floor(quality)
-						console.log(imageSize)
-						console.log(quality)
-						const tempFilePaths = chooseImageRes.tempFilePaths
-						uni.compressImage({
-							src: tempFilePaths[0],
-							quality: quality,
-							success: res => {
-								console.log(res.tempFilePath)
-								uni.uploadFile({
-									url: 'http://cuncun.app.iisu.cn/server/data/user/upload/idcardb',
-									filePath: res.tempFilePath,
-									header: {
-										// 'Content-Type': 'application/x-www-form-urlencoded',
-										'X-TENANT-ID': 'cuncun:cc@2020',
-										'Authorization': uni.getStorageSync('token')
-									},
-									name: 'b',
-									formData: {},
-									success: (res) => {
-										let data = res.data
-										let img = JSON.parse(data)
-										console.log(img)
-										this.idCardSrc2 = img.data.idCardB
-										this.idOrgan = img.data.idIssueOrgan
-										this.idDate = `${img.data.idIssueDate}-${img.data.idExpiryDate}`
-										try {
-											const user = uni.getStorageSync('user');
-											if (user) {
-												user.idCardSrc2 = this.idCardSrc2
-												user.idOrgan = this.idOrgan
-												user.idDate = this.idDate
-												uni.setStorage({
-													key: 'user',
-													data: user
-												});
-											}
-										} catch (e) {}
-									}
-								})
-							}
-						})
-					}
-				});
 			},
 			onConfirm() {
 				if (!this.username) {
@@ -258,12 +152,13 @@
 					let data = res.data
 					console.log(data)
 					if (data.success) {
-						this.realNameConfirm = true
+						uni.navigateTo({
+							url: '/pages/tab3/realNameSuccess'
+						})
 					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
+						uni.navigateTo({
+							url: '/pages/tab3/realNameFail'
+						})
 					}
 				})
 			},

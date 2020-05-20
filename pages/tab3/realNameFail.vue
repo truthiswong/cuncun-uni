@@ -20,11 +20,20 @@
 		},
 		watch: {},
 		onLoad(op) {},
-		onShow() {},
+		onShow() {
+			// #ifdef APP-PLUS
+			uni.report('realNameFail', {
+				'describe': '认证失败'
+			})
+			// #endif
+		},
 		methods: {
 			onClickBack() {
-				uni.navigateBack({
-					delta: 1
+				// uni.navigateBack({
+				// 	delta: 1
+				// })
+				uni.navigateTo({
+					url: '/pages/tab3/setting'
 				})
 			},
 			onConfirm() {

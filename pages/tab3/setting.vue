@@ -54,7 +54,7 @@
 		data() {
 			return {
 				headImage: '../../static/tab3/my_image.png',
-				nickname: 'Ding Han',
+				nickname: 'Xiao Cun',
 				nicknameSet: '',
 				mobile: '',
 				userInfoUpdate: false,
@@ -90,8 +90,11 @@
 		},
 		methods: {
 			onClickBack() {
-				uni.navigateBack({
-					delta: 1
+				// uni.navigateBack({
+				// 	delta: 1
+				// })
+				uni.switchTab({
+					url: '/pages/tabs/tab3'
 				})
 			},
 			getUserInfo() {
@@ -211,6 +214,10 @@
 				}
 			},
 			onRealName() {
+				uni.navigateTo({
+					url: "/pages/tab3/realName"
+				})
+				return
 				if (this.realNameConfirm) {
 					uni.navigateTo({
 						url: "/pages/tab3/realNameSuccess"
