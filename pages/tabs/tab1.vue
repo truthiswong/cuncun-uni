@@ -494,9 +494,8 @@
 			},
 			// 获取未过安检的列表
 			getFailList() {
-				this.$http('user/pack/list?type=B&top=9999&auditStatus=fail', "GET", '', res => {
+				this.$http('user/pack/list?auditStatus=fail', "GET", '', res => {
 					let data = res.data
-					console.log(data)
 					if (data.success) {
 						this.failData = data.data //未过安检
 					} else {
