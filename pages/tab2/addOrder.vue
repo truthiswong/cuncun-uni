@@ -160,28 +160,32 @@
 						name: "小型纸箱A（拍照）",
 						weight: 120,
 						fee: 18,
-						number: 0
+						number: 0,
+						storePerDayFee: 0
 					},
 					{
 						id: 1,
 						name: "小型纸箱B（拍照）",
 						weight: 120,
 						fee: 18,
-						number: 0
+						number: 0,
+						storePerDayFee: 0
 					},
 					{
 						id: 2,
 						name: "小型纸箱C（拍照）",
 						weight: 120,
 						fee: 18,
-						number: 0
+						number: 0,
+						storePerDayFee: 0
 					},
 					{
 						id: 3,
 						name: "小型纸箱D",
 						weight: 120,
 						fee: 18,
-						number: 0
+						number: 0,
+						storePerDayFee: 0
 					}
 				],
 				boxIndex: '',
