@@ -266,7 +266,9 @@
 				orderList1: [], //存单列表
 				orderList2: [], //取单列表
 				orderList3: [], //仓储订单列表
-				pageIndex: 3
+				pageNumber: 0,
+				totalPages: 1,
+				finished: false
 			}
 		},
 		components: {},
@@ -312,6 +314,9 @@
 		},
 		onPullDownRefresh() {
 			console.log(this.pageIndex++)
+		},
+		onReachBottom() {
+			console.log('tab2')
 		},
 		methods: {
 			onClickRight(index) {
