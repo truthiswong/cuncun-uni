@@ -75,6 +75,9 @@
 					</view>
 				</view>
 			</checkbox-group>
+			<view v-if="finished" style="text-align: center;font-size:24upx;font-weight:400;color:rgba(178,178,178,1);margin: 20upx 0;line-height:33upx;">
+				这是我的底线，没有更多的咯～
+			</view>
 		</view>
 		<view class="bottom_button" v-if="isCheckedShow">
 			<image @click="onCancel" style="width: 218upx;height: 124upx;" src="../../static/tab1/long_cancel.png" mode=""></image>
@@ -95,15 +98,37 @@
 				allData: [], // 所有搜索结果
 				candidates: ['物品', '箱子'],
 				candidatesDefault: '物品',
+				keywords: '',
 				isCheckedShow: false,
 				chooseButton: '选择',
 				isAddShow: false,
+				pageNumber: 0,
+				totalPages: 1,
+				finished: false
 			}
 		},
 		onLoad(options) {
 
 		},
 		onShow() {},
+		onReachBottom() {
+			console.log(66665)
+			if (this.candidatesDefault == '物品') {
+				this.onSearchGoods()
+			} else if (this.candidatesDefault == '箱子') {
+				this.onSearchBoxs()
+			}
+		},
+		watch: {
+			candidatesDefault() {
+				this.pageNumber = 0
+				this.totalPages = 1
+				this.finished = false
+				this.allData = []
+				this.isCheckedShow = false
+				this.chooseButton = '选择'
+			}
+		},
 		methods: {
 			onClickBack() {
 				uni.navigateBack({
@@ -125,55 +150,82 @@
 						title: '请输入关键词'
 					});
 				} else {
-					if (this.candidatesDefault == '物品') {
-						this.$http('user/goods/page?keywords=' + e.value, "GET", '', res => {
-							let data = res.data
-							if (data.success) {
-								if (data.data.data.length > 0) {
-									for (let item of data.data.data) {
-										item.checked = false
-										item.itemType = item.type.code
-									}
-									this.allData = data.data.data
-								} else {
-									uni.showToast({
-										icon: 'none',
-										title: '暂无数据, 换个关键词试试'
-									});
-								}
-							} else {
-								uni.showToast({
-									icon: 'none',
-									title: data.message
-								});
-							}
-						})
-					} else if (this.candidatesDefault == '箱子') {
-						this.$http('user/pack/page?keywords=' + e.value, "GET", '', res => {
-							let data = res.data
-							if (data.success) {
-								if (data.data.data.length > 0) {
-									for (let item of data.data.data) {
-										item.checked = false
-										item.itemType = 'sundries'
-										item.name = item.remark
-									}
-									this.allData = data.data.data
-								} else {
-									uni.showToast({
-										icon: 'none',
-										title: '暂无数据, 换个关键词试试'
-									});
-								}
-								console.log(this.allData)
-							} else {
-								uni.showToast({
-									icon: 'none',
-									title: data.message
-								});
-							}
-						})
+					this.keywords = e.value
+					if (this.totalPages > this.pageNumber) {
+						if (this.candidatesDefault == '物品') {
+							this.onSearchGoods()
+						} else if (this.candidatesDefault == '箱子') {
+							this.onSearchBoxs()
+						}
+					} else {
+						this.finished = true
 					}
+				}
+			},
+			onSearchGoods() {
+				if (this.totalPages > this.pageNumber) {
+					this.$http('user/goods/page?keywords=' + this.keywords + '&pageSize=20&pageNumber=' + this.pageNumber, "GET", '', res => {
+						let data = res.data
+						if (data.success) {
+							if (data.data.data.length > 0) {
+								for (let item of data.data.data) {
+									item.checked = false
+									item.itemType = item.type.code
+								}
+								this.pageNumber++
+								this.allData = this.allData.concat(data.data.data)
+								this.totalPages = data.data.totalPages
+								if (this.totalPages == this.pageNumber) {
+									this.finished = true
+								}
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: '暂无数据, 换个关键词试试'
+								});
+							}
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					})
+				} else {
+					this.finished = true
+				}
+			},
+			onSearchBoxs() {
+				if (this.totalPages > this.pageNumber) {
+					this.$http('user/pack/page?keywords=' + this.keywords + '&pageSize=20&pageNumber=' + this.pageNumber, "GET", '', res => {
+						let data = res.data
+						if (data.success) {
+							if (data.data.data.length > 0) {
+								for (let item of data.data.data) {
+									item.checked = false
+									item.itemType = 'sundries'
+									item.name = item.remark
+								}
+								this.pageNumber++
+								this.allData = this.allData.concat(data.data.data)
+								this.totalPages = data.data.totalPages
+								if (this.totalPages == this.pageNumber) {
+									this.finished = true
+								}
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: '暂无数据, 换个关键词试试'
+								});
+							}
+							console.log(this.allData)
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					})
 				}
 			},
 			onClickRight(index) {

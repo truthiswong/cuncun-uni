@@ -119,7 +119,6 @@
 						item.checked = false
 					}
 				}
-				console.log(this.list)
 			},
 			onCancel() {
 				this.isCheckedShow = false
@@ -167,7 +166,7 @@
 			},
 			// 获取物品列表
 			getGoodsList() {
-				this.$http(`user/pack/page?type=B&auditStatus=pass&pageNo=${this.pageNo}&pageSize=20`, "GET", '', res => {
+				this.$http(`user/pack/page?type=B&auditStatus=pass`, "GET", '', res => {
 					let data = res.data
 					if (data.success) {
 						for (let item of data.data.data) {
