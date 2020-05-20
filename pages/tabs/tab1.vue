@@ -276,17 +276,17 @@
 				'describe': '首页'
 			})
 			// #endif
+			// console.log(uni.getStorageSync('token'))
 			this.getGoodsList()
 			this.getFailList()
 			if (uni.getStorageSync('tab1ShowHide')) {
-				console.log(uni.getStorageSync('tab1ShowHide'))
 				this.tab1ShowHide = uni.getStorageSync('tab1ShowHide')
 			}
 			let user = uni.getStorageSync('user')
 			if (!user) {
 				this.getUserInfo()
 			}
-			let nickname = ''
+			let nickname = 'Xiao Cun'
 			let nowHour = new Date().getHours()
 			if (user.nickName) {
 				nickname = user.nickName

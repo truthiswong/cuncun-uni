@@ -60,7 +60,7 @@
 			return {
 				headerShow: true,
 				headImage: '../../static/tab3/my_image.png',
-				nickname: 'Ding Han',
+				nickname: 'Xiao Cun',
 				cont_top_bg: '../../static/tab3/tab3_bg.png',
 				phone: '021-34283744',
 			}
@@ -68,15 +68,16 @@
 		onLoad(op) {},
 		onShow() {
 			let user = uni.getStorageSync('user')
+			console.log(user.portrait)
 			if (user.portrait) {
 				this.headImage = user.portrait
 			} else {
-				this.headImage = require('../../static/tab3/my_image.png')
+				this.headImage = '../../static/tab3/my_image.png'
 			}
 			if (user.nickName) {
 				this.nickname = user.nickName
 			} else {
-				this.nickname = 'Ding Han'
+				this.nickname = 'Xiao Cun'
 			}
 		},
 		onPageScroll(options) {
