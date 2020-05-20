@@ -22,7 +22,7 @@
 				</view>
 				<view class="flex_between" style="margin-top: 60upx;">
 					<text class="button button_left" @click="onAddList">+ 添加</text>
-					<text class="button button_right">储存注意事项 ></text>
+					<text class="button button_right" @click="$refs.popupAlert.open()">储存注意事项 ></text>
 				</view>
 			</view>
 			<view style="margin-top: 40upx;">
@@ -231,7 +231,6 @@
 		},
 		onShow() {
 			this.$nextTick(() => {
-				// this.$refs.popupAlert.open()
 				let user = uni.getStorageSync('user')
 				if (!user.alertAgreement) {
 					this.$refs.popupAlert.open()
