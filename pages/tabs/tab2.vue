@@ -81,7 +81,7 @@
 										<button class="button_confirm" @click="onConfirmOrder2(item.id)">立即付款</button>
 									</view>
 								</view>
-								<view class="segmented_list" v-for="item in orderList03" :key="item.id">
+								<view class="segmented_list" v-for="(item, index) in orderList03" :key="index">
 									<view @click="onOrder3Detail(item)">
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="仓储订单" :showArrow="false">
@@ -162,7 +162,7 @@
 							</view>
 						</view>
 						<view v-if="current === 2">
-							<view v-for="item in orderList2" :key="item.id">
+							<view v-for="(item, index) in orderList2" :key="index">
 								<view class="segmented_list">
 									<view @click="onOrder2Detail(item)">
 										<uni-list class="list_custom list_custom_align_start">
@@ -196,7 +196,7 @@
 							</view>
 						</view>
 						<view v-if="current === 3">
-							<view v-for="item in orderList3" :key="item.id">
+							<view v-for="(item, index) in orderList3" :key="index">
 								<view class="segmented_list">
 									<view @click="onOrder3Detail(item)">
 										<uni-list class="list_custom list_custom_align_start">
@@ -266,9 +266,15 @@
 				orderList1: [], //存单列表
 				orderList2: [], //取单列表
 				orderList3: [], //仓储订单列表
-				pageNumber: 0,
-				totalPages: 1,
-				finished: false
+				pageNumber1: 0,
+				totalPages1: 1,
+				finished1: false,
+				pageNumber2: 0,
+				totalPages2: 1,
+				finished2: false,
+				pageNumber3: 0,
+				totalPages3: 1,
+				finished3: false
 			}
 		},
 		components: {},
@@ -279,8 +285,6 @@
 			}
 		},
 		onShow() {
-			console.log(this.current)
-			console.log(this.gotoPage)
 			if (this.gotoPage == 'tab20') {
 				this.current = 0
 			} else if (this.gotoPage == 'tab21') {
@@ -290,20 +294,29 @@
 			} else if (this.gotoPage == 'tab23') {
 				this.current = 3
 			}
-			// if (this.current == 0) {
-			// 	this.getOrderList0()
-			// 	this.getOrderList1()
-			// } else if (this.current == 1) {
-			// 	this.getOrderList1()
-			// } else if (this.current == 2) {
-			// 	this.getOrderList2()
-			// } else if (this.current == 3) {
-			// 	this.getOrderList3()
-			// }
-			this.getOrderList0()
-			this.getOrderList1()
-			this.getOrderList2()
-			this.getOrderList3()
+			if (this.current == 0) {
+				this.getOrderList0()
+				this.getOrderList1()
+			} else if (this.current == 1) {
+				this.pageNumber1 = 0
+				this.totalPages1 = 1
+				this.finished1 = false
+				this.getOrderList1()
+			} else if (this.current == 2) {
+				this.pageNumber2 = 0
+				this.totalPages2 = 1
+				this.finished2 = false
+				this.getOrderList2()
+			} else if (this.current == 3) {
+				this.pageNumber3 = 0
+				this.totalPages3 = 1
+				this.finished3 = false
+				this.getOrderList3()
+			}
+			// this.getOrderList0()
+			// this.getOrderList1()
+			// this.getOrderList2()
+			// this.getOrderList3()
 		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
@@ -312,11 +325,16 @@
 				this.headerShow = true;
 			}
 		},
-		onPullDownRefresh() {
-			console.log(this.pageIndex++)
-		},
+		onPullDownRefresh() {},
 		onReachBottom() {
-			console.log('tab2')
+			console.log(6666)
+			if (this.current == 0) {} else if (this.current == 1) {
+				this.getOrderList1()
+			} else if (this.current == 2) {
+				this.getOrderList2()
+			} else if (this.current == 3) {
+				this.getOrderList3()
+			}
 		},
 		methods: {
 			onClickRight(index) {
@@ -403,70 +421,98 @@
 			},
 			// 获取存单列表
 			getOrderList1() {
-				this.$http('user/deposit/order/page', "GET", '', res => {
-					let data = res.data
-					if (data.success) {
-						this.orderList1 = data.data.data
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
-					}
-				})
+				if (this.totalPages1 > this.pageNumber1) {
+					this.$http('user/deposit/order/page?pageSize=10&pageNumber=' + this.pageNumber1, "GET", '', res => {
+						let data = res.data
+						if (data.success) {
+							this.pageNumber1++
+							this.orderList1 = this.orderList1.concat(data.data.data)
+							this.totalPages1 = data.data.totalPages
+							if (this.totalPages1 == this.pageNumber1) {
+								this.finished1 = true
+							}
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					})
+				} else {
+					this.finished1 = true
+				}
 			},
 			// 获取取单列表
 			getOrderList2() {
-				this.$http('user/withdraw/order/page', "GET", '', res => {
-					let data = res.data
-					if (data.success) {
-						for (let item of data.data.data) {
-							item.totalList = []
-							if (item.goods) {
-								for (let goodsIndex of item.goods) {
-									goodsIndex.coverPic = goodsIndex.goods.coverPic
-									item.totalList.push(goodsIndex)
+				if (this.totalPages2 > this.pageNumber2) {
+					this.$http('user/withdraw/order/page?pageSize=10&pageNumber=' + this.pageNumber2, "GET", '', res => {
+						let data = res.data
+						if (data.success) {
+							for (let item of data.data.data) {
+								item.totalList = []
+								if (item.goods) {
+									for (let goodsIndex of item.goods) {
+										goodsIndex.coverPic = goodsIndex.goods.coverPic
+										item.totalList.push(goodsIndex)
+									}
+									if (item.packs) {
+										item.goodsNumber = item.goods.length + item.packs.length
+									} else {
+										item.goodsNumber = item.goods.length
+									}
 								}
 								if (item.packs) {
-									item.goodsNumber = item.goods.length + item.packs.length
-								} else {
-									item.goodsNumber = item.goods.length
+									for (let goodsIndex of item.packs) {
+										goodsIndex.coverPic = '../../static/tab1/box_null.png'
+										item.totalList.push(goodsIndex)
+									}
+									if (item.goods) {
+										item.goodsNumber = item.goods.length + item.packs.length
+									} else {
+										item.goodsNumber = item.packs.length
+									}
 								}
 							}
-							if (item.packs) {
-								for (let goodsIndex of item.packs) {
-									goodsIndex.coverPic = '../../static/tab1/box_null.png'
-									item.totalList.push(goodsIndex)
-								}
-								if (item.goods) {
-									item.goodsNumber = item.goods.length + item.packs.length
-								} else {
-									item.goodsNumber = item.packs.length
-								}
+							this.pageNumber2++
+							this.orderList2 = this.orderList2.concat(data.data.data)
+							this.totalPages2 = data.data.totalPages
+							if (this.totalPages2 == this.pageNumber2) {
+								this.finished2 = true
 							}
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
 						}
-						this.orderList2 = data.data.data
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
-					}
-				})
+					})
+				} else {
+					this.finished2 = true
+				}
 			},
 			// 获取仓储订单
 			getOrderList3() {
-				this.$http('user/store/order/page', "GET", '', res => {
-					let data = res.data
-					if (data.success) {
-						this.orderList3 = data.data.data
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
-					}
-				})
+				if (this.totalPages3 > this.pageNumber3) {
+					this.$http('user/store/order/page?pageSize=10&pageNumber=' + this.pageNumber3, "GET", '', res => {
+						let data = res.data
+						if (data.success) {
+							this.orderList3 = data.data.data
+							this.pageNumber3++
+							this.orderList3 = this.orderList3.concat(data.data.data)
+							this.totalPages3 = data.data.totalPages
+							if (this.totalPages3 == this.pageNumber3) {
+								this.finished3 = true
+							}
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
+						}
+					})
+				} else {
+					this.finished3 = true
+				}
 			},
 			// 去存单详情
 			onOrder1Detail(item) {
@@ -736,15 +782,16 @@
 		background-color: #FFFFFF;
 		display: flex;
 		align-items: center;
-		
+
 		.no_data_content {
 			width: 100%;
 			height: 700upx;
+
 			image {
 				width: 338upx;
 				height: 326upx;
 			}
-			
+
 			p {
 				font-size: 28upx;
 				font-weight: 400;
@@ -752,7 +799,7 @@
 				line-height: 50upx;
 				margin: 70upx auto 0;
 			}
-			
+
 			.common_button {
 				width: 398upx;
 				height: 90upx;

@@ -310,6 +310,7 @@
 				this.headerShow = true;
 			}
 		},
+		onTabItemTap(e) {},
 		methods: {
 			onClickRight(index) {
 				if (index == 1) {
@@ -429,7 +430,6 @@
 			getGoodsList() {
 				this.$http('user/store/show', "GET", '', res => {
 					let data = res.data
-					console.log(data)
 					if (data.success) {
 						let goodsData = {
 							id: '',
@@ -439,15 +439,10 @@
 							if (data.data.bookcase.goods.length <= 0 && data.data.armoire.goods.length <= 0 && data.data.shoebox.goods.length <=
 								0 && data.data.storeroom.goods.length <= 0 && data.data.sundries.packs.length <= 0) {
 								this.bookData = data.data.bookcase.goods //书架
-								// this.bookData.dataNumber = data.data.bookcase.goods.length
 								this.clotheData = data.data.armoire.goods //衣柜
-								// this.clotheData.dataNumber = data.data.armoire.goods.length
 								this.shoeData = data.data.shoebox.goods //鞋柜
-								// this.shoeData.dataNumber = data.data.shoebox.goods.length
 								this.storageData = data.data.storeroom.goods //储藏室
-								// this.storageData.dataNumber = data.data.storeroom.goods.length
 								this.groceriesData = data.data.sundries.packs //杂货架
-								// this.groceriesData.dataNumber = data.data.sundries.packs.length
 								return
 							} else {
 								if (!data.data.bookcase.goods[i]) {
@@ -469,21 +464,10 @@
 							}
 						}
 						this.bookData = data.data.bookcase.goods //书架
-						// this.bookData.dataNumber = data.data.bookcase.goods.length
 						this.clotheData = data.data.armoire.goods //衣柜
-						// this.clotheData.dataNumber = data.data.armoire.goods.length
 						this.shoeData = data.data.shoebox.goods //鞋柜
-						// this.shoeData.dataNumber = data.data.shoebox.goods.length
 						this.storageData = data.data.storeroom.goods //储藏室
-						// this.storageData.dataNumber = data.data.storeroom.goods.length
 						this.groceriesData = data.data.sundries.packs //杂货架
-						// this.groceriesData.dataNumber = data.data.sundries.packs.length
-						console.log(this.failData)
-						console.log(this.bookData)
-						console.log(this.clotheData)
-						console.log(this.shoeData)
-						console.log(this.storageData)
-						console.log(this.groceriesData)
 					} else {
 						uni.showToast({
 							icon: 'none',

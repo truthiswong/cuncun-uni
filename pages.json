@@ -39,6 +39,7 @@
 			"style": {
 				"navigationBarTitleText": "我的订单",
 				// "enablePullDownRefresh": true,
+				"onReachBottomDistance": 100,
 				"app-plus": {
 					"bounce": "none"
 				}
@@ -112,6 +113,7 @@
 			"path": "pages/tab1/search",
 			"style": {
 				"navigationBarTitleText": "搜索",
+				"onReachBottomDistance": 100,
 				"app-plus": {
 					"bounce": "none"
 				}
@@ -231,6 +233,7 @@
 			"path": "pages/tab3/payDetails",
 			"style": {
 				"navigationBarTitleText": "消费明细",
+				"onReachBottomDistance": 100,
 				"app-plus": {
 					"bounce": "none"
 				}
