@@ -9537,18 +9537,35 @@ var render = function() {
                   )
                 }),
                 1
-              )
+              ),
+              _vm._$g(28, "i")
+                ? _c(
+                    "v-uni-view",
+                    {
+                      staticStyle: {
+                        "text-align": "center",
+                        "font-size": "24upx",
+                        "font-weight": "400",
+                        color: "rgba(178,178,178,1)",
+                        margin: "20upx 0",
+                        "line-height": "33upx"
+                      },
+                      attrs: { _i: 28 }
+                    },
+                    [_vm._v("这是我的底线，没有更多的咯～")]
+                  )
+                : _vm._e()
             ],
             1
           ),
-          _vm._$g(28, "i")
+          _vm._$g(29, "i")
             ? _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(28, "sc"), attrs: { _i: 28 } },
+                { staticClass: _vm._$g(29, "sc"), attrs: { _i: 29 } },
                 [
                   _c("v-uni-image", {
                     staticStyle: { width: "218upx", height: "124upx" },
-                    attrs: { src: _vm._$g(29, "a-src"), mode: "", _i: 29 },
+                    attrs: { src: _vm._$g(30, "a-src"), mode: "", _i: 30 },
                     on: {
                       click: function($event) {
                         return _vm.$handleViewEvent($event)
@@ -9557,7 +9574,7 @@ var render = function() {
                   }),
                   _c("v-uni-image", {
                     staticStyle: { width: "268upx", height: "124upx" },
-                    attrs: { src: _vm._$g(30, "a-src"), mode: "", _i: 30 },
+                    attrs: { src: _vm._$g(31, "a-src"), mode: "", _i: 31 },
                     on: {
                       click: function($event) {
                         return _vm.$handleViewEvent($event)

@@ -80,15 +80,17 @@
 			}
 			// #ifdef APP-PLUS
 			this.$nextTick(()=>{
-				var args = plus.runtime.arguments;
-				if (args == 'cuncun://realname') {
-					// 处理args参数，如直达到某新页面等 
-					console.log(args)
-					this.getRealNameReturn()
-				}
+				setTimeout(()=>{
+					var args = plus.runtime.arguments;
+					// hbuilder://realname  cuncun://realname
+					if (args == 'cuncun://realname') {
+						// 处理args参数，如直达到某新页面等 
+						console.log(args)
+						this.getRealNameReturn()
+					}
+				}, 50)
 			})
 			// #endif
-			// cuncun://realname
 		},
 		methods: {
 			onClickBack() {

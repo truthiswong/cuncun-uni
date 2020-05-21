@@ -69,6 +69,7 @@
 		onShow() {
 			let user = uni.getStorageSync('user')
 			console.log(user.portrait)
+			// this.getUserInfo()
 			if (user.portrait) {
 				this.headImage = user.portrait
 			} else {
@@ -76,6 +77,8 @@
 			}
 			if (user.nickName) {
 				this.nickname = user.nickName
+			} else if (user.name) {
+				this.nickname = user.name
 			} else {
 				this.nickname = 'Xiao Cun'
 			}

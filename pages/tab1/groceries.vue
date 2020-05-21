@@ -21,7 +21,7 @@
 		<!-- 内容 -->
 		<view class="content">
 			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
-				<p>您一共放了 <text>{{list.length}}</text> 件物品</p>
+				<p>您一共放了 <text>{{total}}</text> 件物品</p>
 				<p>需要的时候随时拿，要的就是这种感觉～</p>
 			</view>
 			<view>
@@ -70,9 +70,12 @@
 				scroll_bg2: '../../static/tab1/clothes_box.png',
 				scroll_bg3: '../../static/tab1/shoes_box.png',
 				list: [],
-				pageNo: 1,
 				isCheckedShow: false,
 				chooseButton: '选择',
+				pageNumber: 0,
+				totalPages: 1,
+				total: 0,
+				finished: false
 			}
 		},
 		onLoad() {
@@ -87,6 +90,9 @@
 			} else {
 				this.headerShow = true;
 			}
+		},
+		onReachBottom() {
+			this.getGoodsList()
 		},
 		methods: {
 			onClickBack() {
@@ -166,20 +172,30 @@
 			},
 			// 获取物品列表
 			getGoodsList() {
-				this.$http(`user/pack/page?type=B&auditStatus=pass`, "GET", '', res => {
-					let data = res.data
-					if (data.success) {
-						for (let item of data.data.data) {
-							item.checked = false
+				if (this.totalPages > this.pageNumber) {
+					this.$http(`user/pack/page?type=B&auditStatus=pass&pageSize=20&pageNumber=${this.pageNumber}`, "GET", '', res => {
+						let data = res.data
+						if (data.success) {
+							for (let item of data.data.data) {
+								item.checked = false
+							}
+							this.total = data.data.total
+							this.pageNumber++
+							this.list = this.list.concat(data.data.data)
+							this.totalPages = data.data.totalPages
+							if (this.totalPages == this.pageNumber) {
+								this.finished = true
+							}
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
 						}
-						this.list = data.data.data //杂货架
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
-					}
-				})
+					})
+				} else {
+					this.finished = true
+				}
 			}
 		}
 	}

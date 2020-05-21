@@ -32,7 +32,23 @@
 		methods: {
 			onClickBack() {
 				uni.navigateTo({
-					url: '/pages/tab3/setting'
+					url: '/pages/tab3/setting',
+					success: () => {
+						this.$http('user/current', "GET", '', res => {
+							let data = res.data
+							if (data.success) {
+								uni.setStorage({
+									key: 'user',
+									data: data.data
+								})
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: data.message
+								});
+							}
+						})
+					}
 				})
 			},
 			onConfirm() {

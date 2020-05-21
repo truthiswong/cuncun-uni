@@ -436,22 +436,60 @@
 								}
 							})
 						} else {
-							this.$refs.popup.close()
-							uni.navigateTo({
-								url: "/pages/tab2/orderSuccess"
-							})
-							// #ifdef APP-PLUS
-							uni.requestPayment({
-								provider: 'wxpay',
-								orderInfo: 'orderInfo', //微信、支付宝订单数据
-								success: (res) => {
-									console.log(res);
-								},
-								fail: (err) => {
-									console.log(err);
+							// 微信支付
+							this.$http('user/deposit/order/prepay/wechat', "POST", dataObj, res1 => {
+								console.log(res1.data)
+								if (res1.data.success) {
+									console.log(res1.data.data)
+									// #ifdef APP-PLUS
+									uni.requestPayment({
+										provider: 'wxpay',
+										orderInfo: res1.data.data,
+										success: (respay) => {
+											console.log(respay)
+											this.$refs.popup.close()
+											uni.navigateTo({
+												url: "/pages/tab2/orderSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(data.data)),
+												success: () => {
+													// #ifdef APP-PLUS
+													uni.report('addOrderWxpay', {
+														'describe': '存单微信支付'
+													})
+													// #endif
+												}
+											})
+										},
+										fail: (err) => {
+											console.log(err)
+											this.$refs.popup.close()
+											payFail = true
+											this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
+												if (res2.data.success) {
+													console.log(res2.data)
+													console.log("fail")
+													uni.navigateTo({
+														url: `/pages/tab2/orderDetails?id=${dataObj.orderId}&gotoPage=tab21`
+													})
+												} else {
+													uni.showToast({
+														icon: 'none',
+														title: res2.data.message
+													});
+												}
+											})
+										},
+										complete: (e) => {
+											
+										}
+									});
+									// #endif
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: res1.data.message
+									});
 								}
-							});
-							// #endif
+							})
 						}
 					} else {
 						uni.showToast({

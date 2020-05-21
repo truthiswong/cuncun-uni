@@ -2,8 +2,8 @@
     "name" : "存存",
     "appid" : "__UNI__tech.cuncun.cuncun",
     "description" : "",
-    "versionName" : "1.2.7",
-    "versionCode" : 127,
+    "versionName" : "1.2.8",
+    "versionCode" : 128,
     "transformPx" : false,
     /* 5+App特有相关 */
     "app-plus" : {
@@ -30,9 +30,10 @@
         "distribute" : {
             /* android打包配置 */
             "android" : {
-                "google" : {
-                    "schemes" : [ "cuncun", "realname" ]
-                },
+                "schemes" : [ "cuncun", "realname" ],
+                // "google" : {
+                //     "schemes" : [ "http", "https", "cuncun", "realname" ]
+                // },
                 "permissions" : [
                     "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
                     "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
