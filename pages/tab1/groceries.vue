@@ -46,7 +46,7 @@
 							<view>
 								<text>{{item.code}}</text>
 							</view>
-							<text class="box_groceries_text">内含：{{item.remark}}</text>
+							<text class="box_groceries_text">{{item.remark}}</text>
 						</view>
 					</view>
 				</checkbox-group>

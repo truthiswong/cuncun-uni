@@ -70,7 +70,7 @@
 							<view>
 								<text>{{item.code}}</text>
 							</view>
-							<text class="search_list_text">内含：{{item.name}}</text>
+							<text class="search_list_text">{{item.name}}</text>
 						</view>
 					</view>
 				</view>
