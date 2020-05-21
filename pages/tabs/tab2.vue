@@ -125,7 +125,7 @@
 							</view>
 						</view>
 						<view v-if="current === 1">
-							<view v-for="item in orderList1" :key="item.id">
+							<view v-for="(item, index) in orderList1" :key="index">
 								<view class="segmented_list">
 									<view @click="onOrder1Detail(item)">
 										<uni-list class="list_custom list_custom_align_start">
