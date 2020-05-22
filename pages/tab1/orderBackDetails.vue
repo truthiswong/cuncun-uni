@@ -443,7 +443,7 @@
 							for (let item of data.data) {
 								item.title = item.status.name
 								item.mmdd = this.$moment(item.timeCreated).format('MM-DD')
-								item.hhmm = this.$moment(item.timeCreated).format('hh:mm:ss')
+								item.hhmm = this.$moment(item.timeCreated).format('HH:mm:ss')
 								item.desc = item.remark
 							}
 							this.options = data.data
@@ -462,40 +462,53 @@
 			},
 			// 订单取消
 			onCancelOrder(id) {
-				let data = {
-					id: id
-				}
-				this.$http('user/withdraw/order/cancel', "POST", data, res => {
-					let data = res.data
-					if (data.success) {
-						// uni.navigateBack({
-						// 	delta: 1
-						// })
-						this.getOrderDetail()
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
+				uni.showModal({
+					title: '提示',
+					content: '确认取消订单吗?',
+					success: (res) => {
+						if (res.confirm) {
+							let data = {
+								id: id
+							}
+							this.$http('user/withdraw/order/cancel', "POST", data, res => {
+								let data = res.data
+								if (data.success) {
+									this.getOrderDetail()
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: data.message
+									});
+								}
+							})
+						}
 					}
 				})
 			},
 			// 确认收货
 			onConfirmGoods(){
-				let data = {
-					id: this.orderId
-				}
-				this.$http('user/withdraw/order/confirm', "POST", data, res => {
-					let data = res.data
-					if (data.success) {
-						uni.navigateBack({
-							delta: 1
-						})
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
+				uni.showModal({
+					title: '提示',
+					content: '是否确认收货?',
+					success(res) {
+						if (res.confirm) {
+							let data = {
+								id: this.orderId
+							}
+							this.$http('user/withdraw/order/confirm', "POST", data, res => {
+								let data = res.data
+								if (data.success) {
+									uni.navigateBack({
+										delta: 1
+									})
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: data.message
+									});
+								}
+							})
+						}
 					}
 				})
 			},

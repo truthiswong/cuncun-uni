@@ -68,9 +68,9 @@
 						</label>
 						<view class="search_list_right" style="color: rgba(40,40,40,1);">
 							<view>
-								<text>{{item.code}}</text>
+								<text>{{item.name}}</text>
 							</view>
-							<text class="search_list_text">{{item.name}}</text>
+							<text class="search_list_text">所属货架: {{item.type.name}}</text>
 						</view>
 					</view>
 				</view>

@@ -31,7 +31,7 @@
 							</view>
 						</view>
 					</uni-list-item>
-					<uni-list-item title="备注">
+					<uni-list-item title="备注" :showArrow="false">
 						<view slot="right">
 							<input class="input_remark" v-model="userRemark" type="text" placeholder="对我们的服务人员有什么特别的吩咐吗" style="font-size:28upx;padding-left: 20upx;color: #282828;"
 							 placeholder-style="font-size:14px; font-weight:400; color:rgba(178,178,178,1); line-height:40upx;" />
