@@ -54,7 +54,7 @@
 		data() {
 			return {
 				headImage: '../../static/tab3/my_image.png',
-				nickname: 'Xiao Cun',
+				nickname: '存存用户',
 				nicknameSet: '',
 				mobile: '',
 				userInfoUpdate: false,
@@ -62,9 +62,7 @@
 				realNameConfirm: false,
 			};
 		},
-		onLoad() {
-
-		},
+		onLoad() {},
 		onShow() {
 			let user = uni.getStorageSync('user')
 			console.log(user)
@@ -90,9 +88,7 @@
 		},
 		methods: {
 			onClickBack() {
-				uni.switchTab({
-					url: '/pages/tabs/tab3'
-				})
+				uni.navigateBack()
 			},
 			getUserInfo() {
 				this.$http('user/current', "GET", '', res => {
@@ -213,7 +209,7 @@
 			onRealName() {
 				if (this.realNameConfirm) {
 					uni.navigateTo({
-						url: "/pages/tab3/realNameSuccess"
+						url: "/pages/tab3/realName?realNameConfirm=true"
 					})
 				} else {
 					uni.navigateTo({
@@ -269,6 +265,9 @@
 							})
 							uni.removeStorage({
 								key: 'tab1ShowHide'
+							})
+							uni.removeStorage({
+								key: 'alertAgreement'
 							})
 							uni.navigateTo({
 								url: '/pages/login/login',
