@@ -52,6 +52,21 @@
 		onLoad(op) {
 		},
 		onShow() {},
+		onBackPress(e) {
+			console.log(e)
+			if (e.from == 'backbutton') {
+				uni.showModal({
+					title: '提示',
+					content: '您要退出存存吗?',
+					success: (res) => {
+						if (res.confirm) {
+							plus.runtime.quit();
+						}
+					}
+				})
+			}
+			return true //表示禁止默认返回
+		},
 		watch: {
 			username() {
 				if (this.username && this.sms && this.agreement) {
@@ -165,27 +180,58 @@
 					    success: (res) => {
 							let data = res.data
 							if (data.success) {
-								uni.showToast({
-									icon: 'none',
-									title: data.message
-								});
 								let token = `Bearer ${data.data.token}`
 								uni.setStorage({
 								    key: 'token',
 								    data: token,
-								    success: function () {
-								        uni.switchTab({
-								        	url: '/pages/tabs/tab1',
+								    success: ()=> {
+										uni.switchTab({
+											url: '/pages/tabs/tab1',
 											success: () => {
+												uni.showToast({
+													icon: 'none',
+													title: '登录成功'
+												});
 												// #ifdef APP-PLUS
 												uni.report('login', {
 													'describe': '登录'
 												})
 												// #endif
 											}
-								        })
+										})
+										return
+										this.$http('user/current', "GET", '', res => {
+											let dataObj = res.data
+											if (dataObj.success) {
+												if (dataObj.data.realNameConfirm) {
+													uni.switchTab({
+														url: '/pages/tabs/tab1',
+														success: () => {
+															uni.showToast({
+																icon: 'none',
+																title: '登录成功'
+															});
+															// #ifdef APP-PLUS
+															uni.report('login', {
+																'describe': '登录'
+															})
+															// #endif
+														}
+													})
+												} else {
+													uni.navigateTo({
+														url: '/pages/tab3/realName?loginRealNameConfirm=true'
+													})
+												}
+											} else {
+												uni.showToast({
+													icon: 'none',
+													title: dataObj.message
+												})
+											}
+										})
 								    }
-								});
+								})
 							} else{
 								uni.showToast({
 									icon: 'none',
@@ -195,29 +241,7 @@
 					    }
 					});
 				}
-			},
-			getUserInfo() {
-				uni.request({
-					url: 'http://cuncun.app.iisu.cn/server/data/user/current',
-					method: 'GET',
-					header: {
-						'Content-Type': 'application/x-www-form-urlencoded',
-						'X-TENANT-ID': 'cuncun:cc@2020',
-						'Authorization': uni.getStorageSync('token')
-					},
-					success: (res) => {
-						let data = res.data
-						if (data.success) {
-							console.log(data.data)
-						} else {
-							uni.showToast({
-								icon: 'none',
-								title: data.message
-							});
-						}
-					}
-				});
-			},
+			}
 		}
 	}
 </script>
