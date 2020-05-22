@@ -16,44 +16,41 @@
 	export default {
 		components: {},
 		data() {
-			return {
-			}
+			return {}
 		},
 		watch: {},
-		onLoad(option) {
-		},
+		onLoad(option) {},
 		onShow() {
 			// #ifdef APP-PLUS
 			uni.report('realNameSuccess', {
 				'describe': '认证成功'
 			})
 			// #endif
+			this.getUserInfo()
 		},
 		methods: {
 			onClickBack() {
-				uni.navigateTo({
-					url: '/pages/tab3/setting',
-					success: () => {
-						this.$http('user/current', "GET", '', res => {
-							let data = res.data
-							if (data.success) {
-								uni.setStorage({
-									key: 'user',
-									data: data.data
-								})
-							} else {
-								uni.showToast({
-									icon: 'none',
-									title: data.message
-								});
-							}
-						})
-					}
-				})
+				uni.navigateBack()
 			},
 			onConfirm() {
 				uni.navigateTo({
 					url: '/pages/tab3/setting'
+				})
+			},
+			getUserInfo() {
+				this.$http('user/current', "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						uni.setStorage({
+							key: 'user',
+							data: data.data
+						})
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
 				})
 			}
 		}

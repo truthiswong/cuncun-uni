@@ -6,7 +6,7 @@
 			<view class="top_img">
 				<image src="../../static/common/fail.png" mode=""></image>
 				<p style="font-size:32upx;font-weight:500;color:rgba(40,40,40,1);line-height:64upx;margin-top: 60upx;">啊哦，认证失败，再去试试！</p>
-				<button @click="onConfirm" class="address_button">前往认证</button>
+				<button @click="onClickBack" class="address_button">前往认证</button>
 			</view>
 		</view>
 	</view>
@@ -29,12 +29,10 @@
 		},
 		methods: {
 			onClickBack() {
-				// uni.navigateBack({
-				// 	delta: 1
+				uni.navigateBack()
+				// uni.navigateTo({
+				// 	url: '/pages/tab3/setting'
 				// })
-				uni.navigateTo({
-					url: '/pages/tab3/setting'
-				})
 			},
 			onConfirm() {
 				uni.navigateTo({

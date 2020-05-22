@@ -40,11 +40,13 @@
 							<!-- <picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
 								<view style="font-size:28upx; color:rgba(3,166,166,1);">{{date}}</view>
 							</picker> -->
-
+							<!-- <picker mode="multiSelector" range='[["a","b"], ["c","d"]]'>
+								<view>{{11}}</view>
+							</picker> -->
 							<view @click="onDateChange" style="font-size:28upx; color:rgba(3,166,166,1);">{{date}}</view>
 						</view>
 					</uni-list-item>
-					<uni-list-item title="备注">
+					<uni-list-item title="备注" :showArrow="false">
 						<view slot="right">
 							<input class="input_remark" v-model="userRemark" type="text" placeholder="对我们的服务人员有什么特别的吩咐吗" style="font-size:28upx;padding-left: 20upx;color: #282828;"
 							 placeholder-style="font-size:14px; font-weight:400; color:rgba(178,178,178,1); line-height:40upx;" />
@@ -81,7 +83,7 @@
 					<text>上门取件时间</text>
 					<image class="close_btn" @click="closePopupDate" src="../../static/tab2/close.png" mode=""></image>
 				</view>
-				<view>
+				<view> 
 					<picker-view style="height: 480upx;" :indicator-style="indicatorStyle" :value="dateValue" @change="changeDate">
 						<picker-view-column>
 							<view class="date_item" v-for="(item,index) in dates" :key="index">{{item.value}}</view>
@@ -218,6 +220,13 @@
 				})
 			},
 			onDateChange() {
+				for (let item of this.dateDate) {
+					if (item.isDisabled) {
+						this.dateValue1
+					} else{
+						
+					}
+				}
 				this.$refs.popupDate.open()
 				this.dateValue = [this.dateValue1, this.dateValue2]
 				this.date = this.dates[this.dateValue1].value + " " + this.hours[this.dateValue2].value
@@ -313,6 +322,11 @@
 					let data = res.data
 					if (data.success) {
 						for (let item of data.data) {
+							if (Object.values(item)[0] == "约满") {
+								item.isDisable = true
+							} else {
+								item.isDisable = false
+							}
 							item.value = `${Object.keys(item)[0]} (${Object.values(item)[0]})`
 							item.date = Object.keys(item)[0]
 						}
@@ -441,10 +455,24 @@
 								console.log(res1.data)
 								if (res1.data.success) {
 									console.log(res1.data.data)
+									let orderInfoObj = {
+										"appid": res1.data.data.appid,
+										"noncestr": res1.data.data.noncestr,
+										"package": "Sign=WXPay",
+										"partnerid": res1.data.data.partnerid,
+										"prepayid": res1.data.data.prepayid,
+										"timestamp": res1.data.data.timestamp,
+										"sign": res1.data.data.sign
+									}
+									let orderInfoStr = JSON.stringify(orderInfoObj)
+									let orderInfo = JSON.stringify(orderInfoObj)
+									// orderInfoStr = `"${orderInfoStr}"`
+									console.log(orderInfoStr)
+									console.log(orderInfoObj)
 									// #ifdef APP-PLUS
 									uni.requestPayment({
 										provider: 'wxpay',
-										orderInfo: res1.data.data,
+										orderInfo: orderInfo,
 										success: (respay) => {
 											console.log(respay)
 											this.$refs.popup.close()
@@ -461,22 +489,26 @@
 										},
 										fail: (err) => {
 											console.log(err)
-											this.$refs.popup.close()
-											payFail = true
-											this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
-												if (res2.data.success) {
-													console.log(res2.data)
-													console.log("fail")
-													uni.navigateTo({
-														url: `/pages/tab2/orderDetails?id=${dataObj.orderId}&gotoPage=tab21`
-													})
-												} else {
-													uni.showToast({
-														icon: 'none',
-														title: res2.data.message
-													});
-												}
+											// this.$refs.popup.close()
+											uni.showModal({
+											    content: "支付失败,原因为: " + err.errMsg,
+											    showCancel: false
 											})
+											// payFail = true
+											// this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
+											// 	if (res2.data.success) {
+											// 		console.log(res2.data)
+											// 		console.log("fail")
+											// 		uni.navigateTo({
+											// 			url: `/pages/tab2/orderDetails?id=${dataObj.orderId}&gotoPage=tab21`
+											// 		})
+											// 	} else {
+											// 		uni.showToast({
+											// 			icon: 'none',
+											// 			title: res2.data.message
+											// 		});
+											// 	}
+											// })
 										},
 										complete: (e) => {
 											

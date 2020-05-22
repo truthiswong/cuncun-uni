@@ -9,33 +9,18 @@
 			<uni-list class="list_custom list_custom_item list_custom_margin20">
 				<uni-list-item title="姓名：" :showArrow="false">
 					<view slot="right" class="input">
-						<input type="text" v-model="username" placeholder="请输入姓名" placeholder-style="color: #CCCCCC;font-size:14px;" />
+						<input type="text" v-model="username" :disabled="realNameConfirm" placeholder="请输入姓名" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
 				<uni-list-item title="身份证：" :showArrow="false">
 					<view slot="right" class="input">
-						<input type="idcard" v-model="idCard" maxlength="18" placeholder="请输入身份证号" placeholder-style="color: #CCCCCC;font-size:14px;" />
+						<input type="idcard" v-model="idCard" :disabled="realNameConfirm" maxlength="18" placeholder="请输入身份证号" placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
-				<!-- <uni-list-item title="签证机关：" :showArrow="false">
-					<view slot="right" class="input">
-						<input type="idcard" v-model="idOrgan" disabled placeholder="上传身份照片认证" placeholder-style="color: #CCCCCC;font-size:14px;" />
-					</view>
-				</uni-list-item>
-				<uni-list-item title="有效日期：" :showArrow="false">
-					<view slot="right" class="input">
-						<input type="idcard" v-model="idDate" disabled placeholder="上传身份照片认证" placeholder-style="color: #CCCCCC;font-size:14px;" />
-					</view>
-				</uni-list-item>
-				<uni-list-item title="证件照片：" :showArrow="false"></uni-list-item>
-				<view class="flex_between id_card">
-					<image @click="changeIDCardImage1" :src="idCardSrc1" mode=""></image>
-					<image @click="changeIDCardImage2" :src="idCardSrc2" mode=""></image>
-				</view> -->
 			</uni-list>
 		</view>
-		<button @click="onConfirm" class="address_button">前往认证</button>
-		<text @click="onReturn" class="address_button address_button_active">暂不认证，先看看</text>
+		<button @click="onConfirm" :disabled="realNameConfirm" class="address_button">{{realNameConfirm?'已认证':'前往认证'}}</button>
+		<text @click="onReturn" v-if="!realNameConfirm" class="address_button address_button_active">暂不认证，先看看</text>
 	</view>
 </template>
 
@@ -46,12 +31,10 @@
 			return {
 				username: '',
 				idCard: '',
-				idCardSrc1: '../../static/common/idcard-z.png',
-				idCardSrc2: '../../static/common/idcard-f.png',
-				idOrgan: '',
-				idDate: '',
 				buttonActive: false, // 颜色控制
 				realNameConfirm: false, //是否实名
+				loginRealNameConfirm: false,
+				urlschemes: null
 			};
 		},
 		watch: {
@@ -70,22 +53,38 @@
 				}
 			}
 		},
-		onLoad(op) {
-			// this.getIdinfo()
+		onLoad(option) {
+			console.log(option)
+			if (option.loginRealNameConfirm == true) {
+				this.loginRealNameConfirm = true
+			}
 		},
 		onShow() {
 			let user = uni.getStorageSync('user')
+			console.log(user)
+			console.log(user.realNameConfirm)
 			if (user.realNameConfirm) {
-				this.realNameConfirm = user.realNameConfirm
+				this.realNameConfirm = true
+			} else {
+				this.realNameConfirm = false
+			}
+			if (user.name) {
+				this.username = user.name
+			}
+			if (user.idNo) {
+				this.idCard = user.idNo
 			}
 			// #ifdef APP-PLUS
 			this.$nextTick(()=>{
 				setTimeout(()=>{
-					var args = plus.runtime.arguments;
+					this.urlschemes = plus.runtime.arguments
+					console.log(this.urlschemes)
 					// hbuilder://realname  cuncun://realname
-					if (args == 'cuncun://realname') {
+					if (this.urlschemes == 'cuncun://realname') {
 						// 处理args参数，如直达到某新页面等 
-						console.log(args)
+						console.log(this.urlschemes)
+						this.urlschemes = null
+						plus.runtime.arguments = null
 						this.getRealNameReturn()
 					}
 				}, 50)
@@ -94,11 +93,18 @@
 		},
 		methods: {
 			onClickBack() {
-				uni.navigateBack({
-					delta: 1
-				})
+				if (this.loginRealNameConfirm) {
+					uni.switchTab({
+						url: '/pages/tabs/tab1'
+					})
+				} else{
+					uni.navigateBack()
+				}
 			},
 			onConfirm() {
+				if (this.realNameConfirm) {
+					return
+				}
 				if (!this.username) {
 					uni.showToast({
 						icon: 'none',
@@ -112,7 +118,8 @@
 				} else {
 					let data = {
 						certName: this.username,
-						certNo: this.idCard
+						certNo: this.idCard,
+						returnUrl: 'cuncun://realname' // hbuilder://realname cuncun://realname
 					}
 					this.$http('user/alipay/user/certify/init', "POST", data, res => {
 						let data = res.data
@@ -134,15 +141,16 @@
 							});
 						}
 					})
-					// uni.navigateBack({
-					// 	delta: 1
-					// })
 				}
 			},
 			onReturn() {
-				uni.navigateBack({
-					delta: 1
-				})
+				if (this.loginRealNameConfirm) {
+					uni.switchTab({
+						url: '/pages/tabs/tab1'
+					})
+				} else{
+					uni.navigateBack()
+				}
 				// #ifdef APP-PLUS
 				uni.report('realNameReturn', {
 					'describe': '暂不认证'
