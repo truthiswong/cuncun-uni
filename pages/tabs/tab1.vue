@@ -286,7 +286,7 @@
 			if (!user) {
 				this.getUserInfo()
 			}
-			let nickname = 'Xiao Cun'
+			let nickname = '存存用户'
 			let nowHour = new Date().getHours()
 			if (user.nickName) {
 				nickname = user.nickName
@@ -501,8 +501,10 @@
 						let nowHour = new Date().getHours()
 						if (data.data.nickName) {
 							this.nickname = data.data.nickName
-						} else {
+						} else if (data.data.name) {
 							this.nickname = data.data.name
+						} else {
+							this.nickname = '存存用户'
 						}
 						if (nowHour >= 5 && nowHour <= 12) {
 							this.welcomeText = `上午好，${this.nickname}`
@@ -566,7 +568,7 @@
 			font-weight: 600;
 			color: rgba(40, 40, 40, 1);
 			line-height: 50upx;
-			padding: 40upx 40upx 0 30upx;
+			padding: 50upx 40upx 0 30upx;
 			overflow: hidden;
 			text-overflow: ellipsis;
 			white-space: nowrap;
@@ -577,7 +579,7 @@
 			font-weight: 400;
 			color: rgba(136, 136, 136, 1);
 			line-height: 46upx;
-			padding: 20upx 40upx 0 30upx;
+			padding: 10upx 40upx 0 30upx;
 		}
 	}
 
