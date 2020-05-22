@@ -88,11 +88,11 @@
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>调整费用 <text style="color: #3BC1BB;margin-left: 20upx;" v-if="order.adjustFeeReason" @click="onChangeFeeAlert(order.adjustFeeReason)">查看</text></p>
-						<text>¥ 0</text>
+						<text>¥ {{order.adjustFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>需支付费用</p>
-						<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.prepaid}}</text></text>
+						<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.totalFee}}</text></text>
 					</view>
 				</view>
 			</view>
@@ -123,10 +123,10 @@
 							<text style="font-size:28upx;font-weight:400;color:rgba(2,105,208,1);">复制</text>
 						</view>
 					</view>
-					<!-- <view class="flex_between order_list_phone">
+					<view class="flex_between order_list_phone">
 						<p>支付方式</p>
 						<text>支付宝支付</text>
-					</view> -->
+					</view>
 					<view class="flex_between order_list_phone">
 						<p>下单时间</p>
 						<text>{{order.orderTime}}</text>
@@ -517,7 +517,7 @@
 							for (let item of data.data) {
 								item.title = item.status.name
 								item.mmdd = this.$moment(item.timeCreated).format('MM-DD')
-								item.hhmm = this.$moment(item.timeCreated).format('hh:mm:ss')
+								item.hhmm = this.$moment(item.timeCreated).format('HH:mm:ss')
 								item.desc = item.remark
 							}
 							this.options = data.data
@@ -536,18 +536,23 @@
 			},
 			// 订单取消
 			onCancelOrder(id) {
-				this.$http('user/deposit/order/cancel?id=' + id, "POST", '', res => {
-					let data = res.data
-					if (data.success) {
-						// uni.navigateBack({
-						// 	delta: 1
-						// })
-						this.getOrderDetail()
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
+				uni.showModal({
+					title: '提示',
+					content: '确认取消订单吗?',
+					success: (res) => {
+						if (res.confirm) {
+							this.$http('user/deposit/order/cancel?id=' + id, "POST", '', res => {
+								let data = res.data
+								if (data.success) {
+									this.getOrderDetail()
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: data.message
+									});
+								}
+							})
+						}
 					}
 				})
 			},
