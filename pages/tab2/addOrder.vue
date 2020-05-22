@@ -33,7 +33,7 @@
 						<view class="collapse_left">
 							<h4>{{item.name}}</h4>
 							<p>重量上限(kg)：{{item.weight}}</p>
-							<p>储存费用/天(¥)：{{item.storePerDayFee}}</p>
+							<p>储存费用/月(¥)：{{item.storePerMonthFee}}</p>
 							<text @click="onBoxDetail(item.id)">纸箱详情介绍 ></text>
 						</view>
 						<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" :value="item.number" @change="changeBoxNumber($event,index, item)" />
@@ -54,31 +54,22 @@
 				</view>
 				<view class="row total_tip">
 					<view class="total_tip_right">
-						<p>这些东西可以为您剩下8平米左右的空间，您可以用来好好享受您的时间啦～（具体内容管理端定了直接改）</p>
+						<p>只要花不到一顿饭的钱，你会惊讶的发现：你的房子更大了，不用担心找不到东西了。</p>
 					</view>
 				</view>
 			</view>
-			<label class="row" style="margin-top: 60upx;">
-				<view class="col-1" style="margin: -30upx 0 0 -12upx;">
-					<checkbox-group @change="agreement(1)">
-						<checkbox style="transform:scale(0.6);" color="rgba(59, 193, 187, 1)" />
-					</checkbox-group>
-				</view>
-				<view class="row col-11" style="font-size: 26upx;color: #282828; margin-top: 4upx;">
-					<text>我同意存存来打理，清理我的物品，如有问题，我负责</text>
-				</view>
-			</label>
-			<label class="row" style="margin-top: 40upx;">
+			<label class="row flex_between" style="margin-top: 60upx;">
 				<view class="col-1" style="margin: -30upx 0 0 -12upx;">
 					<checkbox-group @change="agreement(2)">
 						<checkbox style="transform:scale(0.6);" color="rgba(59, 193, 187, 1)" />
 					</checkbox-group>
 				</view>
-				<view class="row col-11" style="font-size: 26upx;color: #282828;margin-top: -30upx;">
-					<text class="col-2">我同意</text>
-					<navigator class="col-10" url="/pages/login/agreement">
-						<text style="color: #0269D0;">《用户服务协议》</text>
-					</navigator>
+				<view class="row col-11">
+					<p style="font-size: 26upx;color: #282828;margin-top: -30upx;text-align: justify;">
+						<text>我已经认真阅读并同意</text>
+						<text @click="onAgreement" style="color: #0269D0;">《用户服务协议》</text>
+						<text>，对于我要存储的东西都符合协议规定</text>
+					</p>
 				</view>
 			</label>
 		</view>
@@ -95,7 +86,7 @@
 					<label class="row">
 						<view class="col-5" style="text-align: right;">
 							<checkbox-group @change="agreement(3)">
-								<checkbox style="transform:scale(0.6);" color="rgba(59, 193, 187, 1)" />
+								<checkbox style="transform:scale(0.6);" :checked="agree3" color="rgba(59, 193, 187, 1)" />
 							</checkbox-group>
 						</view>
 						<view class="row col-7" style="font-size: 26upx;color: #282828; margin-top: 4upx;">
@@ -121,11 +112,9 @@
 								</view>
 								<view class="collapse_left">
 									<h4>{{item.name}}</h4>
-									<p>箱子规格(cm)：{{item.width}}*{{item.length}}*{{item.height}}</p>
+									<p>箱子规格(cm)：{{item.length}}*{{item.width}}*{{item.height}}</p>
 									<p>重量(kg)：{{item.weight}}</p>
-									<p>物流起步价(¥)：{{item.transStartFee}}</p>
-									<p>物流公里价(¥)：{{item.transPerKmFee}}</p>
-									<p>储存费用/天(¥)：{{item.storePerDayFee}}</p>
+									<p>储存费用/月(¥)：{{item.storePerMonthFee}}</p>
 								</view>
 							</view>
 							<text style="font-size:26upx;color:rgba(40,40,40,1);line-height:37upx;" v-if="item.remark">{{item.remark}}</text>
@@ -161,7 +150,7 @@
 						weight: 120,
 						fee: 18,
 						number: 0,
-						storePerDayFee: 0
+						storePerMonthFee: 0
 					},
 					{
 						id: 1,
@@ -169,23 +158,7 @@
 						weight: 120,
 						fee: 18,
 						number: 0,
-						storePerDayFee: 0
-					},
-					{
-						id: 2,
-						name: "小型纸箱C（拍照）",
-						weight: 120,
-						fee: 18,
-						number: 0,
-						storePerDayFee: 0
-					},
-					{
-						id: 3,
-						name: "小型纸箱D",
-						weight: 120,
-						fee: 18,
-						number: 0,
-						storePerDayFee: 0
+						storePerMonthFee: 0
 					}
 				],
 				boxIndex: '',
@@ -231,9 +204,11 @@
 		},
 		onShow() {
 			this.$nextTick(() => {
-				let user = uni.getStorageSync('user')
-				if (!user.alertAgreement) {
+				let alertAgreement = uni.getStorageSync('alertAgreement')
+				if (!alertAgreement) {
 					this.$refs.popupAlert.open()
+				} else {
+					this.agree3 = true
 				}
 			})
 		},
@@ -245,15 +220,8 @@
 			}
 		},
 		watch: {
-			agree1() {
-				if (this.agree1 && this.agree2) {
-					this.buttonActive = true;
-				} else {
-					this.buttonActive = false;
-				}
-			},
 			agree2() {
-				if (this.agree1 && this.agree2) {
+				if (this.agree2) {
 					this.buttonActive = true;
 				} else {
 					this.buttonActive = false;
@@ -264,9 +232,9 @@
 			total_fee() {
 				let fee = 0
 				for (let item of this.boxList) {
-					fee += Number(item.storePerDayFee) * Number(item.number)
+					fee += Number(item.storePerMonthFee) * Number(item.number)
 				}
-				return (fee * this.mday).toFixed(2)
+				return fee.toFixed(2)
 			}
 		},
 		methods: {
@@ -353,15 +321,19 @@
 			},
 			// 注意事项
 			onClosePopup() {
-				this.$refs.popupAlert.close()
+				let alertAgreement = uni.getStorageSync('alertAgreement')
 				if (this.agree3) {
-					let user = uni.getStorageSync('user')
-					user.alertAgreement = true // 不显示
-					uni.setStorage({
-						key: 'user',
-						data: user
-					})
+					alertAgreement = true // 不显示
+				} else {
+					alertAgreement = false // 显示
 				}
+				uni.setStorage({
+					key: 'alertAgreement',
+					data: alertAgreement,
+					success: () => {
+						this.$refs.popupAlert.close()
+					}
+				})
 				// #ifdef APP-PLUS
 				uni.report('addOrderAlert', {
 					'describe': '添加存单弹窗'
@@ -383,9 +355,7 @@
 				this.$refs.popup.close()
 			},
 			agreement(index) {
-				if (index == 1) {
-					this.agree1 = !this.agree1
-				} else if (index == 2) {
+				if (index == 2) {
 					this.agree2 = !this.agree2
 				} else if (index == 3) {
 					this.agree3 = !this.agree3
@@ -411,11 +381,18 @@
 					}
 				}
 				if (!inputIndex || !boxIndex) {
-					uni.showToast({
-						title: '请完善订单',
-						icon: 'none'
-					})
-				} else if (!this.agree1 || !this.agree2) {
+					if (!inputIndex) {
+						uni.showToast({
+							title: '请添加物品',
+							icon: 'none'
+						})
+					} else if (!boxIndex) {
+						uni.showToast({
+							title: '请选择箱子',
+							icon: 'none'
+						})
+					}
+				} else if (!this.agree2) {
 					uni.showToast({
 						title: '您必须同意协议',
 						icon: 'none'
@@ -490,6 +467,11 @@
 						}
 						this.inputList = data.data
 					}
+				})
+			},
+			onAgreement() {
+				uni.navigateTo({
+					url: '/pages/login/agreement'
 				})
 			}
 		}
@@ -639,7 +621,6 @@
 		padding: 26upx;
 		background: rgba(239, 247, 247, 1);
 		border-radius: 10px;
-		height: 172upx;
 
 		.total_tip_right {
 			width: 100%;
