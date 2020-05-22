@@ -118,7 +118,7 @@
 											</view>
 										</view>
 									</view>
-									<view class="segmented_list_button" v-if="item.status.code == 'waitpay'">
+									<view class="segmented_list_button">
 										<button class="button_confirm" @click="onConfirmOrder3(item.id)">立即付款</button>
 									</view>
 								</view>
@@ -133,8 +133,7 @@
 												<view slot='right' class="list_right_text">
 													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
 													<text class="list_right_blue" v-if="item.status.code == 'init'">待接单</text>
-													<text class="list_right_blue" v-if="item.status.code == 'assign'">待取货</text>
-													<text class="list_right_blue" v-if="item.status.code == 'fetch'">待取货</text>
+													<text class="list_right_blue" v-if="item.status.code == 'assign' || item.status.code == 'fetch'">待取货</text>
 													<text class="list_right_blue" v-if="item.status.code == 'delivery'">回库中</text>
 													<text class="list_right_blue" v-if="item.status.code == 'inputwork' || item.status.code == 'monitor' || item.status.code == 'photo' || item.status.code == 'ready'">入库作业中</text>
 													<text class="list_right_gray" v-if="item.status.code == 'finish'">已完成</text>
@@ -235,7 +234,7 @@
 											</view>
 										</view>
 									</view>
-									<view class="segmented_list_button" v-if="item.status.code == 'waitpay'">
+									<view class="segmented_list_button" v-if="item.payStatus.code == 'wait'">
 										<button class="button_confirm" @click="onConfirmOrder3(item.id)">立即付款</button>
 									</view>
 								</view>
@@ -285,15 +284,15 @@
 			}
 		},
 		onShow() {
-			if (this.gotoPage == 'tab20') {
-				this.current = 0
-			} else if (this.gotoPage == 'tab21') {
-				this.current = 1
-			} else if (this.gotoPage == 'tab22') {
-				this.current = 2
-			} else if (this.gotoPage == 'tab23') {
-				this.current = 3
-			}
+			this.pageNumber1 = 0
+			this.totalPages1 = 1
+			this.finished1 = false
+			this.pageNumber2 = 0
+			this.totalPages2 = 1
+			this.finished2 = false
+			this.pageNumber3 = 0
+			this.totalPages3 = 1
+			this.finished3 = false
 			if (this.current == 0) {
 				this.getOrderList0()
 				this.getOrderList1()
@@ -368,12 +367,30 @@
 					if (this.current == 0) {
 						this.getOrderList0()
 					} else if (this.current == 1) {
+						this.pageNumber1 = 0
+						this.totalPages1 = 1
+						this.finished1 = false
 						this.getOrderList1()
 					} else if (this.current == 2) {
+						this.pageNumber2 = 0
+						this.totalPages2 = 1
+						this.finished2 = false
 						this.getOrderList2()
 					} else if (this.current == 3) {
+						// this.pageNumber3 = 0
+						// this.totalPages3 = 1
+						// this.finished3 = false
 						this.getOrderList3()
 					}
+					// if (this.current == 0) {
+					// 	this.getOrderList0()
+					// } else if (this.current == 1) {
+					// 	this.getOrderList1()
+					// } else if (this.current == 2) {
+					// 	this.getOrderList2()
+					// } else if (this.current == 3) {
+					// 	this.getOrderList3()
+					// }
 				}
 			},
 			// 获取未支付列表
@@ -409,7 +426,6 @@
 							}
 						}
 						this.orderList02 = data.data.withdraw // 取单
-						console.log(this.orderList02)
 						this.orderList03 = data.data.storage // 仓储
 					} else {
 						uni.showToast({
@@ -421,13 +437,18 @@
 			},
 			// 获取存单列表
 			getOrderList1() {
+				console.log(this.pageNumber1)
+				console.log(this.totalPages1)
 				if (this.totalPages1 > this.pageNumber1) {
 					this.$http('user/deposit/order/page?pageSize=10&pageNumber=' + this.pageNumber1, "GET", '', res => {
 						let data = res.data
 						if (data.success) {
-							this.pageNumber1++
+							if (this.pageNumber1 <= 0) {
+								this.orderList1 = []
+							}
 							this.orderList1 = this.orderList1.concat(data.data.data)
 							this.totalPages1 = data.data.totalPages
+							this.pageNumber1++
 							if (this.totalPages1 == this.pageNumber1) {
 								this.finished1 = true
 							}
@@ -444,6 +465,8 @@
 			},
 			// 获取取单列表
 			getOrderList2() {
+				console.log(this.pageNumber2)
+				console.log(this.totalPages2)
 				if (this.totalPages2 > this.pageNumber2) {
 					this.$http('user/withdraw/order/page?pageSize=10&pageNumber=' + this.pageNumber2, "GET", '', res => {
 						let data = res.data
@@ -473,9 +496,12 @@
 									}
 								}
 							}
-							this.pageNumber2++
+							if (this.pageNumber2 <= 0) {
+								this.orderList2 = []
+							}
 							this.orderList2 = this.orderList2.concat(data.data.data)
 							this.totalPages2 = data.data.totalPages
+							this.pageNumber2++
 							if (this.totalPages2 == this.pageNumber2) {
 								this.finished2 = true
 							}
@@ -492,14 +518,18 @@
 			},
 			// 获取仓储订单
 			getOrderList3() {
+				console.log(this.pageNumber3)
+				console.log(this.totalPages3)
 				if (this.totalPages3 > this.pageNumber3) {
 					this.$http('user/store/order/page?pageSize=10&pageNumber=' + this.pageNumber3, "GET", '', res => {
 						let data = res.data
 						if (data.success) {
-							this.orderList3 = data.data.data
-							this.pageNumber3++
+							if (this.pageNumber3 <= 0) {
+								this.orderList3 = []
+							}
 							this.orderList3 = this.orderList3.concat(data.data.data)
 							this.totalPages3 = data.data.totalPages
+							this.pageNumber3++
 							if (this.totalPages3 == this.pageNumber3) {
 								this.finished3 = true
 							}
@@ -534,30 +564,41 @@
 			},
 			// 存单取消
 			onCancelOrder1(id) {
-				let data = {
-					id: id
-				}
-				this.$http('user/deposit/order/cancel', "POST", data, res => {
-					let data = res.data
-					if (data.success) {
-						uni.showToast({
-							icon: 'none',
-							title: '取消成功'
-						});
-						if (this.current == 0) {
-							this.getOrderList0()
-						} else if (this.current == 1) {
-							this.getOrderList1()
-						} else if (this.current == 2) {
-							this.getOrderList2()
-						} else if (this.current == 3) {
-							this.getOrderList3()
+				uni.showModal({
+					title: '提示',
+					content: '确认取消订单吗?',
+					success: (res) => {
+						if (res.confirm) {
+							let data = {
+								id: id
+							}
+							this.$http('user/deposit/order/cancel', "POST", data, res => {
+								let data = res.data
+								if (data.success) {
+									uni.showToast({
+										icon: 'none',
+										title: '取消成功'
+									});
+									this.pageNumber1 = 0
+									this.totalPages1 = 1
+									this.finished1 = false
+									if (this.current == 0) {
+										this.getOrderList0()
+									} else if (this.current == 1) {
+										this.getOrderList1()
+									} else if (this.current == 2) {
+										this.getOrderList2()
+									} else if (this.current == 3) {
+										this.getOrderList3()
+									}
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: data.message
+									});
+								}
+							})
 						}
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
 					}
 				})
 			},
@@ -569,30 +610,41 @@
 			},
 			// 取单取消
 			onCancelOrder2(id) {
-				let data = {
-					id: id
-				}
-				this.$http('user/withdraw/order/cancel', "POST", data, res => {
-					let data = res.data
-					if (data.success) {
-						uni.showToast({
-							icon: 'none',
-							title: '取消成功'
-						});
-						if (this.current == 0) {
-							this.getOrderList0()
-						} else if (this.current == 1) {
-							this.getOrderList1()
-						} else if (this.current == 2) {
-							this.getOrderList2()
-						} else if (this.current == 3) {
-							this.getOrderList3()
+				uni.showModal({
+					title: '提示',
+					content: '确认取消订单吗?',
+					success: (res) => {
+						if (res.confirm) {
+							let data = {
+								id: id
+							}
+							this.$http('user/withdraw/order/cancel', "POST", data, res => {
+								let data = res.data
+								if (data.success) {
+									uni.showToast({
+										icon: 'none',
+										title: '取消成功'
+									});
+									this.pageNumber2 = 0
+									this.totalPages2 = 1
+									this.finished2 = false
+									if (this.current == 0) {
+										this.getOrderList0()
+									} else if (this.current == 1) {
+										this.getOrderList1()
+									} else if (this.current == 2) {
+										this.getOrderList2()
+									} else if (this.current == 3) {
+										this.getOrderList3()
+									}
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: data.message
+									});
+								}
+							})
 						}
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
 					}
 				})
 			},
@@ -600,35 +652,6 @@
 			onConfirmOrder2(id) {
 				uni.navigateTo({
 					url: '/pages/tab1/orderBackDetails?id=' + id
-				})
-			},
-			// 仓储取消
-			onCancelOrder3(id) {
-				let data = {
-					id: id
-				}
-				this.$http('user/deposit/order/cancel', "POST", data, res => {
-					let data = res.data
-					if (data.success) {
-						uni.showToast({
-							icon: 'none',
-							title: '取消成功'
-						});
-						if (this.current == 0) {
-							this.getOrderList0()
-						} else if (this.current == 1) {
-							this.getOrderList1()
-						} else if (this.current == 2) {
-							this.getOrderList2()
-						} else if (this.current == 3) {
-							this.getOrderList3()
-						}
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
-					}
 				})
 			},
 			// 仓储支付
