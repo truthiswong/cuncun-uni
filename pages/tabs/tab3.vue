@@ -60,7 +60,7 @@
 			return {
 				headerShow: true,
 				headImage: '../../static/tab3/my_image.png',
-				nickname: 'Xiao Cun',
+				nickname: '存存用户',
 				cont_top_bg: '../../static/tab3/tab3_bg.png',
 				phone: '021-34283744',
 			}
@@ -80,7 +80,7 @@
 			} else if (user.name) {
 				this.nickname = user.name
 			} else {
-				this.nickname = 'Xiao Cun'
+				this.nickname = '存存用户'
 			}
 		},
 		onPageScroll(options) {
