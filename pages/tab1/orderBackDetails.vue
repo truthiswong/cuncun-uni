@@ -381,7 +381,7 @@
 					})
 				} else {
 					// 微信支付
-					this.$http('user/withdraw/order/pay/wechat', "POST", dataObj, res1 => {
+					this.$http('user/withdraw/order/pay/wechat', "POST", orderObj, res1 => {
 						console.log(res1.data)
 						if (res1.data.success) {
 							console.log(res1.data.data)

@@ -418,7 +418,7 @@
 					// 微信支付
 					if (this.order.prepaidStatus.code == 'wait') {
 						// 预支付
-						this.$http('user/deposit/order/prepay/wechat', "POST", dataObj, res1 => {
+						this.$http('user/deposit/order/prepay/wechat', "POST", orderObj, res1 => {
 							console.log(res1.data)
 							if (res1.data.success) {
 								console.log(res1.data.data)
@@ -444,7 +444,7 @@
 									fail: (err) => {
 										console.log(err)
 										this.$refs.popup.close()
-										this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
+										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
 											this.getOrderDetail()
 										})
 									},
@@ -460,7 +460,7 @@
 						})
 					} else if (this.order.adjustPayStatus.code == 'wait') {
 						// 补差价支付
-						this.$http('user/deposit/order/appendpay/wechat', "POST", dataObj, res1 => {
+						this.$http('user/deposit/order/appendpay/wechat', "POST", orderObj, res1 => {
 							console.log(res1.data)
 							if (res1.data.success) {
 								console.log(res1.data.data)
@@ -486,7 +486,7 @@
 									fail: (err) => {
 										console.log(err)
 										this.$refs.popup.close()
-										this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
+										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
 											this.getOrderDetail()
 										})
 									},
