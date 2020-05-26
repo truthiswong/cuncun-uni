@@ -266,7 +266,8 @@
 					storageShowHideTitle: true,
 					groceriesShowHide: true, //杂货架
 					groceriesShowHideTitle: true
-				}
+				},
+				user: {}, // 用户信息
 			}
 		},
 		onLoad() {},
@@ -276,22 +277,28 @@
 				'describe': '首页'
 			})
 			// #endif
+			let loginRealName = uni.getStorageSync('loginRealName')
+			if (loginRealName) {
+				uni.removeStorage({
+					key: 'loginRealName'
+				})
+			}
 			// console.log(uni.getStorageSync('token'))
 			this.getGoodsList()
 			this.getFailList()
 			if (uni.getStorageSync('tab1ShowHide')) {
 				this.tab1ShowHide = uni.getStorageSync('tab1ShowHide')
 			}
-			let user = uni.getStorageSync('user')
-			if (!user) {
+			this.user = uni.getStorageSync('user')
+			if (!this.user) {
 				this.getUserInfo()
 			}
 			let nickname = '存存用户'
 			let nowHour = new Date().getHours()
-			if (user.nickName) {
-				nickname = user.nickName
-			} else if (user.name) {
-				nickname = user.name
+			if (this.user.nickName) {
+				nickname = this.user.nickName
+			} else if (this.user.name) {
+				nickname = this.user.name
 			} else {
 				this.getUserInfo()
 			}
@@ -318,27 +325,55 @@
 						url: '/pages/tab1/search'
 					})
 				} else if (index == 2) {
-					uni.navigateTo({
-						url: '/pages/tab2/addOrder',
-						success: () => {
-							// #ifdef APP-PLUS
-							uni.report('tab1Addorder', {
-								'describe': '首页加号'
-							})
-							// #endif
-						}
-					})
+					if (this.user.realNameConfirm) {
+						uni.navigateTo({
+							url: '/pages/tab2/addOrder',
+							success: () => {
+								// #ifdef APP-PLUS
+								uni.report('tab1Addorder', {
+									'describe': '首页加号'
+								})
+								// #endif
+							}
+						})
+					} else{
+						uni.showModal({
+							title: '提示',
+							content: '仓储服务需要先实名认证哦',
+							success: (res) => {
+								if (res.confirm) {
+									uni.navigateTo({
+										url: '/pages/tab3/realName'
+									})
+								}
+							}
+						})
+					}
 				} else if (index == 3) {
-					uni.navigateTo({
-						url: '/pages/tab2/addOrder',
-						success: () => {
-							// #ifdef APP-PLUS
-							uni.report('tab1AddAdd', {
-								'describe': '首页约约约'
-							})
-							// #endif
-						}
-					})
+					if (this.user.realNameConfirm) {
+						uni.navigateTo({
+							url: '/pages/tab2/addOrder',
+							success: () => {
+								// #ifdef APP-PLUS
+								uni.report('tab1AddAdd', {
+									'describe': '首页约约约'
+								})
+								// #endif
+							}
+						})
+					} else{
+						uni.showModal({
+							title: '提示',
+							content: '仓储服务需要先实名认证哦',
+							success: (res) => {
+								if (res.confirm) {
+									uni.navigateTo({
+										url: '/pages/tab3/realName'
+									})
+								}
+							}
+						})
+					}
 				} else if (index == 4) {
 					uni.navigateTo({
 						url: '/pages/tab2/addOrder',

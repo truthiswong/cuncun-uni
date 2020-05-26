@@ -273,7 +273,8 @@
 				finished2: false,
 				pageNumber3: 0,
 				totalPages3: 1,
-				finished3: false
+				finished3: false,
+				user: {}, // 用户信息
 			}
 		},
 		components: {},
@@ -284,6 +285,7 @@
 			}
 		},
 		onShow() {
+			this.user = uni.getStorageSync('user')
 			this.pageNumber1 = 0
 			this.totalPages1 = 1
 			this.finished1 = false
@@ -338,27 +340,55 @@
 		methods: {
 			onClickRight(index) {
 				if (index == 1) {
-					uni.navigateTo({
-						url: "/pages/tab2/addOrder",
-						success: () => {
-							// #ifdef APP-PLUS
-							uni.report('tab2Add', {
-								'describe': '订单加号'
-							})
-							// #endif
-						}
-					})
+					if (this.user.realNameConfirm) {
+						uni.navigateTo({
+							url: "/pages/tab2/addOrder",
+							success: () => {
+								// #ifdef APP-PLUS
+								uni.report('tab2Add', {
+									'describe': '订单加号'
+								})
+								// #endif
+							}
+						})
+					} else{
+						uni.showModal({
+							title: '提示',
+							content: '仓储服务需要先实名认证哦',
+							success: (res) => {
+								if (res.confirm) {
+									uni.navigateTo({
+										url: '/pages/tab3/realName'
+									})
+								}
+							}
+						})
+					}
 				} else if (index == 2) {
-					uni.navigateTo({
-						url: '/pages/tab2/addOrder',
-						success: () => {
-							// #ifdef APP-PLUS
-							uni.report('tab2AddThing', {
-								'describe': '订单存点东西'
-							})
-							// #endif
-						}
-					})
+					if (this.user.realNameConfirm) {
+						uni.navigateTo({
+							url: '/pages/tab2/addOrder',
+							success: () => {
+								// #ifdef APP-PLUS
+								uni.report('tab2AddThing', {
+									'describe': '订单存点东西'
+								})
+								// #endif
+							}
+						})
+					} else{
+						uni.showModal({
+							title: '提示',
+							content: '仓储服务需要先实名认证哦',
+							success: (res) => {
+								if (res.confirm) {
+									uni.navigateTo({
+										url: '/pages/tab3/realName'
+									})
+								}
+							}
+						})
+					}
 				}
 			},
 			onClickItem(e) {
