@@ -8,7 +8,7 @@
 		<!-- 内容 -->
 		<view class="content">
 			<view class="address_list" v-for="item in addressList" :key="item.id">
-				<radio-group @change="onSetDefault">
+				<radio-group>
 					<view @click="onChooseAddress(item)">
 						<view class="row list_top">
 							<text class="top_name">{{item.linkman}}</text>
@@ -20,7 +20,7 @@
 					<view class="row flex_between list_bottom">
 						<view>
 							<label>
-								<radio :value="item.id" :checked="item.dft" style="transform:scale(0.8);" color="rgba(59, 193, 187, 1)" />
+								<radio :value="item.id" :checked="item.dft" disabled style="transform:scale(0.8);" color="rgba(59, 193, 187, 1)" />
 								<text>默认地址</text>
 							</label>
 						</view>
@@ -91,30 +91,30 @@
 				}
 			},
 			onSetDefault(evt) {
-				for (let i = 0; i < this.addressList.length; i++) {
-					if (this.addressList[i].id === evt.target.value) {
-						let data = {
-							id: evt.target.value
-						}
-						this.$http('user/addr/dft', "POST", data, res => {
-							let data = res.data
-							if (data.success) {
-								uni.showToast({
-									icon: 'none',
-									title: '成功'
-								});
-								this.getAddressList()
-							} else {
-								uni.showToast({
-									icon: 'none',
-									title: data.message
-								});
-							}
-						})
-					} else {
-						this.addressList[i].dft = false
-					}
-				}
+				// for (let i = 0; i < this.addressList.length; i++) {
+				// 	if (this.addressList[i].id === evt.target.value) {
+				// 		let data = {
+				// 			id: evt.target.value
+				// 		}
+				// 		this.$http('user/addr/dft', "POST", data, res => {
+				// 			let data = res.data
+				// 			if (data.success) {
+				// 				uni.showToast({
+				// 					icon: 'none',
+				// 					title: '成功'
+				// 				});
+				// 				this.getAddressList()
+				// 			} else {
+				// 				uni.showToast({
+				// 					icon: 'none',
+				// 					title: data.message
+				// 				});
+				// 			}
+				// 		})
+				// 	} else {
+				// 		this.addressList[i].dft = false
+				// 	}
+				// }
 			},
 			onDetele(id) {
 				let data = {
@@ -147,7 +147,7 @@
 					console.log(data)
 					if (data.success) {
 						for (let item of data.data) {
-							item.detailAddress = item.area.province + item.area.city + item.area.district + ' ' + item.address
+							item.detailAddress = item.plotName + ' ' + item.address
 						}
 						this.addressList = data.data
 					} else {

@@ -60,7 +60,6 @@
 				phone: '',
 				addressText: '请选择所在地区',
 				tipsAddress: {},
-				areaId: '',
 				defaultRegions: ['北京市', '市辖区', '东城区'],
 				postcode: '',
 				detailAddress: '',
@@ -103,11 +102,10 @@
 				this.name = address.linkman
 				this.phone = address.mobile
 				this.addressText = address.area.province+'-'+address.area.city+'-'+address.area.district
-				this.tipsAddress.adcode = address.area.parentId
+				this.tipsAddress.adcode = address.area.value
 				this.tipsAddress.name = address.plotName
 				this.tipsAddress.location = address.coordinate
 				this.defaultRegions = [address.area.province, address.area.city, address.area.district]
-				this.areaId = address.area.value
 				this.detailAddress = address.address
 				this.postcode = address.zipcode
 				for (let item of this.tagsList) {
@@ -165,55 +163,15 @@
 		},
 		computed: {},
 		methods: {
-			// onChangeAddress() {
-			// 	this.$refs.popupDate.open()
-			// 	this.$http('user/area/list', "GET", '', res => {
-			// 		let data = res.data
-			// 		console.log(data)
-			// 		if (data.success) {
-			// 			this.provinceList = data.data
-			// 			// uni.navigateBack({
-			// 			// 	delta: 1
-			// 			// })
-			// 		} else {
-			// 			uni.showToast({
-			// 				icon: 'none',
-			// 				title: data.message
-			// 			});
-			// 		}
-			// 	})
-			// },
-			// closePopupDate() {
-			// 	this.$refs.popupDate.close()
-			// 	this.date = this.provinceList[this.dateValue1].value + " " + this.hours[this.dateValue2].value
-			// },
-			// changeDate(e) {
-			// 	const val = e.detail.value
-			// 	console.log(val[0])
-			// 	console.log(val[1])
-			// 	this.dateValue1 = val[0]
-			// 	this.dateValue2 = val[1]
-			// 	this.date = this.provinceList[val[0]].value + " " + this.hours[val[1]].value
-			// },
 			onClickBack() {
 				uni.navigateBack({
 					delta: 1
 				})
 			},
-			bindPickerChange(e) {
-				console.log('picker发送选择改变，携带值为', e.target.value)
-				this.index = e.target.value
-			},
 			gotoAddress() {
 				uni.navigateTo({
 					url: '/pages/tab3/addAddressConform'
 				})
-			},
-			handleGetRegions(regions) {
-				console.log(regions)
-				this.regions = regions
-				this.areaId = regions[2].code
-				this.addressText = this.regions.map(item => item.name).join('-')
 			},
 			onisDefault() {
 				this.isDefault = !this.isDefault
