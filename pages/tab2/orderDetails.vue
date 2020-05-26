@@ -75,16 +75,12 @@
 				</view>
 				<view style="">
 					<view class="flex_between order_list_fee">
-						<p>第三方快递运输费</p>
-						<text>¥ 0</text>
-					</view>
-					<view class="flex_between order_list_fee">
 						<p>打包费用</p>
-						<text>¥ 0</text>
+						<text>¥ {{order.packFee}} {{order.packFeeNew - order.packFee >= 0?'+':'-'}} ¥ {{order.packFeeNew}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>箱子费用</p>
-						<text>¥ 0</text>
+						<text>¥ {{order.boxFee}} {{order.boxFeeNew - order.boxFee >= 0?'+':'-'}} ¥ {{order.boxFeeNew}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>调整费用 <text style="color: #3BC1BB;margin-left: 20upx;" v-if="order.adjustFeeReason" @click="onChangeFeeAlert(order.adjustFeeReason)">查看</text></p>
@@ -92,7 +88,10 @@
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>需支付费用</p>
-						<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.totalFee}}</text></text>
+						<view>
+							<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.totalFee}}</text></text>
+							<!-- <text>{{order.boxFeeNew - order.boxFee >= 0?'+':'-'}} ¥<text style="font-size:32upx;margin-left: 10upx;">{{order.totalFee}}</text></text> -->
+						</view>
 					</view>
 				</view>
 			</view>
@@ -125,7 +124,7 @@
 					</view>
 					<view class="flex_between order_list_phone">
 						<p>支付方式</p>
-						<text>支付宝支付</text>
+						<text>{{order.detailPayStyle}}</text>
 					</view>
 					<view class="flex_between order_list_phone">
 						<p>下单时间</p>
@@ -189,7 +188,7 @@
 			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">确认支付</button>
 		</view>
 		<view class="flex_between bottom_pay" v-if="order.detailAdjustPayStatus == 'wait'">
-			<text>¥ {{order.prepaid}}</text>
+			<text>¥ {{order.settleFee}}</text>
 			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">调整支付</button>
 		</view>
 		<view class="flex_between bottom_pay" v-if="order.detailStatus == 'cancel'">
@@ -349,9 +348,6 @@
 				// }
 			},
 			onComfirmPay() {
-				// uni.navigateTo({
-				// 	url: "/pages/tab2/orderSuccess"
-				// })
 				let orderObj = {
 					orderId: this.orderId
 				}
@@ -371,27 +367,13 @@
 									success: (res) => {
 										console.log(respay)
 										this.$refs.popupPay.close()
-										uni.navigateBack({
-											delta: 1
-										})
+										this.getOrderDetail()
 									},
 									fail: (errpay) => {
 										console.log(errpay)
 										this.$refs.popupPay.close()
 										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
-											console.log("支付取消1")
-											if (res2.data.success) {
-												console.log(res2.data)
-												uni.navigateBack({
-													delta: 1
-												})
-											} else {
-												console.log("支付取消2")
-												uni.showToast({
-													icon: 'none',
-													title: res2.data.message
-												});
-											}
+											this.getOrderDetail()
 										})
 									}
 								});
@@ -414,24 +396,12 @@
 									orderInfo: res.data.data,
 									success: (res) => {
 										this.$refs.popupPay.close()
-										uni.navigateBack({
-											delta: 1
-										})
+										this.getOrderDetail()
 									},
 									fail: (err) => {
 										this.$refs.popupPay.close()
 										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
-											if (res2.data.success) {
-												console.log(res2.data)
-												uni.navigateBack({
-													delta: 1
-												})
-											} else {
-												uni.showToast({
-													icon: 'none',
-													title: res2.data.message
-												});
-											}
+											this.getOrderDetail()
 										})
 									}
 								});
@@ -445,25 +415,95 @@
 						})
 					}
 				} else {
-					this.$refs.popup.close()
-					uni.navigateTo({
-						url: "/pages/tab2/orderSuccess"
-					})
-					// #ifdef APP-PLUS
-					uni.requestPayment({
-						provider: 'wxpay',
-						orderInfo: 'orderInfo', //微信、支付宝订单数据
-						success: (res) => {
-							console.log(res);
-						},
-						fail: (err) => {
-							console.log(err);
-						}
-					});
-					// #endif
+					// 微信支付
+					if (this.order.prepaidStatus.code == 'wait') {
+						// 预支付
+						this.$http('user/deposit/order/prepay/wechat', "POST", dataObj, res1 => {
+							console.log(res1.data)
+							if (res1.data.success) {
+								console.log(res1.data.data)
+								let orderInfoObj = {
+									"appid": res1.data.data.appid,
+									"noncestr": res1.data.data.noncestr,
+									"package": "Sign=WXPay",
+									"partnerid": res1.data.data.partnerid,
+									"prepayid": res1.data.data.prepayid,
+									"timestamp": res1.data.data.timestamp,
+									"sign": res1.data.data.sign
+								}
+								let orderInfo = JSON.stringify(orderInfoObj)
+								// #ifdef APP-PLUS
+								uni.requestPayment({
+									provider: 'wxpay',
+									orderInfo: orderInfo,
+									success: (respay) => {
+										console.log(respay)
+										this.$refs.popup.close()
+										this.getOrderDetail()
+									},
+									fail: (err) => {
+										console.log(err)
+										this.$refs.popup.close()
+										this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
+											this.getOrderDetail()
+										})
+									},
+									complete: (e) => {}
+								});
+								// #endif
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: res1.data.message
+								});
+							}
+						})
+					} else if (this.order.adjustPayStatus.code == 'wait') {
+						// 补差价支付
+						this.$http('user/deposit/order/appendpay/wechat', "POST", dataObj, res1 => {
+							console.log(res1.data)
+							if (res1.data.success) {
+								console.log(res1.data.data)
+								let orderInfoObj = {
+									"appid": res1.data.data.appid,
+									"noncestr": res1.data.data.noncestr,
+									"package": "Sign=WXPay",
+									"partnerid": res1.data.data.partnerid,
+									"prepayid": res1.data.data.prepayid,
+									"timestamp": res1.data.data.timestamp,
+									"sign": res1.data.data.sign
+								}
+								let orderInfo = JSON.stringify(orderInfoObj)
+								// #ifdef APP-PLUS
+								uni.requestPayment({
+									provider: 'wxpay',
+									orderInfo: orderInfo,
+									success: (respay) => {
+										console.log(respay)
+										this.$refs.popup.close()
+										this.getOrderDetail()
+									},
+									fail: (err) => {
+										console.log(err)
+										this.$refs.popup.close()
+										this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
+											this.getOrderDetail()
+										})
+									},
+									complete: (e) => {}
+								});
+								// #endif
+							} else {
+								uni.showToast({
+									icon: 'none',
+									title: res1.data.message
+								});
+							}
+						})
+					}
 				}
 			},
-			onAgainOrder(){
+			onAgainOrder() {
 				let data = {
 					id: this.orderId
 				}
@@ -492,14 +532,16 @@
 				this.$http('user/deposit/order/detail/' + this.orderId, "GET", '', res => {
 					let data = res.data
 					if (data.success) {
-						data.data.detailAddress = data.data.area.province + ' ' + data.data.area.city + ' ' + data.data.area.district +
-							' ' + data.data.address
+						data.data.detailAddress = data.data.plotName + ' ' + data.data.address
 						data.data.detailTime =
 							`${data.data.bookFetchDate} ${data.data.bookFetchTime[0]}:00~${data.data.bookFetchTime[1]}:00`
 						data.data.detailStatus = data.data.status.code
 						data.data.detailPrepaidStatus = data.data.prepaidStatus.code
 						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD HH:mm:ss')
 						data.data.detailAdjustPayStatus = data.data.adjustPayStatus.code
+						if (data.data.prepaidChannel) {
+							data.data.detailPayStyle = data.data.prepaidChannel.name //支付方式
+						}
 						this.order = data.data
 					} else {
 						uni.showToast({
@@ -521,7 +563,7 @@
 								item.desc = item.remark
 							}
 							this.options = data.data
-							this.active = data.data.length-1
+							this.active = data.data.length - 1
 						} else {
 							this.options = []
 							this.active = 0
@@ -650,7 +692,6 @@
 		.top_button {
 			position: relative;
 			width: 710upx;
-			height: 148upx;
 			background: rgba(255, 255, 255, 1);
 			border-radius: 3upx;
 			margin: 30upx auto 0;
