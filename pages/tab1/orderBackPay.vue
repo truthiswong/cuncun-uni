@@ -119,7 +119,6 @@
 		},
 		onLoad() {},
 		onShow() {
-			this.getFee()
 			if (!this.address.id) {
 				this.getAddressList()
 			}
@@ -135,6 +134,7 @@
 			address() {
 				if (this.address) {
 					this.buttonActive = true;
+					this.getFee()
 				} else {
 					this.buttonActive = false;
 				}
@@ -213,7 +213,8 @@
 													url: '/pages/tabs/tab2'
 												})
 											})
-										}
+										},
+										complete: (e) => {}
 									});
 									// #endif
 								} else {
@@ -224,29 +225,58 @@
 								}
 							})
 						} else {
-							this.$refs.popup.close()
-							uni.navigateTo({
-								url: "/pages/tab2/orderSuccess",
-								success: () => {
+							// 微信支付
+							this.$http('user/withdraw/order/pay/wechat', "POST", dataObj, res1 => {
+								console.log(res1.data)
+								if (res1.data.success) {
+									console.log(res1.data.data)
+									let orderInfoObj = {
+										"appid": res1.data.data.appid,
+										"noncestr": res1.data.data.noncestr,
+										"package": "Sign=WXPay",
+										"partnerid": res1.data.data.partnerid,
+										"prepayid": res1.data.data.prepayid,
+										"timestamp": res1.data.data.timestamp,
+										"sign": res1.data.data.sign
+									}
+									let orderInfoStr = JSON.stringify(orderInfoObj)
 									// #ifdef APP-PLUS
-									uni.report('orderBackWxpay', {
-										'describe': '取单微信支付'
-									})
+									uni.requestPayment({
+										provider: 'wxpay',
+										orderInfo: orderInfo,
+										success: (respay) => {
+											console.log(respay)
+											this.$refs.popup.close()
+											uni.navigateTo({
+												url: "/pages/tab1/orderBackSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(data.data)),
+												success: () => {
+													// #ifdef APP-PLUS
+													uni.report('orderBackWxpay', {
+														'describe': '取单微信支付'
+													})
+													// #endif
+												}
+											})
+										},
+										fail: (err) => {
+											console.log(err)
+											this.$refs.popup.close()
+											this.$http('user/withdraw/order/pay/fail', "POST", dataObj, res2 => {
+												uni.navigateTo({
+													url: `/pages/tab2/orderDetails?id=${dataObj.orderId}&gotoPage=tab22`
+												})
+											})
+										},
+										complete: (e) => {}
+									});
 									// #endif
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: res1.data.message
+									});
 								}
 							})
-							// #ifdef APP-PLUS
-							uni.requestPayment({
-								provider: 'wxpay',
-								orderInfo: 'orderInfo', //微信、支付宝订单数据
-								success: (res) => {
-									console.log(res);
-								},
-								fail: (err) => {
-									console.log(err);
-								}
-							});
-							// #endif
 						}
 					} else {
 						uni.showToast({
@@ -257,7 +287,10 @@
 				})
 			},
 			getFee() {
-				this.$http('user/withdraw/param/freight', "POST", '', res => {
+				let data = {
+					addressId: this.address.id
+				}
+				this.$http('user/withdraw/param/freight', "POST", data, res => {
 					let data = res.data
 					if (data.success) {
 						this.total_fee = data.data
@@ -274,7 +307,7 @@
 					let data = res.data
 					if (data.success) {
 						for (let item of data.data) {
-							item.detailAddress = item.area.province + item.area.city + item.area.district + ' ' + item.address
+							item.detailAddress = item.plotName + ' ' + item.address
 							if (item.dft) {
 								this.address = item
 							}
