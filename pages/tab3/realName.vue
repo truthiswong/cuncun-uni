@@ -6,6 +6,10 @@
 			<view class="top_img">
 				<image src="../../static/common/finish.png" mode=""></image>
 			</view>
+			<view>
+				<p style="font-size: 28upx;line-height: 48upx;">为了正常使用本服务，请完成实名认证。</p>
+				<p style="font-size: 28upx;line-height: 48upx;">存存使用高安全性的支付宝实名认证服务，不会产生任何费用，请放心使用。</p>
+			</view>
 			<uni-list class="list_custom list_custom_item list_custom_margin20">
 				<uni-list-item title="姓名：" :showArrow="false">
 					<view slot="right" class="input">
@@ -14,7 +18,8 @@
 				</uni-list-item>
 				<uni-list-item title="身份证：" :showArrow="false">
 					<view slot="right" class="input">
-						<input type="idcard" v-model="idCard" :disabled="realNameConfirm" maxlength="18" placeholder="请输入身份证号" placeholder-style="color: #CCCCCC;font-size:14px;" />
+						<input type="idcard" v-model="idCard" :disabled="realNameConfirm" maxlength="18" placeholder="请输入身份证号"
+						 placeholder-style="color: #CCCCCC;font-size:14px;" />
 					</view>
 				</uni-list-item>
 			</uni-list>
@@ -33,7 +38,6 @@
 				idCard: '',
 				buttonActive: false, // 颜色控制
 				realNameConfirm: false, //是否实名
-				loginRealNameConfirm: false,
 				urlschemes: null
 			};
 		},
@@ -54,10 +58,6 @@
 			}
 		},
 		onLoad(option) {
-			console.log(option)
-			if (option.loginRealNameConfirm == true) {
-				this.loginRealNameConfirm = true
-			}
 		},
 		onShow() {
 			let user = uni.getStorageSync('user')
@@ -75,8 +75,8 @@
 				this.idCard = user.idNo
 			}
 			// #ifdef APP-PLUS
-			this.$nextTick(()=>{
-				setTimeout(()=>{
+			this.$nextTick(() => {
+				setTimeout(() => {
 					this.urlschemes = plus.runtime.arguments
 					console.log(this.urlschemes)
 					// hbuilder://realname  cuncun://realname
@@ -91,13 +91,27 @@
 			})
 			// #endif
 		},
-		methods: {
-			onClickBack() {
-				if (this.loginRealNameConfirm) {
+		onBackPress(e) {
+			console.log(e)
+			if (e.from == 'backbutton') {
+				let loginRealName = uni.getStorageSync('loginRealName')
+				if (loginRealName) {
 					uni.switchTab({
 						url: '/pages/tabs/tab1'
 					})
-				} else{
+				} else {
+					uni.navigateBack()
+				}
+			}
+		},
+		methods: {
+			onClickBack() {
+				let loginRealName = uni.getStorageSync('loginRealName')
+				if (loginRealName) {
+					uni.switchTab({
+						url: '/pages/tabs/tab1'
+					})
+				} else {
 					uni.navigateBack()
 				}
 			},
@@ -144,11 +158,16 @@
 				}
 			},
 			onReturn() {
-				if (this.loginRealNameConfirm) {
+				if (uni.getStorageSync('loginRealName')) {
+					console.log(1111)
 					uni.switchTab({
 						url: '/pages/tabs/tab1'
 					})
-				} else{
+				} else {
+					console.log(22222)
+					// uni.navigateBack({
+					// 	delta: 1
+					// })
 					uni.navigateBack()
 				}
 				// #ifdef APP-PLUS
