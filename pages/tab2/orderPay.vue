@@ -61,7 +61,7 @@
 				</view>
 				<view class="flex_between pay_info_list">
 					<text>运输费</text>
-					<text>¥ 0</text>
+					<text>¥ {{pay_fee}}</text>
 				</view>
 				<view class="flex_between pay_info_list">
 					<text>打包费</text>
@@ -83,15 +83,33 @@
 					<text>上门取件时间</text>
 					<image class="close_btn" @click="closePopupDate" src="../../static/tab2/close.png" mode=""></image>
 				</view>
-				<view> 
-					<picker-view style="height: 480upx;" :indicator-style="indicatorStyle" :value="dateValue" @change="changeDate">
+				<view>
+					<view class="row">
+						<scroll-view style="width: 40%;height: 540upx;" scroll-y="true">
+							<view class="date_item" :class="{'date_item_active': item.clicked}" @click="onChooseDates(item)" v-for="(item,index) in dates"
+							 :key="index">{{item.value}}</view>
+						</scroll-view>
+						<scroll-view style="width: 60%;height: 540upx;" scroll-y="true" @click="onClickHours">
+							<radio-group @change="onChooseHours">
+								<label class="flex_between date_item date_item_active" v-for="(item,index) in hours" :key="index">
+									<view style="width: 60%;">
+										{{item.value}}
+									</view>
+									<view style="width: 40%;">
+										<radio :value="item.value" :checked="index === currentHour" :disabled="!dateDate" color="rgba(59, 193, 187, 1)" />
+									</view>
+								</label>
+							</radio-group>
+						</scroll-view>
+					</view>
+					<!-- <picker-view style="height: 480upx;" :indicator-style="indicatorStyle" :value="dateValue" @change="changeDate">
 						<picker-view-column>
 							<view class="date_item" v-for="(item,index) in dates" :key="index">{{item.value}}</view>
 						</picker-view-column>
 						<picker-view-column>
 							<view class="date_item" v-for="(item,index) in hours" :key="index">{{item.value}}</view>
 						</picker-view-column>
-					</picker-view>
+					</picker-view> -->
 				</view>
 			</view>
 		</uni-popup>
@@ -137,18 +155,18 @@
 				dates: [{
 					id: 0,
 					value: '07-27（周六）',
-					checked: 'false'
+					checked: false
 				}],
 				hours: [{
 					id: 0,
 					value: '09:00～10:00',
+					checked: 'false',
 					valueStart: '09',
 					valueEnd: '10'
 				}],
 				dateDate: '',
-				dateValue: [0, 0],
-				dateValue1: 0,
-				dateValue2: 0,
+				hourValue: '',
+				currentHour: -1,
 				hourValue1: '09',
 				hourValue2: '10',
 				userRemark: '', //备注
@@ -220,20 +238,7 @@
 				})
 			},
 			onDateChange() {
-				for (let item of this.dateDate) {
-					if (item.isDisabled) {
-						this.dateValue1
-					} else{
-						
-					}
-				}
 				this.$refs.popupDate.open()
-				this.dateValue = [this.dateValue1, this.dateValue2]
-				this.date = this.dates[this.dateValue1].value + " " + this.hours[this.dateValue2].value
-				this.dateDate = this.dates[this.dateValue1].date
-				this.hourValue1 = this.hours[this.dateValue2].valueStart
-				this.hourValue2 = this.hours[this.dateValue2].valueEnd
-				this.getFee()
 			},
 			closePopupDate() {
 				this.$refs.popupDate.close()
@@ -247,6 +252,65 @@
 				this.hourValue2 = this.hours[val[1]].valueEnd
 				this.date = this.dates[val[0]].value + " " + this.hours[val[1]].value
 				this.getFee()
+			},
+			onChooseDates(item) {
+				console.log(item)
+				for (let dateItem of this.dates) {
+					if (!item.isDisable) {
+						if (item.date == dateItem.date) {
+							dateItem.clicked = true
+							this.dateDate = item.value
+						} else {
+							dateItem.clicked = false
+						}
+					} else {
+						uni.showToast({
+							title: '已约满, 请选择其他日期',
+							icon: 'none'
+						})
+					}
+				}
+			},
+			onChooseHours(evt) {
+				console.log(evt.target.value)
+				if (this.dateDate) {
+					for (let i = 0; i < this.hours.length; i++) {
+						if (this.hours[i].value === evt.target.value) {
+							this.currentHour = i;
+							this.hours[i].clicked = 'true'
+							this.hourValue1 = this.hours[i].valueStart
+							this.hourValue2 = this.hours[i].valueEnd
+							console.log(this.hourValue1)
+							console.log(this.hourValue2)
+							this.hourValue = this.hours[i].value
+							this.date = this.dateDate + this.hours[i].value
+							this.getFee()
+							break;
+						}
+					}
+					// for (let item of this.hours) {
+					// 	if (evt.target.value == item.value) {
+					// 		item.clicked = 'true'
+					// 		this.hourValue1 = item.valueStart
+					// 		this.hourValue2 = item.valueEnd
+					// 		console.log(this.hourValue1)
+					// 		console.log(this.hourValue2)
+					// 		this.hourValue = item.value
+					// 		this.date = this.dateDate + item.value
+					// 		this.getFee()
+					// 	} else {
+					// 		item.clicked = ''
+					// 	}
+					// }
+				}
+			},
+			onClickHours() {
+				if (!this.dateDate) {
+					uni.showToast({
+						title: '请选择日期',
+						icon: 'none'
+					})
+				}
 			},
 			getFee() {
 				if (!this.address.id) {
@@ -327,6 +391,7 @@
 							} else {
 								item.isDisable = false
 							}
+							item.clicked = false
 							item.value = `${Object.keys(item)[0]} (${Object.values(item)[0]})`
 							item.date = Object.keys(item)[0]
 						}
@@ -347,6 +412,7 @@
 							item.value = `${item[0]}:00 ~ ${item[1]}:00`
 							item.valueStart = item[0]
 							item.valueEnd = item[1]
+							item.checked = ''
 						}
 						this.hours = data.data
 					} else {
@@ -491,8 +557,8 @@
 											console.log(err)
 											// this.$refs.popup.close()
 											uni.showModal({
-											    content: "支付失败,原因为: " + err.errMsg,
-											    showCancel: false
+												content: "支付失败,原因为: " + err.errMsg,
+												showCancel: false
 											})
 											// payFail = true
 											// this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
@@ -511,7 +577,7 @@
 											// })
 										},
 										complete: (e) => {
-											
+
 										}
 									});
 									// #endif
@@ -668,7 +734,18 @@
 		text-align: center;
 		font-size: 26upx;
 		font-weight: 400;
-		color: rgba(40, 40, 40, 1);
+		color: #B2B2B2;
+		background-color: #F2F2F2;
+		border-bottom: 1upx solid #F2F2F2;
+	}
+
+	.date_item_active {
+		color: #282828;
+		background-color: #FFFFFF;
+	}
+
+	.date_item:nth-last-child(1) {
+		border-bottom: 0;
 	}
 
 	.bottom_pay {
