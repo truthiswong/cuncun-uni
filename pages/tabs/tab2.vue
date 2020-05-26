@@ -234,7 +234,7 @@
 											</view>
 										</view>
 									</view>
-									<view class="segmented_list_button" v-if="item.payStatus.code == 'wait'">
+									<view class="segmented_list_button" v-if="item.status.code == 'waitpay'">
 										<button class="button_confirm" @click="onConfirmOrder3(item.id)">立即付款</button>
 									</view>
 								</view>
