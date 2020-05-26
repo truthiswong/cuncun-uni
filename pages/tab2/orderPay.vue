@@ -79,9 +79,10 @@
 		</view>
 		<uni-popup ref="popupDate" type="bottom" @touchmove.stop.prevent @touchend.stop>
 			<view class="popup_wrap">
-				<view class="popup_title">
+				<view class="popup_title flex_between">
+					<text class="popup_cancel" @click="closePopupDate">取消</text>
 					<text>上门取件时间</text>
-					<image class="close_btn" @click="closePopupDate" src="../../static/tab2/close.png" mode=""></image>
+					<text class="popup_confirm" @click="confirmPopupDate">确认</text>
 				</view>
 				<view>
 					<view class="row">
@@ -92,10 +93,10 @@
 						<scroll-view style="width: 60%;height: 540upx;" scroll-y="true" @click="onClickHours">
 							<radio-group @change="onChooseHours">
 								<label class="flex_between date_item date_item_active" v-for="(item,index) in hours" :key="index">
-									<view style="width: 60%;">
+									<view style="width: 78%;">
 										{{item.value}}
 									</view>
-									<view style="width: 40%;">
+									<view style="width: 32%;">
 										<radio :value="item.value" :checked="index === currentHour" :disabled="!dateDate" color="rgba(59, 193, 187, 1)" />
 									</view>
 								</label>
@@ -213,6 +214,7 @@
 			address() {
 				if (this.address.id && this.dateDate) {
 					this.buttonActive = true;
+					this.getFee()
 				} else {
 					this.buttonActive = false;
 				}
@@ -242,15 +244,12 @@
 			},
 			closePopupDate() {
 				this.$refs.popupDate.close()
+				// this.date = ''
+				// this.pay_fee = 0
 			},
-			changeDate(e) {
-				const val = e.detail.value
-				this.dateValue1 = val[0]
-				this.dateValue2 = val[1]
-				this.dateDate = this.dates[this.dateValue1].date
-				this.hourValue1 = this.hours[val[1]].valueStart
-				this.hourValue2 = this.hours[val[1]].valueEnd
-				this.date = this.dates[val[0]].value + " " + this.hours[val[1]].value
+			confirmPopupDate() {
+				this.$refs.popupDate.close()
+				this.date = this.dateDate + this.hourValue
 				this.getFee()
 			},
 			onChooseDates(item) {
@@ -283,8 +282,6 @@
 							console.log(this.hourValue1)
 							console.log(this.hourValue2)
 							this.hourValue = this.hours[i].value
-							this.date = this.dateDate + this.hours[i].value
-							this.getFee()
 							break;
 						}
 					}
@@ -345,7 +342,7 @@
 					console.log(data)
 					if (data.success) {
 						for (let item of data.data) {
-							item.detailAddress = item.area.province + item.area.city + item.area.district + ' ' + item.address
+							item.detailAddress = item.plotName + ' ' + item.address
 							if (item.dft) {
 								this.address = item
 							}
@@ -443,7 +440,6 @@
 						let dataObj = {
 							orderId: data.data.id
 						}
-						let payFail = false
 						if (this.payStyle == 'Alipay') {
 							this.$http('user/deposit/order/prepay/alipay', "POST", dataObj, res1 => {
 								if (res1.data.success) {
@@ -469,42 +465,14 @@
 										fail: (err) => {
 											console.log(err)
 											this.$refs.popup.close()
-											payFail = true
 											this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
-												if (res2.data.success) {
-													console.log(res2.data)
-													console.log("fail")
-													uni.navigateTo({
-														url: `/pages/tab2/orderDetails?id=${dataObj.orderId}&gotoPage=tab21`
-													})
-												} else {
-													uni.showToast({
-														icon: 'none',
-														title: res2.data.message
-													});
-												}
+												uni.navigateTo({
+													url: `/pages/tab2/orderDetails?id=${dataObj.orderId}&gotoPage=tab21`
+												})
 											})
 										},
 										complete: (e) => {
-											console.log('走到了最后')
-											if (payFail == false) {
-												if (e.errMsg == 'requestPayment:fail') {
-													console.log('走到了最后请求')
-													this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
-														if (res2.data.success) {
-															console.log(res2.data)
-															uni.navigateTo({
-																url: `/pages/tab2/orderDetails?id=${dataObj.orderId}&gotoPage=tab21`
-															})
-														} else {
-															uni.showToast({
-																icon: 'none',
-																title: res2.data.message
-															});
-														}
-													})
-												}
-											}
+											
 										}
 									});
 									// #endif
@@ -530,11 +498,7 @@
 										"timestamp": res1.data.data.timestamp,
 										"sign": res1.data.data.sign
 									}
-									let orderInfoStr = JSON.stringify(orderInfoObj)
 									let orderInfo = JSON.stringify(orderInfoObj)
-									// orderInfoStr = `"${orderInfoStr}"`
-									console.log(orderInfoStr)
-									console.log(orderInfoObj)
 									// #ifdef APP-PLUS
 									uni.requestPayment({
 										provider: 'wxpay',
@@ -555,26 +519,12 @@
 										},
 										fail: (err) => {
 											console.log(err)
-											// this.$refs.popup.close()
-											uni.showModal({
-												content: "支付失败,原因为: " + err.errMsg,
-												showCancel: false
+											this.$refs.popup.close()
+											this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
+												uni.navigateTo({
+													url: `/pages/tab2/orderDetails?id=${dataObj.orderId}&gotoPage=tab21`
+												})
 											})
-											// payFail = true
-											// this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
-											// 	if (res2.data.success) {
-											// 		console.log(res2.data)
-											// 		console.log("fail")
-											// 		uni.navigateTo({
-											// 			url: `/pages/tab2/orderDetails?id=${dataObj.orderId}&gotoPage=tab21`
-											// 		})
-											// 	} else {
-											// 		uni.showToast({
-											// 			icon: 'none',
-											// 			title: res2.data.message
-											// 		});
-											// 	}
-											// })
 										},
 										complete: (e) => {
 
@@ -709,6 +659,26 @@
 		height: 660upx;
 		background: rgba(255, 255, 255, 1);
 		border-radius: 20upx 20upx 0 0;
+		
+		.popup_cancel {
+			width: 140upx;
+			height: 90upx;
+			border-radius: 3px;
+			line-height: 90upx;
+			font-size: 28upx;
+			font-weight: 500;
+			color: #888888;
+			text-align: center;
+		}
+		.popup_confirm {
+			width: 140upx;
+			height: 90upx;
+			line-height: 90upx;
+			font-size: 28upx;
+			font-weight: 500;
+			color: #FFFFFF;
+			color: #3BC1BB;
+		}
 	}
 
 	.popup_cont {
