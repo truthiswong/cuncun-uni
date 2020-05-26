@@ -351,18 +351,14 @@
 								success: (res) => {
 									console.log(res)
 									this.$refs.popupPay.close()
-									uni.navigateTo({
-										url: "/pages/tab2/orderSuccess"
-									})
+									this.getOrderDetail()
 								},
 								fail: (err) => {
 									this.$refs.popupPay.close()
 									this.$http('user/withdraw/order/pay/fail', "POST", orderObj, res2 => {
 										if (res2.data.success) {
 											console.log(res2.data)
-											uni.switchTab({
-												url: '/pages/tabs/tab2'
-											})
+											this.getOrderDetail()
 										} else {
 											uni.showToast({
 												icon: 'none',
@@ -447,7 +443,7 @@
 								item.desc = item.remark
 							}
 							this.options = data.data
-							this.active = data.data.length-1
+							this.active = data.data.length - 1
 						} else {
 							this.options = []
 							this.active = 0
@@ -486,11 +482,11 @@
 				})
 			},
 			// 确认收货
-			onConfirmGoods(){
+			onConfirmGoods() {
 				uni.showModal({
 					title: '提示',
 					content: '是否确认收货?',
-					success(res) {
+					success: (res) => {
 						if (res.confirm) {
 							let data = {
 								id: this.orderId
@@ -498,9 +494,7 @@
 							this.$http('user/withdraw/order/confirm', "POST", data, res => {
 								let data = res.data
 								if (data.success) {
-									uni.navigateBack({
-										delta: 1
-									})
+									this.getOrderDetail()
 								} else {
 									uni.showToast({
 										icon: 'none',
@@ -536,7 +530,7 @@
 						});
 					}
 				})
-				
+
 			},
 			onDetails() {
 				this.$refs.popupSteps.open()
