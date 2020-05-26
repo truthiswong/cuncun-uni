@@ -17,7 +17,7 @@
 				<uni-list-item title="所在地区：" @click="gotoAddress">
 					<view slot="right" class="change_address">
 						<text style="font-size: 28upx;" v-if="!tipsAddress.name">{{addressText}}</text>
-						<text style="font-size: 28upx;" v-else :class="{change_address_active:tipsAddress.name}">{{tipsAddress.name}}</text>
+						<text style="font-size: 28upx;" v-else :class="{change_address_active:tipsAddress}">{{tipsAddress.name}}</text>
 						<!-- <pick-regions :default-regions="defaultRegions" @getRegions="handleGetRegions">
 							<text style="font-size: 14px;" :class="{change_address_active:addressText != '请选择所在地区'}">{{addressText}}</text>
 						</pick-regions> -->
@@ -103,10 +103,13 @@
 				this.name = address.linkman
 				this.phone = address.mobile
 				this.addressText = address.area.province+'-'+address.area.city+'-'+address.area.district
+				this.tipsAddress.adcode = address.area.parentId
+				this.tipsAddress.name = address.plotName
+				this.tipsAddress.location = address.coordinate
 				this.defaultRegions = [address.area.province, address.area.city, address.area.district]
 				this.areaId = address.area.value
 				this.detailAddress = address.address
-				this.postcode = address.area.value
+				this.postcode = address.zipcode
 				for (let item of this.tagsList) {
 					if (address.tag[0].code == item.value) {
 						this.addressTag = item.value
@@ -114,7 +117,6 @@
 					}
 				}
 				this.isDefault = address.dft
-				console.log(this.isDefault)
 			}
 		},
 		watch: {
@@ -260,17 +262,18 @@
 				} else {
 					// "longitude": 121.477355,
 					// "latitude": 31.234643
-					let lnglat = this.tipsAddress.location.split(',');
 					let data = {
 						id: this.addressId,
 						linkman: this.name,
 						mobile: this.phone,
 						areaId: this.tipsAddress.adcode,
+						plotName: this.tipsAddress.name,
 						address: this.detailAddress,
+						zipcode: this.postcode,
 						tag: this.addressTag,
 						dft: this.isDefault,
-						lng: lnglat[0],
-						lat: lnglat[1]
+						lng: this.tipsAddress.location[0],
+						lat: this.tipsAddress.location[1]
 					}
 					this.$http('user/addr/save', "POST", data, res => {
 						let data = res.data

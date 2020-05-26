@@ -82,6 +82,8 @@
 				let pages = getCurrentPages(); //获取所有页面栈实例列表
 				let nowPage = pages[pages.length - 1]; //当前页页面实例
 				let prevPage = pages[pages.length - 2]; //上一页页面实例
+				let lnglat = item.location.split(',')
+				item.location = [lnglat[0], lnglat[1]]
 				prevPage.$vm.tipsAddress = item; //修改上一页data里面的couponNumber参数值为value
 				uni.navigateBack();
 			},
