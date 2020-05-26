@@ -101,6 +101,10 @@
 							<text style="font-size:28upx;font-weight:400;color:rgba(2,105,208,1);">复制</text>
 						</view>
 					</view>
+					<view class="flex_between order_list_phone" v-if="order.waybillNo" @click="onCopy(order.waybillNo)">
+						<p>快递公司</p>
+						<text>顺丰快递</text>
+					</view>
 				</view>
 			</view>
 			<view class="order_list">
@@ -113,6 +117,10 @@
 							<text style="margin: 0 30upx;color:rgba(222,222,222,1);">|</text>
 							<text style="font-size:28upx;font-weight:400;color:rgba(2,105,208,1);">复制</text>
 						</view>
+					</view>
+					<view class="flex_between order_list_phone">
+						<p>支付方式</p>
+						<text>{{order.detailPayStyle}}</text>
 					</view>
 					<view class="flex_between order_list_phone">
 						<p>下单时间</p>
@@ -328,12 +336,6 @@
 			onPayChangeStyle(evt) {
 				console.log(evt.target.value)
 				this.payStyle = evt.target.value
-				// for (let i = 0; i < this.payStyleList.length; i++) {
-				// 	if (this.payStyleList[i].value === evt.target.value) {
-				// 		this.current = i;
-				// 		break;
-				// 	}
-				// }
 			},
 			// 支付
 			onComfirmPay() {
@@ -366,7 +368,8 @@
 											});
 										}
 									})
-								}
+								},
+								complete: (e) => {}
 							});
 							// #endif
 						} else {
@@ -377,22 +380,46 @@
 						}
 					})
 				} else {
-					this.$refs.popup.close()
-					uni.navigateTo({
-						url: "/pages/tab2/orderSuccess"
-					})
-					// #ifdef APP-PLUS
-					uni.requestPayment({
-						provider: 'wxpay',
-						orderInfo: 'orderInfo', //微信、支付宝订单数据
-						success: (res) => {
-							console.log(res);
-						},
-						fail: (err) => {
-							console.log(err);
+					// 微信支付
+					this.$http('user/withdraw/order/pay/wechat', "POST", dataObj, res1 => {
+						console.log(res1.data)
+						if (res1.data.success) {
+							console.log(res1.data.data)
+							let orderInfoObj = {
+								"appid": res1.data.data.appid,
+								"noncestr": res1.data.data.noncestr,
+								"package": "Sign=WXPay",
+								"partnerid": res1.data.data.partnerid,
+								"prepayid": res1.data.data.prepayid,
+								"timestamp": res1.data.data.timestamp,
+								"sign": res1.data.data.sign
+							}
+							let orderInfo = JSON.stringify(orderInfoObj)
+							// #ifdef APP-PLUS
+							uni.requestPayment({
+								provider: 'wxpay',
+								orderInfo: orderInfo,
+								success: (res) => {
+									console.log(res)
+									this.$refs.popupPay.close()
+									this.getOrderDetail()
+								},
+								fail: (err) => {
+									this.$refs.popupPay.close()
+									this.$http('user/withdraw/order/pay/fail', "POST", orderObj, res2 => {
+										this.getOrderDetail()
+									})
+								},
+								complete: (e) => {}
+							});
+							// #endif
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: res1.data.message
+							});
 						}
-					});
-					// #endif
+					})
 				}
 			},
 			// 订单详情
@@ -400,10 +427,12 @@
 				this.$http('user/withdraw/order/detail/' + this.orderId, "GET", '', res => {
 					let data = res.data
 					if (data.success) {
-						data.data.detailAddress = data.data.area.province + ' ' + data.data.area.city + ' ' + data.data.area.district +
-							' ' + data.data.address
+						data.data.detailAddress = data.data.plotName + ' ' + data.data.address
 						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD HH:mm:ss')
 						data.data.detailStatus = data.data.status.code
+						if (data.data.payChannel) {
+							data.data.detailPayStyle = data.data.payChannel.name //支付方式
+						}
 						data.data.totalList = []
 						if (data.data.goods) {
 							for (let item of data.data.goods) {
