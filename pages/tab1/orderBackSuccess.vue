@@ -2,7 +2,8 @@
 	<view>
 		<view class="content">
 			<view class="cont_top">
-				<image src="../../static/tab2/ok.png"></image>
+				<image v-if="orderInfo.payStyle=='Alipay'" src="../../static/tab2/Alipay.png"></image>
+				<image v-else src="../../static/tab2/WeChatpay.png"></image>
 				<p>支付完成</p>
 			</view>
 			<view class="top_text">
@@ -70,8 +71,8 @@
 		text-align: center;
 
 		image {
-			width: 104upx;
-			height: 100upx;
+			width: 80upx;
+			height: 80upx;
 			margin-top: 40upx;
 		}
 
@@ -80,7 +81,7 @@
 			font-weight: 600;
 			color: rgba(40, 40, 40, 1);
 			line-height: 42upx;
-			margin-top: 49upx;
+			margin-top: 30upx;
 		}
 	}
 

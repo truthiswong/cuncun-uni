@@ -68,13 +68,13 @@
 					<view class="">
 						<radio-group @change="onPayChangeStyle">
 							<uni-list class="list_custom list_custom_img56" v-for="(item, index) in payStyleList" :key="index">
-								<uni-list-item :title="item.name" :thumb="item.imgUrl" :showArrow="false">
-									<view slot="right">
-										<label>
+								<label>
+									<uni-list-item :title="item.name" :thumb="item.imgUrl" :showArrow="false">
+										<view slot="right">
 											<radio :value="item.value" :checked="item.checked" color="rgba(59, 193, 187, 1)" />
-										</label>
-									</view>
-								</uni-list-item>
+										</view>
+									</uni-list-item>
+								</label>
 							</uni-list>
 						</radio-group>
 					</view>
@@ -286,9 +286,8 @@
 						});
 					}
 				})
-			},
+			}
 		}
-
 	}
 </script>
 
