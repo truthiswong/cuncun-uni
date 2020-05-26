@@ -13,7 +13,7 @@
 				<view class="input_item">
 					<text class="input_text">验证码</text>
 					<view class="row">
-						<input class="input_input col-6" type="number" v-model="sms" placeholder-style="#CCCCCC" placeholder="请输入短信验证码" />
+						<input class="input_input col-6" type="number" v-model="sms" maxlength="6" placeholder-style="#CCCCCC" placeholder="请输入短信验证码" />
 						<button :disabled="disabled" @click="getSms" class="sms_button col-6">{{smsText}}</button>
 					</view>
 				</view>
@@ -185,21 +185,6 @@
 								    key: 'token',
 								    data: token,
 								    success: ()=> {
-										uni.switchTab({
-											url: '/pages/tabs/tab1',
-											success: () => {
-												uni.showToast({
-													icon: 'none',
-													title: '登录成功'
-												});
-												// #ifdef APP-PLUS
-												uni.report('login', {
-													'describe': '登录'
-												})
-												// #endif
-											}
-										})
-										return
 										this.$http('user/current', "GET", '', res => {
 											let dataObj = res.data
 											if (dataObj.success) {
@@ -220,7 +205,13 @@
 													})
 												} else {
 													uni.navigateTo({
-														url: '/pages/tab3/realName?loginRealNameConfirm=true'
+														url: '/pages/tab3/realName',
+														success: () => {
+															uni.setStorage({
+																key : 'loginRealName',
+																data: true
+															})
+														}
 													})
 												}
 											} else {
