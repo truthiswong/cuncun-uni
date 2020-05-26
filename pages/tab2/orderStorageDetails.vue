@@ -7,13 +7,17 @@
 		 fixed="true" v-if="!headerShow" shadow="true" style="position: absolute; top: 0;">
 		</uni-nav-bar>
 		<!-- 内容 -->
-		<view class="content" :class="{'content_active': order.detailStatus == 'waitpay'}">
+		<view class="content" :class="{'content_active': order.detailStatus == 'waitpay' || order.detailStatus == 'overdue7'}">
 			<view class="cont_top">
 				<view class="top_text">
 					<view v-if="order.detailStatus == 'payed'">
 						<h4>订单已支付，放心存储吧～</h4>
 					</view>
 					<view v-if="order.detailStatus == 'waitpay'">
+						<h4>您的订单还未付款，请及时付款</h4>
+						<p>此订单需要及时支付，否则订单将自动取消。</p>
+					</view>
+					<view v-if="order.detailStatus == 'overdue7'">
 						<h4>您的订单还未付款，请及时付款</h4>
 						<p>此订单需要及时支付，否则订单将自动取消。</p>
 					</view>
@@ -101,6 +105,10 @@
 						</view>
 					</view>
 					<view class="flex_between order_list_phone">
+						<p>支付方式</p>
+						<text>{{order.detailPayStyle}}</text>
+					</view>
+					<view class="flex_between order_list_phone">
 						<p>创建时间</p>
 						<text>{{order.orderTime}}</text>
 					</view>
@@ -142,7 +150,7 @@
 				</view>
 			</view>
 		</uni-popup>
-		<view class="flex_between bottom_pay" v-if="order.detailStatus == 'waitpay'">
+		<view class="flex_between bottom_pay" v-if="order.detailStatus == 'waitpay' || order.detailStatus == 'overdue7'">
 			<text>¥ {{order.settleFee?order.settleFee:order.fee}}</text>
 			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">确认支付</button>
 		</view>
@@ -241,12 +249,6 @@
 			onPayChangeStyle(evt) {
 				console.log(evt.target.value)
 				this.payStyle = evt.target.value
-				// for (let i = 0; i < this.payStyleList.length; i++) {
-				// 	if (this.payStyleList[i].value === evt.target.value) {
-				// 		this.current = i;
-				// 		break;
-				// 	}
-				// }
 			},
 			onComfirmPay() {
 				let dataObj = {
@@ -262,16 +264,11 @@
 								orderInfo: res.data.data,
 								success: (respay) => {
 									this.$refs.popupPay.close()
-									uni.switchTab({
-										url: '/pages/tabs/tab2?gotoPage=tab23'
-									})
+									this.getOrderDetail()
 								},
 								fail: (err) => {
 									this.$refs.popupPay.close()
-									uni.showToast({
-										icon: 'none',
-										title: '支付失败'
-									});
+									this.getOrderDetail()
 								}
 							});
 							// #endif
@@ -283,22 +280,46 @@
 						}
 					})
 				} else {
-					this.$refs.popup.close()
-					uni.switchTab({
-						url: '/pages/tabs/tab2?gotoPage=tab23'
-					})
-					// #ifdef APP-PLUS
-					uni.requestPayment({
-						provider: 'wxpay',
-						orderInfo: 'orderInfo', //微信、支付宝订单数据
-						success: (res) => {
-							console.log(res);
-						},
-						fail: (err) => {
-							console.log(err);
+					// 微信支付
+					this.$http('user/store/order/pay/wechat', "POST", dataObj, res1 => {
+						console.log(res1.data)
+						if (res1.data.success) {
+							console.log(res1.data.data)
+							let orderInfoObj = {
+								"appid": res1.data.data.appid,
+								"noncestr": res1.data.data.noncestr,
+								"package": "Sign=WXPay",
+								"partnerid": res1.data.data.partnerid,
+								"prepayid": res1.data.data.prepayid,
+								"timestamp": res1.data.data.timestamp,
+								"sign": res1.data.data.sign
+							}
+							let orderInfo = JSON.stringify(orderInfoObj)
+							// #ifdef APP-PLUS
+							uni.requestPayment({
+								provider: 'wxpay',
+								orderInfo: orderInfo,
+								success: (res) => {
+									console.log(res)
+									this.$refs.popupPay.close()
+									this.getOrderDetail()
+								},
+								fail: (err) => {
+									this.$refs.popupPay.close()
+									this.$http('user/withdraw/order/pay/fail', "POST", orderObj, res2 => {
+										this.getOrderDetail()
+									})
+								},
+								complete: (e) => {}
+							});
+							// #endif
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: res1.data.message
+							});
 						}
-					});
-					// #endif
+					})
 				}
 			},
 			getOrderDetail() {
@@ -307,6 +328,9 @@
 					if (data.success) {
 						data.data.detailTime = `${data.data.bookFetchDate} ~ ${data.data.bookFetchDate}`
 						data.data.detailStatus = data.data.status.code
+						if (data.data.payChannel) {
+							data.data.detailPayStyle = data.data.payChannel.name //支付方式
+						}
 						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD HH:mm:ss')
 						this.order = data.data
 					} else {
