@@ -21,8 +21,8 @@
 		<!-- 内容 -->
 		<view class="content">
 			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
-				<p>里面有 <text>12</text> 件大衣，<text>6</text> 件套装，<text>4</text> 件Tshirt</p>
-				<p>为您节省了 <text>2</text> 平米左右的空间咯～</p>
+				<p>里面有衣服 <text style="margin: 0 10upx;">{{list.length}}</text> 件</p>
+				<p>您已经超过了 <text style="margin: 0 10upx;">79%</text> 的收纳小伙伴咯～</p>
 			</view>
 			<view>
 				<view class="no_data" v-if="list.length<=0">
