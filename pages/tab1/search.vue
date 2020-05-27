@@ -70,7 +70,7 @@
 							<view>
 								<text>{{item.name}}</text>
 							</view>
-							<text class="search_list_text">所属货架: {{item.type.name}}</text>
+							<text class="search_list_text">所属货架: {{candidatesDefault == '物品'?item.type.name:'杂货架'}}</text>
 						</view>
 					</view>
 				</view>
@@ -137,6 +137,9 @@
 			},
 			onSearch(e) {
 				console.log(this.candidatesDefault)
+				console.log(this.pageNumber)
+				console.log(this.totalPages)
+				
 				if (!this.candidatesDefault) {
 					uni.showToast({
 						icon: 'none',
@@ -150,6 +153,12 @@
 						title: '请输入关键词'
 					});
 				} else {
+					this.pageNumber = 0
+					this.totalPages = 1
+					this.finished = false
+					this.allData = []
+					this.isCheckedShow = false
+					this.chooseButton = '选择'
 					this.keywords = e.value
 					if (this.totalPages > this.pageNumber) {
 						if (this.candidatesDefault == '物品') {
@@ -178,7 +187,7 @@
 								if (this.totalPages == this.pageNumber) {
 									this.finished = true
 								}
-							} else {
+							} else if (data.data.data.length <= 0) {
 								uni.showToast({
 									icon: 'none',
 									title: '暂无数据, 换个关键词试试'
@@ -212,7 +221,7 @@
 								if (this.totalPages == this.pageNumber) {
 									this.finished = true
 								}
-							} else {
+							} else if (data.data.data.length <= 0) {
 								uni.showToast({
 									icon: 'none',
 									title: '暂无数据, 换个关键词试试'
