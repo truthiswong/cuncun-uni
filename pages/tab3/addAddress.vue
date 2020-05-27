@@ -218,8 +218,8 @@
 						title: '请选择标签类型'
 					});
 				} else {
-					// "longitude": 121.477355,
-					// "latitude": 31.234643
+					// "longitude": 121.477355, //经度
+					// "latitude": 31.234643 //纬度
 					let data = {
 						id: this.addressId,
 						linkman: this.name,

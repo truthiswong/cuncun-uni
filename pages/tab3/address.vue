@@ -147,7 +147,7 @@
 					console.log(data)
 					if (data.success) {
 						for (let item of data.data) {
-							item.detailAddress = item.plotName + ' ' + item.address
+							item.detailAddress = `${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
 						}
 						this.addressList = data.data
 					} else {

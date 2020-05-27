@@ -342,7 +342,7 @@
 					console.log(data)
 					if (data.success) {
 						for (let item of data.data) {
-							item.detailAddress = item.plotName + ' ' + item.address
+							item.detailAddress = `${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
 							if (item.dft) {
 								this.address = item
 							}
@@ -472,7 +472,7 @@
 											})
 										},
 										complete: (e) => {
-											
+
 										}
 									});
 									// #endif
@@ -526,9 +526,7 @@
 												})
 											})
 										},
-										complete: (e) => {
-
-										}
+										complete: (e) => {}
 									});
 									// #endif
 								} else {
@@ -659,7 +657,7 @@
 		height: 660upx;
 		background: rgba(255, 255, 255, 1);
 		border-radius: 20upx 20upx 0 0;
-		
+
 		.popup_cancel {
 			width: 140upx;
 			height: 90upx;
@@ -670,6 +668,7 @@
 			color: #888888;
 			text-align: center;
 		}
+
 		.popup_confirm {
 			width: 140upx;
 			height: 90upx;

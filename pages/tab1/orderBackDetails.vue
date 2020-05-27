@@ -427,7 +427,7 @@
 				this.$http('user/withdraw/order/detail/' + this.orderId, "GET", '', res => {
 					let data = res.data
 					if (data.success) {
-						data.data.detailAddress = data.data.plotName + ' ' + data.data.address
+						data.data.detailAddress = `${data.data.area.province} ${data.data.area.city?data.data.area.city:''} ${data.data.area.district?data.data.area.district:''} ${data.data.plotName} ${data.data.address}`
 						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD HH:mm:ss')
 						data.data.detailStatus = data.data.status.code
 						if (data.data.payChannel) {

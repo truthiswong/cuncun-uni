@@ -40,8 +40,7 @@
 			console.log(this.orderInfo)
 			this.orderInfo.detailTime =
 				`${this.orderInfo.bookFetchDate} ${this.orderInfo.bookFetchTime[0]}:00~${this.orderInfo.bookFetchTime[1]}:00`
-			this.orderInfo.detailAddress = this.orderInfo.area.province + ' ' + this.orderInfo.area.city + ' ' + this.orderInfo.area
-				.district + ' ' + this.orderInfo.address
+			this.orderInfo.detailAddress = `${this.orderInfo.area.province} ${this.orderInfo.area.city?this.orderInfo.area.city:''} ${this.orderInfo.area.district?this.orderInfo.area.district:''} ${this.orderInfo.plotName} ${this.orderInfo.address}`
 		},
 		onShow() {
 			// #ifdef APP-PLUS

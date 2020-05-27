@@ -307,7 +307,7 @@
 					let data = res.data
 					if (data.success) {
 						for (let item of data.data) {
-							item.detailAddress = item.plotName + ' ' + item.address
+							item.detailAddress = `${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
 							if (item.dft) {
 								this.address = item
 							}

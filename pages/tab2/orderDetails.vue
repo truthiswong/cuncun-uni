@@ -73,7 +73,11 @@
 						</view>
 					</view>
 				</view>
-				<view style="">
+				<view>
+					<view class="flex_between order_list_fee">
+						<p>运输费用</p>
+						<text>¥ {{order.deliveryFee}} {{order.deliveryFeeNew - order.deliveryFee >= 0?'+':'-'}} ¥ {{order.deliveryFeeNew}}</text>
+					</view>
 					<view class="flex_between order_list_fee">
 						<p>打包费用</p>
 						<text>¥ {{order.packFee}} {{order.packFeeNew - order.packFee >= 0?'+':'-'}} ¥ {{order.packFeeNew}}</text>
@@ -83,14 +87,29 @@
 						<text>¥ {{order.boxFee}} {{order.boxFeeNew - order.boxFee >= 0?'+':'-'}} ¥ {{order.boxFeeNew}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
+						<p>订单总费用</p>
+						<text>¥ {{order.totalFee}} {{order.settleFee - order.totalFee >= 0?'+':'-'}} ¥ {{order.settleFee - order.totalFee}}</text>
+					</view>
+					<view class="flex_between order_list_fee">
 						<p>调整费用 <text style="color: #3BC1BB;margin-left: 20upx;" v-if="order.adjustFeeReason" @click="onChangeFeeAlert(order.adjustFeeReason)">查看</text></p>
 						<text>¥ {{order.adjustFee}}</text>
 					</view>
-					<view class="flex_between order_list_fee">
-						<p>需支付费用</p>
+					<view class="flex_between order_list_fee" v-if="order.detailPrepaidStatus == 'payed'">
+						<p>已支付费用</p>
 						<view>
-							<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.totalFee}}</text></text>
-							<!-- <text>{{order.boxFeeNew - order.boxFee >= 0?'+':'-'}} ¥<text style="font-size:32upx;margin-left: 10upx;">{{order.totalFee}}</text></text> -->
+							<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.prepaid}}</text></text>
+						</view>
+					</view>
+					<view class="flex_between order_list_fee" v-if="order.detailAdjustPayStatus == 'wait'">
+						<p>剩余待支付</p>
+						<view>
+							<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.appendFee}}</text></text>
+						</view>
+					</view>
+					<view class="flex_between order_list_fee" v-if="order.detailAdjustPayStatus == 'payed'">
+						<p>实际付费用</p>
+						<view>
+							<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.prepaid + order.appendFee}}</text></text>
 						</view>
 					</view>
 				</view>
@@ -187,8 +206,8 @@
 			<text>¥ {{order.prepaid}}</text>
 			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">确认支付</button>
 		</view>
-		<view class="flex_between bottom_pay" v-if="order.detailAdjustPayStatus == 'wait'">
-			<text>¥ {{order.settleFee}}</text>
+		<view class="flex_between bottom_pay" v-if="order.detailAdjustPayStatus == 'wait' && order.appendFee>0">
+			<text>¥ {{order.appendFee}}</text>
 			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">调整支付</button>
 		</view>
 		<view class="flex_between bottom_pay" v-if="order.detailStatus == 'cancel'">
@@ -340,12 +359,6 @@
 			onPayChangeStyle(evt) {
 				console.log(evt.target.value)
 				this.payStyle = evt.target.value
-				// for (let i = 0; i < this.payStyleList.length; i++) {
-				// 	if (this.payStyleList[i].value === evt.target.value) {
-				// 		this.current = i;
-				// 		break;
-				// 	}
-				// }
 			},
 			onComfirmPay() {
 				let orderObj = {
@@ -438,12 +451,12 @@
 									orderInfo: orderInfo,
 									success: (respay) => {
 										console.log(respay)
-										this.$refs.popup.close()
+										this.$refs.popupPay.close()
 										this.getOrderDetail()
 									},
 									fail: (err) => {
 										console.log(err)
-										this.$refs.popup.close()
+										this.$refs.popupPay.close()
 										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
 											this.getOrderDetail()
 										})
@@ -480,12 +493,12 @@
 									orderInfo: orderInfo,
 									success: (respay) => {
 										console.log(respay)
-										this.$refs.popup.close()
+										this.$refs.popupPay.close()
 										this.getOrderDetail()
 									},
 									fail: (err) => {
 										console.log(err)
-										this.$refs.popup.close()
+										this.$refs.popupPay.close()
 										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
 											this.getOrderDetail()
 										})
@@ -532,7 +545,7 @@
 				this.$http('user/deposit/order/detail/' + this.orderId, "GET", '', res => {
 					let data = res.data
 					if (data.success) {
-						data.data.detailAddress = data.data.plotName + ' ' + data.data.address
+						data.data.detailAddress = `${data.data.area.province} ${data.data.area.city?data.data.area.city:''} ${data.data.area.district?data.data.area.district:''} ${data.data.plotName} ${data.data.address}`
 						data.data.detailTime =
 							`${data.data.bookFetchDate} ${data.data.bookFetchTime[0]}:00~${data.data.bookFetchTime[1]}:00`
 						data.data.detailStatus = data.data.status.code
