@@ -1,12 +1,12 @@
 <template>
 	<view class="layout">
-		<uni-nav-bar left-icon="back" @clickLeft="onClickBack" title="实名认证" status-bar="true" fixed="true" :shadow="false"></uni-nav-bar>
+		<uni-nav-bar left-icon="back" @clickLeft="onConfirm" title="实名认证" status-bar="true" fixed="true" :shadow="false"></uni-nav-bar>
 		<!-- 内容 -->
 		<view class="content">
 			<view class="top_img">
 				<image src="../../static/common/finish.png" mode=""></image>
 				<p style="font-size:32upx;font-weight:500;color:rgba(40,40,40,1);line-height:64upx;margin-top: 60upx;">恭喜，您认证成功！</p>
-				<button @click="onClickBack" class="address_button">开启存存之旅</button>
+				<button @click="onConfirm" class="address_button">开启存存之旅</button>
 			</view>
 		</view>
 	</view>
@@ -33,8 +33,8 @@
 				uni.navigateBack()
 			},
 			onConfirm() {
-				uni.navigateTo({
-					url: '/pages/tab3/setting'
+				uni.switchTab({
+					url: '/pages/tabs/tab1'
 				})
 			},
 			getUserInfo() {

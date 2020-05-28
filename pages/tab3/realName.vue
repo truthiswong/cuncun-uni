@@ -9,6 +9,8 @@
 			<view>
 				<p style="font-size: 28upx;line-height: 48upx;">为了正常使用本服务，请完成实名认证。</p>
 				<p style="font-size: 28upx;line-height: 48upx;">存存使用高安全性的支付宝实名认证服务，不会产生任何费用，请放心使用。</p>
+				<p style="font-size: 28upx;line-height: 48upx;">存存运营方：上海顺存科技有限公司</p>
+				
 			</view>
 			<uni-list class="list_custom list_custom_item list_custom_margin20">
 				<uni-list-item title="姓名：" :showArrow="false">
