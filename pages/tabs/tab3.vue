@@ -68,7 +68,6 @@
 		onLoad(op) {},
 		onShow() {
 			let user = uni.getStorageSync('user')
-			console.log(user.portrait)
 			// this.getUserInfo()
 			if (user.portrait) {
 				this.headImage = user.portrait

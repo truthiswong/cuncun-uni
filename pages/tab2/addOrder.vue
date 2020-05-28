@@ -18,7 +18,7 @@
 				<view class="flex_between" v-for="(item,index) in inputList" :key="index" style="margin-top: 40upx;">
 					<input class="add_input" type="text" v-model="item.value" placeholder="如：文档，书本…" style="font-size:28upx;padding-left: 20upx;color: #282828;"
 					 placeholder-style="font-size:14px; font-weight:400; color:rgba(178,178,178,1); line-height:40upx;" />
-					<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" v-model="item.number" @change="changeInputNumber($event,index, item)" />
+					<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" :value="item.number" @change="changeInputNumber($event, index, item)" />
 				</view>
 				<view class="flex_between" style="margin-top: 60upx;">
 					<text class="button button_left" @click="onAddList">+ 添加</text>
@@ -39,7 +39,7 @@
 						<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" :value="item.number" @change="changeBoxNumber($event,index, item)" />
 					</view>
 					<view @click="onSeeMore" class="button_more">
-						<text>显示全部纸箱</text>
+						<text>{{boxButtonText}}</text>
 						<image :class="{image_active: boxNumber == 9999}" src="../../static/tab1/arrows.png" mode=""></image>
 					</view>
 				</view>
@@ -124,7 +124,7 @@
 				</scroll-view>
 			</view>
 		</uni-popup>
-		<button @click="onNext" class="button_block" :class="{button_block_active: buttonActive}">下一步</button>
+		<button @click="onNext" class="button_block" :disabled="buttonDisable" :class="{button_block_active: buttonActive}">下一步</button>
 	</view>
 </template>
 
@@ -164,15 +164,22 @@
 				boxIndex: '',
 				mday: 0, //每月有多少天
 				boxNumber: 1,
+				boxButtonText: '显示全部纸箱',
 				agree1: false,
 				agree2: false,
 				agree3: false,
 				buttonActive: false,
+				buttonDisable: false,
+				orderCopy: false //订单复制
 			}
 		},
 		onLoad(option) {
-			if (option.orderInfo) {
-				let address = JSON.parse(decodeURIComponent(option.orderInfo))
+			if (option.orderCopy == 'true') {
+				console.log(option.orderCopy)
+				this.orderCopy = true
+			} else {
+				uni.getStorageSync('orderGoodsList')
+				uni.getStorageSync('orderBoxsList')
 			}
 			this.getBoxList()
 			this.getUserInputList()
@@ -201,6 +208,7 @@
 				'describe': '添加存单页'
 			})
 			// #endif
+
 		},
 		onShow() {
 			this.$nextTick(() => {
@@ -246,8 +254,10 @@
 			onSeeMore() {
 				if (this.boxNumber == 1) {
 					this.boxNumber = 9999
+					this.boxButtonText = '收起全部纸箱'
 				} else {
 					this.boxNumber = 1
+					this.boxButtonText = '显示全部纸箱'
 				}
 			},
 			onAddList() {
@@ -258,8 +268,10 @@
 					number: 1
 				})
 			},
-			// 物品增减
+			// 物品加减
 			changeInputNumber(number, index, item) {
+				console.log(number, index, item)
+				console.log(this.inputList)
 				if (number <= 0) {
 					uni.showModal({
 						title: '提示',
@@ -273,6 +285,7 @@
 									this.$http('user/deposit/goods/del', "POST", data, res => {
 										let data = res.data
 										if (data.success) {
+											console.log(index)
 											this.inputList.splice(index, 1)
 											uni.showToast({
 												icon: 'none',
@@ -286,7 +299,20 @@
 										}
 									})
 								} else {
-									this.inputList.splice(index, 1)
+									// let result = -1
+									// for (let item of this.inputList) {
+									// 	if (item.id == index) {
+											
+									// 	}
+									// }
+									// let result = this.inputList.findIndex(value => {
+									// 	return value.id == index;
+									// });
+									// console.log(result)
+									console.log(this.inputList)
+									console.log('id'+index)
+									console.log(this.inputList.splice(index, 1))
+									// this.inputList.splice(index, 1)
 									uni.showToast({
 										icon: 'none',
 										title: '删除成功'
@@ -398,6 +424,7 @@
 						icon: 'none'
 					})
 				} else {
+					this.buttonDisable = true
 					this.$http('user/deposit/goods/add', "POST", dataInput, res => {
 						let data = res.data
 						if (data.success) {
@@ -407,6 +434,7 @@
 									uni.navigateTo({
 										url: "/pages/tab2/orderPay?boxNum=" + boxIndex,
 										success: () => {
+											this.buttonDisable = false
 											// #ifdef APP-PLUS
 											uni.report('addOrderNext', {
 												'describe': '存单下一步'
