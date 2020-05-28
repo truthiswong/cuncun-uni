@@ -28,7 +28,7 @@
 				<view class="no_data" v-if="list.length<=0">
 					<image src="../../static/tab1/no_data.png" mode=""></image>
 					<navigator url="/pages/tab2/addOrder">
-						<button class="common_button">去存点鞋子</button>
+						<button class="common_button">去存点东西</button>
 					</navigator>
 				</view>
 				<checkbox-group class="checkbox_custom" @change="onCheckboxChange">
@@ -65,9 +65,7 @@
 				chooseButton: '选择',
 			}
 		},
-		onLoad() {
-
-		},
+		onLoad() {},
 		onShow() {
 			this.getGoodsList()
 		},
@@ -314,5 +312,17 @@
 			right: 0;
 			z-index: 10;
 		}
+	}
+
+	.common_button {
+		width: 398upx;
+		height: 90upx;
+		line-height: 90upx;
+		background: rgba(59, 193, 187, 1);
+		border-radius: 45upx;
+		font-size: 30upx;
+		font-weight: 500;
+		color: white;
+		margin: 80upx auto 0;
 	}
 </style>
