@@ -2,8 +2,8 @@
 	<view>
 		<uni-nav-bar left-icon="back" @clickLeft="onClickBack" title="搜索" status-bar="true" fixed="true">
 			<view slot="right">
-				<view class="header_icon">
-					<button @click="onClickRight(chooseButton)" plain="true" class="choose_button">{{chooseButton}}</button>
+				<view class="header_icon" @click="onClickRight(chooseButton)">
+					<button plain="true" class="choose_button">{{chooseButton}}</button>
 				</view>
 			</view>
 		</uni-nav-bar>
@@ -139,7 +139,7 @@
 				console.log(this.candidatesDefault)
 				console.log(this.pageNumber)
 				console.log(this.totalPages)
-				
+
 				if (!this.candidatesDefault) {
 					uni.showToast({
 						icon: 'none',
@@ -159,6 +159,10 @@
 					this.allData = []
 					this.isCheckedShow = false
 					this.chooseButton = '选择'
+					uni.pageScrollTo({
+						scrollTop: 0,
+						duration: 300
+					})
 					this.keywords = e.value
 					if (this.totalPages > this.pageNumber) {
 						if (this.candidatesDefault == '物品') {
@@ -173,72 +177,76 @@
 			},
 			onSearchGoods() {
 				if (this.totalPages > this.pageNumber) {
-					this.$http('user/goods/page?keywords=' + this.keywords + '&pageSize=20&pageNumber=' + this.pageNumber, "GET", '', res => {
-						let data = res.data
-						if (data.success) {
-							if (data.data.data.length > 0) {
-								for (let item of data.data.data) {
-									item.checked = false
-									item.itemType = item.type.code
+					this.$http('user/goods/page?keywords=' + this.keywords + '&pageSize=20&pageNumber=' + this.pageNumber, "GET", '',
+						res => {
+							let data = res.data
+							if (data.success) {
+								if (data.data.data.length > 0) {
+									for (let item of data.data.data) {
+										item.checked = false
+										item.itemType = item.type.code
+									}
+									this.pageNumber++
+									this.allData = this.allData.concat(data.data.data)
+									this.totalPages = data.data.totalPages
+									if (this.totalPages == this.pageNumber) {
+										this.finished = true
+									}
+								} else if (data.data.data.length <= 0) {
+									uni.showToast({
+										icon: 'none',
+										title: '暂无数据, 换个关键词试试'
+									});
 								}
-								this.pageNumber++
-								this.allData = this.allData.concat(data.data.data)
-								this.totalPages = data.data.totalPages
-								if (this.totalPages == this.pageNumber) {
-									this.finished = true
-								}
-							} else if (data.data.data.length <= 0) {
+							} else {
 								uni.showToast({
 									icon: 'none',
-									title: '暂无数据, 换个关键词试试'
+									title: data.message
 								});
 							}
-						} else {
-							uni.showToast({
-								icon: 'none',
-								title: data.message
-							});
-						}
-					})
+						})
 				} else {
 					this.finished = true
 				}
 			},
 			onSearchBoxs() {
 				if (this.totalPages > this.pageNumber) {
-					this.$http('user/pack/page?keywords=' + this.keywords + '&pageSize=20&pageNumber=' + this.pageNumber, "GET", '', res => {
-						let data = res.data
-						if (data.success) {
-							if (data.data.data.length > 0) {
-								for (let item of data.data.data) {
-									item.checked = false
-									item.itemType = 'sundries'
-									item.name = item.remark
+					this.$http('user/pack/page?keywords=' + this.keywords + '&pageSize=20&pageNumber=' + this.pageNumber, "GET", '',
+						res => {
+							let data = res.data
+							if (data.success) {
+								if (data.data.data.length > 0) {
+									for (let item of data.data.data) {
+										item.checked = false
+										item.itemType = 'sundries'
+										item.name = item.remark
+									}
+									this.pageNumber++
+									this.allData = this.allData.concat(data.data.data)
+									this.totalPages = data.data.totalPages
+									if (this.totalPages == this.pageNumber) {
+										this.finished = true
+									}
+								} else if (data.data.data.length <= 0) {
+									uni.showToast({
+										icon: 'none',
+										title: '暂无数据, 换个关键词试试'
+									});
 								}
-								this.pageNumber++
-								this.allData = this.allData.concat(data.data.data)
-								this.totalPages = data.data.totalPages
-								if (this.totalPages == this.pageNumber) {
-									this.finished = true
-								}
-							} else if (data.data.data.length <= 0) {
+								console.log(this.allData)
+							} else {
 								uni.showToast({
 									icon: 'none',
-									title: '暂无数据, 换个关键词试试'
+									title: data.message
 								});
 							}
-							console.log(this.allData)
-						} else {
-							uni.showToast({
-								icon: 'none',
-								title: data.message
-							});
-						}
-					})
+						})
 				}
 			},
 			onClickRight(index) {
+				console.log(0)
 				if (index == '选择') {
+					console.log(111111111)
 					if (this.allData.length <= 0) {
 						uni.showToast({
 							icon: 'none',
@@ -249,6 +257,7 @@
 					this.isCheckedShow = true
 					this.chooseButton = '全选'
 				} else if (index == '全选') {
+					console.log(222222222222)
 					for (let item of this.allData) {
 						item.checked = true
 					}
