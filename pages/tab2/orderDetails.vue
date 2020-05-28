@@ -76,15 +76,15 @@
 				<view>
 					<view class="flex_between order_list_fee">
 						<p>运输费用</p>
-						<text>¥ {{order.deliveryFee}} {{order.deliveryFeeNew - order.deliveryFee >= 0?'+':'-'}} ¥ {{order.deliveryFeeNew - order.deliveryFee}}</text>
+						<text>¥ {{order.deliveryFee}} {{order.deliveryFeeNew - order.deliveryFee >= 0?'+':'-'}} ¥ {{order.deliveryFeeNew}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>打包费用</p>
-						<text>¥ {{order.packFee}} {{order.packFeeNew - order.packFee >= 0?'+':'-'}} ¥ {{order.packFeeNew - order.packFee}}</text>
+						<text>¥ {{order.packFee}} {{order.packFeeNew - order.packFee >= 0?'+':'-'}} ¥ {{order.packFeeNew}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>箱子费用</p>
-						<text>¥ {{order.boxFee}} {{order.boxFeeNew - order.boxFee >= 0?'+':'-'}} ¥ {{order.packFeeNew - order.packFee}}</text>
+						<text>¥ {{order.boxFee}} {{order.boxFeeNew - order.boxFee >= 0?'+':'-'}} ¥ {{order.boxFeeNew}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>订单总费用</p>
@@ -100,10 +100,10 @@
 							<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.prepaid}}</text></text>
 						</view>
 					</view>
-					<view class="flex_between order_list_fee" v-if="order.detailPrepaidStatus == 'wait' || order.detailAdjustPayStatus == 'wait'">
+					<view class="flex_between order_list_fee" v-if="order.detailAdjustPayStatus == 'wait'">
 						<p>剩余待支付</p>
 						<view>
-							<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.detailPrepaidStatus == 'wait'?order.prepaid:order.appendFee}}</text></text>
+							<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.appendFee}}</text></text>
 						</view>
 					</view>
 					<view class="flex_between order_list_fee" v-if="order.detailAdjustPayStatus == 'payed'">
@@ -144,9 +144,9 @@
 					<view class="flex_between order_list_phone">
 						<p>支付方式</p>
 						<view>
-							<text>{{order.detailPayStyle}}</text>
-							<text style="margin: 0 30upx;color:rgba(222,222,222,1);">|</text>
-							<text>{{order.detailPayStyle}}</text>
+							<text v-if="order.prepaidChannel">{{order.prepaidChannel}}支付</text>
+							<text v-if="order.adjustPayChannel" style="margin: 0 30upx;color:rgba(222,222,222,1);">|</text>
+							<text v-if="order.adjustPayChannel">{{order.adjustPayChannel}}支付</text>
 						</view>
 					</view>
 					<view class="flex_between order_list_phone">
@@ -192,13 +192,13 @@
 					<view class="">
 						<radio-group @change="onPayChangeStyle">
 							<uni-list class="list_custom list_custom_img56" v-for="(item, index) in payStyleList" :key="index">
-								<label>
-									<uni-list-item :title="item.name" :thumb="item.imgUrl" :showArrow="false">
-										<view slot="right">
-											<radio :value="item.value" :checked="payStyleIndex == index" color="rgba(59, 193, 187, 1)" />
-										</view>
-									</uni-list-item>
-								</label>
+								<uni-list-item :title="item.name" :thumb="item.imgUrl" :showArrow="false">
+									<view slot="right">
+										<label>
+											<radio :value="item.value" :checked="item.checked" color="rgba(59, 193, 187, 1)" />
+										</label>
+									</view>
+								</uni-list-item>
 							</uni-list>
 						</radio-group>
 					</view>
@@ -208,11 +208,11 @@
 		</uni-popup>
 		<view class="flex_between bottom_pay" v-if="order.detailStatus == 'waitpay'">
 			<text>¥ {{order.prepaid}}</text>
-			<button @click="onPayChange" class="button_block">确认支付</button>
+			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">确认支付</button>
 		</view>
 		<view class="flex_between bottom_pay" v-if="order.detailAdjustPayStatus == 'wait' && order.appendFee>0">
 			<text>¥ {{order.appendFee}}</text>
-			<button @click="onPayChange" class="button_block">调整支付</button>
+			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">调整支付</button>
 		</view>
 		<view class="flex_between bottom_pay" v-if="order.detailStatus == 'cancel'">
 			<text></text>
@@ -295,8 +295,8 @@
 						imgUrl: '../../static/tab2/WeChatpay.png'
 					}
 				],
-				payStyleIndex: 0,
 				payStyle: 'Alipay',
+				buttonActive: false,
 			}
 		},
 		onLoad(op) {
@@ -363,16 +363,12 @@
 			onPayChangeStyle(evt) {
 				console.log(evt.target.value)
 				this.payStyle = evt.target.value
-				if (this.payStyle == 'Alipay') {
-					this.payStyleIndex = 0
-				} else{
-					this.payStyleIndex = 1
-				}
 			},
 			onComfirmPay() {
 				let orderObj = {
 					orderId: this.orderId
 				}
+				console.log(this.payStyle)
 				// 预付款
 				if (this.payStyle == 'Alipay') {
 					console.log(this.order.id)
@@ -386,10 +382,12 @@
 									provider: 'alipay',
 									orderInfo: res.data.data,
 									success: (res) => {
+										console.log(respay)
 										this.$refs.popupPay.close()
 										this.getOrderDetail()
 									},
 									fail: (errpay) => {
+										console.log(errpay)
 										this.$refs.popupPay.close()
 										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
 											this.getOrderDetail()
@@ -419,7 +417,7 @@
 									},
 									fail: (err) => {
 										this.$refs.popupPay.close()
-										this.$http('user/deposit/order/append/fail', "POST", orderObj, res2 => {
+										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
 											this.getOrderDetail()
 										})
 									}
@@ -438,6 +436,7 @@
 					if (this.order.prepaidStatus.code == 'wait') {
 						// 预支付
 						this.$http('user/deposit/order/prepay/wechat', "POST", orderObj, res1 => {
+							console.log(res1.data)
 							if (res1.data.success) {
 								console.log(res1.data.data)
 								let orderInfoObj = {
@@ -455,6 +454,7 @@
 									provider: 'wxpay',
 									orderInfo: orderInfo,
 									success: (respay) => {
+										console.log(respay)
 										this.$refs.popupPay.close()
 										this.getOrderDetail()
 									},
@@ -496,12 +496,14 @@
 									provider: 'wxpay',
 									orderInfo: orderInfo,
 									success: (respay) => {
+										console.log(respay)
 										this.$refs.popupPay.close()
 										this.getOrderDetail()
 									},
 									fail: (err) => {
+										console.log(err)
 										this.$refs.popupPay.close()
-										this.$http('user/deposit/order/append/fail', "POST", orderObj, res2 => {
+										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
 											this.getOrderDetail()
 										})
 									},
@@ -526,7 +528,7 @@
 					let data = res.data
 					if (data.success) {
 						uni.navigateTo({
-							url: '/pages/tab2/addOrder?orderCopy=true',
+							url: '/pages/tab2/addOrder',
 							success: () => {
 								// #ifdef APP-PLUS
 								uni.report('recallOrder', {
@@ -555,7 +557,10 @@
 						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD HH:mm:ss')
 						data.data.detailAdjustPayStatus = data.data.adjustPayStatus.code
 						if (data.data.prepaidChannel) {
-							data.data.detailPayStyle = data.data.prepaidChannel.name //支付方式
+							data.data.prepaidChannel = data.data.prepaidChannel.name //预付费支付方式
+						}
+						if (data.data.adjustPayChannel) {
+							data.data.adjustPayChannel = data.data.adjustPayChannel.name //调整支付方式
 						}
 						this.order = data.data
 					} else {

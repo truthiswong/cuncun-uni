@@ -120,7 +120,11 @@
 					</view>
 					<view class="flex_between order_list_phone">
 						<p>支付方式</p>
-						<text>{{order.detailPayStyle}}</text>
+						<view>
+							<text v-if="order.prepaidChannel">{{order.prepaidChannel}}支付</text>
+							<text v-if="order.adjustPayChannel" style="margin: 0 30upx;color:rgba(222,222,222,1);">|</text>
+							<text v-if="order.adjustPayChannel">{{order.adjustPayChannel}}支付</text>
+						</view>
 					</view>
 					<view class="flex_between order_list_phone">
 						<p>下单时间</p>
@@ -430,8 +434,11 @@
 						data.data.detailAddress = `${data.data.area.province} ${data.data.area.city?data.data.area.city:''} ${data.data.area.district?data.data.area.district:''} ${data.data.plotName} ${data.data.address}`
 						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD HH:mm:ss')
 						data.data.detailStatus = data.data.status.code
-						if (data.data.payChannel) {
-							data.data.detailPayStyle = data.data.payChannel.name //支付方式
+						if (data.data.prepaidChannel) {
+							data.data.prepaidChannel = data.data.prepaidChannel.name //预付费支付方式
+						}
+						if (data.data.adjustPayChannel) {
+							data.data.adjustPayChannel = data.data.adjustPayChannel.name //调整支付方式
 						}
 						data.data.totalList = []
 						if (data.data.goods) {
