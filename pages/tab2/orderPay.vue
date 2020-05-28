@@ -426,6 +426,10 @@
 					let data = res.data
 					console.log(data)
 					if (data.success) {
+						// 订单创建成功清除缓存物品
+						uni.removeStorage({
+							key: 'orderGoodsList'
+						})
 						let dataObj = {
 							orderId: data.data.id
 						}

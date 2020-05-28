@@ -243,6 +243,9 @@
 									uni.removeStorage({
 										key: 'alertAgreement'
 									})
+									uni.removeStorage({
+										key: 'orderGoodsList'
+									})
 									uni.navigateTo({
 										url: '/pages/login/login',
 										success: () => {
@@ -280,6 +283,9 @@
 							})
 							uni.removeStorage({
 								key: 'alertAgreement'
+							})
+							uni.removeStorage({
+								key: 'orderGoodsList'
 							})
 							uni.navigateTo({
 								url: '/pages/login/login',

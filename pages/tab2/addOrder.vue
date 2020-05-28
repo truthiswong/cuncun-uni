@@ -15,10 +15,12 @@
 				<text>我们将为你的物品提供高标准的日式管理，维护，让你无顾之忧的同时，又一手轻松掌握。请简单告知我们你要存的东西，以便我们准备打包材料。</text>
 			</view>
 			<view class="add_content">
-				<view class="flex_between" v-for="(item,index) in inputList" :key="index" style="margin-top: 40upx;">
-					<input class="add_input" type="text" v-model="item.value" placeholder="如：文档，书本…" style="font-size:28upx;padding-left: 20upx;color: #282828;"
-					 placeholder-style="font-size:14px; font-weight:400; color:rgba(178,178,178,1); line-height:40upx;" />
-					<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" :value="item.number" @change="changeInputNumber($event, index, item)" />
+				<view v-for="(item,index) in inputList" :key="index" style="margin-top: 40upx;">
+					<view class="flex_between" v-if="item.number != 0">
+						<input class="add_input" type="text" @blur="inputText" v-model="item.value" placeholder="如：文档，书本…" style="font-size:28upx;padding-left: 20upx;color: #282828;"
+						 placeholder-style="font-size:14px; font-weight:400; color:rgba(178,178,178,1); line-height:40upx;" />
+						<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" :value="item.number" @change="changeInputNumber($event, index, item)" />
+					</view>
 				</view>
 				<view class="flex_between" style="margin-top: 60upx;">
 					<text class="button button_left" @click="onAddList">+ 添加</text>
@@ -141,7 +143,7 @@
 				inputList: [{
 					id: 0,
 					value: "",
-					number: 1
+					number: '1'
 				}],
 				inputListNumber: 0,
 				boxList: [{
@@ -170,19 +172,34 @@
 				agree3: false,
 				buttonActive: false,
 				buttonDisable: false,
-				orderCopy: false //订单复制
+				orderCopy: false, //订单复制
+				orderGoodsList: [],
 			}
 		},
 		onLoad(option) {
 			if (option.orderCopy == 'true') {
 				console.log(option.orderCopy)
 				this.orderCopy = true
+				this.getUserInputList()
 			} else {
-				uni.getStorageSync('orderGoodsList')
+				this.orderGoodsList = uni.getStorageSync('orderGoodsList')
+				if (!this.orderGoodsList) {
+					uni.setStorage({
+						key : 'orderGoodsList',
+						data: this.orderGoodsList
+					})
+				} else {
+					for (let i = 0; i < this.orderGoodsList.length; i++) {
+						if (this.orderGoodsList[i].number == 0 || this.orderGoodsList[i].value == '') {
+							this.orderGoodsList.splice(i, 1)
+						}
+					}
+					this.inputList = this.orderGoodsList
+				}
 				uni.getStorageSync('orderBoxsList')
 			}
 			this.getBoxList()
-			this.getUserInputList()
+			// this.getUserInputList()
 			let myDate = new Date()
 			let yy = myDate.getFullYear() //获取完整的年份(4位,1970-????)
 			let mm = myDate.getMonth() + 1 //获取当前月份(0-11,0代表1月)
@@ -265,13 +282,17 @@
 				this.inputList.push({
 					id: this.inputListNumber,
 					value: '',
-					number: 1
+					number: '1'
+				})
+			},
+			inputText() {
+				uni.setStorage({
+					key : 'orderGoodsList',
+					data: this.inputList
 				})
 			},
 			// 物品加减
 			changeInputNumber(number, index, item) {
-				console.log(number, index, item)
-				console.log(this.inputList)
 				if (number <= 0) {
 					uni.showModal({
 						title: '提示',
@@ -285,8 +306,12 @@
 									this.$http('user/deposit/goods/del', "POST", data, res => {
 										let data = res.data
 										if (data.success) {
-											console.log(index)
-											this.inputList.splice(index, 1)
+											this.inputList[index].number = 0
+											// this.inputList.splice(index, 1)
+											uni.setStorage({
+												key : 'orderGoodsList',
+												data: this.inputList
+											})
 											uni.showToast({
 												icon: 'none',
 												title: '删除成功'
@@ -299,37 +324,47 @@
 										}
 									})
 								} else {
-									// let result = -1
-									// for (let item of this.inputList) {
-									// 	if (item.id == index) {
-											
-									// 	}
-									// }
 									// let result = this.inputList.findIndex(value => {
 									// 	return value.id == index;
 									// });
-									// console.log(result)
-									console.log(this.inputList)
-									console.log('id'+index)
-									console.log(this.inputList.splice(index, 1))
-									// this.inputList.splice(index, 1)
-									uni.showToast({
-										icon: 'none',
-										title: '删除成功'
-									});
+									this.$nextTick(() => {
+										setTimeout(() => {
+											this.inputList[index].number = 0
+											// this.inputList.splice(index, 1)
+											uni.setStorage({
+												key : 'orderGoodsList',
+												data: this.inputList
+											})
+											uni.showToast({
+												icon: 'none',
+												title: '删除成功'
+											});
+										}, 50)
+									})
 								}
 							} else if (res.cancel) {
-								// this.$set(this.inputList[index],'number', 1);
+								this.inputList[index].number = '1'
 							}
 						}
 					})
 				} else {
-					this.inputList[index].number = number;
+					this.inputList[index].number = number
+					uni.setStorage({
+						key : 'orderGoodsList',
+						data: this.inputList
+					})
+					// if (this.orderGoodsList) {
+					// 	uni.setStorage({
+					// 		key : 'orderGoodsList',
+					// 		data: this.inputList
+					// 	})
+					// } else {
+						
+					// }
 				}
 			},
 			// 箱子增减
 			changeBoxNumber(number, index, item) {
-				console.log(number, index, item)
 				if (number <= 0) {
 					let data = {
 						id: item.id
