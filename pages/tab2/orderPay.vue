@@ -35,15 +35,9 @@
 							</view>
 						</view>
 					</uni-list-item>
-					<uni-list-item title="上门时间">
+					<uni-list-item title="上门时间" @click="onDateChange">
 						<view slot="right">
-							<!-- <picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
-								<view style="font-size:28upx; color:rgba(3,166,166,1);">{{date}}</view>
-							</picker> -->
-							<!-- <picker mode="multiSelector" range='[["a","b"], ["c","d"]]'>
-								<view>{{11}}</view>
-							</picker> -->
-							<view @click="onDateChange" style="font-size:28upx; color:rgba(3,166,166,1);">{{date}}</view>
+							<view style="font-size:28upx; color:rgba(3,166,166,1);">{{date}}</view>
 						</view>
 					</uni-list-item>
 					<uni-list-item title="备注" :showArrow="false">
@@ -140,7 +134,7 @@
 		</uni-popup>
 		<view class="flex_between bottom_pay">
 			<text>¥ {{pay_fee}}</text>
-			<button @click="onPayChange" class="button_block" :class="{button_block_active: buttonActive}">确认支付</button>
+			<button @click="onPayChange":disabled="buttonDisable"  class="button_block" :class="{button_block_active: buttonActive}">确认支付</button>
 		</view>
 	</view>
 </template>
@@ -188,9 +182,10 @@
 				payStyle: 'Alipay',
 				buttonActive: false,
 				time: '12:01',
-				date: '请选择送达时间',
+				date: '请选择上门时间',
 				pay_fee: 0, // 支付费用
 				boxNum: 0, // 箱子数量
+				buttonDisable: false, //按钮禁止点击
 			}
 		},
 		onLoad(op) {
@@ -213,17 +208,19 @@
 		watch: {
 			address() {
 				if (this.address.id && this.dateDate) {
-					this.buttonActive = true;
+					this.buttonActive = true
+					this.buttonDisable = true
 					this.getFee()
 				} else {
-					this.buttonActive = false;
+					this.buttonActive = false
 				}
 			},
 			dateDate() {
 				if (this.address.id && this.dateDate) {
-					this.buttonActive = true;
+					this.buttonDisable = true
+					this.buttonActive = true
 				} else {
-					this.buttonActive = false;
+					this.buttonActive = false
 				}
 			}
 		},
@@ -249,6 +246,10 @@
 			},
 			confirmPopupDate() {
 				this.$refs.popupDate.close()
+				if (!this.dateDate || !this.hourValue) {
+					this.date = '请选择上门时间'
+					return
+				}
 				this.date = this.dateDate + this.hourValue
 				this.getFee()
 			},
@@ -276,7 +277,6 @@
 					for (let i = 0; i < this.hours.length; i++) {
 						if (this.hours[i].value === evt.target.value) {
 							this.currentHour = i;
-							this.hours[i].clicked = 'true'
 							this.hourValue1 = this.hours[i].valueStart
 							this.hourValue2 = this.hours[i].valueEnd
 							console.log(this.hourValue1)
@@ -285,20 +285,6 @@
 							break;
 						}
 					}
-					// for (let item of this.hours) {
-					// 	if (evt.target.value == item.value) {
-					// 		item.clicked = 'true'
-					// 		this.hourValue1 = item.valueStart
-					// 		this.hourValue2 = item.valueEnd
-					// 		console.log(this.hourValue1)
-					// 		console.log(this.hourValue2)
-					// 		this.hourValue = item.value
-					// 		this.date = this.dateDate + item.value
-					// 		this.getFee()
-					// 	} else {
-					// 		item.clicked = ''
-					// 	}
-					// }
 				}
 			},
 			onClickHours() {
@@ -313,8 +299,10 @@
 				if (!this.address.id) {
 					uni.showToast({
 						icon: 'none',
-						title: '请先选择地址'
+						title: '请选择地址'
 					});
+				} else if (!this.dateDate || !this.hourValue) {
+					
 				} else {
 					let data = {
 						addressId: this.address.id,
@@ -324,6 +312,7 @@
 					}
 					this.$http('user/deposit/param/freight', "POST", data, res => {
 						let data = res.data
+						this.buttonDisable = false
 						if (data.success) {
 							console.log(data)
 							this.pay_fee = data.data
