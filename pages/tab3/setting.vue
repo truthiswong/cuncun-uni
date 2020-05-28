@@ -231,6 +231,18 @@
 							this.$http('user/killme', "GET", '', res => {
 								let data = res.data
 								if (data.success) {
+									uni.removeStorage({
+										key: 'user'
+									})
+									uni.removeStorage({
+										key: 'token'
+									})
+									uni.removeStorage({
+										key: 'tab1ShowHide'
+									})
+									uni.removeStorage({
+										key: 'alertAgreement'
+									})
 									uni.navigateTo({
 										url: '/pages/login/login',
 										success: () => {
