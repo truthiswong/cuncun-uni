@@ -13,16 +13,20 @@
 						<view class="row list_top">
 							<text class="top_name">{{item.linkman}}</text>
 							<text class="top_phone">{{item.mobile}}</text>
-							<uni-tag class="address_tag" :text="item.tag[0].name" size="small" :inverted="true" type="error"></uni-tag>
+							
 						</view>
-						<text class="address">{{item.detailAddress}}</text>
+						<view class="address_des">
+							<uni-tag class="address_tag_def" v-if="item.dft" text="默认" size="small" :inverted="false" type="error"></uni-tag>
+							<uni-tag class="address_tag address_tag_def" :text="item.tag[0].name" size="small" :inverted="false" type="default"></uni-tag>
+							<text class="address">{{item.detailAddress}}</text>
+						</view>
 					</view>
 					<view class="row flex_between list_bottom">
 						<view>
-							<label>
+							<!-- <label>
 								<radio :value="item.id" :checked="item.dft" disabled style="transform:scale(0.8);" color="rgba(59, 193, 187, 1)" />
 								<text>默认地址</text>
-							</label>
+							</label> -->
 						</view>
 						<view class="row">
 							<view @click="onDetele(item.id)" class="row image1">
@@ -117,22 +121,30 @@
 				// }
 			},
 			onDetele(id) {
-				let data = {
-					id: id
-				}
-				this.$http('user/addr/del', "POST", data, res => {
-					let data = res.data
-					if (data.success) {
-						uni.showToast({
-							icon: 'none',
-							title: '删除成功'
-						});
-						this.getAddressList()
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
+				uni.showModal({
+					title: '提示',
+					content: '确认删除地址吗?',
+					success: (res) => {
+						if (res.confirm) {
+							let data = {
+								id: id
+							}
+							this.$http('user/addr/del', "POST", data, res => {
+								let data = res.data
+								if (data.success) {
+									uni.showToast({
+										icon: 'none',
+										title: '删除成功'
+									});
+									this.getAddressList()
+								} else {
+									uni.showToast({
+										icon: 'none',
+										title: data.message
+									});
+								}
+							})
+						}
 					}
 				})
 			},
@@ -196,10 +208,12 @@
 			font-size: 28upx;
 			font-weight: 500;
 			color: rgba(40, 40, 40, 1);
+			line-height: 60upx;
 
 			.top_name {
 				display: block;
-				width: 240upx;
+				// width: 240upx;
+				margin-right: 20upx;
 			}
 
 			.top_phone {
@@ -214,12 +228,24 @@
 				color: rgba(189, 103, 108, 1);
 			}
 		}
-
-		.address {
-			font-size: 26upx;
-			font-weight: 400;
-			color: rgba(104, 104, 104, 1);
-			line-height: 37upx;
+		.address_des {
+			.address_tag_def {
+				display: inline-block;
+				width: 50upx;
+				height: 32upx;
+				text-align: center;
+				line-height: 32upx;
+				font-size: 22upx;
+				font-weight: 400;
+				color: rgba(189, 103, 108, 1);
+				margin-right: 20upx;
+			}
+			.address {
+				font-size: 26upx;
+				font-weight: 400;
+				color: rgba(104, 104, 104, 1);
+				line-height: 37upx;
+			}
 		}
 
 		.list_bottom {
