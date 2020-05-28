@@ -35,7 +35,7 @@
 								<view class="segmented_list" v-for="item in orderList01" :key="item.id">
 									<navigator :url="'/pages/tab2/orderDetails?id='+item.id">
 										<uni-list class="list_custom list_custom_align_start">
-											<uni-list-item title="存单" :note="item.address" :showArrow="false">
+											<uni-list-item title="存单" :note="item.detailAddress" :showArrow="false">
 												<view slot='right' class="list_right_text">
 													<text class="list_right_orange">待付款</text>
 												</view>
@@ -60,7 +60,7 @@
 								<view class="segmented_list" v-for="item in orderList02" :key="item.id">
 									<navigator :url="'/pages/tab1/orderBackDetails?id='+item.id">
 										<uni-list class="list_custom list_custom_align_start">
-											<uni-list-item title="取单" :note="'送到: '+item.address" :showArrow="false">
+											<uni-list-item title="取单" :note="'送到: '+item.detailAddress" :showArrow="false">
 												<view slot='right' class="list_right_text">
 													<text class="list_right_orange">待付款</text>
 												</view>
@@ -129,7 +129,7 @@
 								<view class="segmented_list">
 									<view @click="onOrder1Detail(item)">
 										<uni-list class="list_custom list_custom_align_start">
-											<uni-list-item title="存单" :note="'上门地址：'+item.address" :showArrow="false">
+											<uni-list-item title="存单" :note="'上门地址：'+item.detailAddress" :showArrow="false">
 												<view slot='right' class="list_right_text">
 													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
 													<text class="list_right_blue" v-if="item.status.code == 'init'">待接单</text>
@@ -165,7 +165,7 @@
 								<view class="segmented_list">
 									<view @click="onOrder2Detail(item)">
 										<uni-list class="list_custom list_custom_align_start">
-											<uni-list-item title="取单" :note="'送到: '+item.address" :showArrow="false">
+											<uni-list-item title="取单" :note="'送到: '+item.detailAddress" :showArrow="false">
 												<view slot='right' class="list_right_text">
 													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
 													<text class="list_right_blue" v-if="item.status.code == 'init'">待处理</text>
@@ -429,6 +429,9 @@
 					let data = res.data
 					if (data.success) {
 						console.log(data.data)
+						for (let item of data.data.deposit) {
+							item.detailAddress = `${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
+						}
 						this.orderList01 = data.data.deposit // 存单
 						for (let item of data.data.withdraw) {
 							item.totalList = []
@@ -454,6 +457,7 @@
 									item.goodsNumber = item.packs.length
 								}
 							}
+							item.detailAddress = `${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
 						}
 						this.orderList02 = data.data.withdraw // 取单
 						this.orderList03 = data.data.storage // 仓储
@@ -475,6 +479,9 @@
 						if (data.success) {
 							if (this.pageNumber1 <= 0) {
 								this.orderList1 = []
+							}
+							for (let item of data.data.data) {
+								item.detailAddress = `${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
 							}
 							this.orderList1 = this.orderList1.concat(data.data.data)
 							this.totalPages1 = data.data.totalPages
@@ -525,6 +532,7 @@
 										item.goodsNumber = item.packs.length
 									}
 								}
+								item.detailAddress = `${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
 							}
 							if (this.pageNumber2 <= 0) {
 								this.orderList2 = []
