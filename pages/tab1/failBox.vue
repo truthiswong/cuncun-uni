@@ -166,16 +166,16 @@
 			// 获取未过安检的列表
 			getFailList() {
 				if (this.totalPages > this.pageNumber) {
-					this.$http('user/goods/page?type=fail&pageSize=12&pageNumber=' + this.pageNumber, "GET", '', res => {
+					this.$http(`user/pack/page?auditStatus=fail&pageSize=15&pageNumber=${this.pageNumber}`, "GET", '', res => {
 						let data = res.data
 						if (data.success) {
 							for (let item of data.data.data) {
 								item.checked = false
 							}
+							this.total = data.data.total
 							this.pageNumber++
 							this.list = this.list.concat(data.data.data)
 							this.totalPages = data.data.totalPages
-							this.total = data.data.total
 							if (this.totalPages == this.pageNumber) {
 								this.finished = true
 							}
