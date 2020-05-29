@@ -13,7 +13,7 @@
 						<view class="row list_top">
 							<text class="top_name">{{item.linkman}}</text>
 							<text class="top_phone">{{item.mobile}}</text>
-							
+
 						</view>
 						<view class="address_des">
 							<uni-tag class="address_tag_def" v-if="item.dft" text="默认" size="small" :inverted="false" type="error"></uni-tag>
@@ -79,19 +79,18 @@
 			onChooseAddress(item) {
 				console.log(item)
 				if (this.chooseAddress) {
-					// var pages = getCurrentPages();
-					// var currPage = pages[pages.length - 1]; //当前页面
-					// var prevPage = pages[pages.length - 2]; //上一个页面
-					// console.log(pages)
-					// console.log(currPage)
-					// console.log(prevPage)
-					// prevPage.$data.address=item
-					// uni.navigateBack();
 					let pages = getCurrentPages(); //获取所有页面栈实例列表
 					let nowPage = pages[pages.length - 1]; //当前页页面实例
 					let prevPage = pages[pages.length - 2]; //上一页页面实例
 					prevPage.$vm.address = item; //修改上一页data里面的couponNumber参数值为value
-					uni.navigateBack();
+
+					uni.setStorage({
+						key: 'address',
+						data: item,
+						success: () => {
+							uni.navigateBack();
+						}
+					})
 				}
 			},
 			onSetDefault(evt) {
@@ -158,15 +157,40 @@
 					let data = res.data
 					console.log(data)
 					if (data.success) {
+						let result = -2
 						for (let item of data.data) {
-							item.detailAddress = `${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
+							item.detailAddress =
+								`${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
+							if (item.dft) {
+								if (!uni.getStorageSync('address')) {
+									uni.setStorage({
+										key: 'address',
+										data: item,
+									})
+								}
+							}
 						}
 						this.addressList = data.data
+						result = data.data.findIndex(value => {
+							return value.dft == true;
+						})
+						if (result != -1) {
+							uni.setStorage({
+								key: 'address',
+								data: data.data[0],
+							})
+						}
+						if (data.data.length > 0) {
+							uni.setStorage({
+								key: 'address',
+								data: data.data[0],
+							})
+						}
 					} else {
 						uni.showToast({
 							icon: 'none',
 							title: data.message
-						});
+						})
 					}
 				})
 			}
@@ -228,6 +252,7 @@
 				color: rgba(189, 103, 108, 1);
 			}
 		}
+
 		.address_des {
 			.address_tag_def {
 				display: inline-block;
@@ -240,6 +265,7 @@
 				color: rgba(189, 103, 108, 1);
 				margin-right: 20upx;
 			}
+
 			.address {
 				font-size: 26upx;
 				font-weight: 400;

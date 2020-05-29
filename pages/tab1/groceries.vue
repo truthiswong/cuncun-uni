@@ -81,9 +81,7 @@
 				finished: false
 			}
 		},
-		onLoad() {
-
-		},
+		onLoad() {},
 		onShow() {
 			this.getGoodsList()
 		},
