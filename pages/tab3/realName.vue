@@ -7,10 +7,13 @@
 				<image src="../../static/common/finish.png" mode=""></image>
 			</view>
 			<view>
-				<p style="font-size: 28upx;line-height: 48upx;">为了正常使用本服务，请完成实名认证。</p>
-				<p style="font-size: 28upx;line-height: 48upx;">存存使用高安全性的支付宝实名认证服务，不会产生任何费用，请放心使用。</p>
-				<p style="font-size: 28upx;line-height: 48upx;">存存运营方：上海顺存科技有限公司</p>
-				
+				<p style="font-size: 28upx;line-height: 48upx;">您好，欢迎加入存存私人云端收纳的生活方式。</p>
+				<p style="font-size: 28upx;line-height: 48upx;">依据存存服务协议和相关规定，您需要完成实名认证以正常使用。</p>
+				<p style="font-size: 28upx;line-height: 48upx;">
+					<text style="vertical-align: middle;">本次身份验证由 支付宝提供</text>
+					<image style="width: 40upx;height: 40upx;vertical-align: middle;margin-left: 20upx;" src="../../static/tab2/Alipay.png" mode=""></image>
+				</p>
+				<p style="font-size: 28upx;line-height: 48upx;">* 实名认证服务，不会产生任何费用，请放心使用！</p>
 			</view>
 			<uni-list class="list_custom list_custom_item list_custom_margin20">
 				<uni-list-item title="姓名：" :showArrow="false">
