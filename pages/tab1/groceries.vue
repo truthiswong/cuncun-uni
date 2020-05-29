@@ -50,6 +50,9 @@
 						</view>
 					</view>
 				</checkbox-group>
+				<view v-if="finished" style="text-align: center;font-size:24upx;font-weight:400;color:rgba(178,178,178,1);margin: 20upx 0;line-height:33upx;">
+					这是我的底线，没有更多的咯～
+				</view>
 			</view>
 			<view class="bottom_button" v-if="isCheckedShow">
 				<image @click="onCancel" style="width: 218upx;height: 124upx;" src="../../static/tab1/long_cancel.png" mode=""></image>
@@ -173,7 +176,7 @@
 			// 获取物品列表
 			getGoodsList() {
 				if (this.totalPages > this.pageNumber) {
-					this.$http(`user/pack/page?type=B&auditStatus=pass&pageSize=20&pageNumber=${this.pageNumber}`, "GET", '', res => {
+					this.$http(`user/pack/page?type=B&auditStatus=pass&pageSize=15&pageNumber=${this.pageNumber}`, "GET", '', res => {
 						let data = res.data
 						if (data.success) {
 							for (let item of data.data.data) {

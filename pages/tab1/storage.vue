@@ -41,6 +41,9 @@
 						</label>
 					</view>
 				</checkbox-group>
+				<view v-if="finished" style="text-align: center;font-size:24upx;font-weight:400;color:rgba(178,178,178,1);margin: 20upx 0;line-height:33upx;">
+					这是我的底线，没有更多的咯～
+				</view>
 			</view>
 			<view class="bottom_button" v-if="isCheckedShow">
 				<image @click="onCancel" style="width: 218upx;height: 124upx;" src="../../static/tab1/long_cancel.png" mode=""></image>
@@ -63,6 +66,10 @@
 				list: [],
 				isCheckedShow: false,
 				chooseButton: '选择',
+				pageNumber: 0,
+				totalPages: 1,
+				total: 0,
+				finished: false
 			}
 		},
 		onLoad() {},
@@ -75,6 +82,9 @@
 			} else {
 				this.headerShow = true;
 			}
+		},
+		onReachBottom() {
+			this.getGoodsList()
 		},
 		methods: {
 			onClickBack() {
@@ -155,20 +165,30 @@
 			},
 			// 获取物品列表
 			getGoodsList() {
-				this.$http('user/goods/list?top=10&type=storeroom', "GET", '', res => {
-					let data = res.data
-					if (data.success) {
-						for (let item of data.data) {
-							item.checked = false
+				if (this.totalPages > this.pageNumber) {
+					this.$http('user/goods/page?type=storeroom&pageSize=12&pageNumber=' + this.pageNumber, "GET", '', res => {
+						let data = res.data
+						if (data.success) {
+							for (let item of data.data.data) {
+								item.checked = false
+							}
+							this.pageNumber++
+							this.list = this.list.concat(data.data.data)
+							this.totalPages = data.data.totalPages
+							this.total = data.data.total
+							if (this.totalPages == this.pageNumber) {
+								this.finished = true
+							}
+						} else {
+							uni.showToast({
+								icon: 'none',
+								title: data.message
+							});
 						}
-						this.list = data.data //书架
-					} else {
-						uni.showToast({
-							icon: 'none',
-							title: data.message
-						});
-					}
-				})
+					})
+				} else {
+					this.finished = true
+				}
 			}
 		}
 	}

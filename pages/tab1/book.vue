@@ -167,7 +167,7 @@
 			// 获取物品列表
 			getGoodsList() {
 				if (this.totalPages > this.pageNumber) {
-					this.$http('user/goods/page?type=bookcase&pageSize=12&pageNumber=' + this.pageNumber, "GET", '', res => {
+					this.$http('user/goods/page?type=bookcase&pageSize=15&pageNumber=' + this.pageNumber, "GET", '', res => {
 						let data = res.data
 						if (data.success) {
 							for (let item of data.data.data) {
@@ -190,7 +190,6 @@
 				} else {
 					this.finished = true
 				}
-				
 			}
 		}
 
