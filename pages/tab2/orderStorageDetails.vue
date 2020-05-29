@@ -46,30 +46,39 @@
 				<p>费用清单</p>
 				<view class="order_list_image">
 					<view style="margin-bottom: 20upx;border-top: 2upx solid rgba(242, 242, 242, 0.6);">
-						<view class="flex_between" style="margin-top: 10upx;" v-if="order.boxECnum>0">
-							<view class="row storge_box">
+						<view class="flex_between row" style="margin-top: 10upx;" v-if="order.boxECnum>0">
+							<view class="storge_box col-3">
 								<image src="../../static/tab2/storge_box.png" mode=""></image>
-								<view>
-									<text>EC箱 ×1</text>
-									<p>仓储费用¥{{order.boxECprice}}</p>
-								</view>
 							</view>
-							<view class="storge_box">
-								<text>¥ {{order.boxECprice/order.boxECnum}}</text>
-								<p>共{{order.boxECnum}}个</p>
+							<view class="col-9">
+								<view class="flex_between">
+									<view class="storge_box">
+										<!-- EC 经济照片 SD 标准拍照-->
+										<text>经济箱 × {{order.boxECnum}}</text>
+									</view>
+									<view class="storge_box">
+										<text>¥ {{order.boxECprice/order.boxECnum}}</text>
+									</view>
+								</view>
+								<view class="flex_between" style="font-size: 28upx;line-height: 32upx;margin-top: 10upx;color: rgba(178, 178, 178, 1);" v-if="item.typeBox == 'B'" v-for="(item,index) in orderBox" :key="index">
+									<text>{{item.typeName}}</text>
+									<text>¥ {{item.fee}}</text>
+								</view>
 							</view>
 						</view>
 						<view class="flex_between" v-if="order.boxSDnum>0">
-							<view class="row storge_box">
+							<view class="storge_box col-3">
 								<image src="../../static/tab2/storge_box.png" mode=""></image>
-								<view>
-									<text>SD箱 ×1</text>
-									<p>仓储费用¥{{order.boxSDprice}}</p>
-								</view>
 							</view>
-							<view class="storge_box">
-								<text>¥ {{order.boxSDprice/order.boxSDnum}}</text>
-								<p>共{{order.boxSDnum}}个</p>
+							<view class="col-9">
+								<view class="flex_between storge_box">
+									<text>标准箱 × {{order.boxSDnum}}</text>
+									<text>¥ {{order.boxSDprice/order.boxSDnum}}</text>
+								</view>
+								<view class="flex_between" style="font-size: 28upx;line-height: 32upx;margin-top: 10upx;color: rgba(178, 178, 178, 1);" v-if="item.typeBox == 'A'" v-for="(item,index) in orderBox" :key="index">
+									<text>{{item.typeName}}</text>
+									<text>¥ {{item.fee}}</text>
+								</view>
 							</view>
 						</view>
 					</view>
@@ -171,6 +180,7 @@
 				order: '',
 				orderId: '',
 				gotoPage: '',
+				orderBox: [],
 				payStyleList: [{
 						id: 0,
 						value: 'Alipay',
@@ -221,29 +231,7 @@
 		watch: {},
 		methods: {
 			onClickBack() {
-				console.log(this.gotoPage)
-				if (this.gotoPage == 'tab20') {
-					uni.switchTab({
-						url: '/pages/tabs/tab2?gotoPage=tab20'
-					})
-				} else if (this.gotoPage == 'tab21') {
-					console.log(11111111111)
-					uni.switchTab({
-						url: '/pages/tabs/tab2?gotoPage=tab21'
-					})
-				} else if (this.gotoPage == 'tab22') {
-					uni.switchTab({
-						url: '/pages/tabs/tab2?gotoPage=tab22'
-					})
-				} else if (this.gotoPage == 'tab23') {
-					uni.switchTab({
-						url: '/pages/tabs/tab2?gotoPage=tab23'
-					})
-				} else {
-					uni.navigateBack({
-						delta: 1
-					})
-				}
+				uni.navigateBack()
 			},
 			onPayChange() {
 				this.$refs.popupPay.open()
@@ -346,6 +334,23 @@
 						}
 						data.data.orderTime = this.$moment(data.data.sendUserTime).format('YYYY-MM-DD HH:mm:ss')
 						this.order = data.data
+					} else {
+						uni.showToast({
+							icon: 'none',
+							title: data.message
+						});
+					}
+				})
+				this.$http('/user/store/order/packs?orderId=' + this.orderId, "GET", '', res => {
+					let data = res.data
+					if (data.success) {
+						for (let item of data.data.data) {
+							item.typeName = item.pack.box.name
+							item.typeImg = item.pack.box.type.name
+							item.typeBox = item.pack.box.type.code
+						}
+						this.orderBox = data.data.data
+						console.log(this.orderBox)
 					} else {
 						uni.showToast({
 							icon: 'none',
