@@ -169,13 +169,13 @@
 					<view class="">
 						<radio-group @change="onPayChangeStyle">
 							<uni-list class="list_custom list_custom_img56" v-for="(item, index) in payStyleList" :key="index">
-								<uni-list-item :title="item.name" :thumb="item.imgUrl" :showArrow="false">
-									<view slot="right">
-										<label>
-											<radio :value="item.value" :checked="item.checked" color="rgba(59, 193, 187, 1)" />
-										</label>
-									</view>
-								</uni-list-item>
+								<label>
+									<uni-list-item :title="item.name" :thumb="item.imgUrl" :showArrow="false">
+										<view slot="right">
+											<radio :value="item.value" :checked="payStyleIndex == index" color="rgba(59, 193, 187, 1)" />
+										</view>
+									</uni-list-item>
+								</label>
 							</uni-list>
 						</radio-group>
 					</view>
@@ -273,6 +273,7 @@
 					}
 				],
 				payStyle: 'Alipay',
+				payStyleIndex: 0,
 				buttonActive: false,
 			}
 		},
@@ -307,28 +308,18 @@
 		watch: {},
 		methods: {
 			onClickBack() {
-				console.log(this.gotoPage)
-				if (this.gotoPage == 'tab20') {
-					uni.switchTab({
-						url: '/pages/tabs/tab2?gotoPage=tab20'
-					})
-				} else if (this.gotoPage == 'tab21') {
-					console.log(11111111111)
-					uni.switchTab({
-						url: '/pages/tabs/tab2?gotoPage=tab21'
-					})
-				} else if (this.gotoPage == 'tab22') {
-					uni.switchTab({
-						url: '/pages/tabs/tab2?gotoPage=tab22'
-					})
-				} else if (this.gotoPage == 'tab23') {
-					uni.switchTab({
-						url: '/pages/tabs/tab2?gotoPage=tab23'
+				if (this.gotoPage) {
+					uni.setStorage({
+						key: 'gotoPage',
+						data: this.gotoPage,
+						success: () => {
+							uni.switchTab({
+								url: '/pages/tabs/tab2',
+							})
+						}
 					})
 				} else {
-					uni.navigateBack({
-						delta: 1
-					})
+					uni.navigateBack()
 				}
 			},
 			onPayChange() {
@@ -340,6 +331,11 @@
 			onPayChangeStyle(evt) {
 				console.log(evt.target.value)
 				this.payStyle = evt.target.value
+				if (this.payStyle == 'Alipay') {
+					this.payStyleIndex = 0
+				} else {
+					this.payStyleIndex = 1
+				}
 			},
 			// 支付
 			onComfirmPay() {
@@ -350,27 +346,18 @@
 					this.$http('user/withdraw/order/pay/alipay', "POST", orderObj, res1 => {
 						if (res1.data.success) {
 							console.log(res1.data.data)
+							this.$refs.popupPay.close()
 							// #ifdef APP-PLUS
 							uni.requestPayment({
 								provider: 'alipay',
 								orderInfo: res1.data.data,
 								success: (res) => {
 									console.log(res)
-									this.$refs.popupPay.close()
 									this.getOrderDetail()
 								},
 								fail: (err) => {
-									this.$refs.popupPay.close()
 									this.$http('user/withdraw/order/pay/fail', "POST", orderObj, res2 => {
-										if (res2.data.success) {
-											console.log(res2.data)
-											this.getOrderDetail()
-										} else {
-											uni.showToast({
-												icon: 'none',
-												title: res2.data.message
-											});
-										}
+										this.getOrderDetail()
 									})
 								},
 								complete: (e) => {}
@@ -389,27 +376,26 @@
 						console.log(res1.data)
 						if (res1.data.success) {
 							console.log(res1.data.data)
+							this.$refs.popupPay.close()
 							let orderInfoObj = {
 								"appid": res1.data.data.appid,
 								"noncestr": res1.data.data.noncestr,
-								"package": "Sign=WXPay",
+								"package": res1.data.data.package,
 								"partnerid": res1.data.data.partnerid,
 								"prepayid": res1.data.data.prepayid,
 								"timestamp": res1.data.data.timestamp,
 								"sign": res1.data.data.sign
 							}
-							let orderInfo = JSON.stringify(orderInfoObj)
+							// let orderInfo = JSON.stringify(orderInfoObj)
 							// #ifdef APP-PLUS
 							uni.requestPayment({
 								provider: 'wxpay',
-								orderInfo: orderInfo,
+								orderInfo: orderInfoObj,
 								success: (res) => {
 									console.log(res)
-									this.$refs.popupPay.close()
 									this.getOrderDetail()
 								},
 								fail: (err) => {
-									this.$refs.popupPay.close()
 									this.$http('user/withdraw/order/pay/fail', "POST", orderObj, res2 => {
 										this.getOrderDetail()
 									})

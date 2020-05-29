@@ -71,7 +71,7 @@
 								<label>
 									<uni-list-item :title="item.name" :thumb="item.imgUrl" :showArrow="false">
 										<view slot="right">
-											<radio :value="item.value" :checked="item.checked" color="rgba(59, 193, 187, 1)" />
+											<radio :value="item.value" :checked="payStyleIndex == index" color="rgba(59, 193, 187, 1)" />
 										</view>
 									</uni-list-item>
 								</label>
@@ -113,6 +113,7 @@
 					}
 				],
 				payStyle: 'Alipay',
+				payStyleIndex: 0,
 				buttonActive: false,
 				cont_top_bg: '../../static/tab1/order_back_bg2.png',
 			}
@@ -154,6 +155,11 @@
 			onPayChangeStyle(evt) {
 				console.log(evt.target.value)
 				this.payStyle = evt.target.value
+				if (this.payStyle == 'Alipay') {
+					this.payStyleIndex = 0
+				} else {
+					this.payStyleIndex = 1
+				}
 			},
 			closePopup() {
 				this.$refs.popup.close()
@@ -189,12 +195,12 @@
 							this.$http('user/withdraw/order/pay/alipay', "POST", dataObj, res1 => {
 								if (res1.data.success) {
 									console.log(res1.data.data)
+									this.$refs.popup.close()
 									// #ifdef APP-PLUS
 									uni.requestPayment({
 										provider: 'alipay',
 										orderInfo: res1.data.data,
 										success: (res) => {
-											this.$refs.popup.close()
 											data.data.payStyle = 'Alipay'
 											uni.navigateTo({
 												url: "/pages/tab1/orderBackSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(data.data)),
@@ -209,8 +215,8 @@
 										},
 										fail: (err) => {
 											this.$http('user/withdraw/order/pay/fail', "POST", dataObj, res2 => {
-												uni.switchTab({
-													url: '/pages/tabs/tab2'
+												uni.navigateTo({
+													url: `/pages/tab1/orderBackDetails?id=${dataObj.orderId}&gotoPage=tab22`
 												})
 											})
 										},
@@ -230,23 +236,24 @@
 								console.log(res1.data)
 								if (res1.data.success) {
 									console.log(res1.data.data)
+									this.$refs.popup.close()
 									let orderInfoObj = {
 										"appid": res1.data.data.appid,
 										"noncestr": res1.data.data.noncestr,
-										"package": "Sign=WXPay",
+										"package": res1.data.data.package,
 										"partnerid": res1.data.data.partnerid,
 										"prepayid": res1.data.data.prepayid,
 										"timestamp": res1.data.data.timestamp,
 										"sign": res1.data.data.sign
 									}
-									let orderInfoStr = JSON.stringify(orderInfoObj)
+									// let orderInfoStr = JSON.stringify(orderInfoObj)
 									// #ifdef APP-PLUS
 									uni.requestPayment({
 										provider: 'wxpay',
-										orderInfo: orderInfo,
+										orderInfo: orderInfoObj,
 										success: (respay) => {
 											console.log(respay)
-											this.$refs.popup.close()
+											
 											uni.navigateTo({
 												url: "/pages/tab1/orderBackSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(data.data)),
 												success: () => {
@@ -259,11 +266,9 @@
 											})
 										},
 										fail: (err) => {
-											console.log(err)
-											this.$refs.popup.close()
 											this.$http('user/withdraw/order/pay/fail', "POST", dataObj, res2 => {
 												uni.navigateTo({
-													url: `/pages/tab2/orderDetails?id=${dataObj.orderId}&gotoPage=tab22`
+													url: `/pages/tab1/orderBackDetails?id=${dataObj.orderId}&gotoPage=tab22`
 												})
 											})
 										},

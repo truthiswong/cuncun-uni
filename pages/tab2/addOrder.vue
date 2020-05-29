@@ -174,6 +174,7 @@
 				buttonDisable: false,
 				orderCopy: false, //订单复制
 				orderGoodsList: [],
+				orderBoxsList: []
 			}
 		},
 		onLoad(option) {
@@ -183,6 +184,7 @@
 				this.getUserInputList()
 			} else {
 				this.orderGoodsList = uni.getStorageSync('orderGoodsList')
+				this.orderBoxsList = uni.getStorageSync('orderBoxsList')
 				if (!this.orderGoodsList) {
 					uni.setStorage({
 						key : 'orderGoodsList',
@@ -196,10 +198,14 @@
 					}
 					this.inputList = this.orderGoodsList
 				}
-				uni.getStorageSync('orderBoxsList')
+				if (!this.orderBoxsList) {
+					uni.setStorage({
+						key : 'orderBoxsList',
+						data: this.orderBoxsList
+					})
+				}
 			}
 			this.getBoxList()
-			// this.getUserInputList()
 			let myDate = new Date()
 			let yy = myDate.getFullYear() //获取完整的年份(4位,1970-????)
 			let mm = myDate.getMonth() + 1 //获取当前月份(0-11,0代表1月)
@@ -353,14 +359,6 @@
 						key : 'orderGoodsList',
 						data: this.inputList
 					})
-					// if (this.orderGoodsList) {
-					// 	uni.setStorage({
-					// 		key : 'orderGoodsList',
-					// 		data: this.inputList
-					// 	})
-					// } else {
-						
-					// }
 				}
 			},
 			// 箱子增减
@@ -372,13 +370,26 @@
 					this.$http('user/deposit/box/del', "POST", data, res => {
 						let data = res.data
 						this.boxList[index].number = number;
-						if (data.success) {
-							this.boxList[index].number = number;
-						}
+						uni.setStorage({
+							key : 'orderBoxsList',
+							data: this.boxList
+						})
+						// if (data.success) {
+						// 	this.boxList[index].number = number;
+						// 	uni.setStorage({
+						// 		key : 'orderBoxsList',
+						// 		data: this.boxList
+						// 	})
+						// }
 					})
 				} else {
 					this.boxList[index].number = number;
+					uni.setStorage({
+						key : 'orderBoxsList',
+						data: this.boxList
+					})
 				}
+				
 			},
 			// 注意事项
 			onClosePopup() {
@@ -403,7 +414,6 @@
 			},
 			// 箱子详情
 			onBoxDetail(id) {
-				console.log(id)
 				this.boxIndex = id
 				this.$refs.popup.open()
 				// #ifdef APP-PLUS
@@ -427,6 +437,7 @@
 				let dataBox = {}
 				let inputIndex = 0
 				let boxIndex = 0
+				let boxTotalNum = 0
 				for (let item of this.inputList) {
 					if (item.number > 0 && item.value) {
 						dataInput['name[' + inputIndex + ']'] = item.value
@@ -439,8 +450,10 @@
 						dataBox['boxId[' + boxIndex + ']'] = item.id
 						dataBox['amount[' + boxIndex + ']'] = item.number
 						boxIndex++
+						boxTotalNum += Number(item.number)
 					}
 				}
+				console.log(boxTotalNum)
 				if (!inputIndex || !boxIndex) {
 					if (!inputIndex) {
 						uni.showToast({
@@ -467,7 +480,7 @@
 								let data = res.data
 								if (data.success) {
 									uni.navigateTo({
-										url: "/pages/tab2/orderPay?boxNum=" + boxIndex,
+										url: "/pages/tab2/orderPay?boxNum=" + boxTotalNum,
 										success: () => {
 											this.buttonDisable = false
 											// #ifdef APP-PLUS
@@ -501,17 +514,39 @@
 							item.number = 0
 						}
 						this.boxList = data.data
-						this.$http('user/deposit/box/list', "GET", '', res1 => {
-							if (res1.data.success) {
-								for (let item of res1.data.data) {
-									for (let box of this.boxList) {
-										if (box.id == item.box.id) {
-											box.number = item.amount
+						if (!uni.getStorageSync('orderBoxsList')) {
+							uni.setStorageSync({
+								key : 'orderBoxsList',
+								data: this.boxList,
+							})
+						}
+						if (this.orderCopy) {
+							this.$http('user/deposit/box/list', "GET", '', res1 => {
+								if (res1.data.success) {
+									for (let item of res1.data.data) {
+										for (let box of this.boxList) {
+											if (box.id == item.box.id) {
+												box.number = item.amount
+											}
 										}
 									}
 								}
+							})
+						} else {
+							this.orderBoxsList = uni.getStorageSync('orderBoxsList')
+							if (!this.orderBoxsList) {
+								this.boxList = this.orderBoxsList
+							} else {
+								this.boxList = this.orderBoxsList
 							}
-						})
+							for (let box of this.boxList) {
+								for (let item of this.orderBoxsList) {
+									if (box.id == item.id) {
+										box.number = item.number
+									}
+								}
+							}
+						}
 					} else {
 						uni.showToast({
 							icon: 'none',

@@ -118,13 +118,13 @@
 					<view class="">
 						<radio-group @change="onPayChangeStyle">
 							<uni-list class="list_custom list_custom_img56" v-for="(item, index) in payStyleList" :key="index">
-								<uni-list-item :title="item.name" :thumb="item.imgUrl" :showArrow="false">
-									<view slot="right">
-										<label>
-											<radio :value="item.value" :checked="item.checked" color="rgba(59, 193, 187, 1)" />
-										</label>
-									</view>
-								</uni-list-item>
+								<label>
+									<uni-list-item :title="item.name" :thumb="item.imgUrl" :showArrow="false">
+										<view slot="right">
+											<radio :value="item.value" :checked="payStyleIndex == index" color="rgba(59, 193, 187, 1)" />
+										</view>
+									</uni-list-item>
+								</label>
 							</uni-list>
 						</radio-group>
 					</view>
@@ -134,7 +134,7 @@
 		</uni-popup>
 		<view class="flex_between bottom_pay">
 			<text>¥ {{pay_fee}}</text>
-			<button @click="onPayChange":disabled="buttonDisable"  class="button_block" :class="{button_block_active: buttonActive}">确认支付</button>
+			<button @click="onPayChange" :disabled="buttonDisable" class="button_block" :class="{button_block_active: buttonActive}">确认支付</button>
 		</view>
 	</view>
 </template>
@@ -180,6 +180,7 @@
 					}
 				],
 				payStyle: 'Alipay',
+				payStyleIndex: 0,
 				buttonActive: false,
 				time: '12:01',
 				date: '请选择上门时间',
@@ -224,7 +225,6 @@
 				}
 			}
 		},
-		computed: {},
 		methods: {
 			onClickBack() {
 				uni.navigateBack({
@@ -241,8 +241,6 @@
 			},
 			closePopupDate() {
 				this.$refs.popupDate.close()
-				// this.date = ''
-				// this.pay_fee = 0
 			},
 			confirmPopupDate() {
 				this.$refs.popupDate.close()
@@ -302,7 +300,7 @@
 						title: '请选择地址'
 					});
 				} else if (!this.dateDate || !this.hourValue) {
-					
+
 				} else {
 					let data = {
 						addressId: this.address.id,
@@ -331,7 +329,8 @@
 					console.log(data)
 					if (data.success) {
 						for (let item of data.data) {
-							item.detailAddress = `${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
+							item.detailAddress =
+								`${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
 							if (item.dft) {
 								this.address = item
 							}
@@ -412,6 +411,11 @@
 			onPayChangeStyle(evt) {
 				console.log(evt.target.value)
 				this.payStyle = evt.target.value
+				if (this.payStyle == 'Alipay') {
+					this.payStyleIndex = 0
+				} else {
+					this.payStyleIndex = 1
+				}
 			},
 			onComfirmPay() {
 				let orderObj = {
@@ -437,13 +441,13 @@
 							this.$http('user/deposit/order/prepay/alipay', "POST", dataObj, res1 => {
 								if (res1.data.success) {
 									console.log(res1.data.data)
+									this.$refs.popup.close()
 									// #ifdef APP-PLUS
 									uni.requestPayment({
 										provider: 'alipay',
 										orderInfo: res1.data.data,
 										success: (respay) => {
 											console.log(respay)
-											this.$refs.popup.close()
 											uni.navigateTo({
 												url: "/pages/tab2/orderSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(data.data)),
 												success: () => {
@@ -457,16 +461,13 @@
 										},
 										fail: (err) => {
 											console.log(err)
-											this.$refs.popup.close()
 											this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
 												uni.navigateTo({
 													url: `/pages/tab2/orderDetails?id=${dataObj.orderId}&gotoPage=tab21`
 												})
 											})
 										},
-										complete: (e) => {
-
-										}
+										complete: (e) => {}
 									});
 									// #endif
 								} else {
@@ -479,26 +480,25 @@
 						} else {
 							// 微信支付
 							this.$http('user/deposit/order/prepay/wechat', "POST", dataObj, res1 => {
-								console.log(res1.data)
 								if (res1.data.success) {
 									console.log(res1.data.data)
+									this.$refs.popup.close()
 									let orderInfoObj = {
 										"appid": res1.data.data.appid,
 										"noncestr": res1.data.data.noncestr,
-										"package": "Sign=WXPay",
+										"package": res1.data.data.package,
 										"partnerid": res1.data.data.partnerid,
 										"prepayid": res1.data.data.prepayid,
 										"timestamp": res1.data.data.timestamp,
 										"sign": res1.data.data.sign
 									}
-									let orderInfo = JSON.stringify(orderInfoObj)
+									// let orderInfo = JSON.stringify(orderInfoObj)
 									// #ifdef APP-PLUS
 									uni.requestPayment({
 										provider: 'wxpay',
-										orderInfo: orderInfo,
+										orderInfo: orderInfoObj,
 										success: (respay) => {
 											console.log(respay)
-											this.$refs.popup.close()
 											uni.navigateTo({
 												url: "/pages/tab2/orderSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(data.data)),
 												success: () => {
@@ -512,7 +512,6 @@
 										},
 										fail: (err) => {
 											console.log(err)
-											this.$refs.popup.close()
 											this.$http('user/deposit/order/prepay/fail', "POST", dataObj, res2 => {
 												uni.navigateTo({
 													url: `/pages/tab2/orderDetails?id=${dataObj.orderId}&gotoPage=tab21`

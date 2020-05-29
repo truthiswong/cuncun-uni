@@ -140,13 +140,13 @@
 					<view class="">
 						<radio-group @change="onPayChangeStyle">
 							<uni-list class="list_custom list_custom_img56" v-for="(item, index) in payStyleList" :key="index">
-								<uni-list-item :title="item.name" :thumb="item.imgUrl" :showArrow="false">
-									<view slot="right">
-										<label>
-											<radio :value="item.value" :checked="item.checked" color="rgba(59, 193, 187, 1)" />
-										</label>
-									</view>
-								</uni-list-item>
+								<label>
+									<uni-list-item :title="item.name" :thumb="item.imgUrl" :showArrow="false">
+										<view slot="right">
+											<radio :value="item.value" :checked="payStyleIndex == index" color="rgba(59, 193, 187, 1)" />
+										</view>
+									</uni-list-item>
+								</label>
 							</uni-list>
 						</radio-group>
 					</view>
@@ -187,6 +187,7 @@
 					}
 				],
 				payStyle: 'Alipay',
+				payStyleIndex: 0,
 				buttonActive: false,
 			}
 		},
@@ -253,6 +254,11 @@
 			onPayChangeStyle(evt) {
 				console.log(evt.target.value)
 				this.payStyle = evt.target.value
+				if (this.payStyle == 'Alipay') {
+					this.payStyleIndex = 0
+				} else {
+					this.payStyleIndex = 1
+				}
 			},
 			onComfirmPay() {
 				let dataObj = {
@@ -262,17 +268,18 @@
 					this.$http('user/store/order/pay/alipay', "POST", dataObj, res => {
 						console.log(res.data)
 						if (res.data.success) {
+							this.$refs.popupPay.close()
 							// #ifdef APP-PLUS
 							uni.requestPayment({
 								provider: 'alipay',
 								orderInfo: res.data.data,
 								success: (respay) => {
-									this.$refs.popupPay.close()
 									this.getOrderDetail()
 								},
 								fail: (err) => {
-									this.$refs.popupPay.close()
-									this.getOrderDetail()
+									this.$http('user/store/order/pay/fail', "POST", dataObj, res2 => {
+										this.getOrderDetail()
+									})
 								}
 							});
 							// #endif
@@ -289,28 +296,27 @@
 						console.log(res1.data)
 						if (res1.data.success) {
 							console.log(res1.data.data)
+							this.$refs.popupPay.close()
 							let orderInfoObj = {
 								"appid": res1.data.data.appid,
 								"noncestr": res1.data.data.noncestr,
-								"package": "Sign=WXPay",
+								"package": res1.data.data.package,
 								"partnerid": res1.data.data.partnerid,
 								"prepayid": res1.data.data.prepayid,
 								"timestamp": res1.data.data.timestamp,
 								"sign": res1.data.data.sign
 							}
-							let orderInfo = JSON.stringify(orderInfoObj)
+							// let orderInfo = JSON.stringify(orderInfoObj)
 							// #ifdef APP-PLUS
 							uni.requestPayment({
 								provider: 'wxpay',
-								orderInfo: orderInfo,
+								orderInfo: orderInfoObj,
 								success: (res) => {
 									console.log(res)
-									this.$refs.popupPay.close()
 									this.getOrderDetail()
 								},
 								fail: (err) => {
-									this.$refs.popupPay.close()
-									this.$http('user/withdraw/order/pay/fail', "POST", orderObj, res2 => {
+									this.$http('user/store/order/pay/fail', "POST", dataObj, res2 => {
 										this.getOrderDetail()
 									})
 								},

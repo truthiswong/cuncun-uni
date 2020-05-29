@@ -76,11 +76,11 @@
 				<view>
 					<view class="flex_between order_list_fee">
 						<p>运输费用</p>
-						<text>¥ {{order.deliveryFee}} {{order.deliveryFeeNew - order.deliveryFee >= 0?'+':'-'}} ¥ {{order.deliveryFeeNew}}</text>
+						<text>¥ {{order.deliveryFee}} {{order.deliveryFeeNew - order.deliveryFee >= 0?'+':'-'}} ¥ {{order.deliveryFeeNew - order.deliveryFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>打包费用</p>
-						<text>¥ {{order.packFee}} {{order.packFeeNew - order.packFee >= 0?'+':'-'}} ¥ {{order.packFeeNew}}</text>
+						<text>¥ {{order.packFee}} {{order.packFeeNew - order.packFee >= 0?'+':'-'}} ¥ {{order.packFeeNew - order.packFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>箱子费用</p>
@@ -93,6 +93,12 @@
 					<view class="flex_between order_list_fee">
 						<p>调整费用 <text style="color: #3BC1BB;margin-left: 20upx;" v-if="order.adjustFeeReason" @click="onChangeFeeAlert(order.adjustFeeReason)">查看</text></p>
 						<text>¥ {{order.adjustFee}}</text>
+					</view>
+					<view class="flex_between order_list_fee" v-if="order.detailStatus == 'waitpay'">
+						<p>待支付费用</p>
+						<view>
+							<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.prepaid}}</text></text>
+						</view>
 					</view>
 					<view class="flex_between order_list_fee" v-if="order.detailPrepaidStatus == 'payed'">
 						<p>已支付费用</p>
@@ -192,13 +198,13 @@
 					<view class="">
 						<radio-group @change="onPayChangeStyle">
 							<uni-list class="list_custom list_custom_img56" v-for="(item, index) in payStyleList" :key="index">
-								<uni-list-item :title="item.name" :thumb="item.imgUrl" :showArrow="false">
-									<view slot="right">
-										<label>
-											<radio :value="item.value" :checked="item.checked" color="rgba(59, 193, 187, 1)" />
-										</label>
-									</view>
-								</uni-list-item>
+								<label>
+									<uni-list-item :title="item.name" :thumb="item.imgUrl" :showArrow="false">
+										<view slot="right">
+											<radio :value="item.value" :checked="payStyleIndex == index" color="rgba(59, 193, 187, 1)" />
+										</view>
+									</uni-list-item>
+								</label>
 							</uni-list>
 						</radio-group>
 					</view>
@@ -296,6 +302,7 @@
 					}
 				],
 				payStyle: 'Alipay',
+				payStyleIndex: 0,
 				buttonActive: false,
 			}
 		},
@@ -330,28 +337,18 @@
 		watch: {},
 		methods: {
 			onClickBack() {
-				console.log(this.gotoPage)
-				if (this.gotoPage == 'tab20') {
-					uni.switchTab({
-						url: '/pages/tabs/tab2?gotoPage=tab20'
-					})
-				} else if (this.gotoPage == 'tab21') {
-					console.log(11111111111)
-					uni.switchTab({
-						url: '/pages/tabs/tab2?gotoPage=tab21'
-					})
-				} else if (this.gotoPage == 'tab22') {
-					uni.switchTab({
-						url: '/pages/tabs/tab2?gotoPage=tab22'
-					})
-				} else if (this.gotoPage == 'tab23') {
-					uni.switchTab({
-						url: '/pages/tabs/tab2?gotoPage=tab23'
+				if (this.gotoPage) {
+					uni.setStorage({
+						key: 'gotoPage',
+						data: this.gotoPage,
+						success: () => {
+							uni.switchTab({
+								url: '/pages/tabs/tab2',
+							})
+						}
 					})
 				} else {
-					uni.navigateBack({
-						delta: 1
-					})
+					uni.navigateBack()
 				}
 			},
 			onPayChange() {
@@ -363,6 +360,11 @@
 			onPayChangeStyle(evt) {
 				console.log(evt.target.value)
 				this.payStyle = evt.target.value
+				if (this.payStyle == 'Alipay') {
+					this.payStyleIndex = 0
+				} else {
+					this.payStyleIndex = 1
+				}
 			},
 			onComfirmPay() {
 				let orderObj = {
@@ -377,18 +379,15 @@
 						this.$http('user/deposit/order/prepay/alipay', "POST", orderObj, res => {
 							if (res.data.success) {
 								console.log(res.data.data)
+								this.$refs.popupPay.close()
 								// #ifdef APP-PLUS
 								uni.requestPayment({
 									provider: 'alipay',
 									orderInfo: res.data.data,
 									success: (res) => {
-										console.log(respay)
-										this.$refs.popupPay.close()
 										this.getOrderDetail()
 									},
 									fail: (errpay) => {
-										console.log(errpay)
-										this.$refs.popupPay.close()
 										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
 											this.getOrderDetail()
 										})
@@ -407,16 +406,15 @@
 						this.$http('user/deposit/order/appendpay/alipay', "POST", orderObj, res => {
 							if (res.data.success) {
 								console.log(res.data.data)
+								this.$refs.popupPay.close()
 								// #ifdef APP-PLUS
 								uni.requestPayment({
 									provider: 'alipay',
 									orderInfo: res.data.data,
 									success: (res) => {
-										this.$refs.popupPay.close()
 										this.getOrderDetail()
 									},
 									fail: (err) => {
-										this.$refs.popupPay.close()
 										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
 											this.getOrderDetail()
 										})
@@ -437,30 +435,30 @@
 						// 预支付
 						this.$http('user/deposit/order/prepay/wechat', "POST", orderObj, res1 => {
 							console.log(res1.data)
+							this.$refs.popupPay.close()
 							if (res1.data.success) {
 								console.log(res1.data.data)
 								let orderInfoObj = {
 									"appid": res1.data.data.appid,
 									"noncestr": res1.data.data.noncestr,
-									"package": "Sign=WXPay",
+									"package": res1.data.data.package,
 									"partnerid": res1.data.data.partnerid,
 									"prepayid": res1.data.data.prepayid,
 									"timestamp": res1.data.data.timestamp,
 									"sign": res1.data.data.sign
 								}
-								let orderInfo = JSON.stringify(orderInfoObj)
+								console.log(orderInfoObj)
+								// let orderInfo = JSON.stringify(orderInfoObj)
 								// #ifdef APP-PLUS
 								uni.requestPayment({
 									provider: 'wxpay',
-									orderInfo: orderInfo,
+									orderInfo: orderInfoObj,
 									success: (respay) => {
 										console.log(respay)
-										this.$refs.popupPay.close()
 										this.getOrderDetail()
 									},
 									fail: (err) => {
 										console.log(err)
-										this.$refs.popupPay.close()
 										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
 											this.getOrderDetail()
 										})
@@ -478,7 +476,7 @@
 					} else if (this.order.adjustPayStatus.code == 'wait') {
 						// 补差价支付
 						this.$http('user/deposit/order/appendpay/wechat', "POST", orderObj, res1 => {
-							console.log(res1.data)
+							this.$refs.popupPay.close()
 							if (res1.data.success) {
 								console.log(res1.data.data)
 								let orderInfoObj = {
@@ -496,13 +494,9 @@
 									provider: 'wxpay',
 									orderInfo: orderInfo,
 									success: (respay) => {
-										console.log(respay)
-										this.$refs.popupPay.close()
 										this.getOrderDetail()
 									},
 									fail: (err) => {
-										console.log(err)
-										this.$refs.popupPay.close()
 										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
 											this.getOrderDetail()
 										})
@@ -528,7 +522,7 @@
 					let data = res.data
 					if (data.success) {
 						uni.navigateTo({
-							url: '/pages/tab2/addOrder',
+							url: '/pages/tab2/addOrder?orderCopy=true',
 							success: () => {
 								// #ifdef APP-PLUS
 								uni.report('recallOrder', {
@@ -549,7 +543,8 @@
 				this.$http('user/deposit/order/detail/' + this.orderId, "GET", '', res => {
 					let data = res.data
 					if (data.success) {
-						data.data.detailAddress = `${data.data.area.province} ${data.data.area.city?data.data.area.city:''} ${data.data.area.district?data.data.area.district:''} ${data.data.plotName} ${data.data.address}`
+						data.data.detailAddress =
+							`${data.data.area.province} ${data.data.area.city?data.data.area.city:''} ${data.data.area.district?data.data.area.district:''} ${data.data.plotName} ${data.data.address}`
 						data.data.detailTime =
 							`${data.data.bookFetchDate} ${data.data.bookFetchTime[0]}:00~${data.data.bookFetchTime[1]}:00`
 						data.data.detailStatus = data.data.status.code
