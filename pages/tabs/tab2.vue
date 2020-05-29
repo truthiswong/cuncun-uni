@@ -278,13 +278,14 @@
 			}
 		},
 		components: {},
-		onLoad(op) {
-			console.log(op)
-			if (op.gotoPage) {
-				this.gotoPage = op.gotoPage
-			}
-		},
+		onLoad(op) {},
 		onShow() {
+			this.gotoPage = uni.getStorageSync('gotoPage')
+			if (this.gotoPage) {
+				uni.removeStorage({
+					key: 'gotoPage'
+				})
+			}
 			this.user = uni.getStorageSync('user')
 			this.pageNumber1 = 0
 			this.totalPages1 = 1
@@ -295,6 +296,15 @@
 			this.pageNumber3 = 0
 			this.totalPages3 = 1
 			this.finished3 = false
+			if (this.gotoPage == 'tab20') {
+				this.current = 0
+			} else if (this.gotoPage == 'tab21') {
+				this.current = 1
+			} else if (this.gotoPage == 'tab22') {
+				this.current = 2
+			} else if (this.gotoPage == 'tab23') {
+				this.current = 3
+			}
 			if (this.current == 0) {
 				this.getOrderList0()
 				this.getOrderList1()
@@ -351,7 +361,7 @@
 								// #endif
 							}
 						})
-					} else{
+					} else {
 						uni.showModal({
 							title: '提示',
 							content: '仓储服务需要先实名认证哦',
@@ -376,7 +386,7 @@
 								// #endif
 							}
 						})
-					} else{
+					} else {
 						uni.showModal({
 							title: '提示',
 							content: '仓储服务需要先实名认证哦',
@@ -430,7 +440,8 @@
 					if (data.success) {
 						console.log(data.data)
 						for (let item of data.data.deposit) {
-							item.detailAddress = `${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
+							item.detailAddress =
+								`${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
 						}
 						this.orderList01 = data.data.deposit // 存单
 						for (let item of data.data.withdraw) {
@@ -457,7 +468,8 @@
 									item.goodsNumber = item.packs.length
 								}
 							}
-							item.detailAddress = `${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
+							item.detailAddress =
+								`${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
 						}
 						this.orderList02 = data.data.withdraw // 取单
 						this.orderList03 = data.data.storage // 仓储
@@ -481,7 +493,8 @@
 								this.orderList1 = []
 							}
 							for (let item of data.data.data) {
-								item.detailAddress = `${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
+								item.detailAddress =
+									`${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
 							}
 							this.orderList1 = this.orderList1.concat(data.data.data)
 							this.totalPages1 = data.data.totalPages
@@ -532,7 +545,8 @@
 										item.goodsNumber = item.packs.length
 									}
 								}
-								item.detailAddress = `${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
+								item.detailAddress =
+									`${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
 							}
 							if (this.pageNumber2 <= 0) {
 								this.orderList2 = []
