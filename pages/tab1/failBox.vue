@@ -87,7 +87,7 @@
 			}
 		},
 		onReachBottom() {
-			this.getGoodsList()
+			this.getFailList()
 		},
 		methods: {
 			onClickBack() {
