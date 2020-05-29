@@ -277,8 +277,7 @@
 				'describe': '首页'
 			})
 			// #endif
-			let loginRealName = uni.getStorageSync('loginRealName')
-			if (loginRealName) {
+			if (uni.getStorageSync('loginRealName')) {
 				uni.removeStorage({
 					key: 'loginRealName'
 				})
@@ -290,15 +289,13 @@
 				this.tab1ShowHide = uni.getStorageSync('tab1ShowHide')
 			}
 			this.user = uni.getStorageSync('user')
-			if (!this.user) {
-				this.getUserInfo()
-			}
 			let nickname = '存存用户'
 			let nowHour = new Date().getHours()
 			if (this.user.nickName) {
 				nickname = this.user.nickName
 			} else if (this.user.name) {
 				nickname = this.user.name
+				this.getUserInfo()
 			} else {
 				this.getUserInfo()
 			}
