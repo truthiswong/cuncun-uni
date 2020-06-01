@@ -337,6 +337,8 @@
 						uni.showModal({
 							title: '提示',
 							content: '根据存存服务协议要求，需要先进行实名认证哦！',
+							confirmText: '立即认证',
+							cancelText: '先看看',
 							success: (res) => {
 								if (res.confirm) {
 									uni.navigateTo({
@@ -362,6 +364,8 @@
 						uni.showModal({
 							title: '提示',
 							content: '根据存存服务协议要求，需要先进行实名认证哦！',
+							confirmText: '立即认证',
+							cancelText: '先看看',
 							success: (res) => {
 								if (res.confirm) {
 									uni.navigateTo({
