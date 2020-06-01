@@ -231,20 +231,25 @@
 							this.$http('user/killme', "GET", '', res => {
 								let data = res.data
 								if (data.success) {
-									uni.removeStorage({
-										key: 'user'
-									})
-									uni.removeStorage({
-										key: 'token'
-									})
-									uni.removeStorage({
-										key: 'tab1ShowHide'
-									})
-									uni.removeStorage({
-										key: 'alertAgreement'
-									})
-									uni.removeStorage({
-										key: 'orderGoodsList'
+									// uni.removeStorage({
+									// 	key: 'user'
+									// })
+									// uni.removeStorage({
+									// 	key: 'token'
+									// })
+									// uni.removeStorage({
+									// 	key: 'tab1ShowHide'
+									// })
+									// uni.removeStorage({
+									// 	key: 'alertAgreement'
+									// })
+									// uni.removeStorage({
+									// 	key: 'orderGoodsList'
+									// })
+									uni.clearStorageSync()
+									uni.setStorage({
+										key: 'launchFlag',
+										data: true
 									})
 									uni.navigateTo({
 										url: '/pages/login/login',
@@ -272,20 +277,26 @@
 					content: '您确定要退出登录吗？',
 					success(res) {
 						if (res.confirm) {
-							uni.removeStorage({
-								key: 'user'
-							})
-							uni.removeStorage({
-								key: 'token'
-							})
-							uni.removeStorage({
-								key: 'tab1ShowHide'
-							})
-							uni.removeStorage({
-								key: 'alertAgreement'
-							})
-							uni.removeStorage({
-								key: 'orderGoodsList'
+							// uni.removeStorage({
+							// 	key: 'user'
+							// })
+							// uni.removeStorage({
+							// 	key: 'token'
+							// })
+							// uni.removeStorage({
+							// 	key: 'tab1ShowHide'
+							// })
+							// uni.removeStorage({
+							// 	key: 'alertAgreement'
+							// })
+							// uni.removeStorage({
+							// 	key: 'orderGoodsList'
+							// })
+							
+							uni.clearStorageSync()
+							uni.setStorage({
+								key: 'launchFlag',
+								data: true
 							})
 							uni.navigateTo({
 								url: '/pages/login/login',

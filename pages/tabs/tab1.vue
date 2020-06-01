@@ -336,7 +336,7 @@
 					} else{
 						uni.showModal({
 							title: '提示',
-							content: '仓储服务需要先实名认证哦',
+							content: '根据存存服务协议要求，需要先进行实名认证哦！',
 							success: (res) => {
 								if (res.confirm) {
 									uni.navigateTo({
@@ -361,7 +361,7 @@
 					} else{
 						uni.showModal({
 							title: '提示',
-							content: '仓储服务需要先实名认证哦',
+							content: '根据存存服务协议要求，需要先进行实名认证哦！',
 							success: (res) => {
 								if (res.confirm) {
 									uni.navigateTo({
@@ -557,7 +557,7 @@
 	}
 </script>
 <style>
-	page {
+	page, uni-page {
 		height: 100%;
 	}
 </style>
@@ -839,7 +839,7 @@
 	.long_button {
 		position: fixed;
 		right: 0;
-		bottom: 0upx;
+		bottom: 0;
 		z-index: 20;
 	}
 

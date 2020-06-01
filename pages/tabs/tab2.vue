@@ -35,7 +35,7 @@
 								<view class="segmented_list" v-for="item in orderList01" :key="item.id">
 									<navigator :url="'/pages/tab2/orderDetails?id='+item.id">
 										<uni-list class="list_custom list_custom_align_start">
-											<uni-list-item title="存单" :note="item.detailAddress" :showArrow="false">
+											<uni-list-item title="存单" :note="'上门地址：'+item.detailAddress" :showArrow="false">
 												<view slot='right' class="list_right_text">
 													<text class="list_right_orange">待付款</text>
 												</view>
@@ -364,7 +364,7 @@
 					} else {
 						uni.showModal({
 							title: '提示',
-							content: '仓储服务需要先实名认证哦',
+							content: '根据存存服务协议要求，需要先进行实名认证哦！',
 							success: (res) => {
 								if (res.confirm) {
 									uni.navigateTo({
@@ -389,7 +389,7 @@
 					} else {
 						uni.showModal({
 							title: '提示',
-							content: '仓储服务需要先实名认证哦',
+							content: '根据存存服务协议要求，需要先进行实名认证哦！',
 							success: (res) => {
 								if (res.confirm) {
 									uni.navigateTo({
