@@ -119,8 +119,8 @@
 									<p>储存费用/月(¥)：{{item.storePerMonthFee}}</p>
 								</view>
 							</view>
-							<text style="font-size:26upx;color:rgba(40,40,40,1);line-height:37upx;" v-if="item.remark">{{item.remark}}</text>
-							<image style="width:688upx;height:440upx;margin-top: 40upx;" v-if="item.sceneryPic" :src="item.sceneryPic"></image>
+							<text style="font-size:26upx;color:rgba(40,40,40,1);line-height:37upx;" v-if="item.remark">{{item.box.remark}}</text>
+							<image style="width:688upx;height:440upx;margin-top: 40upx;" v-if="item.sceneryPic" :src="item.box.sceneryPic"></image>
 						</view>
 					</view>
 				</scroll-view>
@@ -153,14 +153,6 @@
 						fee: 18,
 						number: 0,
 						storePerMonthFee: 0
-					},
-					{
-						id: 1,
-						name: "小型纸箱B（拍照）",
-						weight: 120,
-						fee: 18,
-						number: 0,
-						storePerMonthFee: 0
 					}
 				],
 				boxIndex: '',
@@ -187,7 +179,7 @@
 				this.orderBoxsList = uni.getStorageSync('orderBoxsList')
 				if (!this.orderGoodsList) {
 					uni.setStorage({
-						key : 'orderGoodsList',
+						key: 'orderGoodsList',
 						data: this.orderGoodsList
 					})
 				} else {
@@ -196,11 +188,13 @@
 							this.orderGoodsList.splice(i, 1)
 						}
 					}
-					this.inputList = this.orderGoodsList
+					if (this.orderGoodsList.length > 0) {
+						this.inputList = this.orderGoodsList
+					}
 				}
 				if (!this.orderBoxsList) {
 					uni.setStorage({
-						key : 'orderBoxsList',
+						key: 'orderBoxsList',
 						data: this.orderBoxsList
 					})
 				}
@@ -293,7 +287,7 @@
 			},
 			inputText() {
 				uni.setStorage({
-					key : 'orderGoodsList',
+					key: 'orderGoodsList',
 					data: this.inputList
 				})
 			},
@@ -315,7 +309,7 @@
 											this.inputList[index].number = 0
 											// this.inputList.splice(index, 1)
 											uni.setStorage({
-												key : 'orderGoodsList',
+												key: 'orderGoodsList',
 												data: this.inputList
 											})
 											uni.showToast({
@@ -338,7 +332,7 @@
 											this.inputList[index].number = 0
 											// this.inputList.splice(index, 1)
 											uni.setStorage({
-												key : 'orderGoodsList',
+												key: 'orderGoodsList',
 												data: this.inputList
 											})
 											uni.showToast({
@@ -356,7 +350,7 @@
 				} else {
 					this.inputList[index].number = number
 					uni.setStorage({
-						key : 'orderGoodsList',
+						key: 'orderGoodsList',
 						data: this.inputList
 					})
 				}
@@ -365,31 +359,24 @@
 			changeBoxNumber(number, index, item) {
 				if (number <= 0) {
 					let data = {
-						id: item.id
+						id: item.box.id
 					}
 					this.$http('user/deposit/box/del', "POST", data, res => {
 						let data = res.data
 						this.boxList[index].number = number;
 						uni.setStorage({
-							key : 'orderBoxsList',
+							key: 'orderBoxsList',
 							data: this.boxList
 						})
-						// if (data.success) {
-						// 	this.boxList[index].number = number;
-						// 	uni.setStorage({
-						// 		key : 'orderBoxsList',
-						// 		data: this.boxList
-						// 	})
-						// }
 					})
 				} else {
 					this.boxList[index].number = number;
 					uni.setStorage({
-						key : 'orderBoxsList',
+						key: 'orderBoxsList',
 						data: this.boxList
 					})
 				}
-				
+
 			},
 			// 注意事项
 			onClosePopup() {
@@ -447,7 +434,7 @@
 				}
 				for (let item of this.boxList) {
 					if (item.number > 0) {
-						dataBox['boxId[' + boxIndex + ']'] = item.id
+						dataBox['boxId[' + boxIndex + ']'] = item.box.id
 						dataBox['amount[' + boxIndex + ']'] = item.number
 						boxIndex++
 						boxTotalNum += Number(item.number)
@@ -507,42 +494,31 @@
 				}
 			},
 			getBoxList() {
-				this.$http('user/box/list', "GET", '', res => {
+				this.$http('user/deposit/box/list', "GET", '', res => {
 					let data = res.data
 					if (data.success) {
 						for (let item of data.data) {
-							item.number = 0
+							item.number = item.amount
+							item.id = item.box.id
+							item.name = item.box.name
+							item.length = item.box.length
+							item.width = item.box.width
+							item.height = item.box.height
+							item.weight = item.box.weight
+							item.sceneryPic = item.box.sceneryPic
+							item.pic = item.box.pic
+							item.storePerMonthFee = item.box.storePerMonthFee.toFixed(2)
+							item.remark = item.box.remark
 						}
 						this.boxList = data.data
-						if (!uni.getStorageSync('orderBoxsList')) {
-							uni.setStorageSync({
-								key : 'orderBoxsList',
-								data: this.boxList,
-							})
-						}
 						if (this.orderCopy) {
-							this.$http('user/deposit/box/list', "GET", '', res1 => {
-								if (res1.data.success) {
-									for (let item of res1.data.data) {
-										for (let box of this.boxList) {
-											if (box.id == item.box.id) {
-												box.number = item.amount
-											}
-										}
-									}
-								}
-							})
+							
 						} else {
 							this.orderBoxsList = uni.getStorageSync('orderBoxsList')
-							if (!this.orderBoxsList) {
-								this.boxList = this.orderBoxsList
-							} else {
-								this.boxList = this.orderBoxsList
-							}
-							for (let box of this.boxList) {
+							for (let boxItem of this.boxList) {
 								for (let item of this.orderBoxsList) {
-									if (box.id == item.id) {
-										box.number = item.number
+									if (boxItem.box.id == item.id) {
+										boxItem.number = item.number
 									}
 								}
 							}
