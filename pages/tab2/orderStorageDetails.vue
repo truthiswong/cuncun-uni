@@ -51,18 +51,10 @@
 								<image src="../../static/tab2/storge_box.png" mode=""></image>
 							</view>
 							<view class="col-9">
-								<view class="flex_between">
-									<view class="storge_box">
-										<!-- EC 经济照片 SD 标准拍照-->
-										<text>经济箱 × {{order.boxECnum}}</text>
-									</view>
-									<view class="storge_box">
-										<text>¥ {{order.boxECprice/order.boxECnum}}</text>
-									</view>
-								</view>
-								<view class="flex_between" style="font-size: 28upx;line-height: 32upx;margin-top: 10upx;color: rgba(178, 178, 178, 1);" v-if="item.typeBox == 'B'" v-for="(item,index) in orderBox" :key="index">
-									<text>{{item.typeName}}</text>
-									<text>¥ {{item.fee}}</text>
+								<!-- EC 经济照片 SD 标准拍照-->
+								<view class="flex_between storge_box" v-if="item.typeBoxAB == 'B'" v-for="(item,index) in orderBox" :key="index">
+									<text>{{item.typeName}} X {{item.number}}</text>
+									<text>¥ {{item.price * item.number}}</text>
 								</view>
 							</view>
 						</view>
@@ -71,13 +63,9 @@
 								<image src="../../static/tab2/storge_box.png" mode=""></image>
 							</view>
 							<view class="col-9">
-								<view class="flex_between storge_box">
-									<text>标准箱 × {{order.boxSDnum}}</text>
-									<text>¥ {{order.boxSDprice/order.boxSDnum}}</text>
-								</view>
-								<view class="flex_between" style="font-size: 28upx;line-height: 32upx;margin-top: 10upx;color: rgba(178, 178, 178, 1);" v-if="item.typeBox == 'A'" v-for="(item,index) in orderBox" :key="index">
-									<text>{{item.typeName}}</text>
-									<text>¥ {{item.fee}}</text>
+								<view class="flex_between storge_box" v-if="item.typeBoxAB == 'A'" v-for="(item,index) in orderBox" :key="index">
+									<text>{{item.typeName}} X {{item.number}}</text>
+									<text>¥ {{item.price * item.number}}</text>
 								</view>
 							</view>
 						</view>
@@ -172,8 +160,7 @@
 
 <script>
 	export default {
-		components: {
-		},
+		components: {},
 		data() {
 			return {
 				headerShow: true,
@@ -344,12 +331,11 @@
 				this.$http('/user/store/order/packs?orderId=' + this.orderId, "GET", '', res => {
 					let data = res.data
 					if (data.success) {
-						for (let item of data.data.data) {
-							item.typeName = item.pack.box.name
-							item.typeImg = item.pack.box.type.name
-							item.typeBox = item.pack.box.type.code
+						for (let item of data.data) {
+							item.typeName = item.box.name
+							item.typeBoxAB = item.box.type.code
 						}
-						this.orderBox = data.data.data
+						this.orderBox = data.data
 						console.log(this.orderBox)
 					} else {
 						uni.showToast({
@@ -561,17 +547,10 @@
 				}
 
 				text {
-					font-size: 28upx;
+					font-size: 24upx;
 					color: rgba(40, 40, 40, 1);
 					line-height: 40upx;
-					font-weight: 500;
-				}
-
-				p {
-					font-size: 24upx;
 					font-weight: 400;
-					color: rgba(178, 178, 178, 1);
-					line-height: 30upx;
 				}
 			}
 		}
