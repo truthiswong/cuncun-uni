@@ -95,7 +95,9 @@
 		data() {
 			return {
 				headerShow: true,
-				address: {},
+				address: {
+					id: ''
+				},
 				userRemark: '', //备注
 				total_fee: 0,
 				payStyleList: [{
@@ -120,6 +122,7 @@
 		},
 		onLoad() {},
 		onShow() {
+			this.address = uni.getStorageSync('address')
 			if (!this.address.id) {
 				this.getAddressList()
 			}
@@ -324,12 +327,43 @@
 				this.$http('user/addr/list', "GET", '', res => {
 					let data = res.data
 					if (data.success) {
-						for (let item of data.data) {
-							item.detailAddress = `${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
-							if (item.dft) {
-								this.address = item
+						if (data.data.length > 0) {
+							let result = data.data.findIndex(value => {
+								return value.dft == true;
+							})
+							for (let item of data.data) {
+								item.detailAddress =
+									`${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
 							}
+							if (uni.getStorageSync('address')) {
+								let address = uni.getStorageSync('address')
+								for (let item of data.data) {
+									if (address.id == item.id) {
+										uni.setStorage({
+											key: 'address',
+											data: item
+										})
+									}
+								}
+							} else {
+								if (result == -1) {
+									uni.setStorage({
+										key: 'address',
+										data: data.data[0],
+									})
+								} else {
+									uni.setStorage({
+										key: 'address',
+										data: data.data[result],
+									})
+								}
+							}
+						} else {
+							uni.removeStorage({
+								key: 'address'
+							})
 						}
+						this.address = uni.getStorageSync('address')
 					} else {
 						uni.showToast({
 							icon: 'none',

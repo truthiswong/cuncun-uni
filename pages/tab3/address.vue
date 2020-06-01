@@ -61,7 +61,23 @@
 		onShow() {
 			this.getAddressList()
 		},
-		watch: {},
+		watch: {
+			// address() {
+			// 	let address = uni.getStorageSync('address')
+				
+			// 	if (address.id == ) {
+			// 		uni.setStorage({
+			// 			key: 'address',
+			// 			data: data.data[0],
+			// 		})
+			// 	} else {
+			// 		uni.setStorage({
+			// 			key: 'address',
+			// 			data: data.data[result],
+			// 		})
+			// 	}
+			// }
+		},
 		methods: {
 			onClickBack() {
 				uni.navigateBack({
@@ -79,11 +95,10 @@
 			onChooseAddress(item) {
 				console.log(item)
 				if (this.chooseAddress) {
-					let pages = getCurrentPages(); //获取所有页面栈实例列表
-					let nowPage = pages[pages.length - 1]; //当前页页面实例
-					let prevPage = pages[pages.length - 2]; //上一页页面实例
-					prevPage.$vm.address = item; //修改上一页data里面的couponNumber参数值为value
-
+					// let pages = getCurrentPages(); //获取所有页面栈实例列表
+					// let nowPage = pages[pages.length - 1]; //当前页页面实例
+					// let prevPage = pages[pages.length - 2]; //上一页页面实例
+					// prevPage.$vm.address = item; //修改上一页data里面的couponNumber参数值为value
 					uni.setStorage({
 						key: 'address',
 						data: item,
@@ -92,32 +107,6 @@
 						}
 					})
 				}
-			},
-			onSetDefault(evt) {
-				// for (let i = 0; i < this.addressList.length; i++) {
-				// 	if (this.addressList[i].id === evt.target.value) {
-				// 		let data = {
-				// 			id: evt.target.value
-				// 		}
-				// 		this.$http('user/addr/dft', "POST", data, res => {
-				// 			let data = res.data
-				// 			if (data.success) {
-				// 				uni.showToast({
-				// 					icon: 'none',
-				// 					title: '成功'
-				// 				});
-				// 				this.getAddressList()
-				// 			} else {
-				// 				uni.showToast({
-				// 					icon: 'none',
-				// 					title: data.message
-				// 				});
-				// 			}
-				// 		})
-				// 	} else {
-				// 		this.addressList[i].dft = false
-				// 	}
-				// }
 			},
 			onDetele(id) {
 				uni.showModal({
@@ -135,7 +124,12 @@
 										icon: 'none',
 										title: '删除成功'
 									});
-									this.getAddressList()
+									uni.removeStorage({
+										key: 'address',
+										success: () => {
+											this.getAddressList()
+										}
+									})
 								} else {
 									uni.showToast({
 										icon: 'none',
@@ -157,35 +151,43 @@
 					let data = res.data
 					console.log(data)
 					if (data.success) {
-						let result = -2
-						for (let item of data.data) {
-							item.detailAddress =
-								`${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
-							if (item.dft) {
-								if (!uni.getStorageSync('address')) {
+						if (data.data.length > 0) {
+							let result = data.data.findIndex(value => {
+								return value.dft == true;
+							})
+							for (let item of data.data) {
+								item.detailAddress =
+									`${item.area.province} ${item.area.city?item.area.city:''} ${item.area.district?item.area.district:''} ${item.plotName} ${item.address}`
+							}
+							if (uni.getStorageSync('address')) {
+								let address = uni.getStorageSync('address')
+								for (let item of data.data) {
+									if (address.id == item.id) {
+										uni.setStorage({
+											key: 'address',
+											data: item
+										})
+									}
+								}
+							} else {
+								if (result == -1) {
 									uni.setStorage({
 										key: 'address',
-										data: item,
+										data: data.data[0],
+									})
+								} else {
+									uni.setStorage({
+										key: 'address',
+										data: data.data[result],
 									})
 								}
 							}
+						} else {
+							uni.removeStorage({
+								key: 'address'
+							})
 						}
 						this.addressList = data.data
-						result = data.data.findIndex(value => {
-							return value.dft == true;
-						})
-						if (result != -1) {
-							uni.setStorage({
-								key: 'address',
-								data: data.data[0],
-							})
-						}
-						if (data.data.length > 0) {
-							uni.setStorage({
-								key: 'address',
-								data: data.data[0],
-							})
-						}
 					} else {
 						uni.showToast({
 							icon: 'none',
@@ -195,7 +197,7 @@
 				})
 			}
 		}
-	};
+	}
 </script>
 
 <style>
