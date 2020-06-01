@@ -29,10 +29,6 @@
 								});
 							}
 						} else {
-							uni.setStorage({
-								key: 'launchFlag',
-								data: true
-							});
 							uni.redirectTo({
 								url: '/pages/login/guide'
 							});
