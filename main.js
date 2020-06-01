@@ -7,6 +7,7 @@ Vue.config.productionTip = false
 import './utils/http.js'
 // 时间格式化
 import moment from './utils/moment.js'
+moment.locale()
 Vue.prototype.$moment = moment
 
 // 导航栏全局注册
