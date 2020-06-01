@@ -188,38 +188,53 @@
 										this.$http('user/current', "GET", '', res => {
 											let dataObj = res.data
 											if (dataObj.success) {
-												uni.setStorage({
-													key: 'user',
-													data: dataObj.data,
-													success: () => {
-														if (dataObj.data.realNameConfirm) {
-															uni.switchTab({
-																url: '/pages/tabs/tab1',
-																success: () => {
-																	uni.showToast({
-																		icon: 'none',
-																		title: '登录成功'
-																	});
-																	// #ifdef APP-PLUS
-																	uni.report('login', {
-																		'describe': '登录'
-																	})
-																	// #endif
-																}
-															})
-														} else {
-															uni.navigateTo({
-																url: '/pages/tab3/realName',
+												try {
+												    uni.clearStorageSync()
+													uni.setStorage({
+													    key: 'token',
+													    data: token,
+														success: () => {
+															uni.setStorage({
+																key: 'user',
+																data: dataObj.data,
 																success: () => {
 																	uni.setStorage({
-																		key : 'loginRealName',
+																		key: 'launchFlag',
 																		data: true
 																	})
+																	if (dataObj.data.realNameConfirm) {
+																		uni.switchTab({
+																			url: '/pages/tabs/tab1',
+																			success: () => {
+																				uni.showToast({
+																					icon: 'none',
+																					title: '登录成功'
+																				});
+																				// #ifdef APP-PLUS
+																				uni.report('login', {
+																					'describe': '登录'
+																				})
+																				// #endif
+																			}
+																		})
+																	} else {
+																		uni.navigateTo({
+																			url: '/pages/tab3/realName',
+																			success: () => {
+																				uni.setStorage({
+																					key : 'loginRealName',
+																					data: true
+																				})
+																			}
+																		})
+																	}
 																}
 															})
 														}
-													}
-												})
+													})
+												} catch (e) {
+												    // error
+												}
 											} else {
 												uni.showToast({
 													icon: 'none',
