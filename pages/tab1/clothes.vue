@@ -65,27 +65,7 @@
 				scroll_bg1: '../../static/tab1/bookbox.png',
 				scroll_bg2: '../../static/tab1/clothes_box.png',
 				scroll_bg3: '../../static/tab1/shoes_box.png',
-				list: [{
-						id: '0000',
-						src: '../../static/tab1/clothes_img1.png',
-						checked: false,
-					},
-					{
-						id: '111',
-						src: '../../static/tab1/clothes_img1.png',
-						checked: false,
-					},
-					{
-						id: '2222',
-						src: '../../static/tab1/clothes_img1.png',
-						checked: false,
-					},
-					{
-						id: '3333',
-						src: '../../static/tab1/clothes_img1.png',
-						checked: false,
-					},
-				],
+				list: [],
 				isCheckedShow: false,
 				chooseButton: '选择',
 				pageNumber: 0,
