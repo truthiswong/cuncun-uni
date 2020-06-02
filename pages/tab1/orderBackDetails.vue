@@ -10,25 +10,9 @@
 		<view class="content" :class="{'content_active': order.detailStatus == 'waitpay' || order.detailStatus == 'cancel' || order.detailStatus == 'waitsign'}">
 			<view class="cont_top">
 				<view class="top_text">
-					<view v-if="order.detailStatus == 'waitpay'">
-						<h4>您的订单还未付款，请及时付款</h4>
-						<p>此订单需要在7月26日00:00为止需要支付，否则订单将自动取消。</p>
-					</view>
-					<view v-else-if="order.detailStatus == 'init'">
-						<h4>订单待处理</h4>
-					</view>
-					<view v-else-if="order.detailStatus == 'accept' || order.detailStatus == 'waitsend' || order.detailStatus == 'collect'">
-						<h4>订单待发货</h4>
-					</view>
-					<view v-else-if="order.detailStatus == 'waitsign'">
-						<h4>订单待签收</h4>
-					</view>
-					<view v-else-if="order.detailStatus == 'finish'">
-						<h4>订单已完成，感谢您的支持</h4>
-					</view>
-					<view v-else-if="order.detailStatus == 'cancel' || order.detailStatus == 'refuse'">
-						<h4>订单已被取消。</h4>
-						<p>拒接理由内容拒接理由内容拒接理由内容，如有疑问请联系客服。</p>
+					<view>
+						<h4>{{order.detailStatusTitle}}</h4>
+						<p>{{order.detailStatusSubTitle}}</p>
 					</view>
 				</view>
 				<view class="top_button">
@@ -121,9 +105,7 @@
 					<view class="flex_between order_list_phone">
 						<p>支付方式</p>
 						<view>
-							<text v-if="order.prepaidChannel">{{order.prepaidChannel}}支付</text>
-							<text v-if="order.adjustPayChannel" style="margin: 0 30upx;color:rgba(222,222,222,1);">|</text>
-							<text v-if="order.adjustPayChannel">{{order.adjustPayChannel}}支付</text>
+							<text v-if="order.payChannel">{{order.payChannel}}支付</text>
 						</view>
 					</view>
 					<view class="flex_between order_list_phone">
@@ -305,6 +287,20 @@
 				this.headerShow = true;
 			}
 		},
+		onBackPress(e) {
+			console.log(e)
+			if (e.from == 'backbutton') {
+				uni.setStorage({
+					key: 'gotoPage',
+					data: this.gotoPage,
+					success: () => {
+						uni.switchTab({
+							url: '/pages/tabs/tab2',
+						})
+					}
+				})
+			}
+		},
 		watch: {},
 		methods: {
 			onClickBack() {
@@ -352,8 +348,10 @@
 								provider: 'alipay',
 								orderInfo: res1.data.data,
 								success: (res) => {
-									console.log(res)
-									this.getOrderDetail()
+									this.order.payStyle = 'Alipay'
+									uni.navigateTo({
+										url: "/pages/tab1/orderBackSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(this.order))
+									})
 								},
 								fail: (err) => {
 									this.$http('user/withdraw/order/pay/fail', "POST", orderObj, res2 => {
@@ -393,7 +391,10 @@
 								orderInfo: orderInfoObj,
 								success: (res) => {
 									console.log(res)
-									this.getOrderDetail()
+									this.order.payStyle = 'WeChatpay'
+									uni.navigateTo({
+										url: "/pages/tab1/orderBackSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(this.order))
+									})
 								},
 								fail: (err) => {
 									this.$http('user/withdraw/order/pay/fail', "POST", orderObj, res2 => {
@@ -420,12 +421,16 @@
 						data.data.detailAddress = `${data.data.area.province} ${data.data.area.city?data.data.area.city:''} ${data.data.area.district?data.data.area.district:''} ${data.data.plotName} ${data.data.address}`
 						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD HH:mm:ss')
 						data.data.detailStatus = data.data.status.code
-						if (data.data.prepaidChannel) {
-							data.data.prepaidChannel = data.data.prepaidChannel.name //预付费支付方式
+						data.data.detailStatusTitle = data.data.status.title
+						data.data.detailStatusSubTitle = data.data.status.subTitle
+						if (data.data.payChannel) {
+							data.data.payChannel = data.data.payChannel.name //预付费支付方式
 						}
-						if (data.data.adjustPayChannel) {
-							data.data.adjustPayChannel = data.data.adjustPayChannel.name //调整支付方式
-						}
+						data.data.deliveryFee = data.data.deliveryFee.toFixed(2)
+						data.data.packFee = data.data.packFee.toFixed(2)
+						data.data.boxFee = data.data.boxFee.toFixed(2)
+						data.data.adjustFee = data.data.adjustFee.toFixed(2)
+						data.data.totalFee = data.data.totalFee.toFixed(2)
 						data.data.totalList = []
 						if (data.data.goods) {
 							for (let item of data.data.goods) {
@@ -625,7 +630,7 @@
 			font-weight: 500;
 			color: rgba(40, 40, 40, 1);
 			line-height: 64upx;
-			text-align: justify;
+			// text-align: justify;
 			padding: 0 50upx;
 
 			h4 {
