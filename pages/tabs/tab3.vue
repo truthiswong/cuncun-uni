@@ -23,7 +23,7 @@
 		<view class="content">
 			<view class="cont_top" :style="{background: 'url('+ cont_top_bg +') no-repeat center center / cover'}">
 				<view class="head_image">
-					<image class="head_image_img" :src="headImage"></image>
+					<image class="head_image_img" :src="headImage" mode="aspectFill"></image>
 					<view>
 						<p style="width: 510upx; margin-bottom: 20upx;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">{{nickname}}</p>
 						<uni-rate disabled="true" size="14" value="3.5"></uni-rate>
