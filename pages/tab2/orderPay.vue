@@ -198,6 +198,7 @@
 			this.getDateList()
 			this.getHoursList()
 			this.address = uni.getStorageSync('address')
+			this.pay_fee = 0
 			if (!this.address.id) {
 				this.getAddressList()
 			}
