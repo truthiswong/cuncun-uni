@@ -8,7 +8,7 @@
 					<uni-list-item title="头像">
 						<view slot="right">
 							<image @click="chooseHeadImage" style="width: 120upx;height: 120upx;border-radius: 50%;margin-left: 300upx;"
-							 :src="headImage"></image>
+							 :src="headImage" mode="aspectFill"></image>
 						</view>
 					</uni-list-item>
 				</uni-list>
@@ -261,10 +261,16 @@
 										}
 									})
 								} else {
-									uni.showToast({
-										icon: 'none',
-										title: data.message
-									});
+									uni.showModal({
+										title: '提示',
+										content: data.message,
+										showCancel: false,
+										success: (res) => {
+											if (res.confirm) {
+												
+											}
+										}
+									})
 								}
 							})
 						}

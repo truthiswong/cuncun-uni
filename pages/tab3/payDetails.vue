@@ -65,6 +65,7 @@
 						if (data.success) {
 							for (let item of data.data.data) {
 								item.time = this.$moment(item.payTime).format('YYYY-MM-DD')
+								item.amount = item.amount.toFixed(2)
 							}
 							this.pageNumber++
 							this.list = this.list.concat(data.data.data)

@@ -104,8 +104,6 @@
 					uni.switchTab({
 						url: '/pages/tabs/tab1'
 					})
-				} else {
-					uni.navigateBack()
 				}
 			}
 		},

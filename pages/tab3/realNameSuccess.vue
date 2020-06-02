@@ -28,6 +28,14 @@
 			// #endif
 			this.getUserInfo()
 		},
+		onBackPress(e) {
+			console.log(e)
+			if (e.from == 'backbutton') {
+				uni.switchTab({
+					url: '/pages/tabs/tab1'
+				})
+			}
+		},
 		methods: {
 			onClickBack() {
 				uni.navigateBack()
