@@ -315,6 +315,7 @@
 				} else if (!this.dateDate || !this.hourValue) {
 
 				} else {
+					this.pay_fee = '计算中...'
 					let data = {
 						addressId: this.address.id,
 						h1: this.hourValue1,
@@ -476,6 +477,9 @@
 						// 订单创建成功清除缓存物品
 						uni.removeStorage({
 							key: 'orderGoodsList'
+						})
+						uni.removeStorage({
+							key: 'orderBoxsList'
 						})
 						uni.removeStorage({
 							key: 'orderRemark'
