@@ -10,31 +10,9 @@
 		<view class="content" :class="{'content_active': order.detailStatus == 'waitpay' || order.detailStatus == 'cancel' || order.detailAdjustPayStatus == 'wait'}">
 			<view class="cont_top">
 				<view class="top_text">
-					<view v-if="order.detailStatus == 'waitpay'">
-						<h4>您的订单还未付款，请及时付款</h4>
-						<p>此订单需要及时支付，否则订单将自动取消。</p>
-					</view>
-					<view v-else-if="order.detailStatus == 'init'">
-						<h4>订单待处理</h4>
-					</view>
-					<view v-else-if="order.detailStatus == 'assign'">
-						<h4>订单分配骑手</h4>
-					</view>
-					<view v-else-if="order.detailStatus == 'fetch'">
-						<h4>订单待取货</h4>
-					</view>
-					<view v-else-if="order.detailStatus == 'delivery'">
-						<h4>订单回库中</h4>
-					</view>
-					<view v-else-if="order.detailStatus == 'inputwork' || order.detailStatus == 'monitor' || order.detailStatus == 'photo' || order.detailStatus == 'ready'">
-						<h4>订单入库作业中</h4>
-					</view>
-					<view v-else-if="order.detailStatus == 'finish'">
-						<h4>订单已完成，感谢您的支持</h4>
-					</view>
-					<view v-else-if="order.detailStatus == 'cancel' || order.detailStatus == 'refuse'">
-						<h4>订单已被取消。</h4>
-						<p>{{order.statusRemark?order.statusRemark:'拒接理由内容拒接理由内容拒接理由内容，如有疑问请联系客服。'}}</p>
+					<view>
+						<h4>{{order.detailStatusTitle}}</h4>
+						<p>{{order.detailStatusSubTitle}}</p>
 					</view>
 				</view>
 				<view class="top_button">
@@ -76,19 +54,19 @@
 				<view>
 					<view class="flex_between order_list_fee">
 						<p>运输费用</p>
-						<text>¥ {{order.deliveryFee}} {{order.deliveryFeeNew - order.deliveryFee >= 0?'+':'-'}} ¥ {{order.deliveryFeeNew - order.deliveryFee}}</text>
+						<text>¥ {{order.deliveryFee}} {{order.deliveryFeeNew - order.deliveryFee >= 0?'+':'-'}} ¥ {{deliveryFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>打包费用</p>
-						<text>¥ {{order.packFee}} {{order.packFeeNew - order.packFee >= 0?'+':'-'}} ¥ {{order.packFeeNew - order.packFee}}</text>
+						<text>¥ {{order.packFee}} {{order.packFeeNew - order.packFee >= 0?'+':'-'}} ¥ {{packFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>箱子费用</p>
-						<text>¥ {{order.boxFee}} {{order.boxFeeNew - order.boxFee >= 0?'+':'-'}} ¥ {{order.boxFeeNew}}</text>
+						<text>¥ {{order.boxFee}} {{order.boxFeeNew - order.boxFee >= 0?'+':'-'}} ¥ {{boxFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>订单总费用</p>
-						<text>¥ {{order.totalFee}} {{order.settleFee - order.totalFee >= 0?'+':'-'}} ¥ {{order.settleFee - order.totalFee}}</text>
+						<text>¥ {{order.totalFee}} {{order.settleFee - order.totalFee >= 0?'+':'-'}} ¥ {{totalFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>调整费用 <text style="color: #3BC1BB;margin-left: 20upx;" v-if="order.adjustFeeReason" @click="onChangeFeeAlert(order.adjustFeeReason)">查看</text></p>
@@ -115,7 +93,7 @@
 					<view class="flex_between order_list_fee" v-if="order.detailAdjustPayStatus == 'payed'">
 						<p>实际付费用</p>
 						<view>
-							<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.prepaid + order.appendFee}}</text></text>
+							<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{realityFee}}</text></text>
 						</view>
 					</view>
 				</view>
@@ -325,6 +303,26 @@
 			optionsReverse() {
 				let that = this
 				return that.options.reverse()
+			},
+			deliveryFee() {
+				// 运输费
+				return Math.abs(Number(this.order.deliveryFeeNew) - Number(this.order.deliveryFee)).toFixed(2)
+			},
+			packFee() {
+				// 打包费
+				return Math.abs(Number(this.order.packFeeNew) - Number(this.order.packFee)).toFixed(2)
+			},
+			boxFee() {
+				// 箱子费
+				return Math.abs(Number(this.order.boxFeeNew) - Number(this.order.boxFee)).toFixed(2)
+			},
+			totalFee() {
+				// 总费用
+				return Math.abs(Number(this.order.settleFee) - Number(this.order.totalFee)).toFixed(2)
+			},
+			realityFee() {
+				let that = this
+				return (Number(this.order.prepaid) + Number(this.order.appendFee)).toFixed(2)
 			}
 		},
 		onPageScroll(options) {
@@ -332,6 +330,20 @@
 				this.headerShow = false;
 			} else {
 				this.headerShow = true;
+			}
+		},
+		onBackPress(e) {
+			console.log(e)
+			if (e.from == 'backbutton') {
+				uni.setStorage({
+					key: 'gotoPage',
+					data: this.gotoPage,
+					success: () => {
+						uni.switchTab({
+							url: '/pages/tabs/tab2',
+						})
+					}
+				})
 			}
 		},
 		watch: {},
@@ -385,7 +397,9 @@
 									provider: 'alipay',
 									orderInfo: res.data.data,
 									success: (res) => {
-										this.getOrderDetail()
+										uni.navigateTo({
+											url: "/pages/tab2/orderSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(this.order))
+										})
 									},
 									fail: (errpay) => {
 										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
@@ -412,7 +426,9 @@
 									provider: 'alipay',
 									orderInfo: res.data.data,
 									success: (res) => {
-										this.getOrderDetail()
+										uni.navigateTo({
+											url: "/pages/tab2/orderSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(this.order))
+										})
 									},
 									fail: (err) => {
 										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
@@ -455,7 +471,9 @@
 									orderInfo: orderInfoObj,
 									success: (respay) => {
 										console.log(respay)
-										this.getOrderDetail()
+										uni.navigateTo({
+											url: "/pages/tab2/orderSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(this.order))
+										})
 									},
 									fail: (err) => {
 										console.log(err)
@@ -494,7 +512,9 @@
 									provider: 'wxpay',
 									orderInfo: orderInfo,
 									success: (respay) => {
-										this.getOrderDetail()
+										uni.navigateTo({
+											url: "/pages/tab2/orderSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(this.order))
+										})
 									},
 									fail: (err) => {
 										this.$http('user/deposit/order/prepay/fail', "POST", orderObj, res2 => {
@@ -548,9 +568,24 @@
 						data.data.detailTime =
 							`${data.data.bookFetchDate} ${data.data.bookFetchTime[0]}:00~${data.data.bookFetchTime[1]}:00`
 						data.data.detailStatus = data.data.status.code
+						data.data.detailStatusTitle = data.data.status.title
+						data.data.detailStatusSubTitle = data.data.status.subTitle
 						data.data.detailPrepaidStatus = data.data.prepaidStatus.code
 						data.data.orderTime = this.$moment(data.data.timeCreated).format('YYYY-MM-DD HH:mm:ss')
 						data.data.detailAdjustPayStatus = data.data.adjustPayStatus.code
+
+						data.data.adjustFee = data.data.adjustFee.toFixed(2)
+						data.data.appendFee = data.data.appendFee.toFixed(2)
+						data.data.boxFee = data.data.boxFee.toFixed(2)
+						data.data.boxFeeNew = data.data.boxFeeNew.toFixed(2)
+						data.data.deliveryFee = data.data.deliveryFee.toFixed(2)
+						data.data.deliveryFeeNew = data.data.deliveryFeeNew.toFixed(2)
+						data.data.packFee = data.data.packFee.toFixed(2)
+						data.data.packFeeNew = data.data.packFeeNew.toFixed(2)
+						data.data.prepaid = data.data.prepaid.toFixed(2)
+						data.data.settleFee = data.data.settleFee.toFixed(2)
+						data.data.totalFee = data.data.totalFee.toFixed(2)
+
 						if (data.data.prepaidChannel) {
 							data.data.prepaidChannel = data.data.prepaidChannel.name //预付费支付方式
 						}
@@ -685,7 +720,7 @@
 			font-weight: 500;
 			color: rgba(40, 40, 40, 1);
 			line-height: 64upx;
-			text-align: justify;
+			// text-align: justify;
 			padding: 0 50upx;
 
 			h4 {
