@@ -93,7 +93,7 @@
 							<scroll-view class="scroll_x" scroll-x="true" @scroll="onScroll">
 								<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}"
 								 style="display: inline-block;" v-for="(item,index) in bookData" :key='index'>
-									<image v-if="item.coverPic" :src="item.coverPic"></image>
+									<image v-if="item.coverPic" :src="item.coverPic" mode="aspectFill"></image>
 									<image v-else @click="onClickRight(4)" src="../../static/tab1/add_order.png" mode=""></image>
 								</view>
 							</scroll-view>
@@ -123,7 +123,7 @@
 							<scroll-view class="scroll_x" scroll-x="true" @scroll="onScroll">
 								<view class="scroll_content scroll_content2" :style="{background: 'url('+ scroll_bg2 +') no-repeat center top / 100% 200upx'}"
 								 v-for="(item,index) in clotheData" :key='index' style="display: inline-block;">
-									<image v-if="item.coverPic" :src="item.coverPic"></image>
+									<image v-if="item.coverPic" :src="item.coverPic" mode="aspectFill"></image>
 									<image v-else @click="onClickRight(4)" src="../../static/tab1/add_order.png" mode=""></image>
 									<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 112upx;" src="../../static/tab1/clothes_box1.png"></image>
 								</view>
@@ -154,7 +154,7 @@
 							<scroll-view class="scroll_x" scroll-x="true" @scroll="onScroll">
 								<view class="scroll_content scroll_content2" v-for="(item,index) in shoeData" :key='index' style="display: inline-block;">
 									<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
-									<image v-if="item.coverPic" :src="item.coverPic"></image>
+									<image v-if="item.coverPic" :src="item.coverPic" mode="aspectFill"></image>
 									<image v-else @click="onClickRight(4)" src="../../static/tab1/add_order.png" mode=""></image>
 									<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
 								</view>
@@ -184,7 +184,7 @@
 						<view v-if="tab1ShowHide.storageShowHide == true">
 							<scroll-view class="scroll_x" scroll-x="true" @scroll="onScroll">
 								<view class="scroll_content scroll_content4" v-for="(item,index) in storageData" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
-									<image v-if="item.coverPic" :src="item.coverPic"></image>
+									<image v-if="item.coverPic" :src="item.coverPic" mode="aspectFill"></image>
 									<image v-else @click="onClickRight(4)" src="../../static/tab1/add_order.png" mode=""></image>
 								</view>
 							</scroll-view>
@@ -217,10 +217,10 @@
 									<text>{{index+1}}</text>
 								</view>
 								<view class="box_groceries_right" style="color: rgba(40,40,40,1);">
-									<view>
+									<!-- <view>
 										<text>{{item.code}}</text>
-									</view>
-									<text class="box_groceries_text">{{item.remark}}</text>
+									</view> -->
+									<text class="box_groceries_text">箱内物品: {{item.remark}}</text>
 								</view>
 							</view>
 						</view>
@@ -278,6 +278,7 @@
 			})
 			// #endif
 			if (uni.getStorageSync('loginRealName')) {
+				this.getRealNameReturn()
 				uni.removeStorage({
 					key: 'loginRealName'
 				})
@@ -296,6 +297,7 @@
 			} else if (this.user.name) {
 				nickname = this.user.name
 				this.getUserInfo()
+				this.getRealNameReturn()
 			} else {
 				this.getUserInfo()
 			}
@@ -333,7 +335,7 @@
 								// #endif
 							}
 						})
-					} else{
+					} else {
 						uni.showModal({
 							title: '提示',
 							content: '根据存存服务协议要求，需要先进行实名认证哦！',
@@ -360,7 +362,7 @@
 								// #endif
 							}
 						})
-					} else{
+					} else {
 						uni.showModal({
 							title: '提示',
 							content: '根据存存服务协议要求，需要先进行实名认证哦！',
@@ -557,11 +559,18 @@
 					}
 				})
 			},
+			getRealNameReturn() {
+				// 查询是否实名
+				this.$http('user/alipay/user/certify/query', "GET", '', res => {
+					console.log('查询是否实名')
+				})
+			}
 		}
 	}
 </script>
 <style>
-	page, uni-page {
+	page,
+	uni-page {
 		height: 100%;
 	}
 </style>
@@ -761,8 +770,9 @@
 		color: #4A4A4A;
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
+		-webkit-line-clamp: 3;
 		overflow: hidden;
+		text-align: justify;
 	}
 
 	.scroll_x {
@@ -844,7 +854,7 @@
 		position: fixed;
 		right: 0;
 		bottom: 0;
-		z-index: 20;
+		z-index: 999;
 	}
 
 	.long_button image {
