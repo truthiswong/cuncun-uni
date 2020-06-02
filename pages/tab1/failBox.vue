@@ -38,9 +38,9 @@
 							</view>
 						</label>
 						<view class="box_groceries_right" style="color: rgba(40,40,40,1);">
-							<view>
+							<!-- <view>
 								<text>{{item.code}}</text>
-							</view>
+							</view> -->
 							<text class="box_groceries_text">{{item.remark}}</text>
 						</view>
 					</view>
@@ -336,8 +336,9 @@
 			color: #4A4A4A;
 			display: -webkit-box;
 			-webkit-box-orient: vertical;
-			-webkit-line-clamp: 2;
+			-webkit-line-clamp: 3;
 			overflow: hidden;
+			text-align: justify;
 		}
 	}
 </style>

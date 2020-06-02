@@ -35,7 +35,7 @@
 					<view class="scroll_content" v-for="(item,index) in list" :key='index' style="display: inline-block;">
 						<label>
 							<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
-							<image :src="item.coverPic"></image>
+							<image :src="item.coverPic" mode="aspectFill"></image>
 							<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 102upx;" src="../../static/tab1/shoes_box1.png"></image>
 							<view class="checkbox_item" v-if="isCheckedShow">
 								<checkbox :value="item.id" :checked="item.checked" color="white" /><text></text>

@@ -43,10 +43,10 @@
 							</view>
 						</label>
 						<view class="box_groceries_right" style="color: rgba(40,40,40,1);">
-							<view>
-								<text>{{item.code}}</text>
-							</view>
-							<text class="box_groceries_text">{{item.remark}}</text>
+							<!-- <view>
+								<text>{{item.remark}}</text>
+							</view> -->
+							<text class="box_groceries_text">箱内物品: {{item.remark}}</text>
 						</view>
 					</view>
 				</checkbox-group>
@@ -343,8 +343,9 @@
 			color: #4A4A4A;
 			display: -webkit-box;
 			-webkit-box-orient: vertical;
-			-webkit-line-clamp: 2;
+			-webkit-line-clamp: 3;
 			overflow: hidden;
+			text-align: justify;
 		}
 	}
 

@@ -35,7 +35,7 @@
 					<view class="scroll_content" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}" style="display: inline-block;"
 					 v-for="(item,index) in list" :key='index'>
 						<label>
-							<image :src="item.coverPic"></image>
+							<image :src="item.coverPic" mode="aspectFill"></image>
 							<view class="checkbox_item" v-if="isCheckedShow">
 								<checkbox :value="item.id" :checked="item.checked" color="white" />
 							</view>

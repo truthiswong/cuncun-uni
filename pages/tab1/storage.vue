@@ -34,7 +34,7 @@
 				<checkbox-group class="checkbox_custom" @change="onCheckboxChange">
 					<view class="scroll_content4" v-for="(item,index) in list" :key='index' style="display: inline-block;">
 						<label>
-							<image :src="item.coverPic"></image>
+							<image :src="item.coverPic" mode="aspectFill"></image>
 							<view class="checkbox_item" v-if="isCheckedShow">
 								<checkbox :value="item.id" :checked="item.checked" color="white" />
 							</view>
