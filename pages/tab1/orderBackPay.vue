@@ -269,7 +269,6 @@
 										orderInfo: orderInfoObj,
 										success: (respay) => {
 											console.log(respay)
-											
 											uni.navigateTo({
 												url: "/pages/tab1/orderBackSuccess?orderInfo=" + encodeURIComponent(JSON.stringify(data.data)),
 												success: () => {

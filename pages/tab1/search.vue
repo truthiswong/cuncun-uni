@@ -23,7 +23,7 @@
 							<view class="search_list_left">
 								<view v-if="item.itemType == 'bookcase'">
 									<view class="list_left_view" :style="{background: 'url('+ scroll_bg1 +') no-repeat center center / cover'}">
-										<image :src="item.coverPic"></image>
+										<image :src="item.coverPic" mode="aspectFill"></image>
 										<view class="checkbox_item" v-if="isCheckedShow">
 											<checkbox :value="item.id" :checked="item.checked" color="white" />
 										</view>
@@ -31,7 +31,7 @@
 								</view>
 								<view v-if="item.itemType == 'armoire'">
 									<view class="list_left_view" :style="{'background': 'url('+ scroll_bg2 +') no-repeat center center / cover','background-size': '100%'}">
-										<image style="width: 200upx;" :src="item.coverPic"></image>
+										<image style="width: 200upx;" :src="item.coverPic" mode="aspectFill"></image>
 										<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 80upx;" src="../../static/tab1/clothes_box1.png"></image>
 										<view class="checkbox_item" v-if="isCheckedShow">
 											<checkbox :value="item.id" :checked="item.checked" color="white" /><text></text>
@@ -41,7 +41,7 @@
 								<view v-if="item.itemType == 'shoebox'">
 									<view class="list_left_view">
 										<image style="position: absolute;z-index: 0;left: 0;top: 0; width: 100%;height: 158upx;" src="../../static/tab1/shoes_box2.png"></image>
-										<image style="width: 206upx;" :src="item.coverPic"></image>
+										<image style="width: 206upx;" :src="item.coverPic" mode="aspectFill"></image>
 										<image style="position: absolute;z-index: 5;left: 0;bottom: 0; width: 100%;height: 127upx;" src="../../static/tab1/shoes_box1.png"></image>
 										<view class="checkbox_item" v-if="isCheckedShow">
 											<checkbox :value="item.id" :checked="item.checked" color="white" />
@@ -50,7 +50,7 @@
 								</view>
 								<view v-if="item.itemType == 'storeroom'">
 									<view class="list_left_view">
-										<image :src="item.coverPic"></image>
+										<image :src="item.coverPic" mode="aspectFill"></image>
 										<view class="checkbox_item" v-if="isCheckedShow">
 											<checkbox :value="item.id" :checked="item.checked" color="white" />
 										</view>
