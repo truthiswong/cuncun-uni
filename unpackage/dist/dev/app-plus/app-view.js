@@ -3431,6 +3431,12 @@ var render = function() {
                                         }),
                                         1
                                       )
+                                    : _vm._e(),
+                                  _vm._$g(135, "i")
+                                    ? _c("v-uni-view", {
+                                        staticStyle: { height: "100upx" },
+                                        attrs: { _i: 135 }
+                                      })
                                     : _vm._e()
                                 ],
                                 1
@@ -3447,16 +3453,16 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: _vm._$g(135, "v-show"),
-                          expression: "_$g(135,'v-show')"
+                          value: _vm._$g(136, "v-show"),
+                          expression: "_$g(136,'v-show')"
                         }
                       ],
-                      staticClass: _vm._$g(135, "sc"),
-                      attrs: { _i: 135 }
+                      staticClass: _vm._$g(136, "sc"),
+                      attrs: { _i: 136 }
                     },
                     [
                       _c("v-uni-image", {
-                        attrs: { src: _vm._$g(136, "a-src"), _i: 136 },
+                        attrs: { src: _vm._$g(137, "a-src"), _i: 137 },
                         on: {
                           click: function($event) {
                             return _vm.$handleViewEvent($event)
@@ -3464,7 +3470,7 @@ var render = function() {
                         }
                       }),
                       _c("v-uni-image", {
-                        attrs: { src: _vm._$g(137, "a-src"), _i: 137 },
+                        attrs: { src: _vm._$g(138, "a-src"), _i: 138 },
                         on: {
                           click: function($event) {
                             return _vm.$handleViewEvent($event)

@@ -224,6 +224,7 @@
 								</view>
 							</view>
 						</view>
+						<view v-if="groceriesData.length<=0 || tab1ShowHide.groceriesShowHide != true" style="height: 100upx;"></view>
 					</view>
 				</view>
 				<view class="long_button" v-show="long_active">
