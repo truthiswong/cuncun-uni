@@ -10,16 +10,9 @@
 		<view class="content" :class="{'content_active': order.detailStatus == 'waitpay' || order.detailStatus == 'overdue7'}">
 			<view class="cont_top">
 				<view class="top_text">
-					<view v-if="order.detailStatus == 'payed'">
-						<h4>订单已支付，放心存储吧～</h4>
-					</view>
-					<view v-if="order.detailStatus == 'waitpay'">
-						<h4>您的订单还未付款，请及时付款</h4>
-						<p>此订单需要及时支付，否则订单将自动取消。</p>
-					</view>
-					<view v-if="order.detailStatus == 'overdue7'">
-						<h4>您的订单还未付款，请及时付款</h4>
-						<p>此订单需要及时支付，否则订单将自动取消。</p>
+					<view>
+						<h4>{{order.detailStatusTitle}}</h4>
+						<p>{{order.detailStatusSubTitle}}</p>
 					</view>
 				</view>
 				<view class="top_button">
@@ -82,7 +75,7 @@
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>调整费用 <text style="color: #3BC1BB;margin-left: 20upx;" v-if="order.adjustFeeReason" @click="onChangeFeeAlert(order.adjustFeeReason)">查看</text></p>
-						<text>¥ {{order.settleFee?order.settleFee-order.fee:0}}</text>
+						<text>¥ {{order.settleFee?adjustFee:0.00}}</text>
 					</view>
 					<view class="flex_between order_list_fee" style="margin-top: 10upx;">
 						<p>支付总费用</p>
@@ -104,9 +97,7 @@
 					<view class="flex_between order_list_phone">
 						<p>支付方式</p>
 						<view>
-							<text v-if="order.prepaidChannel">{{order.prepaidChannel}}支付</text>
-							<text v-if="order.adjustPayChannel" style="margin: 0 30upx;color:rgba(222,222,222,1);">|</text>
-							<text v-if="order.adjustPayChannel">{{order.adjustPayChannel}}支付</text>
+							<text v-if="order.payChannel">{{order.payChannel}}支付</text>
 						</view>
 					</view>
 					<view class="flex_between order_list_phone">
@@ -206,6 +197,10 @@
 			optionsReverse() {
 				let that = this
 				return that.options.reverse()
+			},
+			adjustFee() {
+				// 调整费用
+				return (this.order.settleFee - this.order.fee).toFixed(2)
 			}
 		},
 		onPageScroll(options) {
@@ -313,12 +308,15 @@
 					if (data.success) {
 						data.data.detailTime = `${data.data.bookFetchDate} ~ ${data.data.bookFetchDate}`
 						data.data.detailStatus = data.data.status.code
-						if (data.data.prepaidChannel) {
-							data.data.prepaidChannel = data.data.prepaidChannel.name //预付费支付方式
+						data.data.detailStatusTitle = data.data.status.title
+						data.data.detailStatusSubTitle = data.data.status.subTitle
+						if (data.data.payChannel) {
+							data.data.payChannel = data.data.payChannel.name //预付费支付方式
 						}
-						if (data.data.adjustPayChannel) {
-							data.data.adjustPayChannel = data.data.adjustPayChannel.name //调整支付方式
-						}
+						data.data.boxECprice = data.data.boxECprice.toFixed(2)
+						data.data.boxSDprice = data.data.boxSDprice.toFixed(2)
+						data.data.settleFee = data.data.settleFee.toFixed(2)
+						data.data.fee = data.data.fee.toFixed(2)
 						data.data.orderTime = this.$moment(data.data.sendUserTime).format('YYYY-MM-DD HH:mm:ss')
 						this.order = data.data
 					} else {
@@ -334,6 +332,7 @@
 						for (let item of data.data) {
 							item.typeName = item.box.name
 							item.typeBoxAB = item.box.type.code
+							item.price = item.price.toFixed(2)
 						}
 						this.orderBox = data.data
 						console.log(this.orderBox)
@@ -434,7 +433,7 @@
 			font-weight: 500;
 			color: rgba(40, 40, 40, 1);
 			line-height: 64upx;
-			text-align: justify;
+			// text-align: justify;
 			padding: 0 50upx;
 
 			h4 {
