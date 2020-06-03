@@ -104,6 +104,10 @@
 						<p>创建时间</p>
 						<text>{{order.orderTime}}</text>
 					</view>
+					<view class="flex_between order_list_phone">
+						<p>订单备注</p>
+						<text>{{order.remark}}</text>
+					</view>
 				</view>
 			</view>
 			<view class="order_list">
