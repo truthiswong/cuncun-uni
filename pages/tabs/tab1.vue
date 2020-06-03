@@ -1,25 +1,25 @@
 <template>
 	<view class="page">
 		<uni-nav-bar class="header" status-bar="true" fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
-			<view slot="left" class="header_icon">
+			<view slot="left">
 				<image src="../../static/tab1/tab1_logo.png" style="width:306upx; height:68upx; margin: 0px 30upx -24upx;"></image>
 			</view>
 			<view slot="right">
 				<view class="header_icon">
 					<image @click="onClickRight(1)" style="" src="../../static/tab1/search_white.png"></image>
-					<image @click="onClickRight(2)" src="../../static/tab1/add.png" style="margin-left: 60upx;"></image>
+					<image @click="onClickRight(2)" src="../../static/tab1/add.png"></image>
 				</view>
 			</view>
 		</uni-nav-bar>
 		<uni-nav-bar class="header" status-bar="true" fixed="true" v-if="!headerShow" style="position: absolute; top: 0;"
 		 shadow="true">
-			<view slot="left" class="header_icon">
+			<view slot="left">
 				<image src="../../static/tab1/header_active.png" style="width:374upx; height:48upx; margin: 0px 30upx -14upx;"></image>
 			</view>
 			<view slot="right">
 				<view class="header_icon">
 					<image @click="onClickRight(1)" src="../../static/tab1/search_green.png"></image>
-					<image @click="onClickRight(2)" src="../../static/tab1/add_green.png" style="margin-left: 60upx;"></image>
+					<image @click="onClickRight(2)" src="../../static/tab1/add_green.png"></image>
 				</view>
 			</view>
 		</uni-nav-bar>
@@ -583,11 +583,14 @@
 
 	.header_icon {
 		width: 200upx;
+		height: 88upx;
+		padding-right: 36upx;
 
 		image {
-			width: 44upx;
-			height: 44upx;
-			margin: 30upx 10upx 0;
+			width: 88upx;
+			height: 88upx;
+			box-sizing: border-box;
+			padding: 22upx;
 		}
 	}
 

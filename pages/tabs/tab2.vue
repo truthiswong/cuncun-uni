@@ -747,9 +747,10 @@
 		height: 88upx;
 
 		image {
-			width: 44upx;
-			height: 44upx;
-			vertical-align: middle;
+			width: 88upx;
+			height: 88upx;
+			box-sizing: border-box;
+			padding: 22upx;
 		}
 	}
 
