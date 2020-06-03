@@ -10,7 +10,7 @@
 		<view class="content" :class="{'content_active': order.detailStatus == 'waitpay' || order.detailStatus == 'cancel' || order.detailAdjustPayStatus == 'wait'}">
 			<view class="cont_top">
 				<view class="top_text">
-					<view>
+					<view @longtap="longClick">
 						<h4>{{order.detailStatusTitle}}</h4>
 						<p>{{order.detailStatusSubTitle}}</p>
 					</view>
@@ -672,6 +672,18 @@
 					}
 				})
 				// #endif
+			},
+			longClick() {
+				if (this.order.detailStatus == 'cancel') {
+					// #ifdef APP-PLUS
+					uni.setClipboardData({
+						data: 'yourvoicematters@shuncun.tech',
+						success: () => {
+							console.log(id);
+						}
+					})
+					// #endif
+				}
 			},
 			onCall() {
 				uni.showModal({
