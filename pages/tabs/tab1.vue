@@ -774,7 +774,7 @@
 		color: #4A4A4A;
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 3;
+		-webkit-line-clamp: 4;
 		overflow: hidden;
 		text-align: justify;
 	}
