@@ -421,9 +421,9 @@
 						this.finished2 = false
 						this.getOrderList2()
 					} else if (this.current == 3) {
-						// this.pageNumber3 = 0
-						// this.totalPages3 = 1
-						// this.finished3 = false
+						this.pageNumber3 = 0
+						this.totalPages3 = 1
+						this.finished3 = false
 						this.getOrderList3()
 					}
 					// if (this.current == 0) {

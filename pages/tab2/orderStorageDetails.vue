@@ -74,7 +74,7 @@
 						<text>¥ {{order.boxSDprice}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
-						<p>调整费用 <text style="color: #3BC1BB;margin-left: 20upx;" v-if="order.adjustFeeReason" @click="onChangeFeeAlert(order.adjustFeeReason)">查看</text></p>
+						<p>调整费用 <text style="color: #3BC1BB;padding: 0 20upx;" v-if="order.remark" @click="onChangeFeeAlert(order.remark)">查看</text></p>
 						<text>¥ {{order.settleFee?adjustFee:0.00}}</text>
 					</view>
 					<view class="flex_between order_list_fee" style="margin-top: 10upx;">
@@ -103,10 +103,6 @@
 					<view class="flex_between order_list_phone">
 						<p>创建时间</p>
 						<text>{{order.orderTime}}</text>
-					</view>
-					<view class="flex_between order_list_phone">
-						<p>订单备注</p>
-						<text>{{order.remark}}</text>
 					</view>
 				</view>
 			</view>

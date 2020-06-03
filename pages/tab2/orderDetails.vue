@@ -69,7 +69,7 @@
 						<text>¥ {{order.totalFee}} {{order.settleFee - order.totalFee >= 0?'+':'-'}} ¥ {{totalFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
-						<p>调整费用 <text style="color: #3BC1BB;margin-left: 20upx;" v-if="order.adjustFeeReason" @click="onChangeFeeAlert(order.adjustFeeReason)">查看</text></p>
+						<p>调整费用 <text style="color: #3BC1BB;padding: 0 20upx;" v-if="order.adjustFeeReason" @click="onChangeFeeAlert(order.adjustFeeReason)">查看</text></p>
 						<text>¥ {{order.adjustFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee" v-if="order.detailStatus == 'waitpay'">
