@@ -21,7 +21,7 @@
 					<text>{{item.time}}</text>
 				</view>
 				<view style="width: 40%;text-align: center;padding-left: 2.5%;">
-					<text v-if="item.amount">¥ {{item.amount}}</text>
+					<text v-if="item.amount">¥ {{item.refund?'+':''}}{{item.amount}}</text>
 				</view>
 				<view style="width: 40%;text-align: right;">
 					<text>{{item.type.name}}</text>
