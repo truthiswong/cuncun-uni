@@ -7,12 +7,20 @@
 				</view>
 			</view>
 		</uni-nav-bar>
-		<view class='search_box flex_between' @click="isAddShow=false">
-			<view style="width: 16%;">
+		<view class='search_wrap flex_between' @click="isAddShow=false">
+			<view style="width: 15%;">
 				<uni-combox :candidates="candidates" placeholder="选择" v-model="candidatesDefault"></uni-combox>
 			</view>
-			<view style="width: 84%;">
-				<uni-search-bar :radius="100" @confirm="onSearch"></uni-search-bar>
+			<view style="width: 68%;" class="flex_between row search_box">
+				<!-- <uni-search-bar :radius="100" @confirm="onSearchConfirm"></uni-search-bar> -->
+				<uni-icons color="#999999" size="18" type="search" class="col-1" />
+				<input type="text" style="background-color: #FFFFFF; color: #333333;font-size: 28upx;line-height: 40upx;" class="col-10" :class="{'col-11': !showClearIcon}" confirm-type="search" placeholder="请输入搜索内容" v-model="keywords" @confirm="onSearchConfirm" @input="clearInput" />
+				<uni-icons color="#999999" v-if="showClearIcon" class="col-1" @click="clearIcon" size="18" type="clear" />
+			</view>
+			<view style="width: 17%;" class="search_right flex_between" @click="onScreening">
+				<text>筛选</text>
+				<image src="../../static/tab1/screening1.png" mode=""></image>
+				<!-- <image src="../../static/tab1/screening2.png" mode=""></image> -->
 			</view>
 		</view>
 		<view class="content" @click="isAddShow=false">
@@ -83,6 +91,24 @@
 			<image @click="onCancel" style="width: 218upx;height: 124upx;" src="../../static/tab1/long_cancel.png" mode=""></image>
 			<image @click="onConfirm" style="width: 268upx;height: 124upx;" src="../../static/tab1/come_back.png" mode=""></image>
 		</view>
+		<uni-drawer ref="drawer" mode="right" :width="250">
+		    <view>
+				<view style="margin-top: 160upx;">
+					<text>筛选条件</text>
+				</view>
+		        <uni-collapse>
+		        	<uni-collapse-item title="筛选条件1">
+		        		内容
+		        	</uni-collapse-item>
+					<uni-collapse-item title="筛选条件2">
+						内容
+					</uni-collapse-item>
+					<uni-collapse-item title="筛选条件3">
+						内容
+					</uni-collapse-item>
+		        </uni-collapse>
+		    </view>
+		</uni-drawer>
 	</view>
 </template>
 
@@ -99,6 +125,8 @@
 				candidates: ['物品', '箱子'],
 				candidatesDefault: '物品',
 				keywords: '',
+				showClearIcon: false,
+				placeholderStyle: 'color: #ccc; font-size:14px',
 				isCheckedShow: false,
 				chooseButton: '选择',
 				isAddShow: false,
@@ -129,17 +157,47 @@
 				this.chooseButton = '选择'
 			}
 		},
+		onBackPress() {
+			// #ifdef APP-PLUS
+			plus.key.hideSoftKeybord();
+			// #endif
+		},
 		methods: {
 			onClickBack() {
 				uni.navigateBack({
 					delta: 1
 				})
 			},
-			onSearch(e) {
+			onScreening () {
+				this.$refs.drawer.open()
+			},
+			clearInput(event) {
+			    this.keywords = event.detail.value;
+			    if (event.detail.value.length > 0) {
+			        this.showClearIcon = true;
+			    } else {
+			        this.showClearIcon = false;
+			    }
+			},
+			clearIcon() {
+			    this.keywords = '';
+			    this.showClearIcon = false;
+			},
+			onSearchConfirm(e) {
 				console.log(this.candidatesDefault)
 				console.log(this.pageNumber)
 				console.log(this.totalPages)
-
+				// #ifdef APP-PLUS
+				uni.hideKeyboard()
+				plus.key.hideSoftKeybord()
+				// #endif
+				// #ifdef APP-PLUS
+				uni.hideKeyboard();
+				console.log('2222222222222')
+				// #endif
+				// #ifdef APP-PLUS
+				plus.key.hideSoftKeybord()
+				// #endif
 				if (!this.candidatesDefault) {
 					uni.showToast({
 						icon: 'none',
@@ -147,7 +205,10 @@
 					});
 					return
 				}
-				if (!e.value) {
+				if (e.value) {
+					this.keywords = e.value
+				}
+				if (!this.keywords) {
 					uni.showToast({
 						icon: 'none',
 						title: '请输入关键词'
@@ -163,7 +224,6 @@
 						scrollTop: 0,
 						duration: 300
 					})
-					this.keywords = e.value
 					if (this.totalPages > this.pageNumber) {
 						if (this.candidatesDefault == '物品') {
 							this.onSearchGoods()
@@ -244,6 +304,9 @@
 				}
 			},
 			onClickRight(index) {
+				// #ifdef APP-PLUS
+				uni.hideKeyboard()
+				// #endif
 				console.log(0)
 				if (index == '选择') {
 					console.log(111111111)
@@ -261,6 +324,9 @@
 					for (let item of this.allData) {
 						item.checked = true
 					}
+					this.chooseButton = '取消'
+				} else if (index == '取消') {
+					this.onCancel()
 				}
 			},
 			onCheckboxChange(e) {
@@ -382,17 +448,34 @@
 		color: #000000;
 	}
 
-	.search_box {
+	.search_wrap {
+		width: 100%;
 		box-sizing: border-box;
 		padding: 20upx 30upx;
 		position: fixed;
 		left: 0;
 		right: 0;
-		z-index: 50;
+		z-index: 5;
 		background-color: #FFFFFF;
 
-		.uni-searchbar {
-			padding: 0;
+		.search_box {
+			background-color: #FFFFFF;
+			height: 40upx;
+			border-radius: 30upx;
+			padding: 10upx;
+			border: 1upx solid #CCCCCC;
+		}
+		.search_right {
+			padding-left: 3%;
+			box-sizing: border-box;
+			text {
+				line-height: 60upx;
+				font-size: 28upx;
+			}
+			image {
+				width: 36upx;
+				height: 36upx;
+			}
 		}
 	}
 
