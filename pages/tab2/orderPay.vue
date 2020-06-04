@@ -42,8 +42,8 @@
 					</uni-list-item>
 					<uni-list-item title="备注" :showArrow="false">
 						<view slot="right">
-							<input class="input_remark" v-model="userRemark" @blur="onOrderRemark" type="text" placeholder="对我们的服务人员有什么特别的吩咐吗" style="font-size:28upx;padding-left: 20upx;color: #282828;"
-							 placeholder-style="font-size:14px; font-weight:400; color:rgba(178,178,178,1); line-height:40upx;" />
+							<input class="input_remark" v-model="userRemark" @blur="onOrderRemark" type="text" placeholder="对我们的服务人员有什么特别的吩咐吗"
+							 style="font-size:28upx;padding-left: 20upx;color: #282828;" placeholder-style="font-size:14px; font-weight:400; color:rgba(178,178,178,1); line-height:40upx;" />
 						</view>
 					</uni-list-item>
 				</uni-list>
@@ -86,12 +86,14 @@
 						</scroll-view>
 						<scroll-view style="width: 60%;height: 540upx;" scroll-y="true" @click="onClickHours">
 							<radio-group @change="onChooseHours">
-								<label class="flex_between date_item date_item_active" v-for="(item,index) in hours" :key="index">
-									<view style="width: 78%;">
-										{{item.value}}
-									</view>
-									<view style="width: 32%;">
-										<radio :value="item.value" :checked="index === currentHour" :disabled="!dateDate" color="rgba(59, 193, 187, 1)" />
+								<label v-for="(item,index) in hours" :key="index">
+									<view v-if="index >= hourDisableNum" class="flex_between date_item date_item_active">
+										<view style="width: 78%;">
+											{{item.value}}
+										</view>
+										<view style="width: 32%;">
+											<radio :value="item.value" :checked="index === currentHour" :disabled="!dateDate || hourDisable" color="rgba(59, 193, 187, 1)" />
+										</view>
 									</view>
 								</label>
 							</radio-group>
@@ -189,6 +191,11 @@
 				pay_fee: 0, // 支付费用
 				boxNum: 0, // 箱子数量
 				buttonDisable: false, //按钮禁止点击
+				dateDisable: false, //日期禁止点击
+				hourDisable: false, //日期禁止点击
+				hourDisableNum: -1,
+				nowDate: '', //当前日期
+				nowHour: '' //当前时间
 			}
 		},
 		onLoad(op) {
@@ -206,6 +213,16 @@
 			if (orderRemark) {
 				this.userRemark = orderRemark
 			}
+
+			this.nowDate = new Date().getDate()
+			this.nowHour = new Date().getHours()
+			if (this.nowDate < 10) {
+				this.nowDate = '0' + this.nowDate
+			}
+			if (this.nowHour < 10) {
+				this.nowHour = '0' + this.nowHour
+			}
+			
 		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
@@ -272,6 +289,20 @@
 						if (item.date == dateItem.date) {
 							dateItem.clicked = true
 							this.dateDate = item.value
+							if (this.nowDate == item.date.split('-')[2]) {
+								if (this.nowHour >= 0 && this.nowHour <= 13) {
+									this.hourDisable = true
+									this.hourDisableNum = 1 // 只选择前两个
+								} else if (this.nowHour > 13 && this.nowHour <= 24) {
+									this.hourDisable = true
+									this.hourDisableNum = this.hours.length
+								}
+								this.currentHour = -1
+								this.hourValue = ''
+							} else {
+								this.hourDisable = false
+								this.hourDisableNum = -1
+							}
 						} else {
 							dateItem.clicked = false
 						}
@@ -303,6 +334,12 @@
 				if (!this.dateDate) {
 					uni.showToast({
 						title: '请选择日期',
+						icon: 'none'
+					})
+				}
+				if(this.hourDisable) {
+					uni.showToast({
+						title: '当前时间不可选择',
 						icon: 'none'
 					})
 				}

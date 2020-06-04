@@ -37,7 +37,7 @@
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="存单" :note="'上门地址：'+item.detailAddress" :showArrow="false">
 												<view slot='right' class="list_right_text">
-													<text class="list_right_orange">待付款</text>
+													<text class="list_right_orange">待支付</text>
 												</view>
 											</uni-list-item>
 										</uni-list>
@@ -62,13 +62,13 @@
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="取单" :note="'送到: '+item.detailAddress" :showArrow="false">
 												<view slot='right' class="list_right_text">
-													<text class="list_right_orange">待付款</text>
+													<text class="list_right_orange">待支付</text>
 												</view>
 											</uni-list-item>
 										</uni-list>
 										<view class="flex_between">
 											<view style="height: 100upx;">
-												<image v-for="(goods, index) in item.totalList" :key="goods.id" style="width: 100upx;height: 100upx;background-color: #F2F2F2;box-sizing: border-box;padding: 8upx;margin-right: 20upx;"
+												<image v-for="(goods, index) in item.totalList" :key="goods.id" style="width: 100upx;height: 100upx;background-color: #F2F2F2;box-sizing: border-box;padding: 8upx;margin-right: 20upx;" mode="aspectFill"
 												 :src="goods.coverPic" v-show="index < 3"></image>
 											</view>
 											<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
@@ -86,7 +86,7 @@
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="仓储订单" :showArrow="false">
 												<view slot='right' class="list_right_text">
-													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
+													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待支付</text>
 													<text class="list_right_red" v-if="item.status.code == 'overdue7'">已逾期，请及时支付</text>
 												</view>
 											</uni-list-item>
@@ -133,7 +133,7 @@
 												<view slot='right' class="list_right_text">
 													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待支付</text>
 													<text class="list_right_blue" v-if="item.status.code == 'init'">待受理</text>
-													<text class="list_right_blue" v-if="item.status.code == 'assign' || item.status.code == 'fetch'">待上门服务</text>
+													<text class="list_right_blue" v-if="item.status.code == 'assign' || item.status.code == 'fetch' || item.status.code == 'waitarrive'">待上门服务</text>
 													<text class="list_right_blue" v-if="item.status.code == 'delivery'">回库中</text>
 													<text class="list_right_blue" v-if="item.status.code == 'inputwork' || item.status.code == 'monitor' || item.status.code == 'photo' || item.status.code == 'ready'">入库作业中</text>
 													<text class="list_right_gray" v-if="item.status.code == 'finish'">已完成</text>
@@ -178,7 +178,7 @@
 										</uni-list>
 										<view class="flex_between">
 											<view style="height: 100upx;">
-												<image v-for="(goods, index) in item.totalList" :key="goods.id" style="width: 100upx;height: 100upx;background-color: #F2F2F2;box-sizing: border-box;padding: 8upx;margin-right: 20upx;"
+												<image v-for="(goods, index) in item.totalList" :key="goods.id" style="width: 100upx;height: 100upx;background-color: #F2F2F2;box-sizing: border-box;padding: 8upx;margin-right: 20upx;" mode="aspectFill"
 												 :src="goods.coverPic" v-show="index < 3"></image>
 											</view>
 											<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
@@ -201,7 +201,7 @@
 										<uni-list class="list_custom list_custom_align_start">
 											<uni-list-item title="仓储订单" :showArrow="false">
 												<view slot='right' class="list_right_text">
-													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待付款</text>
+													<text class="list_right_orange" v-if="item.status.code == 'waitpay'">待支付</text>
 													<text class="list_right_gray" v-if="item.status.code == 'payed'">已完成</text>
 													<text class="list_right_red" v-if="item.status.code == 'overdue7'">已逾期，请及时支付</text>
 												</view>

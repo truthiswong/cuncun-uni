@@ -46,7 +46,7 @@
 							<view class="col-9">
 								<!-- EC 经济照片 SD 标准拍照-->
 								<view class="flex_between storge_box" v-if="item.typeBoxAB == 'B'" v-for="(item,index) in orderBox" :key="index">
-									<text>{{item.typeName}} X {{item.number}}</text>
+									<text>{{item.typeName}} ×️ {{item.number}}</text>
 									<text>¥ {{item.price}}</text>
 								</view>
 							</view>
@@ -57,7 +57,7 @@
 							</view>
 							<view class="col-9">
 								<view class="flex_between storge_box" v-if="item.typeBoxAB == 'A'" v-for="(item,index) in orderBox" :key="index">
-									<text>{{item.typeName}} X {{item.number}}</text>
+									<text>{{item.typeName}} ×️ {{item.number}}</text>
 									<text>¥ {{item.price}}</text>
 								</view>
 							</view>

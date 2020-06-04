@@ -42,7 +42,7 @@
 			<view class="order_list">
 				<p>返送清单</p>
 				<view class="order_list_image">
-					<image v-for="(item,index) in order.totalList" :key="index" :src="item.coverPic" mode=""></image>
+					<image v-for="(item,index) in order.totalList" :key="index" :src="item.coverPic" mode="aspectFill"></image>
 				</view>
 				<view style="">
 					<view class="flex_between order_list_fee">
