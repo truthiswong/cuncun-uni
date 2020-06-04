@@ -22,7 +22,7 @@
 				"navigationBarTitleText": "登录",
 				"app-plus": {
 					"bounce": "none", //关闭窗口回弹效果
-					"popGesture":"none" //关闭侧滑返回
+					"popGesture": "none" //关闭侧滑返回
 				}
 			}
 		},
@@ -116,7 +116,8 @@
 				"navigationBarTitleText": "搜索",
 				"onReachBottomDistance": 100,
 				"app-plus": {
-					"bounce": "none"
+					"bounce": "none",
+					"softinputNavBar": "none"
 				}
 			}
 		},
@@ -153,7 +154,7 @@
 				"navigationBarTitleText": "返送清单完成",
 				"app-plus": {
 					"bounce": "none",
-					"popGesture":"none"
+					"popGesture": "none"
 				}
 			}
 		},
@@ -163,7 +164,7 @@
 				"navigationBarTitleText": "返送清单详情",
 				"app-plus": {
 					"bounce": "none",
-					"popGesture":"none"
+					"popGesture": "none"
 				}
 			}
 		},
@@ -173,7 +174,8 @@
 			"style": {
 				"navigationBarTitleText": "添加存单",
 				"app-plus": {
-					"bounce": "none"
+					"bounce": "none",
+					"softinputNavBar": "none"
 				}
 			}
 		},
@@ -183,7 +185,7 @@
 				"navigationBarTitleText": "存单详情",
 				"app-plus": {
 					"bounce": "none",
-					"popGesture":"none"
+					"popGesture": "none"
 				}
 			}
 		},
@@ -211,7 +213,7 @@
 				"navigationBarTitleText": "存单成功",
 				"app-plus": {
 					"bounce": "none",
-					"popGesture":"none"
+					"popGesture": "none"
 				}
 			}
 		},
@@ -295,7 +297,7 @@
 				"navigationBarTitleText": "实名认证成功",
 				"app-plus": {
 					"bounce": "none",
-					"popGesture":"none"
+					"popGesture": "none"
 				}
 			}
 		},
@@ -305,7 +307,7 @@
 				"navigationBarTitleText": "地址",
 				"app-plus": {
 					"bounce": "none",
-					"popGesture":"none"
+					"popGesture": "none"
 				}
 			}
 		},

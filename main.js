@@ -16,9 +16,12 @@ Vue.component('uni-nav-bar', uniNavBar)
 // 弹窗
 import uniPopup from "@/components/uni-popup/uni-popup.vue"
 Vue.component('uni-popup', uniPopup)
+// 抽屉
+import uniDrawer from "@/components/uni-drawer/uni-drawer.vue"
+Vue.component('uni-drawer', uniDrawer)
 // 搜索框
 import uniSearchBar from '@/components/uni-search-bar/uni-search-bar.vue'
-Vue.component('uni-searchBar', uniSearchBar)
+Vue.component('uni-search-bar', uniSearchBar)
 // 列表
 import uniList from "@/components/uni-list/uni-list.vue"
 import uniListItem from "@/components/uni-list-item/uni-list-item.vue"
