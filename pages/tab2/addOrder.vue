@@ -17,7 +17,7 @@
 			<view class="add_content">
 				<view v-for="(item,index) in inputList" :key="index" style="margin-top: 40upx;">
 					<view class="flex_between" v-if="item.number != 0">
-						<input class="add_input" type="text" @blur="inputText" v-model="item.value" placeholder="如：文档，书本…" style="font-size:28upx;padding-left: 20upx;color: #282828;"
+						<input class="add_input" type="text" @blur="inputText" :focus="inputFocus" @confirm="inputConfirm" v-model="item.value" placeholder="如：文档，书本…" confirm-type="go" style="font-size:28upx;padding-left: 20upx;color: #282828;"
 						 placeholder-style="font-size:14px; font-weight:400; color:rgba(178,178,178,1); line-height:40upx;" />
 						<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" :value="item.number" @change="changeInputNumber($event, index, item)" />
 					</view>
@@ -166,7 +166,8 @@
 				buttonDisable: false,
 				orderCopy: false, //订单复制
 				orderGoodsList: [],
-				orderBoxsList: []
+				orderBoxsList: [],
+				inputFocus: false
 			}
 		},
 		onLoad(option) {
@@ -244,6 +245,13 @@
 				this.headerShow = true;
 			}
 		},
+		onBackPress(e) {
+			console.log(e)
+			console.log(666666666)
+			// #ifdef APP-PLUS
+			uni.hideKeyboard()
+			// #endif
+		},
 		watch: {
 			agree2() {
 				if (this.agree2) {
@@ -290,6 +298,13 @@
 					key: 'orderGoodsList',
 					data: this.inputList
 				})
+			},
+			inputConfirm() {
+				this.inputFocus = false
+				// #ifdef APP-PLUS
+				uni.hideKeyboard()
+				plus.key.hideSoftKeybord()
+				// #endif
 			},
 			// 物品加减
 			changeInputNumber(number, index, item) {
