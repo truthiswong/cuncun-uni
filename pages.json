@@ -30,8 +30,28 @@
 			"path": "pages/tabs/tab1",
 			"style": {
 				"navigationBarTitleText": "存存",
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"backgroundColorTop": "#FFFFFF",
+				"navigationStyle":"custom",
+				"onReachBottomDistance": 100,
 				"app-plus": {
-					"bounce": "none"
+					"bounce": "none",
+					"pullToRefresh": {
+						"support": true,
+						"offset": "88px",
+						"style": "circle",
+						"color": "#03A6A6",
+						"contentdown": {
+							"caption": "下拉可刷新"
+						},
+						"contentover": {
+							"caption": "释放可刷新"
+						},
+						"contentrefresh": {
+							"caption": "正在刷新"
+						}
+					}
 				}
 			}
 		},
@@ -39,10 +59,28 @@
 			"path": "pages/tabs/tab2",
 			"style": {
 				"navigationBarTitleText": "我的订单",
-				// "enablePullDownRefresh": true,
+				"navigationBarTextStyle":"black",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"backgroundColorTop": "#FFFFFF",
+				"navigationStyle":"custom",
 				"onReachBottomDistance": 100,
 				"app-plus": {
-					"bounce": "none"
+					"bounce": "none",
+					"pullToRefresh": {
+						"support": true,
+						"offset": "88px",
+						"style": "circle",
+						"color": "#03A6A6",
+						"contentdown": {
+							"caption": "下拉可刷新"
+						},
+						"contentover": {
+							"caption": "释放可刷新"
+						},
+						"contentrefresh": {
+							"caption": "正在刷新"
+						}
+					}
 				}
 			}
 		},
@@ -240,9 +278,28 @@
 			"path": "pages/tab3/payDetails",
 			"style": {
 				"navigationBarTitleText": "消费明细",
+				// "navigationBarTextStyle":"black",
+				// "navigationBarBackgroundColor": "#FFFFFF",
+				// "backgroundColorTop": "#FFFFFF",
+				"navigationStyle":"custom",
 				"onReachBottomDistance": 100,
 				"app-plus": {
-					"bounce": "none"
+					"bounce": "none",
+					"pullToRefresh": {
+						"support": true,
+						"offset": "88px",
+						"style": "circle",
+						"color": "#03A6A6",
+						"contentdown": {
+							"caption": "下拉可刷新"
+						},
+						"contentover": {
+							"caption": "释放可刷新"
+						},
+						"contentrefresh": {
+							"caption": "正在刷新"
+						}
+					}
 				}
 			}
 		},
