@@ -28,7 +28,7 @@
 					<uni-segmented-control style="color:rgba(178,178,178,1)" class="segmented_custom" :current="current" :values="items"
 					 @clickItem="onClickItem" styleType="text" activeColor="#03A6A6"></uni-segmented-control>
 				</view>
-				<scroll-view scroll-y="true">
+				<view>
 					<view class="segmented_content">
 						<view v-if="current === 0">
 							<view>
@@ -98,7 +98,7 @@
 													 mode=""></image>
 												</view>
 												<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
-													<text>EC箱 ×{{item.boxECnum}}</text>
+													<text>经济箱 ×{{item.boxECnum}}</text>
 												</view>
 											</view>
 											<view class="col-6 row" v-if="item.boxSDnum>0">
@@ -107,7 +107,7 @@
 													 mode=""></image>
 												</view>
 												<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
-													<text>SD箱 ×{{item.boxSDnum}}</text>
+													<text>标准箱 ×{{item.boxSDnum}}</text>
 												</view>
 											</view>
 										</view>
@@ -214,7 +214,7 @@
 													 mode=""></image>
 												</view>
 												<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
-													<text>EC箱 ×{{item.boxECnum}}</text>
+													<text>经济箱 ×{{item.boxECnum}}</text>
 												</view>
 											</view>
 											<view class="col-6 row" v-if="item.boxSDnum>0">
@@ -223,7 +223,7 @@
 													 mode=""></image>
 												</view>
 												<view style="font-size:28upx;color:rgba(74,74,74,1);line-height:46upx;">
-													<text>SD箱 ×{{item.boxSDnum}}</text>
+													<text>标准箱 ×{{item.boxSDnum}}</text>
 												</view>
 											</view>
 										</view>
@@ -244,7 +244,7 @@
 					<view style="text-align: center;font-size:24upx;font-weight:400;color:rgba(178,178,178,1);margin: 40upx 0 20upx;line-height:33upx;">
 						这是我的底线，没有更多的咯～
 					</view>
-				</scroll-view>
+				</view>
 			</view>
 		</view>
 	</view>
@@ -329,6 +329,36 @@
 			// this.getOrderList2()
 			// this.getOrderList3()
 		},
+		onPullDownRefresh() {
+			this.pageNumber1 = 0
+			this.totalPages1 = 1
+			this.finished1 = false
+			this.pageNumber2 = 0
+			this.totalPages2 = 1
+			this.finished2 = false
+			this.pageNumber3 = 0
+			this.totalPages3 = 1
+			this.finished3 = false
+			if (this.current == 0) {
+				this.getOrderList0()
+				this.getOrderList1()
+			} else if (this.current == 1) {
+				this.pageNumber1 = 0
+				this.totalPages1 = 1
+				this.finished1 = false
+				this.getOrderList1()
+			} else if (this.current == 2) {
+				this.pageNumber2 = 0
+				this.totalPages2 = 1
+				this.finished2 = false
+				this.getOrderList2()
+			} else if (this.current == 3) {
+				this.pageNumber3 = 0
+				this.totalPages3 = 1
+				this.finished3 = false
+				this.getOrderList3()
+			}
+		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
 				this.headerShow = false;
@@ -336,7 +366,6 @@
 				this.headerShow = true;
 			}
 		},
-		onPullDownRefresh() {},
 		onReachBottom() {
 			console.log(6666)
 			if (this.current == 0) {} else if (this.current == 1) {
@@ -440,6 +469,9 @@
 			// 获取未支付列表
 			getOrderList0() {
 				this.$http('user/store/waitpay', "GET", '', res => {
+					// #ifdef APP-PLUS
+					uni.stopPullDownRefresh()
+					// #endif
 					let data = res.data
 					if (data.success) {
 						console.log(data.data)
@@ -491,6 +523,9 @@
 				console.log(this.totalPages1)
 				if (this.totalPages1 > this.pageNumber1) {
 					this.$http('user/deposit/order/page?pageSize=10&pageNumber=' + this.pageNumber1, "GET", '', res => {
+						// #ifdef APP-PLUS
+						uni.stopPullDownRefresh()
+						// #endif
 						let data = res.data
 						if (data.success) {
 							if (this.pageNumber1 <= 0) {
@@ -523,6 +558,9 @@
 				console.log(this.totalPages2)
 				if (this.totalPages2 > this.pageNumber2) {
 					this.$http('user/withdraw/order/page?pageSize=10&pageNumber=' + this.pageNumber2, "GET", '', res => {
+						// #ifdef APP-PLUS
+						uni.stopPullDownRefresh()
+						// #endif
 						let data = res.data
 						if (data.success) {
 							for (let item of data.data.data) {
@@ -578,6 +616,9 @@
 				console.log(this.totalPages3)
 				if (this.totalPages3 > this.pageNumber3) {
 					this.$http('user/store/order/page?pageSize=10&pageNumber=' + this.pageNumber3, "GET", '', res => {
+						// #ifdef APP-PLUS
+						uni.stopPullDownRefresh()
+						// #endif
 						let data = res.data
 						if (data.success) {
 							if (this.pageNumber3 <= 0) {

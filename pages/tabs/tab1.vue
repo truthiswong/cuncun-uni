@@ -1,25 +1,25 @@
 <template>
 	<view class="page">
 		<uni-nav-bar class="header" status-bar="true" fixed="true" v-if="headerShow" backgroundColor="rgba(0,0,0,0)" style="position: absolute; top: 0;">
-			<view slot="left">
+			<view slot="left" class="header_icon">
 				<image src="../../static/tab1/tab1_logo.png" style="width:306upx; height:68upx; margin: 0px 30upx -24upx;"></image>
 			</view>
 			<view slot="right">
 				<view class="header_icon">
 					<image @click="onClickRight(1)" style="" src="../../static/tab1/search_white.png"></image>
-					<image @click="onClickRight(2)" src="../../static/tab1/add.png"></image>
+					<image @click="onClickRight(2)" src="../../static/tab1/add.png" style="margin-left: 60upx;"></image>
 				</view>
 			</view>
 		</uni-nav-bar>
 		<uni-nav-bar class="header" status-bar="true" fixed="true" v-if="!headerShow" style="position: absolute; top: 0;"
 		 shadow="true">
-			<view slot="left">
+			<view slot="left" class="header_icon">
 				<image src="../../static/tab1/header_active.png" style="width:374upx; height:48upx; margin: 0px 30upx -14upx;"></image>
 			</view>
 			<view slot="right">
 				<view class="header_icon">
 					<image @click="onClickRight(1)" src="../../static/tab1/search_green.png"></image>
-					<image @click="onClickRight(2)" src="../../static/tab1/add_green.png"></image>
+					<image @click="onClickRight(2)" src="../../static/tab1/add_green.png" style="margin-left: 60upx;"></image>
 				</view>
 			</view>
 		</uni-nav-bar>
@@ -183,7 +183,7 @@
 						</view>
 						<view v-if="tab1ShowHide.storageShowHide == true">
 							<scroll-view class="scroll_x" scroll-x="true" @scroll="onScroll">
-								<view class="scroll_content scroll_content4" v-for="(item,index) in storageData" :key='index' style="display: inline-block;width: 220upx;height: 200upx;font-size: 0;">
+								<view class="scroll_content scroll_content4" v-for="(item,index) in storageData" :key='index' style="display: inline-block;width: 220upx;height: 220upx;font-size: 0;">
 									<image v-if="item.coverPic" :src="item.coverPic" mode="aspectFill"></image>
 									<image v-else @click="onClickRight(4)" src="../../static/tab1/add_order.png" mode=""></image>
 								</view>
@@ -309,6 +309,10 @@
 			} else {
 				this.welcomeText = `晚上好，${nickname}`
 			}
+		},
+		onPullDownRefresh() {
+			this.getGoodsList()
+			this.getFailList()
 		},
 		onPageScroll(options) {
 			if (options.scrollTop > 60) {
@@ -468,6 +472,9 @@
 			// 获取列表
 			getGoodsList() {
 				this.$http('user/store/show', "GET", '', res => {
+					// #ifdef APP-PLUS
+					uni.stopPullDownRefresh()
+					// #endif
 					let data = res.data
 					if (data.success) {
 						let goodsData = {
@@ -518,6 +525,9 @@
 			// 获取未过安检的列表
 			getFailList() {
 				this.$http('user/pack/list?auditStatus=fail', "GET", '', res => {
+					// #ifdef APP-PLUS
+					uni.stopPullDownRefresh()
+					// #endif
 					let data = res.data
 					if (data.success) {
 						this.failData = data.data //未过安检
@@ -583,14 +593,11 @@
 
 	.header_icon {
 		width: 200upx;
-		height: 88upx;
-		padding-right: 36upx;
 
 		image {
-			width: 88upx;
-			height: 88upx;
-			box-sizing: border-box;
-			padding: 22upx;
+			width: 44upx;
+			height: 44upx;
+			margin: 30upx 10upx 0;
 		}
 	}
 
@@ -774,7 +781,7 @@
 		color: #4A4A4A;
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 4;
+		-webkit-line-clamp: 3;
 		overflow: hidden;
 		text-align: justify;
 	}
