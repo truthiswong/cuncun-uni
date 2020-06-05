@@ -291,10 +291,8 @@
 							this.dateDate = item.value
 							if (this.nowDate == item.date.split('-')[2]) {
 								if (this.nowHour >= 0 && this.nowHour <= 13) {
-									this.hourDisable = true
-									this.hourDisableNum = 1 // 只选择前两个
+									this.hourDisableNum = 2 // 前两个不能选
 								} else if (this.nowHour > 13 && this.nowHour <= 24) {
-									this.hourDisable = true
 									this.hourDisableNum = this.hours.length
 								}
 								this.currentHour = -1
