@@ -46,7 +46,7 @@
 				<navigator url="/pages/tab3/other">
 					<uni-list-item title="其他" thumb="../../static/tab3/ohter.png"></uni-list-item>
 				</navigator>
-				<uni-list-item @click="onCall(phone)" title="客服电话" thumb="../../static//tab3/server.png" :rightText="phone"></uni-list-item>
+				<uni-list-item title="客服电话" thumb="../../static/tab3/server.png" @click="onCall(phone)" :rightText="phone"></uni-list-item>
 			</uni-list>
 		</view>
 		<image src="../../static/tab3/tab3_bottom.png" class="tab3_bottom" mode=""></image>
