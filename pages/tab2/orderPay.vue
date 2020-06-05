@@ -96,17 +96,12 @@
 										</view>
 									</view>
 								</label>
+								<view class="date_item date_item_active" v-if="hourDisableNum >= hours.length">
+									<text>无可选时间</text>
+								</view>
 							</radio-group>
 						</scroll-view>
 					</view>
-					<!-- <picker-view style="height: 480upx;" :indicator-style="indicatorStyle" :value="dateValue" @change="changeDate">
-						<picker-view-column>
-							<view class="date_item" v-for="(item,index) in dates" :key="index">{{item.value}}</view>
-						</picker-view-column>
-						<picker-view-column>
-							<view class="date_item" v-for="(item,index) in hours" :key="index">{{item.value}}</view>
-						</picker-view-column>
-					</picker-view> -->
 				</view>
 			</view>
 		</uni-popup>
