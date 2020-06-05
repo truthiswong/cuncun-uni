@@ -11,7 +11,7 @@
 			<view style="width: 20%;">
 				<uni-combox :candidates="candidates" placeholder="选择" v-model="candidatesDefault"></uni-combox>
 			</view>
-			<view style="width: 63%;" class="flex_between row search_box">
+			<view style="width: 80%;" class="flex_between row search_box">
 				<!-- <uni-search-bar :radius="100" @confirm="onSearchConfirm"></uni-search-bar> -->
 				<uni-icons color="#999999" size="18" type="search" class="col-1" />
 				<input type="text" style="background-color: #FFFFFF; color: #333333;font-size: 28upx;line-height: 40upx;" class="col-10"
@@ -19,7 +19,7 @@
 				 @input="clearInput" />
 				<uni-icons color="#999999" v-if="showClearIcon" class="col-1" @click="clearIcon" size="18" type="clear" />
 			</view>
-			<view style="width: 17%;" class="search_right flex_between" @click="onScreening">
+			<view v-if="0" style="width: 17%;" class="search_right flex_between" @click="onScreening">
 				<text>筛选</text>
 				<image src="../../static/tab1/screening1.png" mode=""></image>
 				<!-- <image src="../../static/tab1/screening2.png" mode=""></image> -->
