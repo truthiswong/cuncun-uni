@@ -108,6 +108,10 @@
 					})
 				} else if (index == '选择') {
 					if (this.list.length <= 0) {
+						uni.showToast({
+							icon: 'none',
+							title: '先去存点东西吧'
+						})
 						return
 					}
 					this.isCheckedShow = true
@@ -116,6 +120,9 @@
 					for (let item of this.list) {
 						item.checked = true
 					}
+					this.chooseButton = '取消'
+				} else if (index == '取消') {
+					this.onCancel()
 				}
 			},
 			onCheckboxChange(e) {

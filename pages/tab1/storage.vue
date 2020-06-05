@@ -99,6 +99,10 @@
 					})
 				} else if (index == '选择') {
 					if (this.list.length <= 0) {
+						uni.showToast({
+							icon: 'none',
+							title: '先去存点东西吧'
+						})
 						return
 					}
 					this.isCheckedShow = true
@@ -107,6 +111,9 @@
 					for (let item of this.list) {
 						item.checked = true
 					}
+					this.chooseButton = '取消'
+				} else if (index == '取消') {
+					this.onCancel()
 				}
 			},
 			onCheckboxChange(e) {
@@ -117,7 +124,6 @@
 						item.checked = false
 					}
 				}
-				console.log(this.list)
 			},
 			onCancel() {
 				this.isCheckedShow = false
@@ -314,11 +320,11 @@
 	.scroll_content4 {
 		position: relative;
 		width: 32%;
-		height: 200upx;
+		height: 220upx;
 		text-align: center;
 		margin: 16upx 5upx 50upx;
 		box-sizing: border-box;
-		padding: 20upx 18upx 0;
+		padding: 20upx;
 		background: rgba(230, 230, 230, 1);
 
 		image {
