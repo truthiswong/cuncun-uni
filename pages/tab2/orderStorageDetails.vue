@@ -66,11 +66,11 @@
 				</view>
 				<view>
 					<view class="flex_between order_list_fee">
-						<p>EC箱总费用</p>
+						<p>经济箱总费用</p>
 						<text>¥ {{order.boxECprice}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
-						<p>SD箱总费用</p>
+						<p>标准箱总费用</p>
 						<text>¥ {{order.boxSDprice}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
