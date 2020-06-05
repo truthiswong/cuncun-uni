@@ -8,13 +8,15 @@
 			</view>
 		</uni-nav-bar>
 		<view class='search_wrap flex_between' @click="isAddShow=false">
-			<view style="width: 15%;">
+			<view style="width: 20%;">
 				<uni-combox :candidates="candidates" placeholder="选择" v-model="candidatesDefault"></uni-combox>
 			</view>
-			<view style="width: 68%;" class="flex_between row search_box">
+			<view style="width: 63%;" class="flex_between row search_box">
 				<!-- <uni-search-bar :radius="100" @confirm="onSearchConfirm"></uni-search-bar> -->
 				<uni-icons color="#999999" size="18" type="search" class="col-1" />
-				<input type="text" style="background-color: #FFFFFF; color: #333333;font-size: 28upx;line-height: 40upx;" class="col-10" :class="{'col-11': !showClearIcon}" confirm-type="search" placeholder="请输入搜索内容" v-model="keywords" @confirm="onSearchConfirm" @input="clearInput" />
+				<input type="text" style="background-color: #FFFFFF; color: #333333;font-size: 28upx;line-height: 40upx;" class="col-10"
+				 :class="{'col-11': !showClearIcon}" confirm-type="search" placeholder="请输入搜索内容" v-model="keywords" @confirm="onSearchConfirm"
+				 @input="clearInput" />
 				<uni-icons color="#999999" v-if="showClearIcon" class="col-1" @click="clearIcon" size="18" type="clear" />
 			</view>
 			<view style="width: 17%;" class="search_right flex_between" @click="onScreening">
@@ -92,22 +94,22 @@
 			<image @click="onConfirm" style="width: 268upx;height: 124upx;" src="../../static/tab1/come_back.png" mode=""></image>
 		</view>
 		<uni-drawer ref="drawer" mode="right" :width="250">
-		    <view>
+			<view>
 				<view style="margin-top: 160upx;">
 					<text>筛选条件</text>
 				</view>
-		        <uni-collapse>
-		        	<uni-collapse-item title="筛选条件1">
-		        		内容
-		        	</uni-collapse-item>
+				<uni-collapse>
+					<uni-collapse-item title="筛选条件1">
+						内容
+					</uni-collapse-item>
 					<uni-collapse-item title="筛选条件2">
 						内容
 					</uni-collapse-item>
 					<uni-collapse-item title="筛选条件3">
 						内容
 					</uni-collapse-item>
-		        </uni-collapse>
-		    </view>
+				</uni-collapse>
+			</view>
 		</uni-drawer>
 	</view>
 </template>
@@ -122,7 +124,7 @@
 				scroll_bg2: '../../static/tab1/clothes_box.png',
 				scroll_bg3: '../../static/tab1/shoes_box2.png',
 				allData: [], // 所有搜索结果
-				candidates: ['物品', '箱子'],
+				candidates: ['物品', '经济箱'],
 				candidatesDefault: '物品',
 				keywords: '',
 				showClearIcon: false,
@@ -143,7 +145,7 @@
 			console.log(66665)
 			if (this.candidatesDefault == '物品') {
 				this.onSearchGoods()
-			} else if (this.candidatesDefault == '箱子') {
+			} else if (this.candidatesDefault == '经济箱') {
 				this.onSearchBoxs()
 			}
 		},
@@ -168,20 +170,20 @@
 					delta: 1
 				})
 			},
-			onScreening () {
+			onScreening() {
 				this.$refs.drawer.open()
 			},
 			clearInput(event) {
-			    this.keywords = event.detail.value;
-			    if (event.detail.value.length > 0) {
-			        this.showClearIcon = true;
-			    } else {
-			        this.showClearIcon = false;
-			    }
+				this.keywords = event.detail.value;
+				if (event.detail.value.length > 0) {
+					this.showClearIcon = true;
+				} else {
+					this.showClearIcon = false;
+				}
 			},
 			clearIcon() {
-			    this.keywords = '';
-			    this.showClearIcon = false;
+				this.keywords = '';
+				this.showClearIcon = false;
 			},
 			onSearchConfirm(e) {
 				console.log(this.candidatesDefault)
@@ -227,7 +229,7 @@
 					if (this.totalPages > this.pageNumber) {
 						if (this.candidatesDefault == '物品') {
 							this.onSearchGoods()
-						} else if (this.candidatesDefault == '箱子') {
+						} else if (this.candidatesDefault == '经济箱') {
 							this.onSearchBoxs()
 						}
 					} else {
@@ -320,7 +322,6 @@
 					this.isCheckedShow = true
 					this.chooseButton = '全选'
 				} else if (index == '全选') {
-					console.log(222222222222)
 					for (let item of this.allData) {
 						item.checked = true
 					}
@@ -378,7 +379,7 @@
 							}
 						})
 					}
-				} else if (this.candidatesDefault == '箱子') {
+				} else if (this.candidatesDefault == '经济箱') {
 
 					for (let item of this.allData) {
 						if (item.checked) {
@@ -465,13 +466,16 @@
 			padding: 10upx;
 			border: 1upx solid #CCCCCC;
 		}
+
 		.search_right {
 			padding-left: 3%;
 			box-sizing: border-box;
+
 			text {
 				line-height: 60upx;
 				font-size: 28upx;
 			}
+
 			image {
 				width: 36upx;
 				height: 36upx;
