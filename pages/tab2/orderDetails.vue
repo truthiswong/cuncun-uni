@@ -58,19 +58,15 @@
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>打包费用</p>
-						<text>¥ {{order.packFee}} {{order.packFeeNew - order.packFee >= 0?'+':'-'}} ¥ {{packFee}}</text>
+						<text>¥ {{order.packFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
 						<p>箱子费用</p>
-						<text>¥ {{order.boxFee}} {{order.boxFeeNew - order.boxFee >= 0?'+':'-'}} ¥ {{boxFee}}</text>
+						<text>¥ {{order.boxFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee">
-						<p>订单总费用</p>
+						<p>订单总费用 <text style="color: #3BC1BB;padding: 0 20upx;" v-if="order.adjustFeeReason" @click="onChangeFeeAlert(order.adjustFeeReason)">查看</text></p>
 						<text>¥ {{order.totalFee}} {{order.settleFee - order.totalFee >= 0?'+':'-'}} ¥ {{totalFee}}</text>
-					</view>
-					<view class="flex_between order_list_fee">
-						<p>调整费用 <text style="color: #3BC1BB;padding: 0 20upx;" v-if="order.adjustFeeReason" @click="onChangeFeeAlert(order.adjustFeeReason)">查看</text></p>
-						<text>¥ {{order.adjustFee}}</text>
 					</view>
 					<view class="flex_between order_list_fee" v-if="order.detailStatus == 'waitpay'">
 						<p>待支付费用</p>
@@ -79,7 +75,7 @@
 						</view>
 					</view>
 					<view class="flex_between order_list_fee" v-if="order.detailPrepaidStatus == 'payed'">
-						<p>已支付费用</p>
+						<p>支付定金</p>
 						<view>
 							<text>¥ <text style="font-size:32upx;margin-left: 10upx;">{{order.prepaid}}</text></text>
 						</view>
