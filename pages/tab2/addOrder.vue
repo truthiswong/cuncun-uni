@@ -17,7 +17,8 @@
 			<view class="add_content">
 				<view v-for="(item,index) in inputList" :key="index" style="margin-top: 40upx;">
 					<view class="flex_between" v-if="item.number != 0">
-						<input class="add_input" type="text" @blur="inputText" :focus="inputFocus" @confirm="inputConfirm" v-model="item.value" placeholder="如：文档，书本…" confirm-type="go" style="font-size:28upx;padding-left: 20upx;color: #282828;"
+						<input class="add_input" type="text" @blur="inputText" :focus="inputFocus" @confirm="inputConfirm" v-model="item.value"
+						 placeholder="如：文档，书本…" confirm-type="go" style="font-size:28upx;padding-left: 20upx;color: #282828;"
 						 placeholder-style="font-size:14px; font-weight:400; color:rgba(178,178,178,1); line-height:40upx;" />
 						<uni-number-box class="number_box_custom" :disabledInput="true" :min="0" :max="9999" :value="item.number" @change="changeInputNumber($event, index, item)" />
 					</view>
@@ -147,14 +148,13 @@
 				}],
 				inputListNumber: 0,
 				boxList: [{
-						id: 0,
-						name: "小型纸箱A（拍照）",
-						weight: 120,
-						fee: 18,
-						number: 0,
-						storePerMonthFee: 0
-					}
-				],
+					id: 0,
+					name: "小型纸箱A（拍照）",
+					weight: 120,
+					fee: 18,
+					number: 0,
+					storePerMonthFee: 0
+				}],
 				boxIndex: '',
 				mday: 0, //每月有多少天
 				boxNumber: 1,
@@ -302,8 +302,8 @@
 			inputConfirm() {
 				this.inputFocus = false
 				// #ifdef APP-PLUS
-				uni.hideKeyboard()
-				plus.key.hideSoftKeybord()
+				uni.hideKeyboard(); //隐藏软键盘
+				plus.key.hideSoftKeybord();
 				// #endif
 			},
 			// 物品加减
@@ -527,7 +527,7 @@
 						}
 						this.boxList = data.data
 						if (this.orderCopy) {
-							
+
 						} else {
 							this.orderBoxsList = uni.getStorageSync('orderBoxsList')
 							for (let boxItem of this.boxList) {
