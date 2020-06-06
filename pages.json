@@ -213,7 +213,7 @@
 				"navigationBarTitleText": "添加存单",
 				"app-plus": {
 					"bounce": "none",
-					"softinputNavBar": "none"
+					"softinputNavBar": "auto"
 				}
 			}
 		},
